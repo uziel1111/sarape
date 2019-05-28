@@ -37,8 +37,17 @@ class Reporte extends CI_Controller {
 			$pdf->AddPage('L','Legal');
 
 			$rutas = $this->Reportepdf_model->get_rutasxcct($id_cct);
+			$aux_ruta = '';
+			$loque_imprime= '' ;
+			// echo "<pre>";print_r($rutas);die();
 			foreach ($rutas as $ruta) {
-				$id_tprioritario = $ruta['id_tprioritario'];
+				if ($aux_ruta == $ruta['tema']) {
+					$ruta['tema']= '' ;
+				}
+				else {
+				}
+				$aux_ruta = $ruta['tema'];
+				$id_tprioritario = $ruta['id_objetivo'];
 				//DATOS
 				$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cct[0]['cve_centro']);
 
@@ -102,9 +111,10 @@ class Reporte extends CI_Controller {
 
 	public function pinta_ruta($pdf, $ruta, $y, $id_tprioritario,$cvecct){
 		if(Utilerias::haySesionAbiertacct($this)){
-				$orden = "Orden: {$ruta['orden']}";
-				$tema = "Prioridad: {$ruta['tema']}";
-				$pdf->Ln(4);
+				$orden = '';
+				// "Orden: {$ruta['orden']}"
+				$tema = ($ruta['tema']=='')? '':"Línea de acción: {$ruta['tema']}";
+				$pdf->Ln(2);
 				$pdf->SetFont('Arial','B',11);
 				$pdf->SetWidths(array(50,200)); // ancho de primer columna, segunda, tercera
 				$pdf->SetFillColor(255,255,255);
@@ -115,12 +125,8 @@ class Reporte extends CI_Controller {
 						utf8_decode($orden),
 						utf8_decode($tema)
 					));
-					if (empty($ruta['objetivos'])) {
-						$obj1 = "Objetivos: {$ruta['objetivos']}";
-					}
-					else {
-						$obj1 = "Objetivos: \n- {$ruta['objetivos']}";
-					}
+				$obj1 = "Objetivo: {$ruta['objetivo']}";
+
 
 				$pdf->Ln(5);
 				$pdf->SetFont('Arial','B',9);
@@ -199,7 +205,7 @@ class Reporte extends CI_Controller {
 				$pdf->SetFont('Arial','B',11);
 
 				//Table with 4 columns
-				$pdf->SetWidths(array(10,41,40,45,46,46,20,85)); // ancho de primer columna, segunda, tercera y cuarta
+				$pdf->SetWidths(array(10,81,45,46,46,20,80)); // ancho de primer columna, segunda, tercera y cuarta
 
 				$result = $this->Reportepdf_model->get_acciones($id_tprioritario);
 				// echo "<pre>";
@@ -224,12 +230,11 @@ class Reporte extends CI_Controller {
 				$pdf->Row(array(
 					utf8_decode("No."),
 					utf8_decode("Actividad"),
-					utf8_decode("Ámbito"),
 					utf8_decode("Fecha inicio"),
 					utf8_decode("Fecha fin"),
 					utf8_decode("Recursos"),
 					utf8_decode("Avance"),
-					utf8_decode("Responsables"),
+					utf8_decode("Responsable"),
 				));
 
 
@@ -245,8 +250,10 @@ class Reporte extends CI_Controller {
 					// print_r($item["ids_responsables"]);
 					// die();
 					$ids_responsables = $item["ids_responsables"];
-					$auxpersonal = ($item["otro_responsable"]=='')?"":strtoupper($item["otro_responsable"]).", ";
-					$responsablesc = $auxpersonal.$this->get_perosonal_mostrar($cvecct, $ids_responsables);
+					$auxpersonal = ($item["otro_responsable"].$ids_responsables=='')?"":strtoupper($item["otro_responsable"]).", ";
+					$auxapoyopersonal = ($item["main_resp"]=='')?"":strtoupper($item["main_resp"]).", ";
+
+					$responsablesc = $this->get_perosonal_mostrar($cvecct, $auxapoyopersonal);
 					// echo "<pre>";
 					// print_r($responsablesc);
 					// die();
@@ -254,7 +261,6 @@ class Reporte extends CI_Controller {
 					$pdf->Rowtab(array(
 						$cont,
 						utf8_decode($item["accion"]),
-						utf8_decode($item["ambito"]),
 						utf8_decode($item["accion_f_inicio"]),
 						utf8_decode($item["accion_f_termino"]),
 						utf8_decode($item["mat_insumos"]),
