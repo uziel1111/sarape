@@ -25,7 +25,7 @@ locales, sociedad en general)"></em>
 			<div class="alert alert-info" role="alert">
 				<div class="row">
 					<div class="col-12 col-lg">
-						<p class="text-justify mb-0">Con el propósito de fortalecer la calidad educativa en Coahuila le proponemos definir la <b>Misión</b> de su escuela, así como incluir <b>Prioridades del Sistema Básico de Mejora</b> que contemplan las acciones de las <b>Líneas de Acción Estratégica</b>.</p>
+						<p class="text-justify mb-0">Con el propósito de fortalecer la calidad educativa en Coahuila le proponemos definir la <b>Misión</b> de su escuela, así como incluir <b>Objetivos y metas</b> para cada una de las <b>Líneas de Acción Estratégica</b>.</p>
 					</div>
 				</div>
 			</div>

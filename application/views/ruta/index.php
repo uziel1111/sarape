@@ -253,6 +253,7 @@
                           <!-- aqui ira el html de la tabla             -->
                           <div id="contenedor_tabla"></div>
                         </div>
+
                             </div>
                             <div class="row">
                               <div class="col-12">
@@ -279,9 +280,12 @@
                   </div>
 
                 </div>
+                
 
               </div>
+
             </div><!-- container -->
+            
         </section>
         <!-- Modal -->
             <div class="modal fade" id="exampleModal_ver_evidencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">

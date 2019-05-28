@@ -12,18 +12,91 @@
 .popover{
     max-width:600px;
 }
+
+.contenedorbtn{
+  width:90px;
+  height:240px;
+  position:absolute;
+  right:20px;
+  bottom:650px;
+}
+.botonF1{
+  width:60px;
+  height:60px;
+  border-radius:100%;
+  background:#F44336;
+  right:0;
+  bottom:0;
+  position:absolute;
+  margin-right:16px;
+  margin-bottom:16px;
+  border:none;
+  outline:none;
+  color:#FFF;
+  font-size:36px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition:.3s;  
+}
+span{
+  transition:.5s;  
+}
+.botonF1:hover span{
+  transform:rotate(360deg);
+}
+.botonF1:active{
+  transform:scale(1.1);
+}
+.btnespe{
+  width:40px;
+  height:40px;
+  border-radius:100%;
+  border:none;
+  color:#FFF;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size:28px;
+  outline:none;
+  position:absolute;
+  right:0;
+  bottom:0;
+  margin-right:26px;
+  transform:scale(0);
+}
+.botonF2{
+  background:#2196F3;
+  margin-bottom:85px;
+  transition:0.5s;
+}
+.botonF3{
+  background:#673AB7;
+  margin-bottom:130px;
+  transition:0.7s;
+}
+.botonF4{
+  background:#009688;
+  margin-bottom:175px;
+  transition:0.9s;
+}
+.botonF5{
+  background:#FF5722;
+  margin-bottom:220px;
+  transition:0.99s;
+}
+.animacionVer{
+  transform:scale(1);
+}
 </style>
 
 	<!-- Start Main Area -->
-	<section class="main-area">
+	<!-- <section class="main-area"> -->
+		<br>
 		<div class="container">
       <div class="alert alert-success text-center" role="alert" style="margin-bottom: 30px;">
-        <h3>Planeación y despliegue estrategico</h3>
+        <h3>Planeación y despliegue estratégico</h3>
       </div>
 			<div class="row justify-content-center flex-column mb-3">
 				<nav>
 					<div class="nav nav-tabs nav-tabs-style-1" id="nav-tab" role="tablist">
-						<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">Planeación estrategica</a>
+						<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">Planeación estratégica</a>
 						<a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Avances por actividades</a>
 						<a class="nav-item nav-link nav-link-style-1" id="nav-ayuda-tab" data-toggle="tab" href="#nav-ayuda" role="tab" aria-controls="nav-ayuda" aria-selected="false">Ayuda</a>
 					</div>
@@ -33,18 +106,18 @@
 						<div class="row">
 
 							<div class="col">
-								<span data-toggle="modal" data-target="#mision">
+								<!-- <span data-toggle="modal" data-target="#mision">
 								<button type="button" id="btn_mision" data-toggle="tooltip" title="Misión" class="btn btn-lg btn-primary"><i class="fas fa-flag" ></i></button>
-								</span>
+								</span> -->
 
 								<span data-toggle="modal" data-target="#prioridad">
-								<button type="" id="btn_prioridad" data-toggle="tooltip" title="Agregar a planeación estrategica" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
+								<button type="" id="btn_prioridad" data-toggle="tooltip" title="Documentar la problemática(Linea de acción estratégica)" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
 								</span>
 
 								<span data-toggle="modal" data-target="#actividades">
 								<button type="button" id="btn_rutamejora_acciones" title="Crear actividades" data-toggle="tooltip" title="Crear actividades" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
 								</span>
-								<a class="btn btn-lg btn-primary" id="btn_get_reporte_1" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>"><i class="fas fa-print" ></i></a>
+								<!-- <a class="btn btn-lg btn-primary" id="btn_get_reporte_1" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>"><i class="fas fa-print" ></i></a> -->
 							</div>
 
 						</div>
@@ -68,8 +141,19 @@
 				</div> <!-- tab-content -->
 			</div> <!-- row -->
 		</div> <!-- container -->
+		<div class="contenedorbtn">
+<button class="botonF1">
+  <span>+</span>
+</button>
+<button class="btnespe botonF2" id="btn_mision" data-toggle="tooltip" title="Misión">
+  <span><i class="fas fa-flag"></i></span>
+</button>
+<a class="btnespe botonF3" id="btn_get_reporte_1" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>">
+  <center><i class="fas fa-print"></i></center>
+</a>
+ </div>
 
-</section>
+<!-- </section> -->
 
 <!-- modal -->
 <div id="myModal" class="modal fade" role="dialog" aria-labelledby="prioridad_modal" aria-hidden="true" data-backdrop="static" data-keyboard="false" style="overflow-y: scroll;">
@@ -252,3 +336,12 @@
 <script src="<?= base_url('assets/js/rutademejora/acciones.js'); ?>"></script>
 <script src="<?= base_url('assets/js/rutademejora/avances.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
+
+<script type="text/javascript">
+	$('.botonF1').hover(function(){
+  $('.btnespe').addClass('animacionVer');
+})
+$('.contenedorbtn').mouseleave(function(){
+  $('.btnespe').removeClass('animacionVer');
+})
+</script>

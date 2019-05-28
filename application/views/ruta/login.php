@@ -16,7 +16,7 @@
             <div class="card-body">
               <center>
                 <img class="img-fluid" src="<?= base_url('assets/img/logo.png'); ?>" alt="">
-                <h5 class="card-title mt-3">Ruta de mejora</h5>
+                <h5 class="card-title mt-3">Planeación Estratégica</h5>
                 <h4 class="card-title mt-3">Iniciar Sesión</h4>
               </center>
               <center class="mensaje-terminado"><?=$this->session->flashdata(MESSAGEREQUEST);?></center>

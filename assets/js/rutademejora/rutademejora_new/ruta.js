@@ -47,15 +47,18 @@ $("#btn_prioridad").click(function(e){
       );
     return false;
 	} else{
+		console.log(obj);
 			var ruta = base_url + 'Rutademejora/get_datos_edith_tp'
 			$.ajax({
 				url:ruta,
 				type:'post',
-				data: { id_tprioritario: obj.id_tprioritario,
-								id_prioridad: obj.id_prioridad,
-								id_subprioridad: obj.id_subprioridad,
-                accion: obj.accion
-							},
+				data: { 
+					"id_tprioritario": obj.id_tprioritario,
+					"id_prioridad": obj.id_prioridad,
+					"id_subprioridad": obj.id_subprioridad,
+                	"accion": obj.accion,
+                	"txttp": obj.txttp
+				},
 				beforeSend: function(xhr) {
 			      Notification.loading("");
 		    }

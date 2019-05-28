@@ -701,14 +701,34 @@ function  get_datos_edith_tp($id_tprioritario){
     function borrarObjetivo($id_objetivo){
 
       //Este query hay que arreglarlo, debe recibir el id_tpriotario
+      
+      $str_query = "SELECT id_accion FROM rm_accionxtproritario WHERE id_objetivos = {$id_objetivo}";
+      $idsacciones = $this->db->query($str_query)->result_array();
+      // echo "<pre>"; print_r($idsacciones); die();
+      $cadena = "";
+      foreach ($idsacciones as $accion) {
+        $cadena .= $accion['id_accion'].",";
+      }
+       $cadena = substr($cadena, 0, -1);
+      // echo $cadena; die();
+      $this->db->where_in('id_accion', explode(",", $cadena));
+      if($this->db->delete('rm_avance_xcctxtpxaccion')){
+        $this->db->where('id_objetivos', $id_objetivo);
+        if($this->db->delete('rm_accionxtproritario')){
+          $this->db->where('id_objetivo', $id_objetivo);
+          return $this->db->delete('rm_objetivo');
+        }else{
+          return false;
+        }
+      }else{
+        return false;
+      }
 
-      $this->db->where('id_objetivos', $id_objetivo);
-      $this->db->delete('rm_accionxtproritario');
+      
 
-      $this->db->reset_query();
+      //$this->db->reset_query();
 
-      $this->db->where('id_objetivo', $id_objetivo);
-      $this->db->delete('rm_objetivo');
+      
 
     }
 

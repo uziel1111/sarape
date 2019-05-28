@@ -1434,7 +1434,7 @@ public function edit_accion_super(){
 		// if($id_tprioritario == 0){
 		// 		$estatus = $this->Rutamejora_model->insertaCreaObjetivo($id_cct, $id_prioridad, $objetivo, $id_subprioridad);
 		// }else{
-			$estatus = $this->Rutamejora_model->insertaObjetivo($id_cct, $id_prioridad, $objetivo, $id_tprioritario);
+			$estatus = $this->Rutamejora_model->insertaObjetivo($id_cct, $id_prioridad, strtoupper($objetivo), $id_tprioritario);
 		// }
 
 		$response = array('estatus' => $estatus['status'], 'idtemaprioritario' =>$estatus['idtemaprioritario']);
@@ -1447,7 +1447,7 @@ public function edit_accion_super(){
 		$id_objetivo = $this->input->post('id_objetivo');
 		$objetivo = $this->input->post('objetivo');
 		// echo $objetivo;die();
-		$estatus = $this->Rutamejora_model->actualizaObjetivo($id_objetivo, $objetivo);
+		$estatus = $this->Rutamejora_model->actualizaObjetivo($id_objetivo, strtoupper($objetivo));
 
 		$response = array('estatus' => $estatus);
 		Utilerias::enviaDataJson(200, $response, $this);
@@ -1515,7 +1515,7 @@ public function edit_accion_super(){
 						<center>Antes</center>
 					</th>
 					<th id='evidencia_fin' style='width:15%'>
-						<center>Despues</center>
+						<center>Después</center>
 					</th>
 				</tr>
 			</thead>
@@ -1710,9 +1710,12 @@ public function edit_accion_super(){
 	//Edicion/incerción de datos
 	public function get_datos_edith_tp(){
 		if(Utilerias::haySesionAbiertacct($this)){
+			// echo "<pre>";
+			// print_r($_POST);
+			// die();
 			$this->cct = Utilerias::get_cct_sesion($this);
 			$id_tprioritario = $this->input->post('id_tprioritario');
-			$titulo = $this->input->post('accion');
+			$titulo = $this->input->post('txttp');
 
 			$id_nivel = $this->cct[0]['nivel'];
 			if ($id_nivel == 'PRIMARIA') {
@@ -1743,25 +1746,9 @@ public function edit_accion_super(){
 			$datos = $this->Rutamejora_model->getSubprioridad($datos[0]['id_prioridad']);
 			$data['subprioridades'] = $datos;
 
-			// echo "<pre>";
-			// print_r($datos[0]['id_prioridad']);
-			// die();
-
-			// $indicador = $this->Rutamejora_model->getIndicadorEspecial($data['prioridad'], $id_nivel, $data['subprioridad']);
-			//
-			// $data['indicadores'] = $indicador;
-			// $data['id_indicador'] = $indicador[0]['id_indicador'];
-			//
-			// $metrica = $this->Rutamejora_model->getMetricas($data['id_indicador']);
-			// $data['metricas'] = $metrica;
-			//
-			// echo "<pre>";
-			// print_r($data);
-			// die();
-
 			$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
 
-			$head = 'EDITAR LÍNEA DE ACCIÓN: ';
+			$head = 'DOCUMENTAR LA PROBLEMÁTICA: ';
 			$head .= $titulo;
 
 			$response = array('strView' => $strView, 'titulo' => $head);

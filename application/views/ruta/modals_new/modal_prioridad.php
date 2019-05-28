@@ -50,12 +50,12 @@
 			<form id="t_prioritario" enctype="multipart/form-data">
 				<div class="row mt-3">
 					<div class="col-lg-6">
-						<label><span class="badge badge-secondary h5 text-white">1.</span> Problemática por prioridad</label><br>
+						<label><span class="badge badge-secondary h5 text-white">1.</span> Problemática(s)</label><br>
 						<textarea id="problematica" name="problematica" class="form-control" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 					</div>
 
 					<div class="col-lg-6 mt-3 mt-lg-0">
-						<label><span class="badge badge-secondary h5 text-white">2.</span> Evidencias de las problematicas</label>
+						<label><span class="badge badge-secondary h5 text-white">2.</span> Evidencia(s)</label>
 						<br>
 						<textarea id="evidencias" name="evidencia" class="form-control" rows="2" maxlength="400"><?= (isset($evidencia))?$evidencia:"" ?></textarea>
 					</div>
@@ -190,18 +190,17 @@
 
 								<div class="row mt-3">
 									<div class="col">
-										<label class="mb-1"><span class="badge badge-secondary h5 text-white">7.Objetivo</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-right"></i> </span></label>
 										<textarea id="CAPoutput" class="form-control" rows="4" style="text-transform: uppercase;" maxlength="400"></textarea>
 										<small id="passwordHelpInline" class="text-muted">Máximo 400 caracteres.</small>
-
 										<input type="hidden" id="update_flag" name="" value="0">
 									</div>
-									<div class="col-auto">
-										<label class="mb-1 d-block"><span class="badge badge-secondary h5 text-white">8.Guardar</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-down"></i> </span></label>
-										<button id="grabar_objetivo" type="button" class="btn btn-dark btn-block" data-toggle="tooltip" data-placement="top" title="Grabar Objetivo"><i class="fas fa-check-circle"></i></button>
-										<hr class="my-2">
+								</div>
+								<div class="row mt-3 float-right">
+									<div class="col">
+										<label class="mb-1 d-block"><span class="badge badge-secondary h5 text-white">8.Guardar</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-right"></i> </span></label>
+										<button id="grabar_objetivo" type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Grabar Objetivo"><i class="fas fa-check-circle"></i></button>
 
-										<button id="limpiar" type="button" class="btn btn-success btn-block" data-toggle="tooltip" data-placement="top" title="Limpiar campos"><i class="fas fa-quidditch"></i></button>
+										<button id="limpiar" type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Limpiar campos"><i class="fas fa-quidditch"></i></button>
 									</div>
 								</div>
 							</div>

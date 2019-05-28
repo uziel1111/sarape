@@ -430,7 +430,7 @@ function btnEliminar(){
 		$('#CAPoutput').val('');
 		swal({
 			title: '¿Esta seguro de eliminar el objetivo?',
-			text: "Una vez eliminado no se podra recuperar",
+			text: "Se borrarán las actividades vinculadas al mismo, una vez eliminado no se podra recuperar",
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
