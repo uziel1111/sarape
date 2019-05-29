@@ -132,6 +132,8 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
              // $("#div_generico").append(data.strView);
              // $("#contenedor_acciones_id").empty();
              // $("#contenedor_acciones_id").append(vista);
+             $('h5').empty();
+     				$('h5').append(data.datos['prioridad']);
              $("#label_escuela").text(data.datos['escuela']);
              $("#label_prioridad").text(data.datos['prioridad']);
              $("#label_problematica").text(data.datos['problematicas']);

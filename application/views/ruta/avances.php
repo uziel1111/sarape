@@ -43,7 +43,7 @@
   <?php $var_aux_entro1 = '0' ; ?>
     <?php } ?>
     <div class="card bg-light mb-3">
-      <div class="card-header text-center" style="background-color: #FFCC80; "><h3 class="panel-title"><b>Linea de acción: </b><?php echo $avance['prioridad'] ?></h3></div>
+      <div class="card-header text-center" style="background-color: #FFCC80; "><h3 class="panel-title"><b>Línea de acción: </b><?php echo $avance['prioridad'] ?></h3></div>
       <div class="card-body">
     <?php $var_aux_id_tprioritario = $avance['id_tprioritario']; ?>
     <?php $var_aux_id_linea_hf = '1'; ?>

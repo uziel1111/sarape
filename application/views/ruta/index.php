@@ -52,7 +52,7 @@
               </div>
               <div class="row mt-15">
                 <div class="col-12">
-                  <label><span class="badge badge-secondary h5 text-white">3.</span> Objetivos y sus metas <em class="fas fa-question-circle" data-toggle="popover" data-placement="top" data-content="Para la prioridad seleccionada escribe un objetivo que
+                  <label><span class="badge badge-secondary h5 text-white">3.</span> Objetivos y sus metas <em class="fas fa-question-circle" data-toggle="popover" data-placement="top" data-content="Para la(s) problemática(s) mencionada(s) escribe un objetivo que
                     inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o
                     eliminar) seguido por un indicador concreto (por ejemplo: asistencia,
                     aprovechamiento, y en algunos casos enfocados a un nivel educativo,
@@ -280,12 +280,12 @@
                   </div>
 
                 </div>
-                
+
 
               </div>
 
             </div><!-- container -->
-            
+
         </section>
         <!-- Modal -->
             <div class="modal fade" id="exampleModal_ver_evidencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">

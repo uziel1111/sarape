@@ -35,10 +35,10 @@
   color:#FFF;
   font-size:36px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  transition:.3s;  
+  transition:.3s;
 }
 span{
-  transition:.5s;  
+  transition:.5s;
 }
 .botonF1:hover span{
   transform:rotate(360deg);
@@ -111,7 +111,7 @@ span{
 								</span> -->
 
 								<span data-toggle="modal" data-target="#prioridad">
-								<button type="" id="btn_prioridad" data-toggle="tooltip" title="Documentar la problemática(Linea de acción estratégica)" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
+								<button type="" id="btn_prioridad" data-toggle="tooltip" title="Documentar la problemática(Línea de acción estratégica)" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
 								</span>
 
 								<span data-toggle="modal" data-target="#actividades">
@@ -189,7 +189,7 @@ span{
 				<div class="alert alert-info" role="alert">
 					Escuela: <span class="fw800"><label id="label_escuela"></label></span><br>
 
-					Linea de acción: <span class="fw800"><label id="label_prioridad"></label></span><br>
+					Línea de acción: <span class="fw800"><label id="label_prioridad"></label></span><br>
 
 					Problemática(s): <span class="fw800"><label id="label_problematica"></label></span><br>
 

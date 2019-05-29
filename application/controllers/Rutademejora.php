@@ -329,7 +329,7 @@ class Rutademejora extends CI_Controller {
 													<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
 													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='orden' style='width:3%; vertical-align:middle;'><center>#</center></th>
-													<th id='tema' style='width:30%; vertical-align:middle;'><center>Lineas de acción estrategica</center></th>
+													<th id='tema' style='width:30%; vertical-align:middle;'><center>Líneas de acción estrategica</center></th>
 													<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
 													<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
 												</tr>
@@ -363,7 +363,7 @@ class Rutademejora extends CI_Controller {
 													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
 													<th id='orden' style='width:3%; vertical-align:middle;'><center>#</center></th>
-													<th id='tema' style='width:30%; vertical-align:middle;'><center>Lineas de acción estrategica</center></th>
+													<th id='tema' style='width:30%; vertical-align:middle;'><center>Líneas de acción estrategica</center></th>
 													<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
 													<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
 												</tr>
@@ -762,7 +762,7 @@ class Rutademejora extends CI_Controller {
 				$option .="<option value='{$objetivo['id_objetivo']}'>{$objetivo['objetivo']}</option>";
 			}
 
-			$response = array('tabla' => $tabla, 'datos' => $datos, 'stroption' => $option);
+			$response = array('tabla' => $tabla, 'datos' => $datos, 'stroption' => $option, 'titulo' => '<i class="far fa-lightbulb"></i> NADA');
 			// echo "<pre>";print_r($response);die();
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
@@ -1748,8 +1748,8 @@ public function edit_accion_super(){
 
 			$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
 
-			$head = 'DOCUMENTAR LA PROBLEMÁTICA: ';
-			$head .= $titulo;
+			// $head = 'DOCUMENTAR LA PROBLEMÁTICA: ';
+			$head = $titulo;
 
 			$response = array('strView' => $strView, 'titulo' => $head);
 			Utilerias::enviaDataJson(200, $response, $this);

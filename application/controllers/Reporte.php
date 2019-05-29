@@ -153,7 +153,7 @@ class Reporte extends CI_Controller {
 				// 		utf8_decode($obj2)
 				// 	));
 
-				$problematica = "Problematicas: {$ruta['otro_problematica']}";
+				$problematica = "Problemática(s): {$ruta['otro_problematica']}";
 				$pdf->Ln(2);
 				$pdf->SetFont('Arial','B',9);
 				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
@@ -167,7 +167,7 @@ class Reporte extends CI_Controller {
 					));
 
 
-				$evidencia = "Evidencias: {$ruta['otro_evidencia']}";
+				$evidencia = "Evidencia(s): {$ruta['otro_evidencia']}";
 				$pdf->Ln(2);
 				$pdf->SetFont('Arial','B',9);
 				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
