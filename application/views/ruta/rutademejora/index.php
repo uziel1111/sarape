@@ -146,10 +146,10 @@ span{
   <span>+</span>
 </button>
 <button class="btnespe botonF2" id="btn_mision" data-toggle="tooltip" title="Misión">
-  <span><i class="fas fa-flag"></i></span>
+  <span><i class="fas fa-flag fa-xs"></i></span>
 </button>
 <a class="btnespe botonF3" id="btn_get_reporte_1" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>">
-  <center><i class="fas fa-print"></i></center>
+  <center><i class="fas fa-print fa-xs"></i></center>
 </a>
  </div>
 
@@ -334,10 +334,10 @@ span{
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
 
 <script type="text/javascript">
-	$('.botonF1').hover(function(){
+	$('.botonF1').click(function(){
   $('.btnespe').addClass('animacionVer');
 })
-$('.contenedorbtn').mouseleave(function(){
+$('.tab-content').click(function(){
   $('.btnespe').removeClass('animacionVer');
 })
 </script>
