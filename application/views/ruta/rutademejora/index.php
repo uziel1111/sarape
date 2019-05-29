@@ -281,28 +281,24 @@ span{
 									</div>
 								</div>
 
-								<div class="row mt-15">
-									<!-- <div class="col-md-12">
-										<label><label style="color:red;">*</label>Indicadores de medición:</label>
-										<textarea id="txt_rm_indimed" class="form-control" rows="3" maxlength="150"></textarea>
-									</div>
-								</div> -->
+								<!-- <div class="row mt-15"> -->
 								<div class="row mt-15">
 									<div class="col-md-12">
 										<label style="color:red;">*Datos requeridos</label>
 									</div>
 								</div>
-								<div class="row mt-15">
-									<div class="col-12">
+								<div class="row mt-15 float-right">
+									<div class="col-12 ">
 										<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_agregar_accion">Agregar actividad</button>
 										<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_editando_accion">Editar</button>
                     <button type="button" id="saliract" class="btn btn-success btn-style-1 mr-10">Regresar</button>
 									</div>
 								</div>
-							</div>
+							<!-- </div> -->
 
 						</div>
 					</div><!-- card -->
+					<br>
 					<div class="row mt-15">
 						<div class="col-12">
 							<button id="id_btn_edita_accion" type="button" title="Editar" class="btn btn-primary"><i class="fas fa-edit"></i></button>

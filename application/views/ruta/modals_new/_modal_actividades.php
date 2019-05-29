@@ -77,15 +77,16 @@
 					</div>
 				</div>
 				<div class="row mt-15">
-					<div class="col-md-12">
+					<div class="col-md-2">
 						<label style="color:red;">*Datos requeridos</label>
 					</div>
-				</div>
-				<div class="row mt-15">
-					<div class="col-12">
+					<div class="col-10 float-right">
 						<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_agregar_accion">Agregar</button>
 						<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_editando_accion">Editar</button>
 					</div>
+				</div>
+				<div class="row mt-15">
+					
 				</div>
 			</div>
 

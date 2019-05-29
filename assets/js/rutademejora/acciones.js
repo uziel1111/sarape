@@ -37,9 +37,9 @@ $("#btn_rutamejora_acciones").click(function(){
   }
 });
 
-// $("#btn_agregar_accion").click(function(){
-//   obj_rm_acciones_tp.validaform();
-// });
+$("#btn_agregar_accion").click(function(){
+  obj_rm_acciones_tp.validaform();
+});
 
 $("#id_btn_elimina_accion").click(function(){
   // alert(Rm_acciones_tp.id_accion_select);
@@ -151,35 +151,6 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
        $("#exampleModalacciones").modal('show');
  };
 
-// Rm_acciones_tp.prototype.get_table_acciones= function(id_tprioritario){
-//   $.ajax({
-//           url:base_url+"rutademejora/get_table_acciones",
-//           method:"POST",
-//           data:{ "id_tprioritario":id_tprioritario,
-//                  "id_objetivo": $("#id_objetivos").val()
-//                },
-//           success:function(data){
-//             var vista = data.tabla;
-//             // alert($("#id_objetivos").val())
-//             // console.log(data.datos);
-//             // $("#div_generico").empty();
-//             // $("#div_generico").append(data.strView);
-//             $("#contenedor_acciones_id").empty();
-//             $("#contenedor_acciones_id").append(vista);
-//             $("#label_escuela").text(data.datos['escuela']);
-//             $("#label_prioridad").text(data.datos['prioridad']);
-//             $("#label_problematica").text(data.datos['problematicas']);
-//             $("#label_evidencia").text(data.datos['evidencias']);
-//             $("#id_objetivos").empty();
-//             $("#id_objetivos").append(data.stroption);
-//             getAccxObj()
-//             obj_rm_acciones_tp.iniciatabla();
-//           },
-//           error: function(error){
-//             console.log(error);
-//           }
-//       });
-// }
 
  Rm_acciones_tp.prototype.save_accion = function(){
   var accion = $("#txt_rm_meta").val();
@@ -201,6 +172,12 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
              $("#contenedor_acciones_id").append(vista);
              obj_rm_acciones_tp.iniciatabla();
              obj_rm_acciones_tp.limpia_camposform();
+
+
+              setTimeout(function(){
+                getTablaAccxObj(id_objetivo)
+              }, 500)
+              $('#id_objetivos').val('0');
            },
            error: function(error){
              console.log(error);
@@ -460,56 +437,56 @@ return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - 
 
 
 //Guardar acciones por Objetivos
-$('#btn_agregar_accion').click(function(){
-  let id_tprioritario = obj.id_tprioritario
-  let id_objetivo = $('#id_objetivos').val()
-  // console.log('tema prioritario: '+id_tprioritario);
-  // console.log('objetivo: '+id_objetivo);
-  let accion = $("#txt_rm_meta").val();
-  let materiales = $("#txt_rm_obs").val();
-  let id_responsable = $("#slc_rm_presp").val();
-  let finicio = $("#datepicker1").val();
-  let ffin = $("#datepicker2").val();
-  let medicion = $("#txt_rm_indimed").val();
-  let responsable = $('#main_responsable').val()
-  let encargados = $('#slc_responsables').val()
+// $('#btn_agregar_accion').click(function(){
+//   let id_tprioritario = obj.id_tprioritario
+//   let id_objetivo = $('#id_objetivos').val()
+//   // console.log('tema prioritario: '+id_tprioritario);
+//   // console.log('objetivo: '+id_objetivo);
+//   let accion = $("#txt_rm_meta").val();
+//   let materiales = $("#txt_rm_obs").val();
+//   let id_responsable = $("#slc_rm_presp").val();
+//   let finicio = $("#datepicker1").val();
+//   let ffin = $("#datepicker2").val();
+//   let medicion = $("#txt_rm_indimed").val();
+//   let responsable = $('#main_responsable').val()
+//   let encargados = $('#slc_responsables').val()
 
-  // console.log(responsable);
-  // return false
-  $.ajax({
-    url:base_url+"rutademejora/save_accion",
-    method:"POST",
-    data:{  "accion":accion,
-            "materiales":materiales,
-            "ids_responsables":encargados,
-            "finicio":finicio,
-            "ffin":ffin,
-            "medicion":medicion,
-            'id_tprioritario': obj.id_tprioritario,
-            'id_objetivo':id_objetivo,
-            'otroresp': $("#otro_responsable").val(),
-            'responsable': responsable,
-            'new_resp': $("#new_resp").val(),
-   },
-    success:function(data){
-      var vista = data.tabla;
-      // $("#contenedor_acciones_id").empty();
-      // $("#contenedor_acciones_id").append(vista);
-      //Aqui se van a cargar las acciones en base a los objetivos
-      obj_rm_acciones_tp.iniciatabla();
-      obj_rm_acciones_tp.limpia_camposform();
-      // obj.get_view();
+//   // console.log(responsable);
+//   // return false
+//   $.ajax({
+//     url:base_url+"rutademejora/save_accion",
+//     method:"POST",
+//     data:{  "accion":accion,
+//             "materiales":materiales,
+//             "ids_responsables":encargados,
+//             "finicio":finicio,
+//             "ffin":ffin,
+//             "medicion":medicion,
+//             'id_tprioritario': obj.id_tprioritario,
+//             'id_objetivo':id_objetivo,
+//             'otroresp': $("#otro_responsable").val(),
+//             'responsable': responsable,
+//             'new_resp': $("#new_resp").val(),
+//    },
+//     success:function(data){
+//       var vista = data.tabla;
+//       // $("#contenedor_acciones_id").empty();
+//       // $("#contenedor_acciones_id").append(vista);
+//       //Aqui se van a cargar las acciones en base a los objetivos
+//       obj_rm_acciones_tp.iniciatabla();
+//       obj_rm_acciones_tp.limpia_camposform();
+//       // obj.get_view();
 
-      setTimeout(function(){
-        getTablaAccxObj(id_objetivo)
-      }, 500)
-      $('#id_objetivos').val('0');
-    },
-    error: function(error){
-      console.log(error);
-    }
-  })
-})
+//       setTimeout(function(){
+//         getTablaAccxObj(id_objetivo)
+//       }, 500)
+//       $('#id_objetivos').val('0');
+//     },
+//     error: function(error){
+//       console.log(error);
+//     }
+//   })
+// })
 
 
 //Nuevas funciones grid objetivo
@@ -527,19 +504,8 @@ function getAccxObj(){
     		data: { id_objetivo: id_objetivo },
         success:function(data){
           var vista = data.tabla;
-          // console.log(data.datos);
-          // $("#div_generico").empty();
-          // $("#div_generico").append(data.strView);
           $("#contenedor_acciones_id").empty();
           $("#contenedor_acciones_id").append(vista);
-          // $("#label_escuela").text(data.datos['escuela']);
-          // $("#label_prioridad").text(data.datos['prioridad']);
-          // $("#label_problematica").text(data.datos['problematicas']);
-          // $("#label_evidencia").text(data.datos['evidencias']);
-          // $("#id_objetivos").empty();
-          // $("#id_objetivos").append(data.stroption);
-          // getAccxObj()
-
           obj_rm_acciones_tp.iniciatabla();
         },
       })
