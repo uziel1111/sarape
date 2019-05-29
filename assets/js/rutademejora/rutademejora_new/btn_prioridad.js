@@ -325,8 +325,8 @@ $('#grabar_objetivo').click(function(){
 				$("#id_tema_prioritario").val(result.idtemaprioritario);
 				$("#opt_prioridad").attr('disabled', true);
 				$("#opt_prioridad_especial").attr('disabled', true);
-				$('#otra_fecha').attr('hidden', true)
-				$('#slt_meta').val('')
+				$('#otra_fecha').attr('hidden', true);
+				$('#slt_meta').val('');
 			})
 			.fail(function(e) {
 				console.error("Error in grabar_objetivo()");
@@ -373,6 +373,9 @@ $('#grabar_objetivo').click(function(){
 
 		}
 			$("#CAPoutput").val("");
+			$('#btn_guardar').removeClass('fa-edit');
+				$('#btn_guardar').addClass('fa-save');
+				$('#btn_eliminar').removeClass('d-none');
 	}
 })
 //Grabar objetivo
@@ -391,7 +394,10 @@ function btnEditar(){
     );
 		return false
 	}else {
-		console.log(obj.id_objetivo)
+		console.log(obj.id_objetivo);
+		$('#btn_eliminar').addClass("d-none");
+		$('#btn_guardar').removeClass("fa-save");
+		$('#btn_guardar').addClass("fa-edit")
 		$.ajax({
 		 	url: base_url+'Rutademejora/btnEditar',
 		 	type: 'POST',

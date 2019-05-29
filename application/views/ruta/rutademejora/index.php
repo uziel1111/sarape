@@ -14,13 +14,15 @@
 }
 
 .contenedorbtn{
-  width:90px;
-  height:240px;
-  position:absolute;
-  right:20px;
-  bottom:650px;
+  position: fixed;
+  width: 55px;
+  height: 55px;
+  bottom: 30px;
+  right: 30px;
+  z-index: 50px;
+  z-index: 100;
 }
-.botonF1{
+.botonF1{	
   width:60px;
   height:60px;
   border-radius:100%;
@@ -142,8 +144,8 @@ span{
 			</div> <!-- row -->
 		</div> <!-- container -->
 		<div class="contenedorbtn">
-<button class="botonF1">
-  <span>+</span>
+<button class="botonF1 ">
+   <span><i class="fas fa-wrench fa-xs"></i></span>
 </button>
 <button class="btnespe botonF2" id="btn_mision" data-toggle="tooltip" title="Misión">
   <span><i class="fas fa-flag fa-xs"></i></span>
@@ -168,7 +170,7 @@ span{
 
 			<div class="modal-body" >
 				<div id="div_generico">
-
+					
 				</div>
 			</div>
 		</div>
@@ -204,21 +206,21 @@ span{
                 <div class="row mt-15">
                   <div class="col-md-12">
                     <label><label style="color:red;">*</label>Seleccione un objetivo/meta:</label>
-										<select class="form-control" id="id_objetivos">
+										<select class="form-control" id="id_objetivos" required="true">
                         <option value="0">SELECCIONE</option>
                     </select>
 
 									</div>
                 </div>
-
+                	
 								<div class="row mt-15">
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Actividad:</label>
-										<textarea id="txt_rm_meta" class="form-control" rows="5" maxlength="150"></textarea>
+										<textarea id="txt_rm_meta" class="form-control" rows="5" maxlength="150" required="true"></textarea>
 									</div>
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Recursos:</label>
-										<textarea id="txt_rm_obs" class="form-control" rows="5" maxlength="150"></textarea>
+										<textarea id="txt_rm_obs" class="form-control" rows="5" maxlength="150" required="true"></textarea>
 									</div>
 
 								</div>
@@ -226,11 +228,11 @@ span{
                 <div class="row mt-15">
                   <div class="col-md-12">
                     <label><label style="color:red;">*</label>Responsable</label>
-                    <select class="selectpicker form-control" id="main_responsable" title="SELECCIONA">
+                    <select class="selectpicker form-control" id="main_responsable" title="SELECCIONA" required>
                     <?= $responsables?>
                     </select>
                     <br>
-                    <textarea id="new_resp" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true"></textarea>
+                    <textarea id="new_resp" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true" required="true"></textarea>
                   </div>
                 </div>
                 <div class="row mt-15">
@@ -334,10 +336,10 @@ span{
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
 
 <script type="text/javascript">
-	$('.botonF1').click(function(){
+	$('.botonF1').mouseenter(function(){
   $('.btnespe').addClass('animacionVer');
 })
-$('.tab-content').click(function(){
+$('.container').mouseleave(function(){
   $('.btnespe').removeClass('animacionVer');
 })
 </script>

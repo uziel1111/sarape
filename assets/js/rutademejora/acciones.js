@@ -177,9 +177,13 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
 
 
               setTimeout(function(){
-                getTablaAccxObj(id_objetivo)
+                //getTablaAccxObj(id_objetivo)
+                getTablaAccxObj(objetivo)
               }, 500)
               $('#id_objetivos').val('0');
+              $('#id_objetivos').val(objetivo);
+              
+
            },
            error: function(error){
              console.log(error);
@@ -339,6 +343,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
  };
 
  Rm_acciones_tp.prototype.validaform = function(){
+ if ($("#id_objetivos").val() > 0) {
+  //console.log($("#id_objetivos").val());
   if($("#txt_rm_meta").val() != ""){
     if($("#txt_rm_obs").val() != ""){
       if($("#slc_rm_ambito").val() != ""){
@@ -425,7 +431,15 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
           "Introudzca actividad ",
           'danger'
         );
+    }
+  }else{
+    swal(
+          '¡Error!',
+          "Seleccione un objetivo",
+          'danger'
+        );
   }
+
  }
 
 
@@ -525,8 +539,8 @@ function getTablaAccxObj(id_objetivo){
     success:function(data){
       var vista = data.tabla;
 
-      $("#contenedor_acciones_id").empty();
       $("#contenedor_acciones_id").append(vista);
+      $("#contenedor_acciones_id").empty();
       obj_rm_acciones_tp.iniciatabla();
     }
   })

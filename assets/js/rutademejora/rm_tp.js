@@ -219,6 +219,7 @@ Rm_tp.prototype.limpia_campos_tp = function(){
 };
 
 Rm_tp.prototype.subir_archivo = function(){
+       console.log("botón de adjuntar imagen del modal objetivos");
     //información del formulario
     var formData = new FormData($(".formulario1")[0]);
     var message = "";
