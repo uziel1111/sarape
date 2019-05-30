@@ -178,10 +178,11 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
 
               setTimeout(function(){
                 //getTablaAccxObj(id_objetivo)
-                getTablaAccxObj(objetivo)
+               // getTablaAccxObj(objetivo)
               }, 500)
-              $('#id_objetivos').val('0');
+             // $('#id_objetivos').val('0');
               $('#id_objetivos').val(objetivo);
+              getAccxObj();
               
 
            },
@@ -263,6 +264,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
  }
 
  Rm_acciones_tp.prototype.delete_accion = function(idaccion){
+  id_objetivo = $("#id_objetivos").val();
    $.ajax({
            url:base_url+"rutademejora/delete_accion",
            method:"POST",
@@ -274,11 +276,14 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                 "La acción se elimino correctamente",
                 "success"
               );
+               //$("#id_objetivos").val('0');
               var vista = data.tabla;
-               $("#contenedor_acciones_id").empty();
-               $("#contenedor_acciones_id").append(vista);
-               $("#id_objetivos").val('0');
-               obj_rm_acciones_tp.iniciatabla();
+              //$("#id_objetivos").val(id_objetivos);
+              console.log(id_objetivo);
+               //$("#contenedor_acciones_id").empty();
+               getAccxObj();
+               //$("#contenedor_acciones_id").append(vista);
+               //obj_rm_acciones_tp.iniciatabla();
             }else{
               swal(
                 '¡Error!',
@@ -506,8 +511,34 @@ return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - 
 
 
 //Nuevas funciones grid objetivo
-
+$('#id_objetivos').change(function(){
+      getAccxObj();
+  });
 function getAccxObj(){
+  
+
+    let id_objetivo = $('#id_objetivos').val()
+
+    if ( id_objetivo != undefined ) {
+      $.ajax({
+        url: base_url+"rutademejora/getAccxObj",
+        type: 'POST',
+        dataType: 'JSON',
+        data: { id_objetivo: id_objetivo },
+        success:function(data){
+          var vista = data.tabla;
+          $("#contenedor_acciones_id").empty();
+          $("#contenedor_acciones_id").append(vista);
+          obj_rm_acciones_tp.iniciatabla();
+        },
+      })
+    }
+
+  $("#exampleModalacciones").modal('show');
+}
+
+
+/*function getAccxObj(){
   $('#id_objetivos').change(function(){
 
     let id_objetivo = $('#id_objetivos').val()
@@ -528,7 +559,7 @@ function getAccxObj(){
     }
   })
   $("#exampleModalacciones").modal('show');
-}
+}*/
 
 function getTablaAccxObj(id_objetivo){
   $.ajax({
