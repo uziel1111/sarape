@@ -162,11 +162,12 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
   var ffin = $("#datepicker2").val();
   var medicion = $("#txt_rm_indimed").val();
   var objetivo =$("#id_objetivos").val();
+  var responsable = $('#main_responsable').val();
    $.ajax({
            url:base_url+"rutademejora/save_accion",
            method:"POST",
            data:{"accion":accion, "materiales":materiales, "ids_responsables":encargados,
-            "finicio":finicio, "ffin":ffin, "medicion":medicion, 'id_tprioritario': obj.id_tprioritario, 'otroresp': $("#otro_responsable").val(), 'id_objetivo':objetivo
+            "finicio":finicio, "ffin":ffin, "medicion":medicion, 'id_tprioritario': obj.id_tprioritario, 'otroresp': $("#otro_responsable").val(), 'id_objetivo':objetivo, 'responsable':responsable
           },
            success:function(data){
              var vista = data.tabla;
@@ -303,7 +304,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
  };
 
  Rm_acciones_tp.prototype.edit_accion = function(idaccion){
-   let id_objetivo = $('#id_objetivos').val()
+   let id_objetivo = $('#id_objetivos').val();
+
    $.ajax({
            url:base_url+"rutademejora/edit_accion",
            method:"POST",
@@ -319,9 +321,9 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
             $("#slc_responsables").selectpicker('val', editado['ids_responsables'].split(','));
             $("#id_objetivos").val(id_objetivo);
             $("#id_objetivos").attr('disabled', true);
-            $('#main_responsable').val(editado['main_resp'])
+             //console.log(editado);
+            $('#main_responsable').val(editado['main_resp']);
             $("#main_responsable").selectpicker('val', editado['main_resp']);
-            // console.log('ids_responsables');
             var ids = editado['ids_responsables'].split(',');
             // console.log(ids);
             for(var i = 0; i < ids.length; i++){
@@ -353,7 +355,6 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
   if($("#txt_rm_meta").val() != ""){
     if($("#txt_rm_obs").val() != ""){
       if($("#slc_rm_ambito").val() != ""){
-        // console.log(encargados);
         if(sel_encargado == true){
           if($("#datepicker1").val() != ""){
             if($("#datepicker2").val() != ""){
