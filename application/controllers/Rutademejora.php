@@ -329,7 +329,7 @@ class Rutademejora extends CI_Controller {
 													<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
 													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='orden' style='width:3%; vertical-align:middle;'><center>#</center></th>
-													<th id='tema' style='width:30%; vertical-align:middle;'><center>Líneas de acción estrategica</center></th>
+													<th id='tema' style='width:30%; vertical-align:middle;'><center>Líneas de acción estratégicas</center></th>
 													<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
 													<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
 												</tr>
@@ -363,7 +363,7 @@ class Rutademejora extends CI_Controller {
 													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
 													<th id='orden' style='width:3%; vertical-align:middle;'><center>#</center></th>
-													<th id='tema' style='width:30%; vertical-align:middle;'><center>Líneas de acción estrategica</center></th>
+													<th id='tema' style='width:30%; vertical-align:middle;'><center>Líneas de acción estratégicas</center></th>
 													<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
 													<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
 												</tr>
@@ -1542,7 +1542,7 @@ public function edit_accion_super(){
 								</button>
 
 								<img id='preview{$dato['id_objetivo']}'
-										 src='../../{$dato['path_ev_inicio']}' alt='Archivo' width='50px' height='50px'
+										 src='../../{$dato['path_ev_inicio']}' alt='Archivo' width='' height='50px'
 										 class='img img-thumbnail' onclick='imgPreview({$dato['id_objetivo']})' />
 							</div>
 
@@ -1565,14 +1565,14 @@ public function edit_accion_super(){
 									<i class='fas fa-times-circle'></i>
 								</button>
 
-								<img id='preview_fin{$dato['id_objetivo']}' src='../../{$dato['path_ev_fin']}' alt='Archivo' widt='50px' height='50px' class='img img-thumbnail'
+								<img id='preview_fin{$dato['id_objetivo']}' src='../../{$dato['path_ev_fin']}' alt='Archivo' width='' height='50px' class='img img-thumbnail'
 								onclick='imgPreviewFin({$dato['id_objetivo']})' />
 							</div>
 
 							<span class='btn btn-primary btn-file'>
 								 <i class='fas fa-paperclip'></i>
 								 <form enctype='multipart/form-data' id='form_evidencia_fin_{$dato['id_objetivo']}'>
-								 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' multiple data-toggle='tooltip' data-placement='top' title='Guarda la evidencial al final de su objetivo'  onclick = 'subirImagen()'>
+								 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' multiple data-toggle='tooltip' data-placement='top' title='Guarda la evidencial al final de su objetivo'>
 								 </form>
 							</span>
 						</div>

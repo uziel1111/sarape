@@ -38,7 +38,7 @@ $("#btn_rutamejora_acciones").click(function(){
 });
 
 $("#btn_agregar_accion").click(function(){
-  obj_rm_acciones_tp.validaform();
+  obj_rm_acciones_tp.validaform(1);
 });
 
 $("#id_btn_elimina_accion").click(function(){
@@ -80,7 +80,14 @@ $("#id_btn_edita_accion").click(function() {
 });
 
 $("#btn_editando_accion").click(function(){
+if (obj_rm_acciones_tp.validaform(0)) {
+
   obj_rm_acciones_tp.editar_accion()
+} else{
+
+console.log(obj_rm_acciones_tp.validaform(0) + "else");
+}
+
 });
 
 $("#slc_responsables").change(function(){
@@ -349,7 +356,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
        });
  };
 
- Rm_acciones_tp.prototype.validaform = function(){
+ Rm_acciones_tp.prototype.validaform = function(llamado){
  if ($("#id_objetivos").val() > 0) {
   //console.log($("#id_objetivos").val());
   if($("#txt_rm_meta").val() != ""){
@@ -367,6 +374,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                         "La fecha de termino no puede ser menor a la fecha de inicio",
                         'danger'
                       );
+                      return false
                     }
 
               }else{
@@ -379,7 +387,11 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                   }else{
                     // if($("#txt_rm_indimed").val() != ""){
                       if(date_diff_indays() >= 0){
+                        if (llamado != 0) {
                         obj_rm_acciones_tp.save_accion();
+                        }else{
+                          return true;
+                        }
                       }else{
                         swal(
                           '¡Error!',
@@ -394,6 +406,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                     //     'danger'
                     //   );
                     // }
+                    return false;
                   }
               }
             }else{
@@ -402,6 +415,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
               "Introudzca fecha de termino",
               'danger'
             );
+              return false;
             }
           }else{
             swal(
@@ -409,6 +423,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
               "Introudzca fecha de inicio",
               'danger'
             );
+            return false;
           }
         }else{
           swal(
@@ -416,6 +431,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
           "Seleccione un encargado",
           'danger'
         );
+          return false;
         }
       }else{
         swal(
@@ -423,6 +439,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
           "Seleccione ambito",
           'danger'
         );
+        return false;
       }
     }else{
       swal(
@@ -430,6 +447,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
           "Introduzca recursos",
           'danger'
         );
+      return false;
     }
   }else{
     swal(
@@ -437,6 +455,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
           "Introudzca actividad ",
           'danger'
         );
+      return false;
     }
   }else{
     swal(
@@ -444,6 +463,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
           "Seleccione un objetivo",
           'danger'
         );
+    return false;
   }
 
  }

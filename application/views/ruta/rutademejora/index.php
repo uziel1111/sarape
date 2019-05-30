@@ -17,8 +17,8 @@
   position: fixed;
   width: 55px;
   height: 55px;
-  bottom: 30px;
-  right: 30px;
+  top: 220px;
+  left: 30px;
   z-index: 50px;
   z-index: 100;
 }
@@ -86,7 +86,26 @@ span{
 .animacionVer{
   transform:scale(1);
 }
+
+.ir-arriba{
+  display:none;
+  background-repeat:no-repeat;	
+  font-size:20px;
+  color:black;
+  cursor:pointer;
+  position:fixed;
+  bottom:10px;
+  right:10px;
+  z-index:2;
+}
 </style>
+
+<a class="ir-arriba"  javascript:void(0) title="Volver arriba">
+  <span class="fa-stack">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-arrow-up fa-stack-1x fa-inverse"></i>
+  </span>
+</a>
 
 	<!-- Start Main Area -->
 	<!-- <section class="main-area"> -->
@@ -346,4 +365,16 @@ span{
 $('.container').mouseleave(function(){
   $('.btnespe').removeClass('animacionVer');
 })
+
+$(document).ready(function(){ //Hacia arriba
+  irArriba();
+});
+
+function irArriba(){
+  $('.ir-arriba').click(function(){ $('body,html').animate({ scrollTop:'0px' },1000); });
+  $(window).scroll(function(){
+    if($(this).scrollTop() > 0){ $('.ir-arriba').slideDown(600); }else{ $('.ir-arriba').slideUp(600); }
+  });
+  $('.ir-abajo').click(function(){ $('body,html').animate({ scrollTop:'1000px' },1000); });
+}
 </script>
