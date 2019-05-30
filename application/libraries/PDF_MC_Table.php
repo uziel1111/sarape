@@ -63,9 +63,9 @@ class PDF_MC_Table extends FPDF{
       $this->SetFont('Arial','B',11);
       $this->SetFillColor(255,255,255);
 
-      $this->SetAligns(array("C","C","C","C","C","C","C"));
+      $this->SetAligns(array("C","C","C","C","C","C","C","C"));
       // $pdf->SetColors(array(TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE));
-      $this->SetLineW(array(0.2,0.2,0.2,0.2,0.2,0.2,0.2));
+      $this->SetLineW(array(0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2));
       $this->SetTextColor(0,0,0);
       $this->Row(array(
         utf8_decode("No."),
@@ -78,9 +78,9 @@ class PDF_MC_Table extends FPDF{
         utf8_decode("Responsables"),
       ));
       $this->SetFont('Arial','',10);
-      $this->SetAligns(array("L","L","L","L","L","L","L"));
-      $this->SetColors(array(FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE));
-      $this->SetLineW(array(0.09,0.09,0.09,0.09,0.09,0.09,0.09));
+      $this->SetAligns(array("L","L","L","L","L","L","L","L"));
+      $this->SetColors(array(FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE, FALSE));
+      $this->SetLineW(array(0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09));
     }
 
     //Draw the cells of the row

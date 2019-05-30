@@ -258,7 +258,7 @@ class Reporte extends CI_Controller {
 					// print_r($responsablesc);
 					// die();
 					$cont++;
-					$pdf->Rowtab(array(
+					$pdf->Row(array(
 						$cont,
 						utf8_decode($item["accion"]),
 						utf8_decode($item["accion_f_inicio"]),
