@@ -338,6 +338,10 @@ span{
 <script type="text/javascript">
 	$('.botonF1').mouseenter(function(){
   $('.btnespe').addClass('animacionVer');
+  setTimeout(function(){
+         $('.btnespe').removeClass('animacionVer');
+       }, 4000)
+       $('#id_objetivos').val('0');
 })
 $('.container').mouseleave(function(){
   $('.btnespe').removeClass('animacionVer');
