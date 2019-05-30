@@ -28,7 +28,7 @@
                                                     <?= form_password('password', '', array('id' => 'password', 'class'=>'form-control')) ?>
 						  </div>
                                               <div class="text-center">
-						  <button type="submit" class="btn btn-primary btn-login center">Iniciar Sesion</button>
+						  <button type="submit" class="btn btn-primary btn-login center">Iniciar Sesión</button>
                                                     <?= form_close() ?>
                                                   </div>
 					  </div>

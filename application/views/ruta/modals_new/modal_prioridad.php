@@ -198,7 +198,7 @@
 								<div class="row mt-3 float-right">
 									<div class="col">
 
-										<button id="grabar_objetivo" type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Grabar Objetivo"><i class="fas fa-save"></i></button>
+										<button id="grabar_objetivo" type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Grabar Objetivo"><i id="btn_guardar" class="fas fa-save"></i></button>
 
 										<button id="limpiar" type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Limpiar campos"><i class="fas fa-quidditch"></i></button>
 									</div>

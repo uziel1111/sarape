@@ -1572,7 +1572,7 @@ public function edit_accion_super(){
 							<span class='btn btn-primary btn-file'>
 								 <i class='fas fa-paperclip'></i>
 								 <form enctype='multipart/form-data' id='form_evidencia_fin_{$dato['id_objetivo']}'>
-								 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' multiple data-toggle='tooltip' data-placement='top' title='Guarda la evidencial al final de su objetivo'>
+								 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' multiple data-toggle='tooltip' data-placement='top' title='Guarda la evidencial al final de su objetivo'  onclick = 'subirImagen()'>
 								 </form>
 							</span>
 						</div>
