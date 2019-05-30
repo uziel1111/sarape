@@ -244,7 +244,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
              obj_rm_acciones_tp.limpia_camposform();
              $('#btn_editando_accion').hide();
              $('#btn_agregar_accion').show();
-             $('#id_objetivos').val('0');
+             $('#id_objetivos').val(id_objetivo);
              $('#id_objetivos').attr('disabled', false);
 
            },
