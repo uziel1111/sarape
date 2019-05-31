@@ -1578,7 +1578,7 @@ public function edit_accion_super(){
 								onclick='imgPreviewFin({$dato['id_objetivo']})' />
 							</div>";
 
-							if (is_null($dato['path_ev_fin'])) {
+							if (!is_null($dato['path_ev_fin'])) {
 								$tabla.= "<span class='btn btn-primary btn-file' id='otroboton'  onclick='subirImg($idobjetivo,2)'>
 								 <i class='fas fa-paperclip'></i>
 							</span>";

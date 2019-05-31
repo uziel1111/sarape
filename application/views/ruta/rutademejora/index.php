@@ -384,7 +384,7 @@ function irArriba(){
  	
  	console.log('En la función');
 	swal({
-			title: '¿Esta seguro de subir Evidencia?',
+			title: '¿Está seguro de subir evidencia?',
 			text: "Usted cargará una nueva imagen",
 			type: 'info',
 			showCancelButton: true,
