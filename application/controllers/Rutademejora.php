@@ -1466,7 +1466,7 @@ public function edit_accion_super(){
 		$id_cct = $this->cct[0]['id_cct'];
 		$orden = 0;
 		$datos = $this->Rutamejora_model->getObjetivos($id_cct, $id_tprioritario, $idprioridad);
-		// echo "<pre>";print_r($datos);die();
+		//echo "<pre>";print_r($datos);die();
 		$idobjetivo = 0;
 		if(count($datos) == 0){
 				$tabla = "<table id='metas_objetivos' class='table table-condensed table-hover table-light table-bordered'>
@@ -1525,6 +1525,7 @@ public function edit_accion_super(){
 				// echo "<pre>";print_r($dato);die();
 				$orden = $orden +1;
 				$idobjetivo = $dato['id_objetivo'];
+				$idprioridad = $dato['id_tprioritario'];
 
 				// echo "Entramos al IF";die();
 				$tabla .= "<tr>
@@ -1544,11 +1545,19 @@ public function edit_accion_super(){
 								<img id='preview{$dato['id_objetivo']}'
 										 src='../../{$dato['path_ev_inicio']}' alt='Archivo' width='' height='50px'
 										 class='img img-thumbnail' onclick='imgPreview({$dato['id_objetivo']})' />
-							</div>
+							</div>";
 
-							<span class='btn btn-primary btn-file'>
+							if (($dato['path_ev_fin']) != 'evidencias_rm/4237/8183/iron.jpg') {
+								$tabla.= "<span class='btn btn-primary btn-file' id='otroboton'  onclick='subirImg($idobjetivo,1)'>
 								 <i class='fas fa-paperclip'></i>
-								 <form enctype='multipart/form-data' id='form_evidencia_{$dato['id_objetivo']}'>
+							</span>";
+							}
+
+
+							$tabla.="<span class='btn btn-primary d-none'>
+								 <i class='fas fa-paperclip'></i>
+
+								 <form enctype='multipart/form-data' id='form_evidencia_{$dato['id_objetivo']}' >
 								 		<input type='file' id='imgIni' name='arch1'
 										onchange='cargarEvidencia({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)' accept='application/pdf, image/*' multiple data-toggle='tooltip' data-placement='top' title='Guarda la evidencia al inicio de su objetivo'>
 								 </form>
@@ -1567,9 +1576,16 @@ public function edit_accion_super(){
 
 								<img id='preview_fin{$dato['id_objetivo']}' src='../../{$dato['path_ev_fin']}' alt='Archivo' width='' height='50px' class='img img-thumbnail'
 								onclick='imgPreviewFin({$dato['id_objetivo']})' />
-							</div>
+							</div>";
 
-							<span class='btn btn-primary btn-file'>
+							if (is_null($dato['path_ev_fin'])) {
+								$tabla.= "<span class='btn btn-primary btn-file' id='otroboton'  onclick='subirImg($idobjetivo,2)'>
+								 <i class='fas fa-paperclip'></i>
+							</span>";
+							}
+
+
+							$tabla .= "<span class='btn btn-primary d-none'>
 								 <i class='fas fa-paperclip'></i>
 								 <form enctype='multipart/form-data' id='form_evidencia_fin_{$dato['id_objetivo']}'>
 								 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' multiple data-toggle='tooltip' data-placement='top' title='Guarda la evidencial al final de su objetivo'>

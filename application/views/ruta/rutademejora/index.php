@@ -377,4 +377,34 @@ function irArriba(){
   });
   $('.ir-abajo').click(function(){ $('body,html').animate({ scrollTop:'1000px' },1000); });
 }
+
+
+
+ function subirImg(id_objetivos, imagen) {
+ 	
+ 	console.log('En la función');
+	swal({
+			title: '¿Esta seguro de subir Evidencia?',
+			text: "Usted cargará una nueva imagen",
+			type: 'info',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Cargar',
+			cancelButtonText: 'Cancelar'
+		})
+	.then((result) => {
+			if (result.value) {
+					if (imagen == 1) {
+				$('#imgIni').trigger("click");			
+				}else{
+				$('#imgFin').trigger("click");	
+				}
+			}
+		});
+
+	return true;
+
+
+}
 </script>
