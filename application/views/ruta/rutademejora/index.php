@@ -355,16 +355,16 @@ span{
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
 
 <script type="text/javascript">
-	$('.botonF1').mouseenter(function(){
+	$('.botonF1').click(function(){
   $('.btnespe').addClass('animacionVer');
   setTimeout(function(){
          $('.btnespe').removeClass('animacionVer');
        }, 4000)
        $('#id_objetivos').val('0');
 })
-$('.container').mouseleave(function(){
+/*$('.container').mouseleave(function(){
   $('.btnespe').removeClass('animacionVer');
-})
+})*/
 
 $(document).ready(function(){ //Hacia arriba
   irArriba();
