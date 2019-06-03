@@ -683,7 +683,7 @@ function  get_datos_edith_tp($id_tprioritario){
         tprioritario.otro_evidencia, tprioritario.path_evidencia,
         tprioritario.obs_supervisor, tprioritario.obs_direc, obj.id_objetivo, obj.objetivo
         FROM rm_tema_prioritarioxcct tprioritario
-        INNER JOIN rm_objetivo obj ON obj.id_tprioritario = tprioritario.id_tprioritario
+        LEFT JOIN rm_objetivo obj ON obj.id_tprioritario = tprioritario.id_tprioritario
         WHERE tprioritario.id_tprioritario = {$id_tprioritario}
     ";
     // echo "<pre>";print_r($str_query); die();
@@ -701,7 +701,7 @@ function  get_datos_edith_tp($id_tprioritario){
     function borrarObjetivo($id_objetivo){
 
       //Este query hay que arreglarlo, debe recibir el id_tpriotario
-      
+
       $str_query = "SELECT id_accion FROM rm_accionxtproritario WHERE id_objetivos = {$id_objetivo}";
       $idsacciones = $this->db->query($str_query)->result_array();
       // echo "<pre>"; print_r($idsacciones); die();
@@ -724,11 +724,11 @@ function  get_datos_edith_tp($id_tprioritario){
         return false;
       }
 
-      
+
 
       //$this->db->reset_query();
 
-      
+
 
     }
 

@@ -1763,7 +1763,7 @@ public function edit_accion_super(){
 			$data['subprioridades'] = $datos;
 
 			$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
-			
+
 			// $head = 'DOCUMENTAR LA PROBLEMÁTICA: ';
 			$head = $titulo;
 
