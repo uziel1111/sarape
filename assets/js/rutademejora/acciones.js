@@ -51,8 +51,8 @@ $("#id_btn_elimina_accion").click(function(){
       );
   }else{
     swal({
-      title: '¿Estas seguro de eliminar esta acción?',
-      text: "Una véz eliminado no se podra recuperar",
+      title: '¿Estás seguro de eliminar esta acción?',
+      text: "Una vez eliminado no se podrá recuperar",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -191,7 +191,7 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
              // $('#id_objetivos').val('0');
               $('#id_objetivos').val(objetivo);
               getAccxObj();
-              
+
 
            },
            error: function(error){
@@ -536,7 +536,7 @@ $('#id_objetivos').change(function(){
       getAccxObj();
   });
 function getAccxObj(){
-  
+
 
     let id_objetivo = $('#id_objetivos').val()
 
