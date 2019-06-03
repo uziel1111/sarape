@@ -252,7 +252,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
              $('#btn_editando_accion').hide();
              $('#btn_agregar_accion').show();
              $('#id_objetivos').val(id_objetivo);
-             $('#id_objetivos').attr('disabled', true);
+             $('#id_objetivos').removeAttr('disabled');
 
            },
            error: function(error){
@@ -327,7 +327,8 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
             $("#slc_rm_presp").val(editado['ids_responsables']);
             $("#slc_responsables").selectpicker('val', editado['ids_responsables'].split(','));
             $("#id_objetivos").val(id_objetivo);
-            $("#id_objetivos").attr('disabled', true);
+            // $("#id_objetivos").attr('disabled', true);
+            $('#id_objetivos').attr('disabled');
              //console.log(editado);
             $('#main_responsable').val(editado['main_resp']);
             $("#main_responsable").selectpicker('val', editado['main_resp']);
