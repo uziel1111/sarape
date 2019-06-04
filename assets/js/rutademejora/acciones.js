@@ -80,13 +80,13 @@ $("#id_btn_edita_accion").click(function() {
 });
 
 $("#btn_editando_accion").click(function(){
-// if (obj_rm_acciones_tp.validaform(0)) {
+ if (obj_rm_acciones_tp.validaform(0)) {
 
   obj_rm_acciones_tp.editar_accion()
-// } else{
+ } else{
 
-// console.log(obj_rm_acciones_tp.validaform(0) + "else");
-// }
+ console.log(obj_rm_acciones_tp.validaform(0) + "else");
+ }
 
 });
 
@@ -371,7 +371,13 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
             if($("#datepicker2").val() != ""){
               if($('#otro_responsable').is(':visible')  && $("#otro_responsable").val() != ""){
                     if(date_diff_indays() >= 0){
-                      obj_rm_acciones_tp.save_accion();
+                      if (llamado != 0) {
+                        //obj_rm_acciones_tp.save_accion();
+                        console.log(llamado + " por qué entró aquí? 2");
+                        }else{
+                          console.log(llamado + " clik, clik");
+                          return true;
+                        }
                     }else{
                       swal(
                         '¡Error!',

@@ -325,7 +325,7 @@ class Rutademejora extends CI_Controller {
 					$tabla = "<div class='table-responsive' >
 					           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
 					            <thead>
-					              <tr class=info style='vertical-align:middle'>
+					              <tr class=info style='vertical-align:middle' disable='true'>
 													<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
 													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='orden' style='width:3%; vertical-align:middle;'><center>#</center></th>
