@@ -628,6 +628,7 @@ class Rutademejora extends CI_Controller {
 
 				if($update){
 	  			$acciones = $this->Rutamejora_model->getacciones($id_objetivo);
+	  			
 	  			$tabla = "<div class='table-responsive'>
 	                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
 	                              <thead>
@@ -647,6 +648,7 @@ class Rutademejora extends CI_Controller {
 										<td>{$accion['accion']}</td>
 										<td>{$accion['mat_insumos']}</td>
 		                              <td>{$accion['accion_f_inicio']}</td>
+		                              <td>{$accion['accion_f_termino']}</td>
 		                              <td>{$accion['accion_f_termino']}</td>
 
 		                            </tr>";
@@ -668,6 +670,7 @@ class Rutademejora extends CI_Controller {
 				$insert = $this->Rutamejora_model->insert_accion($id_tprioritario, $accion, $materiales, $strids_resp, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp, $id_objetivo, $main_resp, $otro_resp);
 	  		if($insert){
 	  			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
+
 	  			$tabla = "<div class='table-responsive'>
 	                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
 	                              <thead>
@@ -718,6 +721,7 @@ class Rutademejora extends CI_Controller {
 			$this->cct = Utilerias::get_cct_sesion($this);
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
+
 			$tabla = "<div class='table-responsive'>
 	                            <table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
 	                              <thead>
@@ -871,11 +875,11 @@ class Rutademejora extends CI_Controller {
 				$this->cct = Utilerias::get_cct_sesion($this);
 				$data2 = array();
 				$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
-				// echo "<pre>";print_r($arr_obj);die();
+				// echo "<pre>";print_r($arr_avances);die();
 				$data2['arr_avances'] = $arr_avances;
 				$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(4);
 				$data2['arr_avances_fechas'] = $arr_avances_fechas;
-				// echo "<pre>";print_r($arr_avances);die();
+				// echo "<pre>";print_r($data2);die();
 				// explode(" ", $pizza);
 				$clave = explode("_", array_search('TRUE', $arr_avances_fechas[0]))[0];
 				// $clave = "cte4_var";

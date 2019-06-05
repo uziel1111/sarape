@@ -1,4 +1,4 @@
-<div class="alert alert-success" role="alert">
+  <div class="alert alert-success" role="alert">
   <div class="row font-weight-bold text-muted">
     <div class="col">
      <img src="<?= base_url('assets/img/rm_estatus/0.png') ?>" class="img-fluid" alt="Responsive image" width="35px"> No iniciado
@@ -92,9 +92,13 @@
     <?php } else { ?>
         <tr>
           <td style="vertical-align: middle;"><?php echo $avance['accion'] ?></td>
-        <?php for ($x = 1; $x <= 8; $x++) { ?>
+        <?php for ($x = 1; $x <= 8; $x++) { 
+           $total_horas = $avance['periodo'] * 24;
+           $horasRestantes = $total_horas / 3;
+           $horasRestantesHoy = $avance['restante'] * 24;
+          ?>
           <td style="vertical-align: middle;">
-            <select <?=($arr_avances_fechas[0]["cte{$x}_var"]=="TRUE")? '':'disabled' ?> onchange=obj_rm_avances_acciones.set_avance("<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>") id="<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>">
+            <select <?=($arr_avances_fechas[0]["cte{$x}_var"]=="TRUE")? '':'disabled' ?> onchange=obj_rm_avances_acciones.set_avance("<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>") id="<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>">
               <option value="0" <?=($avance["cte{$x}"] == '0')? 'selected':'' ?> >0%</option>
               <option value="10" <?=($avance["cte{$x}"] == '10')? 'selected':'' ?> >10%</option>
               <option value="20" <?=($avance["cte{$x}"] == '20')? 'selected':'' ?> >20%</option>
@@ -107,10 +111,12 @@
               <option value="90" <?=($avance["cte{$x}"] == '90')? 'selected':'' ?> >90%</option>
               <option value="100" <?=($avance["cte{$x}"] == '100')? 'selected':'' ?> >100%</option>
             </select>
-          </td>
+          </td>    
         <?php } ?>
-
-        <td style="vertical-align: middle;">
+        <?php
+          
+          ?>
+         <td style="vertical-align: middle;">
           <img id='<?=$avance['id_accion']?>icoima' src="<?= base_url("assets/img/rm_estatus/{$avance['icono']}") ?>" class="img-fluid" alt="Responsive image" width="35px">
         </td>
       </tr>
