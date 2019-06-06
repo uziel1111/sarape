@@ -91,7 +91,7 @@
   <?php $var_aux_entro1 = '0' ; ?>
     <?php } else { ?>
         <tr>
-          <td style="vertical-align: middle;"><?php echo $avance['accion'] ?></td>
+          <td style="vertical-align: middle;"><?php echo $avance['accion'] ?><br><span id="spanRestante<?=$avance['id_accion']?>"></span></td>
         <?php for ($x = 1; $x <= 8; $x++) { 
            $total_horas = $avance['periodo'] * 24;
            $horasRestantes = $total_horas / 3;

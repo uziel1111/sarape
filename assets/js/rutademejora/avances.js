@@ -43,7 +43,7 @@ Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
         'success'
       );
     var base2 = base_url.split('/index.php');
-    var icono = obj_rm_avances_acciones.get_icono(val_slc, dias_restantes, dias_restantes_hoy);
+    var icono = obj_rm_avances_acciones.get_icono(val_slc, dias_restantes, dias_restantes_hoy,var_id_idacc);
     var ruta = base2[0]+"/assets/img/rm_estatus/"+icono;
     $("#"+var_id_idacc+"icoima").attr("src",ruta);
   }
@@ -66,23 +66,13 @@ Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
  };
 
 
-Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, dias_restantes_hoy){
+Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, dias_restantes_hoy,var_id_idacc){
   
-  /*if(porcentaje == 0){
-      return "R0.png";
-    }else if(porcentaje == 10 || porcentaje == 20 || porcentaje == 30){
-      return "R1.png";
-    }else if(porcentaje == 40 || porcentaje == 50 || porcentaje == 60 || porcentaje == 70){
-      return "Y2.png";
-    }else if(porcentaje == 80 || porcentaje == 90){
-      return "G3.png";
-    }else if(porcentaje == 100){
-      return "G4.png";
-  }*/
-
   if (dias_restantes_hoy >= 0) {
 
     if (dias_restantes >= dias_restantes_hoy) {
+      $('#spanRestante'+var_id_idacc+'').addClass('text-danger');
+      $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
       if (porcentaje <= 66) {
         return "R1.png";
       }else{
@@ -100,6 +90,8 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
       }
 }else{
   if ((dias_restantes * 2 )>= dias_restantes_hoy) {
+    $('#spanRestante'+var_id_idacc+'').addClass('text-warning');
+    $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
     if (porcentaje <= 33) {
        return "R1.png";
     }else{
@@ -118,6 +110,8 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
     
   }else{
     if ((dias_restantes * 3 )>= dias_restantes_hoy) {
+      $('#spanRestante'+var_id_idacc+'').addClass('text-success');
+      $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
       if (porcentaje >= 0 && porcentaje <= 33) {
         return 'Y1.png';
       }else{
@@ -134,11 +128,16 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
       }
     }
   }else{
-      console.log('<br>aún no empieza el plazo' + dias_restantes + ', ' + dias_restantes_hoy);
+      $('#spanRestante'+var_id_idacc+'').addClass('text-info');
+      $('#spanRestante'+var_id_idacc+'').text('No se encuentra en periodo de actividad');
+      return 'G0.png';
     } 
   }
 }
 } else{
-  console.log('aún no empieza el plazo' + dias_restantes + ', ' + dias_restantes_hoy);
+
+      $('#spanRestante'+var_id_idacc+'').addClass('text-info');
+      $('#spanRestante'+var_id_idacc+'').text('No se encuentra en periodo de actividad');
+  return 'G0.png';
 }  
 };
