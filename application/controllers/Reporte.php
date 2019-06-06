@@ -49,7 +49,10 @@ class Reporte extends CI_Controller {
 				$aux_ruta = $ruta['tema'];
 				$id_tprioritario = $ruta['id_objetivo'];
 				//DATOS
-				$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cct[0]['cve_centro']);
+				if ($id_tprioritario!='') {
+					$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cct[0]['cve_centro']);
+				}
+
 
 
 			}
@@ -94,7 +97,10 @@ class Reporte extends CI_Controller {
 					foreach ($rutas as $ruta) {
 						$id_tprioritario = $ruta['id_tprioritario'];
 						//DATOS
-						$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cvecct);
+						if ($id_tprioritario!='') {
+							$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cvecct);
+						}
+
 					}
 					$pdf->Output();
 				}
