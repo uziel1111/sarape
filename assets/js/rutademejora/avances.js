@@ -73,6 +73,9 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
     if (dias_restantes >= dias_restantes_hoy) {
       $('#spanRestante'+var_id_idacc+'').addClass('text-danger');
       $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
+      if (porcentaje == 0) {
+        return "G0.png";
+      }
       if (porcentaje <= 66) {
         return "R1.png";
       }else{
@@ -92,6 +95,9 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
   if ((dias_restantes * 2 )>= dias_restantes_hoy) {
     $('#spanRestante'+var_id_idacc+'').addClass('text-warning');
     $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
+    if (porcentaje == 0) {
+      return "G0.png";
+    }
     if (porcentaje <= 33) {
        return "R1.png";
     }else{
@@ -112,7 +118,10 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
     if ((dias_restantes * 3 )>= dias_restantes_hoy) {
       $('#spanRestante'+var_id_idacc+'').addClass('text-success');
       $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
-      if (porcentaje >= 0 && porcentaje <= 33) {
+      if (porcentaje == 0) {
+        return "G0.png";
+      }
+      if (porcentaje >= 1 && porcentaje <= 33) {
         return 'Y1.png';
       }else{
        if (porcentaje >= 34 && porcentaje <= 66) {
