@@ -113,13 +113,13 @@ $("#btn_actividades").click(function(e){
 ///
 Prioridad.prototype.getObjetivos = function(){
 	// var idtemaprioritario = obj.id_tprioritario ;
-
+	console.log(obj.id_tpriotario);
 	if(obj.id_tprioritario != 0){
 		$.ajax({
 			url: base_url+'Rutademejora/getObjetivos',
 			type: 'POST',
 			dataType: 'JSON',
-			data: {id_tpriotario: obj.id_tprioritario,
+			data: {id_tprioritario: obj.id_tprioritario,
 						 id_prioridad: obj.id_prioridad,
 						 id_subprioridad: obj.id_subprioridad,
 					 },
