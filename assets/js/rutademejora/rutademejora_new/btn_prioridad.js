@@ -487,7 +487,7 @@ Prioridad.prototype.getObjetivos = function(){
 			url: base_url+'Rutademejora/getObjetivos',
 			type: 'POST',
 			dataType: 'JSON',
-			data: {id_tprioritario: obj.id_tprioritario,
+			data: {id_tpriotario: obj.id_tprioritario,
 						 id_prioridad: obj.id_prioridad,
 					 },
 			beforeSend: function(xhr) {

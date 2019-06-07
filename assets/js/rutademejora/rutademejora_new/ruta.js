@@ -39,7 +39,7 @@ $("#btn_mision").click(function(e){
 //Prioridad (incompleto)
 $("#btn_prioridad").click(function(e){
 	e.preventDefault();
-	console.log(obj.id_tprioritario);		
+	//console.log(obj.id_tprioritario);		
 	if(obj.id_tprioritario == undefined || obj.id_tprioritario == ''){
 		swal(
         '¡Error!',
@@ -70,7 +70,7 @@ $("#btn_prioridad").click(function(e){
 				$('h5').empty();
 				$('h5').append(data.titulo);
 		    $("#myModal").modal("show");
-        obj_prioridad.getObjetivos();
+        obj_prioridad.getObjetivos(obj.id_tprioritario);
 			})
 			.fail(function(e) {
 		    console.error("Error in get_datos_edith_tp()");
@@ -113,13 +113,13 @@ $("#btn_actividades").click(function(e){
 ///
 Prioridad.prototype.getObjetivos = function(){
 	// var idtemaprioritario = obj.id_tprioritario ;
-	console.log(obj.id_tpriotario);
-	if(obj.id_tprioritario != 0){
+	console.log(obj.id_tprioritario);
+	if(obj.id_tpriotario != 0){
 		$.ajax({
 			url: base_url+'Rutademejora/getObjetivos',
 			type: 'POST',
 			dataType: 'JSON',
-			data: {id_tprioritario: obj.id_tprioritario,
+			data: {id_tpriotario: obj.id_tprioritario,
 						 id_prioridad: obj.id_prioridad,
 						 id_subprioridad: obj.id_subprioridad,
 					 },
