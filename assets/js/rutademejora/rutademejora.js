@@ -46,8 +46,9 @@ $("#slc_apoyoreq").change(function(){
             $("#nav-avances-tab").click(function(){
 
               $("#nav-avances").empty();
+              
               $.ajax({
-              url: base_url+'rutademejora/get_avance',
+              url: base_url+'Rutademejora/get_avance',
               type: 'POST',
               dataType: 'JSON',
               data: {'x':'x'},
@@ -57,7 +58,7 @@ $("#slc_apoyoreq").change(function(){
             })
             .done(function(result) {
               swal.close();
-              // console.log(result.srt_html);
+              //console.log(result.srt_html);
               $("#nav-avances").html(result.srt_html);
 
 

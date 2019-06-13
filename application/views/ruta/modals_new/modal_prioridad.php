@@ -76,7 +76,7 @@
 
 				<div class="row mt-15">
 					<div class="col-12">
-						<button type="button" id="grabar_prioridad" class="btn btn-primary btn-style-1 mr-10">Grabar</button>
+						<button type="button" id="grabar_prioridad" class="btn btn-primary btn-style-1 mr-10">Guardar</button>
 					</div>
 				</div>
 
@@ -85,7 +85,7 @@
 				<div id="hiddenDiv1" >
 					<div class="row mt-4">
 						<div class="col-12">
-							<label><span class="badge badge-secondary h5 text-white">5.</span> Objetivos y sus metas <em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Para la(s) problemática(s) mencionada(s) escribe un objetivo que inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o eliminar) seguido por un indicador concreto (por ejemplo: asistencia, aprovechamiento, ... y en algunos casos enfocados a un nivel educativo, a un grado en particular, a una asignatura...), continuando con una meta numérica de mejora del indicador y finalizando con una fecha de cumplimiento máximo (si es para el final del período escolar se puede omitir este elemento dándolo por entendido)"></em></label>
+							<label><span class="badge badge-secondary h5 text-white">5.</span> Objetivo(s)<em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Para la(s) problemática(s) mencionada(s) escribe un objetivo que inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o eliminar) seguido por un indicador concreto (por ejemplo: asistencia, aprovechamiento, ... y en algunos casos enfocados a un nivel educativo, a un grado en particular, a una asignatura...), continuando con una meta numérica de mejora del indicador y finalizando con una fecha de cumplimiento máximo (si es para el final del período escolar se puede omitir este elemento dándolo por entendido)"></em></label>
 						</div>
 					</div>
 					<div class="row">

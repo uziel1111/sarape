@@ -889,6 +889,7 @@ class Rutademejora extends CI_Controller {
 				// echo "<pre>";print_r($data2);die();
 				$string_view_avance = $this->load->view('ruta/avances', $data2, TRUE);
 				$response = array('srt_html' => $string_view_avance);
+				// echo "<pre>";print_r($response);die();
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
 			}else{
@@ -1233,7 +1234,8 @@ public function edit_accion_super(){
 		$usuario = $this->cct[0]['cve_centro'];
 		$id_cct = $this->cct[0]['id_cct'];
 		$responsables = $this->getPersonal($usuario);
-		// echo "<pre>";print_r($responsables);die();
+		$nomenclatura = substr($usuario,0,5);
+		 // echo "<pre>";print_r($nomenclatura);die();
 		if ($responsables->status==0) {
 			$personas = array();
 		}
@@ -1244,7 +1246,9 @@ public function edit_accion_super(){
 		$options = "";
 		if($responsables->procede == 1 && $responsables->status == 1){
 			foreach ($personas as $persona) {
-				$options .= "<option value='{$persona->rfc}'>".$persona->nombre_completo."</option>";
+				if ($nomenclatura != '05PJN' && $nomenclatura != '05PPR' && $nomenclatura != '05PPS') {
+					$options .= "<option value='{$persona->rfc}'>".$persona->nombre_completo."</option>";
+				}
 			}
 									$options .="<option value='0'>OTRO</option>";
 		}else{
@@ -1310,6 +1314,7 @@ public function edit_accion_super(){
 		$data['nombreuser'] = $this->cct[0]['nombre_centro'];
 		$data['turno'] = $this->cct[0]['turno_single'];
 		$data['cct'] = $this->cct[0]['cve_centro'];
+		$data['director'] = $this->cct[0]['nombre_director'];
 
 		$data['vista_avance'] = $this->load->view("ruta/rutademejora/avances", $data, TRUE);
 		$data['vista_indicadores'] = $this->load->view("ruta/rutademejora/indicadores", $data, TRUE);
@@ -1535,7 +1540,16 @@ public function edit_accion_super(){
 				$tabla .= "<tr>
 					<td id='id_objetivo' hidden><center>{$dato['id_objetivo']}</center></td>
 					<td id='id_tprioritario' hidden><center>{$dato['id_tprioritario']}</center></td>
-					<td id='num_rutamtema' data='1' class='text-center'>{$orden}</td>
+					<td id='num_rutamtema' data='1' class='text-center'>{$orden}
+					<a onclick='publicar({$dato['id_objetivo']}, {$dato['estado_publicacion']})'><i id='publicar_{$dato['id_objetivo']}'";
+					 if ($dato['estado_publicacion'] == 0) {
+					 	// echo "<pre>";print_r($dato);die();
+						$tabla.="class='fas fa-user-secret'></i></a>";
+					 }else{
+						$tabla.="class='fas fa-globe-americas'></i></a>";	
+					 }
+					
+					$tabla.= "</td>
 					<td id='objetivo' data='Normalidad mínima'>{$dato['objetivo']}</td>
 					<td>
 						<div class='text-center'>
@@ -1983,5 +1997,13 @@ public function edit_accion_super(){
 		$response = array('acciones' => $acciones, 'tabla' => $tabla);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
+	}
+	public function publicar()
+	{
+		$estado_publicacion = $this->input->post('estado_publicacion');
+		$id= $this->input->post('id_publicacion');
+		$data = array('estado_publicacion' => $estado_publicacion, 'id' => $id );
+		$publicar = $this->Rutamejora_model->publicar_objetivo($data);
+		return true;
 	}
 }// Rutamedejora

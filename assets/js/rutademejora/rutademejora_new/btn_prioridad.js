@@ -103,7 +103,24 @@ $('#delete_file').click(function(){
 
 })
 
-
+function publicar(id, estado) {
+	if (estado == 0) {	
+		$('#publicar_'+id).removeClass('fa-user-secret');
+		$('#publicar_'+id).addClass('fa-globe-americas');
+		estado_publicacion = 1;
+	}else{
+		$('#publicar_'+id).removeClass('fa-globe-americas');
+		$('#publicar_'+id).addClass('fa-user-secret');
+		estado_publicacion = 0;
+	}
+	$.ajax({
+		url:base_url+'Rutademejora/publicar',
+		type: 'POST',
+		data: {estado_publicacion:estado_publicacion, id_publicacion:id},
+		success: function(data){
+		}
+	});
+}
 
 function Prioridad(){
   _thismap = this;

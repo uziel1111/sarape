@@ -15,9 +15,10 @@
       <img src="<?= base_url('assets/img/rm_estatus/3.png') ?>" class="img-fluid" alt="Responsive image" width="35px"> Por terminar
     </div>
     <div class="col">
-      <img src="<?= base_url('assets/img/rm_estatus/4.png') ?>" class="img-fluid" alt="Responsive image" width="35px"> Terminado
+      <img src="<?= base_url('assets/img/rm_estatus/4.png') ?>" class="img-fluid" alt="Responsive image" width="35px"> Terminado 
     </div>
   </div>
+    <p style="red">Nota: El avance no se suma, es el porcentaje real.</p>
 </div>
 <table class="table table-hover">
   <thead>

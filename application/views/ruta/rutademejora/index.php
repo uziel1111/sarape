@@ -98,12 +98,31 @@ span{
   right:10px;
   z-index:2;
 }
+
+.ir-abajo{
+  display:none;
+  background-repeat:no-repeat;	
+  font-size:20px;
+  color:black;
+  cursor:pointer;
+  position:fixed;
+  top:140px;
+  right:10px;
+  z-index:2;
+}
 </style>
 
 <a class="ir-arriba"  javascript:void(0) title="Volver arriba">
   <span class="fa-stack">
     <i class="fa fa-circle fa-stack-2x"></i>
     <i class="fa fa-arrow-up fa-stack-1x fa-inverse"></i>
+  </span>
+</a>
+
+<a class="ir-abajo"  javascript:void(0) title="Desplazarse abajo">
+  <span class="fa-stack">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-arrow-down fa-stack-1x fa-inverse"></i>
   </span>
 </a>
 
@@ -210,7 +229,7 @@ span{
 				<div class="alert alert-info" role="alert">
 					Escuela: <span class="fw800"><label id="label_escuela"></label></span><br>
 
-					Línea de acción: <span class="fw800"><label id="label_prioridad"></label></span><br>
+					<!-- Línea de acción: <span class="fw800"><label id="label_prioridad"></label></span><br> -->
 
 					Problemática(s): <span class="fw800"><label id="label_problematica"></label></span><br>
 
@@ -247,9 +266,11 @@ span{
                 <div class="row mt-15">
                   <div class="col-md-12">
                     <label><label style="color:red;">*</label>Responsable</label>
+                    
                     <select class="selectpicker form-control" id="main_responsable" title="SELECCIONA" required>
                     <?= $responsables?>
                     </select>
+                    
                     <br>
                     <textarea id="new_resp" class="form-control" rows="1" placeholder="Escriba que otro" hidden="true" required="true"></textarea>
                   </div>
@@ -378,6 +399,14 @@ function irArriba(){
   $('.ir-abajo').click(function(){ $('body,html').animate({ scrollTop:'1000px' },1000); });
 }
 
+function irAbajo(){
+  $('.ir-abajo').click(function(){ $('body,html').animate({ scrollTop:'0px' },1000); });
+  $(window).scroll(function(){
+    if($(this).scrollTop() > 0){ $('.ir-arriba').slideDown(600); }else{ $('.ir-abajo').slideUp(600); }
+  });
+  $('.ir-abajo').click(function(){ $('body,html').animate({ scrollTop:'1000px' },1000); });
+}
+
 
 
  function subirImg(id_objetivos, imagen) {
@@ -408,3 +437,4 @@ function irArriba(){
 
 }
 </script>
+

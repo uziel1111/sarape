@@ -131,7 +131,7 @@ class Rutamejora_model extends CI_Model
     }
 
     function getdatoscct($cct, $turno){
-		$this->db->select('e.id_cct, e.cve_centro, e.nombre_centro, e.id_turno_single, ts.turno_single, n.nivel');
+		$this->db->select('e.id_cct, e.cve_centro, e.nombre_centro, e.id_turno_single, ts.turno_single, n.nivel, e.nombre_director');
       $this->db->from('escuela e');
       $this->db->join('turno_single AS ts ',' e.id_turno_single = ts.id_turno_single');
       $this->db->join('nivel AS n ', 'n.id_nivel = e.id_nivel');
@@ -896,5 +896,9 @@ function  get_datos_edith_tp($id_tprioritario){
                     ORDER BY tp.id_tprioritario";
       return $this->db->query($str_query)->result_array();
     }
-
+    
+    public function publicar_objetivo($data)
+    {
+      $this->db->query("UPDATE rm_objetivo SET estado_publicacion = {$data['estado_publicacion']} WHERE id_objetivo = {$data['id']};"); 
+    }
 }// Rutamejora_model

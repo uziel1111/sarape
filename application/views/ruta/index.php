@@ -222,7 +222,7 @@
                 </div>
                 <div class="row mt-15">
                   <div class="col-1">
-                    <button type="button" class="btn btn-primary btn-style-1 mr-1" id="btn_grabar_tp">Grabar</button>
+                    <button type="button" class="btn btn-primary btn-style-1 mr-1" id="btn_grabar_tp">Guardar</button>
                   </div>
                   <div class="col-1">
                     <button type="button" class="btn btn-primary btn-style-1 mr-1" id="btn_actualizar_tp" hidden>Actualizar</button>
@@ -345,7 +345,7 @@
                     <div class="alert alert-info" role="alert">
                       Escuela: <span class="fw800"><label id="label_escuela"></label></span><br>
 
-                      Prioridad: <span class="fw800"><label id="label_prioridad"></label></span><br>
+                      <!--Prioridad: <span class="fw800"><label id="label_prioridad"></label></span><br>-->
 
                       Problemática(s): <span class="fw800"><label id="label_problematica"></label></span><br>
 

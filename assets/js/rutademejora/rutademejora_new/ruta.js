@@ -96,6 +96,7 @@ $("#btn_actividades").click(function(e){
 	.done(function(data){
 		$("#div_generico").empty();
     $("#div_generico").append(data.strView);
+
 		$('h5').empty();
 		$('h5').append(data.titulo);
     $("#myModal").modal("show");

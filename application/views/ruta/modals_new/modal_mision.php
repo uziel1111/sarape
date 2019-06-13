@@ -28,7 +28,7 @@ locales, sociedad en general)"></em>
 	<hr class="mt-1 mb-2">
 	<div class="row">
 		<div class="col-12">
-			<button type="button" id="btn_grabar" class="btn btn-success btn-style-1 mr-10" data-dismiss="modal" aria-label="Close">Grabar</button>
+			<button type="button" id="btn_grabar" class="btn btn-success btn-style-1 mr-10" data-dismiss="modal" aria-label="Close">Guardar</button>
 		</div>
 	</div>
 </div>
