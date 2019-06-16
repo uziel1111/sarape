@@ -36,6 +36,32 @@ $("#btn_mision").click(function(e){
   });
 })
 
+$("#img_mision").click(function(e){
+	e.preventDefault()
+	var ruta = base_url + 'Rutademejora/modal_mision'
+	$.ajax({
+		url:ruta,
+		data: { },
+		beforeSend: function(xhr) {
+	      Notification.loading("");
+    }
+	})
+	.done(function(data){
+		$("#div_generico").empty();
+    $("#div_generico").append(data.strView);
+
+		$('h5').empty();
+		$('h5').append(data.titulo);
+    $("#myModal").modal("show");
+	})
+	.fail(function(e) {
+    console.error("Error in ()"); console.table(e);
+  })
+	.always(function() {
+    swal.close();
+  });
+})
+
 //Prioridad (incompleto)
 $("#btn_prioridad").click(function(e){
 	e.preventDefault();
@@ -67,6 +93,9 @@ $("#btn_prioridad").click(function(e){
 			.done(function(data){
 				$("#div_generico").empty();
 		    $("#div_generico").append(data.strView);
+		    $('#problematica').val("");
+		    $('#evidencias').val("");
+		    $('#txt_rm_obs_direc').val("");
 				$('h5').empty();
 				$('h5').append(data.titulo);
 		    $("#myModal").modal("show");

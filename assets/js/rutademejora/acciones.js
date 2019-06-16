@@ -206,9 +206,11 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
   $("#datepicker1").val("");
   $("#datepicker2").val("");
   $("#otro_responsable").val("");
+  $("#otro_resp").val("");
   $("#txt_rm_indimed").val("");
   // $("#otro_responsable").hide();
   $("#div_otro_responsable").hide();
+  //$("#main_resp_2").hide();
   $("#slc_rm_ambito").val("");
   $("#slc_rm_ambito").selectpicker("refresh");
   $("#slc_responsables").selectpicker('deselectAll');
@@ -372,7 +374,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
               if($('#otro_responsable').is(':visible')  && $("#otro_responsable").val() != ""){
                     if(date_diff_indays() >= 0){
                       if (llamado != 0) {
-                        //obj_rm_acciones_tp.save_accion();
+                        obj_rm_acciones_tp.save_accion();
                         console.log(llamado + " por qué entró aquí? 2");
                         }else{
                           console.log(llamado + " clik, clik");

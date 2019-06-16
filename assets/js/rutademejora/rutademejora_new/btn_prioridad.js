@@ -104,22 +104,28 @@ $('#delete_file').click(function(){
 })
 
 function publicar(id, estado) {
-	if (estado == 0) {	
-		$('#publicar_'+id).removeClass('fa-user-secret');
-		$('#publicar_'+id).addClass('fa-globe-americas');
-		estado_publicacion = 1;
-	}else{
-		$('#publicar_'+id).removeClass('fa-globe-americas');
-		$('#publicar_'+id).addClass('fa-user-secret');
-		estado_publicacion = 0;
-	}
-	$.ajax({
-		url:base_url+'Rutademejora/publicar',
-		type: 'POST',
-		data: {estado_publicacion:estado_publicacion, id_publicacion:id},
-		success: function(data){
+	// $('#publicar_'+id).click(function() {
+		
+		if (estado == 0) {	
+			$('#publicar_'+id).removeClass('fa-user-secret');
+			$('#publicar_'+id).addClass('fa-globe-americas');
+			estado_publicacion = 1;
+			estado = 1;
+		}else{
+			$('#publicar_'+id).removeClass('fa-globe-americas');
+			$('#publicar_'+id).addClass('fa-user-secret');
+			estado_publicacion = 0;
+			estado = 0;
 		}
-	});
+		$.ajax({
+			url:base_url+'Rutademejora/publicar',
+			type: 'POST',
+			data: {estado_publicacion:estado_publicacion, id_publicacion:id},
+			success: function(data){
+				//publicar(id,estado);
+			}
+		});
+	// });
 }
 
 function Prioridad(){
@@ -238,7 +244,7 @@ $('#writeText').click(function(){
 			'error'
 		);
 	} else {
-			let contenido = $('#slt_verbo option:selected').text() + ' ' + $('#slt_indicador option:selected').text() + ' ' + $('#slt_metrica option:selected').text() + ' ' + meta + ' ' + $('#slt_fecha option:selected').text() + ' ' + otra_fecha
+			let contenido = $('#slt_verbo option:selected').text() + ' ' + $('#slt_indicador option:selected').text() + ' en un'  + meta + ' ' + $('#slt_metrica option:selected').text() + ' ' + $('#slt_fecha option:selected').text() + ' ' + otra_fecha
 
 			$('#CAPoutput').val(contenido);
 	}

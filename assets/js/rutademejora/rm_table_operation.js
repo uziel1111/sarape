@@ -117,3 +117,39 @@ function Tabla(){
     swal.close();
   });
 }
+
+  $('#img_objetivo').click(function() {
+
+    swal(
+        "Seleccione una línea de acción",
+        "Es necesario seleccionar una línea de acción",
+        "info"
+      );
+       
+       location.reload();
+
+  })
+
+   $('#img_actividad').click(function() {
+
+    swal(
+        "Seleccione una línea de acción",
+        "Es necesario seleccionar una línea de acción",
+        "info"
+      );
+       
+       location.reload();
+
+  })
+
+    $('#img_avances').click(function() {
+      $('#nav-avances').addClass('active');
+      $('#nav-avances').addClass('show');
+      $('#nav-ayuda').removeClass('active');
+      $('#nav-ayuda').removeClass('show'); 
+      $('#nav-ruta').removeClass('active');
+      $('#nav-ruta').removeClass('show'); 
+      $('#nav-ayuda').attr('aria-selected',false); 
+      $('#nav-avances').attr('aria-selected',true); 
+
+  })

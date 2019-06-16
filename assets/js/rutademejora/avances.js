@@ -74,27 +74,27 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
       $('#spanRestante'+var_id_idacc+'').addClass('text-danger');
      
       if (porcentaje == 0) {
-         swal(
-        "Quedan: "+ (dias_restantes_hoy/24) +"días.",
-        "Recuerda registrar tu avance.",
-        'info'
-      );
+      //    swal(
+      //   "Quedan: "+ (dias_restantes_hoy/24) +"días.",
+      //   "Recuerda registrar tu avance.",
+      //   'info'
+      // );
         return "G0.png";
       }
       if (porcentaje <= 66) {
-         swal(
-        "Quedan: "+ (dias_restantes_hoy/24) +"días.",
-        "Un paso a la vez.",
-        'info'
-      );
+      //    swal(
+      //   "Quedan: "+ (dias_restantes_hoy/24) +"días.",
+      //   "Un paso a la vez.",
+      //   'info'
+      // );
         return "R1.png";
       }else{
         if (porcentaje >= 67 && porcentaje <= 89) {
-           swal(
-        "Quedan: "+ (dias_restantes_hoy/24) +"días.",
-        "Excelente, seguimos avanzando",
-        'info'
-      );
+      //      swal(
+      //   "Quedan: "+ (dias_restantes_hoy/24) +"días.",
+      //   "Excelente, seguimos avanzando",
+      //   'info'
+      // );
           return "Y2.png";  
         }else{
           if (porcentaje >= 90 && porcentaje <= 99) {
@@ -163,11 +163,11 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
     }
   }else{
       $('#spanRestante'+var_id_idacc+'').addClass('text-info');
-      swal(
-        "No se encuentra en periodo de actividad",
-        "Podrás registrar tus avances en: "+ (dias_restantes_hoy/24) +"días",
-        'error'
-      );
+      // swal(
+      //   "No se encuentra en periodo de actividad",
+      //   "Podrás registrar tus avances en: "+ (dias_restantes_hoy/24) +"días",
+      //   'error'
+      // );
       return 'G0.png';
     } 
   }
@@ -175,11 +175,11 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
 } else{
 
       $('#spanRestante'+var_id_idacc+'').addClass('text-info');
-      swal(
-        "No se encuentra en periodo de actividad",
-        "Esta actividad ha vencido",
-        'error'
-      );
-  return 'G0.png';
+      // swal(
+      //   "No se encuentra en periodo de actividad",
+      //   "Esta actividad ha vencido",
+      //   'error'
+      // );
+  return 'R0.png';
 }  
 };

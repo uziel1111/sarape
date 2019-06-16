@@ -272,7 +272,7 @@ class Rutademejora extends CI_Controller {
 
 							$uploadPath              = $ruta_archivos;
 							$config['upload_path']   = $uploadPath;
-							$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+							$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|xlsx|xls|doc|docx|txt|';
 
 							$this->load->library('upload', $config);
 							$this->upload->initialize($config);
@@ -519,7 +519,7 @@ class Rutademejora extends CI_Controller {
 
 			$uploadPath              = $ruta_archivos;
 			$config['upload_path']   = $uploadPath;
-			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|xlsx|xls|doc|docx|txt';
 
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
@@ -945,7 +945,7 @@ class Rutademejora extends CI_Controller {
 
 					$uploadPath              = $ruta_archivos;
 					$config['upload_path']   = $uploadPath;
-					$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+					$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|xlsx|xls|doc|docx|txt';
 
 					$this->load->library('upload', $config);
 					$this->upload->initialize($config);
@@ -1565,14 +1565,14 @@ public function edit_accion_super(){
 										 class='img img-thumbnail' onclick='imgPreview({$dato['id_objetivo']})' />
 							</div>";
 
-							if (($dato['path_ev_fin']) != 'evidencias_rm/4237/8183/iron.jpg') {
-								$tabla.= "<span class='btn btn-primary btn-file' id='otroboton'  onclick='subirImg($idobjetivo,1)'>
-								 <i class='fas fa-paperclip'></i>
-							</span>";
-							}
+							// if (($dato['path_ev_fin']) != 'evidencias_rm/4237/8183/iron.jpg') {
+							// 	$tabla.= "<span class='btn btn-primary btn-file' id='otroboton'  onclick='subirImg($idobjetivo,1)'>
+							// 	 <i class='fas fa-paperclip'></i>
+							// </span>";
+							// }
 
 
-							$tabla.="<span class='btn btn-primary d-none'>
+							$tabla.="<span class='btn btn-primary btn-file'>
 								 <i class='fas fa-paperclip'></i>
 
 								 <form enctype='multipart/form-data' id='form_evidencia_{$dato['id_objetivo']}' >
@@ -1596,14 +1596,14 @@ public function edit_accion_super(){
 								onclick='imgPreviewFin({$dato['id_objetivo']})' />
 							</div>";
 
-							if (($dato['path_ev_fin']) != 'evidencias_rm/4237/8183/iron.jpg') {
-								$tabla.= "<span class='btn btn-primary btn-file' id='otroboton'  onclick='subirImg($idobjetivo,2)'>
-								 <i class='fas fa-paperclip'></i>
-							</span>";
-							}
+							// if (($dato['path_ev_fin']) != 'evidencias_rm/4237/8183/iron.jpg') {
+							// 	$tabla.= "<span class='btn btn-primary btn-file' id='otroboton'  onclick='subirImg($idobjetivo,2)'>
+							// 	 <i class='fas fa-paperclip'></i>
+							// </span>";
+							// }
 
 
-							$tabla .= "<span class='btn btn-primary d-none'>
+							$tabla .= "<span class='btn btn-primary btn-file'>
 								 <i class='fas fa-paperclip'></i>
 								 <form enctype='multipart/form-data' id='form_evidencia_fin_{$dato['id_objetivo']}'>
 								 		<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' multiple data-toggle='tooltip' data-placement='top' title='Guarda la evidencial al final de su objetivo'>
@@ -1821,7 +1821,7 @@ public function edit_accion_super(){
 
 				$uploadPath              = $ruta_archivos;
 				$config['upload_path']   = $uploadPath;
-				$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|xlsx|xls|doc|docx|txt';
 
 				$this->load->library('upload', $config);
 				$this->upload->initialize($config);
@@ -1865,7 +1865,7 @@ public function edit_accion_super(){
 
 				$uploadPath              = $ruta_archivos;
 				$config['upload_path']   = $uploadPath;
-				$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|xlsx|xls|doc|docx|txt';
 
 				$this->load->library('upload', $config);
 				$this->upload->initialize($config);
@@ -2004,6 +2004,7 @@ public function edit_accion_super(){
 		$id= $this->input->post('id_publicacion');
 		$data = array('estado_publicacion' => $estado_publicacion, 'id' => $id );
 		$publicar = $this->Rutamejora_model->publicar_objetivo($data);
-		return true;
+
+		return $id;
 	}
 }// Rutamedejora

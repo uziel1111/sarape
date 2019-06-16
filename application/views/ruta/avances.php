@@ -98,7 +98,8 @@
            $horasRestantesHoy = $avance['restante'] * 24;
           ?>
           <td style="vertical-align: middle;">
-            <select <?=($arr_avances_fechas[0]["cte{$x}_var"]=="TRUE")? '':'disabled' ?> onchange="obj_rm_avances_acciones.set_avance('<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>')" id="<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>">
+            <?php if ($horasRestantesHoy < 0) { ?>              
+            <select <?=($arr_avances_fechas[0]["cte{$x}_var"]=="TRUE")? '':'disabled' ?> onchange="obj_rm_avances_acciones.set_avance('<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>')" id="<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>" disabled>
               <option value="0" <?=($avance["cte{$x}"] == '0')? 'selected':'' ?> >0%</option>
               <option value="10" <?=($avance["cte{$x}"] == '10')? 'selected':'' ?> >10%</option>
               <option value="20" <?=($avance["cte{$x}"] == '20')? 'selected':'' ?> >20%</option>
@@ -111,6 +112,21 @@
               <option value="90" <?=($avance["cte{$x}"] == '90')? 'selected':'' ?> >90%</option>
               <option value="100" <?=($avance["cte{$x}"] == '100')? 'selected':'' ?> >100%</option>
             </select>
+            <?php }else{ ?>
+               <select <?=($arr_avances_fechas[0]["cte{$x}_var"]=="TRUE")? '':'disabled' ?> onchange="obj_rm_avances_acciones.set_avance('<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>')" id="<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>">
+              <option value="0" <?=($avance["cte{$x}"] == '0')? 'selected':'' ?> >0%</option>
+              <option value="10" <?=($avance["cte{$x}"] == '10')? 'selected':'' ?> >10%</option>
+              <option value="20" <?=($avance["cte{$x}"] == '20')? 'selected':'' ?> >20%</option>
+              <option value="30" <?=($avance["cte{$x}"] == '30')? 'selected':'' ?> >30%</option>
+              <option value="40" <?=($avance["cte{$x}"] == '40')? 'selected':'' ?> >40%</option>
+              <option value="50" <?=($avance["cte{$x}"] == '50')? 'selected':'' ?> >50%</option>
+              <option value="60" <?=($avance["cte{$x}"] == '60')? 'selected':'' ?> >60%</option>
+              <option value="70" <?=($avance["cte{$x}"] == '70')? 'selected':'' ?> >70%</option>
+              <option value="80" <?=($avance["cte{$x}"] == '80')? 'selected':'' ?> >80%</option>
+              <option value="90" <?=($avance["cte{$x}"] == '90')? 'selected':'' ?> >90%</option>
+              <option value="100" <?=($avance["cte{$x}"] == '100')? 'selected':'' ?> >100%</option>
+            </select>
+           <?php } ?>  
           </td>    
         <?php } ?>
         <?php

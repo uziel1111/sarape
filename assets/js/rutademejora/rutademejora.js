@@ -44,8 +44,7 @@ $("#slc_apoyoreq").change(function(){
 
 
             $("#nav-avances-tab").click(function(){
-
-              $("#nav-avances").empty();
+               $("#nav-avances").empty();
               
               $.ajax({
               url: base_url+'Rutademejora/get_avance',
@@ -68,8 +67,7 @@ $("#slc_apoyoreq").change(function(){
             })
             .always(function() {
                   // swal.close();
-            })
-
+            })              
             });
 
 $("#btn_get_reporte").click(function(){
