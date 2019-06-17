@@ -1663,9 +1663,38 @@ public function edit_accion_super(){
 		$id_prioridad = $this->input->post('id_prioridad');
 		$id_subprioridad = $this->input->post('id_subprioridad');
 
-		if ($id_nivel == 'PRIMARIA') {
-			$id_nivel = 4;
-		}
+		switch ($id_nivel) {
+				case 'ESPECIAL':
+					$id_nivel = 1;
+					break;
+				case 'INICIAL':
+					$id_nivel = 2;
+					break;
+				case 'PREESCOLAR' :
+					$id_nivel = 3;
+					break;
+				case 'PRIMARIA' :
+					$id_nivel = 4;
+					break;
+				case 'SECUNDARIA' :
+					$id_nivel = 5;
+					break;
+				case 'MEDIA SUPERIOR' :
+					$id_nivel = 6;
+					break;
+				case 'SUPERIOR' :
+					$id_nivel = 7;
+					break;
+				case 'FORMACION PARA EL TRABAJO' :
+					$id_nivel = 8;
+					break;
+				case 'OTRO NIVEL EDUCATIVO' :
+					$id_nivel = 9;
+					break;
+				case 'NO APLICA' :
+					$id_nivel = 10;
+					break;
+			}
 
 		if ( isset( $_POST['id_subprioridad'] ) ) {
 			$datos = $this->Rutamejora_model->getIndicadorEspecial($id_prioridad, $id_nivel, $id_subprioridad);
@@ -1759,9 +1788,40 @@ public function edit_accion_super(){
 			$titulo = $this->input->post('txttp');
 
 			$id_nivel = $this->cct[0]['nivel'];
-			if ($id_nivel == 'PRIMARIA') {
-				$id_nivel = 4;
+
+			switch ($id_nivel) {
+				case 'ESPECIAL':
+					$id_nivel = 1;
+					break;
+				case 'INICIAL':
+					$id_nivel = 2;
+					break;
+				case 'PREESCOLAR' :
+					$id_nivel = 3;
+					break;
+				case 'PRIMARIA' :
+					$id_nivel = 4;
+					break;
+				case 'SECUNDARIA' :
+					$id_nivel = 5;
+					break;
+				case 'MEDIA SUPERIOR' :
+					$id_nivel = 6;
+					break;
+				case 'SUPERIOR' :
+					$id_nivel = 7;
+					break;
+				case 'FORMACION PARA EL TRABAJO' :
+					$id_nivel = 8;
+					break;
+				case 'OTRO NIVEL EDUCATIVO' :
+					$id_nivel = 9;
+					break;
+				case 'NO APLICA' :
+					$id_nivel = 10;
+					break;
 			}
+			
 			// echo "<pre>";
 			// print_r($_POST);
 			// die();
