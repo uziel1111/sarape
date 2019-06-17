@@ -244,7 +244,7 @@ $('#writeText').click(function(){
 			'error'
 		);
 	} else {
-			let contenido = $('#slt_verbo option:selected').text() + ' ' + $('#slt_indicador option:selected').text() + ' en un'  + meta + ' ' + $('#slt_metrica option:selected').text() + ' ' + $('#slt_fecha option:selected').text() + ' ' + otra_fecha
+			let contenido = $('#slt_verbo option:selected').text() + ' ' + $('#slt_indicador option:selected').text() + ' en un '  + meta + ' ' + $('#slt_metrica option:selected').text() + ' ' + $('#slt_fecha option:selected').text() + ' ' + otra_fecha
 
 			$('#CAPoutput').val(contenido);
 	}
