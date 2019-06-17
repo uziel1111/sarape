@@ -651,7 +651,7 @@ function  get_datos_edith_tp($id_tprioritario){
 
     function getObjetivos($id_cct, $id_tprioritario, $idprioridad){
       $str_query = "SELECT * FROM rm_tema_prioritarioxcct tprio
-                    INNER JOIN rm_objetivo obj ON obj.id_tprioritario = tprio.id_tprioritario
+                    LEFT JOIN rm_objetivo obj ON obj.id_tprioritario = tprio.id_tprioritario
                     WHERE tprio.id_cct = {$id_cct} AND tprio.id_tprioritario = {$id_tprioritario} AND tprio.id_prioridad = {$idprioridad} ORDER BY obj.fecha_creacion DESC";
       // echo "<pre>";print_r($str_query);die();
       return $this->db->query($str_query)->result_array();
@@ -680,8 +680,7 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     function edith_tp($id_tprioritario){
-    $str_query = "
-        SELECT obj.id_tprioritario, tprioritario.id_prioridad, tprioritario.id_subprioridad,  tprioritario.otro_problematica,
+    $str_query = "SELECT obj.id_tprioritario, tprioritario.id_prioridad, tprioritario.id_subprioridad,  tprioritario.otro_problematica,
         tprioritario.otro_evidencia, tprioritario.path_evidencia,
         tprioritario.obs_supervisor, tprioritario.obs_direc, obj.id_objetivo, obj.objetivo
         FROM rm_tema_prioritarioxcct tprioritario
@@ -764,15 +763,15 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     function getPrioridades($id_cct){
-        $str_query = "SELECT tp.id_tprioritario, o.id_objetivo, a.id_accion, tp.orden, p.prioridad, p.id_prioridad,
-                      COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones
-                      FROM rm_tema_prioritarioxcct tp
-                      INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
-                      LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
-                      LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
-                      WHERE tp.id_cct = {$id_cct}
-                      GROUP BY tp.id_tprioritario
-                      ORDER by tp.orden";
+            $str_query = "SELECT tp.id_tprioritario, o.id_objetivo, a.id_accion, tp.orden, p.prioridad, p.id_prioridad,
+                          COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones
+                          FROM rm_tema_prioritarioxcct tp
+                          INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
+                          LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
+                          LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
+                          WHERE tp.id_cct = {$id_cct}
+                          GROUP BY tp.id_tprioritario
+                          ORDER by tp.orden";
       // echo "<pre>";print_r($str_query);die();
       return $this->db->query($str_query)->result_array();
     }
@@ -785,11 +784,7 @@ function  get_datos_edith_tp($id_tprioritario){
                           'id_subprioridad'=> 1,
                        ),
 
-                  array(  'id_cct' => $id_cct,
-                          'id_prioridad'=> 1,
-                          'id_subprioridad'=> 2,
-                       ),
-
+                 
                   array(  'id_cct' => $id_cct,
                           'id_prioridad'=> 2,
                           'id_subprioridad'=> '',
@@ -810,7 +805,7 @@ function  get_datos_edith_tp($id_tprioritario){
                           'id_subprioridad'=> '',
                   ),
               );
-      // echo "<pre>";print_r($data);die();
+      
       $this->db->insert_batch('rm_tema_prioritarioxcct',$data);
 
     }

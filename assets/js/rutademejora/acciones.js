@@ -414,7 +414,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
                     // }else{
                     //   swal(
                     //     '¡Error!',
-                    //     "Introudzca indicador de medición",
+                    //     "Introduzca indicador de medición",
                     //     'danger'
                     //   );
                     // }
@@ -424,7 +424,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
             }else{
               swal(
               '¡Error!',
-              "Introudzca fecha de termino",
+              "Introduzca fecha de termino",
               'danger'
             );
               return false;
@@ -432,7 +432,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
           }else{
             swal(
               '¡Error!',
-              "Introudzca fecha de inicio",
+              "Introduzca fecha de inicio",
               'danger'
             );
             return false;
@@ -464,7 +464,7 @@ Rm_acciones_tp.prototype.limpia_camposform = function(){
   }else{
     swal(
           '¡Error!',
-          "Introudzca actividad ",
+          "Introduzca actividad ",
           'danger'
         );
       return false;

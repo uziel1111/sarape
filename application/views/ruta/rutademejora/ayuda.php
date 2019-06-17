@@ -19,7 +19,7 @@
 		<br>
 		<a style="padding-left: 7em; cursor: hand; cursor: pointer; " id="img_mision">Ir a misión</a>
 		<a style="padding-left: 7em; cursor: hand; cursor: pointer;" id="img_objetivo">Ir a objetivos</a>
-		<a style="padding-left: 7em; cursor: hand; cursor: pointer;" id="img_actividad">Ir a activades</a>
+		<a style="padding-left: 7em; cursor: hand; cursor: pointer;" id="img_actividad">Ir a actividades</a>
 		<a style="padding-left: 7em; cursor: hand; cursor: pointer;" id="img_avances">Ir a avances</a></p>
 	</div>
 </div>

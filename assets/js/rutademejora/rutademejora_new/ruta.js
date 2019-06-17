@@ -60,7 +60,7 @@ $("#img_mision").click(function(e){
 	.always(function() {
     swal.close();
   });
-})
+});
 
 //Prioridad (incompleto)
 $("#btn_prioridad").click(function(e){
@@ -143,8 +143,8 @@ $("#btn_actividades").click(function(e){
 ///
 Prioridad.prototype.getObjetivos = function(){
 	// var idtemaprioritario = obj.id_tprioritario ;
-	console.log(obj.id_tprioritario);
 	if(obj.id_tpriotario != 0){
+	console.log(obj.id_tprioritario);
 		$.ajax({
 			url: base_url+'Rutademejora/getObjetivos',
 			type: 'POST',

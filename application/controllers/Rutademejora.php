@@ -320,8 +320,11 @@ class Rutademejora extends CI_Controller {
 				// $rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
 				$temas_prioritarios = $this->Rutamejora_model->getPrioridades($id_cct); //Verificamos si esa cct ya tiene temas prioritarios
 				$tam = count($temas_prioritarios);
+					//echo"<pre>";print_r($tam);  die();
 
-				if (isset($temas_prioritarios)) {
+				
+				if (count($temas_prioritarios)>0) {
+					//echo "if"; die();
 					$tabla = "<div class='table-responsive' >
 					           <table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
 					            <thead>
@@ -336,14 +339,16 @@ class Rutademejora extends CI_Controller {
                       </thead>
                       <tbody id='id_tbody_demo'>";
 												foreach ($temas_prioritarios as $tp) {
+													//echo "<pre>"; print_r($temas_prioritarios); die();
 													$tabla .= "<tr>
 															<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
 															<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
-															<td id='orden' style='vertical-align:middle;'><center>{$tp['orden']}</center></td>
+															<td id='orden' style='vertical-align:middle;'><center>{$tp['id_prioridad']}</center></td>
 															<td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}</td>
 															<td id='num_objetivos' style='vertical-align:middle;'><center>{$tp['num_objetivos']}</center></td>
 															<td id='num_acciones' style='vertical-align:middle;'><center>{$tp['num_acciones']}</center></td>
-								            </tr>";
+								            					</tr>";
+												
 												}
 
 												$tabla .= "</tbody>
@@ -351,7 +356,7 @@ class Rutademejora extends CI_Controller {
 								                  </div>  ";
 
 				} else {
-
+						//echo "else";  die();
 					$new_tprioritarios = $this->Rutamejora_model->insertaTprioritarios($id_cct);
 					$temas_prioritarios = $this->Rutamejora_model->getPrioridades($id_cct);
 
@@ -1261,7 +1266,7 @@ public function edit_accion_super(){
 		$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
 		$data['mision'] = $mision;
 		$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
-		// echo "<pre>";print_r($this->cct[0]['nivel']);die();
+		 //echo "<pre>";print_r($result_prioridades);die();
 			if(count($result_prioridades)==0){
 			$data['arr_prioridades'] = array(	'-1' => 'Error recuperando los prioridades' );
 			}else{
@@ -1478,6 +1483,7 @@ public function edit_accion_super(){
 		//echo "<pre>";print_r($datos);die();
 		$idobjetivo = 0;
 		if(count($datos) == 0){
+			//echo 'if'; die();
 				$tabla = "<table id='metas_objetivos' class='table table-condensed table-hover table-light table-bordered'>
 			<thead>
 				<tr class='info'>
@@ -1503,6 +1509,7 @@ public function edit_accion_super(){
 
 			$tabla .= "</tbody></table>";
 		}else{
+
 				$tabla = "<table id='id_tabla_objetivos' class='table table-condensed table-hover table-light table-bordered'>
 			<thead>
 				<tr class='info'>
@@ -1744,9 +1751,9 @@ public function edit_accion_super(){
 	//Edicion/incerción de datos
 	public function get_datos_edith_tp(){
 		if(Utilerias::haySesionAbiertacct($this)){
-			// echo "<pre>";
-			// print_r($_POST);
-			// die();
+			//echo "<pre>";
+			//print_r($_POST);
+			//die();
 			$this->cct = Utilerias::get_cct_sesion($this);
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$titulo = $this->input->post('txttp');

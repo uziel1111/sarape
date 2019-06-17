@@ -11,6 +11,7 @@ class Prioridad_model extends CI_Model
     }// get_prioridades()
 
     function get_prioridadesxnivel($idnivel){
+      
       if ($idnivel == 'INICIAL') {
         $str_query = "SELECT id_prioridad, prioridad FROM rm_c_prioridad where id_prioridad>4";
       }
