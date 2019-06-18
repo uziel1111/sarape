@@ -254,7 +254,7 @@ $('#writeText').click(function(){
 //Grabar prioridad
 $('#grabar_prioridad').click(function(){
 
-	$.ajax({
+	/*$.ajax({
 		url: base_url+'Rutademejora/grabarTema',
 		type: 'POST',
 		dataType: 'JSON',
@@ -267,39 +267,41 @@ $('#grabar_prioridad').click(function(){
 	        Notification.loading("");
    	},
 		success: function(data){
-			setTimeout(function () {
+			setTimeout(function () {*/
 				swal(
 						'¡Correcto!',
 						"El tema prioritario se insertó correctamente",
 						'success'
 					);
-			}, 1000);
+			//}, 1000);
 			// obj_prioridad.getObjetivos();
-		}
+			//console.log('grabar prioridad ' + obj.id_tprioritario);
+	/*	}
 	})
 	.done(function(result) {
 
-		$('#id_tema_prioritario').val(obj.id_tprioritario)
-		obj.get_view();
+		//$('#id_tema_prioritario').val(obj.id_tprioritario);
+		//obj.get_view();
 	})
 	.fail(function(e) {
 		console.error("Error in grabarTema()");
 	})
 	.always(function() {
     swal.close();
-	});
+	});*/
 })
 //Grabar prioridad
 
+
 //Grabar objetivo
 $('#grabar_objetivo').click(function(){
-
-	let idtemap = $('#id_tema_prioritario').val()
-	let flag = $('#update_flag').val()
-	let contenido = $('#CAPoutput').val()
-	// console.log(obj.id_tprioritario,);
-	// console.log(obj.id_prioridad,);
-	// console.log(obj.id_subprioridad);
+	let idtemap = $('#id_tema_prioritario').val();
+console.log('grabar_objetivo ' + idtemap);
+	let flag = $('#update_flag').val();
+	let contenido = $('#CAPoutput').val();
+	console.log(idtemap,);
+	console.log(obj.id_prioridad,);
+	console.log(obj.id_subprioridad);
 
 	if (contenido == '') {
 		swal(
@@ -448,7 +450,7 @@ function btnEditar(){
 }
 
 function btnEliminar(){
-	if (obj.id_objetivo === undefined) {
+	if (obj.id_objetivo == undefined) {
 		swal(
       '¡Error!',
       "Selecciona un objetivo para eliminar ",
@@ -503,8 +505,10 @@ function btnEliminar(){
 }
 
 Prioridad.prototype.getObjetivos = function(){
-	// var idtemaprioritario = obj.id_tprioritario ;
-
+	var idtemaprioritario = obj.id_tprioritario ;
+	let idtemap = $('#id_tema_prioritario').val();
+console.log( idtemap);	
+console.log( idtemaprioritario);	
 	if(obj.id_tprioritario != 0){
 		$.ajax({
 			url: base_url+'Rutademejora/getObjetivos',
