@@ -635,7 +635,6 @@ Rm_acciones_tp.prototype.get_view = function(){
     },
     error: function(error){console.log("Falló:: "+JSON.stringify(error)); }
   });
-  //obj.id_tprioritario = undefined
+  obj.id_tprioritario = undefined
 }
 
-$(.)
