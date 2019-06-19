@@ -1719,10 +1719,12 @@ public function edit_accion_super(){
 
 		$datos = $this->Rutamejora_model->getMetricas($id_indicador);
 		$option = "<option value='0'>SELECCIONE</option>";
-		foreach ($datos as $dato) {
+		// foreach ($datos as $dato) {
 			// $option .="<option value='{$dato['id_indicador']}'>{$dato['formula']}</option>";
-			$option .="<option value=''>{$dato['formula']}</option>";
-		}
+			// $option .="<option value=''>{$dato['formula']}</option>";
+			 $option .="<option value=''>% Porcentaje</option>";
+			 $option .="<option value=''># Cantidad</option>";
+		// }
 
 		$response = array('stroption' => $option);
 
