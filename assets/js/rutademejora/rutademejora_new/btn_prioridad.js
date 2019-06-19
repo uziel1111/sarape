@@ -103,29 +103,52 @@ $('#delete_file').click(function(){
 
 })
 
-function publicar(id, estado) {
-	// $('#publicar_'+id).click(function() {
+function publicar(id) {
+	
+	estado = $('#aPublicar_'+id).data('estado');
 		
 		if (estado == 0) {	
-			$('#publicar_'+id).removeClass('fa-user-secret');
-			$('#publicar_'+id).addClass('fa-globe-americas');
+			
 			estado_publicacion = 1;
-			estado = 1;
+			
 		}else{
-			$('#publicar_'+id).removeClass('fa-globe-americas');
-			$('#publicar_'+id).addClass('fa-user-secret');
+			
 			estado_publicacion = 0;
-			estado = 0;
+			
 		}
 		$.ajax({
 			url:base_url+'Rutademejora/publicar',
 			type: 'POST',
 			data: {estado_publicacion:estado_publicacion, id_publicacion:id},
-			success: function(data){
-				//publicar(id,estado);
-			}
-		});
-	// });
+			beforeSend: function(xhr) {
+        Notification.loading("");
+    	},})
+		.done(function(data){
+			console.log(data.estado);
+						if (data.estado == 1) {	
+			$('#aPublicar_'+id).data('estado', 0);
+			$('#publicar_'+id).removeClass('fa-user-secret');
+			$('#publicar_'+id).addClass('fa-globe-americas');
+			
+			
+		}else{
+			$('#aPublicar_'+id).data('estado', 1)
+			$('#publicar_'+id).removeClass('fa-globe-americas');
+			$('#publicar_'+id).addClass('fa-user-secret');
+			
+			
+		}
+				
+		
+		})
+	.fail(function(e) {
+		console.error("Error in publicar()");
+	})
+	.always(function() {
+    swal.close();
+	});
+		
+	
 }
 
 function Prioridad(){

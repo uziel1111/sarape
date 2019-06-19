@@ -143,13 +143,42 @@ function Tabla(){
   })
 
     $('#img_avances').click(function() {
-      $('#nav-avances').addClass('active');
-      $('#nav-avances').addClass('show');
-      $('#nav-ayuda').removeClass('active');
-      $('#nav-ayuda').removeClass('show'); 
-      $('#nav-ruta').removeClass('active');
-      $('#nav-ruta').removeClass('show'); 
-      $('#nav-ayuda').attr('aria-selected',false); 
-      $('#nav-avances').attr('aria-selected',true); 
+               $("#nav-avances").empty();
+              
+              $.ajax({
+              url: base_url+'Rutademejora/get_avance',
+              type: 'POST',
+              dataType: 'JSON',
+              data: {'x':'x'},
+              beforeSend: function(xhr) {
+                    Notification.loading("");
+                },
+            })
+            .done(function(result) {
+              swal.close();
+              $("#nav-avances").html(result.srt_html);
+               $('#nav-avances-tab').addClass('active');
+              $('#nav-avances-tab').addClass('show');
+              $('#nav-ayuda-tab').removeClass('active');
+              $('#nav-ayuda-tab').removeClass('show'); 
+              $('#nav-ruta-tab').removeClass('active');
+              $('#nav-ruta-tab').removeClass('show'); 
+              $('#nav-avances').addClass('active');
+              $('#nav-avances').addClass('show');
+              $('#nav-ayuda').removeClass('active');
+              $('#nav-ayuda').removeClass('show'); 
+              $('#nav-ruta').removeClass('active');
+              $('#nav-ruta').removeClass('show'); 
+              $('#nav-ayuda-tab').attr('aria-selected',false); 
+              $('#nav-avances-tab').attr('aria-selected',true); 
 
+
+            })
+            .fail(function(e) {
+              console.error("Error in get avance()"); console.table(e);
+            })
+            .always(function() {
+                  // swal.close();
+            })              
+            
   })

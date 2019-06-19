@@ -44,6 +44,7 @@ $("#slc_apoyoreq").change(function(){
 
 
             $("#nav-avances-tab").click(function(){
+              console.log('click click');
                $("#nav-avances").empty();
               
               $.ajax({

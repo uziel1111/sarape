@@ -343,7 +343,7 @@ class Rutademejora extends CI_Controller {
 													$tabla .= "<tr>
 															<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
 															<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
-															<td id='orden' style='vertical-align:middle;'><center>{$tp['id_prioridad']}</center></td>
+															<td id='orden' style='vertical-align:middle;'><center>{$tp['orden']}</center></td>
 															<td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}</td>
 															<td id='num_objetivos' style='vertical-align:middle;'><center>{$tp['num_objetivos']}</center></td>
 															<td id='num_acciones' style='vertical-align:middle;'><center>{$tp['num_acciones']}</center></td>
@@ -1548,7 +1548,8 @@ public function edit_accion_super(){
 					<td id='id_objetivo' hidden><center>{$dato['id_objetivo']}</center></td>
 					<td id='id_tprioritario' hidden><center>{$dato['id_tprioritario']}</center></td>
 					<td id='num_rutamtema' data='1' class='text-center'>{$orden}
-					<a onclick='publicar({$dato['id_objetivo']}, {$dato['estado_publicacion']})'><i id='publicar_{$dato['id_objetivo']}'";
+					
+					<a onclick='publicar({$dato['id_objetivo']})' data-estado='{$dato['estado_publicacion']}' id='aPublicar_{$dato['id_objetivo']}'><i id='publicar_{$dato['id_objetivo']}'";
 					 if ($dato['estado_publicacion'] == 0) {
 					 	// echo "<pre>";print_r($dato);die();
 						$tabla.="class='fas fa-user-secret'></i></a>";
@@ -2071,7 +2072,11 @@ public function edit_accion_super(){
 		$id= $this->input->post('id_publicacion');
 		$data = array('estado_publicacion' => $estado_publicacion, 'id' => $id );
 		$publicar = $this->Rutamejora_model->publicar_objetivo($data);
+		
+		$response = array('id' => $id, 'estado' => $estado_publicacion);
+		//echo "<pre>"; print_r($publicar); die();
 
-		return $id;
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
 	}
 }// Rutamedejora

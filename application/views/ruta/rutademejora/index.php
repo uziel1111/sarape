@@ -304,7 +304,7 @@ span{
 								<div class="row mt-15">
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Fecha de inicio</label>
-										<input id="datepicker1" disabled />
+										<input id="datepicker1" disabled data-date-format="dd/mm/yyyy"/>
 										<script>
 										$('#datepicker1').datepicker({
 											uiLibrary: 'bootstrap4'
@@ -314,7 +314,7 @@ span{
 
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Fecha de término</label>
-										<input id="datepicker2" disabled/>
+										<input id="datepicker2" data-date-format="dd/mm/yyyy" disabled/>
 										<script>
 										$('#datepicker2').datepicker({
 											uiLibrary: 'bootstrap4'
