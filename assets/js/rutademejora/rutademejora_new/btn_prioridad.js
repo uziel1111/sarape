@@ -126,13 +126,13 @@ function publicar(id) {
 		.done(function(data){
 			console.log(data.estado);
 						if (data.estado == 1) {	
-			$('#aPublicar_'+id).data('estado', 0);
+			$('#aPublicar_'+id).data('estado', 1);
 			$('#publicar_'+id).removeClass('fa-user-secret');
 			$('#publicar_'+id).addClass('fa-globe-americas');
 			
 			
 		}else{
-			$('#aPublicar_'+id).data('estado', 1)
+			$('#aPublicar_'+id).data('estado', 0)
 			$('#publicar_'+id).removeClass('fa-globe-americas');
 			$('#publicar_'+id).addClass('fa-user-secret');
 			
