@@ -92,7 +92,8 @@ class Estadistica extends CI_Controller {
 			}
 
 			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
-			$arr_ciclo['2'] = '2017-2018';
+			//$arr_ciclo['2'] = '2017-2018';
+			$arr_ciclo['2'] = '2018-2019';
 
 			// if(count($result_ciclo)==0){
 			// 	$data['arr_ciclo'] = array(	'0' => 'Error recuperando los sostenimientos' );
@@ -393,7 +394,8 @@ class Estadistica extends CI_Controller {
 			}
 
 			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
-			$arr_ciclo['2'] = '2017-2018';
+			//$arr_ciclo['2'] = '2017-2018';
+			$arr_ciclo['2'] = '2018-2019';
 
 			$result_nzonae = $this->Supervision_model->allzonas();
 			if(count($result_nzonae)==0){
@@ -1261,7 +1263,8 @@ class Estadistica extends CI_Controller {
 				}
 
 				$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
-				$arr_ciclo['2'] = '2017-2018';
+				//$arr_ciclo['2'] = '2017-2018';
+				$arr_ciclo['2'] = '2018-2019';
 
 				$result_nzonae = $this->Supervision_model->allzonas();
 				if(count($result_nzonae)==0){

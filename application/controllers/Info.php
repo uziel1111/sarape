@@ -29,16 +29,19 @@ class Info extends CI_Controller {
 			$planea16_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2016');
 			$planea17_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2017');
 			$planea18_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2018');
+			$planea18_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2019');
 
 			$planea15_estado = $this->Planeaxestado_model->get_planea_xest($escuela[0]['nivel'],'2015');
 			$planea16_estado = $this->Planeaxestado_model->get_planea_xest($escuela[0]['nivel'],'2016');
 			$planea17_estado = $this->Planeaxestado_model->get_planea_xest($escuela[0]['nivel'],'2017');
 			$planea18_estado = $this->Planeaxestado_model->get_planea_xest($escuela[0]['nivel'],'2018');
+			$planea18_estado = $this->Planeaxestado_model->get_planea_xest($escuela[0]['nivel'],'2019');
 
 			$planea15_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'14_15');
 			$planea16_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'15_16');
 			$planea17_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'16_17');
 			$planea18_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'17_18');
+			$planea18_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'18_19');
 
 			$contenidos = $this->Recursos_model->get_tipo_contenidos();
 			$arr_contenidos = array();

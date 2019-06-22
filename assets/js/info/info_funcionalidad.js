@@ -179,10 +179,12 @@ Info_esc.prototype.get_indica_asist =function(){
 				      .done(function( data ) {
 							let nivel = data.nivel;
               if (nivel=='4') {
-                $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2015-2016");
+                //$("#lb_ind_asisten").text("Ciclo escolar: FIN- 2015-2016");
+                $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2017-2019");
               }
               else if (nivel=='5' || nivel=='6') {
-                $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2016-2017");
+                //$("#lb_ind_asisten").text("Ciclo escolar: FIN- 2016-2017");
+                $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2017-2019");
               }
 							if (data.indica_asisten.length>0) {
 						    var a_cob =  (data.indica_asisten[0]['cobertura']);//5;

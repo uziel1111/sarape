@@ -717,7 +717,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     $this->db->from('estadistica_e_indicadores_xcct');
     $this->db->where('id_cct', $id_cct);
     $this->db->where('id_corte', 2);
-    $this->db->where('id_ciclo', 2);
+    $this->db->where('id_ciclo', 4);
     // $this->db->get();
     // $str = $this->db->last_query();
     // echo $str; die();
@@ -730,7 +730,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     $this->db->from('estadistica_e_indicadores_xcct');
     $this->db->where('id_cct', $id_cct);
     $this->db->where('id_corte', 2);
-    $this->db->where('id_ciclo', 2);
+    $this->db->where('id_ciclo', 4);
     // $this->db->get();
     // $str = $this->db->last_query();
     // echo $str; die();
@@ -742,7 +742,7 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     $this->db->from('estadistica_e_indicadores_xcct');
     $this->db->where('id_cct', $id_cct);
     $this->db->where('id_corte', 2);
-    $this->db->where('id_ciclo', 2);
+    $this->db->where('id_ciclo', 4);
     // $this->db->get();
     // $str = $this->db->last_query();
     // echo $str; die();

@@ -367,7 +367,7 @@ function Graficasm(){
                   height: ($(document).width()/10)*12
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2018</b>'
               },
               subtitle: {
                   text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_lyc[0]['alumnos_evaluados']+'</b>'
@@ -521,7 +521,7 @@ function Graficasm(){
                   // width: 1000
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2018</b>'
               },
               subtitle: {
                   text:  '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_mate[0]['alumnos_evaluados']+'</b>'
@@ -763,7 +763,7 @@ function Graficasm(){
                   height: ($(document).width()/10)*12
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2018</b>'
               },
               subtitle: {
                   text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_lyc[0]['alumnos_evaluados']+'</b>'
@@ -911,7 +911,7 @@ function Graficasm(){
                   // width: 1000
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2018</b>'
               },
               subtitle: {
                   text:  '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_mate[0]['alumnos_evaluados']+'</b>'

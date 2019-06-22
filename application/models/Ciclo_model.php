@@ -16,7 +16,7 @@ class Ciclo_model extends CI_Model
       $this->db->select('id_ciclo, ciclo');
       $this->db->from('ciclo');
       $this->db->order_by("id_ciclo", "desc");
-      $this->db->where('id_ciclo', 2);
+      $this->db->where('id_ciclo', 4);
             return  $this->db->get()->result_array();
     }// all()
 
@@ -71,7 +71,7 @@ class Ciclo_model extends CI_Model
       if($id_zona>0){
         $this->db->where('es.id_supervision', $id_zona);
       }
-      $this->db->where('ci.id_ciclo', 2);
+      $this->db->where('ci.id_ciclo', 4);
       $this->db->group_by(" ci.id_ciclo");
 
       // $this->db->get();

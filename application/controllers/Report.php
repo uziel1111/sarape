@@ -434,7 +434,7 @@ class Report extends CI_Controller {
 				}
 				$aux++;
 
-				$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, 'Rezago educativo');
+		/*		$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, 'Rezago educativo');
 				$obj_excel->getActiveSheet()->mergeCells('A'.$aux.':G'.$aux);
 				$obj_excel->getActiveSheet()->getStyle('A'.$aux.':G'.$aux)->applyFromArray($this->style_titulo);
 				$aux++;
@@ -497,7 +497,7 @@ class Report extends CI_Controller {
 					$obj_excel->getActiveSheet()->getStyle('A'.$temp.':G'.$aux)->applyFromArray($this->style_contenido);
 					$aux++;
 				}
-				$aux++;
+				$aux++; */
 				$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, 'Analfabetismo');
 				$obj_excel->getActiveSheet()->mergeCells('A'.$aux.':D'.$aux);
 				$obj_excel->getActiveSheet()->getStyle('A'.$aux.':D'.$aux)->applyFromArray($this->style_titulo);
