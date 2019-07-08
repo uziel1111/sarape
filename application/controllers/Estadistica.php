@@ -434,6 +434,8 @@ class Estadistica extends CI_Controller {
 		}//xest_muni_x
 
 		function tabla_alumnos($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
+			$id_ciclo = 4;
+			// echo "<pre>"; print_r($id_municipio . '-' . $id_ciclo); die();
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xmunciclo($id_municipio, $id_ciclo);
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
           	<thead class="bg-info">
