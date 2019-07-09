@@ -304,8 +304,6 @@ class Estadistica extends CI_Controller {
 			$id_sostenimiento = $this->input->post('slc_xest_muni_sostenimiento');
 			$id_modalidad = $this->input->post('slc_xest_muni_modalidad');
 			$id_ciclo = $this->input->post('slc_xest_muni_cicloe');
-			$id_ciclo = 4;
-			// echo "<pre>";print_r($id_ciclo);die();
 			$data["tipo_busqueda"] = "municipal";
 			$data["id_municipio"] = $id_municipio;
 			$data["id_nivel"] = $id_nivel;
@@ -436,6 +434,7 @@ class Estadistica extends CI_Controller {
 		}//xest_muni_x
 
 		function tabla_alumnos($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
+			$id_ciclo = 4;
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xmunciclo($id_municipio, $id_ciclo);
 			// echo "<pre>"; print_r($result_alumnos); die();
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
@@ -522,8 +521,8 @@ class Estadistica extends CI_Controller {
 
 
 		function tabla_alumnos_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z){
+			echo "<pre>";print_r($id_ciclo_z);die();
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xzona($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
-			// echo "<pre>";print_r($result_alumnos);die();
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
           	<thead class="bg-info">
           		<tr>
@@ -1173,7 +1172,7 @@ class Estadistica extends CI_Controller {
 			$id_sostenimiento_z = $this->input->post('slc_xest_sostenimiento_zona');
 			$id_zona_z = $this->input->post('slc_xest_zona');
 			$id_ciclo_z = $this->input->post('slc_xest_cicloe_zona');
-			// echo "<pre>";print_r($id_ciclo_z);die();
+			// echo "<pre>";print_r($_POST);die();
 			if ($id_nivel_z=='0' || $id_sostenimiento_z=='0' || $id_zona_z=='0') {
 				$this->estad_indi_generales("zona");
 
