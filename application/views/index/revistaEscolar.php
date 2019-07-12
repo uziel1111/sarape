@@ -13,6 +13,24 @@
           <div class="row">
             <div class="col-sm-3">
               <!-- onclick="Index.getinformese(6)" -->
+              <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_julio_2019"  target="_blank" title="Edición #11 julio">
+                <img src="https://image.isu.pub/190710205914-3e31dd795f81da2da7fc6b14a6d76f01/jpg/page_1_thumb_large.jpg" class="img-fluid" alt="Responsive image">
+              </a>
+            </div>
+            <div class="col-sm-3">
+              <!-- onclick="Index.getinformese(6)" -->
+              <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_junio_2019"  target="_blank" title="Edición #10 junio">
+                <img src="https://image.isu.pub/190612211632-3075950a75fae0850cbc92d6cfcb8cdb/jpg/page_1_thumb_large.jpg" class="img-fluid" alt="Responsive image">
+              </a>
+            </div>
+            <div class="col-sm-3">
+              <!-- onclick="Index.getinformese(6)" -->
+              <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_mayo_2019"  target="_blank" title="Edición #9 mayo">
+                <img src="https://image.isu.pub/190530175237-8f034b1c570052be59e6287d5916fe13/jpg/page_1_thumb_large.jpg" class="img-fluid" alt="Responsive image">
+              </a>
+            </div>
+            <div class="col-sm-3">
+              <!-- onclick="Index.getinformese(6)" -->
               <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_abril_2019"  target="_blank" title="Edición #8 abril">
                 <img src="https://www.seducoahuila.gob.mx/images/revse221x287.jpg?crc=245631602" class="img-fluid" alt="Responsive image">
               </a>
