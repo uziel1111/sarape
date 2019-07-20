@@ -220,6 +220,7 @@ $('#slc_xest_sostenimiento_zona').css( 'cursor', 'no-drop' );
 $('#slc_xest_zona').css( 'cursor', 'no-drop' );
 
 $("#btn_buscar_mun_est").click(function(){
+    
 });
 
 $("#xest_muni-tab").click(function(){

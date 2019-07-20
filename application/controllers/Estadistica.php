@@ -93,7 +93,8 @@ class Estadistica extends CI_Controller {
 
 			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
 			//$arr_ciclo['2'] = '2017-2018';
-			$arr_ciclo['2'] = '2018-2019';
+			// $arr_ciclo['2'] = '2018-2019';
+			$arr_ciclo['2'] = array('2017-2018' => '2017-2018', '2018-2019' => '2018-2019');
 
 			// if(count($result_ciclo)==0){
 			// 	$data['arr_ciclo'] = array(	'0' => 'Error recuperando los sostenimientos' );
@@ -304,7 +305,12 @@ class Estadistica extends CI_Controller {
 			$id_sostenimiento = $this->input->post('slc_xest_muni_sostenimiento');
 			$id_modalidad = $this->input->post('slc_xest_muni_modalidad');
 			$id_ciclo = $this->input->post('slc_xest_muni_cicloe');
-			$id_ciclo = 4;
+			// $id_ciclo = 4;
+			if ($id_ciclo = '2017-2018') {
+				$id_ciclo = 2;
+			} else {
+				$id_ciclo = 4;
+			}
 			// echo "<pre>";print_r($id_ciclo);die();
 			$data["tipo_busqueda"] = "municipal";
 			$data["id_municipio"] = $id_municipio;
@@ -397,7 +403,8 @@ class Estadistica extends CI_Controller {
 
 			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
 			//$arr_ciclo['2'] = '2017-2018';
-			$arr_ciclo['2'] = '2018-2019';
+			//$arr_ciclo['2'] = '2018-2019';
+			$arr_ciclo['2'] = array('2017-2018' => '2017-2018', '2018-2019' => '2018-2019');
 
 			$result_nzonae = $this->Supervision_model->allzonas();
 			if(count($result_nzonae)==0){
@@ -1267,7 +1274,8 @@ class Estadistica extends CI_Controller {
 
 				$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
 				//$arr_ciclo['2'] = '2017-2018';
-				$arr_ciclo['2'] = '2018-2019';
+				//$arr_ciclo['2'] = '2018-2019';
+				$arr_ciclo['2'] = array('2017-2018' => '2017-2018', '2018-2019' => '2018-2019');
 
 				$result_nzonae = $this->Supervision_model->allzonas();
 				if(count($result_nzonae)==0){

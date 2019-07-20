@@ -2,3 +2,4 @@
 /application/config/database.php
 # -- Ignora el conf----
 /application/config/config.php
+application/models/database.php
