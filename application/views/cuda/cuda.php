@@ -58,7 +58,7 @@
 					<img src="<?=base_url('/assets/img/home/box1.jpg')?>" class="card-img-top" alt="...">
 				</div>
 				<div class="card-body">
-					<h5 class="card-title text-danger fz-20"><span class="second-txt">Subsecretaría de Educación Básica</span></h5>
+					<h5 class="card-title text-danger fz-20"><br><span class="second-txt">Subsecretaría de Educación Básica</span></h5>
 					<p class="card-text text-justify"><button type="button" onclick="getDocumentos(1)" class="btn btn-secondary btn-lg btn-block">Consultar</button>
 					</p>
 				</div>
@@ -75,7 +75,7 @@
 			</div>
 			<div class="card card-index shadow mb-4">
 				<div class="inner">
-					<img src="<?=base_url('/assets/img/home/box2.jpg')?>" class="card-img-top" alt="...">
+					<img src="<?=base_url('/assets/img/home/box6.jpg')?>" class="card-img-top" alt="...">
 				</div>
 				<div class="card-body">
 					<h5 class="card-title text-danger fz-20"><span class="second-txt">Subsecretaría de Planeación Educativa</span></h5>

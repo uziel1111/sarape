@@ -29,7 +29,7 @@
 														<tr>
 															<th scope="col">#</th>
 															<th scope="col">Nombre del documento</th>
-															<th scope="col">Área concentradora</th>
+															<th scope="col">Fecha de creación</th>
 															<th scope="col">Ver</th>
 														</tr>
 													</thead>
@@ -40,11 +40,11 @@
 											</div>
 
 										</div>
-										<div class="row">
+										<!-- <div class="row">
 											<div class="col">
 												<a href="#" class="btn btn-success btn-block" role="button" aria-pressed="true">Ver todos</a>
 											</div>
-										</div>
+										</div> -->
 									</div>
 									<div class="tab-pane fade" id="estadisticas<?= $dato['idusuario']?>" role="tabpanel" aria-labelledby="estadisticas-tab"></div>
 									<!-- <div id="contacto"></div> -->

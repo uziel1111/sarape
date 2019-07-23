@@ -98,13 +98,18 @@
 
 
 	function getDocumentos(subsecretaria) {
+
 		$.ajax({
 			url: base_url+'Cuda/getObjetivo',
 			type: 'POST',
 		// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
 		data: {idsubsecretaria: subsecretaria},
+		beforeSend: function(xhr) {
+	        Notification.loading("");
+	    },
 	})
 		.done(function(data) {
+
 			$('#array').html(data.str_view);
 		})
 		.fail(function() {
@@ -112,6 +117,7 @@
 		})
 		.always(function() {
 			console.log("complete");
+			swal.close();	
 		});
 
 	}
@@ -123,6 +129,9 @@
 			type: 'POST',
 		// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
 		data: {idusuario: idusuario},
+		beforeSend: function(xhr) {
+	        Notification.loading("");
+	    },
 	})
 		.done(function(data) {
 			$('#tabla_documentos'+idusuario).html(data.str_view);
@@ -132,6 +141,7 @@
 		})
 		.always(function() {
 			console.log("complete");
+			swal.close();
 		});
 
 	}
@@ -142,6 +152,9 @@
 			type: 'POST',
 		//dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
 		data: {idaplicar: idaplicar},
+		beforeSend: function(xhr) {
+	        Notification.loading("");
+	    },
 	})
 		.done(function(data) {
 			// console.log(data.str_view);
@@ -153,6 +166,7 @@
 		})
 		.always(function() {
 			console.log("complete");
+			swal.close();
 		});
 
 	}
@@ -163,6 +177,9 @@
 			type: 'POST',
 		//dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
 		data: {idaplicar: idaplicar},
+		beforeSend: function(xhr) {
+	        Notification.loading("");
+	    },
 	})
 		.done(function(data) {
 			$('#detallesModal').html(data.str_view);
@@ -184,6 +201,9 @@
 			type: 'POST',
 				// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
 				data: {idusuario: idusuario},
+				beforeSend: function(xhr) {
+	        Notification.loading("");
+	    },
 			})
 		.done(function(data) {
 			$('#contacto'+idusuario).html(data.str_view);
@@ -194,6 +214,7 @@
 		})
 		.always(function() {
 			console.log("complete");
+			swal.close();
 		});
 
 	}
@@ -205,6 +226,9 @@
 			type: 'POST',
 			// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
 			data: {idusuario: idusuario, idsubsecretaria:idsubsecretaria},
+			beforeSend: function(xhr) {
+	        Notification.loading("");
+	    },
 		})
 		.done(function(data) {
 			$('#estadisticas'+idusuario).html(data.str_view);
@@ -215,6 +239,7 @@
 		})
 		.always(function() {
 			console.log("complete");
+			swal.close();
 		});
 		
 	}

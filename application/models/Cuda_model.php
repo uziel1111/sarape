@@ -19,7 +19,7 @@ class Cuda_model extends CI_Model
 
 	public function getObjetivos($idsubsecretria)
 	{
-		$str_query = "SELECT * from usuario where idusuario not in (1,2,3) and idsubsecretaria ={$idsubsecretria} ";
+		$str_query = "SELECT * from usuario where idusuario not in (1,2) and idsubsecretaria ={$idsubsecretria} ";
 
 		return $this->ci_db->query($str_query)->result_array();
 	}
