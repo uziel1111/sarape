@@ -217,4 +217,25 @@
 
 	}
 
+	function estadistica(idusuario, idsubsecretaria) {
+		console.log(idusuario + ', ' + idsubsecretaria);
+		$.ajax({
+			url: base_url+'Cuda/getEstadistica',
+			type: 'POST',
+			// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+			data: {idusuario: idusuario, idsubsecretaria:idsubsecretaria},
+		})
+		.done(function(data) {
+			console.log(data);
+			console.log("success");
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+	}
+
 	

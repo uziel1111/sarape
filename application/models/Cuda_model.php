@@ -48,4 +48,21 @@ class Cuda_model extends CI_Model
 		return $this->ci_db->query($str_query)->result_array();
 	}
 
+	public function getEstadisticaUsuario($idusuario)
+	{
+		$str_query = "SELECT count(a.idaplicar) as encuentasUsuario from aplicar a
+		inner join usuario u on u.idusuario = a.idusuario
+		where u.idusuario = {$idusuario};";
+
+		return $this->ci_db->query($str_query)->result_array();
+	}
+	public function getEstadisticaGeneral($idsubsecretaria)
+	{
+		$str_query = "SELECT count(a.idaplicar) as total from aplicar a
+		inner join usuario u on u.idusuario = a.idusuario
+		where u.idsubsecretaria = {$idsubsecretaria};";
+
+		return $this->ci_db->query($str_query)->result_array();
+	}
+
 }// Cuda_model class

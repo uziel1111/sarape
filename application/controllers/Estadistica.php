@@ -234,7 +234,7 @@ class Estadistica extends CI_Controller {
 					 $arr_cicloe[$row['id_ciclo']] = $row['ciclo'];
 				}
 			}
-			 $arr_cicloe = ['2017-2018', '2018-2019'];
+			 $arr_cicloe = array('2017-2018' => '2018-2019');
 			Utilerias::enviaDataJson(200, $arr_cicloe, $this);
 			exit;
 		}//estad_indi_generales_getciclo()
@@ -307,12 +307,13 @@ class Estadistica extends CI_Controller {
 			$id_modalidad = $this->input->post('slc_xest_muni_modalidad');
 			$id_ciclo = $this->input->post('slc_xest_muni_cicloe');
 			// $id_ciclo = 4;
-			if ($id_ciclo = '2017-2018') {
+			// echo "<pre>";print_r('alex');die();
+			if ($id_ciclo == '2017-2018') {
 				$id_ciclo = 2;
 			} else {
 				$id_ciclo = 4;
 			}
-			echo "<pre>";print_r($id_ciclo.'id');die();
+			// echo "<pre>";print_r($id_ciclo.'id');die();
 			$data["tipo_busqueda"] = "municipal";
 			$data["id_municipio"] = $id_municipio;
 			$data["id_nivel"] = $id_nivel;

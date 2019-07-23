@@ -74,6 +74,21 @@ class Cuda extends CI_Controller
 
 	}
 
+	public function getEstadistica()
+	{
+		$idusuario = $this->input->post('idusuario');
+		$idsubsecretaria = $this->input->post('idsubsecretaria');
+		// print_r($idusuario.' + '.$idsubsecretaria); die();
+		
+		$array_estadistica = $this->Cuda_model->getEstadisticaUsuario($idusuario);
+		$array_estadistica = $this->Cuda_model->getEstadisticaGeneral($idsubsecretaria);
+		$data['array_estadistica'] = $array_estadistica;
+		$str_view = $this->load->view('cuda/estadistica', $data, TRUE);
+		$response = array('str_view' => $str_view);
+		Utilerias::enviaDataJson(200,$response,$this);
+		exit;
+	}
+
 	function index()
 	{	
 		// $this->getObjetivo();
