@@ -55,7 +55,7 @@
 		<div class="card-columns">
 			<div class="card card-index shadow mb-4">
 				<div class="inner">
-					<img src="../assets/img/home/box1.jpg" class="card-img-top" alt="...">
+					<img src="<?=base_url('/assets/img/home/box1.jpg')?>" class="card-img-top" alt="...">
 				</div>
 				<div class="card-body">
 					<h5 class="card-title text-danger fz-20"><span class="second-txt">Subsecretaría de Educación Básica</span></h5>
@@ -65,7 +65,7 @@
 			</div>
 			<div class="card card-index shadow mb-4">
 				<div class="inner">
-					<img src="../assets/img/home/box4.jpg" class="card-img-top" alt="...">
+					<img src="<?=base_url('/assets/img/home/box4.jpg')?>" class="card-img-top" alt="...">
 				</div>
 				<div class="card-body">
 					<h5 class="card-title text-danger fz-20"><span class="second-txt">Subsecretaría de Administración y Recursos Humanos</span></h5>
@@ -75,7 +75,7 @@
 			</div>
 			<div class="card card-index shadow mb-4">
 				<div class="inner">
-					<img src="../assets/img/home/box2.jpg" class="card-img-top" alt="...">
+					<img src="<?=base_url('/assets/img/home/box2.jpg')?>" class="card-img-top" alt="...">
 				</div>
 				<div class="card-body">
 					<h5 class="card-title text-danger fz-20"><span class="second-txt">Subsecretaría de Planeación Educativa</span></h5>

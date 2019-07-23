@@ -117,7 +117,7 @@
 	}
 
 	function getTablas(idusuario) {
-		console.log(idusuario);
+		// console.log(idusuario);
 		$.ajax({
 			url: base_url+'Cuda/getEncuestas',
 			type: 'POST',
@@ -144,7 +144,7 @@
 		data: {idaplicar: idaplicar},
 	})
 		.done(function(data) {
-			console.log(data.str_view);
+			// console.log(data.str_view);
 			$('#documentoModal').html(data.str_view);
 			console.log("success");
 		})
