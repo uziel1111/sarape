@@ -81,8 +81,26 @@ class Cuda extends CI_Controller
 		// print_r($idusuario.' + '.$idsubsecretaria); die();
 		
 		$array_estadistica = $this->Cuda_model->getEstadisticaUsuario($idusuario);
-		$array_estadistica = $this->Cuda_model->getEstadisticaGeneral($idsubsecretaria);
-		$data['array_estadistica'] = $array_estadistica;
+		$array_total = $this->Cuda_model->getEstadisticaGeneral($idsubsecretaria);
+		$array_global =  $this->Cuda_model->getEstadisticaGlobal();
+		foreach ($array_estadistica as $key => $value) {
+			$estadistica = $value['encuestasUsuario'];
+		}
+		foreach ($array_total as $key => $value) {
+			$total = $value['total'];
+		}
+
+		foreach ($array_global as $key => $value) {
+			$global = $value['global'];
+		}
+			$grafica1 = ($total / 100) * $estadistica;
+			$grafica2 = ($global / 100) * $estadistica;
+
+			$data['grafica1'] = $grafica1;
+			$data['grafica2'] = $grafica2;
+			$data['sub'] = $total;
+			$data['universo'] = $global;
+			$data['propio'] = $estadistica;
 		$str_view = $this->load->view('cuda/estadistica', $data, TRUE);
 		$response = array('str_view' => $str_view);
 		Utilerias::enviaDataJson(200,$response,$this);

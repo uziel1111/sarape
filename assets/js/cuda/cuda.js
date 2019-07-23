@@ -1,33 +1,13 @@
-	google.charts.load('current', {'packages':['corechart']});
-	google.charts.setOnLoadCallback(drawChart);
-
-	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-			['Mes', 'Preescolar', 'Primaria', 'Secundaria'],
-			['Marzo',  1000,      	400,      400],
-			['Abril',  1170,      	460,       420],
-			['Mayo',  660,      		 1120,      860],
-			['Junio',  1030,     		 540,      200]
-			]);
-
-		var options = {
-			title: 'Demanda por Nivel',
-			hAxis: {title: 'Mes',  titleTextStyle: {color: '#333'}},
-			vAxis: {minValue: 0}
-		};
-
-		var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-		chart.draw(data, options);
-	}
+	  
 
 	google.charts.load("current", {packages:["corechart"]});
 	google.charts.setOnLoadCallback(drawChart);
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable([
 			['Subsecretaría', 'Simplificación'],
-			['Admin. y R.H.',     11],
-			['E. Básica',      8],
-			['Planeación E.',  5]
+			['Subsecretaría de Educación Básica',     81],
+			['Subsecretaría de Administración y Recursos Humanos',      9],
+			['Subsecretaría de Planeación Educativa',  10]
 			]);
 
 		var options = {
@@ -40,31 +20,32 @@
 	}
 
 
-	if ( aval == "1" ) {
-		hiddenDiv1.style.display = 'block';
-		hiddenDiv2.style.display = 'none';
-		Form.fileURL.focus();
-	} else if ( aval == "2" ) {
-		hiddenDiv1.style.display = 'none';
-		hiddenDiv2.style.display = 'block';
-		Form.fileURL.focus();
-	} else {
-		hiddenDiv1.style.display = 'none';
-		hiddenDiv2.style.display = 'none';
-	}
-
-
-	function shwTxt() {
-		var t1 = document.getElementById( "txt1" );
-		var t2 = document.getElementById( "txt2" );
-		if ( t1.style.display !== "block" ) {
-			t2.style.display = "block";
-			t1.style.display = "none";
-		} else {
-			t1.style.display = "none";
-			t2.style.display = "block";
+		function show( aval ) {
+			if ( aval == "1" ) {
+				hiddenDiv1.style.display = 'block';
+				hiddenDiv2.style.display = 'none';
+				Form.fileURL.focus();
+			} else if ( aval == "2" ) {
+				hiddenDiv1.style.display = 'none';
+				hiddenDiv2.style.display = 'block';
+				Form.fileURL.focus();
+			} else {
+				hiddenDiv1.style.display = 'none';
+				hiddenDiv2.style.display = 'none';
+			}
 		}
-	}
+
+		function shwTxt() {
+			var t1 = document.getElementById( "txt1" );
+			var t2 = document.getElementById( "txt2" );
+			if ( t1.style.display !== "block" ) {
+				t2.style.display = "block";
+				t1.style.display = "none";
+			} else {
+				t1.style.display = "none";
+				t2.style.display = "block";
+			}
+		}
 
 	function chkInput() {
 		var checkBox = document.getElementById( "myCheck" );
@@ -226,7 +207,7 @@
 			data: {idusuario: idusuario, idsubsecretaria:idsubsecretaria},
 		})
 		.done(function(data) {
-			console.log(data);
+			$('#estadisticas'+idusuario).html(data.str_view);
 			console.log("success");
 		})
 		.fail(function() {

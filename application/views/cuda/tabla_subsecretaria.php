@@ -14,7 +14,7 @@
 										<a class="nav-link active" id="encuestas-tab" data-toggle="tab" href="#encuestas<?= $dato['idusuario']?>" role="tab" aria-controls="home" aria-selected="true"><i class="far fa-star text-warning"></i> Documentos</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" id="estadisitcas-tab" data-toggle="tab" onclick="estadistica(<?= $dato['idusuario']?>, <?= $dato['idsubsecretaria']?>)" href="#estadisitcas<?= $dato['idusuario']?>" role="tab" aria-controls="profile" aria-selected="false">Estadística</a>
+										<a class="nav-link" id="estadisitcas-tab" data-toggle="tab" onclick="estadistica(<?= $dato['idusuario']?>, <?= $dato['idsubsecretaria']?>)" href="#estadisticas<?= $dato['idusuario']?>" role="tab" aria-controls="profile" aria-selected="false">Estadística</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" id="contacto-tab" data-toggle="tab" onclick="contacto(<?= $dato['idusuario']?>)" href="#contacto<?= $dato['idusuario']?>" role="tab" aria-controls="contact" aria-selected="false">Contacto</a>
@@ -46,7 +46,7 @@
 											</div>
 										</div>
 									</div>
-									<div id="estadistica"></div>
+									<div class="tab-pane fade" id="estadisticas<?= $dato['idusuario']?>" role="tabpanel" aria-labelledby="estadisticas-tab"></div>
 									<!-- <div id="contacto"></div> -->
 									<div class="tab-pane fade" id="contacto<?= $dato['idusuario']?>" role="tabpanel" aria-labelledby="contacto-tab"></div>
 								</div>

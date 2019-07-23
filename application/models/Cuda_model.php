@@ -19,7 +19,7 @@ class Cuda_model extends CI_Model
 
 	public function getObjetivos($idsubsecretria)
 	{
-		$str_query = "SELECT * from usuario where idusuario not in (1,2) and idsubsecretaria ={$idsubsecretria} ";
+		$str_query = "SELECT * from usuario where idusuario not in (1,2,3) and idsubsecretaria ={$idsubsecretria} ";
 
 		return $this->ci_db->query($str_query)->result_array();
 	}
@@ -50,7 +50,7 @@ class Cuda_model extends CI_Model
 
 	public function getEstadisticaUsuario($idusuario)
 	{
-		$str_query = "SELECT count(a.idaplicar) as encuentasUsuario from aplicar a
+		$str_query = "SELECT count(a.idaplicar) as encuestasUsuario from aplicar a
 		inner join usuario u on u.idusuario = a.idusuario
 		where u.idusuario = {$idusuario};";
 
@@ -61,6 +61,13 @@ class Cuda_model extends CI_Model
 		$str_query = "SELECT count(a.idaplicar) as total from aplicar a
 		inner join usuario u on u.idusuario = a.idusuario
 		where u.idsubsecretaria = {$idsubsecretaria};";
+
+		return $this->ci_db->query($str_query)->result_array();
+	}
+
+	public function getEstadisticaGlobal()
+	{
+		$str_query = "SELECT count(a.idaplicar) as global from aplicar a";
 
 		return $this->ci_db->query($str_query)->result_array();
 	}
