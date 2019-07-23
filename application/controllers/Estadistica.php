@@ -94,7 +94,7 @@ class Estadistica extends CI_Controller {
 			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
 			//$arr_ciclo['2'] = '2017-2018';
 			// $arr_ciclo['2'] = '2018-2019';
-			$arr_ciclo['2'] = array('2017-2018' => '2017-2018', '2018-2019' => '2018-2019');
+			$arr_ciclo = array('2018-2019' => '2018-2019','2017-2018' => '2017-2018');
 
 			// if(count($result_ciclo)==0){
 			// 	$data['arr_ciclo'] = array(	'0' => 'Error recuperando los sostenimientos' );
@@ -234,6 +234,7 @@ class Estadistica extends CI_Controller {
 					 $arr_cicloe[$row['id_ciclo']] = $row['ciclo'];
 				}
 			}
+			 $arr_cicloe = ['2017-2018', '2018-2019'];
 			Utilerias::enviaDataJson(200, $arr_cicloe, $this);
 			exit;
 		}//estad_indi_generales_getciclo()
@@ -311,7 +312,7 @@ class Estadistica extends CI_Controller {
 			} else {
 				$id_ciclo = 4;
 			}
-			// echo "<pre>";print_r($id_ciclo);die();
+			echo "<pre>";print_r($id_ciclo.'id');die();
 			$data["tipo_busqueda"] = "municipal";
 			$data["id_municipio"] = $id_municipio;
 			$data["id_nivel"] = $id_nivel;
@@ -404,7 +405,7 @@ class Estadistica extends CI_Controller {
 			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
 			//$arr_ciclo['2'] = '2017-2018';
 			//$arr_ciclo['2'] = '2018-2019';
-			$arr_ciclo['2'] = array('2017-2018' => '2017-2018', '2018-2019' => '2018-2019');
+			$arr_ciclo = array( '2018-2019' => '2018-2019','2017-2018' => '2017-2018');
 
 			$result_nzonae = $this->Supervision_model->allzonas();
 			if(count($result_nzonae)==0){
@@ -1275,7 +1276,7 @@ class Estadistica extends CI_Controller {
 				$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
 				//$arr_ciclo['2'] = '2017-2018';
 				//$arr_ciclo['2'] = '2018-2019';
-				$arr_ciclo['2'] = array('2017-2018' => '2017-2018', '2018-2019' => '2018-2019');
+				$arr_ciclo = array('2018-2019' => '2018-2019','2017-2018' => '2017-2018');
 
 				$result_nzonae = $this->Supervision_model->allzonas();
 				if(count($result_nzonae)==0){

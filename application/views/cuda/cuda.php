@@ -1,58 +1,4 @@
-<!-- <!DOCTYPE html>
-<html lang="es" class="no-js">
 
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<!-- Mobile Specific Meta -->
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
-	<!-- Favicon-->
-	<!-- <link rel="icon" type="image/png" href="http://coahuila.gob.mx/images/favicon-electoral.png"> -->
-	<!-- Meta Description -->
-	<!-- <meta name="description" content=""> -->
-	<!-- Meta Keyword -->
-	<!-- <meta name="keywords" content=""> -->
-	<!-- meta character set -->
-	<!-- <meta charset="UTF-8"> -->
-	<!-- Site Title -->
-	<!-- <title>Sarape</title> -->
-	<!-- Site Title -->
-	<!-- <link href="http://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet"> -->
-	<!-- <link href="http://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet"> -->
-	<!-- CSS -->
-	<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
-	<!-- <link rel="stylesheet" href="assets/css/linearicons.css"> -->
-
-	<!-- <link rel="stylesheet" href="assets/css/animate.css"> -->
-	<!--<link rel="stylesheet" href="assets/css/bootstrap.css">-->
-	<!-- <link rel="stylesheet" href="assets/css/main.css"> -->
-	<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
-	<!-- <link href="assets/bootstrap-411/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
-	<!-- <link href="assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" media="screen"> -->
-	<!-- <link href="assets/fonts/fontawesome5/css/all.css" rel="stylesheet" media="screen"> -->
-
-	<!-- <link rel="stylesheet" href="assets/css/main.css"> -->
-
-	<!-- CSS -->
-	<!--<script src="assets/jquery-3.3.1.min.js"></script>-->
-
-	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script> -->
-
-	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>-->
-	<!--<script src="assets/bootstrap-411/js/bootstrap.min.js"></script>-->
-	<!-- <script src="assets/sweetalert2/sweetalert2.min.js"></script> -->
-
-	<!-- <script src="assets/js/messages.js"></script> --> -->
-
-	<!-- Datepicker  -->
-	<!-- <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script> -->
-	<!-- <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css"/> -->
-	<!--<link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />-->
-
-	<!-- Multiselect -->
-	<!-- <link rel="stylesheet" href="assets/multiselect/css/bootstrap-select.min.css"> -->
 	<style>
 		.modal {
 			overflow-y: auto;
@@ -65,60 +11,7 @@
 			/* So the width will be 100% + 17px */
 		}
 	</style>
-	<!--	<script type="text/javascript">
-//		$( document ).ready( function () {
-//			$( "#myModal" ).modal( 'show' );
-//		} );
-</script> -->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-	google.charts.load('current', {'packages':['corechart']});
-	google.charts.setOnLoadCallback(drawChart);
 
-	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-			['Mes', 'Preescolar', 'Primaria', 'Secundaria'],
-			['Marzo',  1000,      	400,      400],
-			['Abril',  1170,      	460,       420],
-			['Mayo',  660,      		 1120,      860],
-			['Junio',  1030,     		 540,      200]
-			]);
-
-		var options = {
-			title: 'Demanda por Nivel',
-			hAxis: {title: 'Mes',  titleTextStyle: {color: '#333'}},
-			vAxis: {minValue: 0}
-		};
-
-		var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-		chart.draw(data, options);
-	}
-</script>
-<script type="text/javascript">
-	google.charts.load("current", {packages:["corechart"]});
-	google.charts.setOnLoadCallback(drawChart);
-	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-			['Subsecretaría', 'Simplificación'],
-			['Admin. y R.H.',     11],
-			['E. Básica',      8],
-			['Planeación E.',  5]
-			]);
-
-		var options = {
-			title: 'Simplificación por Subsecretaría',
-			pieHole: 0.4,
-		};
-
-		var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-		chart.draw(data, options);
-	}
-</script>	
-<!-- </head> -->
-
-<!-- <body> -->
-	
-	<!-- End Header Area -->
 	<!-- Start Main Area -->
 	<section class="main-area">
 		<div class="container">
@@ -185,8 +78,10 @@
 				
 				<div class="card-body">
 					<div id="array"></div>
-					
 					<!--Estadisticas items-->
+					<div>
+						
+					</div>
 					<div class="card">
 						<div class="card-header">
 							<h4 class="mb-0 text-success"><span class="second-txt">Estadística</span></h4>
@@ -254,20 +149,5 @@
 			</div>
 
 			<!-- End Main Area -->
-
-
-			<!-- Start Cta Area -->
-			<section class="cta-area">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-8 d-flex no-flex-xs justify-content-center align-items-center">
-							<a href="#" class="smooth"><img height="80px" src="assets/img/fuerte-coahuila.png" alt=""></a>
-						</div>
-					</div>
-				</div>
-			</section>
-
-
-			<!-- Scripts  -->
 
 			<script src="<?=base_url('assets/js/cuda/cuda.js')?>"></script>

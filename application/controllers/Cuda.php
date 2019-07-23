@@ -63,6 +63,17 @@ class Cuda extends CI_Controller
 		exit;
 	}
 
+	public function getContacto(){
+		$idusuario = $this->input->post('idusuario');
+		$array_usuario = $this->Cuda_model->getContacto($idusuario);
+		$data['array_usuario'] = $array_usuario;
+		$str_view = $this->load->view('cuda/contacto', $data, TRUE);
+		$response = array('str_view' => $str_view);
+		Utilerias::enviaDataJson(200,$response, $this);
+		exit;
+
+	}
+
 	function index()
 	{	
 		// $this->getObjetivo();

@@ -45,7 +45,7 @@
   <script src="<?= base_url('assets/js/messages.js') ?>"></script>
   <script src="<?= base_url('assets/js/Utiles.js') ?>"></script>
   <script src="<?= base_url('assets/js/loader.js') ?>"></script>
-
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script src="<?= base_url('assets/js/src_up.js') ?>"></script>
   <script>

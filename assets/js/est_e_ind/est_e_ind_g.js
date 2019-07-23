@@ -89,7 +89,8 @@ $("#slc_xest_muni_sostenimiento").change(function(){
 //       // $("#wait").modal("hide");
 //       $("#slc_xest_muni_cicloe").empty();
 //       $.each(data, function (index, item) {
-//           $("#slc_xest_muni_cicloe").append('<option value="'+index+'">'+item+'</option>');
+//           $("#slc_xest_muni_cicloe").append('<option value="2">2017-2018</option><option value="4">2018-2019</option>');
+//            // $("#slc_xest_muni_cicloe").append('<option value="4">2018-2019</option>');
 //         });
 //       // console.log(data);
 //     },
@@ -97,7 +98,7 @@ $("#slc_xest_muni_sostenimiento").change(function(){
 //       console.log(error);
 //     }
 //   });
-//
+
 // });
 
 $("#slc_xest_nivel_zona").change(function(){
@@ -187,8 +188,10 @@ $("#slc_xest_zona").change(function(){
     success:function(data){
       // $("#wait").modal("hide");
       $("#slc_xest_cicloe_zona").empty();
+         $("#slc_xest_cicloe_zona").append('<option value="2">2017-2018</option><option value="4">2018-2019</option>');
+      console.log('ok ok');
       $.each(data, function (index, item) {
-          $("#slc_xest_cicloe_zona").append('<option value="'+index+'">'+item+'</option>');
+          // $("#slc_xest_cicloe_zona").append('<option value="'+index+'">'+item+'</option>');
         });
       // console.log(data);
     },

@@ -9,6 +9,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
   }
 
   function get_nalumnos_xmunciclo($id_municipio, $id_ciclo){
+    echo '<pre>'; print_r($id_ciclo); die();
     $this->db->select('ni.id_nivel,ni.nivel, "0" as id_sostenimiento, "total" as sostenimiento, "0" as id_modalidad, "total" as modalidad,
     SUM(est.alumn_m_t) as alumn_m_t, SUM(est.alumn_h_t) as alumn_h_t, SUM(est.alumn_t_t) as alumn_t_t,
     SUM(est.alumn_t_1) as alumn_t_1, SUM(est.alumn_t_2) as alumn_t_2, SUM(est.alumn_t_3) as alumn_t_3,

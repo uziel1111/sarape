@@ -1,11 +1,11 @@
 			<!-- acá va el foreach -->
 			<?php foreach ($array_datos as $key => $dato){ ?>
-
 				<div class="accordion accordion-style-1" id="accordionExample">
 					<div class="card mb-3">
 						<div class="card-header collapsed" id="headingOne" data-toggle="collapse" data-target="#collapse<?= $dato['idusuario']?>" aria-expanded="false" aria-controls="collapse<?= $dato['idusuario']?>" style="cursor: pointer;" onclick="getTablas(<?= $dato['idusuario']?>)">
 							<i class="fas fa-clipboard-list mr-2"></i> <span class="second-txt"><?= $dato['area_departamento']?></span>
 						</div>
+
 						<div id="collapse<?= $dato['idusuario']?>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 							<div class="card-body p-0">
 
@@ -17,7 +17,7 @@
 										<a class="nav-link" id="estadisitcas-tab" data-toggle="tab" href="#estadisitcas<?= $dato['idusuario']?>" role="tab" aria-controls="profile" aria-selected="false">Estadística</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" id="contacto-tab" data-toggle="tab" href="#contacto<?= $dato['idusuario']?>" role="tab" aria-controls="contact" aria-selected="false">Contacto</a>
+										<a class="nav-link" id="contacto-tab" data-toggle="tab" onclick="contacto(<?= $dato['idusuario']?>)" href="#contacto<?= $dato['idusuario']?>" role="tab" aria-controls="contact" aria-selected="false">Contacto</a>
 									</li>
 								</ul>
 								<div class="tab-content tab-content-style-1" id="myTabContent">
@@ -47,7 +47,8 @@
 										</div>
 									</div>
 									<div id="estadistica"></div>
-									<div id="contacto"></div>
+									<!-- <div id="contacto"></div> -->
+									<div class="tab-pane fade" id="contacto<?= $dato['idusuario']?>" role="tabpanel" aria-labelledby="contacto-tab"></div>
 								</div>
 							</div>
 						</div>
