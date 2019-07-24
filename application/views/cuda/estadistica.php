@@ -1,16 +1,15 @@
-
-
-
 										<div class="row">
 											<div class="col">
 												<div class="wrimagecard wrimagecard-topimage">
 
 													<div class="wrimagecard-topimage_header">
-														<center><i class="fas fa-chalkboard-teacher"></i>
+														<center><i class="fas fa-chalkboard-teacher" data-toggle="tooltip" title="Total de documentos por usuario"></i>
 														</center>
 													</div>
 													<div class="wrimagecard-topimage_title">
+														<center>
 														<h4><?=$propio;?></h4>
+														</center>
 													</div>
 
 												</div>
@@ -20,7 +19,7 @@
 													<div class="box-body no-padding">
 														<table class="table">
 															<tr>
-																<td style="width: 5%"><i class="fa fa-building"></i>
+																<td style="width: 5%" data-toggle="tooltip" title="Total de documentos por subsecretaría"><i class="fa fa-building"></i>
 																</td>
 																<td style="width: 20%"><?=$sub;?></td>
 																<td style="width: 65%">
@@ -32,7 +31,7 @@
 																</td>
 															</tr>
 															<tr>
-																<td><i class="fa fa-globe"></i>
+																<td data-toggle="tooltip" title="Total de documentos en el sistema"><i class="fa fa-globe"></i>
 																</td>
 																<td><?=$universo;?></td>
 																<td>

@@ -18,10 +18,10 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Subsecretaría', 'Simplificación'],
-			['Subsecretaría de Educación Básica',     81],
-			['Subsecretaría de Administración y Recursos Humanos',      9],
-			['Subsecretaría de Planeación Educativa',  10]
+          ['Subsecretaría', 'periodo 1', 'periodo 2', 'periodo 3'],
+			['Subsecretaría de Educación Básica',     57,62,43],
+			['Subsecretaría de Administración y Recursos Humanos',      0,16,2],
+			['Subsecretaría de Planeación Educativa',  0,8,1]
         ]);
 
         var options = {

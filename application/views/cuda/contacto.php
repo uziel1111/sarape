@@ -19,12 +19,12 @@
 				<div class="col">
 					<div class="wrimagecard wrimagecard-topimage">
 
-						<div class="wrimagecard-topimage_header">
+						<!-- <div class="wrimagecard-topimage_header">
 							<center><i class="fas fa-user-tie"></i>
 							</center>
-						</div>
+						</div> -->
 						<div class="wrimagecard-topimage_title">
-							<h4><?= $dato['nombre']. ' ' .$dato['paterno'] .' '. $dato['materno']?></h4>
+							<i class="fas fa-user-tie"><h4><?= $dato['nombre']. ' ' .$dato['paterno'] .' '. $dato['materno']?></h4></i>
 						</div>
 
 					</div>
