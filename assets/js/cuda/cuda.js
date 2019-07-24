@@ -191,6 +191,7 @@
 		})
 		.always(function() {
 			console.log("complete");
+			swal.close();	
 		});
 	}
 
