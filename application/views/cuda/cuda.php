@@ -18,15 +18,15 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Subsecretaría', 'periodo 1', 'periodo 2', 'periodo 3'],
-			['Subsecretaría de Educación Básica',     57,62,43],
-			['Subsecretaría de Administración y Recursos Humanos',      0,16,2],
-			['Subsecretaría de Planeación Educativa',  0,8,1]
+          ['Periodos', 'Subsecretaría de Educación Básica', 'Subsecretaría de Administración y Recursos Humanos', 'Subsecretaría de Planeación Educativa'],
+			['1°',     57,0,0],
+			['2°',      62,16,8],
+			['3°',  43,2,1]
         ]);
 
         var options = {
-          title: 'Demanda por Nivel',
-          hAxis: {title: 'Mes',  titleTextStyle: {color: '#333'}},
+          title: 'Simplificación por Subsecretaría',
+          hAxis: {title: 'Periodo',  titleTextStyle: {color: '#333'}},
           vAxis: {minValue: 0}
         };
 

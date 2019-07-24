@@ -54,4 +54,6 @@ foreach ($array_encuestas as $key => $encuestas){
 		</div>
 	<?php endforeach;
 
-	} ?>
+	} else{?>
+		<center><h4>No hay archivos para mostrar.</h4></center>
+<?php } ?>
