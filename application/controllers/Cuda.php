@@ -93,8 +93,8 @@ class Cuda extends CI_Controller
 		foreach ($array_global as $key => $value) {
 			$global = $value['global'];
 		}
-			$grafica1 = ($total / 100) * $estadistica;
-			$grafica2 = ($global / 100) * $estadistica;
+			$grafica1 = ($estadistica * 100) / $total;
+			$grafica2 = ($estadistica * 100) / $global;
 
 			$data['grafica1'] = $grafica1;
 			$data['grafica2'] = $grafica2;

@@ -13,26 +13,26 @@
 </style>
 
 <script type="text/javascript">
-	google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+	// google.charts.load('current', {'packages':['corechart']});
+ //      google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Periodos', 'Subsecretaría de Educación Básica', 'Subsecretaría de Administración y Recursos Humanos', 'Subsecretaría de Planeación Educativa'],
-			['1°',     57,0,0],
-			['2°',      62,16,8],
-			['3°',  43,2,1]
-        ]);
+ //      function drawChart() {
+ //        var data = google.visualization.arrayToDataTable([
+ //          ['Periodos', 'Subsecretaría de Educación Básica', 'Subsecretaría de Administración y Recursos Humanos', 'Subsecretaría de Planeación Educativa'],
+	// 		['1°',     57,0,0],
+	// 		['2°',      62,16,8],
+	// 		['3°',  43,2,1]
+ //        ]);
 
-        var options = {
-          title: 'Simplificación por Subsecretaría',
-          hAxis: {title: 'Periodo',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        };
+ //        var options = {
+ //          title: 'Simplificación por Subsecretaría',
+ //          hAxis: {title: 'Periodo',  titleTextStyle: {color: '#333'}},
+ //          vAxis: {minValue: 0}
+ //        };
 
-        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
+ //        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+ //        chart.draw(data, options);
+ //      }
 </script>
 
 <!-- Start Main Area -->
@@ -44,7 +44,7 @@
 				<div class="alert alert-light" role="alert">
 					<div class="row">
 						<div class="col align-self-center">
-							<h5 class="text-muted ">Catálogo Único de Documentos Autorizados</h5>
+							<h5 class="text-muted ">Catálogo Único de Documentos Autorizados por Subsecretaría: </h5>
 						</div>
 
 					</div>
@@ -58,7 +58,7 @@
 					<img src="<?=base_url('/assets/img/home/box1.jpg')?>" class="card-img-top" alt="...">
 				</div>
 				<div class="card-body">
-					<h5 class="card-title text-danger fz-20"><br><span class="second-txt">Subsecretaría de Educación Básica</span></h5>
+					<h5 class="card-title text-danger fz-20"><span class="second-txt">Educación Básica</span></h5>
 					<p class="card-text text-justify"><button type="button" onclick="getDocumentos(1)" class="btn btn-secondary btn-lg btn-block">Consultar</button>
 					</p>
 				</div>
@@ -68,7 +68,7 @@
 					<img src="<?=base_url('/assets/img/home/box4.jpg')?>" class="card-img-top" alt="...">
 				</div>
 				<div class="card-body">
-					<h5 class="card-title text-danger fz-20"><span class="second-txt">Subsecretaría de Administración y Recursos Humanos</span></h5>
+					<h5 class="card-title text-danger fz-20"><span class="second-txt">Administración y Recursos Humanos</span></h5>
 					<p class="card-text text-justify"><button type="button" onclick="getDocumentos(2)" class="btn btn-secondary btn-lg btn-block">Consultar</button>
 					</p>
 				</div>
@@ -78,7 +78,7 @@
 					<img src="<?=base_url('/assets/img/home/box6.jpg')?>" class="card-img-top" alt="...">
 				</div>
 				<div class="card-body">
-					<h5 class="card-title text-danger fz-20"><span class="second-txt">Subsecretaría de Planeación Educativa</span></h5>
+					<h5 class="card-title text-danger fz-20"><span class="second-txt">Planeación Educativa</span></h5>
 					<p class="card-text text-justify"><button type="button" onclick="getDocumentos(3)" class="btn btn-secondary btn-lg btn-block">Consultar</button>
 					</p>
 				</div>
@@ -96,7 +96,7 @@
 				<div>
 
 				</div>
-				<div class="card">
+				<div class="card" style="display: none;">
 					<div class="card-header">
 						<h4 class="mb-0 text-success"><span class="second-txt">Estadística</span></h4>
 					</div>

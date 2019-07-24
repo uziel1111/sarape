@@ -1,3 +1,4 @@
+<center><h4>Porcentaje comparativo</h4></center>
 										<div class="row">
 											<div class="col">
 												<div class="wrimagecard wrimagecard-topimage">
@@ -19,7 +20,7 @@
 													<div class="box-body no-padding">
 														<table class="table">
 															<tr>
-																<td style="width: 5%" data-toggle="tooltip" title="Total de documentos por subsecretaría"><i class="fa fa-building"></i>
+																<td style="width: 5%" data-toggle="tooltip" title="Total de documentos por subsecretaría"><i class="fa fa-building"></i>Subsecretaría
 																</td>
 																<td style="width: 20%"><?=$sub;?></td>
 																<td style="width: 65%">
@@ -31,7 +32,7 @@
 																</td>
 															</tr>
 															<tr>
-																<td data-toggle="tooltip" title="Total de documentos en el sistema"><i class="fa fa-globe"></i>
+																<td data-toggle="tooltip" title="Total de documentos en el sistema"><i class="fa fa-globe"></i>Secretaría
 																</td>
 																<td><?=$universo;?></td>
 																<td>

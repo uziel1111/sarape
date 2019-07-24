@@ -1,23 +1,23 @@
 	  
 
-	google.charts.load("current", {packages:["corechart"]});
-	google.charts.setOnLoadCallback(drawChart);
-	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-			['Subsecretaría', 'Simplificación'],
-			['Subsecretaría de Educación Básica',     81],
-			['Subsecretaría de Administración y Recursos Humanos',      9],
-			['Subsecretaría de Planeación Educativa',  10]
-			]);
+	// google.charts.load("current", {packages:["corechart"]});
+	// google.charts.setOnLoadCallback(drawChart);
+	// function drawChart() {
+	// 	var data = google.visualization.arrayToDataTable([
+	// 		['Subsecretaría', 'Simplificación'],
+	// 		['Subsecretaría de Educación Básica',     81],
+	// 		['Subsecretaría de Administración y Recursos Humanos',      9],
+	// 		['Subsecretaría de Planeación Educativa',  10]
+	// 		]);
 
-		var options = {
-			title: 'Simplificación por Subsecretaría',
-			pieHole: 0.4,
-		};
+	// 	var options = {
+	// 		title: 'Simplificación por Subsecretaría',
+	// 		pieHole: 0.4,
+	// 	};
 
-		var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-		chart.draw(data, options);
-	}
+	// 	var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+	// 	chart.draw(data, options);
+	// }
 
 
 		function show( aval ) {

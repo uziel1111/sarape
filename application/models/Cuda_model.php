@@ -27,9 +27,10 @@ class Cuda_model extends CI_Model
 	public function getDetalles($idaplicar)
 	{
 
-		$str_query = "SELECT r.respuesta, r.url_comple, p.pregunta, r.idaplicar, r.complemento from respuesta r 
+		$str_query = "SELECT r.respuesta, r.url_comple, p.pregunta, r.idaplicar, r.complemento, r.idpregunta, a.otroResponsable, a.responsableDocumento from respuesta r 
 		INNER JOIN pregunta p on p.idpregunta = r.idpregunta
-		where r.idaplicar = {$idaplicar}; ";
+        INNER JOIN aplicar a on a.idaplicar = r.idaplicar
+		where r.idaplicar =  {$idaplicar}; ";
 
 		return $this->ci_db->query($str_query)->result_array();
 	}

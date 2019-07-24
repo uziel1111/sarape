@@ -8,7 +8,7 @@ foreach ($array_encuestas as $key => $encuestas){
 	<tr>
 		<th scope='row'><?=$i?></th>
 		<td><?=$encuestas['respuesta']?></td>
-		<td><?=$encuestas['fcreacion']?></td>
+		<!-- <td><?php//$encuestas['fcreacion']?></td> -->
 		<td>
 			<span data-toggle='modal' data-target='#verDocumento'>
 				<button type='button' data-toggle='tooltip' title='Ver documento' onclick='documento(<?=$encuestas['idaplicar']?>)' class='btn btn-sm btn-secondary'><i class='fas fa-file-alt mx-1'></i></button>
@@ -55,5 +55,5 @@ foreach ($array_encuestas as $key => $encuestas){
 	<?php endforeach;
 
 	} else{?>
-		<center><h4>No hay archivos para mostrar.</h4></center>
+		<center><h4>Sin datos para mostrar.</h4></center>
 <?php } ?>
