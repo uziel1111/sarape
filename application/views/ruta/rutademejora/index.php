@@ -131,13 +131,13 @@ span{
 		<br>
 		<div class="container">
       <div class="alert alert-success text-center" role="alert" style="margin-bottom: 30px;">
-        <h3>Planeación y despliegue estratégico</h3>
+        <h3>Plan de mejora continua</h3>
       </div>
 			<div class="row justify-content-center flex-column mb-3">
 				<nav>
 					<div class="nav nav-tabs nav-tabs-style-1" id="nav-tab" role="tablist">
-						<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">Planeación estratégica</a>
-						<a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Avances por actividades</a>
+						<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">Plan de mejora continua</a>
+						<a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Seguimiento</a>
 						<a class="nav-item nav-link nav-link-style-1" id="nav-ayuda-tab" data-toggle="tab" href="#nav-ayuda" role="tab" aria-controls="nav-ayuda" aria-selected="false">Ayuda</a>
 					</div>
 				</nav>
@@ -151,11 +151,11 @@ span{
 								</span> -->
 
 								<span data-toggle="modal" data-target="#prioridad">
-								<button type="" id="btn_prioridad" data-toggle="tooltip" title="Documentar la problemática(Línea de acción estratégica)" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
+								<button type="" id="btn_prioridad" data-toggle="tooltip" title="Documentar la problemática(Planeación de mejora continua)" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
 								</span>
 
 								<span data-toggle="modal" data-target="#actividades">
-								<button type="button" id="btn_rutamejora_acciones" title="Crear actividades" data-toggle="tooltip" title="Crear actividades" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
+								<button type="button" id="btn_rutamejora_acciones" title="Segumiento" data-toggle="tooltip" title="Segumiento" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
 								</span>
 								<!-- <a class="btn btn-lg btn-primary" id="btn_get_reporte_1" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>"><i class="fas fa-print" ></i></a> -->
 							</div>

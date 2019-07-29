@@ -332,7 +332,7 @@ class Rutademejora extends CI_Controller {
 													<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
 													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='orden' style='width:3%; vertical-align:middle;'><center>#</center></th>
-													<th id='tema' style='width:30%; vertical-align:middle;'><center>Líneas de acción estratégicas</center></th>
+													<th id='tema' style='width:30%; vertical-align:middle;'><center>Plan de mejora continua</center></th>
 													<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
 													<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
 												</tr>
@@ -368,7 +368,7 @@ class Rutademejora extends CI_Controller {
 													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
 													<th id='orden' style='width:3%; vertical-align:middle;'><center>#</center></th>
-													<th id='tema' style='width:30%; vertical-align:middle;'><center>Líneas de acción estratégicas</center></th>
+													<th id='tema' style='width:30%; vertical-align:middle;'><center>Plan de mejora continua</center></th>
 													<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
 													<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
 												</tr>
@@ -1789,6 +1789,7 @@ public function edit_accion_super(){
 			$this->cct = Utilerias::get_cct_sesion($this);
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$titulo = $this->input->post('txttp');
+			$id_prioritario = $this->input->post('id_prioritario');
 
 			$id_nivel = $this->cct[0]['nivel'];
 

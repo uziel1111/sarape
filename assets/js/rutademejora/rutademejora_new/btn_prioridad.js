@@ -20,6 +20,16 @@ $('#opt_prioridad_especial').change(function(){
 	}
 })
 
+//SELECT PROBLEMATICA
+$('#problematica').change(function() {
+	valor = $('#problematica').val();
+	if (valor == 'OTROS') {
+		$('#problematicaTxt').removeClass('ocultar');
+	}else{
+		$('#problematicaTxt').addClass('ocultar');
+	}
+});
+
 $('#slt_fecha').change(function(){
 	if ( $('#slt_fecha').val() == '-1' ) {
 		$('#otra_fecha').attr('hidden', false)
