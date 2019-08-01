@@ -3,7 +3,7 @@
 				<div class="accordion accordion-style-1" id="accordionExample">
 					<div class="card mb-3">
 						<div class="card-header collapsed" id="headingOne" data-toggle="collapse" data-target="#collapse<?= $dato['idusuario']?>" aria-expanded="false" aria-controls="collapse<?= $dato['idusuario']?>" style="cursor: pointer;" onclick="getTablas(<?= $dato['idusuario']?>)">
-							<i class="fas fa-clipboard-list mr-2"></i> <span class="second-txt"><?= $dato['area_departamento']?></span>
+							<i class="fas fa-clipboard-list mr-2"></i> <span class="second-txt"><?= $dato['direccion']?></span>
 						</div>
 
 						<div id="collapse<?= $dato['idusuario']?>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
