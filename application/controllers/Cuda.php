@@ -96,8 +96,8 @@ class Cuda extends CI_Controller
 			$grafica1 = ($estadistica * 100) / $total;
 			$grafica2 = ($estadistica * 100) / $global;
 
-			$data['grafica1'] = $grafica1;
-			$data['grafica2'] = $grafica2;
+			$data['grafica1'] =  bcdiv($grafica1,'1',0);
+			$data['grafica2'] =  bcdiv($grafica2,'1',0);
 			$data['sub'] = $total;
 			$data['universo'] = $global;
 			$data['propio'] = $estadistica;
