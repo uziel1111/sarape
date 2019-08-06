@@ -9,15 +9,15 @@
 						<div id="collapse<?= $dato['idusuario']?>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 							<div class="card-body p-0">
 
-								<ul class="nav nav-tabs nav-justified nav-tabs-style-1" id="myTab" role="tablist">
+								<ul class="nav nav-tabs nav-justified nav-tabs-style-2" id="myTab" role="tablist">
 									<li class="nav-item">
-										<a class="nav-link active" id="encuestas-tab" data-toggle="tab" href="#encuestas<?= $dato['idusuario']?>" role="tab" aria-controls="home" aria-selected="true"><i class="far fa-star text-warning"></i> Documentos</a>
+										<a class="nav-link active" id="encuestas-tab" data-toggle="tab" href="#encuestas<?= $dato['idusuario']?>" role="tab" aria-controls="home" aria-selected="true"><i class="far fa-file-alt text-warning"></i> Documentos</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" id="estadisitcas-tab" data-toggle="tab" onclick="estadistica(<?= $dato['idusuario']?>, <?= $dato['idsubsecretaria']?>)" href="#estadisticas<?= $dato['idusuario']?>" role="tab" aria-controls="profile" aria-selected="false">Estadística</a>
+										<a class="nav-link" id="estadisitcas-tab" data-toggle="tab" onclick="estadistica(<?= $dato['idusuario']?>, <?= $dato['idsubsecretaria']?>)" href="#estadisticas<?= $dato['idusuario']?>" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-chart-bar text-warning"></i> Estadística</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" id="contacto-tab" data-toggle="tab" onclick="contacto(<?= $dato['idusuario']?>)" href="#contacto<?= $dato['idusuario']?>" role="tab" aria-controls="contact" aria-selected="false">Contacto</a>
+										<a class="nav-link" id="contacto-tab" data-toggle="tab" onclick="contacto(<?= $dato['idusuario']?>)" href="#contacto<?= $dato['idusuario']?>" role="tab" aria-controls="contact" aria-selected="false"><i class="far fa-id-card text-warning"></i> Contacto</a>
 									</li>
 								</ul>
 								<div class="tab-content tab-content-style-1" id="myTabContent">

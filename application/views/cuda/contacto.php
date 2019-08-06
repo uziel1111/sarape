@@ -23,9 +23,16 @@
 							<center><i class="fas fa-user-tie"></i>
 							</center>
 						</div> -->
-						<div class="wrimagecard-topimage_title">
-							<i class="fas fa-user-tie"><h4><?= $dato['nombre']. ' ' .$dato['paterno'] .' '. $dato['materno']?></h4></i>
-						</div>
+													<div class="wrimagecard-topimage_header">
+														<center><i class="far fa-id-card" data-toggle="tooltip" title="Total de documentos por usuario" style="font-size: 30px"></i>
+														</center>
+													</div>
+													<div class="wrimagecard-topimage_title">
+														<center>
+														<h4><?= $dato['nombre']. ' ' .$dato['paterno'] .' '. $dato['materno']?></h4>
+														</center>
+													</div>						
+
 
 					</div>
 				</div>

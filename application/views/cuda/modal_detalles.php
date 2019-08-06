@@ -8,15 +8,14 @@ foreach ($array_detalles as $key => $value):
 		<div class="row">
 			<div class="col-sm">
 				<div class="alert alert-success my-1 py-1 fz-18" role="alert">
+					
 					<?php if ($value['pregunta'] == 'Fecha(s) de entrega') { ?>
-						<center><span class="fw800">Meses en que se entrega</span></center> <?= $value['respuesta']?><?= $value['complemento']?>
+						<span class="fw800 text-muted">Meses en que se entrega</span><br> <?= $value['respuesta']?><?= $value['complemento']?>
 					<?php } else { ?>
-						<center><span class="fw800"><?=$value['pregunta']?></span></center><br> <?= $value['respuesta']?><?= $value['complemento']?>
+						<span class="fw800 text-muted"><?=$value['pregunta']?></span><br> <?= $value['respuesta']?><?= $value['complemento']?>
 					<?php }
 					if ($value['idpregunta'] == 15) { ?>
-						
-						<center><span class="fw800">Responsable</span></center><br> <?= $value['responsableDocumento']?><?= $value['otroResponsable']?>
-						
+						<span class="fw800 text-muted">Responsable</span><br> <?= $value['responsableDocumento']?><?= $value['otroResponsable']?>
 					<?php } ?>
 				</div>		 
 			</div>

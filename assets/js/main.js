@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();  
 	"use strict";
@@ -110,6 +109,7 @@ $(document).ready(function(){
     };
 
 })(jQuery);
+
 
 $(document).ready(function(){
 
