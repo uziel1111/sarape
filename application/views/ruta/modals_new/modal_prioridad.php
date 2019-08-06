@@ -54,19 +54,18 @@
 			<form id="t_prioritario" enctype="multipart/form-data">
 				<div class="row mt-3">
 					<div class="col-lg-6">
-						<label><span class="badge badge-secondary h5 text-white">1.</span> Problemática(s)</label><br>
+						<label><span class="badge badge-secondary h5 text-white">1.</span> Problemática referida a:</label><br>
 						<!-- <textarea id="problematica" name="problematica" class="form-control" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea> -->
 						<?php switch ($prioridad) {
 							case '1': ?>
-							<select class="form-control" id="problematica" name="problematica" tabindex="-98">
-								<option selected value="0">SELECCIONAR</option>
-								<option value="OTROS">OTROS</option>
+							<select class="form-control problematica" name="problematica" tabindex="-98">
+								<option value="OTROS" selected='selected'>OTROS</option>
 							</select>
-								<textarea id="problematicaTxt" name="problematica" class="form-control ocultar" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
+								<textarea id="problematicaTxt" name="problematica" class="form-control " rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 							<?php	break;
 							case '2':?>
-							<select class="form-control" id="problematica" name="problematica" tabindex="-98">
-								<option selected value="0">SELECCIONAR</option>
+							<select class="form-control problematica" name="problematica" tabindex="-98">
+								<option selected='selected' value="0">SELECCIONAR</option>
 								<option value="APROVECHAMIENTO ACADÉMICO DE ALUMNOS">APROVECHAMIENTO ACADÉMICO DE ALUMNOS</option>
 								<option value="ASISTENCIA">ASISTENCIA</option>
 								<option value="OTROS">OTROS</option>
@@ -74,8 +73,8 @@
 								<textarea id="problematicaTxt" name="problematica" class="form-control ocultar" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 							<?php	break;
 							case '3':?>
-							<select class="form-control" id="problematica" name="problematica" tabindex="-98">
-								<option selected value="0">SELECCIONAR</option>
+							<select class="form-control problematica" name="problematica" tabindex="-98">
+								<option selected='selected' value="0">SELECCIONAR</option>
 								<option value="FORMACIÓN Y PRÁCTICAS DOCENTES">FORMACIÓN Y PRÁCTICAS DOCENTES</option>
 								<option value="AVANCES DE LOS PLANES Y PROGRAMAS EDUCATIVOS">AVANCES DE LOS PLANES Y PROGRAMAS EDUCATIVOS</option>
 								<option value="OTROS">OTROS</option>
@@ -83,16 +82,16 @@
 								<textarea id="problematicaTxt" name="problematica" class="form-control ocultar" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 							<?php	break;	
 							case '4':?>
-							<select class="form-control" id="problematica" name="problematica" tabindex="-98">
-								<option selected value="0">SELECCIONAR</option>
+							<select class="form-control problematica" name="problematica" tabindex="-98">
+								<option selected='selected' value="0">SELECCIONAR</option>
 								<option value="CONTEXTOS SOCIOCULTURALES">CONTEXTOS SOCIOCULTURALES</option>
 								<option value="OTROS">OTROS</option>
 							</select>
 								<textarea id="problematicaTxt" name="problematica" class="form-control ocultar" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 							<?php	break;
 							case '5':?>
-							<select class="form-control" id="problematica" name="problematica" tabindex="-98">
-								<option selected value="0">SELECCIONAR</option>
+							<select class="form-control problematica" name="problematica" tabindex="-98">
+								<option selected='selected' value="0">SELECCIONAR</option>
 								<option value="CARGA ADMINISTRATIVA">CARGA ADMINISTRATIVA</option>
 								<option value="DESEMPEÑO DE LAS AUTORIDADES">DESEMPEÑO DE LAS AUTORIDADES</option>
 								<option value="OTROS">OTROS</option>

@@ -21,7 +21,7 @@
     <div class="row justify-content-center flex-column mb-3">
       <nav>
         <div class="nav nav-tabs nav-tabs-style-1" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">Captura del plan de mejora continua</a>
+          <a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">Captura del plan de Mejora Continua</a>
           <a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Avances por acciones</a>
           <a class="nav-item nav-link nav-link-style-1" id="nav-indicadores-tab" data-toggle="tab" href="#nav-indicadores" role="tab" aria-controls="nav-indicadores" aria-selected="false">Indicadores sugeridos</a>
           <a class="nav-item nav-link nav-link-style-1" id="nav-instrucc-tab" data-toggle="tab" href="#nav-instrucc" role="tab" aria-controls="nav-instrucc" aria-selected="false">Instructivo</a>

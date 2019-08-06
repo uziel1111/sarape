@@ -21,8 +21,8 @@ $('#opt_prioridad_especial').change(function(){
 })
 
 //SELECT PROBLEMATICA
-$('#problematica').change(function() {
-	valor = $('#problematica').val();
+$('.problematica').change(function() {
+	valor = $('.problematica').val();
 	if (valor == 'OTROS') {
 		$('#problematicaTxt').removeClass('ocultar');
 	}else{
