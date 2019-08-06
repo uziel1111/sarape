@@ -1072,12 +1072,29 @@ td, th {
 /* ---------------------------------------------------
     INDEX CARDS
 ----------------------------------------------------- */
+
+
+.card-index {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .card-index .inner{
-	overflow: hidden;
+    position: relative;
+    margin: auto;
+    overflow: hidden;
 	height: 130px;
+	display: inline-block;
 }
 .card-index .inner img{
-	
+    max-width: 100%;
+    
+    width: 100%;
+    height: auto;
+    transform: scale(1);	
 	transition: all 1.5s ease;
 }
 .card-index:hover .inner img {
@@ -1086,14 +1103,7 @@ td, th {
 .card-index p{
 font-size: 16px;
 }
-.card-columns {
-  @include media-breakpoint-only(md) {
-    column-count: 1;
-  }
-  @include media-breakpoint-only(xl) {
-    column-count: 2;
-  }
-}
+
 /*** Accordion  ***/
 .accordion-style-1 .card  {
     padding: 0 0 0 0 !important;

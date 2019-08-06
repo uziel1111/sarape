@@ -52,37 +52,43 @@
 			</div>
 		</div>
 		<!-- Search bar Area -->
-		<div class="card-columns">
+		<div class="row">
+			<div class="col-md-4">
 			<div class="card card-index shadow mb-4">
 				<div class="inner">
-					<img src="<?=base_url('/assets/img/home/box1.jpg')?>" class="card-img-top" alt="...">
+					<img src="<?=base_url('/assets/img/home/box1.jpg')?>" alt="...">
 				</div>
 				<div class="card-body">
-					<h5 class="card-title text-danger fz-20"><span class="second-txt">Educación Básica</span></h5>
+					<h5 class="card-title text-danger"><span class="second-txt" style="font-size: 23px">Educación Básica</span></h5>
 					<p class="card-text text-justify"><button type="button" onclick="getDocumentos(1)" class="btn btn-secondary btn-lg btn-block">Consultar</button>
 					</p>
 				</div>
 			</div>
+				</div>
+				<div class="col-md-4">
 			<div class="card card-index shadow mb-4">
 				<div class="inner">
 					<img src="<?=base_url('/assets/img/home/box4.jpg')?>" class="card-img-top" alt="...">
 				</div>
 				<div class="card-body">
-					<h5 class="card-title text-danger fz-20"><span class="second-txt">Administración y Recursos Humanos</span></h5>
+					<h5 class="card-title text-danger"><span class="second-txt" style="font-size: 23px">Administración y Recursos Humanos</span></h5>
 					<p class="card-text text-justify"><button type="button" onclick="getDocumentos(2)" class="btn btn-secondary btn-lg btn-block">Consultar</button>
 					</p>
 				</div>
 			</div>
+					</div>
+					<div class="col-md-4">
 			<div class="card card-index shadow mb-4">
 				<div class="inner">
 					<img src="<?=base_url('/assets/img/home/box6.jpg')?>" class="card-img-top" alt="...">
 				</div>
 				<div class="card-body">
-					<h5 class="card-title text-danger fz-20"><span class="second-txt">Planeación Educativa</span></h5>
+					<h5 class="card-title text-danger"><span class="second-txt" style="font-size: 23px">Planeación Educativa</span></h5>
 					<p class="card-text text-justify"><button type="button" onclick="getDocumentos(3)" class="btn btn-secondary btn-lg btn-block">Consultar</button>
 					</p>
 				</div>
 			</div>
+						</div>
 		</div>
 		<!--Collapsable items-->
 		<div class="card mb-4">
