@@ -21,6 +21,8 @@
 		<a style="padding-left: 7em; cursor: hand; cursor: pointer;" >Ir a objetivos</a>
 		<a style="padding-left: 7em; cursor: hand; cursor: pointer;" >Ir a actividades</a>
 		<u><a style="padding-left: 7em; cursor: hand; cursor: pointer; color: blue;" id="img_avances">Ir a avances</a></p></u>
+	<br>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/BdkXj2ixwFU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	</div>
 </div>
 

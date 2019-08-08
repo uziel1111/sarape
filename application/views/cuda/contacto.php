@@ -1,6 +1,6 @@
 <?php foreach ($array_usuario as $key => $dato): ?>
 
-<div >
+	<div >
 
 	<!-- <ul class="nav nav-tabs nav-justified nav-tabs-style-1" id="myTab" role="tablist">
 		<li class="nav-item">
@@ -14,24 +14,24 @@
 		</li>
 	</ul> -->
 	<div class="tab-content tab-content-style-1" id="myTabContent">
-	<div class="tab-pane fade" id="contacto<?= $dato['idusuario']?>" role="tabpanel" aria-labelledby="contacto-tab"></div>
-			<div class="row">
-				<div class="col">
-					<div class="wrimagecard wrimagecard-topimage">
+		<div class="tab-pane fade" id="contacto<?= $dato['idusuario']?>" role="tabpanel" aria-labelledby="contacto-tab"></div>
+		<div class="row">
+			<div class="col">
+				<div class="wrimagecard wrimagecard-topimage">
 
 						<!-- <div class="wrimagecard-topimage_header">
 							<center><i class="fas fa-user-tie"></i>
 							</center>
 						</div> -->
-													<div class="wrimagecard-topimage_header">
-														<center><i class="far fa-id-card" data-toggle="tooltip" title="Total de documentos por usuario" style="font-size: 30px"></i>
-														</center>
-													</div>
-													<div class="wrimagecard-topimage_title">
-														<center>
-														<h4><?= $dato['nombre']. ' ' .$dato['paterno'] .' '. $dato['materno']?></h4>
-														</center>
-													</div>						
+						<div class="wrimagecard-topimage_header">
+							<center><i class="far fa-id-card" data-toggle="tooltip" title="Total de documentos por usuario" style="font-size: 30px"></i>
+							</center>
+						</div>
+						<div class="wrimagecard-topimage_title">
+							<center>
+								<h4><?= $dato['nombre']. ' ' .$dato['paterno'] .' '. $dato['materno']?></h4>
+							</center>
+						</div>						
 
 
 					</div>

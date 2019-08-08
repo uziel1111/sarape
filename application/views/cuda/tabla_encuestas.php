@@ -1,30 +1,30 @@
 <?php  $i = 0;
 if (sizeof($array_encuestas) > 0 ) {
 
-foreach ($array_encuestas as $key => $encuestas){ 
-	$i++; 
-	?>
+	foreach ($array_encuestas as $key => $encuestas){ 
+		$i++; 
+		?>
 
-	<tr>
-		<th scope='row'><?=$i?></th>
-		<td><?=$encuestas['respuesta']?></td>
-		<!-- <td><?php//$encuestas['fcreacion']?></td> -->
-		<td>
-			<span data-toggle='modal' data-target='#verDocumento'>
-				<button type='button' data-toggle='tooltip' title='Ver documento' onclick='documento(<?=$encuestas['idaplicar']?>)' class='btn btn-sm btn-secondary'><i class='fas fa-file-alt mx-1'></i></button>
-			</span>
-
-
-			<span data-toggle='modal' data-target='#verDetalle'>
-				<button type='button' data-toggle='tooltip' title='Ver detalle' onclick='detalle(<?=$encuestas['idaplicar']?>)' class='btn btn-sm btn-success'><i class='fas far fa-eye'></i></button>
-			</span>
+		<tr>
+			<th scope='row'><?=$i?></th>
+			<td><?=$encuestas['respuesta']?></td>
+			<!-- <td><?php//$encuestas['fcreacion']?></td> -->
+			<td>
+				<span data-toggle='modal' data-target='#verDocumento'>
+					<button type='button' data-toggle='tooltip' title='Ver documento' onclick='documento(<?=$encuestas['idaplicar']?>)' class='btn btn-sm btn-secondary'><i class='fas fa-file-alt mx-1'></i></button>
+				</span>
 
 
-		</td>
-	</tr>
-<?php } ?> 
+				<span data-toggle='modal' data-target='#verDetalle'>
+					<button type='button' data-toggle='tooltip' title='Ver detalle' onclick='detalle(<?=$encuestas['idaplicar']?>)' class='btn btn-sm btn-success'><i class='fas far fa-eye'></i></button>
+				</span>
 
-<?php foreach ($array_usuario as $key => $dato): ?>
+
+			</td>
+		</tr>
+	<?php } ?> 
+
+	<?php foreach ($array_usuario as $key => $dato): ?>
 		<div class="row">
 			<div class="col">
 				<div class="wrimagecard wrimagecard-topimage">
@@ -54,6 +54,6 @@ foreach ($array_encuestas as $key => $encuestas){
 		</div>
 	<?php endforeach;
 
-	} else{?>
-		<center><h4>Sin datos para mostrar.</h4></center>
-<?php } ?>
+} else{?>
+	<center><h4>Sin datos para mostrar.</h4></center>
+	<?php } ?>
