@@ -3,7 +3,7 @@
 <div class="alert alert-info" role="alert">
 	Escuela: <span class="fw800"><label id="label_escuela"></label></span><br>
 
-	<!--Prioridad: <span class="fw800"><label id="label_prioridad"></label></span><br>-->
+	Prioridad: <span class="fw800"><label id="label_prioridad"></label></span><br>
 
 	Problemática(s): <span class="fw800"><label id="label_problematica"></label></span><br>
 

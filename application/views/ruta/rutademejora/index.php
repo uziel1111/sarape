@@ -131,12 +131,12 @@ span{
 		<br>
 		<div class="container">
       <div class="alert alert-success text-center" role="alert" style="margin-bottom: 30px;">
-        <h3>Plan de mejora continua</h3>
+        <h3>Programa Escolar de Mejora Continua (PEMC)</h3>
       </div>
 			<div class="row justify-content-center flex-column mb-3">
 				<nav>
 					<div class="nav nav-tabs nav-tabs-style-1" id="nav-tab" role="tablist">
-						<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">Plan de Mejora Continua</a>
+						<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">PECM</a>
 						<a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Seguimiento</a>
 						<a class="nav-item nav-link nav-link-style-1" id="nav-ayuda-tab" data-toggle="tab" href="#nav-ayuda" role="tab" aria-controls="nav-ayuda" aria-selected="false">Ayuda</a>
 					</div>
@@ -220,7 +220,7 @@ span{
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content modal-style-1">
 			<div class="modal-header bgcolor-2">
-				<h5 class="modal-title text-white" id="exampleModalLabel">Actividades por prioridad del Sistema Básico de Mejora</h5>
+				<h6 style="color: white;">LAE</h6><h5 class="modal-title text-white" id="exampleModalLabel">Actividades por prioridad del Sistema Básico de Mejora</h5>
 				<button type="button" class="close" id="cerrar_modal_acciones" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -236,7 +236,7 @@ span{
 					Evidencia(s): <span class="fw800"><label id="label_evidencia"></label></span>
 				</div>
 				<div class="card mb-3 card-style-1">
-					<div class="card-header card-1-header bg-light">Actividades</div>
+					<div class="card-header card-1-header bg-light">Acciones</div>
 					<div class="card-body">
 						<div class="card-block">
 							<div class="form-group form-group-style-1">
@@ -253,7 +253,7 @@ span{
                 	
 								<div class="row mt-15">
 									<div class="col-md-6">
-										<label><label style="color:red;">*</label>Actividad:</label>
+										<label><label style="color:red;">*</label>Acciones:</label>
 										<textarea id="txt_rm_meta" class="form-control" rows="5" maxlength="150" required="true"></textarea>
 									</div>
 									<div class="col-md-6">

@@ -332,9 +332,9 @@ class Rutademejora extends CI_Controller {
 													<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
 													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='orden' style='width:3%; vertical-align:middle;'><center>#</center></th>
-													<th id='tema' style='width:30%; vertical-align:middle;'><center>Plan de Mejora Continua</center></th>
+													<th id='tema' style='width:30%; vertical-align:middle;'><center>Líneas de Acción Estratégicas/Ámbitos PEMC</center></th>
 													<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
-													<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
+													<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Acciones</center></th>
 												</tr>
                       </thead>
                       <tbody id='id_tbody_demo'>";
@@ -343,7 +343,7 @@ class Rutademejora extends CI_Controller {
 													$tabla .= "<tr>
 															<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
 															<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
-															<td id='orden' style='vertical-align:middle;'><center>{$tp['orden']}</center></td>
+															<td id='orden' style='vertical-align:middle;'><center>LAE-{$tp['orden']}</center></td>
 															<td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}</td>
 															<td id='num_objetivos' style='vertical-align:middle;'><center>{$tp['num_objetivos']}</center></td>
 															<td id='num_acciones' style='vertical-align:middle;'><center>{$tp['num_acciones']}</center></td>
@@ -367,7 +367,7 @@ class Rutademejora extends CI_Controller {
 													<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
 													<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 													<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
-													<th id='orden' style='width:3%; vertical-align:middle;'><center>#</center></th>
+													<th id='orden' style='width:7%; vertical-align:middle;'><center>#</center></th>
 													<th id='tema' style='width:30%; vertical-align:middle;'><center>Plan de Mejora Continua</center></th>
 													<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
 													<th id='n_actividades' style='width:3%; vertical-align:middle;'><center>Actividades</center></th>
@@ -380,7 +380,7 @@ class Rutademejora extends CI_Controller {
 																<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
 																<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
 																<td id='id_prioridad' hidden>{$tp['id_subprioridad']}</td>
-									              <td id='orden' style='vertical-align:middle;'>{$tp['orden']}</td>
+									              <td id='orden' style='vertical-align:middle;'>LAE-{$tp['orden']}</td>
 									              <td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}</td>
 									              <td id='num_objetivos' style='vertical-align:middle;' >{$tp['num_objetivos']}</td>
 									              <td id='num_acciones' style='vertical-align:middle;' >{$tp['num_acciones']}</td>
