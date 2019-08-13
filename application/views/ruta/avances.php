@@ -24,8 +24,24 @@
 <?php $var_aux_id_head_foot = '1' ; ?>
 <?php $var_aux_id_linea_hf = '0' ; ?>
 
-<?php $var_aux_entro1 = '0' ; ?>
-<?php foreach ($arr_avances as $avance){ ?>
+<?php $var_aux_entro1 = '0' ; $cont = 0;?>
+<?php foreach ($arr_avances as $avance){ 
+  if ($avance['prioridad'] == 'EQUIPAMIENTO E INFRAESTRUCTURA DE ALTA CALIDAD') {
+    $cont= 1;
+  }
+  if ($avance['prioridad'] == 'ASEGURAR ALTOS ÍNDICES DE APRENDIZAJES A TODA LA POBLACIÓN EDUCATIVA') {
+    $cont= 2;
+  }
+  if ($avance['prioridad'] == 'CONTAR CON PERSONAL COMPETITIVO A NIVEL INTERNACIONAL') {
+    $cont= 3;
+  }
+  if ($avance['prioridad'] == 'GENERAR AMBIENTES DE COLABORACIÓN Y CORRESPONSABILIDAD CON LOS PADRES DE FAMILIA') {
+    $cont= 4;
+  }
+  if ($avance['prioridad'] == 'CONSOLIDAR EL LIDERAZGO DE DIRECTIVOS Y DOCENTES') {
+    $cont= 5;
+  }
+?>
 
   <!-- Lineas de Accion -->
   <?php if ($avance['id_tprioritario'] != $var_aux_id_tprioritario){ ?>
@@ -43,7 +59,7 @@
   <?php $var_aux_entro1 = '0' ; ?>
     <?php } ?>
     <div class="card bg-light mb-3">
-      <div class="card-header text-center" style="background-color: #FFCC80; "><h3 class="panel-title"><b>Línea de acción: </b><?php echo $avance['prioridad'] ?></h3></div>
+      <div class="card-header text-center" style="background-color: #FFCC80; "><h3 class="panel-title"><b>LAE-<?= $cont; ?>: </b><?php echo $avance['prioridad'] ?></h3></div>
       <div class="card-body">
     <?php $var_aux_id_tprioritario = $avance['id_tprioritario']; ?>
     <?php $var_aux_id_linea_hf = '1'; ?>
@@ -64,7 +80,7 @@
                     <th colspan="10"><label><b>Objetivo:</b> <span><?= $avance['objetivo'] ?></span></label></th>
                   </tr>
                   <tr class="text-center">
-                    <th>Actividades</th>
+                    <th>Acciones</th>
                     <th>CTE 1</th>
                     <th>CTE 2</th>
                     <th>CTE 3</th>

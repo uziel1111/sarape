@@ -10,11 +10,11 @@ foreach ($array_detalles as $key => $value):
 				<div class="alert alert-success my-1 py-1 fz-18" role="alert">
 					
 					<?php if ($value['pregunta'] == 'Fecha(s) de entrega') { ?>
-						<span class="fw800 text-muted">Meses en que se entrega</span><br> <?= ucfirst($value['respuesta'])?><?= $value['complemento']?>
+						<span class="fw800 text-muted">Meses en que se entrega</span><br> <?= ucfirst($value['respuesta'])?><?= ucfirst($value['complemento'])?>
 					<?php } else { ?>
-						<span class="fw800 text-muted"><?=$value['pregunta']?></span><br> <?= ucfirst($value['respuesta'])?><?= $value['complemento']?>
+						<span class="fw800 text-muted"><?=$value['pregunta']?></span><br> <?= ucfirst($value['respuesta'])?><?= ucfirst($value['complemento'])?>
 					<?php } ?>
-					
+
 				</div>		 
 			</div>
 		</div>
@@ -51,10 +51,10 @@ foreach ($array_detalles as $key => $value):
 			<div class="col-sm">
 				<div class="alert alert-success my-1 py-1 fz-18" role="alert">
 					
-					
-					
+
+
 					<span class="fw800 text-muted">Responsable</span></center><br> <?= ucfirst($responsable)?><?= ucfirst($value['otroResponsable'])?>	
-					
+
 					
 				</div>		 
 			</div>

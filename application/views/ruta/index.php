@@ -100,7 +100,7 @@
                 </div>
                 <div class="row mt-15">
                   <div class="col-md-6">
-                    <label><span class="badge badge-secondary h5 text-white">4.</span> Problemática por prioridad</label><label style="color:red;">*</label>
+                    <label><span class="badge badge-secondary h5 text-white">4.</span> Problemática por ámbito</label><label style="color:red;">*</label>
                     <textarea id="txt_rm_problem" class="form-control" rows="2" maxlength="150"></textarea>
                     <!-- <select class="selectpicker form-control" id="slc_problem">
                       <option value="">SELECCIONE UNA OPCIÓN</option>

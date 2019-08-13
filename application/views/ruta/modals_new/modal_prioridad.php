@@ -54,20 +54,30 @@
 			<form id="t_prioritario" enctype="multipart/form-data">
 				<div class="row mt-3">
 					<div class="col-lg-6">
-						<label><span class="badge badge-secondary h5 text-white">1.</span> Problemática referida a:</label><br>
+						<label><span class="badge badge-secondary h5 text-white">1.</span>Problemática referida a:</label><br>
 						<!-- <textarea id="problematica" name="problematica" class="form-control" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea> -->
 						<?php switch ($prioridad) {
 							case '1': ?>
 							<select class="form-control problematica" name="problematica" tabindex="-98">
-								<option value="OTROS" selected='selected'>OTROS</option>
+								<option value="" selected='selected'>Seleccionar</option>
+								<option value="Equipamiento (Mobiliario)." >Equipamiento (Mobiliario).</option>
+								<option value="Equipamiento (Material didáctico)." >Equipamiento (Material didáctico).</option>
+								<option value="Equipamiento (Tecnologías de la información y la comunicación)." >Equipamiento (Tecnologías de la información y la comunicación).</option>
+								<option value="Infraestructura (Funcionamiento del edificio escolar)." >Infraestructura (Funcionamiento del edificio escolar).</option>
+								<option value="OTROS">OTROS</option>
 							</select>
-								<textarea id="problematicaTxt" name="problematica" class="form-control " rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
+								<textarea id="problematicaTxt" name="problematica" class="form-control ocultar" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 							<?php	break;
 							case '2':?>
 							<select class="form-control problematica" name="problematica" tabindex="-98">
 								<option selected='selected' value="0">SELECCIONAR</option>
-								<option value="APROVECHAMIENTO ACADÉMICO DE ALUMNOS">APROVECHAMIENTO ACADÉMICO DE ALUMNOS</option>
-								<option value="ASISTENCIA">ASISTENCIA</option>
+								<option value="Asistencia (Operación regular de la escuela).">Asistencia (Operación regular de la escuela).</option>
+								<option value="Permanencia (Atención oportuna al rezago).">Permanencia (Atención oportuna al rezago).</option>
+								<option value="Aprendizaje (Mejora del logro de aprendizaje).">Aprendizaje (Mejora del logro de aprendizaje).</option>
+								<option value="Aprendizaje (Optimización del tiempo escolar).">Aprendizaje (Optimización del tiempo escolar).</option>
+								<option value="Aprendizaje (Inclusión educativa).">Aprendizaje (Inclusión educativa).</option>
+								<option value="Aprendizaje (Convivencia escolar sana y pacífica).">Aprendizaje (Convivencia escolar sana y pacífica).</option>
+								<option value="Aprendizaje (Aprendizaje activo).">Aprendizaje (Aprendizaje activo).</option>
 								<option value="OTROS">OTROS</option>
 							</select>
 								<textarea id="problematicaTxt" name="problematica" class="form-control ocultar" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
@@ -75,8 +85,11 @@
 							case '3':?>
 							<select class="form-control problematica" name="problematica" tabindex="-98">
 								<option selected='selected' value="0">SELECCIONAR</option>
-								<option value="FORMACIÓN Y PRÁCTICAS DOCENTES">FORMACIÓN Y PRÁCTICAS DOCENTES</option>
-								<option value="AVANCES DE LOS PLANES Y PROGRAMAS EDUCATIVOS">AVANCES DE LOS PLANES Y PROGRAMAS EDUCATIVOS</option>
+								<option value="Formación docente (Formación, actualización y desarrollo profesional docente).">Formación docente (Formación, actualización y desarrollo profesional docente).</option>
+								<option value="Formación docente (Aprendizaje entre pares).">Formación docente (Aprendizaje entre pares).</option>
+								<option value="Práctica docente (Planeación y evaluación didáctica).">Práctica docente (Planeación y evaluación didáctica).</option>
+								<option value="Práctica directiva (Reflexión y mejora de la práctica).">Práctica directiva (Reflexión y mejora de la práctica).</option>
+								<option value="Práctica docente (Reflexión y mejora de la práctica).">Práctica docente (Reflexión y mejora de la práctica).</option>
 								<option value="OTROS">OTROS</option>
 							</select>
 								<textarea id="problematicaTxt" name="problematica" class="form-control ocultar" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
@@ -84,7 +97,9 @@
 							case '4':?>
 							<select class="form-control problematica" name="problematica" tabindex="-98">
 								<option selected='selected' value="0">SELECCIONAR</option>
-								<option value="CONTEXTOS SOCIOCULTURALES">CONTEXTOS SOCIOCULTURALES</option>
+								<option value="Participación (Participación de los padres de familia en actividades del aula y la escuela).">Participación (Participación de los padres de familia en actividades del aula y la escuela).</option>
+								<option value="Participación (Consejo Escolar de Participación Social).">Participación (Consejo Escolar de Participación Social).</option>
+								<option value="Corresponsabilidad (Apoyo al aprendizaje en el hogar)">Corresponsabilidad (Apoyo al aprendizaje en el hogar)</option>
 								<option value="OTROS">OTROS</option>
 							</select>
 								<textarea id="problematicaTxt" name="problematica" class="form-control ocultar" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
@@ -92,8 +107,13 @@
 							case '5':?>
 							<select class="form-control problematica" name="problematica" tabindex="-98">
 								<option selected='selected' value="0">SELECCIONAR</option>
-								<option value="CARGA ADMINISTRATIVA">CARGA ADMINISTRATIVA</option>
-								<option value="DESEMPEÑO DE LAS AUTORIDADES">DESEMPEÑO DE LAS AUTORIDADES</option>
+								<option value="Desarrollo de liderazgo (Liderazgo efectivo).">Desarrollo de liderazgo (Liderazgo efectivo).</option>
+								<option value="Desempeño directivo (Consejo Técnico Escolar).">Desempeño directivo (Consejo Técnico Escolar).</option>
+								<option value="Desempeño directivo (Autoevaluación institucional).">Desempeño directivo (Autoevaluación institucional).</option>
+								<option value="Desempeño directivo (Acompañamiento académico).">Desempeño directivo (Acompañamiento académico).</option>
+								<option value="Desempeño directivo (Control escolar).">Desempeño directivo (Control escolar).</option>
+								<option value="Desempeño directivo (Rendición de cuentas).">Desempeño directivo (Rendición de cuentas).</option>
+								<option value="Desempeño directivo (Carga administrativa).">Desempeño directivo (Carga administrativa).</option>
 								<option value="OTROS">OTROS</option>
 							</select>
 								<textarea id="problematicaTxt" name="problematica" class="form-control ocultar" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
