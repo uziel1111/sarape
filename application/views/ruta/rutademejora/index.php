@@ -136,7 +136,7 @@ span{
 			<div class="row justify-content-center flex-column mb-3">
 				<nav>
 					<div class="nav nav-tabs nav-tabs-style-1" id="nav-tab" role="tablist">
-						<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">PECM</a>
+						<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">PEMC</a>
 						<a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Seguimiento</a>
 						<a class="nav-item nav-link nav-link-style-1" id="nav-ayuda-tab" data-toggle="tab" href="#nav-ayuda" role="tab" aria-controls="nav-ayuda" aria-selected="false">Ayuda</a>
 					</div>
@@ -151,17 +151,21 @@ span{
 								</span> -->
 
 								<span data-toggle="modal" data-target="#prioridad">
-								<button type="" id="btn_prioridad" data-toggle="tooltip" title="Documentar la problemática(Planeación de Mejora Continua)" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
+								<button type="" id="btn_prioridad" data-toggle="tooltip" title="Agregar Objetivos" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
 								</span>
 
 								<span data-toggle="modal" data-target="#actividades">
-								<button type="button" id="btn_rutamejora_acciones" title="actividades" data-toggle="tooltip" title="actividades" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
+								<button type="button" id="btn_rutamejora_acciones" title="Agregar Acciones" data-toggle="tooltip" title="Agregar Acciones" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
 								</span>
 								<!-- <a class="btn btn-lg btn-primary" id="btn_get_reporte_1" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>"><i class="fas fa-print" ></i></a> -->
 							</div>
 
 						</div>
 						<div class="row mt-15">
+
+							<div class="col-sm-12 col-offset-sm-2">
+								<span class="text-danger">*Antes de agregar objetivos o acciones, seleccione la línea de acción estratégica (LAE) o ámbito.</span>
+							</div>
 
               <div class="col-12">
 								<div id="contenedor_tabla" style="display: table;"></div>

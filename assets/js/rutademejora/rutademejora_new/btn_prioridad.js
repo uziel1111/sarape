@@ -51,6 +51,7 @@ $('#limpiar').click(function(){
 	$('#slt_indicador').val('0');
 	$('#slt_metrica').val('0');
 	$('#slt_meta').val('');
+	$('#slt_ciclo').val('0');
 	$('#slt_fecha').val('0');
 	$('#CAPoutput').val('');
 	$('#otra_fecha').attr('hidden', true);
@@ -262,6 +263,14 @@ function show(select_id){
 	hiddenDiv1.style.display='block';
 }
 
+$('.slt_objetivo_estatal').change(function() {
+	$('.btn_objetivo_estatal').removeClass('ocultar');
+})
+
+$('.btn_objetivo_estatal').click(function() {
+	$('#CAPoutput').val($('.slt_objetivo_estatal option:selected').text());
+});
+
 $('#writeText').click(function(){
 	let verbo = $('#slt_verbo').val();
 	let indicador = $('#slt_indicador').val();
@@ -277,7 +286,7 @@ $('#writeText').click(function(){
 			'error'
 		);
 	} else {
-			let contenido = $('#slt_verbo option:selected').text() + ' ' + $('#slt_indicador option:selected').text() + ' en un '  + meta + ' ' + $('#slt_metrica option:selected').text() + ' ' + $('#slt_fecha option:selected').text() + ' ' + otra_fecha
+			let contenido = $('#slt_verbo option:selected').text() + ' ' + $('#slt_indicador option:selected').text() + ' en un '  + meta + ' ' + $('#slt_metrica option:selected').text() + ' en el ciclo: '+ $('#slt_ option:selected').text() + ' '  + $('#slt_fecha option:selected').text() + ' ' + otra_fecha
 
 			$('#CAPoutput').val(contenido);
 	}
