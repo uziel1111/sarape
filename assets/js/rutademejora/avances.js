@@ -1,5 +1,5 @@
 $(function() {
-    obj_rm_avances_acciones = new Rm_avances_acciones();
+  obj_rm_avances_acciones = new Rm_avances_acciones();
 });
 
 
@@ -20,102 +20,111 @@ Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
   var dias_restantes = arr_res[4];
   var dias_restantes_hoy = arr_res[5];
   $.ajax({
-  url: base_url+'rutademejora/set_avance',
-  type: 'POST',
-  dataType: 'JSON',
-  data: { var_id_cct:var_id_cct,
-          var_id_idtp:var_id_idtp,
-          var_id_idacc:var_id_idacc,
-          var_id_cte:var_id_cte,
-          val_slc:val_slc
-        },
-  beforeSend: function(xhr) {
-        Notification.loading("");
+    url: base_url+'rutademejora/set_avance',
+    type: 'POST',
+    dataType: 'JSON',
+    data: { var_id_cct:var_id_cct,
+      var_id_idtp:var_id_idtp,
+      var_id_idacc:var_id_idacc,
+      var_id_cte:var_id_cte,
+      val_slc:val_slc
     },
-})
-.done(function(result) {
-  swal.close();
+    beforeSend: function(xhr) {
+      Notification.loading("");
+    },
+  })
+  .done(function(result) {
+    swal.close();
   // console.log(result.estatus);
   if (result.estatus) {
     swal(
-        'Correcto!',
-        "Se actualizo tema prioritario correctamente",
-        'success'
+      'Correcto!',
+      "Se actualizo tema prioritario correctamente",
+      'success'
       );
     var base2 = base_url.split('/index.php');
     var icono = obj_rm_avances_acciones.get_icono(val_slc, dias_restantes, dias_restantes_hoy,var_id_idacc);
     var ruta = base2[0]+"/assets/img/rm_estatus/"+icono;
     $("#"+var_id_idacc+"icoima").attr("src",ruta);
+    // if (icono == 'G4.png') {
+    //   $("#"+var_id_idacc+"icoima").attr("onclick",obsercaciones_modal(var_id_idacc));  
+    // }
   }
   else {
     swal(
-        'Error!',
-        "Al actualizar tema prioritario ",
-        'error'
+      'Error!',
+      "Al actualizar tema prioritario ",
+      'error'
       );
   }
 
 })
-.fail(function(e) {
-  console.error("Error in actualizar tema prioritario()"); console.table(e);
-})
-.always(function() {
+  .fail(function(e) {
+    console.error("Error in actualizar tema prioritario()"); console.table(e);
+  })
+  .always(function() {
       // swal.close();
-})
+    })
 
- };
+};
 
+function obsercaciones_modal(id) {
+  console.log('en la función obsercaciones_modal ' + id);
+
+  
+
+}
 
 Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, dias_restantes_hoy,var_id_idacc){
-  
+
   if (dias_restantes_hoy >= 0) {
 
     if (dias_restantes >= dias_restantes_hoy) {
       $('#spanRestante'+var_id_idacc+'').addClass('text-danger');
-     
+
       if (porcentaje == 0) {
       //    swal(
       //   "Quedan: "+ (dias_restantes_hoy/24) +"días.",
       //   "Recuerda registrar tu avance.",
       //   'info'
       // );
-        return "G0.png";
-      }
-      if (porcentaje <= 66) {
+      return "G0.png";
+    }
+    if (porcentaje <= 66) {
       //    swal(
       //   "Quedan: "+ (dias_restantes_hoy/24) +"días.",
       //   "Un paso a la vez.",
       //   'info'
       // );
-        return "R1.png";
-      }else{
-        if (porcentaje >= 67 && porcentaje <= 89) {
+      return "R1.png";
+    }else{
+      if (porcentaje >= 67 && porcentaje <= 89) {
       //      swal(
       //   "Quedan: "+ (dias_restantes_hoy/24) +"días.",
       //   "Excelente, seguimos avanzando",
       //   'info'
       // );
-          return "Y2.png";  
-        }else{
-          if (porcentaje >= 90 && porcentaje <= 99) {
-             swal(
+      return "Y2.png";  
+    }else{
+      if (porcentaje >= 90 && porcentaje <= 99) {
+       swal(
         "Quedan: "+ (dias_restantes_hoy/24) +"días.",
         "<br> Sólo queda un salto.",
         'info'
-      );
-            return "G3.png";
-          }else{
-            if (porcentaje == 100) {
-               swal(
-        'Error!',
+        );
+       return "G3.png";
+     }else{
+      if (porcentaje == 100) {
+       swal(
+        'Correcto!',
         "Felicidades, llegamos a la meta",
         'success'
-      );
-              return "G4.png";
-            }
-          }
-        }
-      }
+        );
+       return "G4.png";
+     }
+   }
+ }
+}
 }else{
   if ((dias_restantes * 2 )>= dias_restantes_hoy) {
     $('#spanRestante'+var_id_idacc+'').addClass('text-warning');
@@ -124,45 +133,45 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
       return "G0.png";
     }
     if (porcentaje <= 33) {
-       return "R1.png";
+     return "R1.png";
+   }else{
+    if (porcentaje >= 33 && porcentaje <= 66) {
+      return "Y2.png";
     }else{
-      if (porcentaje >= 33 && porcentaje <= 66) {
-        return "Y2.png";
+      if (porcentaje >= 67 && porcentaje <= 99) {
+        return "G3.png";
       }else{
-        if (porcentaje >= 67 && porcentaje <= 99) {
-          return "G3.png";
-        }else{
-          if (porcentaje == 100) {
-            return "G4.png";
-          }
+        if (porcentaje == 100) {
+          return "G4.png";
         }
       }
     }
-    
-  }else{
-    if ((dias_restantes * 3 )>= dias_restantes_hoy) {
-      $('#spanRestante'+var_id_idacc+'').addClass('text-success');
-      $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
-      if (porcentaje == 0) {
-        return "G0.png";
-      }
-      if (porcentaje >= 1 && porcentaje <= 33) {
-        return 'Y1.png';
+  }
+
+}else{
+  if ((dias_restantes * 3 )>= dias_restantes_hoy) {
+    $('#spanRestante'+var_id_idacc+'').addClass('text-success');
+    $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
+    if (porcentaje == 0) {
+      return "G0.png";
+    }
+    if (porcentaje >= 1 && porcentaje <= 33) {
+      return 'Y1.png';
+    }else{
+     if (porcentaje >= 34 && porcentaje <= 66) {
+      return 'Y2.png';
+    }else{
+      if (porcentaje >= 67 && porcentaje <= 99) {
+        return 'G3.png';
       }else{
-       if (porcentaje >= 34 && porcentaje <= 66) {
-          return 'Y2.png';
-      }else{
-        if (porcentaje >= 67 && porcentaje <= 99) {
-          return 'G3.png';
-        }else{
-          if (porcentaje == 100) {
-            return 'G4.png';
-          }
+        if (porcentaje == 100) {
+          return 'G4.png';
         }
       }
     }
-  }else{
-      $('#spanRestante'+var_id_idacc+'').addClass('text-info');
+  }
+}else{
+  $('#spanRestante'+var_id_idacc+'').addClass('text-info');
       // swal(
       //   "No se encuentra en periodo de actividad",
       //   "Podrás registrar tus avances en: "+ (dias_restantes_hoy/24) +"días",
@@ -174,12 +183,12 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
 }
 } else{
 
-      $('#spanRestante'+var_id_idacc+'').addClass('text-info');
+  $('#spanRestante'+var_id_idacc+'').addClass('text-info');
       // swal(
       //   "No se encuentra en periodo de actividad",
       //   "Esta actividad ha vencido",
       //   'error'
       // );
-  return 'R0.png';
-}  
-};
+      return 'R0.png';
+    }  
+  };

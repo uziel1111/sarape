@@ -37,6 +37,7 @@
 
 	#exampleModal_ver_evidencia{
 		margin-top: 75%;
+		
 	}
 
 	.body_evidencia{
@@ -165,12 +166,8 @@
 												<?php switch ($prioridad) {
 													
 													case '2': ?>
-													<div class="col-md-4">
+													<div class="col-md-2">
 														<span class="badge badge-secondary h5 text-white">Objetivo Estatal </span>
-														<span class="badge badge-success h5 text-white ml-2">
-															<i class="fas fa-flag-checkered"></i>
-														</span>
-														</span>
 													</div>
 													<div class="col-md-4">
 														
@@ -219,10 +216,7 @@
 													case '3': ?>
 													<div class="col-md-4">
 														<span class="badge badge-secondary h5 text-white">Objetivo Estatal </span>
-														<span class="badge badge-success h5 text-white ml-2">
-															<i class="fas fa-flag-checkered"></i>
-														</span>
-														</span>
+														
 													</div>
 													<div class="col-md-4">
 														
@@ -272,111 +266,108 @@
 													<?php break;
 													case '4': ?>
 													
-														<div class="col-md-4">
-															<span class="badge badge-secondary h5 text-white">Objetivo Estatal </span>
-														<span class="badge badge-success h5 text-white ml-2">
-															<i class="fas fa-flag-checkered"></i>
-														</span>
-														</div>
-														<div class="col-md-4">
-															<?php if ($nivel_escolar == 2): ?>
-
-																<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																	<option selected='selected' value="0">SELECCIONAR</option>
-																	<option value="Alcanzar el cumplimiento de padres de familia al menos en un 80% en la crianza compartida.">Alcanzar el cumplimiento de padres de familia al menos en un 80% en la crianza compartida.</option>
-
-																</select>
-															<?php endif ?>
-
-															<?php if ($nivel_escolar == 3): ?>
-
-																<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																	<option selected='selected' value="0">SELECCIONAR</option>
-																	<option value="Lograr la operación del 80% de los CEPS registrados en el ciclo escolar 2019 - 2020.">Lograr la operación del 80% de los CEPS registrados en el ciclo escolar 2019 - 2020.</option>
-																	<option value="Lograr que el 20% de los padres de familia de cada plantel se involucren en las actividades escolares.">Lograr que el 20% de los padres de familia de cada plantel se involucren en las actividades escolares.</option>
-																</select>
-															<?php endif ?>
-
-
-															<?php if ($nivel_escolar == 4): ?>
-
-																<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																	<option selected='selected' value="0">SELECCIONAR</option>
-																	<option value="Alcanzar que el 100% de los Padres de Familia de alumnos en riesgo se involucre en actividades de apoyo al aprendizaje trimestralmente durante el ciclo escolar.">Alcanzar que el 100% de los Padres de Familia de alumnos en riesgo se involucre en actividades de apoyo al aprendizaje trimestralmente durante el ciclo escolar.</option>
-
-																</select>
-															<?php endif ?>
-
-															<?php if ($nivel_escolar == 5): ?>
-
-																<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																	<option selected='selected' value="0">SELECCIONAR</option>
-																	<option value="Aumentar la generación de ambientes de colaboración y corresponsabilidad con los padres de familia en al menos un 80% del total de la población, a julio 2020.">Aumentar la generación de ambientes de colaboración y corresponsabilidad con los padres de familia en al menos un 80% del total de la población, a julio 2020.</option>
-
-																</select>
-															<?php endif ?>
-														</div>
-														<div class="col-md-3">
-															<button id="" type="button" class="btn_objetivo_estatal btn btn-dark  ocultar" data-toggle="tooltip" data-placement="top" title="Generar oración">Agregar <i class="fas fa-check"></i>
-														</button>
-														</div>
-														<?php break; } ?>
+													<div class="col-md-4">
+														<span class="badge badge-secondary h5 text-white">Objetivo Estatal </span>
 													</div>
+													<div class="col-md-4">
+														<?php if ($nivel_escolar == 2): ?>
+
+															<select class="form-control slt_objetivo_estatal" tabindex="-98">
+																<option selected='selected' value="0">SELECCIONAR</option>
+																<option value="Alcanzar el cumplimiento de padres de familia al menos en un 80% en la crianza compartida.">Alcanzar el cumplimiento de padres de familia al menos en un 80% en la crianza compartida.</option>
+
+															</select>
+														<?php endif ?>
+
+														<?php if ($nivel_escolar == 3): ?>
+
+															<select class="form-control slt_objetivo_estatal" tabindex="-98">
+																<option selected='selected' value="0">SELECCIONAR</option>
+																<option value="Lograr la operación del 80% de los CEPS registrados en el ciclo escolar 2019 - 2020.">Lograr la operación del 80% de los CEPS registrados en el ciclo escolar 2019 - 2020.</option>
+																<option value="Lograr que el 20% de los padres de familia de cada plantel se involucren en las actividades escolares.">Lograr que el 20% de los padres de familia de cada plantel se involucren en las actividades escolares.</option>
+															</select>
+														<?php endif ?>
+
+
+														<?php if ($nivel_escolar == 4): ?>
+
+															<select class="form-control slt_objetivo_estatal" tabindex="-98">
+																<option selected='selected' value="0">SELECCIONAR</option>
+																<option value="Alcanzar que el 100% de los Padres de Familia de alumnos en riesgo se involucre en actividades de apoyo al aprendizaje trimestralmente durante el ciclo escolar.">Alcanzar que el 100% de los Padres de Familia de alumnos en riesgo se involucre en actividades de apoyo al aprendizaje trimestralmente durante el ciclo escolar.</option>
+
+															</select>
+														<?php endif ?>
+
+														<?php if ($nivel_escolar == 5): ?>
+
+															<select class="form-control slt_objetivo_estatal" tabindex="-98">
+																<option selected='selected' value="0">SELECCIONAR</option>
+																<option value="Aumentar la generación de ambientes de colaboración y corresponsabilidad con los padres de familia en al menos un 80% del total de la población, a julio 2020.">Aumentar la generación de ambientes de colaboración y corresponsabilidad con los padres de familia en al menos un 80% del total de la población, a julio 2020.</option>
+
+															</select>
+														<?php endif ?>
+													</div>
+													<div class="col-md-3">
+														<button id="" type="button" class="btn_objetivo_estatal btn btn-dark  ocultar" data-toggle="tooltip" data-placement="top" title="Generar oración">Agregar <i class="fas fa-check"></i>
+														</button>
+													</div>
+													<?php break; } ?>
 												</div>
+											</div>
 
 
 
-												<div class="col">
-													<label class="mb-1">
-														<span class="badge badge-secondary h5 text-white">1.Verbo </span>
-														<span class="badge badge-success h5 text-white ml-2">
-															<i class="fas fa-angle-double-right"></i>
-														</span>
-													</label>
+											<div class="col">
+												<label class="mb-1">
+													<span class="badge badge-secondary h5 text-white">1.Verbo </span>
+													<span class="badge badge-success h5 text-white ml-2">
+														<i class="fas fa-angle-double-right"></i>
+													</span>
+												</label>
 
-													<select class="form-control" id="slt_verbo" tabindex="-98">
-														<option selected='selected' value="0">SELECCIONAR</option>
-														<option>LOGRAR</option>
-														<option>AUMENTAR</option>
-														<option>ELIMINAR</option>
-														<option>DISMINUIR</option>
-													</select>
-												</div>
+												<select class="form-control" id="slt_verbo" tabindex="-98">
+													<option selected='selected' value="0">SELECCIONAR</option>
+													<option>LOGRAR</option>
+													<option>AUMENTAR</option>
+													<option>ELIMINAR</option>
+													<option>DISMINUIR</option>
+												</select>
+											</div>
 
-												<div class="col">
-													<label class="mb-1">
-														<span class="badge badge-secondary h5 text-white">2.Indicador</span>
-														<span class="badge badge-success h5 text-white ml-2">
-															<i class="fas fa-angle-double-right"></i>
-														</span>
-													</label>
-													<select class="form-control" id="slt_indicador" tabindex="-98">
-														<option selected='selected' value="0">SELECCIONAR</option>
-														<?php foreach ($indicadores as $indicador): ?>
-															<option value="<?php echo $indicador['id_indicador'] ?>"><?php echo $indicador['indicador'] ?></option>
-														<?php endforeach; ?>
-													</select>
-												</div>
+											<div class="col">
+												<label class="mb-1">
+													<span class="badge badge-secondary h5 text-white">2.Indicador</span>
+													<span class="badge badge-success h5 text-white ml-2">
+														<i class="fas fa-angle-double-right"></i>
+													</span>
+												</label>
+												<select class="form-control" id="slt_indicador" tabindex="-98">
+													<option selected='selected' value="0">SELECCIONAR</option>
+													<?php foreach ($indicadores as $indicador): ?>
+														<option value="<?php echo $indicador['id_indicador'] ?>"><?php echo $indicador['indicador'] ?></option>
+													<?php endforeach; ?>
+												</select>
+											</div>
 
-												<div class="col">
-													<label class="mb-1">
-														<span class="badge badge-secondary h5 text-white">3.Metrica</span>
-														<span class="badge badge-success h5 text-white ml-2">
-															<i class="fas fa-angle-double-right"></i>
-														</span>
-													</label>
-													<select class="form-control" id="slt_metrica" tabindex="-98">
-														<option selected='selected' value="0">SELECCIONAR</option>
-														<?php foreach ($metricas as $metrica): ?>
-															<option><?php echo $metrica['formula'] ?></option>
-														<?php endforeach; ?>
-													</select>
-												</div>
+											<div class="col">
+												<label class="mb-1">
+													<span class="badge badge-secondary h5 text-white">3.Metrica</span>
+													<span class="badge badge-success h5 text-white ml-2">
+														<i class="fas fa-angle-double-right"></i>
+													</span>
+												</label>
+												<select class="form-control" id="slt_metrica" tabindex="-98">
+													<option selected='selected' value="0">SELECCIONAR</option>
+													<?php foreach ($metricas as $metrica): ?>
+														<option><?php echo $metrica['formula'] ?></option>
+													<?php endforeach; ?>
+												</select>
+											</div>
 
-												<div class="col">
-													<label class="mb-1"><span class="badge badge-secondary h5 text-white">4.Meta</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-right"></i> </span></label>
-													<!-- <input type="text" id="slt_meta" class="form-control"> -->
-													<textarea id="slt_meta" rows="2" class="form-control" id="slt_meta"></textarea>
+											<div class="col">
+												<label class="mb-1"><span class="badge badge-secondary h5 text-white">4.Meta</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-right"></i> </span></label>
+												<!-- <input type="text" id="slt_meta" class="form-control"> -->
+												<textarea id="slt_meta" rows="2" class="form-control" id="slt_meta"></textarea>
 										<!-- <select class="form-control" id="slt_meta" tabindex="-98">
 											<option selected='selected' value="0">SELECCIONAR</option>
 											<option>OPCIÓN 1</option>
@@ -525,3 +516,5 @@
 	<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_prioridad.js') ?>"></script>
 	<!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script> -->
 	<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/preview_arch.js') ?>"></script>
+
+

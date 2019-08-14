@@ -200,9 +200,9 @@ span{
 <!-- </section> -->
 
 <!-- modal -->
-<div id="myModal" class="modal fade" role="dialog" aria-labelledby="prioridad_modal" aria-hidden="true" data-backdrop="static" data-keyboard="false" style="overflow-y: scroll;">
+<div id="myModal" class="modal fade" role="dialog" aria-labelledby="prioridad_modal" aria-hidden="true" data-backdrop="static" data-keyboard="false" style="overflow-y: scroll;" >
 	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content modal-style-1" style="width: 112% !important; margin-left:-25px !important; align:center !important;">
+		<div class="modal-content modal-style-1" style="width: 130% !important; align:center !important;">
 			<div class="modal-header bg-dark">
 				<h5 class="modal-title text-white" id="prioridad_modal"><i class="far fa-lightbulb"></i> </h5>
 				<button type="button" class="close" id="close" data-target="#myModal" data-dismiss="modal" aria-label="Close">

@@ -265,6 +265,9 @@ function show(select_id){
 
 $('.slt_objetivo_estatal').change(function() {
 	$('.btn_objetivo_estatal').removeClass('ocultar');
+	if ($('.slt_objetivo_estatal option:selected').text() == 'SELECCIONAR') {
+		$('.btn_objetivo_estatal').addClass('ocultar');
+	}
 })
 
 $('.btn_objetivo_estatal').click(function() {
@@ -286,7 +289,7 @@ $('#writeText').click(function(){
 			'error'
 		);
 	} else {
-			let contenido = $('#slt_verbo option:selected').text() + ' ' + $('#slt_indicador option:selected').text() + ' en un '  + meta + ' ' + $('#slt_metrica option:selected').text() + ' en el ciclo: '+ $('#slt_ option:selected').text() + ' '  + $('#slt_fecha option:selected').text() + ' ' + otra_fecha
+			let contenido = $('#slt_verbo option:selected').text() + ' ' + $('#slt_indicador option:selected').text() + ' en un '  + meta + ' ' + $('#slt_metrica option:selected').text() + ' en el ciclo: '+ $('#slt_ciclo option:selected').text() + ' '  + $('#slt_fecha option:selected').text() + ' ' + otra_fecha
 
 			$('#CAPoutput').val(contenido);
 	}
@@ -296,41 +299,42 @@ $('#writeText').click(function(){
 //Grabar prioridad
 $('#grabar_prioridad').click(function(){
 
-	/*$.ajax({
+	$.ajax({
 		url: base_url+'Rutademejora/grabarTema',
 		type: 'POST',
 		dataType: 'JSON',
 		data:{ id_tprioritario: obj.id_tprioritario,
-					 problematica: $('#problematica').val(),
+					 problematica: $('.problematica option:selected').text(),
 					 evidencias: $('#evidencias').val(),
 					 txt_rm_obs_direc: $('#txt_rm_obs_direc').val()
 				 },
 	 	beforeSend: function(xhr) {
 	        Notification.loading("");
-   	},
-		success: function(data){
-			setTimeout(function () {*/
-				swal(
-						'¡Correcto!',
-						"El tema prioritario se insertó correctamente",
-						'success'
-					);
-			//}, 1000);
-			// obj_prioridad.getObjetivos();
-			//console.log('grabar prioridad ' + obj.id_tprioritario);
-	/*	}
+   	}
+  //  	,
+		// success: function(data){
+		// 	setTimeout(function () {
+		// 		swal(
+		// 				'¡Correcto!',
+		// 				"El tema prioritario se insertó correctamente",
+		// 				'success'
+		// 			)
+		// 	//}, 1000);
+		// 	// obj_prioridad.getObjetivos();
+		// 	//console.log('grabar prioridad ' + obj.id_tprioritario);
+		// })
 	})
 	.done(function(result) {
 
-		//$('#id_tema_prioritario').val(obj.id_tprioritario);
-		//obj.get_view();
+		$('#id_tema_prioritario').val(obj.id_tprioritario);
+		obj.get_view();
 	})
 	.fail(function(e) {
 		console.error("Error in grabarTema()");
 	})
 	.always(function() {
     swal.close();
-	});*/
+	});
 })
 //Grabar prioridad
 
