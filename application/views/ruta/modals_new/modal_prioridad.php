@@ -271,14 +271,12 @@
 													</div>
 													<?php break;
 													case '4': ?>
-													<div class="col-md-4">
+													
 														<div class="col-md-4">
 															<span class="badge badge-secondary h5 text-white">Objetivo Estatal </span>
 														<span class="badge badge-success h5 text-white ml-2">
 															<i class="fas fa-flag-checkered"></i>
 														</span>
-														</div>
-														<div class="col-md-4">
 														</div>
 														<div class="col-md-4">
 															<?php if ($nivel_escolar == 2): ?>
