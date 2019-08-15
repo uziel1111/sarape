@@ -2083,4 +2083,17 @@ class Rutademejora extends CI_Controller {
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}
+
+	public function set_observacion()
+	{
+		$objetivo = $this->input->post('idaccion');
+  		$resultados = $this->input->post('resultados');
+  		$obstaculos = $this->input->post('obstaculos');
+  		$ventajas = $this->input->post('ventajas');
+  		$ajustes = $this->input->post('ajustes');
+		
+		$todo = $resultados .' obstaculos: '.$obstaculos .' ventajas: '.$ventajas. 'ajuste: ' .$ajustes;
+
+		$result = $this->Rutamejora_model->set_observacion($objetivo, $resultados, $obstaculos, $ventajas, $ajustes);
+	}
 }// Rutamedejora

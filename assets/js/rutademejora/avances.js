@@ -1,3 +1,28 @@
+function obsercaciones_modal(id) {
+ $('#myModal'+id).show();
+ $('.div_observaciones'+id).removeClass('d-none');
+}
+
+function btn_observar(id) {
+  var resultados = $("#txt_obs_resultados_"+id).val();
+  var obstaculos = $("#txt_obs_obstaculos_"+id).val();
+  var ventajas = $("#txt_obs_ventajas_"+id).val();
+  var ajustes = $("#txt_obs_ajustes_"+id).val();
+  var accion = $("#slc_observaciones"+id+" option:selected").val();
+
+
+  $.ajax({
+    url: base_url+'rutademejora/set_observacion',
+    type: 'POST',
+    data: {'idaccion':accion, 'resultados': resultados, 'obstaculos':obstaculos, 'ventajas':ventajas, 'ajustes': ajustes},
+    success: function(data) {
+      $('#myModal'+id).hide();
+    }
+  })
+  
+  $('.div_observaciones'+id).addClass('d-none');
+}
+
 $(function() {
   obj_rm_avances_acciones = new Rm_avances_acciones();
 });
@@ -68,12 +93,6 @@ Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
 
 };
 
-function obsercaciones_modal(id) {
-  console.log('en la función obsercaciones_modal ' + id);
-
-  
-
-}
 
 Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, dias_restantes_hoy,var_id_idacc){
 

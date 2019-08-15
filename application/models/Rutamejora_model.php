@@ -896,4 +896,11 @@ function  get_datos_edith_tp($id_tprioritario){
     {
       $this->db->query("UPDATE rm_objetivo SET estado_publicacion = {$data['estado_publicacion']} WHERE id_objetivo = {$data['id']};"); 
     }
+
+    public function set_observacion($objetivo, $resultados, $obstaculos, $ventajas, $ajustes) {
+      $this->db->query("UPDATE rm_avance_xcctxtpxaccion SET obs_resultado = '{$resultados}', obs_obstaculo = '{$obstaculos}', obs_beneficio = '{$ventajas}', obs_ajuste = '{$ajustes}' WHERE id_accion = {$objetivo}; ");
+
+       // echo "<pre>";print_r($str_query);die();
+      // return $this->db->query($str_query)->result_array();
+    }
 }// Rutamejora_model

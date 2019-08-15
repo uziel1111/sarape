@@ -24,7 +24,7 @@
 							<li class="list-group-item"><a href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">my_location</i></span> Localiza tu escuela</a></li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Riesgo/riesgo_x_muni_zona'); ?>"><span class="color-1"><i class="material-icons">report</i></span> Riesgo de abandono</a></li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Planea/index'); ?>"><span class="color-1"><i class="material-icons">insert_chart</i></span> Resultados estatales de PLANEA</a></li>
-							<li class="list-group-item"><a href="<?= base_url('index.php/Generico/index'); ?>"><span class="color-1"><i class="material-icons">insert_chart</i></span> nueva sección</a></li>
+							<!-- <li class="list-group-item"><a href="<?= base_url('index.php/Generico/index'); ?>"><span class="color-1"><i class="material-icons">insert_chart</i></span> nueva sección</a></li> -->
 						</ul>
 					</div>
 				</div>
@@ -47,8 +47,10 @@
 							</li> -->
 							<li class="list-group-item"><a onclick="Index.getRevistaEscolar()" href="javascript:void(0)"><span class="color-2 mr-5"><i class="fas fa-star"></i></span><b>Revista InfórmeSE</b> <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a>
 							</li>
+<!-- 
+							<li class="list-group-item"><a href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Servicio Profesional Docente</a> -->
 
-							<li class="list-group-item"><a href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Servicio Profesional Docente</a>
+							<li class="list-group-item"><a href="<?= base_url('index.php/cuda'); ?>" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Catálogo Único de Documentos Autorizados</a>
 							</li>
 							<li class="list-group-item"><a onclick="Index.getReconocimientosEstatales()" href="javascript:void(0)"><span class="color-2"><i class="material-icons">chevron_right</i></span> Reconocimientos estatales</a>
 							</li>
