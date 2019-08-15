@@ -326,7 +326,7 @@ $('#grabar_prioridad').click(function(){
 	})
 	.done(function(result) {
 
-		$('#id_tema_prioritario').val(obj.id_tprioritario);
+		// $('#id_tema_prioritario').val(obj.id_tprioritario);
 		obj.get_view();
 	})
 	.fail(function(e) {
@@ -553,14 +553,16 @@ function btnEliminar(){
 Prioridad.prototype.getObjetivos = function(){
 	var idtemaprioritario = obj.id_tprioritario ;
 	let idtemap = $('#id_tema_prioritario').val();
+	console.log('aquí estamos {');
 console.log( idtemap);	
 console.log( idtemaprioritario);	
+ console.log('} hasta aquí');
 	if(obj.id_tprioritario != 0){
 		$.ajax({
 			url: base_url+'Rutademejora/getObjetivos',
 			type: 'POST',
 			dataType: 'JSON',
-			data: {id_tpriotario: obj.id_tprioritario,
+			data: {id_tpriotario: idtemap,
 						 id_prioridad: obj.id_prioridad,
 					 },
 			beforeSend: function(xhr) {
@@ -571,7 +573,7 @@ console.log( idtemaprioritario);
 			$("#objetivo_meta").empty();
 			$("#objetivo_meta").append(result.table);
 
-			$('#tema_prioritario').val(result.id_tprioritario);
+			// $('#tema_prioritario').val(result.id_tprioritario);
 			$('#id_objetivo').val(result.id_objetivo);
 			obj_prioridad.funcionalidadselect()
 			// obj_prioridad.getObjetivos()

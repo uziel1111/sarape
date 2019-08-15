@@ -10,7 +10,7 @@ function btn_observar(id) {
   var ajustes = $("#txt_obs_ajustes_"+id).val();
   var accion = $("#slc_observaciones"+id+" option:selected").val();
 
-
+console.log(accion);
   $.ajax({
     url: base_url+'rutademejora/set_observacion',
     type: 'POST',

@@ -224,7 +224,7 @@ span{
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content modal-style-1">
 			<div class="modal-header bgcolor-2">
-				<h6 style="color: white;">LAE</h6><h5 class="modal-title text-white" id="exampleModalLabel">Actividades por prioridad del Sistema Básico de Mejora</h5>
+				<h5 class="modal-title text-white" id="exampleModalLabel">Actividades por prioridad del Sistema Básico de Mejora</h5>
 				<button type="button" class="close" id="cerrar_modal_acciones" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
