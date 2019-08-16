@@ -145,27 +145,28 @@ span{
 					<div class="tab-pane fade show active" id="nav-ruta" role="tabpanel" aria-labelledby="nav-ruta-tab">
 						<div class="row">
 
-							<div class="col">
+							<div class="col-md-12 " style="">
+								<span class="text-danger">*Antes de agregar objetivos o acciones, seleccione la línea de acción estratégica (LAE) o ámbito. </span>
 								<!-- <span data-toggle="modal" data-target="#mision">
 								<button type="button" id="btn_mision" data-toggle="tooltip" title="Misión" class="btn btn-lg btn-primary"><i class="fas fa-flag" ></i></button>
 								</span> -->
 
 								<span data-toggle="modal" data-target="#prioridad">
-								<button type="" id="btn_prioridad" data-toggle="tooltip" title="Agregar Objetivos" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
+								<button type="" id="btn_prioridad" style="margin-left: 75px" data-toggle="tooltip" title="Agregar Objetivos" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
 								</span>
-
+									
 								<span data-toggle="modal" data-target="#actividades">
-								<button type="button" id="btn_rutamejora_acciones" title="Agregar Acciones" data-toggle="tooltip" title="Agregar Acciones" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
+								<button type="button" style="margin-left: 90px" id="btn_rutamejora_acciones" title="Agregar Acciones" data-toggle="tooltip" title="Agregar Acciones" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
 								</span>
 								<!-- <a class="btn btn-lg btn-primary" id="btn_get_reporte_1" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>"><i class="fas fa-print" ></i></a> -->
-							</div>
+							<!-- </div> -->
 
+							<!-- <div class="col-sm-2 col-offset-sm-2"> -->
+								
+							</div>
 						</div>
 						<div class="row mt-15">
 
-							<div class="col-sm-12 col-offset-sm-2">
-								<span class="text-danger">*Antes de agregar objetivos o acciones, seleccione la línea de acción estratégica (LAE) o ámbito.</span>
-							</div>
 
               <div class="col-12">
 								<div id="contenedor_tabla" style="display: table;"></div>
@@ -308,7 +309,7 @@ span{
 								<div class="row mt-15">
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Fecha de inicio</label>
-										<input id="datepicker1" disabled data-date-format="mm/dd/yyyy"/>
+										<input id="datepicker1" disabled data-date-format="dd/mm/yyyy"/>
 										<script>
 										$('#datepicker1').datepicker({
 											uiLibrary: 'bootstrap4'

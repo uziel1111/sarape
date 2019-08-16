@@ -94,7 +94,7 @@ $("#btn_prioridad").click(function(e){
 				//console.log( data.data['problematica'].split(','));
 				$("#div_generico").empty();
 		    $("#div_generico").append(data.strView);
-		    $('.problematica').selectpicker('val', data.data['problematica'].split(','));
+		    // $('.problematica').selectpicker('val', data.data['problematica'].split(','));
 		    // $('.problematicaTxt').text( data.data['problematica']);
 		    // $('#problematica').val("");
 		    // $('#evidencias').val("");
