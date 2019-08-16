@@ -156,166 +156,111 @@
 								<label><span class="badge badge-secondary h5 text-white">5.</span> Objetivo(s)<em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Para la(s) problemática(s) mencionada(s) escribe un objetivo que inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o eliminar) seguido por un indicador concreto (por ejemplo: asistencia, aprovechamiento, ... y en algunos casos enfocados a un nivel educativo, a un grado en particular, a una asignatura...), continuando con una meta numérica de mejora del indicador y finalizando con una fecha de cumplimiento máximo (si es para el final del período escolar se puede omitir este elemento dándolo por entendido)"></em></label>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-12">
-								<div class="alert alert-info" role="alert">
-									<div class="row">
+						
 
-										<div class="col-md-12">
-											<div class="row">
-												<?php switch ($prioridad) {
-													
-													case '2': ?>
-													<div class="col-md-2">
-														<span class="badge badge-secondary h5 text-white">Objetivo Estatal </span>
-													</div>
-													<div class="col-md-4">
-														
-														<?php if ($nivel_escolar == 2): ?>
+						<div class="col-md-12">
+							<div class="row">
+								<?php switch ($prioridad) {
 
-															<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																<option selected='selected' value="0">SELECCIONAR</option>
-																<option value="Alcanzar el desarrollo de capacidades de los niños y niñas al menos en un 80% a junio del 2020.">Alcanzar el desarrollo de capacidades de los niños y niñas al menos en un 80% a junio del 2020.</option>
+									case '2': ?>
 
-															</select>
-														<?php endif ?>
+									<div class="col-md-6">
 
-														<?php if ($nivel_escolar == 3): ?>
+										<?php if ($nivel_escolar == 2): ?>
 
-															<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																<option selected='selected' value="0">SELECCIONAR</option>
-																<option value="Lograr que los alumnos alcancen por lo menos el 80% de los aprendizajes esperados del grado en curso al término del ciclo escolar 2019 - 2020.">Lograr que los alumnos alcancen por lo menos el 80% de los aprendizajes esperados del grado en curso al término del ciclo escolar 2019 - 2020.</option>
+											<select class="form-control slt_objetivo_estatal" tabindex="-98">
+												<option selected='selected' value="0">SELECCIONAR UN OBJETIVO ESTATAL</option>
+												<option value="Alcanzar el desarrollo de capacidades de los niños y niñas al menos en un 80% a junio del 2020.">Alcanzar el desarrollo de capacidades de los niños y niñas al menos en un 80% a junio del 2020.</option>
 
-															</select>
-														<?php endif ?>
+											</select>
+										<?php endif ?>
+
+										<?php if ($nivel_escolar == 3): ?>
+
+											<select class="form-control slt_objetivo_estatal" tabindex="-98">
+												<option selected='selected' value="0">SELECCIONAR UN OBJETIVO ESTATAL</option>
+												<option value="Lograr que los alumnos alcancen por lo menos el 80% de los aprendizajes esperados del grado en curso al término del ciclo escolar 2019 - 2020.">Lograr que los alumnos alcancen por lo menos el 80% de los aprendizajes esperados del grado en curso al término del ciclo escolar 2019 - 2020.</option>
+
+											</select>
+										<?php endif ?>
 
 
-														<?php if ($nivel_escolar == 4): ?>
+										<?php if ($nivel_escolar == 4): ?>
 
-															<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																<option selected='selected' value="0">SELECCIONAR</option>
-																<option value="Aumentar a 60% el porcentaje de aciertos de alumnos de sexto grado en español y matemáticas en OCI censal.">Aumentar a 60% el porcentaje de aciertos de alumnos de sexto grado en español y matemáticas en OCI censal.</option>
+											<select class="form-control slt_objetivo_estatal" tabindex="-98">
+												<option selected='selected' value="0">SELECCIONAR UN OBJETIVO ESTATAL</option>
+												<option value="Aumentar a 60% el porcentaje de aciertos de alumnos de sexto grado en español y matemáticas en OCI censal.">Aumentar a 60% el porcentaje de aciertos de alumnos de sexto grado en español y matemáticas en OCI censal.</option>
+												<option value="Lograr que al menos el 70% de los alumnos de primaria alcance el nivel esperado de los aprendizajes (8, 9 y 10 de calificación en exámenes estandarizados) de acuerdo a las evaluaciones trimestrales.">Lograr que al menos el 70% de los alumnos de primaria alcance el nivel esperado de los aprendizajes (8, 9 y 10 de calificación en exámenes estandarizados) de acuerdo a las evaluaciones trimestrales.</option>
 
-															</select>
-														<?php endif ?>
+											</select>
+										<?php endif ?>
 
-														<?php if ($nivel_escolar == 5): ?>
+										<?php if ($nivel_escolar == 5): ?>
 
-															<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																<option selected='selected' value="0">SELECCIONAR</option>
-																<option value="Aumentar los índices de aprendizaje en Español y Matemáticas en un 30% a toda la población educativa del Nivel de Secundaria, a julio de 2020, según prueba estandarizada estatal (gestión - IDDIEE).">Aumentar los índices de aprendizaje en Español y Matemáticas en un 30% a toda la población educativa del Nivel de Secundaria, a julio de 2020, según prueba estandarizada estatal (gestión - IDDIEE).</option>
+											<select class="form-control slt_objetivo_estatal" tabindex="-98">
+												<option selected='selected' value="0">SELECCIONAR UN OBJETIVO ESTATAL</option>
+												<option value="Aumentar los índices de aprendizaje en Español y Matemáticas en un 30% a toda la población educativa del Nivel de Secundaria, a julio de 2020, según prueba estandarizada estatal (gestión - IDDIEE).">Aumentar los índices de aprendizaje en Español y Matemáticas en un 30% a toda la población educativa del Nivel de Secundaria, a julio de 2020, según prueba estandarizada estatal (gestión - IDDIEE).</option>
 
-															</select>
-														<?php endif ?>
-													</div>
-													<div class="col-md-3">
-														<button id="" type="button" class="btn_objetivo_estatal btn btn-dark  ocultar" data-toggle="tooltip" data-placement="top" title="Generar oración">Agregar <i class="fas fa-check"></i>
-														</button>
-													</div>
-													<?php break;
-													case '3': ?>
-													<div class="col-md-4">
-														<span class="badge badge-secondary h5 text-white">Objetivo Estatal </span>
-														
-													</div>
-													<div class="col-md-4">
-														
-														<?php if ($nivel_escolar == 2): ?>
+											</select>
+										<?php endif ?>
+									</div>
+									<div class="col-md-3">
+										<button id="" type="button" class="btn_objetivo_estatal btn btn-dark  ocultar" data-toggle="tooltip" data-placement="top" title="Generar oración">Agregar <i class="fas fa-check"></i>
+										</button>
+									</div>
+									<?php break;
+									case '4': ?>
 
-															<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																<option selected='selected' value="0">SELECCIONAR</option>
-																<option value=" Alcanzar el perfil de competencia de las figuras educativas, al menos en un 80% a junio de 2020."> Alcanzar el perfil de competencia de las figuras educativas, al menos en un 80% a junio de 2020.</option>
+									<div class="col-md-6">
+										<?php if ($nivel_escolar == 2): ?>
 
-															</select>
-														<?php endif ?>
+											<select class="form-control slt_objetivo_estatal" tabindex="-98">
+												<option selected='selected' value="0">SELECCIONAR UN OBJETIVO ESTATAL</option>
+												<option value="Alcanzar el cumplimiento de padres de familia al menos en un 80% en la crianza compartida.">Alcanzar el cumplimiento de padres de familia al menos en un 80% en la crianza compartida.</option>
 
-														<?php if ($nivel_escolar == 3): ?>
+											</select>
+										<?php endif ?>
 
-															<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																<option selected='selected' value="0">SELECCIONAR</option>
-																<option value="Lograr que el 100% de direcvtivos de promoción cuenten con herramientas para el desarrollo de su función.">Lograr que el 100% de direcvtivos de promoción cuenten con herramientas para el desarrollo de su función.</option>
-																<option value="Lograr que el 10% de docentes domine el idioma Inglés a nivel básico.">Lograr que el 10% de docentes domine el idioma Inglés a nivel básico.</option>
-																<option value="Lograr que el 60% de los Jefes de Sector y Supervisores manejen las TIC.">Lograr que el 60% de los Jefes de Sector y Supervisores manejen las TIC.</option>
+										<?php if ($nivel_escolar == 3): ?>
 
-															</select>
-														<?php endif ?>
+											<select class="form-control slt_objetivo_estatal" tabindex="-98">
+												<option selected='selected' value="0">SELECCIONAR UN OBJETIVO ESTATAL</option>
+												<option value="Lograr la operación del 80% de los CEPS registrados en el ciclo escolar 2019 - 2020.">Lograr la operación del 80% de los CEPS registrados en el ciclo escolar 2019 - 2020.</option>
+												<option value="Lograr que el 20% de los padres de familia de cada plantel se involucren en las actividades escolares.">Lograr que el 20% de los padres de familia de cada plantel se involucren en las actividades escolares.</option>
+											</select>
+										<?php endif ?>
 
 
-														<?php if ($nivel_escolar == 4): ?>
+										<?php if ($nivel_escolar == 4): ?>
 
-															<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																<option selected='selected' value="0">SELECCIONAR</option>
-																<option value="Lograr que al menos el 70% de los alumnos de primaria alcance el nivel esperado de los aprendizajes (8, 9 y 10 de calificación en exámenes estandarizados) de acuerdo a las evaluaciones trimestrales.">Lograr que al menos el 70% de los alumnos de primaria alcance el nivel esperado de los aprendizajes (8, 9 y 10 de calificación en exámenes estandarizados) de acuerdo a las evaluaciones trimestrales.</option>
+											<select class="form-control slt_objetivo_estatal" tabindex="-98">
+												<option selected='selected' value="0">SELECCIONAR UN OBJETIVO ESTATAL</option>
+												<option value="Alcanzar que el 100% de los Padres de Familia de alumnos en riesgo se involucre en actividades de apoyo al aprendizaje trimestralmente durante el ciclo escolar.">Alcanzar que el 100% de los Padres de Familia de alumnos en riesgo se involucre en actividades de apoyo al aprendizaje trimestralmente durante el ciclo escolar.</option>
 
-															</select>
-														<?php endif ?>
+											</select>
+										<?php endif ?>
 
-														<?php if ($nivel_escolar == 5): ?>
+										<?php if ($nivel_escolar == 5): ?>
 
-															<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																<option selected='selected' value="0">SELECCIONAR</option>
-																<option value="Lograr contar con personal docente competitivo a nivel Internacional, donde al menos un 15% de docentes domine el idioma Inglés y un 40% el dominio de TIC, a julio de 2020.">Lograr contar con personal docente competitivo a nivel Internacional, donde al menos un 15% de docentes domine el idioma Inglés y un 40% el dominio de TIC, a julio de 2020.</option>
+											<select class="form-control slt_objetivo_estatal" tabindex="-98">
+												<option selected='selected' value="0">SELECCIONAR UN OBJETIVO ESTATAL</option>
+												<option value="Aumentar la generación de ambientes de colaboración y corresponsabilidad con los padres de familia en al menos un 80% del total de la población, a julio 2020.">Aumentar la generación de ambientes de colaboración y corresponsabilidad con los padres de familia en al menos un 80% del total de la población, a julio 2020.</option>
 
-															</select>
-														<?php endif ?>
-													</div>
-													<div class="col-md-3">
-														<button id="" type="button" class="btn_objetivo_estatal btn btn-dark  ocultar" data-toggle="tooltip" data-placement="top" title="Generar oración">Agregar <i class="fas fa-check"></i>
-														</button>
-													</div>
-													<?php break;
-													case '4': ?>
-													
-													<div class="col-md-4">
-														<span class="badge badge-secondary h5 text-white">Objetivo Estatal </span>
-													</div>
-													<div class="col-md-4">
-														<?php if ($nivel_escolar == 2): ?>
+											</select>
+										<?php endif ?>
+									</div>
+									<div class="col-md-3">
+										<button id="" type="button" class="btn_objetivo_estatal btn btn-dark  ocultar" data-toggle="tooltip" data-placement="top" title="Generar oración">Agregar <i class="fas fa-check"></i>
+										</button>
+									</div>
+									<?php break; } ?>
+								</div>
+							</div>
 
-															<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																<option selected='selected' value="0">SELECCIONAR</option>
-																<option value="Alcanzar el cumplimiento de padres de familia al menos en un 80% en la crianza compartida.">Alcanzar el cumplimiento de padres de familia al menos en un 80% en la crianza compartida.</option>
-
-															</select>
-														<?php endif ?>
-
-														<?php if ($nivel_escolar == 3): ?>
-
-															<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																<option selected='selected' value="0">SELECCIONAR</option>
-																<option value="Lograr la operación del 80% de los CEPS registrados en el ciclo escolar 2019 - 2020.">Lograr la operación del 80% de los CEPS registrados en el ciclo escolar 2019 - 2020.</option>
-																<option value="Lograr que el 20% de los padres de familia de cada plantel se involucren en las actividades escolares.">Lograr que el 20% de los padres de familia de cada plantel se involucren en las actividades escolares.</option>
-															</select>
-														<?php endif ?>
-
-
-														<?php if ($nivel_escolar == 4): ?>
-
-															<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																<option selected='selected' value="0">SELECCIONAR</option>
-																<option value="Alcanzar que el 100% de los Padres de Familia de alumnos en riesgo se involucre en actividades de apoyo al aprendizaje trimestralmente durante el ciclo escolar.">Alcanzar que el 100% de los Padres de Familia de alumnos en riesgo se involucre en actividades de apoyo al aprendizaje trimestralmente durante el ciclo escolar.</option>
-
-															</select>
-														<?php endif ?>
-
-														<?php if ($nivel_escolar == 5): ?>
-
-															<select class="form-control slt_objetivo_estatal" tabindex="-98">
-																<option selected='selected' value="0">SELECCIONAR</option>
-																<option value="Aumentar la generación de ambientes de colaboración y corresponsabilidad con los padres de familia en al menos un 80% del total de la población, a julio 2020.">Aumentar la generación de ambientes de colaboración y corresponsabilidad con los padres de familia en al menos un 80% del total de la población, a julio 2020.</option>
-
-															</select>
-														<?php endif ?>
-													</div>
-													<div class="col-md-3">
-														<button id="" type="button" class="btn_objetivo_estatal btn btn-dark  ocultar" data-toggle="tooltip" data-placement="top" title="Generar oración">Agregar <i class="fas fa-check"></i>
-														</button>
-													</div>
-													<?php break; } ?>
-												</div>
-											</div>
-
-
+							<div class="row">
+								<div class="col-12">
+									<div class="alert alert-info" role="alert">
+										<div class="row">
 
 											<div class="col">
 												<label class="mb-1">
@@ -474,9 +419,9 @@
 				</div>
 
 				<?php if (!isset($idtemaprioritario)): ?>
-					<input type="hidden" id="id_tema_prioritario" name="id_tema_prioritario" value="0">
+					<input type="" id="id_tema_prioritario" name="id_tema_prioritario" value="0">
 					<?php else: ?>
-						<input type="hidden" id="id_tema_prioritario" name="id_tema_prioritario" value="<?php echo $idtemaprioritario ?>">
+						<input type="" id="id_tema_prioritario" name="id_tema_prioritario" value="<?php echo $idtemaprioritario ?>">
 					<?php endif; ?>
 				</form>
 			</div>

@@ -78,7 +78,7 @@
   <thead>
     <tr  class="text-center">
       <th colspan="10"><label><b>Objetivo:</b> <span><?= $avance['objetivo'] ?>
-      <button type="button" onclick="obsercaciones_modal(<?= $avance['id_objetivo'] ?>)" class="btn btn-success btn-sm">Observaciones</button>
+      <button type="button" onclick="obsercaciones_modal(<?= $avance['id_objetivo'] ?>)" class="btn btn-success btn-sm d-none">Observaciones</button>
       <div class="modal" id="myModal<?= $avance['id_objetivo'] ?>">
   <div class="modal-dialog">
     <div class="modal-content">

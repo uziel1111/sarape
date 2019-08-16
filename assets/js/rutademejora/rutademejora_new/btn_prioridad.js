@@ -265,7 +265,7 @@ function show(select_id){
 
 $('.slt_objetivo_estatal').change(function() {
 	$('.btn_objetivo_estatal').removeClass('ocultar');
-	if ($('.slt_objetivo_estatal option:selected').text() == 'SELECCIONAR') {
+	if ($('.slt_objetivo_estatal option:selected').val() == '0') {
 		$('.btn_objetivo_estatal').addClass('ocultar');
 	}
 })
@@ -371,7 +371,7 @@ console.log('grabar_objetivo ' + idtemap);
 				type: 'POST',
 				dataType: 'JSON',
 				data: {
-								id_tprioritario : obj.id_tprioritario,
+								id_tprioritario : idtemap,
 								id_subprioridad : obj.id_subprioridad,
 								id_prioridad: obj.id_prioridad,
 								objetivo: $('#CAPoutput').val(),
@@ -390,10 +390,10 @@ console.log('grabar_objetivo ' + idtemap);
 							"El objetivo se insertó correctamente",
 							'success'
 						);
-						// obj_prioridad.getObjetivos();
+						obj_prioridad.getObjetivos();
 				}, 1000);
 
-				$("#id_tema_prioritario").val(result.idtemaprioritario);
+				// $("#id_tema_prioritario").val(result.idtemaprioritario);
 				$("#opt_prioridad").attr('disabled', true);
 				$("#opt_prioridad_especial").attr('disabled', true);
 				$('#otra_fecha').attr('hidden', true);
