@@ -1857,7 +1857,7 @@ class Rutademejora extends CI_Controller {
 			// $head = 'DOCUMENTAR LA PROBLEMÁTICA: ';
 			$head = $titulo;
 
-			$response = array('strView' => $strView, 'titulo' => $head);
+			$response = array('strView' => $strView, 'titulo' => $head, 'data'=>$data);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}else{
@@ -1995,7 +1995,7 @@ class Rutademejora extends CI_Controller {
 		<thead>
 		<tr class=info>
 		<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-		<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Actividad</center></th>
+		<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Acciones</center></th>
 		<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
 		<th colspan='2' scope='col'><center>Fecha</center></th>
 		</tr>

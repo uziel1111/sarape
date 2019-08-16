@@ -9,7 +9,10 @@ $(document).ready(function(){
 	$('#otra_fecha').attr('hidden', true)
 	$('[data-toggle="tooltip"]').tooltip({
     trigger : 'hover'
-	})
+	});
+
+
+$('.problematica').selectpicker("refresh");
 });
 //Eventos
 $('#opt_prioridad_especial').change(function(){
@@ -22,12 +25,12 @@ $('#opt_prioridad_especial').change(function(){
 
 //SELECT PROBLEMATICA
 $('.problematica').change(function() {
-	valor = $('.problematica').val();
-	if (valor == 'OTROS') {
-		$('#problematicaTxt').removeClass('ocultar');
-	}else{
-		$('#problematicaTxt').addClass('ocultar');
-	}
+	// |
+	// if (valor == 'OTROS') {
+	// 	$('#problematicaTxt').removeClass('ocultar');
+	// }else{
+	// 	$('#problematicaTxt').addClass('ocultar');
+	// }
 });
 
 $('#slt_fecha').change(function(){
@@ -135,7 +138,7 @@ function publicar(id) {
         Notification.loading("");
     	},})
 		.done(function(data){
-			console.log(data.estado);
+			//console.log(data.estado);
 						if (data.estado == 1) {	
 			$('#aPublicar_'+id).data('estado', 1);
 			$('#publicar_'+id).removeClass('fa-user-secret');
@@ -327,6 +330,9 @@ $('#grabar_prioridad').click(function(){
 	.done(function(result) {
 
 		// $('#id_tema_prioritario').val(obj.id_tprioritario);
+		valor = $('.problematica option:selected').text();
+		//console.log(valor);
+		$('.problematicaTxt').val(valor);
 		obj.get_view();
 	})
 	.fail(function(e) {
@@ -342,12 +348,12 @@ $('#grabar_prioridad').click(function(){
 //Grabar objetivo
 $('#grabar_objetivo').click(function(){
 	let idtemap = $('#id_tema_prioritario').val();
-console.log('grabar_objetivo ' + idtemap);
+//console.log('grabar_objetivo ' + idtemap);
 	let flag = $('#update_flag').val();
 	let contenido = $('#CAPoutput').val();
-	console.log(idtemap,);
-	console.log(obj.id_prioridad,);
-	console.log(obj.id_subprioridad);
+	//console.log(idtemap,);
+	//console.log(obj.id_prioridad,);
+	//console.log(obj.id_subprioridad);
 
 	if (contenido == '') {
 		swal(
@@ -553,10 +559,10 @@ function btnEliminar(){
 Prioridad.prototype.getObjetivos = function(){
 	var idtemaprioritario = obj.id_tprioritario ;
 	let idtemap = $('#id_tema_prioritario').val();
-	console.log('aquí estamos {');
-console.log( idtemap);	
-console.log( idtemaprioritario);	
- console.log('} hasta aquí');
+	//console.log('aquí estamos {');
+//console.log( idtemap);	
+//console.log( idtemaprioritario);	
+ //console.log('} hasta aquí');
 	if(obj.id_tprioritario != 0){
 		$.ajax({
 			url: base_url+'Rutademejora/getObjetivos',

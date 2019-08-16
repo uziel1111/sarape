@@ -51,5 +51,6 @@ Teléfonos: (844) 411-8500, 411-8588, 411-8634 Fax. 414-7946</p>
             </div>
         </footer>
   <!-- Footer -->
+  <script src="<?= base_url('assets/multiselect/js/bootstrap-select.js'); ?>"></script>
 </body>
 </html>

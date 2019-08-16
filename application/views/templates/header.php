@@ -16,6 +16,7 @@
   <!-- Site Title -->
     <title>SARAPE</title>
     <!-- Site Title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
     <link href="http://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">
   <!-- CSS -->
@@ -149,3 +150,4 @@
 <div id="div_generico"></div>
 <div id="div_generico2"></div>
 <script src="<?= base_url('assets/js/index/index.js') ?>"></script>
+<script src="<?= base_url('assets/multiselect/js/bootstrap-select.js'); ?>"></script>

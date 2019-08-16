@@ -257,7 +257,7 @@ span{
                 	
 								<div class="row mt-15">
 									<div class="col-md-6">
-										<label><label style="color:red;">*</label>Acciones:</label>
+										<label><label style="color:red;">*</label>Agregar acción:</label>
 										<textarea id="txt_rm_meta" class="form-control" rows="5" maxlength="150" required="true"></textarea>
 									</div>
 									<div class="col-md-6">
@@ -308,7 +308,7 @@ span{
 								<div class="row mt-15">
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Fecha de inicio</label>
-										<input id="datepicker1" disabled data-date-format="dd/mm/yyyy"/>
+										<input id="datepicker1" disabled data-date-format="mm/dd/yyyy"/>
 										<script>
 										$('#datepicker1').datepicker({
 											uiLibrary: 'bootstrap4'
@@ -318,7 +318,7 @@ span{
 
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Fecha de término</label>
-										<input id="datepicker2" data-date-format="dd/mm/yyyy" disabled/>
+										<input id="datepicker2" data-date-format="mm/dd/yyyy" disabled/>
 										<script>
 										$('#datepicker2').datepicker({
 											uiLibrary: 'bootstrap4'
@@ -335,7 +335,7 @@ span{
 								</div>
 								<div class="row mt-15 float-right">
 									<div class="col-12 ">
-										<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_agregar_accion">Agregar actividad</button>
+										<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_agregar_accion">Agregar acción</button>
 										<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_editando_accion">Editar</button>
                     <button type="button" id="saliract" class="btn btn-success btn-style-1 mr-10">Regresar</button>
 									</div>

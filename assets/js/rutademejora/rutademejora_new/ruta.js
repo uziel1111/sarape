@@ -91,11 +91,14 @@ $("#btn_prioridad").click(function(e){
 		    }
 			})
 			.done(function(data){
+				//console.log( data.data['problematica'].split(','));
 				$("#div_generico").empty();
 		    $("#div_generico").append(data.strView);
-		    $('#problematica').val("");
-		    $('#evidencias').val("");
-		    $('#txt_rm_obs_direc').val("");
+		    $('.problematica').selectpicker('val', data.data['problematica'].split(','));
+		    // $('.problematicaTxt').text( data.data['problematica']);
+		    // $('#problematica').val("");
+		    // $('#evidencias').val("");
+		    // $('#txt_rm_obs_direc').val("");
 				$('h5').empty();
 				$('h5').append(data.titulo);
 		    $("#myModal").modal("show");
