@@ -84,7 +84,7 @@ $("#btn_grabar_tp").click(function(){
   })
   .done(function(result) {
     swal.close();
-    console.log(result.estatus);
+    //console.log(result.estatus);
     if (result.estatus) {
       // obj_rm_tp.subir_archivo();
       obj_rm_tp.limpia_campos_tp();
@@ -183,7 +183,7 @@ Rm_tp.prototype.insert_update_mision_cct = function(){
 })
 .done(function(result) {
   // swal.close();
-  console.log(result.estatus);
+  //console.log(result.estatus);
 
 })
 .fail(function(e) {
@@ -219,7 +219,7 @@ Rm_tp.prototype.limpia_campos_tp = function(){
 };
 
 Rm_tp.prototype.subir_archivo = function(){
-       console.log("botón de adjuntar imagen del modal objetivos");
+      // console.log("botón de adjuntar imagen del modal objetivos");
     //información del formulario
     var formData = new FormData($(".formulario1")[0]);
     var message = "";
@@ -391,7 +391,7 @@ Rm_tp.prototype.eliminaEvidencia= function(idtemaprioritario){
       })
       .done(function(result) {
       swal.close();
-      console.log(result.status);
+    //  console.log(result.status);
         swal(
             '¡Correcto!',
             "Se eliminó el tema prioritario correctamente",

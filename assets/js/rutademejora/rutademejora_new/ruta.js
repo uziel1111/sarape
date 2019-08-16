@@ -74,7 +74,7 @@ $("#btn_prioridad").click(function(e){
       );
     return false;
 	} else{
-		console.log(obj);
+		//console.log(obj);
 			var ruta = base_url + 'Rutademejora/get_datos_edith_tp'
 			$.ajax({
 				url:ruta,
@@ -144,7 +144,7 @@ $("#btn_actividades").click(function(e){
 Prioridad.prototype.getObjetivos = function(){
 	// var idtemaprioritario = obj.id_tprioritario ;
 	if(obj.id_tpriotario != 0){
-	console.log(obj.id_tprioritario);
+	//console.log(obj.id_tprioritario);
 		$.ajax({
 			url: base_url+'Rutademejora/getObjetivos',
 			type: 'POST',
@@ -187,7 +187,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 		 obj.id_tprioritario = t_prioritario;
 		 // obj.id_subprioridad = val3;
 
-     console.log(obj.id_objetivo);
+     //console.log(obj.id_objetivo);
      // console.log(val2);
      // console.log(val3);
 

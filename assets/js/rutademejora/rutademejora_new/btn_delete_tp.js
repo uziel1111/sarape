@@ -11,7 +11,7 @@ $('#btn_rutamejora_eliminareg').click(function(){
       "error"
     );
 	} else {
-		console.log(obj.id_tprioritario);
+		//console.log(obj.id_tprioritario);
 		swal({
       title: '¿Esta seguro de eliminar el tema prioritario?',
       text: "Una vez eliminado no se podra recuperar",

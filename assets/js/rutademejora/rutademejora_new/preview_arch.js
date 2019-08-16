@@ -121,8 +121,8 @@ function eliminaEvidenciaFin(id_objetivo, elemento){
 //Funciones para guardar evidencias inicio
 
 function cargarEvidencia(id_objetivo, id_tprioritario, elemento){
- console.log("metódo de adjuntar imagen del modal objetivos");
- console.log(elemento);
+ //console.log("metódo de adjuntar imagen del modal objetivos");
+ //console.log(elemento);
  readURL(id_objetivo,elemento);
  let formData = new FormData($('#form_evidencia_'+id_objetivo)[0])
 
@@ -216,7 +216,7 @@ function imgPreviewFin(id_objetivo){
 }
 
 function subirImagen() {
-  console.log('subiendo imagen desde funcion');
+ // console.log('subiendo imagen desde funcion');
 }
 
 $("#cerrar_modal_ver_evidencia").click(function(){

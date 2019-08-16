@@ -85,7 +85,7 @@ $("#btn_editando_accion").click(function(){
   obj_rm_acciones_tp.editar_accion()
 } else{
 
- console.log(obj_rm_acciones_tp.validaform(0) + "else");
+// console.log(obj_rm_acciones_tp.validaform(0) + "else");
 }
 
 });
@@ -307,7 +307,7 @@ Rm_acciones_tp.prototype.delete_accion = function(idaccion){
                //$("#id_objetivos").val('0');
                var vista = data.tabla;
               //$("#id_objetivos").val(id_objetivos);
-              console.log(id_objetivo);
+              //console.log(id_objetivo);
                //$("#contenedor_acciones_id").empty();
                getAccxObj();
                //$("#contenedor_acciones_id").append(vista);
@@ -390,9 +390,9 @@ Rm_acciones_tp.prototype.validaform = function(llamado){
                 if(date_diff_indays() >= 0){
                   if (llamado != 0) {
                     obj_rm_acciones_tp.save_accion();
-                    console.log(llamado + " por qué entró aquí? 2");
+                   // console.log(llamado + " por qué entró aquí? 2");
                   }else{
-                    console.log(llamado + " clik, clik");
+                   // console.log(llamado + " clik, clik");
                     return true;
                   }
                 }else{
@@ -479,7 +479,7 @@ Rm_acciones_tp.prototype.validaform = function(llamado){
     }else{
       swal(
         '¡Error!',
-        "Introduzca actividad ",
+        "Introduzca acción ",
         'danger'
         );
       return false;

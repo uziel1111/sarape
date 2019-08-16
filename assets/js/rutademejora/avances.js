@@ -10,7 +10,7 @@ function btn_observar(id) {
   var ajustes = $("#txt_obs_ajustes_"+id).val();
   var accion = $("#slc_observaciones"+id+" option:selected").val();
 
-console.log(accion);
+//console.log(accion);
   $.ajax({
     url: base_url+'rutademejora/set_observacion',
     type: 'POST',
@@ -99,8 +99,8 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
   if (dias_restantes_hoy >= 0) {
 
     if (dias_restantes >= dias_restantes_hoy) {
-      $('#spanRestante'+var_id_idacc+'').addClass('text-danger');
-
+      $('#spanRestante'+var_id_idacc+'').addClass('text-warning');
+    $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
       if (porcentaje == 0) {
       //    swal(
       //   "Quedan: "+ (dias_restantes_hoy/24) +"días.",
@@ -126,19 +126,19 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
       return "Y2.png";  
     }else{
       if (porcentaje >= 90 && porcentaje <= 99) {
-       swal(
-        "Quedan: "+ (dias_restantes_hoy/24) +"días.",
-        "<br> Sólo queda un salto.",
-        'info'
-        );
+       // swal(
+       //  "Quedan: "+ (dias_restantes_hoy/24) +"días.",
+       //  "<br> Sólo queda un salto.",
+       //  'info'
+       //  );
        return "G3.png";
      }else{
       if (porcentaje == 100) {
-       swal(
-        'Correcto!',
-        "Felicidades, llegamos a la meta",
-        'success'
-        );
+       // swal(
+       //  'Correcto!',
+       //  "Felicidades, llegamos a la meta",
+       //  'success'
+       //  );
        return "G4.png";
      }
    }
@@ -190,12 +190,9 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
     }
   }
 }else{
-  $('#spanRestante'+var_id_idacc+'').addClass('text-info');
-      // swal(
-      //   "No se encuentra en periodo de actividad",
-      //   "Podrás registrar tus avances en: "+ (dias_restantes_hoy/24) +"días",
-      //   'error'
-      // );
+     $('#spanRestante'+var_id_idacc+'').addClass('text-info');
+    $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
+   
       return 'G0.png';
     } 
   }
@@ -203,11 +200,7 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
 } else{
 
   $('#spanRestante'+var_id_idacc+'').addClass('text-info');
-      // swal(
-      //   "No se encuentra en periodo de actividad",
-      //   "Esta actividad ha vencido",
-      //   'error'
-      // );
+   $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
       return 'R0.png';
     }  
   };

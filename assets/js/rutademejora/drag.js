@@ -33,7 +33,7 @@ function Drag(){
  	var posicion = 0;
  	for(var i = 0; i < vector.length; i++){
  		for(var j = 0; j < vector[i].length; j++){
- 			console.log(vector[i][j]);
+ 		//	console.log(vector[i][j]);
  			if(vector[i][j] == "" || vector[i][j] == " " || vector[i][j] == '' || vector[i][j] == ' ' || vector[i][j] == null){
  				eliminar = true;
  				posicion = i;
@@ -46,7 +46,7 @@ function Drag(){
  Drag.prototype.sort = function(vector, pos){
  	for(var i = 0; i < vector.length; i++){
  		for(var j = 0; j < vector[i].length; j++){
- 			console.log(vector[i][j]);
+ 		//	console.log(vector[i][j]);
  			if(j === pos){
  				vector[i][j] = i+1;
  			}
