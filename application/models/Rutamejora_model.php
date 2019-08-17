@@ -333,7 +333,7 @@ function  get_datos_edith_tp($id_tprioritario){
 
   function get_avances_tp_accionxcct($id_cct){
     $str_query = "SELECT
-    tp.id_tprioritario, p.prioridad, o.id_objetivo, o.objetivo, o.id_tprioritario as ob_tp, a.id_accion, a.accion, a.id_objetivos, tp.id_cct,
+    tp.id_tprioritario, p.prioridad, o.id_objetivo, upper(o.objetivo), o.id_tprioritario as ob_tp, a.id_accion, a.accion, a.id_objetivos, tp.id_cct,
     IFNULL(av.cte1,0) as cte1,IFNULL(av.cte2,0) as cte2,IFNULL(av.cte3,0) as cte3,
     IFNULL(av.cte4,0) as cte4,IFNULL(av.cte5,0) as cte5,IFNULL(av.cte6,0) as cte6,
     IFNULL(av.cte7,0) as cte7,IFNULL(av.cte8,0) as cte8, '' as icono,
@@ -652,7 +652,7 @@ function  get_datos_edith_tp($id_tprioritario){
     function getObjetivos($id_cct, $id_tprioritario, $idprioridad){
       $str_query = "SELECT * FROM rm_tema_prioritarioxcct tprio
                     LEFT JOIN rm_objetivo obj ON obj.id_tprioritario = tprio.id_tprioritario
-                    WHERE tprio.id_cct = {$id_cct} AND tprio.id_tprioritario = {$id_tprioritario} AND tprio.id_prioridad = {$idprioridad} ORDER BY obj.fecha_creacion DESC";
+                    WHERE tprio.id_cct = {$id_cct} AND tprio.id_tprioritario = {$id_tprioritario} AND tprio.id_prioridad = {$idprioridad} ORDER BY obj.id_objetivo DESC";
       // echo "<pre>";print_r($str_query);die();
       return $this->db->query($str_query)->result_array();
     }

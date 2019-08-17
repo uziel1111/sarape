@@ -422,9 +422,9 @@
 				</div>
 
 				<?php if (!isset($idtemaprioritario)): ?>
-					<input type="" id="id_tema_prioritario" name="id_tema_prioritario" value="0">
+					<input type="hidden" id="id_tema_prioritario" name="id_tema_prioritario" value="0">
 					<?php else: ?>
-						<input type="" id="id_tema_prioritario" name="id_tema_prioritario" value="<?php echo $idtemaprioritario ?>">
+						<input type="hidden" id="id_tema_prioritario" name="id_tema_prioritario" value="<?php echo $idtemaprioritario ?>">
 					<?php endif; ?>
 				</form>
 			</div>

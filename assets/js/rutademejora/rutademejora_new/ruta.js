@@ -102,7 +102,10 @@ $("#btn_prioridad").click(function(e){
 				$('h5').empty();
 				$('h5').append(data.titulo);
 		    $("#myModal").modal("show");
+		    
         obj_prioridad.getObjetivos(obj.id_tprioritario);
+        
+
 			})
 			.fail(function(e) {
 		    console.error("Error in get_datos_edith_tp()");
@@ -146,6 +149,7 @@ $("#btn_actividades").click(function(e){
 ///
 Prioridad.prototype.getObjetivos = function(){
 	// var idtemaprioritario = obj.id_tprioritario ;
+	
 	if(obj.id_tpriotario != 0){
 	//console.log(obj.id_tprioritario);
 		$.ajax({
@@ -166,6 +170,12 @@ Prioridad.prototype.getObjetivos = function(){
 
 			$('#tema_prioritario').val(result.id_tprioritario);
 			$('#id_objetivo').val(result.id_objetivo);
+			if (result.id_objetivo == 0) {
+				$('.problematicaTxt').empty();
+				$('#evidencias').empty();
+				$('#txt_rm_obs_direc').empty();
+			}
+			console.log(result.id_objetivo);
 			obj_prioridad.funcionalidadselect()
 			// obj_prioridad.btnEditar();
 			// btnEditar();

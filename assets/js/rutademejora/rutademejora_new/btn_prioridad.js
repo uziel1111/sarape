@@ -557,6 +557,7 @@ function btnEliminar(){
 }
 
 Prioridad.prototype.getObjetivos = function(){
+	console.log('js btn_prioridad.js');
 	var idtemaprioritario = obj.id_tprioritario ;
 	let idtemap = $('#id_tema_prioritario').val();
 	//console.log('aquí estamos {');
@@ -585,6 +586,11 @@ Prioridad.prototype.getObjetivos = function(){
 			// obj_prioridad.getObjetivos()
 			// obj_prioridad.btnEditar();
 			// btnEditar();
+			if (result.id_objetivo == 0) {
+				$('.problematicaTxt').empty();
+				$('#evidencias').empty();
+				$('#txt_rm_obs_direc').empty();
+			}
 		})
 		.fail(function(e) {
 			console.error("Error in getObjetivos()");

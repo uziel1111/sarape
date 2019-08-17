@@ -1483,8 +1483,8 @@ class Rutademejora extends CI_Controller {
 		$datos = $this->Rutamejora_model->getObjetivos($id_cct, $id_tprioritario, $idprioridad);
 		//echo "<pre>";print_r($datos);die();
 		$idobjetivo = 0;
-		if(count($datos) == 0){
-			//echo 'if'; die();
+		if($datos[0]['id_objetivo'] == NULL){
+			// echo 'if'; die();
 			$tabla = "<table id='metas_objetivos' class='table table-condensed table-hover table-light table-bordered'>
 			<thead>
 			<tr class='info'>
@@ -1509,8 +1509,8 @@ class Rutademejora extends CI_Controller {
 			</tr>";
 
 			$tabla .= "</tbody></table>";
+			
 		}else{
-
 			$tabla = "<table id='id_tabla_objetivos' class='table table-condensed table-hover table-light table-bordered'>
 			<thead>
 			<tr class='info'>
