@@ -331,8 +331,7 @@ $('#grabar_prioridad').click(function(){
 
 		// $('#id_tema_prioritario').val(obj.id_tprioritario);
 		valor = $('.problematica option:selected').text();
-		//console.log(valor);
-		$('.problematicaTxt').val(valor);
+		$('.problematicaTxt').val(valor.toString().replace(/\./g,', '));
 		obj.get_view();
 	})
 	.fail(function(e) {

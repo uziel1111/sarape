@@ -158,7 +158,7 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
             $('h5').append(lae);
             $("#label_escuela").text(data.datos['escuela']);
             $("#label_prioridad").text(data.datos['prioridad']);
-            $("#label_problematica").text(data.datos['problematicas']);
+            $("#label_problematica").text(data.datos['problematicas'].toString().replace(/\./g,', '));
             $("#label_evidencia").text(data.datos['evidencias']);
             $("#id_objetivos").empty();
             $("#id_objetivos").append(data.stroption);

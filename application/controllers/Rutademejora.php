@@ -1567,12 +1567,20 @@ class Rutademejora extends CI_Controller {
 				<button type='button' id='elimina_ini' class='btn btn-sm cerrar'
 				onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
 				<i class='fas fa-times-circle'></i>
-				</button>
+				</button>";
+					$extension = substr($dato['path_ev_inicio'],-3);
 
-				<img id='preview{$dato['id_objetivo']}'
+					if ( $extension == 'pdf' || $extension == 'xsl'  || $extension == 'doc'  || $extension == 'ppt'  || $extension == 'slx'  || $extension == 'ocx'  || $extension == 'ptx'  ) {
+						$tabla.="<a id='preview{$dato['id_objetivo']}'
+				href='../../{$dato['path_ev_inicio']}' target='_blank' alt='Archivo' width='' height='50px'
+				 class='img img-thumbnail'> Archivo de Texto </a>
+				</div>";
+					} else{
+				$tabla.="<img id='preview{$dato['id_objetivo']}'
 				src='../../{$dato['path_ev_inicio']}' alt='Archivo' width='' height='50px'
 				class='img img-thumbnail' onclick='imgPreview({$dato['id_objetivo']})' />
 				</div>";
+			}
 
 							// if (($dato['path_ev_fin']) != 'evidencias_rm/4237/8183/iron.jpg') {
 							// 	$tabla.= "<span class='btn btn-primary btn-file' id='otroboton'  onclick='subirImg($idobjetivo,1)'>
@@ -1599,11 +1607,20 @@ class Rutademejora extends CI_Controller {
 				<button type='button' value='Quack_2' class='btn btn-sm cerrar'
 				onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>
 				<i class='fas fa-times-circle'></i>
-				</button>
+				</button>";
 
-				<img id='preview_fin{$dato['id_objetivo']}' src='../../{$dato['path_ev_fin']}' alt='Archivo' width='' height='50px' class='img img-thumbnail'
+					$extension = substr($dato['path_ev_fin'],-3);
+			if ($extension == 'pdf' || $extension == 'xsl'  || $extension == 'doc'  || $extension == 'ppt'  || $extension == 'slx'  || $extension == 'ocx'  || $extension == 'ptx') {
+						$tabla.="<a id='preview{$dato['id_objetivo']}'
+			 	href='../../{$dato['path_ev_fin']}' target='_blank' alt='Archivo' width='' height='50px'
+				 class='img img-thumbnail'> Archivo de Texto </a>
+			 	</div>";
+					} else{
+				$tabla.="<img id='preview_fin{$dato['id_objetivo']}' src='../../{$dato['path_ev_fin']}' alt='Archivo' width='' height='50px' class='img img-thumbnail'
 				onclick='imgPreviewFin({$dato['id_objetivo']})' />
 				</div>";
+			}
+
 
 							// if (($dato['path_ev_fin']) != 'evidencias_rm/4237/8183/iron.jpg') {
 							// 	$tabla.= "<span class='btn btn-primary btn-file' id='otroboton'  onclick='subirImg($idobjetivo,2)'>
@@ -1723,8 +1740,8 @@ class Rutademejora extends CI_Controller {
 		// foreach ($datos as $dato) {
 			// $option .="<option value='{$dato['id_indicador']}'>{$dato['formula']}</option>";
 			// $option .="<option value=''>{$dato['formula']}</option>";
-		$option .="<option value=''>% Porcentaje</option>";
-		$option .="<option value=''># Cantidad</option>";
+		$option .="<option value=''>% </option>";
+		$option .="<option value=''># </option>";
 		// }
 
 		$response = array('stroption' => $option);
