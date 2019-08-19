@@ -41,7 +41,7 @@
 						<!-- List group -->
 						<ul class="list-group">
 
-							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank"><span class="color-2 mr-5"><i class="fas fa-star"></i></span> <FONT SIZE=2> Programa Escolar de Mejora Continua </font> </a>
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank"><span class="color-2 mr-5"><i class="fas fa-star"></i></span> <font SIZE=2> Programa Escolar de Mejora Continua </font> </a>
 							</li>
 							<!-- <li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Rutademejora/index_new'); ?>" target="_blank"><span class="color-2 mr-5"><i class="fas fa-star"></i></span> Ruta de Mejora <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a>
 							</li> -->
@@ -104,7 +104,7 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
-							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Talis/index'); ?>"><span class="color-4 mr-5"><i class="fas fa-star"></i></span> TALIS <span class="h4 text-white badge badge-secondary bgcolor-4">Nuevo</span></a></li>	
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Talis/index'); ?>"><span class="color-4 mr-5"><i class="fas fa-star"></i></span> TALIS <span class="h4 text-white badge badge-secondary bgcolor-4">Nuevo</span></a></li>
 							<li class="list-group-item"><a onclick="Index.getmodeloeducativo()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Modelo Coahuilense</a>
 							</li>
 							<li class="list-group-item"><a onclick="Index.getCalendarioEscolar()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Calendario escolar</a>

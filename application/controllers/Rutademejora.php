@@ -322,7 +322,7 @@ class Rutademejora extends CI_Controller {
 				$tam = count($temas_prioritarios);
 					//echo"<pre>";print_r($tam);  die();
 
-				
+
 				if (count($temas_prioritarios)>0) {
 					//echo "if"; die();
 					$tabla = "<div class='table-responsive' >
@@ -348,7 +348,7 @@ class Rutademejora extends CI_Controller {
 						<td id='num_objetivos' style='vertical-align:middle;'><center>{$tp['num_objetivos']}</center></td>
 						<td id='num_acciones' style='vertical-align:middle;'><center>{$tp['num_acciones']}</center></td>
 						</tr>";
-						
+
 					}
 
 					$tabla .= "</tbody>
@@ -633,7 +633,7 @@ class Rutademejora extends CI_Controller {
 
 						if($update){
 							$acciones = $this->Rutamejora_model->getacciones($id_objetivo);
-							
+
 							$tabla = "<div class='table-responsive'>
 							<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
 							<thead>
@@ -882,11 +882,13 @@ class Rutademejora extends CI_Controller {
 					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
 				// echo "<pre>";print_r($arr_avances);die();
 					$data2['arr_avances'] = $arr_avances;
-					$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(4);
+					$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
 					$data2['arr_avances_fechas'] = $arr_avances_fechas;
 				// echo "<pre>";print_r($data2);die();
 				// explode(" ", $pizza);
-					$clave = explode("_", array_search('TRUE', $arr_avances_fechas[0]))[0];
+					$varaux_temp = explode("_", array_search('TRUE', $arr_avances_fechas[0]));
+					// echo "<pre>"; print_r($varaux_temp); die();
+					$clave = $varaux_temp[0];
 				// $clave = "cte4_var";
 				// echo $clave; die();
 					$arr_avances_n = $this->asigna_icono($arr_avances, $clave);
@@ -904,8 +906,15 @@ class Rutademejora extends CI_Controller {
 
 			public function asigna_icono($arr_avances, $habilitado){
 			// echo $habilitado;die();
-				$anterior = explode("cte", $habilitado)[1];
-				$anterior = ((int)$anterior-1);
+				$anterioraux = explode("cte", $habilitado);
+				$anterior = $anterioraux[1];
+				if ($anterior == 1) {
+					$anterior = ((int)$anterior);
+				}
+				else{
+					$anterior = ((int)$anterior-1);
+				}
+				
 				$cadAnterior = "cte".$anterior;
 				$arr_avancesCompleto = array();
 				foreach ($arr_avances as $avance) {
@@ -1385,7 +1394,8 @@ class Rutademejora extends CI_Controller {
 		// print_r($_POST);
 		// die();
 		$id_tprioritario = $this->input->post('id_tprioritario');
-		$path_archivo = $this->Rutamejora_model->getEvidencia($id_tprioritario)[0]['path_evidencia'];
+		$path_archivo_aux = $this->Rutamejora_model->getEvidencia($id_tprioritario);
+		$path_archivo = $path_archivo_aux[0]['path_evidencia'];
 		// echo"<pre>";  print_r($path_archivo);die();
 
 		$status = $this->Rutamejora_model->deleteEvidencia($id_tprioritario);
@@ -1419,9 +1429,9 @@ class Rutademejora extends CI_Controller {
 		// $idtemaprioritario = $this->input->post('idtemaprioritario');
 		$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
 		$data['prioridades'] = $result_prioridades;
-		
+
 		// $data['idtemaprioritario'] = $idtemaprioritario;
-		
+
 		$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
 
 		$response = array('strView' => $strView, 'titulo' => 'Agrega prioridad');
@@ -1509,7 +1519,7 @@ class Rutademejora extends CI_Controller {
 			</tr>";
 
 			$tabla .= "</tbody></table>";
-			
+
 		}else{
 			$tabla = "<table id='id_tabla_objetivos' class='table table-condensed table-hover table-light table-bordered'>
 			<thead>
@@ -1549,15 +1559,15 @@ class Rutademejora extends CI_Controller {
 				<td id='id_objetivo' hidden><center>{$dato['id_objetivo']}</center></td>
 				<td id='id_tprioritario' hidden><center>{$dato['id_tprioritario']}</center></td>
 				<td id='num_rutamtema' data='1' class='text-center'>{$orden}
-				
+
 				<a onclick='publicar({$dato['id_objetivo']})' data-estado='{$dato['estado_publicacion']}' id='aPublicar_{$dato['id_objetivo']}'><i id='publicar_{$dato['id_objetivo']}'";
 				if ($dato['estado_publicacion'] == 0) {
 					 	// echo "<pre>";print_r($dato);die();
 					$tabla.="class='fas fa-user-secret'></i></a>";
 				}else{
-					$tabla.="class='fas fa-globe-americas'></i></a>";	
+					$tabla.="class='fas fa-globe-americas'></i></a>";
 				}
-				
+
 				$tabla.= "</td>
 				<td id='objetivo' data='Normalidad mínima'>{$dato['objetivo']}</td>
 				<td>
@@ -1777,7 +1787,8 @@ class Rutademejora extends CI_Controller {
 		$id_objetivo = $this->input->post('id_objetivo');
 		$id_tprioritario = $this->input->post('id_tprioritario'); // este dato no viene
 
-		$datos = $this->Rutamejora_model->getObjetivo($id_objetivo)[0];
+		$datos_aux = $this->Rutamejora_model->getObjetivo($id_objetivo);
+		$datos = $datos_aux[0];
 // echo "<pre>";print_r($datos); die();
 
 		$response = array('datos' => $datos);
@@ -1843,7 +1854,7 @@ class Rutademejora extends CI_Controller {
 				$id_nivel = 10;
 				break;
 			}
-			
+
 			// echo "<pre>";
 			// print_r($_POST);
 			// die();
@@ -1973,7 +1984,8 @@ class Rutademejora extends CI_Controller {
 
 	//Eliminar evidencia inicio
 	public function eliminaEvObjIn($id_objetivo){
-		$path_archivo = $this->Rutamejora_model->getEvidenciaInicio($id_objetivo)[0]['path_ev_inicio'];
+		$path_archivo_aux = $this->Rutamejora_model->getEvidenciaInicio($id_objetivo);
+		$path_archivo = $path_archivo_aux[0]['path_ev_inicio'];
 		// echo"<pre>";print_r($path_archivo);die();
 
 		if ($path_archivo != '' ) {
@@ -1989,7 +2001,8 @@ class Rutademejora extends CI_Controller {
 
 	//Eliminar evidencia fin
 	public function eliminaEvObjFin($id_objetivo){
-		$path_archivo = $this->Rutamejora_model->getEvidenciaFin($id_objetivo)[0]['path_ev_fin'];
+		$path_archivo_aux = $this->Rutamejora_model->getEvidenciaFin($id_objetivo);
+		$path_archivo = $path_archivo_aux[0]['path_ev_fin'];
 		// echo"<pre>";print_r($path_archivo);die();
 
 		if ($path_archivo != '' ) {
@@ -2093,7 +2106,7 @@ class Rutademejora extends CI_Controller {
 		$id= $this->input->post('id_publicacion');
 		$data = array('estado_publicacion' => $estado_publicacion, 'id' => $id );
 		$publicar = $this->Rutamejora_model->publicar_objetivo($data);
-		
+
 		$response = array('id' => $id, 'estado' => $estado_publicacion);
 		//echo "<pre>"; print_r($publicar); die();
 
@@ -2108,7 +2121,7 @@ class Rutademejora extends CI_Controller {
   		$obstaculos = $this->input->post('obstaculos');
   		$ventajas = $this->input->post('ventajas');
   		$ajustes = $this->input->post('ajustes');
-		
+
 		$todo = $resultados .' obstaculos: '.$obstaculos .' ventajas: '.$ventajas. 'ajuste: ' .$ajustes;
 
 		$result = $this->Rutamejora_model->set_observacion($objetivo, $resultados, $obstaculos, $ventajas, $ajustes);
