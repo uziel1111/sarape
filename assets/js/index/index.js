@@ -84,7 +84,7 @@ var Index = {
     .done(function( data ) {
       $("#div_generico").empty();
       $("#div_generico").append(data.strView);
-      Utiles.showPDF("modal_calendarioEscolar", "index/calendarioEscolar/Calendario_2018-2019_web.pdf");
+      Utiles.showPDF("modal_calendarioEscolar", "index/calendarioEscolar/Calendario_2019.pdf");
     })
     .fail(function(e) {
       console.error("Error in getCalendarioEscolar()"); console.table(e);
