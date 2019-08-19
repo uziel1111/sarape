@@ -16,7 +16,8 @@ class Rutamejora_model extends CI_Model
       $date=date("Y-m-d");
     	$this->db->trans_start();
 		$data = array(
-			'id_cct' => $id_cct,
+			'orden' => $id_prioridad,
+      'id_cct' => $id_cct,
 			'id_prioridad' => $id_prioridad,
 			'objetivo1' => $objetivo1,
 			'objetivo2' => $objetivo2,
@@ -32,8 +33,9 @@ class Rutamejora_model extends CI_Model
       'otro_apoyo_req_se' => $otroapoyreq,
       'especifique_apoyo_req' => $especifiqueapyreq,
 			'f_creacion' => $date,
-      'orden' => $orden,
+      
 			);
+    
 		$this->db->insert('rm_tema_prioritarioxcct', $data);
     $id_insertado_tmp = $this->db->insert_id();
     $this->db->trans_complete();
@@ -779,28 +781,33 @@ function  get_datos_edith_tp($id_tprioritario){
     function insertaTprioritarios($id_cct){
 
       $data = array (
-                  array(  'id_cct' => $id_cct,
+                  array(  'orden'=> 1,
+                          'id_cct' => $id_cct,
                           'id_prioridad'=> 1,
                           'id_subprioridad'=> 1,
                        ),
 
                  
-                  array(  'id_cct' => $id_cct,
+                  array(  'orden'=> 2,
+                          'id_cct' => $id_cct,
                           'id_prioridad'=> 2,
                           'id_subprioridad'=> '',
                        ),
 
-                  array(  'id_cct' => $id_cct,
+                  array(  'orden'=> 3,
+                          'id_cct' => $id_cct,
                           'id_prioridad'=> 3,
                           'id_subprioridad'=> '',
                        ),
 
-                  array(  'id_cct' => $id_cct,
+                  array(  'orden'=> 4,
+                          'id_cct' => $id_cct,
                           'id_prioridad'=> 4,
                           'id_subprioridad'=> '',
                         ),
 
-                  array(  'id_cct' => $id_cct,
+                  array(  'orden'=> 5,
+                          'id_cct' => $id_cct,
                           'id_prioridad'=> 5,
                           'id_subprioridad'=> '',
                   ),
