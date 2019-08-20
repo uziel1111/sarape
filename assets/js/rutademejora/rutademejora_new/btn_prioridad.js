@@ -25,12 +25,13 @@ $('#opt_prioridad_especial').change(function(){
 
 //SELECT PROBLEMATICA
 $('.problematica').change(function() {
-	// |
-	// if (valor == 'OTROS') {
-	// 	$('#problematicaTxt').removeClass('ocultar');
-	// }else{
-	// 	$('#problematicaTxt').addClass('ocultar');
-	// }
+	valor = $('.problematica option:selected').text();
+	
+	if (valor.match(/Otros.*/)) {
+		$('#problematicaTxt').attr('disabled',false);
+		$('#problematicaTxt').empty();
+
+	}
 });
 
 $('#slt_fecha').change(function(){
@@ -292,7 +293,8 @@ $('#writeText').click(function(){
 			'error'
 		);
 	} else {
-			let contenido = $('#slt_verbo option:selected').text() + ' ' + $('#slt_indicador option:selected').text() + ' en un '  + meta + ' ' + $('#slt_metrica option:selected').text() + ' en el ciclo: '+ $('#slt_ciclo option:selected').text() + ' '  + $('#slt_fecha option:selected').text() + ' ' + otra_fecha
+		metrica_txt = $('#slt_metrica option:selected').text();
+			let contenido = $('#slt_verbo option:selected').text() + ' ' + $('#slt_indicador option:selected').text() + ' en un '  + meta + ' ' + metrica_txt.substring(0,1) + ' en el ciclo: '+ $('#slt_ciclo option:selected').text() + ' '  + $('#slt_fecha option:selected').text() + ' ' + otra_fecha
 
 			$('#CAPoutput').val(contenido);
 	}
@@ -301,13 +303,15 @@ $('#writeText').click(function(){
 
 //Grabar prioridad
 $('#grabar_prioridad').click(function(){
-
+	otro = $('#problematicaTxt').val();
+	problematica = $('.problematica option:selected').text() + ': ' +otro;
+	console.log(problematica);
 	$.ajax({
 		url: base_url+'Rutademejora/grabarTema',
 		type: 'POST',
 		dataType: 'JSON',
 		data:{ id_tprioritario: obj.id_tprioritario,
-					 problematica: $('.problematica option:selected').text(),
+					 problematica: problematica,
 					 evidencias: $('#evidencias').val(),
 					 txt_rm_obs_direc: $('#txt_rm_obs_direc').val()
 				 },
@@ -331,7 +335,7 @@ $('#grabar_prioridad').click(function(){
 
 		// $('#id_tema_prioritario').val(obj.id_tprioritario);
 		valor = $('.problematica option:selected').text();
-		$('.problematicaTxt').val(valor.toString().replace(/\./g,', '));
+		$('.problematicaTxt').val(problematica.toString().replace(/\./g,', '));
 		obj.get_view();
 	})
 	.fail(function(e) {

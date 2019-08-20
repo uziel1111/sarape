@@ -68,7 +68,7 @@
 								<option value="Equipamiento (Material didáctico)." >Equipamiento (Material didáctico).</option>
 								<option value="Equipamiento (Tecnologías de la información y la comunicación)." >Equipamiento (Tecnologías de la información y la comunicación).</option>
 								<option value="Infraestructura (Funcionamiento del edificio escolar)." >Infraestructura (Funcionamiento del edificio escolar).</option>
-								<!-- <option value="OTROS">OTROS</option> -->
+								<option value="Otros">Otros</option>
 							</select>
 							<textarea id="problematicaTxt" name="problematica" class="form-control problematicaTxt" disabled="true" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 							<?php 	break;
@@ -82,7 +82,7 @@
 								<option value="Aprendizaje (Inclusión educativa).">Aprendizaje (Inclusión educativa).</option>
 								<option value="Aprendizaje (Convivencia escolar sana y pacífica).">Aprendizaje (Convivencia escolar sana y pacífica).</option>
 								<option value="Aprendizaje (Aprendizaje activo).">Aprendizaje (Aprendizaje activo).</option>
-								<!-- <option value="OTROS">OTROS</option> -->
+								<option value="Otros">Otros</option>
 							</select>
 							<textarea id="problematicaTxt" name="problematica" class="form-control problematicaTxt" disabled="true" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 							<?php 	break;
@@ -94,7 +94,7 @@
 								<option value="Práctica docente (Planeación y evaluación didáctica).">Práctica docente (Planeación y evaluación didáctica).</option>
 								<option value="Práctica directiva (Reflexión y mejora de la práctica).">Práctica directiva (Reflexión y mejora de la práctica).</option>
 								<option value="Práctica docente (Reflexión y mejora de la práctica).">Práctica docente (Reflexión y mejora de la práctica).</option>
-								<!-- <option value="OTROS">OTROS</option> -->
+								<option value="Otros">Otros</option>
 							</select>
 							<textarea id="problematicaTxt" name="problematica" class="form-control problematicaTxt" disabled="true" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 							<?php 	break;	
@@ -104,7 +104,7 @@
 								<option value="Participación (Participación de los padres de familia en actividades del aula y la escuela).">Participación (Participación de los padres de familia en actividades del aula y la escuela).</option>
 								<option value="Participación (Consejo Escolar de Participación Social).">Participación (Consejo Escolar de Participación Social).</option>
 								<option value="Corresponsabilidad (Apoyo al aprendizaje en el hogar)">Corresponsabilidad (Apoyo al aprendizaje en el hogar)</option>
-								<!-- <option value="OTROS">OTROS</option> -->
+								<option value="Otros">Otros</option>
 							</select>
 							<textarea id="problematicaTxt" name="problematica" class="form-control problematicaTxt" disabled="true" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 							<?php 	break;
@@ -118,7 +118,7 @@
 								<option value="Desempeño directivo (Control escolar).">Desempeño directivo (Control escolar).</option>
 								<option value="Desempeño directivo (Rendición de cuentas).">Desempeño directivo (Rendición de cuentas).</option>
 								<option value="Desempeño directivo (Carga administrativa).">Desempeño directivo (Carga administrativa).</option>
-								<!-- <option value="OTROS">OTROS</option> -->
+								<option value="Otros">Otros</option>
 							</select>
 							<textarea id="problematicaTxt" name="problematica" class="form-control problematicaTxt" disabled="true" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 							<?php 	break;
