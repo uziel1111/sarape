@@ -153,14 +153,20 @@ function publicar(id) {
 			
 			
 		}
-				
+			
+				swal(
+			'¡Nota!',
+			"Actualmente esta función no está disponible",
+			'warning'
+		);	
 		
 		})
 	.fail(function(e) {
 		console.error("Error in publicar()");
+		swal.close();
 	})
 	.always(function() {
-    swal.close();
+    // swal.close();
 	});
 		
 	
@@ -305,7 +311,7 @@ $('#writeText').click(function(){
 $('#grabar_prioridad').click(function(){
 	otro = $('#problematicaTxt').val();
 	problematica = $('.problematica option:selected').text() + ': ' +otro;
-	console.log(problematica);
+	// console.log(problematica);
 	$.ajax({
 		url: base_url+'Rutademejora/grabarTema',
 		type: 'POST',

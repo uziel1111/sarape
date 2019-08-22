@@ -97,7 +97,7 @@ $("#slc_responsables").change(function(){
     texto += $(this).val() + ",";
   });
   encargados = texto.split(",");
-  var i = encargados.indexOf("");
+  var i = encargados.indexOf("Otros");
   encargados.splice( i, 1 );
    // alert(encargados);
    if( texto.indexOf("0,") > -1){
