@@ -128,7 +128,7 @@
 					<div class="col-lg-6 mt-3 mt-lg-0">
 						<label><span class="badge badge-secondary h5 text-white">2.</span> Evidencia(s)</label>
 						<br>
-						<textarea id="evidencias" name="evidencia" class="form-control" rows="2" maxlength="400"><?= (isset($evidencia))?$evidencia:"" ?></textarea>
+						<textarea id="evidencias" name="evidencia" class="form-control" rows="2" maxlength="400" style="height: 100px !important;"><?= (isset($evidencia))?$evidencia:"" ?></textarea>
 					</div>
 				</div>
 
@@ -299,7 +299,7 @@
 
 											<div class="col">
 												<label class="mb-1">
-													<span class="badge badge-secondary h5 text-white">3.Metrica</span>
+													<span class="badge badge-secondary h5 text-white">3.Métrica</span>
 													<span class="badge badge-success h5 text-white ml-2">
 														<i class="fas fa-angle-double-right"></i>
 													</span>
