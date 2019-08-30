@@ -127,6 +127,14 @@
                                           <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/ESCUELAS_ALTA_DEMANDA.pdf" target="_blank">Escuelas de alta demanda</a>
                                         </div>
                                     </li>
+                                      <li class="nav-item dropdown">
+                                        <a class="nav-link hcolor-4" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Ayuda
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right ddm-color-4" aria-labelledby="navbarDropdownMenuLink">
+                                          <a class="dropdown-item hcolor-4" onclick="Index.getVideotutoriales()" href="javascript:void(0)">Videotutoriales</a>
+                                        </div>
+                                    </li>
                                 </ul>
                                 <a href="#" class="mobile-btn"><span class="lnr lnr-menu"></span></a>
                             </nav>
