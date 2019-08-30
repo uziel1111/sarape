@@ -74,4 +74,16 @@ class Cuda_model extends CI_Model
 		return $this->ci_db->query($str_query)->result_array();
 	}
 
+	public function idEncuestaNivel($nivel)
+	{
+		$str_query = "SELECT * from respuesta where complemento = '{$nivel}';";
+		return $this->ci_db->query($str_query)->result_array();
+	}
+
+	public function EncuestaNivel($idaplicar)
+	{
+		$str_query = "SELECT * from respuesta where idaplicar = {$idaplicar};";
+		return $this->ci_db->query($str_query)->result_array();
+	}
+
 }// Cuda_model class

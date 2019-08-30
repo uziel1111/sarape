@@ -103,9 +103,31 @@ class Cuda extends CI_Controller
 		exit;
 	}
 
+	function consultaNivel(){
+		// $nivel = $this->input->post('nivel');
+		$idEncuesta = $this->Cuda_model->idEncuestaNivel('Secundaria');
+		// $id = 0;
+		foreach ($idEncuesta as $key => $value) {
+			$id[]=$value['idaplicar'];
+
+		}
+		$encuestas = array('inicial' => 0);
+		for ($i=0; $i < sizeof($id) ; $i++) { 
+			$encuesta = $this->Cuda_model->EncuestaNivel($id[$i]);
+			array_push($encuestas, $encuesta);
+		}
+
+		foreach ($encuestas as $key => $value) {
+			
+		print_r($value[0]); die();
+		}
+
+	}
+
 	function index()
 	{	
 		$data = 0;
+		$this->consultaNivel();
 		Utilerias::pagina_basica($this, "cuda/cuda", $data);
 	}
 }
