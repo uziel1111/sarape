@@ -18,34 +18,72 @@
 	// 	var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
 	// 	chart.draw(data, options);
 	// }
+	
+	function consultaNivel() {
+		$('#consultaSubsecretaria').attr('Hidden','TRUE');
+		$('#selectEducativo').removeAttr('Hidden');
+		$('#array').empty();
+	}
+
+	$('#nivelEducativo').change(function() {
+		nivel = $('#nivelEducativo option:selected').text();
+
+		$.ajax({
+			url: base_url+'Cuda/consultaNivel',
+			type: 'POST',
+		// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+		data: {nivel:nivel},
+		beforeSend: function(xhr) {
+			Notification.loading("");
+		},
+	})
+		.done(function(data) {
+
+			$('#array').html(data.str_view);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+			swal.close();	
+		});
+	})
+
+	function consultaSubsecretaria() {
+		$('#consultaSubsecretaria').removeAttr('Hidden');
+		$('#selectEducativo').attr('Hidden','TRUE');
+		$('#array').empty();
+	}
+	
 
 
-		function show( aval ) {
-			if ( aval == "1" ) {
-				hiddenDiv1.style.display = 'block';
-				hiddenDiv2.style.display = 'none';
-				Form.fileURL.focus();
-			} else if ( aval == "2" ) {
-				hiddenDiv1.style.display = 'none';
-				hiddenDiv2.style.display = 'block';
-				Form.fileURL.focus();
-			} else {
-				hiddenDiv1.style.display = 'none';
-				hiddenDiv2.style.display = 'none';
-			}
+	function show( aval ) {
+		if ( aval == "1" ) {
+			hiddenDiv1.style.display = 'block';
+			hiddenDiv2.style.display = 'none';
+			Form.fileURL.focus();
+		} else if ( aval == "2" ) {
+			hiddenDiv1.style.display = 'none';
+			hiddenDiv2.style.display = 'block';
+			Form.fileURL.focus();
+		} else {
+			hiddenDiv1.style.display = 'none';
+			hiddenDiv2.style.display = 'none';
 		}
+	}
 
-		function shwTxt() {
-			var t1 = document.getElementById( "txt1" );
-			var t2 = document.getElementById( "txt2" );
-			if ( t1.style.display !== "block" ) {
-				t2.style.display = "block";
-				t1.style.display = "none";
-			} else {
-				t1.style.display = "none";
-				t2.style.display = "block";
-			}
+	function shwTxt() {
+		var t1 = document.getElementById( "txt1" );
+		var t2 = document.getElementById( "txt2" );
+		if ( t1.style.display !== "block" ) {
+			t2.style.display = "block";
+			t1.style.display = "none";
+		} else {
+			t1.style.display = "none";
+			t2.style.display = "block";
 		}
+	}
 
 	function chkInput() {
 		var checkBox = document.getElementById( "myCheck" );
@@ -105,8 +143,8 @@
 		// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
 		data: {idsubsecretaria: subsecretaria},
 		beforeSend: function(xhr) {
-	        Notification.loading("");
-	    },
+			Notification.loading("");
+		},
 	})
 		.done(function(data) {
 
@@ -130,8 +168,8 @@
 		// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
 		data: {idusuario: idusuario},
 		beforeSend: function(xhr) {
-	        Notification.loading("");
-	    },
+			Notification.loading("");
+		},
 	})
 		.done(function(data) {
 			$('#tabla_documentos'+idusuario).html(data.str_view);
@@ -153,8 +191,8 @@
 		//dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
 		data: {idaplicar: idaplicar},
 		beforeSend: function(xhr) {
-	        Notification.loading("");
-	    },
+			Notification.loading("");
+		},
 	})
 		.done(function(data) {
 			// console.log(data.str_view);
@@ -178,8 +216,8 @@
 		//dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
 		data: {idaplicar: idaplicar},
 		beforeSend: function(xhr) {
-	        Notification.loading("");
-	    },
+			Notification.loading("");
+		},
 	})
 		.done(function(data) {
 			$('#detallesModal').html(data.str_view);
@@ -203,8 +241,8 @@
 				// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
 				data: {idusuario: idusuario},
 				beforeSend: function(xhr) {
-	        Notification.loading("");
-	    },
+					Notification.loading("");
+				},
 			})
 		.done(function(data) {
 			$('#contacto'+idusuario).html(data.str_view);
@@ -228,8 +266,8 @@
 			// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
 			data: {idusuario: idusuario, idsubsecretaria:idsubsecretaria},
 			beforeSend: function(xhr) {
-	        Notification.loading("");
-	    },
+				Notification.loading("");
+			},
 		})
 		.done(function(data) {
 			$('#estadisticas'+idusuario).html(data.str_view);

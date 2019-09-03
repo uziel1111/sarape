@@ -104,30 +104,125 @@ class Cuda extends CI_Controller
 	}
 
 	function consultaNivel(){
-		// $nivel = $this->input->post('nivel');
-		$idEncuesta = $this->Cuda_model->idEncuestaNivel('Secundaria');
-		// $id = 0;
+		 $nivel = $this->input->post('nivel');
+		$tema1 = 0;
+		$titulotema1 = 'Administración de Personal / '.$tema1;
+		$tema2 = 0;
+		$titulotema2 = 'Participación Social / '.$tema2;
+		$tema3 = 0;
+		$titulotema3 = 'Gestión Escolar / '.$tema3;
+		$tema4 = 0;
+		$titulotema4 = 'Recursos Materiales / '.$tema4;
+		$tema5 = 0;
+		$titulotema5 = 'Planeación y Estadística / '.$tema5;
+		$tema6 = 0;
+		$titulotema6 = 'Protección Civil / '.$tema6;
+		$tema7 = 0;
+		$titulotema7 = 'Recursos Financieros / '.$tema7;
+		$tema8 = 0;
+		$titulotema8 = 'Programas Federales / '.$tema8;
+		$tema9 = 0;
+		$titulotema9 = 'Control Escolar / '.$tema9;
+		$tema10 = 0;
+		$titulotema10 = 'Personal / '.$tema10;
+		$tema0 = 0;
+		$titulotema0 = 'Sin tema asignado / '.$tema0;
+		$respuestaArray = [];
+
+		$idEncuesta = $this->Cuda_model->idEncuestaNivel($nivel);
 		foreach ($idEncuesta as $key => $value) {
-			$id[]=$value['idaplicar'];
+			switch ($value['tema']) {
+				case '1':
+				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
+				$tema1 ++;
+				$titulotema1 = 'Administración de Personal / '.$tema1;
+
+				break;
+				case '2':
+				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
+				$tema2 ++;
+				$titulotema2 = 'Participación Social / '.$tema2;
+
+				break;
+				case '3':
+				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
+				$tema3 ++;
+				$titulotema3 = 'Gestión Escolar / '.$tema3;
+
+				break;
+				case '4':
+				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
+				$tema4 ++;
+				$titulotema4 = 'Recursos Materiales / '.$tema4;
+
+				break;
+				case '5':
+				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
+				$tema5 ++;
+				$titulotema5 = 'Planeación y Estadística / '.$tema5;
+
+				break;
+				case '6':
+				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
+				$tema6 ++;
+				$titulotema6 = 'Protección Civil / '.$tema6;
+
+				break;
+				case '7':
+				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
+				$tema7 ++;
+				$titulotema7 = 'Recursos Financieros / '.$tema7;
+
+				break;
+				case '8':
+				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
+				$tema8 ++;
+				$titulotema8 = 'Programas Federales / '.$tema8;
+
+				break;
+				case '9':
+				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
+				$tema9 ++;
+				$titulotema9 = 'Control Escolar / '.$tema9;
+
+				break;
+				case '10':
+				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
+				$tema10 ++;
+				$titulotema10 = 'Personal / '.$tema10;
+
+				break;
+				default:
+				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
+				$tema0 ++;
+				$titulotema0 = 'Sin tema asignado / '.$tema0;
+
+				break;
+			}
+				
+			array_push($respuestaArray, $respuesta);
 
 		}
-		$encuestas = array('inicial' => 0);
-		for ($i=0; $i < sizeof($id) ; $i++) { 
-			$encuesta = $this->Cuda_model->EncuestaNivel($id[$i]);
-			array_push($encuestas, $encuesta);
-		}
 
-		foreach ($encuestas as $key => $value) {
-			
-		print_r($value[0]); die();
-		}
+		
+		$temas = array('tema1'=>$titulotema1, 'tema2'=>$titulotema2, 'tema3'=>$titulotema3, 'tema4'=>$titulotema4, 'tema5'=>$titulotema5, 'tema6'=>$titulotema6, 'tema7'=>$titulotema7, 'tema8'=>$titulotema8, 'tema9'=>$titulotema9, 'tema1'=>$titulotema1, 'tema0'=>$titulotema0);
 
+		$data['temas'] = $temas;
+		$data['formato'] = $respuestaArray;
+		$data['temaid'] = $idEncuesta;
+
+		// echo "<pre>"; print_r($respuestaArray[5][0]['respuesta']); die();
+
+		$str_view = $this->load->view('cuda/consultaNivel', $data, TRUE);
+		$response = array('str_view' => $str_view);
+		Utilerias::enviaDataJson(200,$response,$this);
+		exit;
 	}
 
 	function index()
 	{	
 		$data = 0;
-		$this->consultaNivel();
+		// $this->consultaNivel();
 		Utilerias::pagina_basica($this, "cuda/cuda", $data);
 	}
 }

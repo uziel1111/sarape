@@ -76,7 +76,9 @@ class Cuda_model extends CI_Model
 
 	public function idEncuestaNivel($nivel)
 	{
-		$str_query = "SELECT * from respuesta where complemento = '{$nivel}';";
+		$str_query = "SELECT a.tema, r.idaplicar from respuesta r
+					  inner join aplicar a on a.idaplicar = r.idaplicar
+					  where r.complemento ='{$nivel}';";
 		return $this->ci_db->query($str_query)->result_array();
 	}
 
