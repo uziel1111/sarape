@@ -1,5 +1,4 @@
 	  
-
 	// google.charts.load("current", {packages:["corechart"]});
 	// google.charts.setOnLoadCallback(drawChart);
 	// function drawChart() {
@@ -23,6 +22,7 @@
 		$('#consultaSubsecretaria').attr('Hidden','TRUE');
 		$('#selectEducativo').removeAttr('Hidden');
 		$('#array').empty();
+		$('#divDocumentos').attr('Hidden','TRUE');
 	}
 
 	$('#nivelEducativo').change(function() {
@@ -38,7 +38,7 @@
 		},
 	})
 		.done(function(data) {
-
+			$('#divDocumentos').removeAttr('Hidden');
 			$('#array').html(data.str_view);
 		})
 		.fail(function() {
@@ -54,6 +54,7 @@
 		$('#consultaSubsecretaria').removeAttr('Hidden');
 		$('#selectEducativo').attr('Hidden','TRUE');
 		$('#array').empty();
+		$('#divDocumentos').attr('Hidden','TRUE');
 	}
 	
 
@@ -147,7 +148,7 @@
 		},
 	})
 		.done(function(data) {
-
+			$('#divDocumentos').removeAttr('Hidden');
 			$('#array').html(data.str_view);
 		})
 		.fail(function() {

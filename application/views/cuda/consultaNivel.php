@@ -25,12 +25,14 @@ foreach ($temas as $key => $dato){
 										</thead>
 										<tbody id="tabla_documentos">
 											<?php foreach ($temaid as $key => $value) {
-												if ($value['tema']==$i) {
+												foreach ($formato as $key => $f) {
+													if ($f['tema']== $formato[$j][0]['tema']) {
 													
 													$j++;?>
 													
 
 													<tr>
+														<td><?=$j?></td>
 														<td><?=$formato[$j][0]['idaplicar']?></td>
 														<td><?=$formato[$j][0]['respuesta']?></td>
 														<td>
@@ -51,7 +53,9 @@ foreach ($temas as $key => $dato){
 													<?php	
 												}
 
+												}
 											} ?>
+												
 										</tbody>
 									</table>
 								</div>

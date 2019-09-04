@@ -184,7 +184,7 @@ class Cuda extends CI_Controller
 				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 				$tema9 ++;
 				$titulotema9 = 'Control Escolar / '.$tema9;
-
+				// echo "<pre>"; print_r($respuesta); 
 				break;
 				case '10':
 				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);

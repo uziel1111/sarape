@@ -68,7 +68,7 @@
 					<br><br>
 					<div class="row" id="selectEducativo" hidden="true">
 						<div class="col-md-12">
-						<select class="card-header" id="nivelEducativo">
+						<select class="card-header col-md-12 " id="nivelEducativo">
 							<option value="Seleccione el Nivel educativo">Seleccione el Nivel Educativo</option>
 							<option value="Especial">Especial</option>
 							<option value="Inicial">Inicial</option>
@@ -120,7 +120,7 @@
 						</div>
 					</div>
 					<!--Collapsable items-->
-					<div class="card mb-4">
+					<div class="card mb-4" id="divDocumentos" hidden="true">
 						<div class="card-header">
 							<h4 class="mb-0 text-success"><span class="second-txt">Documentos Autorizados</span></h4>
 						</div>
