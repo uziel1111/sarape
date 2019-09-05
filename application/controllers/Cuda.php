@@ -104,7 +104,7 @@ class Cuda extends CI_Controller
 	}
 
 	function consultaNivel(){
-		 $nivel = $this->input->post('nivel');
+		$nivel = $this->input->post('nivel');
 		$tema1 = 0;
 		$titulotema1 = 'Administración de Personal / '.$tema1;
 		$tema2 = 0;
@@ -175,7 +175,6 @@ class Cuda extends CI_Controller
 				case '9':
 				$tema9 ++;
 				$titulotema9 = 'Control Escolar / '.$tema9;
-				// echo "<pre>"; print_r($respuesta); 
 				break;
 				case '10':
 				$tema10 ++;
@@ -188,24 +187,25 @@ class Cuda extends CI_Controller
 
 				break;
 			}
-				
+			
 		}
 
 		
-		$temas = array('tema1'=>$titulotema1, 'tema2'=>$titulotema2, 'tema3'=>$titulotema3, 'tema4'=>$titulotema4, 'tema5'=>$titulotema5, 'tema6'=>$titulotema6, 'tema7'=>$titulotema7, 'tema8'=>$titulotema8, 'tema9'=>$titulotema9, 'tema1'=>$titulotema1, 'tema0'=>$titulotema0);
+		$temas = array('tema1'=>$titulotema1, 'tema2'=>$titulotema2, 'tema3'=>$titulotema3, 'tema4'=>$titulotema4, 'tema5'=>$titulotema5, 'tema6'=>$titulotema6, 'tema7'=>$titulotema7, 'tema8'=>$titulotema8, 'tema9'=>$titulotema9, 'tema10'=>$titulotema10, 'tema0'=>$titulotema0);
 
 		$data['temas'] = $temas;
 		$data['nivel'] = $nivel;
-
+		$totalTemas = $tema1 + $tema2 +$tema3+$tema4+$tema5+$tema6+$tema7+$tema8+$tema9+$tema10+$tema0;
 		// echo "<pre>"; print_r($respuestaArray[5][0]['respuesta']); die();
 
 		$str_view = $this->load->view('cuda/consultaNivel', $data, TRUE);
-		$response = array('str_view' => $str_view);
+		$total = $totalTemas;
+		$response = array('str_view' => $str_view, 'total'=>$total);
 		Utilerias::enviaDataJson(200,$response,$this);
 		exit;
 	}
 
-	 function getFormatoTema()
+	function getFormatoTema()
 	{
 		$tema = $this->input->post('tema');
 		$nivel = $this->input->post('nivel');

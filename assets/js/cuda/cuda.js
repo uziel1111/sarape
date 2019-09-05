@@ -1,4 +1,6 @@
-	  
+	  $(document).ready(function() {
+	  	$('#seleccionaNivelIndex').modal('show');
+	  });
 	// google.charts.load("current", {packages:["corechart"]});
 	// google.charts.setOnLoadCallback(drawChart);
 	// function drawChart() {
@@ -25,6 +27,35 @@
 		$('#divDocumentos').attr('Hidden','TRUE');
 	}
 
+	$('#nivelEducativoModal').change(function() {
+		nivel = $('#nivelEducativoModal option:selected').text();
+
+		$.ajax({
+			url: base_url+'Cuda/consultaNivel',
+			type: 'POST',
+		// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+		data: {nivel:nivel},
+		beforeSend: function(xhr) {
+			Notification.loading("");
+		},
+	})
+		.done(function(data) {
+				$('#seleccionaNivelIndex').modal('hide');
+			$('#total_documentos').text('Documentos Autorizados / ' + data.total);
+			$('#divDocumentos').removeAttr('Hidden');
+			$('#array').html(data.str_view);
+			$('#selectEducativo').removeAttr('Hidden');
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+			swal.close();	
+		});
+	})
+
+
 	$('#nivelEducativo').change(function() {
 		nivel = $('#nivelEducativo option:selected').text();
 
@@ -38,6 +69,8 @@
 		},
 	})
 		.done(function(data) {
+			console.info(data);
+			$('#total_documentos').text('Documentos Autorizados / ' + data.total);
 			$('#divDocumentos').removeAttr('Hidden');
 			$('#array').html(data.str_view);
 		})
@@ -198,7 +231,7 @@
 		.done(function(data) {
 			// console.log(data.str_view);
 			$('#documentoModal').html(data.str_view);
-			console.log("success");
+			// console.log("success");
 		})
 		.fail(function() {
 			console.log("error");
@@ -294,7 +327,7 @@
 			},
 		})
 		.done(function(data) {
-			console.log(data.str_view);
+			// console.log(data.str_view);
 			$('#tabla_documentos_tema'+tema).html(data.str_view);
 		})
 		.fail(function() {

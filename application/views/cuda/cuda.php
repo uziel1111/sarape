@@ -68,16 +68,15 @@
 					<br><br>
 					<div class="row" id="selectEducativo" hidden="true">
 						<div class="col-md-12">
-						<select class="card-header col-md-12 " id="nivelEducativo">
-							<option value="Seleccione el Nivel educativo">Seleccione el Nivel Educativo</option>
-							<option value="Especial">Especial</option>
-							<option value="Inicial">Inicial</option>
-							<option value="Preescolar">Preescolar</option>
-							<option value="Primaria">Primaria</option>
-							<option value="Secundaria">Secundaria</option>
-							<option value="Todos los niveles">Todos los niveles</option>
-						</select>
-						<br>
+							<select class=" col-md-12 card-header" id="nivelEducativo">
+								<option value="Seleccione el Nivel educativo" disabled selected>Seleccione el Nivel Educativo</option>
+								<option value="Especial">Especial</option>
+								<option value="Inicial">Inicial</option>
+								<option value="Preescolar">Preescolar</option>
+								<option value="Primaria">Primaria</option>
+								<option value="Secundaria">Secundaria</option>
+							</select>
+							<br>
 						</div>
 					</div>
 					<!-- Search bar Area -->
@@ -122,7 +121,7 @@
 					<!--Collapsable items-->
 					<div class="card mb-4" id="divDocumentos" hidden="true">
 						<div class="card-header">
-							<h4 class="mb-0 text-success"><span class="second-txt">Documentos Autorizados</span></h4>
+							<h4 class="mb-0 text-success"><span id="total_documentos" class="second-txt">Documentos Autorizados</span></h4>
 						</div>
 
 						<div class="card-body">
@@ -196,6 +195,40 @@
 							</div>
 						</div>
 					</div>
+
+					<!-- modal index -->
+					
+					<div class="modal fade" id="seleccionaNivelIndex" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+						<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+							<div class="modal-content modal-style-1">
+								<div class="modal-header bg-success">
+									<h5 class="modal-title text-white" id="exampleModalLabel">Nivel Educativo</h5>
+
+
+
+								</div>
+								<div class="modal-body" >
+									<div class="row" id="selectEducativoModal"> 
+										<div class="col-md-12">
+											<select class=" col-md-12 card-header" id="nivelEducativoModal">
+												<option value="Seleccione el Nivel educativo" disabled selected>Seleccione el Nivel Educativo</option>
+												<option value="Especial">Especial</option>
+												<option value="Inicial">Inicial</option>
+												<option value="Preescolar">Preescolar</option>
+												<option value="Primaria">Primaria</option>
+												<option value="Secundaria">Secundaria</option>
+											</select>
+											<br>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					
+					<!-- End modal index -->
 
 					<!-- End Main Area -->
 
