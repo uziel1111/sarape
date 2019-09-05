@@ -1,50 +1,45 @@
-	  $(document).ready(function() {
-	  	$('#seleccionaNivelIndex').modal('show');
-	  });
-	// google.charts.load("current", {packages:["corechart"]});
-	// google.charts.setOnLoadCallback(drawChart);
-	// function drawChart() {
-	// 	var data = google.visualization.arrayToDataTable([
-	// 		['Subsecretaría', 'Simplificación'],
-	// 		['Subsecretaría de Educación Básica',     81],
-	// 		['Subsecretaría de Administración y Recursos Humanos',      9],
-	// 		['Subsecretaría de Planeación Educativa',  10]
-	// 		]);
+	/*google.charts.load("current", {packages:["corechart"]});
+	google.charts.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+			['Subsecretaría', 'Simplificación'],
+			['Subsecretaría de Educación Básica',     81],
+			['Subsecretaría de Administración y Recursos Humanos',      9],
+			['Subsecretaría de Planeación Educativa',  10]
+			]);
 
-	// 	var options = {
-	// 		title: 'Simplificación por Subsecretaría',
-	// 		pieHole: 0.4,
-	// 	};
+		var options = {
+			title: 'Simplificación por Subsecretaría',
+			pieHole: 0.4,
+		};
 
-	// 	var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-	// 	chart.draw(data, options);
-	// }
+		var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+		chart.draw(data, options);
+	}*/
+	$(document).ready(function() {
+		$('#seleccionaNivelIndex').modal('show');
+	});
 	
-	function consultaNivel() {
-		$('#consultaSubsecretaria').attr('Hidden','TRUE');
-		$('#selectEducativo').removeAttr('Hidden');
-		$('#array').empty();
-		$('#divDocumentos').attr('Hidden','TRUE');
-	}
 
 	$('#nivelEducativoModal').change(function() {
 		nivel = $('#nivelEducativoModal option:selected').text();
+		mes = 'No';
 
 		$.ajax({
 			url: base_url+'Cuda/consultaNivel',
 			type: 'POST',
-		// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-		data: {nivel:nivel},
-		beforeSend: function(xhr) {
-			Notification.loading("");
-		},
-	})
+			data: {nivel:nivel, mes:mes},
+			beforeSend: function(xhr) {
+				Notification.loading("");
+			},
+		})
 		.done(function(data) {
-				$('#seleccionaNivelIndex').modal('hide');
+			$('#seleccionaNivelIndex').modal('hide');
 			$('#total_documentos').text('Documentos Autorizados / ' + data.total);
 			$('#divDocumentos').removeAttr('Hidden');
 			$('#array').html(data.str_view);
 			$('#selectEducativo').removeAttr('Hidden');
+			$('#selectinput').val(nivel);
 		})
 		.fail(function() {
 			console.log("error");
@@ -57,19 +52,22 @@
 
 
 	$('#nivelEducativo').change(function() {
-		nivel = $('#nivelEducativo option:selected').text();
+		nivel = $('#selectinput').val();
+		mes = $('#mes option:selected').text();
+
+		if (mes == 'Filtrar por mes') {
+			mes = 'No';
+		}
 
 		$.ajax({
 			url: base_url+'Cuda/consultaNivel',
 			type: 'POST',
-		// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-		data: {nivel:nivel},
-		beforeSend: function(xhr) {
-			Notification.loading("");
-		},
-	})
+			data: {nivel:nivel,mes:mes},
+			beforeSend: function(xhr) {
+				Notification.loading("");
+			},
+		})
 		.done(function(data) {
-			console.info(data);
 			$('#total_documentos').text('Documentos Autorizados / ' + data.total);
 			$('#divDocumentos').removeAttr('Hidden');
 			$('#array').html(data.str_view);
@@ -81,7 +79,71 @@
 			console.log("complete");
 			swal.close();	
 		});
-	})
+	});
+
+	$('#mes').change(function() {
+		nivel = $('#selectinput').val();
+		mes = $('#mes option:selected').text();
+
+		if (nivel == 'Selecione el Nivel Educativo') {
+			nivel = 'No';
+		}
+
+		$.ajax({
+			url: base_url+'Cuda/consultaNivel',
+			type: 'POST',
+			data: {nivel:nivel,mes:mes},
+			beforeSend: function(xhr) {
+				Notification.loading("");
+			},
+		})
+		.done(function(data) {
+			$('#total_documentos').text('Documentos Autorizados / ' + data.total);
+			$('#divDocumentos').removeAttr('Hidden');
+			$('#array').html(data.str_view);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+			swal.close();	
+		});
+	});
+
+/*	$('#mes').change(function() {
+		
+		nivel = $('#nivelEducativo option:selected').text();
+
+		$.ajax({
+			url: base_url+'Cuda/consultaNivel',
+			type: 'POST',
+			data: {nivel:nivel,mes:mes},
+			beforeSend: function(xhr) {
+				Notification.loading("");
+			},
+		})
+		.done(function(data) {
+			$('#total_documentos').text('Documentos Autorizados / ' + data.total);
+			$('#divDocumentos').removeAttr('Hidden');
+			$('#array').html(data.str_view);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+			swal.close();	
+		});
+
+	});*/
+
+	function consultaNivel() {
+		$('#consultaSubsecretaria').attr('Hidden','TRUE');
+		$('#selectEducativo').removeAttr('Hidden');
+		$('#array').empty();
+		$('#divDocumentos').attr('Hidden','TRUE');
+	}
 
 	function consultaSubsecretaria() {
 		$('#consultaSubsecretaria').removeAttr('Hidden');
@@ -174,12 +236,11 @@
 		$.ajax({
 			url: base_url+'Cuda/getObjetivo',
 			type: 'POST',
-		// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-		data: {idsubsecretaria: subsecretaria},
-		beforeSend: function(xhr) {
-			Notification.loading("");
-		},
-	})
+			data: {idsubsecretaria: subsecretaria},
+			beforeSend: function(xhr) {
+				Notification.loading("");
+			},
+		})
 		.done(function(data) {
 			$('#divDocumentos').removeAttr('Hidden');
 			$('#array').html(data.str_view);
@@ -199,12 +260,11 @@
 		$.ajax({
 			url: base_url+'Cuda/getEncuestas',
 			type: 'POST',
-		// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-		data: {idusuario: idusuario},
-		beforeSend: function(xhr) {
-			Notification.loading("");
-		},
-	})
+			data: {idusuario: idusuario},
+			beforeSend: function(xhr) {
+				Notification.loading("");
+			},
+		})
 		.done(function(data) {
 			$('#tabla_documentos'+idusuario).html(data.str_view);
 		})
@@ -222,16 +282,15 @@
 		$.ajax({
 			url: base_url+'Cuda/getDocumentoDescarga',
 			type: 'POST',
-		//dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-		data: {idaplicar: idaplicar},
-		beforeSend: function(xhr) {
-			Notification.loading("");
-		},
-	})
+			data: {idaplicar: idaplicar},
+			beforeSend: function(xhr) {
+				Notification.loading("");
+			},
+		})
 		.done(function(data) {
-			// console.log(data.str_view);
+			
 			$('#documentoModal').html(data.str_view);
-			// console.log("success");
+			
 		})
 		.fail(function() {
 			console.log("error");
@@ -247,12 +306,11 @@
 		$.ajax({
 			url: base_url+'Cuda/getDetalles',
 			type: 'POST',
-		//dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-		data: {idaplicar: idaplicar},
-		beforeSend: function(xhr) {
-			Notification.loading("");
-		},
-	})
+			data: {idaplicar: idaplicar},
+			beforeSend: function(xhr) {
+				Notification.loading("");
+			},
+		})
 		.done(function(data) {
 			$('#detallesModal').html(data.str_view);
 			console.log("success");
@@ -272,12 +330,12 @@
 		$.ajax({
 			url: base_url+'Cuda/getContacto',
 			type: 'POST',
-				// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-				data: {idusuario: idusuario},
-				beforeSend: function(xhr) {
-					Notification.loading("");
-				},
-			})
+
+			data: {idusuario: idusuario},
+			beforeSend: function(xhr) {
+				Notification.loading("");
+			},
+		})
 		.done(function(data) {
 			$('#contacto'+idusuario).html(data.str_view);
 			console.log("success");
@@ -297,7 +355,7 @@
 		$.ajax({
 			url: base_url+'Cuda/getEstadistica',
 			type: 'POST',
-			// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+
 			data: {idusuario: idusuario, idsubsecretaria:idsubsecretaria},
 			beforeSend: function(xhr) {
 				Notification.loading("");
@@ -317,11 +375,23 @@
 		
 	}
 	function getFormatoTema(tema, nivel) {
+
+		mes = $('#mes option:selected').text();
+
+		if (mes != 'Filtrar por mes') {
+			ruta = base_url+'Cuda/getFormatoTemaMes';
+			datos =  {tema:tema, nivel:nivel, mes:mes};
+		}else{
+			ruta = base_url+'Cuda/getFormatoTema';
+			datos =  {tema:tema, nivel:nivel};
+		}
+
+
 		$.ajax({
-			url: base_url+'Cuda/getFormatoTema',
+			url: ruta,
 			type: 'POST',
-			// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-			data: {tema:tema, nivel:nivel},
+
+			data: datos,
 			beforeSend: function(xhr) {
 				Notification.loading("");
 			},

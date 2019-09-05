@@ -67,7 +67,7 @@
 
 					<br><br>
 					<div class="row" id="selectEducativo" hidden="true">
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<select class=" col-md-12 card-header" id="nivelEducativo">
 								<option value="Seleccione el Nivel educativo" disabled selected>Seleccione el Nivel Educativo</option>
 								<option value="Especial">Especial</option>
@@ -78,7 +78,26 @@
 							</select>
 							<br>
 						</div>
+						<div class="col-md-6">
+							<select class=" col-md-12 card-header" id="mes">
+								<option value="Filtrar por mes" disabled selected>Filtrar por mes</option>
+								<option value="Enero">Enero</option>
+								<option value="Febrero">Febrero</option>
+								<option value="Marzo">Marzo</option>
+								<option value="Abril">Abril</option>
+								<option value="Mayo">Mayo</option>
+								<option value="Junio">Junio</option>
+								<option value="Julio">Julio</option>
+								<option value="Agosto">Agosto</option>
+								<option value="Septiembre">Septiembre</option>
+								<option value="Octubre">Octubre</option>
+								<option value="Noviembre">Noviembre</option>
+								<option value="Diciembre">Diciembre</option>
+							</select>
+							<br>
+						</div>
 					</div>
+					<input type="text" hidden="true" id="selectinput">
 					<!-- Search bar Area -->
 					<div class="row" id="consultaSubsecretaria" hidden="true">
 						<div class="col-md-4">
@@ -197,35 +216,34 @@
 					</div>
 
 					<!-- modal index -->
-					
-					<div class="modal fade" id="seleccionaNivelIndex" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-						<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-							<div class="modal-content modal-style-1">
-								<div class="modal-header bg-success">
-									<h5 class="modal-title text-white" id="exampleModalLabel">Nivel Educativo</h5>
-
-
-
-								</div>
-								<div class="modal-body" >
-									<div class="row" id="selectEducativoModal"> 
-										<div class="col-md-12">
-											<select class=" col-md-12 card-header" id="nivelEducativoModal">
-												<option value="Seleccione el Nivel educativo" disabled selected>Seleccione el Nivel Educativo</option>
-												<option value="Especial">Especial</option>
-												<option value="Inicial">Inicial</option>
-												<option value="Preescolar">Preescolar</option>
-												<option value="Primaria">Primaria</option>
-												<option value="Secundaria">Secundaria</option>
-											</select>
-											<br>
-										</div>
+				<div class="modal fade" id="seleccionaNivelIndex" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+					<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+						<div class="modal-content modal-style-1">
+							<div class="modal-header bg-success">
+								<h5 class="modal-title text-white" id="exampleModalLabel">Nivel Educativo</h5>
+				
+				
+				
+							</div>
+							<div class="modal-body" >
+								<div class="row" id="selectEducativoModal"> 
+									<div class="col-md-12">
+										<select class=" col-md-12 card-header" id="nivelEducativoModal">
+											<option value="Seleccione el Nivel educativo" disabled selected>Seleccione el Nivel Educativo</option>
+											<option value="Especial">Especial</option>
+											<option value="Inicial">Inicial</option>
+											<option value="Preescolar">Preescolar</option>
+											<option value="Primaria">Primaria</option>
+											<option value="Secundaria">Secundaria</option>
+										</select>
+										<br>
 									</div>
-
 								</div>
+				
 							</div>
 						</div>
 					</div>
+				</div>
 
 					
 					<!-- End modal index -->

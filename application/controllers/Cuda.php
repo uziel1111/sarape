@@ -105,6 +105,7 @@ class Cuda extends CI_Controller
 
 	function consultaNivel(){
 		$nivel = $this->input->post('nivel');
+		$mes = $this->input->post('mes');
 		$tema1 = 0;
 		$titulotema1 = 'Administración de Personal / '.$tema1;
 		$tema2 = 0;
@@ -129,7 +130,8 @@ class Cuda extends CI_Controller
 		$titulotema0 = 'Sin tema asignado / '.$tema0;
 		$respuestaArray = [];
 
-		$idEncuesta = $this->Cuda_model->idEncuestaNivel($nivel);
+		$idEncuesta = $this->Cuda_model->idEncuestaNivel($nivel, $mes);
+		// echo '<pre>'; print_r($idEncuesta); die();
 		foreach ($idEncuesta as $key => $value) {
 			switch ($value['tema']) {
 				case '1':
@@ -187,7 +189,7 @@ class Cuda extends CI_Controller
 
 				break;
 			}
-			
+
 		}
 
 		
@@ -196,8 +198,7 @@ class Cuda extends CI_Controller
 		$data['temas'] = $temas;
 		$data['nivel'] = $nivel;
 		$totalTemas = $tema1 + $tema2 +$tema3+$tema4+$tema5+$tema6+$tema7+$tema8+$tema9+$tema10+$tema0;
-		// echo "<pre>"; print_r($respuestaArray[5][0]['respuesta']); die();
-
+		
 		$str_view = $this->load->view('cuda/consultaNivel', $data, TRUE);
 		$total = $totalTemas;
 		$response = array('str_view' => $str_view, 'total'=>$total);
@@ -207,8 +208,10 @@ class Cuda extends CI_Controller
 
 	function getFormatoTema()
 	{
+		
 		$tema = $this->input->post('tema');
 		$nivel = $this->input->post('nivel');
+		
 		$encuestas = [];
 		$formatos = $this->Cuda_model->getFormatoTema($tema,$nivel);
 
@@ -226,10 +229,44 @@ class Cuda extends CI_Controller
 		exit;
 	}
 
+	function getFormatoTemaMes()
+	{
+
+		$tema = $this->input->post('tema');
+		$nivel = $this->input->post('nivel');
+		$mes = $this->input->post('mes');
+
+		$encuestas = [];
+		$formatosMesArray = [];
+		$formatos = $this->Cuda_model->getFormatoTema($tema,$nivel);
+
+		foreach ($formatos as $key => $value) {
+			$formatosMes = $this->Cuda_model->getFormatoTemaMes($value['idaplicar'], $mes);
+			if (!empty($formatosMes)) {
+			array_push($formatosMesArray, $formatosMes);
+			}
+			
+		}
+
+
+		foreach ($formatosMesArray as $key => $value) {
+			$encuesta = $this->Cuda_model->getDetalles($value[0]['idaplicar']);
+			array_push($encuestas, $encuesta);
+		}
+
+			// echo "<pre>"; print_r(COUNT($encuestas)); die();
+		$data['formato'] = $encuestas;
+
+		$str_view = $this->load->view('cuda/tabla_encuestas_tema', $data, TRUE);
+		$response = array('str_view' => $str_view);
+		Utilerias::enviaDataJson(200,$response,$this);
+		exit;
+	}
+
+
 	function index()
 	{	
 		$data = 0;
-		// $this->consultaNivel();
 		Utilerias::pagina_basica($this, "cuda/cuda", $data);
 	}
 }

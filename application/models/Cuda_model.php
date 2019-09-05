@@ -74,12 +74,36 @@ class Cuda_model extends CI_Model
 		return $this->ci_db->query($str_query)->result_array();
 	}
 
-	public function idEncuestaNivel($nivel)
+	public function idEncuestaNivel($nivel,$mes)
 	{
-		$str_query = "SELECT a.tema, r.idaplicar from respuesta r
-					  inner join aplicar a on a.idaplicar = r.idaplicar
-					  where r.complemento ='{$nivel}';";
-		return $this->ci_db->query($str_query)->result_array();
+		
+		$querynivel = "SELECT a.tema, r.idaplicar from respuesta r
+		inner join aplicar a on a.idaplicar = r.idaplicar
+		where r.complemento ='{$nivel}'";
+
+		$querymes = "SELECT a.tema, r.idaplicar from respuesta r
+		inner join aplicar a on a.idaplicar = r.idaplicar
+		where r.complemento ='{$mes}'";
+
+		$querynivelmes = "SELECT * from ({$querynivel}) as nivel
+		inner join ({$querymes}) as mes on nivel.idaplicar = mes.idaplicar";
+
+		if ($nivel != 'No' && $mes == 'No') {
+
+			return $this->ci_db->query($querynivel)->result_array();	
+		}else {
+			if ($nivel == 'No' && $mes != 'No') {
+				return $this->ci_db->query($querymes)->result_array();	
+			} else {
+
+				if ($nivel != 'No' && $mes != 'No') {
+
+					return $this->ci_db->query($querynivelmes)->result_array();	
+				}
+			}
+		}
+
+		
 	}
 
 	public function EncuestaNivel($idaplicar)
@@ -95,6 +119,14 @@ class Cuda_model extends CI_Model
 		where a.tema = {$tema} and r.complemento = '{$nivel}';";
 		return $this->ci_db->query($str_query)->result_array();
 
+	}
+
+	public function getFormatoTemaMes($idaplicar, $mes)
+	{
+		$str_query= "SELECT r.idaplicar from respuesta r 
+		where r.idaplicar = {$idaplicar} and r.complemento = '{$mes}';";
+
+		return $this->ci_db->query($str_query)->result_array();
 	}
 
 
