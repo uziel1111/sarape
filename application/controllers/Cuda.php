@@ -133,87 +133,94 @@ class Cuda extends CI_Controller
 		foreach ($idEncuesta as $key => $value) {
 			switch ($value['tema']) {
 				case '1':
-				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 				$tema1 ++;
 				$titulotema1 = 'Administración de Personal / '.$tema1;
 
 				break;
 				case '2':
-				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 				$tema2 ++;
 				$titulotema2 = 'Participación Social / '.$tema2;
 
 				break;
 				case '3':
-				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 				$tema3 ++;
 				$titulotema3 = 'Gestión Escolar / '.$tema3;
 
 				break;
 				case '4':
-				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 				$tema4 ++;
 				$titulotema4 = 'Recursos Materiales / '.$tema4;
 
 				break;
 				case '5':
-				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 				$tema5 ++;
 				$titulotema5 = 'Planeación y Estadística / '.$tema5;
 
 				break;
 				case '6':
-				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 				$tema6 ++;
 				$titulotema6 = 'Protección Civil / '.$tema6;
 
 				break;
 				case '7':
-				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 				$tema7 ++;
 				$titulotema7 = 'Recursos Financieros / '.$tema7;
 
 				break;
 				case '8':
-				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 				$tema8 ++;
 				$titulotema8 = 'Programas Federales / '.$tema8;
 
 				break;
 				case '9':
-				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 				$tema9 ++;
 				$titulotema9 = 'Control Escolar / '.$tema9;
 				// echo "<pre>"; print_r($respuesta); 
 				break;
 				case '10':
-				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 				$tema10 ++;
 				$titulotema10 = 'Personal / '.$tema10;
 
 				break;
 				default:
-				$respuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 				$tema0 ++;
 				$titulotema0 = 'Sin tema asignado / '.$tema0;
 
 				break;
 			}
 				
-			array_push($respuestaArray, $respuesta);
-
 		}
 
 		
 		$temas = array('tema1'=>$titulotema1, 'tema2'=>$titulotema2, 'tema3'=>$titulotema3, 'tema4'=>$titulotema4, 'tema5'=>$titulotema5, 'tema6'=>$titulotema6, 'tema7'=>$titulotema7, 'tema8'=>$titulotema8, 'tema9'=>$titulotema9, 'tema1'=>$titulotema1, 'tema0'=>$titulotema0);
 
 		$data['temas'] = $temas;
-		$data['formato'] = $respuestaArray;
-		$data['temaid'] = $idEncuesta;
+		$data['nivel'] = $nivel;
 
 		// echo "<pre>"; print_r($respuestaArray[5][0]['respuesta']); die();
 
 		$str_view = $this->load->view('cuda/consultaNivel', $data, TRUE);
+		$response = array('str_view' => $str_view);
+		Utilerias::enviaDataJson(200,$response,$this);
+		exit;
+	}
+
+	 function getFormatoTema()
+	{
+		$tema = $this->input->post('tema');
+		$nivel = $this->input->post('nivel');
+		$encuestas = [];
+		$formatos = $this->Cuda_model->getFormatoTema($tema,$nivel);
+
+		foreach ($formatos as $key => $value) {
+			$encuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
+			array_push($encuestas, $encuesta);
+		}
+
+
+		$data['formato'] = $encuestas;
+
+		$str_view = $this->load->view('cuda/tabla_encuestas_tema', $data, TRUE);
 		$response = array('str_view' => $str_view);
 		Utilerias::enviaDataJson(200,$response,$this);
 		exit;

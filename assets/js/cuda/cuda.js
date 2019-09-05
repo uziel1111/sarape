@@ -260,7 +260,7 @@
 	}
 
 	function estadistica(idusuario, idsubsecretaria) {
-		console.log(idusuario + ', ' + idsubsecretaria);
+		// console.log(idusuario + ', ' + idsubsecretaria);
 		$.ajax({
 			url: base_url+'Cuda/getEstadistica',
 			type: 'POST',
@@ -282,6 +282,30 @@
 			swal.close();
 		});
 		
+	}
+	function getFormatoTema(tema, nivel) {
+		$.ajax({
+			url: base_url+'Cuda/getFormatoTema',
+			type: 'POST',
+			// dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+			data: {tema:tema, nivel:nivel},
+			beforeSend: function(xhr) {
+				Notification.loading("");
+			},
+		})
+		.done(function(data) {
+			console.log(data.str_view);
+			$('#tabla_documentos_tema'+tema).html(data.str_view);
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+			swal.close();
+		});
+
+
 	}
 
 	

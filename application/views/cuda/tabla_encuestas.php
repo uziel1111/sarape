@@ -9,7 +9,7 @@ if (sizeof($array_encuestas) > 0 ) {
 			<th scope='row'><?=$i?></th>
 			<td><?=$encuestas['respuesta']?></td>
 			<!-- <td><?php//$encuestas['fcreacion']?></td> -->
-			<td>
+			<td width="130px">
 				<span data-toggle='modal' data-target='#verDocumento'>
 					<button type='button' data-toggle='tooltip' title='Ver documento' onclick='documento(<?=$encuestas['idaplicar']?>)' class='btn btn-sm btn-secondary'><i class='fas fa-file-alt mx-1'></i></button>
 				</span>

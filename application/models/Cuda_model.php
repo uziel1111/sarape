@@ -88,4 +88,14 @@ class Cuda_model extends CI_Model
 		return $this->ci_db->query($str_query)->result_array();
 	}
 
+	public function getFormatoTema($tema, $nivel)
+	{
+		$str_query = "SELECT * from aplicar a
+		inner join respuesta r on r.idaplicar = a.idaplicar
+		where a.tema = {$tema} and r.complemento = '{$nivel}';";
+		return $this->ci_db->query($str_query)->result_array();
+
+	}
+
+
 }// Cuda_model class
