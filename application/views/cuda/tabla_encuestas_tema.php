@@ -2,6 +2,7 @@
         <tr>
             <th scope='row'><?=$i?></th>
             <td><?php print_r($encuestas[0]['respuesta'])?></td>
+            <td width="145px"><?php print_r($encuestas[0]['sostenimiento'])?></td>
             <td width="130px">
                 <span data-toggle='modal' data-target='#verDocumento'>
                     <button type='button' data-toggle='tooltip' title='Ver documento' onclick='documento(<?=$encuestas[0]['idaplicar']?>)' class='btn btn-sm btn-secondary'><i class='fas fa-file-alt mx-1'></i></button>

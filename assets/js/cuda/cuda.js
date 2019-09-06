@@ -35,27 +35,30 @@
 		})
 		.done(function(data) {
 			$('#seleccionaNivelIndex').modal('hide');
-			$('#total_documentos').text('Documentos Autorizados / ' + data.total);
+			$('#total_documentos').text('Documentos Autorizados para '+nivel+' / ' + data.total);
 			$('#divDocumentos').removeAttr('Hidden');
 			$('#array').html(data.str_view);
 			$('#selectEducativo').removeAttr('Hidden');
 			$('#selectinput').val(nivel);
+			$('#titulo_h5').text('Catálogo Único de Documentos Autorizados por Nivel Educativo');
+			nivel = $('#nivelEducativo option[value="'+nivel+'"]').attr('selected', true);
+			
+			// $('#calendarioDiv').removeAttr('Hidden');
 		})
 		.fail(function() {
 			console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
+			// console.log("complete");
 			swal.close();	
 		});
 	})
 
-
 	$('#nivelEducativo').change(function() {
-		nivel = $('#selectinput').val();
+		nivel = $('#nivelEducativo option:selected').text();
 		mes = $('#mes option:selected').text();
 
-		if (mes == 'Filtrar por mes') {
+		if (mes == 'Filtrar por mes' || mes == 'Todos los meses') {
 			mes = 'No';
 		}
 
@@ -68,15 +71,17 @@
 			},
 		})
 		.done(function(data) {
-			$('#total_documentos').text('Documentos Autorizados / ' + data.total);
+			$('#selectinput').val(nivel);
+			$('#total_documentos').text('Documentos Autorizados para '+nivel+' / ' + data.total);
 			$('#divDocumentos').removeAttr('Hidden');
 			$('#array').html(data.str_view);
+
 		})
 		.fail(function() {
 			console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
+			// console.log("complete");
 			swal.close();	
 		});
 	});
@@ -84,6 +89,9 @@
 	$('#mes').change(function() {
 		nivel = $('#selectinput').val();
 		mes = $('#mes option:selected').text();
+		if (mes == 'Filtrar por mes' || mes == 'Todos los meses') {
+			mes = 'No';
+		}
 
 		if (nivel == 'Selecione el Nivel Educativo') {
 			nivel = 'No';
@@ -98,7 +106,7 @@
 			},
 		})
 		.done(function(data) {
-			$('#total_documentos').text('Documentos Autorizados / ' + data.total);
+			$('#total_documentos').text('Documentos Autorizados para '+nivel+' / ' + data.total);
 			$('#divDocumentos').removeAttr('Hidden');
 			$('#array').html(data.str_view);
 		})
@@ -106,14 +114,18 @@
 			console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
+			// console.log("complete");
 			swal.close();	
 		});
 	});
 
-/*	$('#mes').change(function() {
-		
+	function calendario(mes) {
 		nivel = $('#nivelEducativo option:selected').text();
+		// mes = $('#mes option:selected').text();
+
+		if (mes == 'Filtrar por mes' || mes == 'Todos los meses') {
+			mes = 'No';
+		}
 
 		$.ajax({
 			url: base_url+'Cuda/consultaNivel',
@@ -124,25 +136,27 @@
 			},
 		})
 		.done(function(data) {
-			$('#total_documentos').text('Documentos Autorizados / ' + data.total);
+			$('#selectinput').val(nivel);
+			$('#total_documentos').text('Documentos Autorizados para '+nivel+' / ' + data.total);
 			$('#divDocumentos').removeAttr('Hidden');
 			$('#array').html(data.str_view);
+
 		})
 		.fail(function() {
 			console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
+			// console.log("complete");
 			swal.close();	
 		});
-
-	});*/
+	}
 
 	function consultaNivel() {
 		$('#consultaSubsecretaria').attr('Hidden','TRUE');
 		$('#selectEducativo').removeAttr('Hidden');
 		$('#array').empty();
 		$('#divDocumentos').attr('Hidden','TRUE');
+		$('#titulo_h5').text('Catálogo Único de Documentos Autorizados por Nivel Educativo');
 	}
 
 	function consultaSubsecretaria() {
@@ -150,6 +164,7 @@
 		$('#selectEducativo').attr('Hidden','TRUE');
 		$('#array').empty();
 		$('#divDocumentos').attr('Hidden','TRUE');
+		$('#titulo_h5').text('Catálogo Único de Documentos Autorizados por Subsecretaría');
 	}
 	
 
@@ -249,14 +264,13 @@
 			console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
+			// console.log("complete");
 			swal.close();	
 		});
 
 	}
 
 	function getTablas(idusuario) {
-		// console.log(idusuario);
 		$.ajax({
 			url: base_url+'Cuda/getEncuestas',
 			type: 'POST',
@@ -272,7 +286,7 @@
 			console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
+			// console.log("complete");
 			swal.close();
 		});
 
@@ -296,7 +310,7 @@
 			console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
+			// console.log("complete");
 			swal.close();
 		});
 
@@ -313,14 +327,14 @@
 		})
 		.done(function(data) {
 			$('#detallesModal').html(data.str_view);
-			console.log("success");
+			// console.log("success");
 			$('#verDetalle').modal('show');
 		})
 		.fail(function() {
 			console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
+			// console.log("complete");
 			swal.close();	
 		});
 	}
@@ -338,20 +352,19 @@
 		})
 		.done(function(data) {
 			$('#contacto'+idusuario).html(data.str_view);
-			console.log("success");
+			// console.log("success");
 		})
 		.fail(function() {
 			console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
+			// console.log("complete");
 			swal.close();
 		});
 
 	}
 
 	function estadistica(idusuario, idsubsecretaria) {
-		// console.log(idusuario + ', ' + idsubsecretaria);
 		$.ajax({
 			url: base_url+'Cuda/getEstadistica',
 			type: 'POST',
@@ -363,13 +376,13 @@
 		})
 		.done(function(data) {
 			$('#estadisticas'+idusuario).html(data.str_view);
-			console.log("success");
+			// console.log("success");
 		})
 		.fail(function() {
 			console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
+			// console.log("complete");
 			swal.close();
 		});
 		
@@ -377,6 +390,10 @@
 	function getFormatoTema(tema, nivel) {
 
 		mes = $('#mes option:selected').text();
+
+		if (mes == 'Todos los meses') {
+			mes = 'No';
+		}
 
 		if (mes != 'Filtrar por mes') {
 			ruta = base_url+'Cuda/getFormatoTemaMes';
@@ -397,14 +414,13 @@
 			},
 		})
 		.done(function(data) {
-			// console.log(data.str_view);
 			$('#tabla_documentos_tema'+tema).html(data.str_view);
 		})
 		.fail(function() {
 			console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
+			// console.log("complete");
 			swal.close();
 		});
 

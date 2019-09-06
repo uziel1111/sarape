@@ -44,7 +44,7 @@
 				<div class="alert alert-light" role="alert">
 					<div class="row">
 						<div class="col align-self-center">
-							<h5 class="text-muted ">Catálogo Único de Documentos Autorizados por Subsecretaría: </h5>
+							<h5 class="text-muted " id="titulo_h5">Catálogo Único de Documentos Autorizados </h5>
 						</div>
 
 					</div>
@@ -64,7 +64,74 @@
 						
 
 					</div>
+					<br>
+					<div class="row" >
+						<div class="col-md-12">
+							<center>
+								<div id="calendarioDiv" class="col-md-12 offset-md-3">
+									<div class="row" id="calendario">
+										<div class="col-ms-12">
+											<div class="col-ms-4">
+												<a class="card-text text-justify"><button type="button" onclick="calendario('Enero')" class="btn btn-secondary btn-lg btn-block btn-mes">Enero</button>
+													<p>	</p>
+												</div>
+												<div class="col-ms-4">
+													<a class="card-text text-justify"><button type="button" onclick="calendario('Mayo')" class="btn btn-secondary btn-lg btn-block btn-mes">Mayo</button>
+														<p> </p>
+													</div>
+													<div class="col-ms-4">
+														<a class="card-text text-justify"><button type="button" onclick="calendario('Septiembre')" class="btn btn-secondary btn-lg btn-block btn-mes">Septiembre</button>
+															<p> </p>
+														</div>
+													</div>
 
+													<div class="col-ms-12" style="margin-left: 10px;">
+														<div class="col-ms-4">
+															<a class="card-text text-justify"><button type="button" onclick="calendario('Febrero')" class="btn btn-secondary btn-lg btn-block btn-mes">Febrero</button>
+																<p> </p>
+															</div>
+															<div class="col-ms-4">
+																<a class="card-text text-justify"><button type="button" onclick="calendario('Junio')" class="btn btn-secondary btn-lg btn-block btn-mes">Junio</button>
+																	<p> </p>
+																</div>
+																<div class="col-ms-4">
+																	<a class="card-text text-justify"><button type="button" onclick="calendario('Octubre')" class="btn btn-secondary btn-lg btn-block btn-mes">Octubre</button>
+																		<p> </p>
+																	</div>
+																</div>
+																<div class="col-ms-12" style="margin-left: 10px;">
+																	<div class="col-ms-4">
+																		<a class="card-text text-justify"><button type="button" onclick="calendario('Marzo')" class="btn btn-secondary btn-lg btn-block btn-mes">Marzo</button>
+																			<p> </p>
+																		</div>
+																		<div class="col-ms-4">
+																			<a class="card-text text-justify"><button type="button" onclick="calendario('Julio')" class="btn btn-secondary btn-lg btn-block btn-mes">Julio</button>
+																				<p> </p>
+																			</div>
+																			<div class="col-ms-4">
+																				<a class="card-text text-justify"><button type="button" onclick="calendario('Noviembre')" class="btn btn-secondary btn-lg btn-block btn-mes">Noviembre</button>
+																					<p> </p>
+																				</div>
+																			</div>
+																			<div class="col-ms-12" style="margin-left: 10px;">
+																				<div class="col-ms-4">
+																					<a class="card-text text-justify"><button type="button" onclick="calendario('Abril')" class="btn btn-secondary btn-lg btn-block btn-mes">Abril</button>
+																						<p> </p>
+																					</div>
+																					<div class="col-ms-4">
+																						<a class="card-text text-justify"><button type="button" onclick="calendario('Agosto')" class="btn btn-secondary btn-lg btn-block btn-mes">Agosto</button>
+																							<p> </p>
+																						</div>
+																						<div class="col-ms-4">
+																							<a class="card-text text-justify"><button type="button" onclick="calendario('Diciembre')" class="btn btn-secondary btn-lg btn-block btn-mes">Diciembre</button>
+																								<p> </p>
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+																			</center>
+																		</div>
+					</div>
 					<br><br>
 					<div class="row" id="selectEducativo" hidden="true">
 						<div class="col-md-6">
@@ -75,6 +142,7 @@
 								<option value="Preescolar">Preescolar</option>
 								<option value="Primaria">Primaria</option>
 								<option value="Secundaria">Secundaria</option>
+								<option value="Educación para Adultos">Educación para Adultos</option>
 							</select>
 							<br>
 						</div>
@@ -93,6 +161,7 @@
 								<option value="Octubre">Octubre</option>
 								<option value="Noviembre">Noviembre</option>
 								<option value="Diciembre">Diciembre</option>
+								<option value="Todos los meses">Todos los meses</option>
 							</select>
 							<br>
 						</div>
@@ -216,34 +285,34 @@
 					</div>
 
 					<!-- modal index -->
-				<div class="modal fade" id="seleccionaNivelIndex" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
-					<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-						<div class="modal-content modal-style-1">
-							<div class="modal-header bg-success">
-								<h5 class="modal-title text-white" id="exampleModalLabel">Nivel Educativo</h5>
-				
-				
-				
-							</div>
-							<div class="modal-body" >
-								<div class="row" id="selectEducativoModal"> 
-									<div class="col-md-12">
-										<select class=" col-md-12 card-header" id="nivelEducativoModal">
-											<option value="Seleccione el Nivel educativo" disabled selected>Seleccione el Nivel Educativo</option>
-											<option value="Especial">Especial</option>
-											<option value="Inicial">Inicial</option>
-											<option value="Preescolar">Preescolar</option>
-											<option value="Primaria">Primaria</option>
-											<option value="Secundaria">Secundaria</option>
-										</select>
-										<br>
-									</div>
+					<div class="modal fade" id="seleccionaNivelIndex" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+						<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+							<div class="modal-content modal-style-1">
+								<div class="modal-header bg-success">
+									<h5 class="modal-title text-white" id="exampleModalLabel">Nivel Educativo</h5>
+
+
+
 								</div>
-				
+								<div class="modal-body" >
+									<div class="row" id="selectEducativoModal"> 
+										<div class="col-md-12">
+											<select class=" col-md-12 card-header" id="nivelEducativoModal">
+												<option value="Seleccione el Nivel educativo" disabled selected>Seleccione el Nivel Educativo</option>
+												<option value="Especial">Especial</option>
+												<option value="Inicial">Inicial</option>
+												<option value="Preescolar">Preescolar</option>
+												<option value="Primaria">Primaria</option>
+												<option value="Secundaria">Secundaria</option>
+											</select>
+											<br>
+										</div>
+									</div>
+
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
 					
 					<!-- End modal index -->

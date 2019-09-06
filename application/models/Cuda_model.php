@@ -27,7 +27,7 @@ class Cuda_model extends CI_Model
 	public function getDetalles($idaplicar)
 	{
 
-		$str_query = "SELECT r.respuesta, r.url_comple, p.pregunta, r.idaplicar, group_concat(r.complemento) as complemento, r.idpregunta, a.otroResponsable, a.responsableDocumento, a.tema from respuesta r 
+		$str_query = "SELECT r.respuesta, r.url_comple, p.pregunta, r.idaplicar, group_concat(r.complemento) as complemento, r.idpregunta, a.otroResponsable, a.responsableDocumento, a.tema, a.sostenimiento from respuesta r 
 		INNER JOIN pregunta p on p.idpregunta = r.idpregunta
 		INNER JOIN aplicar a on a.idaplicar = r.idaplicar
 		where r.idaplicar =  {$idaplicar}
@@ -89,15 +89,16 @@ class Cuda_model extends CI_Model
 		inner join ({$querymes}) as mes on nivel.idaplicar = mes.idaplicar";
 
 		if ($nivel != 'No' && $mes == 'No') {
-
+			// print_r($mes);
 			return $this->ci_db->query($querynivel)->result_array();	
 		}else {
 			if ($nivel == 'No' && $mes != 'No') {
+				// print_r($mes);
 				return $this->ci_db->query($querymes)->result_array();	
 			} else {
 
 				if ($nivel != 'No' && $mes != 'No') {
-
+// print_r($mes);
 					return $this->ci_db->query($querynivelmes)->result_array();	
 				}
 			}
@@ -117,6 +118,7 @@ class Cuda_model extends CI_Model
 		$str_query = "SELECT * from aplicar a
 		inner join respuesta r on r.idaplicar = a.idaplicar
 		where a.tema = {$tema} and r.complemento = '{$nivel}';";
+// echo "<pre>"; print_r($str_query); die();
 		return $this->ci_db->query($str_query)->result_array();
 
 	}
