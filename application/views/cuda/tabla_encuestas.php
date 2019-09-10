@@ -7,7 +7,7 @@ if (sizeof($array_encuestas) > 0 ) {
 
 		<tr>
 			<th scope='row'><?=$i?></th>
-			<td><?=$encuestas['respuesta']?></td>
+			<td><?=strtoupper($encuestas['respuesta'])?></td>
 			<!-- <td><?php//$encuestas['fcreacion']?></td> -->
 			<td width="130px">
 				<span data-toggle='modal' data-target='#verDocumento'>

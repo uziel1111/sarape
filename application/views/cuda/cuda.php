@@ -59,79 +59,13 @@
 					</div>
 
 					<div class="col-md-6">
-						<a class="card-text text-justify"><button type="button" onclick="consultaSubsecretaria()" class="btn btn-secondary btn-lg btn-block">Consultar Por Subsecreataria</button>
+						<a class="card-text text-justify"><button type="button" onclick="consultaSubsecretaria()" class="btn btn-secondary btn-lg btn-block">Consultar Por Dirección de Área</button>
 						</div>	
 						
 
 					</div>
 					<br>
-					<div class="row" >
-						<div class="col-md-12">
-							<center>
-								<div id="calendarioDiv" class="col-md-12 offset-md-3">
-									<div class="row" id="calendario">
-										<div class="col-ms-12">
-											<div class="col-ms-4">
-												<a class="card-text text-justify"><button type="button" onclick="calendario('Enero')" class="btn btn-secondary btn-lg btn-block btn-mes">Enero</button>
-													<p>	</p>
-												</div>
-												<div class="col-ms-4">
-													<a class="card-text text-justify"><button type="button" onclick="calendario('Mayo')" class="btn btn-secondary btn-lg btn-block btn-mes">Mayo</button>
-														<p> </p>
-													</div>
-													<div class="col-ms-4">
-														<a class="card-text text-justify"><button type="button" onclick="calendario('Septiembre')" class="btn btn-secondary btn-lg btn-block btn-mes">Septiembre</button>
-															<p> </p>
-														</div>
-													</div>
-
-													<div class="col-ms-12" style="margin-left: 10px;">
-														<div class="col-ms-4">
-															<a class="card-text text-justify"><button type="button" onclick="calendario('Febrero')" class="btn btn-secondary btn-lg btn-block btn-mes">Febrero</button>
-																<p> </p>
-															</div>
-															<div class="col-ms-4">
-																<a class="card-text text-justify"><button type="button" onclick="calendario('Junio')" class="btn btn-secondary btn-lg btn-block btn-mes">Junio</button>
-																	<p> </p>
-																</div>
-																<div class="col-ms-4">
-																	<a class="card-text text-justify"><button type="button" onclick="calendario('Octubre')" class="btn btn-secondary btn-lg btn-block btn-mes">Octubre</button>
-																		<p> </p>
-																	</div>
-																</div>
-																<div class="col-ms-12" style="margin-left: 10px;">
-																	<div class="col-ms-4">
-																		<a class="card-text text-justify"><button type="button" onclick="calendario('Marzo')" class="btn btn-secondary btn-lg btn-block btn-mes">Marzo</button>
-																			<p> </p>
-																		</div>
-																		<div class="col-ms-4">
-																			<a class="card-text text-justify"><button type="button" onclick="calendario('Julio')" class="btn btn-secondary btn-lg btn-block btn-mes">Julio</button>
-																				<p> </p>
-																			</div>
-																			<div class="col-ms-4">
-																				<a class="card-text text-justify"><button type="button" onclick="calendario('Noviembre')" class="btn btn-secondary btn-lg btn-block btn-mes">Noviembre</button>
-																					<p> </p>
-																				</div>
-																			</div>
-																			<div class="col-ms-12" style="margin-left: 10px;">
-																				<div class="col-ms-4">
-																					<a class="card-text text-justify"><button type="button" onclick="calendario('Abril')" class="btn btn-secondary btn-lg btn-block btn-mes">Abril</button>
-																						<p> </p>
-																					</div>
-																					<div class="col-ms-4">
-																						<a class="card-text text-justify"><button type="button" onclick="calendario('Agosto')" class="btn btn-secondary btn-lg btn-block btn-mes">Agosto</button>
-																							<p> </p>
-																						</div>
-																						<div class="col-ms-4">
-																							<a class="card-text text-justify"><button type="button" onclick="calendario('Diciembre')" class="btn btn-secondary btn-lg btn-block btn-mes">Diciembre</button>
-																								<p> </p>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																			</center>
-																		</div>
-					</div>
+					
 					<br><br>
 					<div class="row" id="selectEducativo" hidden="true">
 						<div class="col-md-6">

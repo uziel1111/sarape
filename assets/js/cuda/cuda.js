@@ -17,7 +17,7 @@
 		chart.draw(data, options);
 	}*/
 	$(document).ready(function() {
-		$('#seleccionaNivelIndex').modal('show');
+		// $('#seleccionaNivelIndex').modal('show');
 	});
 	
 
@@ -165,6 +165,7 @@
 		$('#array').empty();
 		$('#divDocumentos').attr('Hidden','TRUE');
 		$('#titulo_h5').text('Catálogo Único de Documentos Autorizados por Subsecretaría');
+		$('#total_documentos').text('Documentos Autorizados');
 	}
 	
 
