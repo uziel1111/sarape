@@ -59,6 +59,18 @@ foreach ($array_detalles as $key => $value):
 				</div>		 
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-sm">
+				<div class="alert alert-success my-1 py-1 fz-18" role="alert">
+					
+
+
+					<span class="fw800 text-muted">Dirección Encargada</span></center><br><?= ucfirst($value['direccion'])?>	
+
+					
+				</div>		 
+			</div>
+		</div>
 	<?php } ?>
 	<!-- End Modal -->
 <?php endforeach ?>
