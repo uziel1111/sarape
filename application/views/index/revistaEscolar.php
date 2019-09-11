@@ -13,6 +13,12 @@
           <div class="row">
             <div class="col-sm-3">
               <!-- onclick="Index.getinformese(6)" -->
+              <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_septiembre_2019"  target="_blank" title="Edición #13 septiembre">
+                <img src="<?= base_url('assets/img/revista-septiembre.png'); ?>" class="img-fluid" alt="Responsive image">
+              </a>
+            </div>
+            <div class="col-sm-3">
+              <!-- onclick="Index.getinformese(6)" -->
               <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_agosto_2019"  target="_blank" title="Edición #12 agosto">
                 <img src="https://www.seducoahuila.gob.mx/images/cffe25d9-eae1-48be-80ee-0bdf7cd25502.jpg?crc=3966614498" class="img-fluid" alt="Responsive image">
               </a>
