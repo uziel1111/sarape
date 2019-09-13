@@ -51,26 +51,18 @@
 				</div>
 			</div>
 		</div>
-		<div>
+	
 			<div class="row">
 				
 				<div class="col-md-6">
 					<a class="card-text text-justify"><button type="button" onclick="consultaNivel()" class="btn btn-secondary btn-lg btn-block">Consultar por Nivel</button>
-					</div>
-
-					<div class="col-md-6">
-						<a class="card-text text-justify"><button type="button" onclick="consultaSubsecretaria()" class="btn btn-secondary btn-lg btn-block">Consultar Por Dirección de Área</button>
-						</div>	
 						
-
-					</div>
-					<br>
-					
-					<br><br>
-					<div class="row" id="selectEducativo" hidden="true">
-						<div class="col-md-6">
-							<select class=" col-md-12 card-header" id="nivelEducativo">
-								<option value="Seleccione el Nivel educativo" disabled selected>Seleccione el Nivel Educativo</option>
+						
+						<div class="row" id="selectEducativo" hidden="true" style="background-color: rgba(0,0,0,0.1); margin: 0 4px 0 4px; border-radius: 0 0 20px 20px;">
+						<div class="col-lg-6 mt-4">
+						<div class="form-group form-group-style-1">	
+							<select class="form-control" id="nivelEducativo">
+								<option value="Seleccione el Nivel educativo" disabled selected>Nivel Educativo</option>
 								<option value="Especial">Especial</option>
 								<option value="Inicial">Inicial</option>
 								<option value="Preescolar">Preescolar</option>
@@ -79,10 +71,11 @@
 								<option value="Educación para Adultos">Educación para Adultos</option>
 								<option value="Extraescolar">Extraescolar</option>
 							</select>
-							<br>
 						</div>
-						<div class="col-md-6">
-							<select class=" col-md-12 card-header" id="mes">
+						</div>	
+						<div class="col-lg-6 mt-lg-4 mt-1">
+						<div class="form-group form-group-style-1">		
+							<select class="form-control" id="mes">
 								<option value="Filtrar por mes" disabled selected>Filtrar por mes</option>
 								<option value="Enero">Enero</option>
 								<option value="Febrero">Febrero</option>
@@ -98,10 +91,22 @@
 								<option value="Diciembre">Diciembre</option>
 								<option value="Todos los meses">Todos los meses</option>
 							</select>
-							<br>
 						</div>
+						</div>	
 					</div>
-					<input type="text" hidden="true" id="selectinput">
+					<input type="text" hidden="true" id="selectinput">		
+						
+					</div>
+
+					<div class="col-md-6">
+						<a class="card-text text-justify"><button type="button" onclick="consultaSubsecretaria()" class="btn btn-secondary btn-lg btn-block">Consultar Por Dirección de Área</button>
+						</div>	
+						
+
+					</div>
+					
+					<br><br>
+
 					<!-- Search bar Area -->
 					<div class="row" id="consultaSubsecretaria" hidden="true">
 						<div class="col-md-4">
@@ -172,7 +177,7 @@
 
 								</div>
 							</div>
-
+						</div>
 
 						</div>
 					</section>
