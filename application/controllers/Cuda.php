@@ -92,8 +92,10 @@ class Cuda extends CI_Controller
 		$grafica1 = ($estadistica * 100) / $total;
 		$grafica2 = ($estadistica * 100) / $global;
 
-		$data['grafica1'] =  bcdiv($grafica1,'1',0);
-		$data['grafica2'] =  bcdiv($grafica2,'1',0);
+		// $data['grafica2'] =  bcdiv($grafica2,'1',0);
+		// $data['grafica1'] =  bcdiv($grafica1,'1',0);
+		$data['grafica2'] =  round($grafica2,0);
+		$data['grafica1'] =  round($grafica1,0);
 		$data['sub'] = $total;
 		$data['universo'] = $global;
 		$data['propio'] = $estadistica;
@@ -127,7 +129,6 @@ class Cuda extends CI_Controller
 		$tema10 = 0;
 		$titulotema10 = 'Cooperativas y Tiendas Escolares / '.$tema10;
 		
-		// $respuestaArray = [];
 		$respuestaArray = array();
 
 		$idEncuesta = $this->Cuda_model->idEncuestaNivel($nivel, $mes);
@@ -207,7 +208,6 @@ class Cuda extends CI_Controller
 		
 		$tema = $this->input->post('tema');
 		$nivel = $this->input->post('nivel');
-		// $encuestas = [];
 		$encuestas = array();
 		$formatos = $this->Cuda_model->getFormatoTema($tema,$nivel);
 
@@ -232,9 +232,7 @@ class Cuda extends CI_Controller
 		$nivel = $this->input->post('nivel');
 		$mes = $this->input->post('mes');
 
-		// $encuestas = [];
 		$encuestas = array();
-		// $formatosMesArray = [];
 		$formatosMesArray = array();
 		$formatos = $this->Cuda_model->getFormatoTema($tema,$nivel);
 // echo "<pre>"; print_r($formatos); die();

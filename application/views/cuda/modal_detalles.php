@@ -1,6 +1,12 @@
 <?php $i = 0;
 foreach ($array_detalles as $key => $value): 
 	$i++;
+	$complemento = str_replace(",", ", ", $value['complemento']);
+	
+	 $auxComple = substr($complemento, -2);
+	if ($auxComple == ', ') {
+		$complemento = rtrim($complemento, ', ');
+	}
 	?>
 	
 	<!-- Modal Detalle -->
@@ -10,9 +16,9 @@ foreach ($array_detalles as $key => $value):
 				<div class="alert alert-success my-1 py-1 fz-18" role="alert">
 					
 					<?php if ($value['pregunta'] == 'Fecha(s) de entrega') { ?>
-						<span class="fw800 text-muted">Meses en que se entrega</span><br> <?= ucfirst($value['respuesta'])?><?= ucfirst($value['complemento'])?>
+						<span class="fw800 text-muted">Meses en que se entrega</span><br> <?= ucfirst($value['respuesta'])?><?= ucfirst($complemento)?>
 					<?php } else { ?>
-						<span class="fw800 text-muted"><?=$value['pregunta']?></span><br> <?= ucfirst($value['respuesta'])?><?= ucfirst($value['complemento'])?>
+						<span class="fw800 text-muted"><?=$value['pregunta']?></span><br> <?= ucfirst($value['respuesta'])?><?= ucfirst($complemento)?>
 					<?php } ?>
 
 				</div>		 
