@@ -83,8 +83,12 @@ $db['default'] = array(
 'username' => 'proye7nb_pruebas',
 'password' => 'pruebas.123',
 'database' => 'proye7nb_pruebas',
-/*
-'hostname' => '172.20.30.251',
+/*'hostname' => '127.0.0.1',
+'username' => 'root',
+'password' => '',
+'database' => 'sarape',*/
+
+/*'hostname' => '172.20.30.251',
 'username' => 'sarape_usr',
 'password' => 'Sarap3',
 'database' => 'sarapeWork',
