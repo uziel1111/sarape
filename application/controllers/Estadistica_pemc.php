@@ -19,7 +19,7 @@ class Estadistica_pemc extends CI_Controller
     {   
       $data = $this->data;
       $data['error'] = '';
-      Utilerias::pagina_basica($this, "Estadistica_pemc/login", $data);
+     $this->load->view( "Estadistica_pemc/login", $data);
   }
 
     public function login_action(){
@@ -32,7 +32,7 @@ class Estadistica_pemc extends CI_Controller
             $data = 0;
             Utilerias::set_usuario_sesion($this, $user_data);
             if(Utilerias::haySesionAbierta($this)){
-                 $this->load->view('Estadistica_pemc/index',$data); 
+                 Utilerias::pagina_basica($this, 'Estadistica_pemc/index',$data); 
             }
         }else{
             $data = $this->data;

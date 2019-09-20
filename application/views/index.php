@@ -41,7 +41,7 @@
 						<!-- List group -->
 						<ul class="list-group">
 
-							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank"><span class="color-2 mr-5"><i class="fas fa-star"></i></span> <font SIZE=2> Programa Escolar de Mejora Continua </font> </a>
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank"><span class="color-2 mr-5"><i class="fas fa-star"></i></span><font SIZE=3> Programa Escolar de Mejora <a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank"><b>Continua</b></a> </font>  <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a>
 							</li>
 							<!-- <li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Rutademejora/index_new'); ?>" target="_blank"><span class="color-2 mr-5"><i class="fas fa-star"></i></span> Ruta de Mejora <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a>
 							</li> -->
@@ -50,7 +50,7 @@
 <!--
 							<li class="list-group-item"><a href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Servicio Profesional Docente</a> -->
 
-							<li class="list-group-item"><a href="<?= base_url('index.php/cuda'); ?>" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Catálogo Único de Documentos Autorizados</a>
+							<li class="list-group-item"><b><a href="<?= base_url('index.php/cuda'); ?>" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span>Catálogo Único de Documentos <a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/cuda'); ?>" target="_blank">Autorizados (CUDA)</a> <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a></b>
 							</li>
 							<li class="list-group-item"><a onclick="Index.getReconocimientosEstatales()" href="javascript:void(0)"><span class="color-2"><i class="material-icons">chevron_right</i></span> Reconocimientos estatales</a>
 							</li>
