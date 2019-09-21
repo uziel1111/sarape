@@ -28,6 +28,12 @@ define('ERRORMESSAGE', '2');
 	        $contexto->load->view('templates/footer');
 	    }
 
+	    public static function pagina_basica_pemc($contexto, $vista = '', $data) {
+	       	$contexto->load->view('templates/header_pemc');
+	        $contexto->load->view($vista, $data);
+	        $contexto->load->view('templates/footer');
+	    }
+
 	    /**
      * Carga la vista básica del panel: header, vista y footer.
      *

@@ -187,9 +187,13 @@ span{
 			</div> <!-- row -->
 		</div> <!-- container -->
 		<div class="contenedorbtn">
+<?php if (isset($tipo_usuario_pemc)): ?>
+
+<?php else: ?>
 <button class="botonF1 ">
    <span><i class="fas fa-wrench fa-xs"></i></span>
 </button>
+<?php endif; ?> 
 <button class="btnespe botonF2" id="btn_mision" data-toggle="tooltip" title="Misión">
   <span><i class="fas fa-flag fa-xs"></i></span>
 </button>
