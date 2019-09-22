@@ -27,4 +27,28 @@ class Estadistica_pemc_model extends CI_Model
       return  $this->db->get()->result_array();
     }
 
+    /*BK201 S*/
+    function get_cantidad_datos($nivel, $municipio){
+      
+       $this->db->select('tp.id_cct, e.cve_centro, tp.orden, e.id_nivel, m.nombre,COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones');
+       $this->db->from('rm_tema_prioritarioxcct as tp');
+       $this->db->join('rm_c_prioridad as p', 'tp.id_prioridad=p.id_prioridad');
+       $this->db->join('rm_objetivo as o', 'tp.id_tprioritario=o.id_tprioritario', 'left');
+       $this->db->join('rm_accionxtproritario as a', 'o.id_objetivo=a.id_objetivos', 'left');
+       $this->db->join('escuela as e', 'e.id_cct = tp.id_cct');
+       $this->db->join('municipio as m', 'm.idmunicipio=e.id_municipio');
+       if ($nivel != 0) {
+        $this->db->where('e.id_nivel', $nivel);
+       }
+       if ($municipio != 0) {
+        $this->db->where('e.id_municipio', $municipio);
+       }
+    $this->db->group_by('tp.id_tprioritario');
+    $this->db->order_by('tp.orden');
+   /* $this->db->get(); 
+    echo $this->db->last_query(); die();*/
+    return  $this->db->get()->result_array();
+
+}
+/*BK201 E*/
 }
