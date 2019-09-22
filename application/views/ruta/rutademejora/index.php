@@ -216,9 +216,11 @@ span{
 			</div>
 
 			<div class="modal-body" >
+				
 				<div id="div_generico">
-					
+					<?php if(isset($tipo_usuario_pemc)) { $tipou_pemc=$tipo_usuario_pemc; }?>
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -340,9 +342,14 @@ span{
 								</div>
 								<div class="row mt-15 float-right">
 									<div class="col-12 ">
+									<?php if (isset($tipo_usuario_pemc)): ?>
+
+									<?php else: ?>
 										<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_agregar_accion">Agregar acción</button>
 										<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_editando_accion">Editar</button>
-                    <button type="button" id="saliract" class="btn btn-success btn-style-1 mr-10">Regresar</button>
+									<?php endif; ?>
+
+                    					<button type="button" id="saliract" class="btn btn-success btn-style-1 mr-10">Regresar</button>
 									</div>
 								</div>
 							<!-- </div> -->

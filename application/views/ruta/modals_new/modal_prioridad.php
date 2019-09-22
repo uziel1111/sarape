@@ -145,14 +145,16 @@
 					</div>
 				</div>
 
-				<div class="row mt-15">
-					<div class="col-12">
-						<button type="button" id="grabar_prioridad" class="btn btn-primary btn-style-1 mr-10">Guardar</button>
+				<?php if (isset($tipou_pemc)){  ?>
+				<?php } else{ ?>
+					<div class="row mt-15">
+						<div class="col-12">
+							<button type="button" id="grabar_prioridad" class="btn btn-primary btn-style-1 mr-10">Guardar</button>
+						</div>
 					</div>
-				</div>
+				<?php } ?>
 
 				<!-- Grid objetivos -->
-				<!-- <div id=""  <?=(isset($idtemaprioritario))?"":"style='display:none'"?> > -->
 					<div id="hiddenDiv1" >
 						<div class="row mt-4">
 							<div class="col-12">
@@ -379,9 +381,10 @@
 								</div>
 								<div class="row mt-3 float-right">
 									<div class="col">
-
+										<?php if (isset($tipou_pemc)){  ?>
+										<?php }else{ ?>
 										<button id="grabar_objetivo" type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Grabar Objetivo"><i id="btn_guardar" class="fas fa-save"></i></button>
-
+										<?php } ?>
 										<button id="limpiar" type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Limpiar campos"><i class="fas fa-quidditch"></i></button>
 									</div>
 								</div>
