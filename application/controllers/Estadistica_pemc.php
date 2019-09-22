@@ -195,5 +195,63 @@ class Estadistica_pemc extends CI_Controller
             // }
     }
 
+    /*BK201 S*/
 
+    public function getEstadistica(){
+        $result = array();
+        $nivel = $this->input->post('nivel');
+        $municipio = $this->input->post('municipio');
+
+        $obj0 = 0;
+        $obj1 = 0;
+        $obj2 = 0;
+        $obj4 = 0;
+        $datos = $this->Estadistica_pemc_model->get_cantidad_datos($nivel, 0);
+        $total = sizeof($datos);
+        foreach ($datos as $key => $value) {
+            if ($value['nombre'] == 'Arriaga') {
+              
+            switch ($value['num_objetivos']) {
+                case '1':
+                $obj1++;
+                break;
+                case '2' || '3':
+                $obj2++;
+                break;
+                case '4' || $value['num_objetivos'] > '4' :
+                $obj4++;
+                break;
+                case '0':
+                $obj0++;
+                break;
+            }
+            }
+        }
+        $pC = (($total * 100) / 7871);
+        $pNC = 100 - $pC;
+
+        $porcentajeC = $this->truncar($pC, '2');
+        $porcentajeNC = $this->truncar($pNC, '2');
+
+        $result+=['obj0'=>$obj0];
+        $result+=['obj1'=>$obj1];
+        $result+=['obj2'=>$obj2];
+        $result+=['obj4'=>$obj4];
+        $result+=['total'=>$total];
+        $result+=['datos'=>$datos];
+
+            // echo '<pre>'; print_r($total); die();
+
+        $data['result'] = $result;
+        $str_view = $this->load->view("Estadistica_pemc/grid_general", $data, TRUE);
+        $response = array('str_view' => $str_view, 'porcentajeC' =>$porcentajeC, 'porcentajeNC' =>$porcentajeNC);
+        Utilerias::enviaDataJson(200, $response, $this);
+        exit;
+    }
+    
+     function truncar($numero, $digitos) {
+        $truncar = 10**$digitos;
+        return intval($numero * $truncar) / $truncar;
+    }
+    /*BK201 E*/
 }
