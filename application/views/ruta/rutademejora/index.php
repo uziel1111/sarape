@@ -188,7 +188,7 @@ span{
 		</div> <!-- container -->
 		<div class="contenedorbtn">
 <?php if (isset($tipo_usuario_pemc)): ?>
-
+	<input type="text" name="tipou_pemc" id="tipou_pemc" hidden>
 <?php else: ?>
 <button class="botonF1 ">
    <span><i class="fas fa-wrench fa-xs"></i></span>
@@ -218,7 +218,6 @@ span{
 			<div class="modal-body" >
 				
 				<div id="div_generico">
-					<?php if(isset($tipo_usuario_pemc)) { $tipou_pemc=$tipo_usuario_pemc; }?>
 				</div>
 				
 			</div>
@@ -360,7 +359,11 @@ span{
 					<div class="row mt-15">
 						<div class="col-12">
 							<button id="id_btn_edita_accion" type="button" title="Editar" class="btn btn-primary"><i class="fas fa-edit"></i></button>
-							<button id="id_btn_elimina_accion" type="button" title="Eliminar" class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>
+							<?php if (isset($tipo_usuario_pemc)): ?>
+
+							<?php else: ?>
+								<button id="id_btn_elimina_accion" type="button" title="Eliminar" class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>
+							<?php endif; ?>
 						</div>
 					</div>
 					<div class="row mt-15">
@@ -427,7 +430,7 @@ function irAbajo(){
 
  function subirImg(id_objetivos, imagen) {
  	
- 	console.log('En la función');
+
 	swal({
 			title: '¿Está seguro de subir evidencia?',
 			text: "Usted cargará una nueva imagen",

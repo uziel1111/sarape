@@ -15,12 +15,14 @@ $("#cerrar_modal_acciones").click(function(){
   obj_rm_acciones_tp.limpia_camposform();
   $('#exampleModalacciones').modal('toggle');
   obj.get_view();
+  $('#id_objetivos').removeAttr('disabled');
 });
 
 $('#saliract').click(function(){
   obj_rm_acciones_tp.limpia_camposform();
   $('#exampleModalacciones').modal('toggle');
-  obj_rm_acciones_tp.get_view()
+  obj_rm_acciones_tp.get_view();
+  $('#id_objetivos').removeAttr('disabled');
 })
 
 $("#btn_rutamejora_acciones").click(function(){

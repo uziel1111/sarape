@@ -145,14 +145,12 @@
 					</div>
 				</div>
 
-				<?php if (isset($tipou_pemc)){  ?>
-				<?php } else{ ?>
 					<div class="row mt-15">
 						<div class="col-12">
 							<button type="button" id="grabar_prioridad" class="btn btn-primary btn-style-1 mr-10">Guardar</button>
 						</div>
 					</div>
-				<?php } ?>
+			
 
 				<!-- Grid objetivos -->
 					<div id="hiddenDiv1" >
@@ -381,10 +379,9 @@
 								</div>
 								<div class="row mt-3 float-right">
 									<div class="col">
-										<?php if (isset($tipou_pemc)){  ?>
-										<?php }else{ ?>
+					
 										<button id="grabar_objetivo" type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Grabar Objetivo"><i id="btn_guardar" class="fas fa-save"></i></button>
-										<?php } ?>
+					
 										<button id="limpiar" type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Limpiar campos"><i class="fas fa-quidditch"></i></button>
 									</div>
 								</div>
@@ -466,7 +463,6 @@
 	<input type="hidden" id="nivel" value="<?php echo $this->cct[0]['nivel']; ?>">
 	<script src="<?= base_url('assets/multiselect/js/bootstrap-select.js'); ?>"></script>
 	<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_prioridad.js') ?>"></script>
-	<!-- <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script> -->
 	<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/preview_arch.js') ?>"></script>
 
 

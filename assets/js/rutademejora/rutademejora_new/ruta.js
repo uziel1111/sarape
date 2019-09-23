@@ -38,28 +38,32 @@ $("#btn_mision").click(function(e){
 
 $("#img_mision").click(function(e){
 	e.preventDefault()
-	var ruta = base_url + 'Rutademejora/modal_mision'
-	$.ajax({
-		url:ruta,
-		data: { },
-		beforeSend: function(xhr) {
-	      Notification.loading("");
-    }
-	})
-	.done(function(data){
-		$("#div_generico").empty();
-    $("#div_generico").append(data.strView);
+	if($("#tipou_pemc").length){
 
-		$('h5').empty();
-		$('h5').append(data.titulo);
-    $("#myModal").modal("show");
-	})
-	.fail(function(e) {
-    console.error("Error in ()"); console.table(e);
-  })
-	.always(function() {
-    swal.close();
-  });
+	}else{
+		var ruta = base_url + 'Rutademejora/modal_mision'
+		$.ajax({
+			url:ruta,
+			data: { },
+			beforeSend: function(xhr) {
+		      Notification.loading("");
+	    }
+		})
+		.done(function(data){
+			$("#div_generico").empty();
+	    $("#div_generico").append(data.strView);
+
+			$('h5').empty();
+			$('h5').append(data.titulo);
+	    $("#myModal").modal("show");
+		})
+		.fail(function(e) {
+	    console.error("Error in ()"); console.table(e);
+	  })
+		.always(function() {
+	    swal.close();
+	  });
+	}
 });
 
 //Prioridad (incompleto)
@@ -102,6 +106,13 @@ $("#btn_prioridad").click(function(e){
 				$('h5').empty();
 				$('h5').append(data.titulo);
 		    $("#myModal").modal("show");
+		    if($('#tipou_pemc').length) {
+				$("#grabar_prioridad").hide();
+				$("#grabar_objetivo").hide();
+				$("#btn_eliminar").hide();
+				$('.problematica').selectpicker('hide');
+				
+			}
 		    
         obj_prioridad.getObjetivos(obj.id_tprioritario);
         

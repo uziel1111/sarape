@@ -21,7 +21,7 @@
   <!-- CSS -->
     <link href="<?= base_url('assets/css/main.css'); ?>" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="<?= base_url('assets/css/linearicons.css'); ?>">
-
+    <link rel="stylesheet" href="<?= base_url('assets/multiselect/css/bootstrap-select.min.css') ?>">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link href="<?= base_url('assets/bootstrap-411/css/bootstrap.min.css'); ?>" rel="stylesheet" media="screen">
