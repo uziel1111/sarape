@@ -3,14 +3,21 @@
 
 $(document).ready(function() {
 	getEstadistica();	
+
 });
 
 $('#xgeneral_tab').click(function() {
 	getEstadistica();
+	
 });
+$('#nivel_educativo_grid_general').change(function() {
+	console.log('click');
+	getEstadistica();
 
+});
 function getEstadistica() {
-	nivel = 4;
+	nivel = $('#nivel_educativo_grid_general option:selected').val();
+	console.log(nivel);
 	ruta = base_url + 'Estadistica_pemc/getEstadistica';
 	$.ajax({
 		url: ruta,
@@ -20,7 +27,7 @@ function getEstadistica() {
 	.done(function(data) {
 
 		$('#xgeneral').html(data.str_view);
-		graficaPie(data.porcentajeNC,data.porcentajeC);
+		graficaPie(data.porcentajeC,data.porcentajeNC);
 	})
 	.fail(function() {
 		console.log("error");
@@ -47,3 +54,4 @@ function getEstadistica() {
 
         chart.draw(data, options);
       }
+

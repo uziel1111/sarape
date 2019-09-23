@@ -69,7 +69,9 @@
 	  	</div>
 	</div>
 </section>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="<?= base_url('assets/js/estadistica_pemc/busquedaxcct.js') ?>"></script>
 <script src="<?= base_url('assets/js/estadistica_pemc/xCaptura.js') ?>"></script>
+<script src="<?= base_url('assets/js/estadistica_pemc/xLAE.js') ?>"></script>
 <script src="<?= base_url('assets/js/regularexpression.js') ?>"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
