@@ -17,7 +17,9 @@ $('#nivel_educativo_grid_general').change(function() {
 });
 function getEstadistica() {
 	nivel = $('#nivel_educativo_grid_general option:selected').val();
-	console.log(nivel);
+	if (nivel == undefined) {
+		nivel = 0;
+	}
 	ruta = base_url + 'Estadistica_pemc/getEstadistica';
 	$.ajax({
 		url: ruta,

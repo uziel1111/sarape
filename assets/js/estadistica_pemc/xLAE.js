@@ -12,10 +12,10 @@ $('#xLAE_tab').click(function() {
 });
 
 function getEstadisticaLAE() {
-   nivel = $('#nivel_educativo_grid_general_LAE option:selected').val();
-   if (nivel == 'undefined') {
-    nivel = 1;
-   }
+   nivel = $('#nivel_educativo_LAE option:selected').val();
+  if (nivel == undefined) {
+        nivel = 0;
+    }
     ruta = base_url + 'Estadistica_pemc/getEstadisticaLAE';
     $.ajax({
         url: ruta,
@@ -27,12 +27,14 @@ function getEstadisticaLAE() {
         $('#xLAE').html(data.str_view);
         console.log(data.result);
         graficaBar(data.result); 
+        $('#nivel_educativo_LAE').val(nivel);
     })
     .fail(function() {
         console.log("error");
     })
     .always(function() {
         console.log("complete");
+        swal.close();   
     });
     
 }

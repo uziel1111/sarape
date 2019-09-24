@@ -203,21 +203,35 @@ if(count($result_evidencias)==0){
        
         $totalPorcentaje = 0;
         $tabla = '';
+        $totalEscuelas = 0;
 
         $municipios = $this->Estadistica_pemc_model->municipios();
 
         foreach ($municipios as $key => $value) {
             $tabla .= "<tr>
-                      <td>{$value['nombre']}</td>";
+                      <td>{$value['nombre']}</td>
+                      ";
+            $escuelasxmun = $this->Estadistica_pemc_model->get_escuelasMun($nivel, $value['idmunicipio']);
+
+            foreach ($escuelasxmun as $key => $values) {
+                $tabla .= "<td>{$values['total']}</td>";
+                $totalEscuelas += $values['total'];
+            }
+
             $datos = $this->Estadistica_pemc_model->get_cantidad_datos($nivel, $value['idmunicipio']);
             $total = $this->Estadistica_pemc_model->get_total($nivel, $value['idmunicipio']);
             
             foreach ($total as $key => $value) {
+                 $porcenEsc = 0;
                 if ($value['total'] == NULL) {
                     $tabla .= "<td>0</td>";
+                    $porcenEsc = ($value['total'] *  $values['total']) /100;
+                    $tabla .= "<td>{$porcenEsc}%</td>";
                 }else{
 
                 $tabla .= "<td>{$value['total']}</td>";
+                 $porcenEsc = ($value['total'] *  $values['total']) /100;
+                    $tabla .= "<td>{$porcenEsc}%</td>";
                 }
                 $totalPorcentaje += $value['total'];
             }
@@ -259,7 +273,7 @@ if(count($result_evidencias)==0){
      $porcentajeC = $this->truncar($pC, '2');
      $porcentajeNC = $this->truncar($pNC, '2');
 
-     $result = ['tabla' => $tabla, 'total' => $totalPorcentaje];
+     $result = ['tabla' => $tabla, 'total' => $totalEscuelas];
 
      $data['result'] = $result;
      $str_view = $this->load->view("Estadistica_pemc/grid_general", $data, TRUE);
@@ -276,61 +290,76 @@ if(count($result_evidencias)==0){
 public function getEstadisticaLAE(){
   $nivel = $this->input->post('nivel');
   $result = array();
-     // echo '<pre>'; print_r($nivel); die();
-  switch ($nivel) {
-    case '4':
-    $result+=['obj1'=>15];
-    $result+=['obj2'=>12];
-    $result+=['obj3'=>26];
-    $result+=['obj4'=>8];
-    $result+=['obj5'=>40];
-    $result+=['total'=>101];
-    break;
-    case '2':
-    $result+=['obj1'=>5];
-    $result+=['obj2'=>2];
-    $result+=['obj3'=>6];
-    $result+=['obj4'=>8];
-    $result+=['obj5'=>0];
-    $result+=['total'=>21];
-    break;
-    case '3':
-    $result+=['obj1'=>1];
-    $result+=['obj2'=>2];
-    $result+=['obj3'=>2];
-    $result+=['obj4'=>5];
-    $result+=['obj5'=>4];
-    $result+=['total'=>14];
-    break;
-    case '1':
-    $result+=['obj1'=>1];
-    $result+=['obj2'=>2];
-    $result+=['obj3'=>0];
-    $result+=['obj4'=>1];
-    $result+=['obj5'=>3];
-    $result+=['total'=>7];
-    break;
-    case '5':
-    $result+=['obj1'=>10];
-    $result+=['obj2'=>20];
-    $result+=['obj3'=>0];
-    $result+=['obj4'=>21];
-    $result+=['obj5'=>13];
-    $result+=['total'=>64];
-    break;
-    default:
-    $result+=['obj1'=>15];
-    $result+=['obj2'=>12];
-    $result+=['obj3'=>26];
-    $result+=['obj4'=>8];
-    $result+=['obj5'=>40];
-    $result+=['total'=>101];
-    break;
-}
+    $tabla = '';
+    $arrayRegion = $this->Estadistica_pemc_model->get_region();
 
+    foreach ($arrayRegion as $key => $region) {
+      
+        $tabla .= "<tr><td>{$region['region']}</td>";
 
+        $tabla .="<td>{$region['nombre']}</td>";
 
-$data['result'] = $result;
+        $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae($nivel, $region['idmunicipio']);
+
+        if (empty($OALae)) {
+         $tabla .="<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>";
+     }else{
+
+        foreach ($OALae as $key => $lae) {
+            if ($lae['orden'] == 1) {
+                if ($lae['orden'] == NULL ) {
+                   $tabla .="<td>0</td>";
+                   $tabla .="<td>0</td>";
+               }else{
+                 $tabla .="<td>{$lae['num_objetivos']}</td>";
+                 $tabla .="<td>{$lae['num_acciones']}</td>";
+             }
+         }
+
+          if ($lae['orden'] == 2) {
+                if ($lae['orden'] == NULL ) {
+                   $tabla .="<td>0</td>";
+                   $tabla .="<td>0</td>";
+               }else{
+                 $tabla .="<td>{$lae['num_objetivos']}</td>";
+                 $tabla .="<td>{$lae['num_acciones']}</td>";
+             }
+         }
+
+          if ($lae['orden'] == 3) {
+                if ($lae['orden'] == NULL ) {
+                   $tabla .="<td>0</td>";
+                   $tabla .="<td>0</td>";
+               }else{
+                 $tabla .="<td>{$lae['num_objetivos']}</td>";
+                 $tabla .="<td>{$lae['num_acciones']}</td>";
+             }
+         }
+
+         if ($lae['orden'] == 4) {
+                if ($lae['orden'] == NULL ) {
+                   $tabla .="<td>0</td>";
+                   $tabla .="<td>0</td>";
+               }else{
+                 $tabla .="<td>{$lae['num_objetivos']}</td>";
+                 $tabla .="<td>{$lae['num_acciones']}</td>";
+             }
+         }
+
+         if ($lae['orden'] == 5 ) {
+                if ($lae['orden'] == NULL ) {
+                   $tabla .="<td>0</td>";
+                   $tabla .="<td>0</td>";
+               }else{
+                 $tabla .="<td>{$lae['num_objetivos']}</td>";
+                 $tabla .="<td>{$lae['num_acciones']}</td>";
+             }
+         }
+     }
+ }
+    }
+
+$data['tabla'] = $tabla;
 $str_view = $this->load->view("Estadistica_pemc/grid_LAE", $data, TRUE);
 $response = array('str_view' => $str_view, 'result'=>$result);
 Utilerias::enviaDataJson(200, $response, $this);

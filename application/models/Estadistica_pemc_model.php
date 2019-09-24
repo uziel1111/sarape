@@ -74,5 +74,76 @@ class Estadistica_pemc_model extends CI_Model
 
         return $this->db->query($query)->result_array();
 }
+
+  function get_escuelasMun($nivel, $idmunicipio)
+ {
+  $this->db->select('count(*) as total');
+  $this->db->from('escuela');
+  $this->db->where('id_municipio', $idmunicipio);
+   if ($nivel != 0) {
+  $this->db->where('id_nivel', $nivel);
+    }
+  $this->db->group_by('id_municipio');
+
+  return  $this->db->get()->result_array();
+ }
+
+ function get_region(){
+   $this->db->select('m.nombre, m.idmunicipio, r.region, r.id_region');
+  $this->db->from('municipio as m');
+  $this->db->join('region as r', 'r.id_region = m.region');
+  $this->db->where('identidad',5);
+  $this->db->order_by('m.region');
+
+  return  $this->db->get()->result_array();
+ }
+
+ function get_obj_acc_lae($nivel, $municipio)
+ {
+   $query = 'SELECT tp.orden, COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones
+   FROM rm_tema_prioritarioxcct tp
+   INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
+   LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
+   LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
+   inner join escuela e on e.id_cct = tp.id_cct
+   inner join municipio m on m.idmunicipio = e.id_municipio
+   WHERE m.identidad = 5  and m.idmunicipio = '.$municipio.'';
+   if ($nivel != 0) {
+    $query .= ' and e.id_nivel = '.$nivel. '';
+  }
+
+  $query .= ' GROUP BY tp.orden  ORDER by tp.orden';
+
+   // echo '<pre>'; print_r($query); die();
+
+  return $this->db->query($query)->result_array();
+}
+
+function get_filtros($nivel, $municipio, $region)
+ {
+   $query = 'SELECT tp.orden, COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones
+   FROM rm_tema_prioritarioxcct tp
+   INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
+   LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
+   LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
+   inner join escuela e on e.id_cct = tp.id_cct
+   inner join municipio m on m.idmunicipio = e.id_municipio
+   WHERE m.identidad = 5';
+   if ($region =! 0) {
+       $query .= ' and m.region = '.$region.'';
+   }
+   if ($municipio =! 0) {
+     $query .= ' and m.idmunicipio = '.$municipio.'';
+   }
+   if ($nivel != 0) {
+    $query .= ' and e.id_nivel = '.$nivel. '';
+  }
+
+  $query .= ' GROUP BY tp.orden  ORDER by tp.orden';
+
+   // echo '<pre>'; print_r($query); die();
+
+  return $this->db->query($query)->result_array();
+}
 /*BK201 E*/
 }

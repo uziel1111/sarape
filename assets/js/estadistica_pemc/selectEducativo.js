@@ -1,11 +1,11 @@
 $('#nivel_educativo_grid_general').change(function() {
-	console.log('click');
+	Notification.loading("");
 	getEstadistica();
 
 });
 
-$('#nivel_educativo_grid_general_LAE').change(function() {
-	console.log('click');
+$('#nivel_educativo_LAE').change(function() {
+	Notification.loading("");
 	getEstadisticaLAE();
 
 });
