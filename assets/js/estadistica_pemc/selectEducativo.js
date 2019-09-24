@@ -9,3 +9,7 @@ $('#nivel_educativo_LAE').change(function() {
 	getEstadisticaLAE();
 
 });
+
+$('#region_LAE').change(function() {
+   getEstadisticaLAE();
+});

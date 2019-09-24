@@ -289,6 +289,7 @@ if(count($result_evidencias)==0){
 
 public function getEstadisticaLAE(){
   $nivel = $this->input->post('nivel');
+  $regionPost = $this->input->post('region');
   $result = array();
     $tabla = '';
     $arrayRegion = $this->Estadistica_pemc_model->get_region();
@@ -298,8 +299,12 @@ public function getEstadisticaLAE(){
         $tabla .= "<tr><td>{$region['region']}</td>";
 
         $tabla .="<td>{$region['nombre']}</td>";
-
+        if ($regionPost == 0) {
+            
         $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae($nivel, $region['idmunicipio']);
+        }else{
+            $OALae = $this->Estadistica_pemc_model->get_filtros($nivel, 0, $regionPost);
+        }
 
         if (empty($OALae)) {
          $tabla .="<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>";
