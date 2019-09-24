@@ -12,7 +12,10 @@ $('#xLAE_tab').click(function() {
 });
 
 function getEstadisticaLAE() {
-    nivel = 4;
+   nivel = $('#nivel_educativo_grid_general_LAE option:selected').val();
+   if (nivel == 'undefined') {
+    nivel = 1;
+   }
     ruta = base_url + 'Estadistica_pemc/getEstadisticaLAE';
     $.ajax({
         url: ruta,
@@ -22,7 +25,8 @@ function getEstadisticaLAE() {
     .done(function(data) {
 
         $('#xLAE').html(data.str_view);
-        graficaBar(); 
+        console.log(data.result);
+        graficaBar(data.result); 
     })
     .fail(function() {
         console.log("error");
@@ -33,14 +37,15 @@ function getEstadisticaLAE() {
     
 }
 
-function graficaBar() {
+function graficaBar(datos) {
+    console.log(datos);
  var data = google.visualization.arrayToDataTable([
         ['Líneas de Acción Estratégicas', 'Objetivos capturados'],
-        ['LAE-1', 10],
-        ['LAE-2', 4 ],
-        ['LAE-3', 16],
-        ['LAE-4', 12],
-        ['LAE-5', 28]
+        ['LAE-1', datos.obj1],
+        ['LAE-2', datos.obj2],
+        ['LAE-3', datos.obj3],
+        ['LAE-4', datos.obj4],
+        ['LAE-5', datos.obj5]
       ]);
 
         var options = {

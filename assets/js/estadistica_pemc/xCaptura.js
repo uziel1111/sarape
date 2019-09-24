@@ -28,6 +28,7 @@ function getEstadistica() {
 
 		$('#xgeneral').html(data.str_view);
 		graficaPie(data.porcentajeC,data.porcentajeNC);
+		$('#nivel_educativo_grid_general').val(nivel);
 	})
 	.fail(function() {
 		console.log("error");

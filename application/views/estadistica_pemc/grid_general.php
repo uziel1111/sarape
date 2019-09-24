@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="col-md-12">
-			<h1>TOTAL DE ESCUELAS: <b><?=$result['total']?></b></h1>
+			<h1>TOTAL DE ESCUELAS POR ESTADO: <b><?=$result['total']?></b></h1>
 		</div>
 
 		<div class="col-md-12">
@@ -11,6 +11,7 @@
 				<option value="2">Inicial</option>
 				<option value="3">Preescolar</option>
 				<option value="4">Primaria</option>
+				<option value="5">Secundaria</option>
 			</select>
 		</div>
 
@@ -18,11 +19,16 @@
 	</div>
 
 	<div class="col-sm-12">
-		<table class="table">
+		<table class="table table-striped table-bordered">
 			<thead class="thead-dark">
-				<tr>			
+				<tr>
 					<th>Municipio</th>
 					<th>Total de Escuelas</th>
+					<th colspan="4"><center>Objetivos capturados</center></th>
+				</tr>
+				<tr>			
+					<th></th>
+					<th></th>
 					<th>0</th>
 					<th>1</th>
 					<th>2-3</th>
@@ -31,18 +37,8 @@
 			</thead>
 			<tbody>	
 
-
-				<?php foreach ($result['datos'] as $key => $value) {  //echo '<pre>'; print_r($result); die(); ?>
-				<tr>	
-					<td><?=$value['nombre']?></td>
-					<td><?=$result['total']?></td>
-					<td><?=$result['obj0']?></td>
-					<td><?=$result['obj1']?></td>
-					<td><?=$result['obj2']?></td>
-					<td><?=$result['obj4']?></td> 
-				</tr>
-			<?php } ?>
-
+				<?=$result['tabla']?>
+				
 		</tbody>
 	</table>
 </div>		
