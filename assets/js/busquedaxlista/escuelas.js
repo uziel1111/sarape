@@ -2,7 +2,7 @@ $("#itxt_busquedalista_nombreescuela").keyup(function() {
     $("#itxt_busquedalista_nombreescuela_reporte").val($(this).val());
 });
 
-$(document).on("click", "#table_escuelas tbody tr", function(e) {
+/*$(document).on("click", "#table_escuelas tbody tr", function(e) {
     var idescuela = $(this).data('idescuela');
 
     var form = document.createElement("form");
@@ -21,4 +21,4 @@ $(document).on("click", "#table_escuelas tbody tr", function(e) {
     document.body.appendChild(form);
     form.appendChild(element1);
     form.submit();
-});
+});*/

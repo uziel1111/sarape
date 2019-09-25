@@ -33,6 +33,8 @@
   <link href="<?= base_url('assets/css/src_up.css') ?>" rel="stylesheet" media="screen">
 
 
+
+
     <link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">
 
   <script src="<?= base_url('assets/jquery-3.3.1.min.js'); ?>"></script>
@@ -63,7 +65,7 @@
                 <div class="container">
                     <div class="header-content d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="<?= base_url() ?>" class="smooth"><img class="img-fluid" src="<?= base_url('assets/img/logo.png'); ?>" alt=""></a>
+                          <a href="<?= base_url() ?>" class="smooth"><img class="img-fluid" src="<?= base_url('assets/img/logo.png'); ?>" alt=""></a>
 
                         </div>
                         <div class="right-bar d-flex align-items-center">

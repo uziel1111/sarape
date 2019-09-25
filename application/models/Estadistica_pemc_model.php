@@ -6,13 +6,13 @@ class Estadistica_pemc_model extends CI_Model
     parent::__construct();
   }
 
-  function get_datos_sesion($usuario, $contrasena){
-    $this->db->select('u.id_usuario, u.nombre, u.paterno, u.materno');
-    $this->db->from('est_pemc_seguridad as s');
-    $this->db->join('est_pemc_usuario as u', 'u.id_usuario = s.id_usuario');
-    $this->db->where('s.user', $usuario);
-    $this->db->where('s.clave', $contrasena);
-    return  $this->db->get()->result_array();
+    function get_datos_sesion($usuario, $contrasena){
+      $this->db->select('u.id_usuario, u.nombre, u.paterno, u.materno');
+      $this->db->from('est_pemc_seguridad as s');
+      $this->db->join('est_pemc_usuario as u', 'u.id_usuario = s.id_usuario');
+      $this->db->where('s.user', $usuario);
+      $this->db->where('s.clave', $contrasena);
+      return  $this->db->get()->result_array();
     }// get_datos_sesion()
 
     function getdatoscct_pemc($cct, $turno){
@@ -160,4 +160,52 @@ function get_filtros($nivel, $municipio, $region)
   return $this->db->query($query)->result_array();
 }
 /*BK201 E*/
+  function getall_xest_ind(){
+    $this->db->select('mu.id_municipio, mu.municipio');
+    $this->db->from('municipio mu');
+    $this->db->join('escuela as es', 'mu.id_municipio = es.id_municipio');
+    $this->db->join('estadistica_e_indicadores_xcct as  est', 'es.id_cct = est.id_cct');
+    $this->db->group_by('mu.id_municipio');
+    return  $this->db->get()->result_array();
+  }// getall_xest_ind()
+
+
+  function get_xparams($id_municipio,$id_nivel,$id_sostenimiento,$nombre_escuela){
+    // echo $id_municipio."\n";
+    // echo $id_nivel."\n";
+    // echo $id_sostenimiento."\n";
+    // echo $nombre_escuela."\n";
+    // die();
+    $this->db->select('es.id_cct, es.cve_centro, tu.turno_single, es.nombre_centro,ni.nivel,sso.subsostenimiento, mo.modalidad,mu.municipio,loc.localidad,es.domicilio, es.latitud, es.longitud, es.id_nivel, s.zona_escolar, so.sostenimiento');
+    $this->db->from('escuela as es');
+    $this->db->join('turno_single as tu', 'es.id_turno_single = tu.id_turno_single');
+    $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
+    $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
+    $this->db->join('sostenimiento as so', 'sso.id_sostenimiento = so.id_sostenimiento');
+    $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
+    $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
+    $this->db->join('supervision as s', 'es.id_supervision = s.id_supervision');
+    $this->db->join('localidad as loc', 'mu.id_municipio = loc.id_municipio AND es.id_localidad = loc.cve_localidad');
+      $where_au = "(es.id_estatus !=2 AND es.id_estatus !=3)";
+    $this->db->where($where_au);
+    $this->db->where('es.latitud !=',0);
+    $this->db->where('es.latitud !=','');
+    $this->db->where('es.latitud !=','#VALUE!');
+    if($id_municipio>0){
+      $this->db->where('es.id_municipio', $id_municipio);
+    }
+    if($id_nivel>0){
+      $this->db->where('es.id_nivel', $id_nivel);
+    }
+    if($id_sostenimiento>0){
+      $this->db->where('so.id_sostenimiento', $id_sostenimiento);
+    }
+    if($nombre_escuela!=''){
+      $this->db->like('es.nombre_centro', $nombre_escuela);
+    }
+
+    $this->db->group_by("es.id_cct");
+    $this->db->order_by("ni.id_nivel");
+    return  $this->db->get()->result_array();
+  }// get_xparams()
 }
