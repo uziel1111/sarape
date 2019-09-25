@@ -11,5 +11,11 @@ $('#nivel_educativo_LAE').change(function() {
 });
 
 $('#region_LAE').change(function() {
+	Notification.loading("");
+   getEstadisticaLAE();
+});
+
+$('#municipio_LAE').change(function() {
+	Notification.loading("");
    getEstadisticaLAE();
 });

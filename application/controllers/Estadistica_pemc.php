@@ -225,12 +225,12 @@ if(count($result_evidencias)==0){
                  $porcenEsc = 0;
                 if ($value['total'] == NULL) {
                     $tabla .= "<td>0</td>";
-                    $porcenEsc = ($value['total'] *  $values['total']) /100;
+                    $porcenEsc = ($value['total'] * 100) /  $values['total'];
                     $tabla .= "<td>{$porcenEsc}%</td>";
                 }else{
 
                 $tabla .= "<td>{$value['total']}</td>";
-                 $porcenEsc = ($value['total'] *  $values['total']) /100;
+                 $porcenEsc = ($value['total'] * 100) /  $values['total'];
                     $tabla .= "<td>{$porcenEsc}%</td>";
                 }
                 $totalPorcentaje += $value['total'];
@@ -290,21 +290,33 @@ if(count($result_evidencias)==0){
 public function getEstadisticaLAE(){
   $nivel = $this->input->post('nivel');
   $regionPost = $this->input->post('region');
+  $municipioPost = $this->input->post('municipio');
   $result = array();
-    $tabla = '';
+  $tabla = '';
+   $obj1 = 0;  $obj2 = 0;  $obj3 = 0;  $obj4 = 0;  $obj5 = 0;
+   $acc1 = 0;  $acc2 = 0;  $acc3 = 0;  $acc4 = 0;  $acc5 = 0;
+
     $arrayRegion = $this->Estadistica_pemc_model->get_region();
 
     foreach ($arrayRegion as $key => $region) {
-      
-        $tabla .= "<tr><td>{$region['region']}</td>";
-
+      if ($regionPost == $region['id_region']) {
+           $tabla .= "<tr style='background-color:#BD1F03; color:white;'>";
+           if ($region['idmunicipio'] == $municipioPost) {
+               $tabla .= "<tr style='background-color:#03BD6B; color:white;'>";
+           }
+      }else{
+         $tabla .= "<tr>";
+    }
+        $tabla .= "<td>{$region['region']}</td>";
         $tabla .="<td>{$region['nombre']}</td>";
-        if ($regionPost == 0) {
+    
+       
+        // if ($regionPost == 0) {
             
         $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae($nivel, $region['idmunicipio']);
-        }else{
-            $OALae = $this->Estadistica_pemc_model->get_filtros($nivel, 0, $regionPost);
-        }
+        // }else{
+            // $OALae = $this->Estadistica_pemc_model->get_filtros($nivel, 0, $regionPost);
+        // }
 
         if (empty($OALae)) {
          $tabla .="<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>";
@@ -318,6 +330,8 @@ public function getEstadisticaLAE(){
                }else{
                  $tabla .="<td>{$lae['num_objetivos']}</td>";
                  $tabla .="<td>{$lae['num_acciones']}</td>";
+                 $obj1 += $lae['num_objetivos'];
+                 $acc1 += $lae['num_acciones'];
              }
          }
 
@@ -328,6 +342,8 @@ public function getEstadisticaLAE(){
                }else{
                  $tabla .="<td>{$lae['num_objetivos']}</td>";
                  $tabla .="<td>{$lae['num_acciones']}</td>";
+                 $obj2 += $lae['num_objetivos'];
+                 $acc2 += $lae['num_acciones'];
              }
          }
 
@@ -338,6 +354,8 @@ public function getEstadisticaLAE(){
                }else{
                  $tabla .="<td>{$lae['num_objetivos']}</td>";
                  $tabla .="<td>{$lae['num_acciones']}</td>";
+                 $obj3 += $lae['num_objetivos'];
+                 $acc3 += $lae['num_acciones'];
              }
          }
 
@@ -348,6 +366,8 @@ public function getEstadisticaLAE(){
                }else{
                  $tabla .="<td>{$lae['num_objetivos']}</td>";
                  $tabla .="<td>{$lae['num_acciones']}</td>";
+                 $obj4 += $lae['num_objetivos'];
+                 $acc4 += $lae['num_acciones'];
              }
          }
 
@@ -358,13 +378,17 @@ public function getEstadisticaLAE(){
                }else{
                  $tabla .="<td>{$lae['num_objetivos']}</td>";
                  $tabla .="<td>{$lae['num_acciones']}</td>";
+                 $obj5 += $lae['num_objetivos'];
+                 $acc5 += $lae['num_acciones'];
              }
          }
      }
  }
-    }
-
+        }
+$municipiosResult = $this->Estadistica_pemc_model->get_municipios($regionPost);
+$result = ['obj1'=>$obj1,'obj2'=>$obj2,'obj3'=>$obj3,'obj4'=>$obj4,'obj5'=>$obj5,'acc1'=>$acc1, 'acc2'=>$acc2, 'acc3'=>$acc3, 'acc4'=>$acc4, 'acc5'=>$acc5];
 $data['tabla'] = $tabla;
+$data['municipio'] = $municipiosResult;
 $str_view = $this->load->view("Estadistica_pemc/grid_LAE", $data, TRUE);
 $response = array('str_view' => $str_view, 'result'=>$result);
 Utilerias::enviaDataJson(200, $response, $this);

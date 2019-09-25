@@ -98,6 +98,20 @@ class Estadistica_pemc_model extends CI_Model
   return  $this->db->get()->result_array();
  }
 
+ function get_municipios($region){
+   $this->db->select('m.nombre, m.idmunicipio, r.region, r.id_region');
+  $this->db->from('municipio as m');
+  $this->db->join('region as r', 'r.id_region = m.region');
+  $this->db->where('identidad',5);
+  if ($region != 0) {
+  $this->db->where('id_region',$region);
+  }
+  $this->db->order_by('m.region');
+
+  return  $this->db->get()->result_array();
+ }
+
+
  function get_obj_acc_lae($nivel, $municipio)
  {
    $query = 'SELECT tp.orden, COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones

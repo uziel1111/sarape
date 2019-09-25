@@ -25,12 +25,10 @@
          <div class="col-md-4 form-group form-group-style-1">
            <label for="municipio_LAE">Seleccione un municipio</label>
             <select id="municipio_LAE" class="form-control">
-              <option value="0">Todos los municipios</option>
-              <option value="1">Especial</option>
-              <option value="2">Inicial</option>
-              <option value="3">Preescolar</option>
-              <option value="4">Primaria</option>
-              <option value="5">Secundaria</option>
+            	<option value="0">Todos los municipios</option>
+              <?php foreach ($municipio as $key => $value) { ?>
+              	<option value="<?= $value['idmunicipio'] ?>"><?= $value['nombre'] ?></option>
+              <?php } ?>
                    </select></label>
          </div>
        </div>
@@ -40,7 +38,11 @@
         <br>
            <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
        </div>
-      <div class="col-md-12">
+        <div class="col-md-12">
+        <br>
+           <div id="columnchart_material_acciones" style="width: 800px; height: 500px;"></div>
+       </div>
+      <div class="col-md-12" >
         <br>
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">
