@@ -298,7 +298,7 @@ public function busquedaxct(){
                 $tabla .= "<td>{$values['total']}</td>";
                 $totalEscuelas += $values['total'];
             }
-
+           
             $datos = $this->Estadistica_pemc_model->get_cantidad_datos($nivel, $value['id_municipio']);
             $total = $this->Estadistica_pemc_model->get_total($nivel, $value['id_municipio']);
             

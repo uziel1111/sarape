@@ -193,6 +193,8 @@ span{
 <button class="botonF1 ">
    <span><i class="fas fa-wrench fa-xs"></i></span>
 </button>
+<br><br><br>	
+<span width="800px" >El momento vigente es: CTE 1</span>
 <?php endif; ?> 
 <button class="btnespe botonF2" id="btn_mision" data-toggle="tooltip" title="Misión">
   <span><i class="fas fa-flag fa-xs"></i></span>
@@ -336,7 +338,7 @@ span{
 								<!-- <div class="row mt-15"> -->
 								<div class="row mt-15">
 									<div class="col-md-12">
-										<label style="color:red;">*Datos requeridos</label>
+										<label style="color:red;">*</label>Datos obligatorios
 									</div>
 								</div>
 								<div class="row mt-15 float-right">

@@ -3,11 +3,13 @@
  google.charts.setOnLoadCallback(graficaBarAcc);
 
 $('#xLAE_tab').click(function() {
+    
     getEstadisticaLAE();
 });
 
 
 function getEstadisticaLAE() {
+
    nivel = $('#nivel_educativo_LAE option:selected').val();
    region = $('#region_LAE option:selected').val();
    municipio = $('#municipio_LAE option:selected').val();
@@ -30,6 +32,9 @@ function getEstadisticaLAE() {
         url: ruta,
         type: 'POST',
         data: {nivel:nivel, region:region, municipio:municipio},
+        beforeSend: function(xhr) {
+                Notification.loading("");
+            },
     })
     .done(function(data) {
     
@@ -38,8 +43,8 @@ function getEstadisticaLAE() {
         graficaBarObj(data.result); 
         graficaBarAcc(data.result); 
         $('#nivel_educativo_LAE').val(nivel);
-        $('#region_LAE option:selected').val(region);
-        $('#municipio_LAE option:selected').val(municipio);
+        $('#region_LAE').val(region);
+        $('#municipio_LAE').val(municipio);
     })
     .fail(function() {
         console.info('Error');

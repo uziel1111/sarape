@@ -78,7 +78,7 @@
 				</div>
 				<div class="row mt-15">
 					<div class="col-md-2">
-						<label style="color:red;">*Datos requeridos</label>
+						<label style="color:red;">*</label>Datos obligatorios
 					</div>
 					<div class="col-10 float-right">
 						<button type="button" class="btn btn-primary btn-style-1 ml-20" id="btn_agregar_accion">Agregar</button>

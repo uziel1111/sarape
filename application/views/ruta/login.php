@@ -18,6 +18,7 @@
               <img class="img-fluid" src="<?= base_url('assets/img/logo.png'); ?>" alt="">
               <h5 class="card-title mt-3">Programa Escolar de Mejora Continua (PEMC)</h5>
               <h4 class="card-title mt-3">Iniciar Sesión</h4>
+              <h6>Utilice el usuario y contraseña proporcionados para utilizar SIECEC</h6>
             </center>
             <center class="mensaje-terminado"><?=$this->session->flashdata(MESSAGEREQUEST);?></center>
             <?= form_open('Rutademejora/acceso');?>

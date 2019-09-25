@@ -37,6 +37,7 @@ function getEstadistica() {
 	})
 	.always(function() {
 		console.log("complete");
+		 swal.close(); 
 	});
 	
 }
