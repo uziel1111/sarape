@@ -27,27 +27,36 @@
             <select id="municipio_LAE" class="form-control">
             	<option value="0">Todos los municipios</option>
               <?php foreach ($municipio as $key => $value) { ?>
-              	<option value="<?= $value['idmunicipio'] ?>"><?= $value['nombre'] ?></option>
+              	<option value="<?= $value['id_municipio'] ?>"><?= $value['municipio'] ?></option>
               <?php } ?>
                    </select></label>
          </div>
        </div>
      </div>
-      
-      <div class="col-md-12">
+
+      <div class="d-flex justify-content-center float-none">
+      <p>
+        <b>LAE-1 </b>EQUIPAMIENTO E INFRAESTRUCTURA DE ALTA CALIDAD <br>
+        <b>LAE-2 </b>ASEGURAR ALTOS ÍNDICES DE APRENDIZAJES A TODA LA POBLACIÓN EDUCATIVA <br>
+        <b>LAE-3 </b>CONTAR CON PERSONAL COMPETITIVO A NIVEL INTERNACIONAL <br>
+        <b>LAE-4 </b>GENERAR AMBIENTES DE COLABORACIÓN Y CORRESPONSABILIDAD CON LOS PADRES DE FAMILIA <br>
+        <b>LAE-5 </b>CONSOLIDAR EL LIDERAZGO DE DIRECTIVOS Y DOCENTES <br>
+      </p>
+      </div>
+    
+     <div>
+       <br>
+             <div id="columnchart_material" class="float-left" style="height: 350px;"></div>
+             <div id="columnchart_material_acciones"  class="float-right" style="height: 350px;"></div>
         <br>
-           <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
-       </div>
-        <div class="col-md-12">
+     </div>
+     
+      <div class="col-md-12 table-responsive" >
         <br>
-           <div id="columnchart_material_acciones" style="width: 800px; height: 500px;"></div>
-       </div>
-      <div class="col-md-12" >
-        <br>
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered w-auto">
             <thead class="thead-dark">
           <tr>
-            <th scope="col">Región</th>
+            <th scope="col" width="250px">Región</th>
             <th scope="col">Municipio</th>
             <th scope="col" colspan="2"><center>LAE 1</center></th>
             <th scope="col" colspan="2"><center>LAE 2</center></th>

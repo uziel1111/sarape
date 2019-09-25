@@ -10,9 +10,11 @@ $('#xLAE_tab').click(function() {
 function getEstadisticaLAE() {
    nivel = $('#nivel_educativo_LAE option:selected').val();
    region = $('#region_LAE option:selected').val();
-  municipio = $('#municipio_LAE option:selected').val();
-  if (nivel == undefined) {
-        nivel = 0;
+   municipio = $('#municipio_LAE option:selected').val();
+   console.log(region);
+   console.log(municipio);
+   if (nivel == undefined) {
+    nivel = 0;
     }
 
     if (region == undefined) {
@@ -22,7 +24,7 @@ function getEstadisticaLAE() {
     if (municipio == undefined) {
         municipio = 0;
     }
-    
+
     ruta = base_url + 'Estadistica_pemc/getEstadisticaLAE';
     $.ajax({
         url: ruta,
@@ -30,23 +32,23 @@ function getEstadisticaLAE() {
         data: {nivel:nivel, region:region, municipio:municipio},
     })
     .done(function(data) {
-
+    
         $('#xLAE').html(data.str_view);
-        
+
         graficaBarObj(data.result); 
         graficaBarAcc(data.result); 
         $('#nivel_educativo_LAE').val(nivel);
-         $('#region_LAE option:selected').val(region);
-         $('#municipio_LAE option:selected').val(municipio);
+        $('#region_LAE option:selected').val(region);
+        $('#municipio_LAE option:selected').val(municipio);
     })
     .fail(function() {
         console.info('Error');
     })
     .always(function() {
-        
+
         swal.close();   
     });
-    
+
 }
 
 function graficaBarObj(datos) {
@@ -86,6 +88,8 @@ function graficaBarAcc(datos) {
           chart: {
             title: 'Acciones por LAE',
             subtitle: '',
+            height: 250,
+            width: 400,
           }
         };
 

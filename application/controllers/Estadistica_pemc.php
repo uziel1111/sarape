@@ -209,17 +209,17 @@ if(count($result_evidencias)==0){
 
         foreach ($municipios as $key => $value) {
             $tabla .= "<tr>
-                      <td>{$value['nombre']}</td>
+                      <td>{$value['municipio']}</td>
                       ";
-            $escuelasxmun = $this->Estadistica_pemc_model->get_escuelasMun($nivel, $value['idmunicipio']);
+            $escuelasxmun = $this->Estadistica_pemc_model->get_escuelasMun($nivel, $value['id_municipio']);
 
             foreach ($escuelasxmun as $key => $values) {
                 $tabla .= "<td>{$values['total']}</td>";
                 $totalEscuelas += $values['total'];
             }
 
-            $datos = $this->Estadistica_pemc_model->get_cantidad_datos($nivel, $value['idmunicipio']);
-            $total = $this->Estadistica_pemc_model->get_total($nivel, $value['idmunicipio']);
+            $datos = $this->Estadistica_pemc_model->get_cantidad_datos($nivel, $value['id_municipio']);
+            $total = $this->Estadistica_pemc_model->get_total($nivel, $value['id_municipio']);
             
             foreach ($total as $key => $value) {
                  $porcenEsc = 0;
@@ -300,23 +300,18 @@ public function getEstadisticaLAE(){
 
     foreach ($arrayRegion as $key => $region) {
       if ($regionPost == $region['id_region']) {
-           $tabla .= "<tr style='background-color:#BD1F03; color:white;'>";
-           if ($region['idmunicipio'] == $municipioPost) {
-               $tabla .= "<tr style='background-color:#03BD6B; color:white;'>";
+           $tabla .= "<tr style='background-color:#DCF5FF; color:black;'>";
+           if ($region['id_municipio'] == $municipioPost) {
+               $tabla .= "<tr style='background-color:#7FDAFF; color:black;'>";
            }
       }else{
          $tabla .= "<tr>";
     }
         $tabla .= "<td>{$region['region']}</td>";
-        $tabla .="<td>{$region['nombre']}</td>";
+        $tabla .="<td>{$region['municipio']}</td>";
     
-       
-        // if ($regionPost == 0) {
             
-        $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae($nivel, $region['idmunicipio']);
-        // }else{
-            // $OALae = $this->Estadistica_pemc_model->get_filtros($nivel, 0, $regionPost);
-        // }
+        $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae($nivel, $region['id_municipio']);
 
         if (empty($OALae)) {
          $tabla .="<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>";
