@@ -70,11 +70,11 @@
 			                  	<br>
 			                  	<div id="div_busxcct_pemc"></div>
 			                </div>
-                  		
-	                </div>
-	            </div>
-	    	</div>
-	  	</div>
+	                	</div>
+	            	</div>
+	    		</div>
+	  		</div>
+		</div>
 	</div>
 </section>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

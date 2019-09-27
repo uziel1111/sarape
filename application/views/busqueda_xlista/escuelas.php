@@ -141,12 +141,15 @@
 
   $(document).on("click", "#table_escuelas tbody tr", function(e) {
     if($("#tipou_pemc2").length){
+      $("#div_busxcct").collapse('hide');
+      $("#div_busxcct_pemc").collapse('hide');
+      
       let idescuela = $(this).data('idescuela');
       let cct = $(this).data('cve_centro');
       let turno = $(this).data('turno_single');
-      console.log(idescuela);
-      console.log(cct);
-      console.log(turno);
+      // console.log(idescuela);
+      // console.log(cct);
+      // console.log(turno);
       $.ajax({
         url : base_url+"Estadistica_pemc/busquedaxct",
         dataType : 'json',

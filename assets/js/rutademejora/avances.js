@@ -63,8 +63,8 @@ Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
   // console.log(result.estatus);
   if (result.estatus) {
     swal(
-      'Correcto!',
-      "Se actualizo tema prioritario correctamente",
+      '¡Correcto!',
+      "Se actualizó tema prioritario correctamente",
       'success'
       );
     var base2 = base_url.split('/index.php');

@@ -1390,10 +1390,11 @@ class Rutademejora extends CI_Controller {
 		$data['turno'] = $this->cct[0]['turno_single'];
 		$data['cct'] = $this->cct[0]['cve_centro'];
 		$data['director'] = $this->cct[0]['nombre_director'];
-
+		$data['id_cct_rm'] =$this->cct[0]['id_cct'];
 		$data['vista_avance'] = $this->load->view("ruta/rutademejora/avances", $data, TRUE);
 		$data['vista_indicadores'] = $this->load->view("ruta/rutademejora/indicadores", $data, TRUE);
 		$data['vista_ayuda'] = $this->load->view("ruta/rutademejora/ayuda", $data, TRUE);
+		// $data['vista_resultados'] = $this->load->view("ruta/rutademejora/resultados", array(), TRUE);
 
 		Utilerias::pagina_basica_rm($this, "ruta/rutademejora/index", $data);
 	}
@@ -1546,13 +1547,13 @@ class Rutademejora extends CI_Controller {
 
 		$id_tprioritario = $this->input->post('id_tpriotario');
 		$idprioridad = $this->input->post('id_prioridad');
-
+		$tipou_pemc = $this->input->post('tipou_pemc');
 		// echo "<pre>";print_r($_POST);die();
 
 		$id_cct = $this->cct[0]['id_cct'];
 		$orden = 0;
 		$datos = $this->Rutamejora_model->getObjetivos($id_cct, $id_tprioritario, $idprioridad);
-		//echo "<pre>";print_r($datos);die();
+		// echo "<pre>";print_r($datos);die();
 		$idobjetivo = 0;
 		if($datos[0]['id_objetivo'] == NULL){
 			// echo 'if'; die();
@@ -1634,11 +1635,15 @@ class Rutademejora extends CI_Controller {
 				<td>
 				<div class='text-center'>
 
-				<div style='margin-bottom: 10px;'>
-				<button type='button' id='elimina_ini' class='btn btn-sm cerrar'
-				onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
-				<i class='fas fa-times-circle'></i>
-				</button>";
+				<div style='margin-bottom: 10px;'>";
+				
+				if($tipou_pemc==""){
+					$tabla.= "<button type='button' id='elimina_ini' class='btn btn-sm cerrar'
+						onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
+						<i class='fas fa-times-circle'></i>
+						</button>";
+				}
+				
 					$extension = substr($dato['path_ev_inicio'],-3);
 
 					if ( $extension == 'pdf' || $extension == 'xsl'  || $extension == 'doc'  || $extension == 'ppt'  || $extension == 'slx'  || $extension == 'ocx'  || $extension == 'ptx'  ) {
@@ -1674,12 +1679,13 @@ class Rutademejora extends CI_Controller {
 				<td>
 				<div class='text-center'>
 
-				<div style='margin-bottom: 10px;'>
-				<button type='button' value='Quack_2' class='btn btn-sm cerrar'
-				onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>
-				<i class='fas fa-times-circle'></i>
-				</button>";
-
+				<div style='margin-bottom: 10px;'>";
+				if($tipou_pemc==""){
+					$tabla.="<button type='button' value='Quack_2' class='btn btn-sm cerrar'
+					onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>
+					<i class='fas fa-times-circle'></i>
+					</button>";
+				}
 					$extension = substr($dato['path_ev_fin'],-3);
 			if ($extension == 'pdf' || $extension == 'xsl'  || $extension == 'doc'  || $extension == 'ppt'  || $extension == 'slx'  || $extension == 'ocx'  || $extension == 'ptx') {
 						$tabla.="<a id='preview{$dato['id_objetivo']}'
@@ -2191,8 +2197,7 @@ class Rutademejora extends CI_Controller {
 		exit;
 	}
 
-	public function set_observacion()
-	{
+	public function set_observacion(){
 		$objetivo = $this->input->post('idaccion');
   		$resultados = $this->input->post('resultados');
   		$obstaculos = $this->input->post('obstaculos');
@@ -2202,5 +2207,15 @@ class Rutademejora extends CI_Controller {
 		$todo = $resultados .' obstaculos: '.$obstaculos .' ventajas: '.$ventajas. 'ajuste: ' .$ajustes;
 
 		$result = $this->Rutamejora_model->set_observacion($objetivo, $resultados, $obstaculos, $ventajas, $ajustes);
+	}
+
+	public function avancesxcctxaccion(){
+		if(Utilerias::haySesionAbiertacct($this)){
+			$id_cct = $this->input->post('id_cct');
+  			$datos=$this->Rutamejora_model->avancesxcctxaccion($id_cct);
+  			$response = array('datos' => $datos);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}
 	}
 }// Rutamedejora

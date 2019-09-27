@@ -1,5 +1,11 @@
+
+google.charts.load('current', {'packages':['gantt']});
+// google.charts.setOnLoadCallback(drawChart);
+
 $(document).ready(function() {
    obj_prioridad = new Prioridad();
+   // datos =[];
+   datos_accion();
 });
 
 $('#salir').click(function(){
@@ -47,22 +53,21 @@ $("#img_mision").click(function(e){
 			data: { },
 			beforeSend: function(xhr) {
 		      Notification.loading("");
-	    }
+	    	}
 		})
 		.done(function(data){
 			$("#div_generico").empty();
-	    $("#div_generico").append(data.strView);
-
+	    	$("#div_generico").append(data.strView);
 			$('h5').empty();
 			$('h5').append(data.titulo);
-	    $("#myModal").modal("show");
+	    	$("#myModal").modal("show");
 		})
 		.fail(function(e) {
-	    console.error("Error in ()"); console.table(e);
-	  })
+	    	console.error("Error in ()"); console.table(e);
+	  	})
 		.always(function() {
-	    swal.close();
-	  });
+	    	swal.close();
+	  	});
 	}
 });
 
@@ -79,53 +84,49 @@ $("#btn_prioridad").click(function(e){
     return false;
 	} else{
 		//console.log(obj);
-			var ruta = base_url + 'Rutademejora/get_datos_edith_tp'
-			$.ajax({
-				url:ruta,
-				type:'post',
-				data: { 
-					"id_tprioritario": obj.id_tprioritario,
-					"id_prioridad": obj.id_prioridad,
-					"id_subprioridad": obj.id_subprioridad,
-                	"accion": obj.accion,
-                	"txttp": obj.txttp
-				},
-				beforeSend: function(xhr) {
+		var ruta = base_url + 'Rutademejora/get_datos_edith_tp'
+		$.ajax({
+			url:ruta,
+			type:'post',
+			data: { 
+				"id_tprioritario": obj.id_tprioritario,
+				"id_prioridad": obj.id_prioridad,
+				"id_subprioridad": obj.id_subprioridad,
+                "accion": obj.accion,
+                "txttp": obj.txttp
+			},
+			beforeSend: function(xhr) {
 			      Notification.loading("");
 		    }
-			})
-			.done(function(data){
-				//console.log( data.data['problematica'].split(','));
-				$("#div_generico").empty();
+		}).done(function(data){
+			//console.log( data.data['problematica'].split(','));
+			$("#div_generico").empty();
 		    $("#div_generico").append(data.strView);
 		    // $('.problematica').selectpicker('val', data.data['problematica'].split(','));
 		    // $('.problematicaTxt').text( data.data['problematica']);
 		    // $('#problematica').val("");
 		    // $('#evidencias').val("");
 		    // $('#txt_rm_obs_direc').val("");
-				$('h5').empty();
-				$('h5').append(data.titulo);
+		    let tipou_pemc="";
+			$('h5').empty();
+			$('h5').append(data.titulo);
 		    $("#myModal").modal("show");
 		    if($('#tipou_pemc').length) {
 				$("#grabar_prioridad").hide();
 				$("#grabar_objetivo").hide();
 				$("#btn_eliminar").hide();
 				$('.problematica').selectpicker('hide');
-				
-			}
-		    
-        obj_prioridad.getObjetivos(obj.id_tprioritario);
-        
+				tipou_pemc=$('#tipou_pemc').val();
+			}  
+        	obj_prioridad.getObjetivos(obj.id_tprioritario,tipou_pemc);
 
-			})
-			.fail(function(e) {
+		}).fail(function(e) {
 		    console.error("Error in get_datos_edith_tp()");
-		  })
-			.always(function() {
+		}).always(function() {
 		    swal.close();
 				// $("#myModal").modal("hide");
-		  });
-		}
+		});
+	}
 });
 
 //Actividades
@@ -158,7 +159,7 @@ $("#btn_actividades").click(function(e){
 
 
 ///
-Prioridad.prototype.getObjetivos = function(){
+Prioridad.prototype.getObjetivos = function(tipou_pemc){
 	// var idtemaprioritario = obj.id_tprioritario ;
 	
 	if(obj.id_tpriotario != 0){
@@ -167,13 +168,14 @@ Prioridad.prototype.getObjetivos = function(){
 			url: base_url+'Rutademejora/getObjetivos',
 			type: 'POST',
 			dataType: 'JSON',
-			data: {id_tpriotario: obj.id_tprioritario,
-						 id_prioridad: obj.id_prioridad,
-						 id_subprioridad: obj.id_subprioridad,
-					 },
+			data: {	id_tpriotario: obj.id_tprioritario,
+					id_prioridad: obj.id_prioridad,
+					id_subprioridad: obj.id_subprioridad,
+					tipou_pemc:tipou_pemc,
+			},
 			beforeSend: function(xhr) {
 		        Notification.loading("");
-	    },
+	    	},
 		})
 		.done(function(result) {
 			$("#objetivo_meta").empty();
@@ -187,7 +189,7 @@ Prioridad.prototype.getObjetivos = function(){
 				$('#txt_rm_obs_direc').empty();
 			}
 			console.log(result.id_objetivo);
-			obj_prioridad.funcionalidadselect()
+			obj_prioridad.funcionalidadselect();
 			// obj_prioridad.btnEditar();
 			// btnEditar();
 		})
@@ -203,18 +205,168 @@ Prioridad.prototype.getObjetivos = function(){
 //grid objetivos
 Prioridad.prototype.funcionalidadselect = function(){
 	$("#id_tabla_objetivos tr").click(function(){
-		 $(this).addClass('selected').siblings().removeClass('selected');
-		 var value = $(this).find('td:first').text();
-     var t_prioritario = $(this).find('td:first').next().text();
-
-		 obj.id_objetivo = value;
-		 obj.id_tprioritario = t_prioritario;
-		 // obj.id_subprioridad = val3;
-
-     //console.log(obj.id_objetivo);
-     // console.log(val2);
-     // console.log(val3);
-
-		 id_objetivo = 0;
+		$(this).addClass('selected').siblings().removeClass('selected');
+		var value = $(this).find('td:first').text();
+     	var t_prioritario = $(this).find('td:first').next().text();
+		obj.id_objetivo = value;
+		obj.id_tprioritario = t_prioritario;
+		id_objetivo = 0;
 	});
 }
+
+
+	function datos_accion(){
+		let id_cct_rm=$("#id_cct_rm").val();
+		if(id_cct_rm!=""){
+			$.ajax({
+			    url: base_url+'Rutademejora/avancesxcctxaccion',
+			    dataType : 'json',
+			    method : 'POST',
+			    data : {"id_cct":id_cct_rm},
+			    beforeSend: function(xhr){
+			      	Notification.loading("");
+			    },
+			    success: function(data){
+			      	swal.close();
+			        // drawChart(data.datos);
+			        // datos=data.datos;
+			        google.charts.setOnLoadCallback(drawChart(data.datos));
+			    },
+			    error: function(error){
+			      swal.close();
+			      console.log(error);
+			    }
+			});
+		}else{
+			alert("Ocurrio un error al cargar los datos de avances de acciones");
+		}
+
+	}
+
+    function drawChart(datos) {
+    	// console.log(datos);
+      	var data = new google.visualization.DataTable();
+      	// data.addColumn('string', 'Task ID');
+      	data.addColumn('string', 'Task Name');
+      	data.addColumn('string', 'Resource');
+      	data.addColumn('date', 'Start Date');
+      	data.addColumn('date', 'End Date');
+      	data.addColumn('number', 'Duration');
+      	data.addColumn('number', 'Percent Complete');
+      	data.addColumn('string', 'Dependencies');
+      	// data.addRow();
+      	for(let i=0; i<datos.length; i++){
+      		// data.addRow([datos[i]['accion'], datos[i]['accion'],
+        //  		new Date(2014, 2, 22), new Date(2014, 5, 20), null,60, null]);
+        	// console.log(datos[i]['cte1']);
+        	if(datos[i]['cte1']!=0 && datos[i]['cte1']!=null){
+        		console.log(datos[i]['cte1']);
+	      		data.addRow([datos[i]['accion'], datos[i]['accion'],
+	         		new Date(datos[i]['a_ini'],datos[i]['m_ini'], datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin'],datos[i]['d_fin']), null,parseInt(datos[i]['cte1']), null]);
+        	}else{
+        		console.log(":"+datos[i]['cte1']);
+        		data.addRow([datos[i]['accion'], datos[i]['accion'],
+	         		new Date(datos[i]['a_ini'],datos[i]['m_ini'], datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin'],datos[i]['d_fin']), null,0, null]);
+        	}
+      		// data.addRow(['Hermione', new Date(1999,0,1)]);
+      	}
+      	var colors = [];
+	    var colorMap = {
+	        write: '#e63b6f',
+	        complete: '#19c362'
+	    }
+	    
+	    for (var i = 0; i < data.getNumberOfRows(); i++) {
+	        colors.push(colorMap[data.getValue(i, 2)]);
+	    }
+
+      	var options = {
+      		width: 1000,
+	        height: 600,
+	        // title: 'Avances de acciones por escuela',
+	        // hAxis: { textStyle: { color: 'red' }, 
+	        // titleTextStyle: { color: 'red' } }, 
+	        // vAxis: { textStyle: { color: 'red' }, 
+	        // titleTextStyle: { color: 'red' } }, 
+	        // legend: { textStyle: { color: 'red' }},
+      		// colors: ['red','green'],
+	        gantt: {
+	          	trackHeight: 40,
+	          	percentEnabled: true,
+	          	stroke: '#e64a19',
+	          	labelMaxWidth:400,
+	          	// criticalPathEnabled: true,
+            // 	criticalPathStyle: {
+            //   	stroke: '#e64a19',
+            //   	strokeWidth: 5 },
+	   //        	labelStyle: {
+	   //        		fontFamily:'Arial',
+				//   	fontSize: 12,
+				//   	textAling:'right'
+				  
+				// }
+				labelStyle: {
+				  fontName: 'Roboto',
+				  fontSize: 12,
+				  color: 'red',
+				  textAlign:'right'
+				},
+				customChartStyle:{
+	        	textAlign:'right !important'
+	        	}
+
+	        },
+	         backgroundColor: 'black',
+	        // cssClassNames: {'tableCell':
+	        // }
+	        // colors: colors
+	        // customClass:{
+	        // 	textAlign:'left'
+	        // } 
+      	};
+
+		// var options = {
+		// 	width: 1000,
+		//     height: 600,
+		//     gantt: {
+		//     	labelMaxWidth:400,
+		//       	criticalPathEnabled: false, // Critical path arrows will be the same as other arrows.
+		//       	arrow: {
+		// 	        angle: 50,
+		// 	        width: 1,
+		// 	        color: 'white',
+		// 	        radius: 2
+		//       	},
+		//       	labelStyle: {
+		// 	        fontName: 'Arial',
+		// 	        fontSize: 10,
+		// 	        color: 'black',
+		// 	        textAlign:'right'
+		//       	},
+		//       	barCornerRadius: 2,
+		//       	backgroundColor: {
+		// 	    	fill: 'transparent',
+		// 	    },
+		//       	innerGridHorizLine: {
+		//         	stroke: '#ddd',
+		//         	strokeWidth: 0,
+		//       	},
+		//       	innerGridTrack: {
+		//         	fill: 'transparent'
+		//       	},
+		//       	innerGridDarkTrack: {
+		//         	fill: 'transparent'
+		//       	},
+		//       	percentEnabled:	true, 
+		//       	shadowEnabled: true,	
+		//       	shadowColor: 'white',
+		//       	shadowOffset: 2
+		      	
+		//     }
+		// };
+
+      	var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+      	chart.draw(data, options);
+    }
+
+   
