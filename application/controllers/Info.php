@@ -29,19 +29,19 @@ class Info extends CI_Controller {
 			$planea16_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2016');
 			$planea17_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2017');
 			$planea18_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2018');
-			$planea18_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2019');
+			$planea19_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2019');
 
 			$planea15_estado = $this->Planeaxestado_model->get_planea_xest($escuela[0]['nivel'],'2015');
 			$planea16_estado = $this->Planeaxestado_model->get_planea_xest($escuela[0]['nivel'],'2016');
 			$planea17_estado = $this->Planeaxestado_model->get_planea_xest($escuela[0]['nivel'],'2017');
 			$planea18_estado = $this->Planeaxestado_model->get_planea_xest($escuela[0]['nivel'],'2018');
-			$planea18_estado = $this->Planeaxestado_model->get_planea_xest($escuela[0]['nivel'],'2019');
+			$planea19_estado = $this->Planeaxestado_model->get_planea_xest($escuela[0]['nivel'],'2019');
 
 			$planea15_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'14_15');
 			$planea16_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'15_16');
 			$planea17_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'16_17');
 			$planea18_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'17_18');
-			$planea18_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'18_19');
+			$planea19_nacional = $this->Planea_nacionalxnivel_model->get_planea_xnac($escuela[0]['nivel'],'18_19');
 
 			$contenidos = $this->Recursos_model->get_tipo_contenidos();
 			$arr_contenidos = array();
@@ -66,14 +66,17 @@ class Info extends CI_Controller {
 			$data['planea16_escuela'] = $planea16_escuela;
 			$data['planea17_escuela'] = $planea17_escuela;
 			$data['planea18_escuela'] = $planea18_escuela;
+			$data['planea19_escuela'] = $planea19_escuela;
 			$data['planea15_estado'] = $planea15_estado;
 			$data['planea16_estado'] = $planea16_estado;
 			$data['planea17_estado'] = $planea17_estado;
 			$data['planea18_estado'] = $planea18_estado;
+			$data['planea19_estado'] = $planea19_estado;
 			$data['planea15_nacional'] = $planea15_nacional;
 			$data['planea16_nacional'] = $planea16_nacional;
 			$data['planea17_nacional'] = $planea17_nacional;
 			$data['planea18_nacional'] = $planea18_nacional;
+			$data['planea19_nacional'] = $planea19_nacional;
 			$data['nombre_centro'] = $escuela[0]['nombre_centro'];
 			$data['cve_centro'] = $escuela[0]['cve_centro'];
 			$data['turno'] = $escuela[0]['turno_single'];
@@ -102,9 +105,10 @@ class Info extends CI_Controller {
 		$planea16_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2016');
 		$planea17_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2017');
 		$planea18_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2018');
+		$planea19_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2019');
 
-		$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,2);
-		$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,1,1);
+		$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,4,2);
+		$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,4,1);
 
 		// $graph_pie_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_pie_xidct($id_cct,1,"2017-2018");
 		// $graph_bar_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_bar_grados_xidct($id_cct,1,"2017-2018");
@@ -121,6 +125,7 @@ class Info extends CI_Controller {
 			'planea16_escuela'=>$planea16_escuela,
 			'planea17_escuela'=>$planea17_escuela,
 			'planea18_escuela'=>$planea18_escuela,
+			'planea19_escuela'=>$planea19_escuela,
 			'graph_cont_tema_lyc'=>$graph_cont_tema_lyc,
 			'graph_cont_tema_mate'=>$graph_cont_tema_mate
 		);
@@ -137,7 +142,7 @@ class Info extends CI_Controller {
 		$periodo = $this->input->post("periodo");
 		$nombre = $this->input->post("nombre");
 		$idcampodis = $this->input->post("idcampodis");
-
+		
 		$graph_cont_reactivos_xcctxcont = $this->Planeaxesc_reactivo_model->get_reactivos_xcctxcont($id_cct,$id_cont,$periodo,$idcampodis,$nombre);
 		// echo "<pre>";print_r($graph_cont_reactivos_xcctxcont);die();
 		/*
@@ -368,13 +373,15 @@ class Info extends CI_Controller {
 		$planea16_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2016');
 		$planea17_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2017');
 		$planea18_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2018');
+		$planea19_escuela = $this->Planeaxescuela_model->get_planea_xidcct($id_cct,'2019');
 		if ($nivel==4) {
 			$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,3,1);
 			$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,3,2);
 		}
 		elseif ($nivel==5) {
-			$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,2,1);
-			$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,2,2);
+			$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,4,1);
+			$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,4,2);
+			// echo "<pre>"; print_r($graph_cont_tema_mate); die();
 		}
 		elseif ($nivel==6) {
 			$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,2,1);
@@ -390,6 +397,7 @@ class Info extends CI_Controller {
 			'planea16_escuela'=>$planea16_escuela,
 			'planea17_escuela'=>$planea17_escuela,
 			'planea18_escuela'=>$planea18_escuela,
+			'planea19_escuela'=>$planea19_escuela,
 			'graph_cont_tema_lyc'=>$graph_cont_tema_lyc,
 			'graph_cont_tema_mate'=>$graph_cont_tema_mate
 		);

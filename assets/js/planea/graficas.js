@@ -294,6 +294,7 @@ function Graficasm(){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
 
+
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
                   /*
                 chart: {
@@ -412,7 +413,9 @@ function Graficasm(){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1, va_por);
+                                var periodo = $('#slt_periodo_planeaxm option:selected').val();
+                                console.log(periodo);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,periodo,1, va_por);
                                }
                            }
                        }
@@ -597,7 +600,11 @@ function Graficasm(){
 
       Graficasm.prototype.get_reactivos_xunidad_de_analisis = function(nombre,id_cont,id_filtro,periodo,idcampodis, tipo_filtro, va_por){
 
-          // alert(id_cont);
+          var periodo = $('#slt_periodo_planeaxm option:selected').val();
+            if (periodo == 1 && tipo_filtro == 'zona' ) {
+
+                var periodo = $('#slt_periodo_planeaxz option:selected').val();
+             }
           var ruta = base_url+"planea/planea_xcont_xmunicipio";
           $.ajax({
             url: ruta,
@@ -808,7 +815,9 @@ function Graficasm(){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1, va_por);
+                                var periodo = $('#slt_periodo_planeaxm option:selected').val();
+                                console.log(periodo);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,periodo,1, va_por);
                                }
                            }
                        }
@@ -945,7 +954,9 @@ function Graficasm(){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2, va_por);
+                                  var periodo = $('#slt_periodo_planeaxm option:selected').val();
+                                console.log(periodo);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,periodo,2, va_por);
                                }
                            }
                        }

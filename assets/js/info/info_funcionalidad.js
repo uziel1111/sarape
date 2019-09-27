@@ -582,6 +582,16 @@ Info_esc.prototype.get_planea =function(){
     								var mat3_18  = parseFloat(data.planea18_escuela[0]['mat_iii']);
     								var mat4_18  = parseFloat(data.planea18_escuela[0]['mat_iv']);
     							}
+                 if (data.planea19_escuela.length>0) {
+                    var lyc1_19  = parseFloat(data.planea19_escuela[0]['lyc_i']);
+                    var lyc2_19  = parseFloat(data.planea19_escuela[0]['lyc_ii']);
+                    var lyc3_19  = parseFloat(data.planea19_escuela[0]['lyc_iii']);
+                    var lyc4_19  = parseFloat(data.planea19_escuela[0]['lyc_iv']);
+                    var mat1_19  = parseFloat(data.planea19_escuela[0]['mat_i']);
+                    var mat2_19  = parseFloat(data.planea19_escuela[0]['mat_ii']);
+                    var mat3_19  = parseFloat(data.planea19_escuela[0]['mat_iii']);
+                    var mat4_19  = parseFloat(data.planea19_escuela[0]['mat_iv']);
+                  }
                 // alert();
                 if ((lyc1_16+lyc2_16+lyc3_16+lyc4_16+mat1_16+mat2_16+mat3_16+mat4_16)>0) {
                   $("#dv_lyc_mat_esc_nl").removeAttr('hidden');}
@@ -664,6 +674,7 @@ Info_esc.prototype.get_planea =function(){
 														}
 
                             if (data.planea16_escuela.length>0 && data.planea17_escuela.length>0) {
+                            
             									graf.PieDrilldownPlanea05y06(lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16,lyc1_17,lyc2_17,lyc3_17,lyc4_17,mat1_17,mat2_17,mat3_17,mat4_17);
             								}
             								else{
@@ -672,6 +683,17 @@ Info_esc.prototype.get_planea =function(){
             										$("#dv_info_graf_nlogrolyc").append('<input type="text" value="No se encontraron datos">');
             										$("#dv_info_graf_nlogromat").empty();
             								}
+
+                              if (data.planea16_escuela.length>0 && data.planea17_escuela.length>0 && data.planea19_escuela.length>0) {
+                              graf.PieDrilldownPlanea05y06y07(lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16,lyc1_17,lyc2_17,lyc3_17,lyc4_17,mat1_17,mat2_17,mat3_17,mat4_17,lyc1_19,lyc2_19,lyc3_19,lyc4_19,mat1_19,mat2_19,mat3_19,mat4_19);
+                            }
+                            else{
+                              $("#tabla_planea").empty();
+                              $("#dv_info_graf_nlogrolyc").empty();
+                                $("#dv_info_graf_nlogrolyc").append('<input type="text" value="No se encontraron datos">');
+                                $("#dv_info_graf_nlogromat").empty();
+                            }
+
 
 
 									break;
@@ -764,8 +786,8 @@ Info_esc.prototype.get_ete =function(){
                   $("#lb_ind_planea").text("PLANEA 2016");
                 }
                 else if (nivel=='5' || nivel=='6') {
-                  $("#lb_ind_efi").text("ET_Ciclo escolar: FIN- 2016-2017");
-                  $("#lb_ind_planea").text("PLANEA 2017");
+                  $("#lb_ind_efi").text("ET_Ciclo escolar: FIN- 2018-2019");
+                  $("#lb_ind_planea").text("PLANEA 2019");
                 }
 								if (data.ete>0) {
                   $("#dv_ete_esc").removeAttr('hidden');

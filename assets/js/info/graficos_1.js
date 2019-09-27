@@ -1484,6 +1484,233 @@ HaceGraficas.prototype.PieDrilldownPlanea05y06 = function(lyc1_15,lyc2_15,lyc3_1
 
     }
 
+HaceGraficas.prototype.PieDrilldownPlanea05y06y07 = function(lyc1_15,lyc2_15,lyc3_15,lyc4_15,mat1_15,mat2_15,mat3_15,mat4_15,lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16,lyc1_19,lyc2_19,lyc3_19,lyc4_19,mat1_19,mat2_19,mat3_19,mat4_19){
+
+        Highcharts.theme = {
+            colors: ['#ECC462','#D5831C','#935116','#CCCC00','#FF9900','#3C5AA2'],
+            chart: {
+                backgroundColor: {
+                    linearGradient: [0, 0, 0, 0],
+                    stops: [
+                        [0, 'rgb(255, 255, 255)'],
+                        [1, 'rgb(255, 255, 255)']
+                    ]
+                },
+            },
+            title: {
+                style: {
+                    color: '#000',
+                    font: 'bold 16px'
+                }
+            },
+            subtitle: {
+                style: {
+                    color: '#666666',
+                    font: 'bold 14px'
+                }
+            },
+
+            legend: {
+                itemStyle: {
+                    font: '9pt',
+                    color: 'black'
+                },
+                itemHoverStyle:{
+                    color: 'gray'
+                }
+            }
+        };
+
+        // Apply the theme
+        Highcharts.setOptions(Highcharts.theme);
+
+        // Dibujamos un grafico tipo pie-drilldown planea 2015
+        // Creamos la gráfica
+        var defaultTitle="Resultados PLANEA 2015 " ;
+        var defaultSubtitle="Haz clic para ver los porcentajes por área.";
+        // var drilldownTitle = "Matemáticas";
+
+          var chartp2015 = new Highcharts.chart('dv_info_graf_nlogromat', {
+              credits: {
+                  enabled: false
+              },
+              chart: {
+                  type: 'column'
+              },
+              title: {
+                  text: '<b style="font-size: 2.3vh;">Lenguaje y Comunicación</b>'
+              },
+              legend: {
+                  enabled: false
+              },
+              subtitle: {
+                  //text: 'PLANEA 2015 y PLANEA 2016 ('+cadena_nivel+')'
+              },
+              xAxis: {
+                  categories: [
+                      'I <br> Insuficiente',
+                      'II <br> Elemental',
+                      'III <br> Bueno',
+                      'IV <br>Excelente'
+                  ],
+                  crosshair: true
+              },
+              yAxis: {
+                  min: 0,
+                  title: {
+                      text: 'Nivel de logro (%)'
+                  }
+              },
+              plotOptions: {
+                  series: {
+                      borderWidth: 0,
+                      dataLabels: {
+                          enabled: true,
+                          format: '{point.y:.1f}%'
+                      }
+                  },
+                  column: {
+                      pointPadding: 0.2,
+                      borderWidth: 0
+                  }
+              },
+              tooltip: {
+                  headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                  pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                      '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+                  footerFormat: '</table>',
+                  shared: true,
+                  useHTML: true
+              },
+              series: [{
+                  name: 'Leng. y comunicación',
+                  data: [lyc1_15, lyc2_15, lyc3_15, lyc4_15]
+
+              }, {
+                  name: 'Leng. y comunicación',
+                  data: [lyc1_16, lyc2_16, lyc3_16, lyc4_16]
+
+              }, {
+                  name: 'Leng. y comunicación',
+                  data: [lyc1_19, lyc2_19, lyc3_19, lyc4_19]
+
+              },]
+          });
+
+
+
+
+
+        // Dibujamos un grafico tipo pie-drilldown planea 2016
+        // Create the chart
+        var defaultTitle="Resultados PLANEA 2016 ";
+        var defaultSubtitle="Haz clic para ver los porcentajes por área.";
+        // var drilldownTitle = "Matemáticas";
+
+        var chartp2016 = new Highcharts.chart('dv_info_graf_nlogrolyc', {
+            credits: {
+                enabled: false
+            },
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: '<b style="font-size: 2.3vh;">Matemáticas</b>'
+            },
+            legend: {
+                enabled: false
+            },
+            subtitle: {
+                //text: 'PLANEA 2015 y PLANEA 2016 ('+cadena_nivel+')'
+            },
+            xAxis: {
+                categories: [
+                    'I <br> Insuficiente',
+                    'II <br> Elemental',
+                    'III <br> Bueno',
+                    'IV <br>Excelente'
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Nivel de logro (%)'
+                }
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y:.1f}%'
+                    }
+                },
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            series: [{
+                name: 'Matemáticas',
+                data: [mat1_15, mat2_15, mat3_15, mat4_15]
+
+            }, {
+                name: 'Matemáticas',
+                data: [mat1_16, mat2_16, mat3_16, mat4_16]
+
+            }, {
+                name: 'Matemáticas',
+                data: [mat1_19, mat2_19, mat3_19, mat4_19]
+
+            }]
+        });
+
+
+
+        // Apply background-color
+        $(".highcharts-background").css("fill","#FFF");
+        if (screen.width<600){
+          chartp2015.setSize(
+              ($(document).width()/10)*5,
+              400,
+             false
+          );
+        }
+        else {
+          chartp2015.setSize(
+              ($(document).width()/10)*5,
+              400,
+             false
+          );
+        }
+
+        if (screen.width<600){
+          chartp2016.setSize(
+              ($(document).width()/10)*5,
+              400,
+             false
+          );
+        }
+        else {
+          chartp2016.setSize(
+              ($(document).width()/10)*5,
+              400,
+             false
+          );
+        }
+
+
+    }
+
   HaceGraficas.prototype.TablaPieGraficaPie = function(q1,q2,q3,q4){
 
           Highcharts.theme = {
@@ -2122,6 +2349,10 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+
+
+'#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+'#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
 
                 legend: {
@@ -2171,7 +2402,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   height: ($(document).width()/10)*12
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2019</b>'
               },
               subtitle: {
                   text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_lyc[0]['alumnos_evaluados']+'</b>'
@@ -2206,7 +2437,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,4,1);
                                 }
                            }
                        }
@@ -2258,7 +2489,13 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900',
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
+
+
+                '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                ,'#FF9900',
+               
+
+                 '#3CB371', '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
                 chart: {
                     backgroundColor: {
                         linearGradient: [0, 0, 0, 0],
@@ -2313,7 +2550,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   // width: 1000
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2019</b>'
               },
               subtitle: {
                   text:  '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_mate[0]['alumnos_evaluados']+'</b>'
@@ -2347,7 +2584,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,4,2);
                                 }
                            }
                        }
@@ -2639,7 +2876,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
       HaceGraficas.prototype.get_reactivos_xunidad_de_analisis = function(nombre,id_cont,id_cct,periodo,idcampodis, callback){
             
-          // alert(id_cont);
+          // alert(periodo);
           // console.log(nombre);
           var ruta = base_url+"info/info_xcont_xcct";
           $.ajax({

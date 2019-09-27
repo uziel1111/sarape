@@ -940,7 +940,7 @@ class Estadistica extends CI_Controller {
 		function tabla_planea($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			$result_planea = array();
 			 $result_planea_prim = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2018, 4);
-			 $result_planea_sec = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2017, 5);
+			 $result_planea_sec = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2019, 5);
 			 $result_planea_msuperior = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2017, 6);
 			 array_push($result_planea, $result_planea_prim[0]);
 			 array_push($result_planea, $result_planea_sec[0]);

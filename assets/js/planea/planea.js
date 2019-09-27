@@ -45,6 +45,7 @@ $("#slt_nivel_planeaxz").change(function(){
 		$("#slt_periodo_planeaxz").append("<option value='3'>2018</option>");
 	}else if($("#slt_nivel_planeaxz").val() == '5' || $("#slt_nivel_planeaxz").val() == '6'){
 		$("#slt_periodo_planeaxz").append("<option value='2'>2017</option>");
+		$("#slt_periodo_planeaxz").append("<option value='4'>2019</option>");
 	}
 
 	if($("#slt_nivel_planeaxz").val() == 0 || $("#slt_nivel_planeaxz") == '0'){
@@ -70,6 +71,8 @@ $("#slt_nivel_planeaxm").change(function(){
 		$("#slt_periodo_planeaxm").append("<option value='3'>2018</option>");
 	}else if($("#slt_nivel_planeaxm").val() == '5' || $("#slt_nivel_planeaxm").val() == '6'){
 		$("#slt_periodo_planeaxm").append("<option value='2'>2017</option>");
+		$("#slt_periodo_planeaxm").append("<option value='4'>2019</option>");
+
 	}
 
 });
