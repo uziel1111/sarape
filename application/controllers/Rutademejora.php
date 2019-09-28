@@ -2218,4 +2218,35 @@ class Rutademejora extends CI_Controller {
 			exit;
 		}
 	}
+
+	public function pieAccion(){
+		if(Utilerias::haySesionAbiertacct($this)){
+			$id_cct = $this->input->post('id_cct');
+  			$datos=$this->Rutamejora_model->pieAccion($id_cct);
+  			$response = array('datos' => $datos);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}
+	}
+
+	public function pieObjetivos(){
+		if(Utilerias::haySesionAbiertacct($this)){
+			$id_cct = $this->input->post('id_cct');
+  			$datos=$this->Rutamejora_model->pieObjetivos($id_cct);
+  			$response = array('datos' => $datos);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}
+	}
+
+	public function pieLAE(){
+		if(Utilerias::haySesionAbiertacct($this)){
+			$id_cct = $this->input->post('id_cct');
+  			$datos=$this->Rutamejora_model->pieLAE($id_cct);
+  			$response = array('datos' => $datos);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}
+	}
+
 }// Rutamedejora

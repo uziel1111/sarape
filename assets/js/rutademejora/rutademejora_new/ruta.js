@@ -1,11 +1,14 @@
 
 google.charts.load('current', {'packages':['gantt']});
-// google.charts.setOnLoadCallback(drawChart);
+google.charts.load('current', {'packages':['corechart']});
 
 $(document).ready(function() {
    obj_prioridad = new Prioridad();
    // datos =[];
    datos_accion();
+   // datos_accionpie();
+   // datos_objetivopie();
+   // datos_laepie();
 });
 
 $('#salir').click(function(){
@@ -369,4 +372,134 @@ Prioridad.prototype.funcionalidadselect = function(){
       	chart.draw(data, options);
     }
 
-   
+   	function datos_accionpie(){
+		let id_cct_rm=$("#id_cct_rm").val();
+		if(id_cct_rm!=""){
+			$.ajax({
+			    url: base_url+'Rutademejora/pieAccion',
+			    dataType : 'json',
+			    method : 'POST',
+			    data : {"id_cct":id_cct_rm},
+			    beforeSend: function(xhr){
+			      	Notification.loading("");
+			    },
+			    success: function(data){
+			      	swal.close();
+			        // drawChart(data.datos);
+			        // datos=data.datos;
+			        google.charts.setOnLoadCallback(pieAccion(data.datos));
+			    },
+			    error: function(error){
+			      swal.close();
+			      console.log(error);
+			    }
+			});
+		}else{
+			alert("Ocurrio un error al cargar los datos de avances de acciones");
+		}
+
+	}
+
+	function datos_objetivopie(){
+		let id_cct_rm=$("#id_cct_rm").val();
+		if(id_cct_rm!=""){
+			$.ajax({
+			    url: base_url+'Rutademejora/pieObjetivos',
+			    dataType : 'json',
+			    method : 'POST',
+			    data : {"id_cct":id_cct_rm},
+			    beforeSend: function(xhr){
+			      	Notification.loading("");
+			    },
+			    success: function(data){
+			      	swal.close();
+			      	console.log(data.datos);
+			        // drawChart(data.datos);
+			        // datos=data.datos;
+			        google.charts.setOnLoadCallback(pieObjetivos(data.datos));
+			    },
+			    error: function(error){
+			      swal.close();
+			      console.log(error);
+			    }
+			});
+		}else{
+			alert("Ocurrio un error al cargar los datos de avances de acciones");
+		}
+
+	}
+
+	function datos_laepie(){
+		let id_cct_rm=$("#id_cct_rm").val();
+		if(id_cct_rm!=""){
+			$.ajax({
+			    url: base_url+'Rutademejora/pieLAE',
+			    dataType : 'json',
+			    method : 'POST',
+			    data : {"id_cct":id_cct_rm},
+			    beforeSend: function(xhr){
+			      	Notification.loading("");
+			    },
+			    success: function(data){
+			      	swal.close();
+			        // drawChart(data.datos);
+			        // datos=data.datos;
+			        google.charts.setOnLoadCallback(pieLAE(data.datos));
+			    },
+			    error: function(error){
+			      swal.close();
+			      console.log(error);
+			    }
+			});
+		}else{
+			alert("Ocurrio un error al cargar los datos de avances de acciones");
+		}
+	}
+
+    function pieAccion(datos) {
+    	let c=100-datos[0]['porcentaje'];
+        var data = google.visualization.arrayToDataTable([
+          ['Acciones capturadas',datos[0]['porcentaje']],
+          ['Acciones no capturas',c]
+        ]);
+
+        var options = {
+          title: 'Avance de Captura de Acciones'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('div_acc_graf'));
+
+        chart.draw(data, options);
+    }
+
+    function pieObjetivos(datos) {
+    	let c=100-datos[0]['porc'];
+        var data = google.visualization.arrayToDataTable([
+          ['Objetivos capturadas',datos[0]['porc']],
+          ['Objetivos no capturas',c]
+        ]);
+
+        var options = {
+          title: 'Avance de Captura de Objetivos'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('div_obj_graf'));
+
+        chart.draw(data, options);
+    }
+
+    function pieLAE(datos) {
+    	let c=100-datos[0]['porc_p'];
+        var data = google.visualization.arrayToDataTable([
+          ['LAE capturadas',datos[0]['porc_p']],
+          ['LAE no capturas',c]
+        ]);
+
+        var options = {
+          title: 'Avance de Captura LAE'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('div_lae_graf'));
+
+        chart.draw(data, options);
+    }

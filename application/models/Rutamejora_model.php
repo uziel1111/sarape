@@ -932,4 +932,46 @@ function  get_datos_edith_tp($id_tprioritario){
       // die();
       return $this->db->query($str_query)->result_array();
     }
+
+    public function pieAccion($id_cct){
+      $str_query = "SELECT ac.id_accion,ac.accion,av.id_cct,
+                    SUM(IFNULL(av.cte1,0)))/COUNT(ac.id_accion) AS porcentaje       
+                    FROM rm_avance_xcctxtpxaccion av
+                    INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
+                    WHERE av.id_cct={$id_cct} ";
+      // echo $str_query;
+      // die();
+      return $this->db->query($str_query)->result_array();
+    }
+
+    public function pieObjetivos($id_cct){
+      $str_query = "SELECT SUM(a.porcentaje)/COUNT(a.id_objetivos) AS porc 
+                    FROM (
+                      SELECT ac.id_accion,ac.accion,av.id_cct,(SUM(IFNULL(av.cte1,0)))/COUNT(ac.id_accion) AS porcentaje,ac.id_objetivos    
+                      FROM rm_avance_xcctxtpxaccion av
+                      INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
+                      WHERE av.id_cct={$id_cct}
+                    GROUP BY ac.id_objetivos) AS a ";
+      // echo $str_query;
+      // die();
+      return $this->db->query($str_query)->result_array();
+    }
+
+    public function pieLAE($id_cct){
+      $str_query = "SELECT SUM(b.porcentaje_obj)/COUNT(b.id_prioridad) porc_p 
+                    FROM (
+                      SELECT SUM(a.porcentaje)/COUNT(a.id_objetivos) AS porcentaje_obj,a.id_prioridad FROM (
+                        SELECT ac.id_accion,ac.accion,av.id_cct,(SUM(IFNULL(av.cte1,0)))/COUNT(ac.id_accion) AS porcentaje,ac.id_objetivos,rm.id_prioridad  
+                        FROM rm_avance_xcctxtpxaccion av
+                        INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
+                        INNER JOIN rm_tema_prioritarioxcct rm ON rm.id_tprioritario=av.id_tprioritario
+                        INNER JOIN rm_c_prioridad rmp ON rmp.id_prioridad=rm.id_prioridad
+                        WHERE av.id_cct={$id_cct}
+                        GROUP BY ac.id_objetivos,rm.id_prioridad ) AS a 
+                    GROUP BY a.id_prioridad ) AS b";
+      // echo $str_query;
+      // die();
+      return $this->db->query($str_query)->result_array();
+    }
+
 }// Rutamejora_model
