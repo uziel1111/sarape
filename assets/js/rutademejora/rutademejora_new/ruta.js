@@ -6,9 +6,11 @@ $(document).ready(function() {
    obj_prioridad = new Prioridad();
    // datos =[];
    datos_accion();
-   // datos_accionpie();
-   // datos_objetivopie();
-   // datos_laepie();
+   datos_laepie();
+   datos_objetivopie();
+   datos_accionpie();
+   
+   
 });
 
 $('#salir').click(function(){
@@ -459,8 +461,9 @@ Prioridad.prototype.funcionalidadselect = function(){
     function pieAccion(datos) {
     	let c=100-datos[0]['porcentaje'];
         var data = google.visualization.arrayToDataTable([
-          ['Acciones capturadas',datos[0]['porcentaje']],
-          ['Acciones no capturas',c]
+        	['Acciones', 'Avance Acciones'],
+          ['Capturadas',datos[0]['porcentaje']],
+          ['No capturadas',c]
         ]);
 
         var options = {
@@ -475,8 +478,9 @@ Prioridad.prototype.funcionalidadselect = function(){
     function pieObjetivos(datos) {
     	let c=100-datos[0]['porc'];
         var data = google.visualization.arrayToDataTable([
-          ['Objetivos capturadas',datos[0]['porc']],
-          ['Objetivos no capturas',c]
+        	['Objetivos', 'Avance Objetivos'],
+          	['Capturadas',datos[0]['porc']],
+          	['No capturadas',c]
         ]);
 
         var options = {
@@ -489,15 +493,22 @@ Prioridad.prototype.funcionalidadselect = function(){
     }
 
     function pieLAE(datos) {
+    	// console.log(datos);
+    	// console.log(datos[0]['porc_p']);
     	let c=100-datos[0]['porc_p'];
+    	let p=datos[0]['porc_p'];
+    	// console.log(p);
+    	// console.log(c);
         var data = google.visualization.arrayToDataTable([
-          ['LAE capturadas',datos[0]['porc_p']],
-          ['LAE no capturas',c]
-        ]);
+        	['LAE', 'Avance LAE'],
+        	['LAE Capturadas',p],
+        	['LAE No capturadas',c]
+        	
+      	]);
 
         var options = {
           title: 'Avance de Captura LAE'
-        };
+           };
 
         var chart = new google.visualization.PieChart(document.getElementById('div_lae_graf'));
 

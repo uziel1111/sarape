@@ -174,14 +174,14 @@ span{
 				<input type="text" name="id_cct_rm" id="id_cct_rm" value="<?=$id_cct_rm?>" hidden>
 				<div id="chart_div"></div>
 				<br>
-				<h1 align="center">% de avance de Escuela.</h1>
-				<div id="div_acc_graf"></div>
+				<h1 align="center">% de avance por LAE.</h1>
+				<div id="div_lae_graf"></div>
 				<br>
-				<h1 align="center">% de Acciones</h1>
+				<h1 align="center">% de Objetivos</h1>
 				<div id="div_obj_graf"></div>
 				<br>
-				<h1 align="center">% de LAE</h1>
-				<div id="div_lae_graf"></div>
+				<h1 align="center">% de Acciones</h1>
+				<div id="div_acc_graf"></div>
 			</div> <!-- Resultados -->
 
 		</div> <!-- tab-content -->

@@ -935,7 +935,7 @@ function  get_datos_edith_tp($id_tprioritario){
 
     public function pieAccion($id_cct){
       $str_query = "SELECT ac.id_accion,ac.accion,av.id_cct,
-                    SUM(IFNULL(av.cte1,0)))/COUNT(ac.id_accion) AS porcentaje       
+                    ROUND(SUM(IFNULL(av.cte1,0))/COUNT(ac.id_accion),0)AS porcentaje       
                     FROM rm_avance_xcctxtpxaccion av
                     INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
                     WHERE av.id_cct={$id_cct} ";
@@ -945,7 +945,7 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     public function pieObjetivos($id_cct){
-      $str_query = "SELECT SUM(a.porcentaje)/COUNT(a.id_objetivos) AS porc 
+      $str_query = "SELECT ROUND(SUM(a.porcentaje)/COUNT(a.id_objetivos),0) AS porc 
                     FROM (
                       SELECT ac.id_accion,ac.accion,av.id_cct,(SUM(IFNULL(av.cte1,0)))/COUNT(ac.id_accion) AS porcentaje,ac.id_objetivos    
                       FROM rm_avance_xcctxtpxaccion av
@@ -958,7 +958,7 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     public function pieLAE($id_cct){
-      $str_query = "SELECT SUM(b.porcentaje_obj)/COUNT(b.id_prioridad) porc_p 
+      $str_query = "SELECT ROUND(SUM(b.porcentaje_obj)/COUNT(b.id_prioridad),0) porc_p 
                     FROM (
                       SELECT SUM(a.porcentaje)/COUNT(a.id_objetivos) AS porcentaje_obj,a.id_prioridad FROM (
                         SELECT ac.id_accion,ac.accion,av.id_cct,(SUM(IFNULL(av.cte1,0)))/COUNT(ac.id_accion) AS porcentaje,ac.id_objetivos,rm.id_prioridad  
