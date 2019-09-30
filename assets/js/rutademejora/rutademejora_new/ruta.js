@@ -409,7 +409,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 			    },
 			    success: function(data){
 			      	swal.close();
-			      	console.log(data.datos);
+			      	// console.log(data.datos);
 			        // drawChart(data.datos);
 			        // datos=data.datos;
 			        google.charts.setOnLoadCallback(pieObjetivos(data.datos));
@@ -558,6 +558,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 
 			    	// console.log(acciones);
 			    	let tabla="";
+			    	$("#div_acc_rez").empty();
 			    	tabla+="<center>";
 			    	tabla+='<table class="table table-striped table-bordered w-auto">';
             		tabla+='<thead class="thead-dark">';
