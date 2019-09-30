@@ -2222,17 +2222,49 @@ class Rutademejora extends CI_Controller {
 	public function pieAccion(){
 		if(Utilerias::haySesionAbiertacct($this)){
 			$id_cct = $this->input->post('id_cct');
-  			$datos=$this->Rutamejora_model->pieAccion($id_cct);
+			$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
+			$cte_vigente=$this->cteVigente($arr_avances_fechas);
+			// echo $cte_vigente;
+			// die();
+  			$datos=$this->Rutamejora_model->pieAccion($id_cct,$cte_vigente);
   			$response = array('datos' => $datos);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
 	}
+	public function cteVigente($arr_avances_fechas){
+		$cte_vigente="";
+		if($arr_avances_fechas[0]['cte1_var']=='TRUE'){
+			$cte_vigente="cte1";
+		}else if($arr_avances_fechas[0]['cte2_var']=='TRUE'){
+			$cte_vigente="cte2";
+		}else if($arr_avances_fechas[0]['cte3_var']=='TRUE'){
+			$cte_vigente="cte3";
+		}else if($arr_avances_fechas[0]['cte4_var']=='TRUE'){
+			$cte_vigente="cte4";
+		}else if($arr_avances_fechas[0]['cte5_var']=='TRUE'){
+			$cte_vigente="cte5";
+		}else if($arr_avances_fechas[0]['cte6_var']=='TRUE'){
+			$cte_vigente="cte6";
+		}else if($arr_avances_fechas[0]['cte7_var']=='TRUE'){
+			$cte_vigente="cte7";
+		}else if($arr_avances_fechas[0]['cte8_var']=='TRUE'){
+			$cte_vigente="cte8";
+		}else if($arr_avances_fechas[0]['cte9_var']=='TRUE'){
+			$cte_vigente="cte9";
+		}else if($arr_avances_fechas[0]['cte10_var']=='TRUE'){
+			$cte_vigente="cte10";
+		}
+
+		return $cte_vigente;
+	}
 
 	public function pieObjetivos(){
 		if(Utilerias::haySesionAbiertacct($this)){
 			$id_cct = $this->input->post('id_cct');
-  			$datos=$this->Rutamejora_model->pieObjetivos($id_cct);
+			$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
+			$cte_vigente=$this->cteVigente($arr_avances_fechas);
+  			$datos=$this->Rutamejora_model->pieObjetivos($id_cct,$cte_vigente);
   			$response = array('datos' => $datos);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
@@ -2242,7 +2274,9 @@ class Rutademejora extends CI_Controller {
 	public function pieLAE(){
 		if(Utilerias::haySesionAbiertacct($this)){
 			$id_cct = $this->input->post('id_cct');
-  			$datos=$this->Rutamejora_model->pieLAE($id_cct);
+			$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
+			$cte_vigente=$this->cteVigente($arr_avances_fechas);
+  			$datos=$this->Rutamejora_model->pieLAE($id_cct,$cte_vigente);
   			$response = array('datos' => $datos);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;

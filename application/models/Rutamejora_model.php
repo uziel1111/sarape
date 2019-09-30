@@ -508,6 +508,7 @@ function  get_datos_edith_tp($id_tprioritario){
 
     }
 
+
     //FUNCIONAMIENTO Y VALIDACION PARA SUPERVISOR BY LUIS SANCHEZ... all reserved rights
 
     function valida_supervisor($cct){
@@ -933,9 +934,9 @@ function  get_datos_edith_tp($id_tprioritario){
       return $this->db->query($str_query)->result_array();
     }
 
-    public function pieAccion($id_cct){
+    public function pieAccion($id_cct,$cte_vigente){
       $str_query = "SELECT ac.id_accion,ac.accion,av.id_cct,
-                    ROUND(SUM(IFNULL(av.cte1,0))/COUNT(ac.id_accion),0)AS porcentaje       
+                    ROUND(SUM(IFNULL(av.{$cte_vigente},0))/COUNT(ac.id_accion),0)AS porcentaje       
                     FROM rm_avance_xcctxtpxaccion av
                     INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
                     WHERE av.id_cct={$id_cct} ";
@@ -944,10 +945,10 @@ function  get_datos_edith_tp($id_tprioritario){
       return $this->db->query($str_query)->result_array();
     }
 
-    public function pieObjetivos($id_cct){
+    public function pieObjetivos($id_cct,$cte_vigente){
       $str_query = "SELECT ROUND(SUM(a.porcentaje)/COUNT(a.id_objetivos),0) AS porc 
                     FROM (
-                      SELECT ac.id_accion,ac.accion,av.id_cct,(SUM(IFNULL(av.cte1,0)))/COUNT(ac.id_accion) AS porcentaje,ac.id_objetivos    
+                      SELECT ac.id_accion,ac.accion,av.id_cct,(SUM(IFNULL(av.{$cte_vigente},0)))/COUNT(ac.id_accion) AS porcentaje,ac.id_objetivos    
                       FROM rm_avance_xcctxtpxaccion av
                       INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
                       WHERE av.id_cct={$id_cct}
@@ -957,11 +958,11 @@ function  get_datos_edith_tp($id_tprioritario){
       return $this->db->query($str_query)->result_array();
     }
 
-    public function pieLAE($id_cct){
+    public function pieLAE($id_cct,$cte_vigente){
       $str_query = "SELECT ROUND(SUM(b.porcentaje_obj)/COUNT(b.id_prioridad),0) porc_p 
                     FROM (
                       SELECT SUM(a.porcentaje)/COUNT(a.id_objetivos) AS porcentaje_obj,a.id_prioridad FROM (
-                        SELECT ac.id_accion,ac.accion,av.id_cct,(SUM(IFNULL(av.cte1,0)))/COUNT(ac.id_accion) AS porcentaje,ac.id_objetivos,rm.id_prioridad  
+                        SELECT ac.id_accion,ac.accion,av.id_cct,(SUM(IFNULL(av.{$cte_vigente},0)))/COUNT(ac.id_accion) AS porcentaje,ac.id_objetivos,rm.id_prioridad  
                         FROM rm_avance_xcctxtpxaccion av
                         INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
                         INNER JOIN rm_tema_prioritarioxcct rm ON rm.id_tprioritario=av.id_tprioritario

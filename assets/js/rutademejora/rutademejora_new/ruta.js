@@ -265,11 +265,10 @@ Prioridad.prototype.funcionalidadselect = function(){
         //  		new Date(2014, 2, 22), new Date(2014, 5, 20), null,60, null]);
         	// console.log(datos[i]['cte1']);
         	if(datos[i]['cte1']!=0 && datos[i]['cte1']!=null){
-        		console.log(datos[i]['cte1']);
+        		
 	      		data.addRow([datos[i]['accion'], datos[i]['accion'],
 	         		new Date(datos[i]['a_ini'],datos[i]['m_ini'], datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin'],datos[i]['d_fin']), null,parseInt(datos[i]['cte1']), null]);
         	}else{
-        		console.log(":"+datos[i]['cte1']);
         		data.addRow([datos[i]['accion'], datos[i]['accion'],
 	         		new Date(datos[i]['a_ini'],datos[i]['m_ini'], datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin'],datos[i]['d_fin']), null,0, null]);
         	}
@@ -287,7 +286,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 
       	var options = {
       		width: 1000,
-	        height: 600,
+	        height: 400,
 	        // title: 'Avances de acciones por escuela',
 	        // hAxis: { textStyle: { color: 'red' }, 
 	        // titleTextStyle: { color: 'red' } }, 
@@ -460,12 +459,13 @@ Prioridad.prototype.funcionalidadselect = function(){
 
     function pieAccion(datos) {
     	let c=100-datos[0]['porcentaje'];
-        var data = google.visualization.arrayToDataTable([
-        	['Acciones', 'Avance Acciones'],
-          ['Capturadas',datos[0]['porcentaje']],
-          ['No capturadas',c]
-        ]);
-
+    	var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Browser');
+            data.addColumn('number', 'Percentage');
+            data.addRows([
+                ['Capturadas',parseInt(datos[0]['porcentaje'])],
+         		['No capturadas',parseInt(c)]
+            ]);
         var options = {
           title: 'Avance de Captura de Acciones'
         };
@@ -477,12 +477,18 @@ Prioridad.prototype.funcionalidadselect = function(){
 
     function pieObjetivos(datos) {
     	let c=100-datos[0]['porc'];
-        var data = google.visualization.arrayToDataTable([
-        	['Objetivos', 'Avance Objetivos'],
-          	['Capturadas',datos[0]['porc']],
-          	['No capturadas',c]
-        ]);
-
+        // var data = google.visualization.arrayToDataTable([
+        // 	['Objetivos', 'Avance Objetivos'],
+        //   	['Capturadas',datos[0]['porc']],
+        //   	['No capturadas',c]
+        // ]);
+        var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Browser');
+            data.addColumn('number', 'Percentage');
+            data.addRows([
+                ['Capturadas',parseInt(datos[0]['porc'])],
+         		['No capturadas',parseInt(c)]
+            ]);
         var options = {
           title: 'Avance de Captura de Objetivos'
         };
@@ -493,18 +499,20 @@ Prioridad.prototype.funcionalidadselect = function(){
     }
 
     function pieLAE(datos) {
-    	// console.log(datos);
-    	// console.log(datos[0]['porc_p']);
     	let c=100-datos[0]['porc_p'];
-    	let p=datos[0]['porc_p'];
-    	// console.log(p);
-    	// console.log(c);
-        var data = google.visualization.arrayToDataTable([
-        	['LAE', 'Avance LAE'],
-        	['LAE Capturadas',p],
-        	['LAE No capturadas',c]
+       //  var data = google.visualization.arrayToDataTable([
+       //  	['LAE', 'Avance LAE'],
+       //  	['LAE Capturadas',p],
+       //  	['LAE No capturadas',c]
         	
-      	]);
+      	// ]);
+      	var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Browser');
+            data.addColumn('number', 'Percentage');
+            data.addRows([
+                ['Capturadas',parseInt(datos[0]['porc_p'])],
+         		['No capturadas',parseInt(c)]
+            ]);
 
         var options = {
           title: 'Avance de Captura LAE'
