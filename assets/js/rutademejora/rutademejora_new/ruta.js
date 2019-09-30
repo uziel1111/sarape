@@ -280,7 +280,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 	    }
 
       	var options = {
-      		width: 1000,
+      		width: 950,
 	        height: 400,
 	        // title: 'Avances de acciones por escuela',
 	        // hAxis: { textStyle: { color: 'red' }, 
