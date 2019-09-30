@@ -5,12 +5,7 @@ google.charts.load('current', {'packages':['corechart']});
 $(document).ready(function() {
    obj_prioridad = new Prioridad();
    // datos =[];
-   datos_accion();
-   datos_laepie();
-   datos_objetivopie();
-   datos_accionpie();
-   
-   
+
 });
 
 $('#salir').click(function(){
@@ -297,7 +292,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 	        gantt: {
 	          	trackHeight: 40,
 	          	percentEnabled: true,
-	          	stroke: '#e64a19',
 	          	labelMaxWidth:400,
 	          	// criticalPathEnabled: true,
             // 	criticalPathStyle: {
@@ -320,7 +314,8 @@ Prioridad.prototype.funcionalidadselect = function(){
 	        	}
 
 	        },
-	         backgroundColor: 'black',
+	        backgroundColor: 'black',
+
 	        // cssClassNames: {'tableCell':
 	        // }
 	        // colors: colors
@@ -396,7 +391,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 			    }
 			});
 		}else{
-			alert("Ocurrio un error al cargar los datos de avances de acciones");
+			alert("Ocurrio un error al cargar los datos");
 		}
 
 	}
@@ -425,7 +420,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 			    }
 			});
 		}else{
-			alert("Ocurrio un error al cargar los datos de avances de acciones");
+			alert("Ocurrio un error al cargar los datos");
 		}
 
 	}
@@ -453,7 +448,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 			    }
 			});
 		}else{
-			alert("Ocurrio un error al cargar los datos de avances de acciones");
+			alert("Ocurrio un error al cargar los datos");
 		}
 	}
 
@@ -467,7 +462,8 @@ Prioridad.prototype.funcionalidadselect = function(){
          		['No capturadas',parseInt(c)]
             ]);
         var options = {
-          title: 'Avance de Captura de Acciones'
+          title: '',
+          colors: ['#F47D4A', '#E1315B']
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('div_acc_graf'));
@@ -490,7 +486,8 @@ Prioridad.prototype.funcionalidadselect = function(){
          		['No capturadas',parseInt(c)]
             ]);
         var options = {
-          title: 'Avance de Captura de Objetivos'
+          title: '',
+          colors: ['#FA812A', '#FAAF08']
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('div_obj_graf'));
@@ -515,10 +512,100 @@ Prioridad.prototype.funcionalidadselect = function(){
             ]);
 
         var options = {
-          title: 'Avance de Captura LAE'
+          title: '',
+          colors: ['#2C7873', '#6FB98F']
            };
 
         var chart = new google.visualization.PieChart(document.getElementById('div_lae_graf'));
 
         chart.draw(data, options);
     }
+
+    function accionesRezagadas(){
+		let id_cct_rm=$("#id_cct_rm").val();
+		if(id_cct_rm!=""){
+			$.ajax({
+			    url: base_url+'Rutademejora/accionesRezagadas',
+			    dataType : 'json',
+			    method : 'POST',
+			    data : {"id_cct":id_cct_rm},
+			    beforeSend: function(xhr){
+			      	Notification.loading("");
+			    },
+			    success: function(data){
+			      	swal.close();
+			    	// console.log(data.datos);
+			    	let acciones=[];
+			    	if(data.datos.length>0){
+			    		for(let i=0; i<data.datos.length; i++){
+							if (data.datos[i]['dias_restantes_hoy'] >= 0) {
+							    if (data.datos[i]['dias_restantes'] >= data.datos[i]['dias_restantes_hoy']) {
+								    if (data.datos[i]['porcentaje'] <= 66) {
+								    	acciones.push(data.datos[i]);
+								    }
+								}else{
+								  	if ((data.datos[i]['dias_restantes'] * 2 )>= data.datos[i]['dias_restantes_hoy']) {  
+									    if (data.datos[i]['porcentaje'] <= 33) {
+									     	acciones.push(data.datos[i]);
+									   	}
+									}
+								}
+							}else{
+							    acciones.push(data.datos[i]);
+							}	
+			    		}
+			    	}
+
+			    	// console.log(acciones);
+			    	let tabla="";
+			    	tabla+="<center>";
+			    	tabla+='<table class="table table-striped table-bordered w-auto">';
+            		tabla+='<thead class="thead-dark">';
+				    tabla+='<tr>';
+					tabla+='<th scope="col" ><center>Acción</center></th>';
+					tabla+='<th scope="col" ><center>Fecha Inicio</center></th>';
+					tabla+='<th scope="col" ><center>Fecha Término</center></th>';
+				    tabla+='</tr>';
+			        tabla+='</thead>';
+			        tabla+='<tbody>';
+			        if(acciones.length>0){
+			        	for(let x=0; x <acciones.length; x++){
+			        		tabla+='<tr>';
+			        		tabla+='<td>';
+			        		tabla+=acciones[x]['accion'];
+			        		tabla+='</td>';
+			        		tabla+='<td>';
+			        		tabla+=acciones[x]['f_inicio'];
+			        		tabla+='</td>';
+			        		tabla+='<td>';
+			        		tabla+=acciones[x]['f_termino'];
+			        		tabla+='</td>';
+			        		tabla+='</tr>';
+			        	}
+			        	
+			        }
+			        tabla+='</tbody>';
+          			tabla+='</table>';
+          			tabla+='</center>';
+          			$("#div_acc_rez").append(tabla);
+			    },
+			    error: function(error){
+			      swal.close();
+			      console.log(error);
+			    }
+			});
+		}else{
+			alert("Ocurrio un error al cargar los datos");
+		}
+	}
+
+	$("#nav-tab").click(function (e) {
+        var id = e.target.id;
+        if(id =="nav-resultados-tab"){
+	   		datos_accion();
+		   	datos_laepie();
+		   	datos_objetivopie();
+		   	datos_accionpie();
+		   	accionesRezagadas();
+   		}
+    });

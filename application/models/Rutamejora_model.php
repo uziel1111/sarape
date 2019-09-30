@@ -353,6 +353,27 @@ function  get_datos_edith_tp($id_tprioritario){
 
   }
 
+ 
+  function accionesRezagadas($id_cct,$cte_vigente){
+    $str_query = "SELECT tp.id_tprioritario, p.prioridad, o.id_objetivo, upper(o.objetivo) as objetivo,
+                  o.id_tprioritario as ob_tp, a.id_accion, a.accion, a.id_objetivos, tp.id_cct,
+                  IFNULL(av.{$cte_vigente},0) as {$cte_vigente},
+                  (datediff(a.accion_f_termino, a.accion_f_inicio)*24) as 'total_horas',
+                  ((datediff(a.accion_f_termino, a.accion_f_inicio)*24)/3) as 'horasRestantes', 
+                  (datediff(a.accion_f_termino, now())*24) as 'horasRestantesHoy'
+                  ,a.accion_f_termino as f_termino, a.accion_f_inicio as f_inicio
+                  FROM rm_tema_prioritarioxcct tp
+                  INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
+                  INNER JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
+                  INNER JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
+                  INNER JOIN rm_avance_xcctxtpxaccion av ON tp.id_cct = av.id_cct AND tp.id_tprioritario = av.id_tprioritario 
+                    AND a.id_accion = av.id_accion
+                  WHERE tp.id_cct = {$id_cct}
+                  ORDER BY tp.orden, tp.id_tprioritario, a.id_accion DESC";
+        // echo "<pre>";print_r($str_query); die();
+    return $this->db->query($str_query)->result_array();
+  }
+
   function existe_avance($var_id_cct,$var_id_idtp,$var_id_idacc){
     $this->db->select('id_cct');
       $this->db->from('rm_avance_xcctxtpxaccion');

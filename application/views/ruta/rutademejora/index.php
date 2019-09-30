@@ -137,8 +137,9 @@ span{
 			<div class="nav nav-tabs nav-tabs-style-1" id="nav-tab" role="tablist">
 				<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">PEMC</a>
 				<a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Seguimiento</a>
-				<a class="nav-item nav-link nav-link-style-1" id="nav-ayuda-tab" data-toggle="tab" href="#nav-ayuda" role="tab" aria-controls="nav-ayuda" aria-selected="false">Ayuda</a>
 				<a class="nav-item nav-link nav-link-style-1" id="nav-resultados-tab" data-toggle="tab" href="#nav-resultados" role="tab" aria-controls="nav-resultados" aria-selected="false">Resultados</a>
+				<a class="nav-item nav-link nav-link-style-1" id="nav-ayuda-tab" data-toggle="tab" href="#nav-ayuda" role="tab" aria-controls="nav-ayuda" aria-selected="false">Ayuda</a>
+				
 			</div>
 		</nav>
 		<div class="tab-content tab-content-style-1" id="nav-tabContent">
@@ -174,14 +175,19 @@ span{
 				<input type="text" name="id_cct_rm" id="id_cct_rm" value="<?=$id_cct_rm?>" hidden>
 				<div id="chart_div"></div>
 				<br>
-				<h1 align="center">% de avance por LAE.</h1>
+				<h1 align="center">Porcentaje de avance  LAE</h1>
 				<div id="div_lae_graf"></div>
 				<br>
-				<h1 align="center">% de Objetivos</h1>
+				<h1 align="center">Porcentaje de avance de Objetivos</h1>
 				<div id="div_obj_graf"></div>
 				<br>
-				<h1 align="center">% de Acciones</h1>
+				<h1 align="center">Porcentaje de avance de Acciones</h1>
 				<div id="div_acc_graf"></div>
+				<br>
+				<h1 align="center">Lista de acciones rezagadas</h1>
+				<div id="div_acc_rez">
+					
+				</div>
 			</div> <!-- Resultados -->
 
 		</div> <!-- tab-content -->

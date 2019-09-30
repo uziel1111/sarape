@@ -2283,4 +2283,16 @@ class Rutademejora extends CI_Controller {
 		}
 	}
 
+	public function accionesRezagadas(){
+		if(Utilerias::haySesionAbiertacct($this)){
+			$id_cct = $this->input->post('id_cct');
+			$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
+			$cte_vigente=$this->cteVigente($arr_avances_fechas);
+  			$datos=$this->Rutamejora_model->accionesRezagadas($id_cct,$cte_vigente);
+  			$response = array('datos' => $datos);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}
+	}
+
 }// Rutamedejora
