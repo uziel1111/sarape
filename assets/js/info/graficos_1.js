@@ -2206,6 +2206,9 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
+        // if ($("#slt_periodo_planeaxm").val() == 4) {
+            console.log($("#slt_periodo_planeaxm").val());
+        // }
           Highcharts.theme = {
                 colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
@@ -2350,9 +2353,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
 
-
-'#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-'#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
 
                 legend: {
@@ -2620,6 +2620,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           // }
 
       }// graficoplanea_ud_secu_mate()
+
 
       HaceGraficas.prototype.graficoplanea_ud_ms_lyc = function(arr_lyc,id_cct){
         arr_lyc.sort(function (a, b) {

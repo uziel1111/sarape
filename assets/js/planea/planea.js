@@ -67,11 +67,15 @@ $("#slt_subsostenimiento_planeaxz").change(function(){
 $("#slt_nivel_planeaxm").change(function(){
 	$("#slt_periodo_planeaxm").empty();
 	if($("#slt_nivel_planeaxm").val() == '4'){
-		// $("#slt_periodo_planeaxm").append("<option value='1'>2016</option>");
+		$("#slt_periodo_planeaxm").append("<option value='1'>2016</option>");
 		$("#slt_periodo_planeaxm").append("<option value='3'>2018</option>");
-	}else if($("#slt_nivel_planeaxm").val() == '5' || $("#slt_nivel_planeaxm").val() == '6'){
+	}else if($("#slt_nivel_planeaxm").val() == '5'){
 		$("#slt_periodo_planeaxm").append("<option value='2'>2017</option>");
 		$("#slt_periodo_planeaxm").append("<option value='4'>2019</option>");
+
+	}else if($("#slt_nivel_planeaxm").val() == '6'){
+		$("#slt_periodo_planeaxm").append("<option value='2'>2017</option>");
+		
 
 	}
 
@@ -100,10 +104,13 @@ const Planea = {
 					}
 			        break;
 			    case "5":
+			    // console.log(result.datos);
 			        if($("#slt_campod_planeaxm").val() == 1){
-						graficar.graficoplanea_ud_secu_lyc(result.datos, result.id_municipio, "municipio");
+					
+							graficar.graficoplanea_ud_secu_lyc(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxm").val());
+						
 					}else{
-						graficar.graficoplanea_ud_secu_mate(result.datos, result.id_municipio, "municipio");
+							graficar.graficoplanea_ud_secu_mate(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxm").val());
 					}
 			        break;
 			    case "6":

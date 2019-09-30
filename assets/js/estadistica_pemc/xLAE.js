@@ -7,14 +7,16 @@ $('#xLAE_tab').click(function() {
     getEstadisticaLAE();
 });
 
-
 function getEstadisticaLAE() {
 
    nivel = $('#nivel_educativo_LAE option:selected').val();
    region = $('#region_LAE option:selected').val();
    municipio = $('#municipio_LAE option:selected').val();
-   console.log(region);
-   console.log(municipio);
+   sostenimiento = $('#sostenimiento_LAE option:selected').val();
+   zona = $('#zona_LAE option:selected').val();
+
+   console.log(sostenimiento);
+   console.log(zona);
    if (nivel == undefined) {
     nivel = 0;
     }
@@ -27,11 +29,19 @@ function getEstadisticaLAE() {
         municipio = 0;
     }
 
+      if (sostenimiento == undefined) {
+        sostenimiento = 0;
+    }
+
+    if (zona == undefined) {
+        zona = 0;
+    }
+
     ruta = base_url + 'Estadistica_pemc/getEstadisticaLAE';
     $.ajax({
         url: ruta,
         type: 'POST',
-        data: {nivel:nivel, region:region, municipio:municipio},
+        data: {nivel:nivel, region:region, municipio:municipio, sostenimiento:sostenimiento, zona:zona},
         beforeSend: function(xhr) {
                 Notification.loading("");
             },
@@ -45,6 +55,15 @@ function getEstadisticaLAE() {
         $('#nivel_educativo_LAE').val(nivel);
         $('#region_LAE').val(region);
         $('#municipio_LAE').val(municipio);
+        if (region != 0 || municipio != 0) {
+            $('#nivel_educativo_LAE').val(nivel);
+        $('#region_LAE').val(region);
+        $('#radiobtn_region').trigger("click");
+    }else if (sostenimiento != 0 || zona) {
+         $('#radiobtn_zona').trigger("click");
+          $('#sostenimiento_LAE').val(sostenimiento);
+          $('#zona_LAE').val(zona);
+    }
     })
     .fail(function() {
         console.info('Error');

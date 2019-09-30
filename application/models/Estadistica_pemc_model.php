@@ -133,6 +133,34 @@ class Estadistica_pemc_model extends CI_Model
   return $this->db->query($query)->result_array();
 }
 
+ function get_obj_acc_lae_zona_sost($nivel, $zona, $sostenimiento)
+ {
+   $query = 'SELECT tp.orden, COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones
+   FROM rm_tema_prioritarioxcct tp
+   INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
+   LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
+   LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
+   inner join escuela e on e.id_cct = tp.id_cct
+   inner join municipio m on m.id_municipio = e.id_municipio
+   inner join subsostenimiento s on s.id_subsostenimiento = e.id_subsostenimiento
+   WHERE m.zona_economica = 5  ';
+   if ($nivel != 0) {
+    $query .= ' and e.id_nivel = '.$nivel. '';
+  }
+   if ($zona != 0) {
+     $query .= ' and e.id_supervision = '.$zona.'';
+   }
+    if ($sostenimiento != 0) {
+     $query .= ' and s.id_subsostenimiento = '.$sostenimiento.'';
+   }
+
+  $query .= ' GROUP BY tp.orden  ORDER by tp.orden';
+
+   // echo '<pre>'; print_r($query); die();
+
+  return $this->db->query($query)->result_array();
+}
+
 function get_filtros($nivel, $municipio, $region)
  {
    $query = 'SELECT tp.orden, COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones
@@ -159,6 +187,15 @@ function get_filtros($nivel, $municipio, $region)
 
   return $this->db->query($query)->result_array();
 }
+
+ function allzonas(){
+      $this->db->select('su.id_supervision, su.zona_escolar');
+      $this->db->from('supervision as su');
+      $this->db->join('escuela as es','su.id_supervision = es.id_supervision');
+      $this->db->group_by(" su.id_supervision");
+      return  $this->db->get()->result_array();
+    }// all()
+    
 /*BK201 E*/
   function getall_xest_ind(){
     $this->db->select('mu.id_municipio, mu.municipio');

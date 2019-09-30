@@ -1,6 +1,6 @@
  <div class="container">
    <div class="row">
-    <div class="col-md-4 form-group form-group-style-1">
+    <div class="col-md-3 form-group form-group-style-1">
       <label for="nivel_educativo_LAE">Seleccione un nivel educativo</label>
       <select id="nivel_educativo_LAE" class="form-control">
         <option value="0">Todos los niveles</option>
@@ -11,7 +11,20 @@
         <option value="5">Secundaria</option>
       </select></label>
         </div>
-         <div class="col-md-4 form-group form-group-style-1">
+         <div class="col-md-3 form-group form-group-style-1 ">
+          <br>
+        <input id="radiobtn_region" class="radiobtn" name="LA_tipo_busqueda" type="radio" value="1" tabindex="3">
+        <span></span>
+        <label for="radiobtn_region">Busqueda por Región</label>
+        <br>
+         <input id="radiobtn_zona"  class="radiobtn" name="LA_tipo_busqueda" type="radio" value="2" tabindex="3">
+        <span></span>
+        <label for="radiobtn_zona">Busqueda por Zona</label>
+         </div>
+
+
+        <!-- por Región -->
+         <div class="col-md-3 form-group form-group-style-1 div_region d-none">
            <label for="region_LAE">Seleccione una región</label>
             <select id="region_LAE" class="form-control">
               <option value="0">Todas las regiones</option>
@@ -22,12 +35,32 @@
               <option value="5">Laguna</option>
                    </select></label>
          </div>
-         <div class="col-md-4 form-group form-group-style-1">
+         <div class="col-md-3 form-group form-group-style-1 div_region d-none">
            <label for="municipio_LAE">Seleccione un municipio</label>
             <select id="municipio_LAE" class="form-control">
             	<option value="0">Todos los municipios</option>
               <?php foreach ($municipio as $key => $value) { ?>
               	<option value="<?= $value['id_municipio'] ?>"><?= $value['municipio'] ?></option>
+              <?php } ?>
+                   </select></label>
+         </div>
+
+          <!-- por Zona -->
+            <div class="col-md-3 form-group form-group-style-1 div_zona d-none">
+           <label for="sostenimiento_LAE">Seleccione un sostenimiento</label>
+            <select id="sostenimiento_LAE" class="form-control">
+              <option value="0">Todos los sostenimientos</option>
+              <option value="1">Publico</option>
+              <option value="2">Privado</option>
+              <option value="3">Autonomo</option>
+                   </select></label>
+         </div>
+         <div class="col-md-3 form-group form-group-style-1 div_zona d-none">
+           <label for="zona_LAE">Seleccione una zona</label>
+            <select id="zona_LAE" class="form-control">
+              <option value="0">Todas las zonas</option>
+              <?php foreach ($zonas as $key => $value) { ?>
+                <option value="<?= $value['id_supervision'] ?>"><?= $value['zona_escolar'] ?></option>
               <?php } ?>
                    </select></label>
          </div>
