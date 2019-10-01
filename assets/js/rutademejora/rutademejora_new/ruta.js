@@ -1,10 +1,7 @@
 
-// google.charts.load('current', {'packages':['gantt']});
 google.charts.load('current', {'packages':['gantt'],'language':'es'});
 google.charts.load('current', {'packages':['corechart'],'language':'es'});
-// google.load('visualization', '1', {'packages':['corechart'], 'language': 'es'});
 // google.load('visualization', '1', {'packages':['gantt'], 'language': 'es'});
-
 $(document).ready(function() {
    obj_prioridad = new Prioridad();
    $("#nav-resultados").hide();
@@ -279,7 +276,18 @@ Prioridad.prototype.funcionalidadselect = function(){
 	        colors.push(colorMap[data.getValue(i, 2)]);
 	    }
 
+	    let alto=400;
+	    if(datos.length>=7 && datos.length<=14){
+	    	alto=800;
+	    }else if(datos.length>=15 && datos.length<=21){
+	    	alto=1200;
+	    }else if(datos.length>=22 && datos.length<=28){
+	    	alto=1600;
+	    }else if(datos.length>=29 && datos.length<=35){
+	    	alto=2000;
+	    }
       	var options = {
+      		language :'es',
       		width: 950,
 	        height: 400,
 	        gantt: {
@@ -307,10 +315,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 		        "light": "#eeeeee"
 		      }
 		    ],
-
-	        // cssClassNames: {'tableCell':
-	        // }
-	        // colors: colors
 	        customClass:{
 	        	textAlign:'right'
 	        } 
