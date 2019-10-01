@@ -143,15 +143,16 @@ class Estadistica_pemc_model extends CI_Model
    inner join escuela e on e.id_cct = tp.id_cct
    inner join municipio m on m.id_municipio = e.id_municipio
    inner join subsostenimiento s on s.id_subsostenimiento = e.id_subsostenimiento
+   inner join supervision su on su.id_supervision = e.id_supervision
    WHERE m.zona_economica = 5  ';
    if ($nivel != 0) {
     $query .= ' and e.id_nivel = '.$nivel. '';
   }
    if ($zona != 0) {
-     $query .= ' and e.id_supervision = '.$zona.'';
+     $query .= ' and su.zona_escolar = = '.$zona.'';
    }
     if ($sostenimiento != 0) {
-     $query .= ' and s.id_subsostenimiento = '.$sostenimiento.'';
+     $query .= ' and s.id_sostenimiento = '.$sostenimiento.'';
    }
 
   $query .= ' GROUP BY tp.orden  ORDER by tp.orden';
