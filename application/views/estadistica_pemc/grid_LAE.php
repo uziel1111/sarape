@@ -60,7 +60,7 @@
             <select id="zona_LAE" class="form-control">
               <option value="0">Todas las zonas</option>
               <?php foreach ($zonas as $key => $value) { ?>
-                <option value="<?= $value['id_supervision'] ?>"><?= $value['zona_escolar'] ?></option>
+                <option value="<?= $value['zona_escolar'] ?>"><?= $value['zona_escolar'] ?></option>
               <?php } ?>
                    </select></label>
          </div>
@@ -113,7 +113,7 @@
             <th>Acciones</th>
           </tr>
             </thead>
-            <tbody>
+            <tbody id='tablabody'>
               <?=$tabla?>
           </tbody>
           </table>

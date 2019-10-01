@@ -194,27 +194,27 @@
 		                        </div>
 		                    </div>
 	                      	<div class='row'>
-		                        <div class='col-md-3 col-sm-12'>
-			                        <center>
-			                        <?php if ($periodo!='1') { ?>
-			                          <button data-toggle='tooltip' title='Explicación de respuesta correcta' type='button' class='btn btn-style-1 color-6 bgcolor-2 mb-2' onclick=obj_graficas.argumento_reactivo('<?= $item['url_argumento'] ?>')>Argumento</button>
-			                 		<?php } ?>
-			                        </center>
+		                        <!-- <div class='col-md-3 col-sm-12'>
+		                        			                        <center>
+		                        			                        <?php if ($periodo!='1') { ?>
+		                        			                          <button data-toggle='tooltip' title='Explicación de respuesta correcta' type='button' class='btn btn-style-1 color-6 bgcolor-2 mb-2' onclick=obj_graficas.argumento_reactivo('<?= $item['url_argumento'] ?>')>Argumento</button>
+		                        			                 		<?php } ?>
+		                        			                        </center>
 		                        </div>
 		                        <div class='col-md-3 col-sm-12'>
-			                        <center>
-			                  		<?php if ($periodo!='1') { ?>
-			                        	<button type='button' class='btn btn-style-1 color-6 bgcolor-3 mb-2' onclick=obj_graficas.especificacion_reactivo('<?= $item['url_especificacion'] ?>')>Especificación</button>
-			                 		<?php } ?>
-			                        </center>
+		                        			                        <center>
+		                        			                  		<?php if ($periodo!='1') { ?>
+		                        			                        	<button type='button' class='btn btn-style-1 color-6 bgcolor-3 mb-2' onclick=obj_graficas.especificacion_reactivo('<?= $item['url_especificacion'] ?>')>Especificación</button>
+		                        			                 		<?php } ?>
+		                        			                        </center>
 		                        </div>
 		                        <div class='col-md-3 col-sm-12'>
-			                        <center>
-			                 			<?php if ($item['n_material']!="0") { ?>
-			                          	<button type='button' class='btn btn-style-1 color-6 bgcolor-4 mb-2' onclick=obj_graficas.apoyosacadem('<?= $item['id_reactivo'] ?>')>Apoyos académicos</button>
-			               				<?php } ?>
-			                        </center>
-		                        </div>
+		                        			                        <center>
+		                        			                 			<?php if ($item['n_material']!="0") { ?>
+		                        			                          	<button type='button' class='btn btn-style-1 color-6 bgcolor-4 mb-2' onclick=obj_graficas.apoyosacadem('<?= $item['id_reactivo'] ?>')>Apoyos académicos</button>
+		                        			               				<?php } ?>
+		                        			                        </center>
+		                        </div> -->
 
 		                        <div class='col-md-3 col-sm-12'>
 			                        <center>

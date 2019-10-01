@@ -1,4 +1,4 @@
-$('#xLAE_tab').click(function() {
+$('#xZona_tab').click(function() {
     
     getTablaZona();
 });
@@ -8,13 +8,13 @@ function getTablaZona() {
     $.ajax({
         url: ruta,
         type: 'POST',
-        data: {nivel:nivel, region:region, municipio:municipio},
+        data: {},
         beforeSend: function(xhr) {
                 Notification.loading("");
             },
     })
     .done(function(data) {
-    
+            console.log(data);
         $('#xZona').html(data.str_view);
 
        

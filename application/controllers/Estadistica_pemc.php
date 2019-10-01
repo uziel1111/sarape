@@ -397,12 +397,12 @@ public function getEstadisticaLAE(){
         $tabla .="<td>{$region['municipio']}</td>";
     
         if ($sostenimiento != 0 || $zona != 0) {
-                $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae_zona_sost($nivel, $sostenimiento, $zona);
+                $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae_zona_sost($nivel, $zona, $sostenimiento);
             } else {
 
                 $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae($nivel, $region['id_municipio']);
             }   
-
+                
         if (empty($OALae)) {
          $tabla .="<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>";
      }else{
@@ -482,10 +482,15 @@ exit;
 }
 
 
-    function getTablaZona()
-    {
-        
-    }
+function getTablaZona()
+{
+    $zonas = $this->Estadistica_pemc_model->allzonas();
+    $data['zonas'] = $zonas;
+    $str_view = $this->load->view("Estadistica_pemc/grid_zona", $data, TRUE);
+    $response = array('str_view' => $str_view);
+    Utilerias::enviaDataJson(200, $response, $this);
+    exit;
+}
 /*BK201 E*/
 
 

@@ -149,12 +149,12 @@ class Estadistica_pemc_model extends CI_Model
     $query .= ' and e.id_nivel = '.$nivel. '';
   }
    if ($zona != 0) {
-     $query .= ' and su.zona_escolar = = '.$zona.'';
+     $query .= ' and su.zona_escolar = '.$zona.'';
    }
     if ($sostenimiento != 0) {
      $query .= ' and s.id_sostenimiento = '.$sostenimiento.'';
    }
-
+    
   $query .= ' GROUP BY tp.orden  ORDER by tp.orden';
 
    // echo '<pre>'; print_r($query); die();
@@ -193,7 +193,7 @@ function get_filtros($nivel, $municipio, $region)
       $this->db->select('su.id_supervision, su.zona_escolar');
       $this->db->from('supervision as su');
       $this->db->join('escuela as es','su.id_supervision = es.id_supervision');
-      $this->db->group_by(" su.id_supervision");
+      $this->db->group_by("su.zona_escolar");
       return  $this->db->get()->result_array();
     }// all()
     
