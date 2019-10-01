@@ -246,7 +246,7 @@ Prioridad.prototype.funcionalidadselect = function(){
     function drawChart(datos) {
     	// console.log(datos);
       	var data = new google.visualization.DataTable();
-      	// data.addColumn('string', 'Task ID');
+      	data.addColumn('string', 'Task ID');
       	data.addColumn('string', 'Task Name');
       	data.addColumn('string', 'Resource');
       	data.addColumn('date', 'Start Date');
@@ -256,18 +256,14 @@ Prioridad.prototype.funcionalidadselect = function(){
       	data.addColumn('string', 'Dependencies');
       	// data.addRow();
       	for(let i=0; i<datos.length; i++){
-      		// data.addRow([datos[i]['accion'], datos[i]['accion'],
-        //  		new Date(2014, 2, 22), new Date(2014, 5, 20), null,60, null]);
-        	// console.log(datos[i]['cte1']);
         	if(datos[i]['cte1']!=0 && datos[i]['cte1']!=null){
         		
-	      		data.addRow([datos[i]['accion'], datos[i]['accion'],
+	      		data.addRow([datos[i]['ac'],datos[i]['accion'], datos[i]['ac'],
 	         		new Date(datos[i]['a_ini'],datos[i]['m_ini'], datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin'],datos[i]['d_fin']), null,parseInt(datos[i]['cte1']), null]);
         	}else{
-        		data.addRow([datos[i]['accion'], datos[i]['accion'],
+        		data.addRow([datos[i]['ac'],datos[i]['accion'], datos[i]['ac'],
 	         		new Date(datos[i]['a_ini'],datos[i]['m_ini'], datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin'],datos[i]['d_fin']), null,0, null]);
         	}
-      		// data.addRow(['Hermione', new Date(1999,0,1)]);
       	}
       	var colors = [];
 	    var colorMap = {
@@ -282,87 +278,39 @@ Prioridad.prototype.funcionalidadselect = function(){
       	var options = {
       		width: 950,
 	        height: 400,
-	        // title: 'Avances de acciones por escuela',
-	        // hAxis: { textStyle: { color: 'red' }, 
-	        // titleTextStyle: { color: 'red' } }, 
-	        // vAxis: { textStyle: { color: 'red' }, 
-	        // titleTextStyle: { color: 'red' } }, 
-	        // legend: { textStyle: { color: 'red' }},
-      		// colors: ['red','green'],
 	        gantt: {
 	          	trackHeight: 40,
 	          	percentEnabled: true,
 	          	labelMaxWidth:400,
-	          	// criticalPathEnabled: true,
-            // 	criticalPathStyle: {
-            //   	stroke: '#e64a19',
-            //   	strokeWidth: 5 },
-	   //        	labelStyle: {
-	   //        		fontFamily:'Arial',
-				//   	fontSize: 12,
-				//   	textAling:'right'
-				  
-				// }
 				labelStyle: {
 				  fontName: 'Roboto',
 				  fontSize: 12,
 				  color: 'red',
 				  textAlign:'right'
-				},
-				customChartStyle:{
-	        	textAlign:'right !important'
-	        	}
+				}
+
 
 	        },
-	        backgroundColor: 'black',
+	        
+	        titleTextStyle: {
+		      fontName: 'Arial',
+		      fontSize: 10
+		    },
+		    palette: [
+		      {
+		        "color": "#cccccc",
+		        "dark": "#333333",
+		        "light": "#eeeeee"
+		      }
+		    ],
 
 	        // cssClassNames: {'tableCell':
 	        // }
 	        // colors: colors
-	        // customClass:{
-	        // 	textAlign:'left'
-	        // } 
+	        customClass:{
+	        	textAlign:'right'
+	        } 
       	};
-
-		// var options = {
-		// 	width: 1000,
-		//     height: 600,
-		//     gantt: {
-		//     	labelMaxWidth:400,
-		//       	criticalPathEnabled: false, // Critical path arrows will be the same as other arrows.
-		//       	arrow: {
-		// 	        angle: 50,
-		// 	        width: 1,
-		// 	        color: 'white',
-		// 	        radius: 2
-		//       	},
-		//       	labelStyle: {
-		// 	        fontName: 'Arial',
-		// 	        fontSize: 10,
-		// 	        color: 'black',
-		// 	        textAlign:'right'
-		//       	},
-		//       	barCornerRadius: 2,
-		//       	backgroundColor: {
-		// 	    	fill: 'transparent',
-		// 	    },
-		//       	innerGridHorizLine: {
-		//         	stroke: '#ddd',
-		//         	strokeWidth: 0,
-		//       	},
-		//       	innerGridTrack: {
-		//         	fill: 'transparent'
-		//       	},
-		//       	innerGridDarkTrack: {
-		//         	fill: 'transparent'
-		//       	},
-		//       	percentEnabled:	true, 
-		//       	shadowEnabled: true,	
-		//       	shadowColor: 'white',
-		//       	shadowOffset: 2
-		      	
-		//     }
-		// };
 
       	var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
       	chart.draw(data, options);
