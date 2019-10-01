@@ -278,6 +278,10 @@ public function busquedaxct(){
         }
     }// escuelas_xmunicipio()
     /*BK201 S*/
+function truncar($numero, $digitos) {
+    $truncar = 10**$digitos;
+    return intval($numero * $truncar) / $truncar;
+}
 
     public function getEstadistica(){
         $result = array();
@@ -307,12 +311,14 @@ public function busquedaxct(){
                  $porcenEsc = 0;
                 if ($value['total'] == NULL) {
                     $tabla .= "<td>0</td>";
-                    $porcenEsc = ($value['total'] * 100) /  $values['total'];
+                    $pEsc = ($value['total'] * 100) /  $values['total'];
+                    $porcenEsc = $this->truncar($pEsc, 2);
                     $tabla .= "<td>{$porcenEsc}%</td>";
                 }else{
 
                 $tabla .= "<td>{$value['total']}</td>";
-                 $porcenEsc = ($value['total'] * 100) /  $values['total'];
+                 $pEsc = ($value['total'] * 100) /  $values['total'];
+                  $porcenEsc = $this->truncar($pEsc, 2);
                     $tabla .= "<td>{$porcenEsc}%</td>";
                 }
                 $totalPorcentaje += $value['total'];
@@ -352,8 +358,8 @@ public function busquedaxct(){
      $pC = (($totalPorcentaje * 100) / 7871);
      $pNC = 100 - $pC;
 
-     $porcentajeC = $this->truncar($pC, '2');
-     $porcentajeNC = $this->truncar($pNC, '2');
+     $porcentajeC = $this->truncar($pC, 2);
+     $porcentajeNC = $this->truncar($pNC, 2);
 
      $result = ['tabla' => $tabla, 'total' => $totalEscuelas];
 
@@ -364,10 +370,7 @@ public function busquedaxct(){
      exit;
  }
 
- function truncar($numero, $digitos) {
-    $truncar = 10**$digitos;
-    return intval($numero * $truncar) / $truncar;
-}
+ 
 
 public function getEstadisticaLAE(){
   $nivel = $this->input->post('nivel');
@@ -385,19 +388,19 @@ public function getEstadisticaLAE(){
     $zonas = $this->Estadistica_pemc_model->allzonas();
 
     foreach ($arrayRegion as $key => $region) {
-      if ($regionPost == $region['id_region']) {
+      if ($regionPost == $region['id_region'] || $sostenimiento == 1) {
            $tabla .= "<tr style='background-color:#DCF5FF; color:black;'>";
            if ($region['id_municipio'] == $municipioPost) {
                $tabla .= "<tr style='background-color:#7FDAFF; color:black;'>";
            }
       }else{
          $tabla .= "<tr>";
-    }
+        }
         $tabla .= "<td>{$region['region']}</td>";
         $tabla .="<td>{$region['municipio']}</td>";
     
         if ($sostenimiento != 0 || $zona != 0) {
-                $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae_zona_sost($nivel, $zona, $sostenimiento);
+                $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae_zona_sost($nivel, $zona, $sostenimiento,  $region['id_municipio']);
             } else {
 
                 $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae($nivel, $region['id_municipio']);

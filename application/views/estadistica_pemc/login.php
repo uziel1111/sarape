@@ -17,7 +17,8 @@
                                               <center>   
                                             <img class="img-fluid" src="<?= base_url('assets/img/logo.png'); ?>" alt="">  
                                             <h3 class="card-title mt-3">Iniciar Sesión</h3>
-                                            <h5><?=$error?></h5>
+                                            <h5 style="color:red;
+                                            "><?=$error?></h5>
                                               </center>
                 			            <?= form_open('estadistica_pemc/login_action');?>
 						  <div class="form-group">

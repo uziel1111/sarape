@@ -57,12 +57,15 @@ function getEstadisticaLAE() {
         $('#municipio_LAE').val(municipio);
         if (region != 0 || municipio != 0) {
             $('#nivel_educativo_LAE').val(nivel);
+             $('#municipio_LAE').removeAttr('disabled');
         $('#region_LAE').val(region);
         $('#radiobtn_region').trigger("click");
     }else if (sostenimiento != 0 || zona) {
          $('#radiobtn_zona').trigger("click");
           $('#sostenimiento_LAE').val(sostenimiento);
           $('#zona_LAE').val(zona);
+           $('#zona_LAE').removeAttr('disabled');
+
     }
     })
     .fail(function() {

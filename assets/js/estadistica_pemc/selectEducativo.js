@@ -19,6 +19,7 @@ $('#region_LAE').change(function() {
    $('#sostenimiento_LAE').val(0);
    $('#zona_LAE').val(0);
    getEstadisticaLAE();
+  
 
 });
 
@@ -55,4 +56,15 @@ $('#radiobtn_region').click(function() {
 $('#radiobtn_zona').click(function() {
     $('.div_region').addClass('d-none');
     $('.div_zona').removeClass('d-none');
+});
+
+$('#zona_zona').change(function() {
+	Notification.loading("");
+   getEstadisticaZona();
+
+});
+
+$('#sostenimiento_zona').change(function() {
+	Notification.loading("");
+   getEstadisticaZona();
 });

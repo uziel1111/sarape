@@ -37,7 +37,7 @@
          </div>
          <div class="col-md-3 form-group form-group-style-1 div_region d-none">
            <label for="municipio_LAE">Seleccione un municipio</label>
-            <select id="municipio_LAE" class="form-control">
+            <select id="municipio_LAE" disabled class="form-control">
             	<option value="0">Todos los municipios</option>
               <?php foreach ($municipio as $key => $value) { ?>
               	<option value="<?= $value['id_municipio'] ?>"><?= $value['municipio'] ?></option>
@@ -57,7 +57,7 @@
          </div>
          <div class="col-md-3 form-group form-group-style-1 div_zona d-none">
            <label for="zona_LAE">Seleccione una zona</label>
-            <select id="zona_LAE" class="form-control">
+            <select id="zona_LAE" disabled class="form-control">
               <option value="0">Todas las zonas</option>
               <?php foreach ($zonas as $key => $value) { ?>
                 <option value="<?= $value['zona_escolar'] ?>"><?= $value['zona_escolar'] ?></option>

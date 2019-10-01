@@ -36,7 +36,7 @@ class Estadistica_pemc_model extends CI_Model
         LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
         INNER JOIN escuela e on e.id_cct = tp.id_cct
         INNER JOIN municipio m on e.id_municipio = m.id_municipio
-        where m.zona_economica = 5 and e.id_municipio = '.$municipio.'';
+        where e.id_municipio = '.$municipio.'';
         if ($nivel != 0) {
         $query .=' and e.id_nivel = '.$nivel.'';
         }
@@ -53,7 +53,6 @@ class Estadistica_pemc_model extends CI_Model
  {
   $this->db->select('id_municipio, municipio');
   $this->db->from('municipio');
-  $this->db->where('zona_economica', '5');
 
   return  $this->db->get()->result_array();
 }
@@ -66,7 +65,7 @@ class Estadistica_pemc_model extends CI_Model
         LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
         INNER JOIN escuela e on e.id_cct = tp.id_cct
         INNER JOIN municipio m on e.id_municipio = m.id_municipio
-        where m.zona_economica = 5 and e.id_municipio = '.$municipio.'';
+        where e.id_municipio = '.$municipio.'';
         if ($nivel != 0) {
           $query .=' and e.id_nivel = '.$nivel.'';
         }
@@ -92,7 +91,6 @@ class Estadistica_pemc_model extends CI_Model
    $this->db->select('m.municipio, m.id_municipio, r.region, r.id_region');
   $this->db->from('municipio as m');
   $this->db->join('region as r', 'r.id_region = m.id_region');
-  $this->db->where('m.zona_economica',5);
   $this->db->order_by('m.id_region');
 
   return  $this->db->get()->result_array();
@@ -102,7 +100,7 @@ class Estadistica_pemc_model extends CI_Model
    $this->db->select('m.municipio, m.id_municipio, r.region, r.id_region');
   $this->db->from('municipio as m');
   $this->db->join('region as r', 'r.id_region = m.id_region');
-  $this->db->where('zona_economica',5);
+  
   if ($region != 0) {
   $this->db->where('m.id_region',$region);
   }
@@ -121,7 +119,7 @@ class Estadistica_pemc_model extends CI_Model
    LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
    inner join escuela e on e.id_cct = tp.id_cct
    inner join municipio m on m.id_municipio = e.id_municipio
-   WHERE m.zona_economica = 5  and m.id_municipio = '.$municipio.'';
+   WHERE m.id_municipio = '.$municipio.'';
    if ($nivel != 0) {
     $query .= ' and e.id_nivel = '.$nivel. '';
   }
@@ -135,7 +133,8 @@ class Estadistica_pemc_model extends CI_Model
 
  function get_obj_acc_lae_zona_sost($nivel, $zona, $sostenimiento)
  {
-   $query = 'SELECT tp.orden, COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones
+
+   $query = 'SELECT tp.orden, COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones, e.id_municipio
    FROM rm_tema_prioritarioxcct tp
    INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
    LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
@@ -144,11 +143,11 @@ class Estadistica_pemc_model extends CI_Model
    inner join municipio m on m.id_municipio = e.id_municipio
    inner join subsostenimiento s on s.id_subsostenimiento = e.id_subsostenimiento
    inner join supervision su on su.id_supervision = e.id_supervision
-   WHERE m.zona_economica = 5  ';
+   WHERE m.id_municipio is not null  ';
    if ($nivel != 0) {
     $query .= ' and e.id_nivel = '.$nivel. '';
   }
-   if ($zona != 0) {
+   if ($zona != 0 && $sostenimiento != 0) {
      $query .= ' and su.zona_escolar = '.$zona.'';
    }
     if ($sostenimiento != 0) {
@@ -156,8 +155,6 @@ class Estadistica_pemc_model extends CI_Model
    }
     
   $query .= ' GROUP BY tp.orden  ORDER by tp.orden';
-
-   // echo '<pre>'; print_r($query); die();
 
   return $this->db->query($query)->result_array();
 }
