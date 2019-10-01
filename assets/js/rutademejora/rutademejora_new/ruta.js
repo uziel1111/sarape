@@ -536,23 +536,81 @@ Prioridad.prototype.funcionalidadselect = function(){
 			      	swal.close();
 			    	// console.log(data.datos);
 			    	let acciones=[];
+			    	let acciones1=[];
 			    	if(data.datos.length>0){
 			    		for(let i=0; i<data.datos.length; i++){
 							if (data.datos[i]['dias_restantes_hoy'] >= 0) {
-							    if (data.datos[i]['dias_restantes'] >= data.datos[i]['dias_restantes_hoy']) {
-								    if (data.datos[i]['porcentaje'] <= 66) {
-								    	acciones.push(data.datos[i]);
+								if (data.datos[i]['dias_restantes'] >= data.datos[i]['dias_restantes_hoy']) {
+								    if (data.datos[i]['porcentaje'] == 0) {
+								      acciones1.push(data.datos[i]);
 								    }
+									if (data.datos[i]['porcentaje'] <= 66) {
+								      	acciones.push(data.datos[i]);
+								      	console.log("entro en la linea 550");
+								    }else{
+								      	if (data.datos[i]['porcentaje'] >= 67 && data.datos[i]['porcentaje'] <= 89) {
+								      		acciones1.push(data.datos[i]);
+									    }else{
+									      	if (data.datos[i]['porcentaje'] >= 90 && data.datos[i]['porcentaje'] <= 99) {
+									       		acciones1.push(data.datos[i]);
+									     	}else{
+									      		if (data.datos[i]['porcentaje'] == 100) {
+									       			acciones1.push(data.datos[i]);
+									     		}
+									   		}
+									 	}
+									}
 								}else{
-								  	if ((data.datos[i]['dias_restantes'] * 2 )>= data.datos[i]['dias_restantes_hoy']) {  
+								  	if (data.datos[i]['dias_restantes']>= data.datos[i]['dias_restantes_hoy']) {
+									    if (data.datos[i]['porcentaje'] == 0) {
+									      	acciones1.push(data.datos[i]);
+									    }
 									    if (data.datos[i]['porcentaje'] <= 33) {
 									     	acciones.push(data.datos[i]);
-									   	}
+									     	// console.log("entro en la linea 571");
+									   	}else{
+										    if (data.datos[i]['porcentaje'] >= 33 && data.datos[i]['porcentaje'] <= 66) {
+										      	acciones1.push(data.datos[i]);
+										    }else{
+										      	if (data.datos[i]['porcentaje'] >= 67 && data.datos[i]['porcentaje'] <= 99) {
+										        	acciones1.push(data.datos[i]);
+										      	}else{
+										        	if (data.datos[i]['porcentaje'] == 100) {
+										          		acciones1.push(data.datos[i]);
+										        	}
+										      	}
+										    }
+									  	}
+
+									}else{
+									  if (data.datos[i]['dias_restantes'] >= data.datos[i]['dias_restantes_hoy']) {
+										    if (data.datos[i]['porcentaje'] == 0) {
+										      	acciones1.push(data.datos[i]);
+										    }
+										    if (data.datos[i]['porcentaje'] >= 1 && data.datos[i]['porcentaje'] <= 33) {
+										      	acciones1.push(data.datos[i]);
+										    }else{
+											    if (data.datos[i]['porcentaje'] >= 34 && data.datos[i]['porcentaje'] <= 66) {
+											      	acciones1.push(data.datos[i]);
+											    }else{
+											      	if (data.datos[i]['porcentaje'] >= 67 && data.datos[i]['porcentaje'] <= 99) {
+											        	acciones1.push(data.datos[i]);
+											      	}else{
+											        	if (data.datos[i]['porcentaje'] == 100) {
+											          		acciones1.push(data.datos[i]);
+											        	}
+											      	}
+											    }
+										  	}
+										}else{
+									      	acciones1.push(data.datos[i]);
+									    } 
 									}
 								}
 							}else{
-							    acciones.push(data.datos[i]);
-							}	
+						    	acciones.push(data.datos[i]);
+						    	// console.log("entro en la linea 613");
+							}  	
 			    		}
 			    	}
 

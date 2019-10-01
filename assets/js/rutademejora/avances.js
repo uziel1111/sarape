@@ -97,110 +97,82 @@ Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
 Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, dias_restantes_hoy,var_id_idacc){
 
   if (dias_restantes_hoy >= 0) {
-
     if (dias_restantes >= dias_restantes_hoy) {
       $('#spanRestante'+var_id_idacc+'').addClass('text-warning');
-    $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
+      $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
       if (porcentaje == 0) {
-      //    swal(
-      //   "Quedan: "+ (dias_restantes_hoy/24) +"días.",
-      //   "Recuerda registrar tu avance.",
-      //   'info'
-      // );
-      return "G0.png";
-    }
-    if (porcentaje <= 66) {
-      //    swal(
-      //   "Quedan: "+ (dias_restantes_hoy/24) +"días.",
-      //   "Un paso a la vez.",
-      //   'info'
-      // );
-      return "R1.png";
-    }else{
-      if (porcentaje >= 67 && porcentaje <= 89) {
-      //      swal(
-      //   "Quedan: "+ (dias_restantes_hoy/24) +"días.",
-      //   "Excelente, seguimos avanzando",
-      //   'info'
-      // );
-      return "Y2.png";  
-    }else{
-      if (porcentaje >= 90 && porcentaje <= 99) {
-       // swal(
-       //  "Quedan: "+ (dias_restantes_hoy/24) +"días.",
-       //  "<br> Sólo queda un salto.",
-       //  'info'
-       //  );
-       return "G3.png";
-     }else{
-      if (porcentaje == 100) {
-       // swal(
-       //  'Correcto!',
-       //  "Felicidades, llegamos a la meta",
-       //  'success'
-       //  );
-       return "G4.png";
-     }
-   }
- }
-}
-}else{
-  if ((dias_restantes * 2 )>= dias_restantes_hoy) {
-    $('#spanRestante'+var_id_idacc+'').addClass('text-warning');
-    $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
-    if (porcentaje == 0) {
-      return "G0.png";
-    }
-    if (porcentaje <= 33) {
-     return "R1.png";
-   }else{
-    if (porcentaje >= 33 && porcentaje <= 66) {
-      return "Y2.png";
-    }else{
-      if (porcentaje >= 67 && porcentaje <= 99) {
-        return "G3.png";
+        return "G0.png";
+      }
+      if (porcentaje <= 66) {
+        return "R1.png";
       }else{
-        if (porcentaje == 100) {
-          return "G4.png";
+        if (porcentaje >= 67 && porcentaje <= 89) {
+          return "Y2.png";  
+        }else{
+          if (porcentaje >= 90 && porcentaje <= 99) {
+            return "G3.png";
+          }else{
+            if (porcentaje == 100) {
+              return "G4.png";
+            }
+          }
         }
       }
-    }
-  }
-
-}else{
-  if ((dias_restantes * 3 )>= dias_restantes_hoy) {
-    $('#spanRestante'+var_id_idacc+'').addClass('text-success');
-    $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
-    if (porcentaje == 0) {
-      return "G0.png";
-    }
-    if (porcentaje >= 1 && porcentaje <= 33) {
-      return 'Y1.png';
     }else{
-     if (porcentaje >= 34 && porcentaje <= 66) {
-      return 'Y2.png';
-    }else{
-      if (porcentaje >= 67 && porcentaje <= 99) {
-        return 'G3.png';
-      }else{
-        if (porcentaje == 100) {
-          return 'G4.png';
+      if ((dias_restantes * 2 )>= dias_restantes_hoy) {
+        $('#spanRestante'+var_id_idacc+'').addClass('text-warning');
+        $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
+        if (porcentaje == 0) {
+          return "G0.png";
         }
+        if (porcentaje <= 33) {
+          return "R1.png";
+        }else{
+          if (porcentaje >= 33 && porcentaje <= 66) {
+            return "Y2.png";
+          }else{
+            if (porcentaje >= 67 && porcentaje <= 99) {
+              return "G3.png";
+            }else{
+              if (porcentaje == 100) {
+                return "G4.png";
+              }
+            }
+          }
+        }
+      }else{
+        if ((dias_restantes * 3 )>= dias_restantes_hoy) {
+          $('#spanRestante'+var_id_idacc+'').addClass('text-success');
+          $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
+          if (porcentaje == 0) {
+            return "G0.png";
+          }
+          if (porcentaje >= 1 && porcentaje <= 33) {
+            return 'Y1.png';
+          }else{
+            if (porcentaje >= 34 && porcentaje <= 66) {
+              return 'Y2.png';
+            }else{
+              if (porcentaje >= 67 && porcentaje <= 99) {
+                return 'G3.png';
+              }else{
+                if (porcentaje == 100) {
+                  return 'G4.png';
+                }
+              }
+            }
+          }
+        }else{
+             $('#spanRestante'+var_id_idacc+'').addClass('text-info');
+            $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
+           
+              return 'G0.png';
+        } 
       }
     }
-  }
-}else{
-     $('#spanRestante'+var_id_idacc+'').addClass('text-info');
+  }else{
+    $('#spanRestante'+var_id_idacc+'').addClass('text-info');
     $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
-   
-      return 'G0.png';
-    } 
-  }
-}
-} else{
-
-  $('#spanRestante'+var_id_idacc+'').addClass('text-info');
-   $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
-      return 'R0.png';
-    }  
-  };
+    return 'R0.png';
+  }  
+};

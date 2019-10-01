@@ -359,8 +359,8 @@ function  get_datos_edith_tp($id_tprioritario){
                   o.id_tprioritario as ob_tp, a.id_accion, a.accion, a.id_objetivos, tp.id_cct,
                   IFNULL(av.{$cte_vigente},0) as {$cte_vigente},
                   (datediff(a.accion_f_termino, a.accion_f_inicio)*24) as 'total_horas',
-                  ((datediff(a.accion_f_termino, a.accion_f_inicio)*24)/3) as 'horasRestantes', 
-                  (datediff(a.accion_f_termino, now())*24) as 'horasRestantesHoy'
+                  ((datediff(a.accion_f_termino, a.accion_f_inicio)*24)/3) as 'dias_restantes', 
+                  (datediff(a.accion_f_termino, now())*24) as 'dias_restantes_hoy'
                   ,a.accion_f_termino as f_termino, a.accion_f_inicio as f_inicio
                   FROM rm_tema_prioritarioxcct tp
                   INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
