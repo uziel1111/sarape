@@ -355,9 +355,8 @@ function  get_datos_edith_tp($id_tprioritario){
 
  
   function accionesRezagadas($id_cct,$cte_vigente){
-    $str_query = "SELECT tp.id_tprioritario, p.prioridad, o.id_objetivo, upper(o.objetivo) as objetivo,
-                  o.id_tprioritario as ob_tp, a.id_accion, a.accion, a.id_objetivos, tp.id_cct,
-                  IFNULL(av.{$cte_vigente},0) as {$cte_vigente},
+    $str_query = "SELECT 
+                  IFNULL(av.{$cte_vigente},0) as porcentaje,a.accion,a.id_accion,
                   (datediff(a.accion_f_termino, a.accion_f_inicio)*24) as 'total_horas',
                   ((datediff(a.accion_f_termino, a.accion_f_inicio)*24)/3) as 'dias_restantes', 
                   (datediff(a.accion_f_termino, now())*24) as 'dias_restantes_hoy'
@@ -958,7 +957,7 @@ function  get_datos_edith_tp($id_tprioritario){
 
     public function pieAccion($id_cct,$cte_vigente){
       $str_query = "SELECT ac.id_accion,ac.accion,av.id_cct,
-                    ROUND(SUM(IFNULL(av.{$cte_vigente},0))/COUNT(ac.id_accion),0)AS porcentaje       
+                    ROUND(SUM(IFNULL(av.{$cte_vigente},0))/COUNT(ac.id_accion),2)AS porcentaje       
                     FROM rm_avance_xcctxtpxaccion av
                     INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
                     WHERE av.id_cct={$id_cct} ";
@@ -968,7 +967,7 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     public function pieObjetivos($id_cct,$cte_vigente){
-      $str_query = "SELECT ROUND(SUM(a.porcentaje)/COUNT(a.id_objetivos),0) AS porc 
+      $str_query = "SELECT ROUND(SUM(a.porcentaje)/COUNT(a.id_objetivos),2) AS porc 
                     FROM (
                       SELECT ac.id_accion,ac.accion,av.id_cct,(SUM(IFNULL(av.{$cte_vigente},0)))/COUNT(ac.id_accion) AS porcentaje,ac.id_objetivos    
                       FROM rm_avance_xcctxtpxaccion av
@@ -981,7 +980,7 @@ function  get_datos_edith_tp($id_tprioritario){
     }
 
     public function pieLAE($id_cct,$cte_vigente){
-      $str_query = "SELECT ROUND(SUM(b.porcentaje_obj)/COUNT(b.id_prioridad),0) porc_p 
+      $str_query = "SELECT ROUND(SUM(b.porcentaje_obj)/5,2) porc_p 
                     FROM (
                       SELECT SUM(a.porcentaje)/COUNT(a.id_objetivos) AS porcentaje_obj,a.id_prioridad FROM (
                         SELECT ac.id_accion,ac.accion,av.id_cct,(SUM(IFNULL(av.{$cte_vigente},0)))/COUNT(ac.id_accion) AS porcentaje,ac.id_objetivos,rm.id_prioridad  
