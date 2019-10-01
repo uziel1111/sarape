@@ -398,6 +398,7 @@ span{
 
 	$(document).ready(function(){ //Hacia arriba
 	  irArriba();
+	  cteActual();
 	});
 
 	function irArriba(){
