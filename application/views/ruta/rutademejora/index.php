@@ -197,12 +197,12 @@ span{
 	<?php if (isset($tipo_usuario_pemc)): ?>
 		<input type="text" name="tipou_pemc" id="tipou_pemc" hidden>
 	<?php else: ?>
+		<br><br><br>
+	<b><a id='cteActual'></a></b>
 	<button class="botonF1 ">
 	   	<span><i class="fas fa-wrench fa-xs"></i></span>
 	</button>
 	<?php endif; ?>
-	<br><br><br>
-	<span width="800px" >El momento vigente es: CTE 1</span>
 	<button class="btnespe botonF2" id="btn_mision" data-toggle="tooltip" title="Misión">
 	  	<span><i class="fas fa-flag fa-xs"></i></span>
 	</button>
@@ -442,6 +442,23 @@ span{
 		});
 
 		return true;
+	}
+
+	function cteActual() {
+		ruta = base_url + '/Rutademejora/momentoActual';
+		$.ajax({
+			url: ruta,
+			type: 'POST',
+			data: {},
+		})
+		.done(function(data) {
+			$('#cteActual').html('CTE Actual: '+ data.cte);
+		})
+		.fail(function(data) {
+		})
+		.always(function() {
+		});
+		
 	}
 </script>
 

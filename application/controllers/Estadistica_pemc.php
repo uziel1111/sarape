@@ -373,12 +373,16 @@ public function getEstadisticaLAE(){
   $nivel = $this->input->post('nivel');
   $regionPost = $this->input->post('region');
   $municipioPost = $this->input->post('municipio');
+  $sostenimiento = $this->input->post('sostenimiento');
+  $zona = $this->input->post('zona');
+  
   $result = array();
   $tabla = '';
    $obj1 = 0;  $obj2 = 0;  $obj3 = 0;  $obj4 = 0;  $obj5 = 0;
    $acc1 = 0;  $acc2 = 0;  $acc3 = 0;  $acc4 = 0;  $acc5 = 0;
 
     $arrayRegion = $this->Estadistica_pemc_model->get_region();
+    $zonas = $this->Estadistica_pemc_model->allzonas();
 
     foreach ($arrayRegion as $key => $region) {
       if ($regionPost == $region['id_region']) {
@@ -392,8 +396,12 @@ public function getEstadisticaLAE(){
         $tabla .= "<td>{$region['region']}</td>";
         $tabla .="<td>{$region['municipio']}</td>";
     
-            
-        $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae($nivel, $region['id_municipio']);
+        if ($sostenimiento != 0 || $zona != 0) {
+                $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae_zona_sost($nivel, $sostenimiento, $zona);
+            } else {
+
+                $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae($nivel, $region['id_municipio']);
+            }   
 
         if (empty($OALae)) {
          $tabla .="<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>";
@@ -466,6 +474,7 @@ $municipiosResult = $this->Estadistica_pemc_model->get_municipios($regionPost);
 $result = ['obj1'=>$obj1,'obj2'=>$obj2,'obj3'=>$obj3,'obj4'=>$obj4,'obj5'=>$obj5,'acc1'=>$acc1, 'acc2'=>$acc2, 'acc3'=>$acc3, 'acc4'=>$acc4, 'acc5'=>$acc5];
 $data['tabla'] = $tabla;
 $data['municipio'] = $municipiosResult;
+$data['zonas'] = $zonas;
 $str_view = $this->load->view("Estadistica_pemc/grid_LAE", $data, TRUE);
 $response = array('str_view' => $str_view, 'result'=>$result);
 Utilerias::enviaDataJson(200, $response, $this);
@@ -473,6 +482,10 @@ exit;
 }
 
 
+    function getTablaZona()
+    {
+        
+    }
 /*BK201 E*/
 
 

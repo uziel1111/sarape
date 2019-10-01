@@ -2295,4 +2295,20 @@ class Rutademejora extends CI_Controller {
 		}
 	}
 
+		public function momentoActual()
+	{
+		$momentoActual = $this->Rutamejora_model->momentoActual();
+
+		foreach ($momentoActual as $key => $value) {
+			for ($i=1; $i <= 8 ; $i++) { 
+				if ($value['cte'.$i] > 0) {
+					$cteActual = $value['cte'.$i];
+				}
+			}
+		}
+		$response = array('cte' => $cteActual);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
+
 }// Rutamedejora

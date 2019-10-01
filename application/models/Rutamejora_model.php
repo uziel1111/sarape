@@ -996,4 +996,11 @@ function  get_datos_edith_tp($id_tprioritario){
       return $this->db->query($str_query)->result_array();
     }
 
+     public function momentoActual()
+    {
+      $str_query = 'call proye7nb_pruebas.cteActual();';
+       return $this->db->query($str_query)->result_array();
+    }
+
+
 }// Rutamejora_model
