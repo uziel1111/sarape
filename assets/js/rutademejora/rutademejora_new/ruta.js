@@ -270,8 +270,10 @@ Prioridad.prototype.funcionalidadselect = function(){
         	}
       	}
 
-	    let alto=400;
-	    if(datos.length>=7 && datos.length<=14){
+	    let alto=200;
+	    if(datos.length>=4 && datos.length<=6){
+	    	alto=400;
+	    }else if(datos.length>=7 && datos.length<=14){
 	    	alto=800;
 	    }else if(datos.length>=15 && datos.length<=21){
 	    	alto=1200;
@@ -284,8 +286,8 @@ Prioridad.prototype.funcionalidadselect = function(){
       		tooltip: {
       			isHtml: true
       		},
-      		width: 700,
-	        height: 400,
+      		width: 950,
+	        height: alto,
 	        gantt: {
 	          	trackHeight: 40,
 	          	percentEnabled: true,
@@ -314,6 +316,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 			tabla+='<table class="table table-striped table-bordered w-auto">';
             tabla+='<thead class="thead-dark">';
 			tabla+='<tr>';
+			tabla+='<th scope="col" ><center>Acción</center></th>';
 			tabla+='<th scope="col" ><center>Porcentaje</center></th>';
 			tabla+='<th scope="col" ><center>Fecha Inicio</center></th>';
 			tabla+='<th scope="col" ><center>Fecha Término</center></th>';
@@ -322,7 +325,11 @@ Prioridad.prototype.funcionalidadselect = function(){
 			tabla+='<tbody>';
 			        if(datos.length>0){
 			        	for(let x=0; x <datos.length; x++){
+
 			        		tabla+='<tr>';
+			        		tabla+='<td>';
+			        		tabla+=acciones[x]['accion'];
+			        		tabla+='</td>';
 			        		tabla+='<td>';
 			        		tabla+=datos[x]['porcentaje']+"%";
 			        		tabla+='</td>';

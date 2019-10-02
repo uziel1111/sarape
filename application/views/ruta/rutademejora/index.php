@@ -179,10 +179,10 @@ span{
 					<h1 align="center">Avances de acciones</h1>
 					<input type="text" name="id_cct_rm" id="id_cct_rm" value="<?=$id_cct_rm?>" hidden>
 					<div id="chart_div">
-						<div class="row">
-							<div class="col-md-8" id="gantt_p"></div>
-							<div class="col-md-4" id="tabla_avances"></div>
-						</div>
+						<!-- <div class="row"> -->
+							<div id="gantt_p"></div>
+							<div id="tabla_avances"></div>
+						<!-- </div> -->
 					</div>
 					<br>
 				<!-- 	<h1 align="center">Porcentaje de avance de Acciones</h1>
