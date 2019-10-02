@@ -52,12 +52,15 @@ class Estadistica_pemc extends CI_Controller
             }
 
             $result_niveles = $this->Nivel_model->getall_est_ind();
+
             if(count($result_niveles)==0){
                 $data['arr_niveles'] = array(   '0' => 'Error recuperando los niveles' );
             }else{
                 $arr_niveles['0'] = 'TODOS';
                 foreach ($result_niveles as $row){
-                     $arr_niveles[$row['id_nivel']] = $row['nivel'];
+                    
+                    $arr_niveles[$row['id_nivel']] = $row['nivel'];
+                    
                 }
             }
 
@@ -67,11 +70,13 @@ class Estadistica_pemc extends CI_Controller
             }else{
                 $arr_sostenimientos['0'] = 'TODOS';
                 foreach ($result_sostenimientos as $row){
-                     $arr_sostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
+                        $arr_sostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
                 }
             }
 
             $data['arr_municipios'] = $arr_municipios;
+            $arr_niveles = array_diff($arr_niveles, array('MEDIA SUPERIOR'));
+            $arr_niveles = array_diff($arr_niveles, array('SUPERIOR'));
             $data['arr_niveles'] = $arr_niveles;
             $data['arr_sostenimientos'] =$arr_sostenimientos;
 

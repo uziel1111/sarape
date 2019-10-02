@@ -932,7 +932,7 @@ function  get_datos_edith_tp($id_tprioritario){
       // return $this->db->query($str_query)->result_array();
     }
 
-    public function avancesxcctxaccion($id_cct){
+    public function avancesxcctxaccion($id_cct,$cte_vigente){
       $str_query = "SELECT ac.id_accion,IF(LENGTH(ac.accion)>32,CONCAT(SUBSTRING(ac.accion,1,28),'...'),ac.accion) AS accion,
                     ac.accion as ac,
                     ac.accion_f_inicio,
@@ -943,13 +943,10 @@ function  get_datos_edith_tp($id_tprioritario){
                     MONTH(ac.accion_f_termino) AS m_fin,
                     DAY(ac.accion_f_termino) AS d_fin,
                     YEAR(ac.accion_f_termino) AS a_fin,
-                    av.id_cct,av.cte1,
-                    av.cte2,av.cte3,av.cte4,
-                    av.cte5,
-                    av.cte6,av.cte7,av.cte8,av.cte9
+                    av.id_cct,av.{$cte_vigente} as porcentaje
                     FROM rm_avance_xcctxtpxaccion av
                     INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
-                    WHERE av.id_cct={$id_cct}";
+                    WHERE av.id_cct={$id_cct} order by ac.accion_f_inicio asc";
       // echo $str_query;
       // die();
       return $this->db->query($str_query)->result_array();

@@ -1,7 +1,7 @@
 
 google.charts.load('current', {'packages':['gantt'],'language':'es'});
 google.charts.load('current', {'packages':['corechart'],'language':'es'});
-// google.load('visualization', '1', {'packages':['gantt'], 'language': 'es'});
+
 $(document).ready(function() {
    obj_prioridad = new Prioridad();
    $("#nav-resultados").hide();
@@ -255,26 +255,20 @@ Prioridad.prototype.funcionalidadselect = function(){
       	data.addColumn('number', 'Duracion');
       	data.addColumn('number', 'Porcentaje de avance');
       	data.addColumn('string', 'Dependencias');
+      	// data.addColumn({type: 'string', role: 'tooltip'});
       	// data.addRow();
+      	let acciones =[];
       	for(let i=0; i<datos.length; i++){
-        	if(datos[i]['cte1']!=0 && datos[i]['cte1']!=null){
-        		
+        	if(datos[i]['porcentaje']!=0 && datos[i]['porcentaje']!=null){
 	      		data.addRow([datos[i]['ac'],datos[i]['accion'], datos[i]['ac'],
-	         		new Date(datos[i]['a_ini'],datos[i]['m_ini'], datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin'],datos[i]['d_fin']), null,parseInt(datos[i]['cte1']), null]);
+	         		new Date(datos[i]['a_ini'],datos[i]['m_ini']-1, datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin']-1,datos[i]['d_fin']), null,parseInt(datos[i]['porcentaje']), null]);
+        		acciones.push(datos[i]);
         	}else{
         		data.addRow([datos[i]['ac'],datos[i]['accion'], datos[i]['ac'],
-	         		new Date(datos[i]['a_ini'],datos[i]['m_ini'], datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin'],datos[i]['d_fin']), null,0, null]);
+	         		new Date(datos[i]['a_ini'],datos[i]['m_ini']-1, datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin']-1,datos[i]['d_fin']), null,0, null]);
+        			acciones.push(datos[i]);
         	}
       	}
-      	var colors = [];
-	    var colorMap = {
-	        write: '#e63b6f',
-	        complete: '#19c362'
-	    }
-	    
-	    for (var i = 0; i < data.getNumberOfRows(); i++) {
-	        colors.push(colorMap[data.getValue(i, 2)]);
-	    }
 
 	    let alto=400;
 	    if(datos.length>=7 && datos.length<=14){
@@ -287,13 +281,15 @@ Prioridad.prototype.funcionalidadselect = function(){
 	    	alto=2000;
 	    }
       	var options = {
-      		language :'es',
-      		width: 950,
+      		tooltip: {
+      			isHtml: true
+      		},
+      		width: 700,
 	        height: 400,
 	        gantt: {
 	          	trackHeight: 40,
 	          	percentEnabled: true,
-	          	labelMaxWidth:400,
+	          	labelMaxWidth:300,
 				labelStyle: {
 				  fontName: 'Roboto',
 				  fontSize: 12,
@@ -304,24 +300,48 @@ Prioridad.prototype.funcionalidadselect = function(){
 
 	        },
 	        
-	        titleTextStyle: {
-		      fontName: 'Arial',
-		      fontSize: 10
-		    },
-		    palette: [
-		      {
-		        "color": "#cccccc",
-		        "dark": "#333333",
-		        "light": "#eeeeee"
-		      }
-		    ],
 	        customClass:{
 	        	textAlign:'right'
 	        } 
       	};
 
-      	var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+      	var chart = new google.visualization.Gantt(document.getElementById('gantt_p'));
       	chart.draw(data, options);
+      	// console.log(datos);
+      	let tabla="";
+			$("#tabla_avances").empty();
+			tabla+="<center>";
+			tabla+='<table class="table table-striped table-bordered w-auto">';
+            tabla+='<thead class="thead-dark">';
+			tabla+='<tr>';
+			tabla+='<th scope="col" ><center>Porcentaje</center></th>';
+			tabla+='<th scope="col" ><center>Fecha Inicio</center></th>';
+			tabla+='<th scope="col" ><center>Fecha Término</center></th>';
+			tabla+='</tr>';
+			tabla+='</thead>';
+			tabla+='<tbody>';
+			        if(datos.length>0){
+			        	for(let x=0; x <datos.length; x++){
+			        		tabla+='<tr>';
+			        		tabla+='<td>';
+			        		tabla+=datos[x]['porcentaje']+"%";
+			        		tabla+='</td>';
+			        		tabla+='<td>';
+			        		tabla+=datos[x]['accion_f_inicio'];
+			        		tabla+='</td>';
+			        		tabla+='<td>';
+			        		tabla+=datos[x]['accion_f_termino'];
+			        		tabla+='</td>';
+			        		tabla+='</tr>';
+			        	}
+			        	
+			        }
+			        tabla+='</tbody>';
+          			tabla+='</table>';
+          			tabla+='</center>';
+          			$("#tabla_avances").append(tabla);
+
+
     }
 
    	function datos_accionpie(){
@@ -586,7 +606,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 			        		tabla+=acciones[x]['accion'];
 			        		tabla+='</td>';
 			        		tabla+='<td>';
-			        		tabla+=acciones[x]['porcentaje'];
+			        		tabla+=acciones[x]['porcentaje']+"%";
 			        		tabla+='</td>';
 			        		tabla+='<td>';
 			        		tabla+=acciones[x]['f_inicio'];
@@ -618,9 +638,9 @@ Prioridad.prototype.funcionalidadselect = function(){
         if(id =="nav-resultados-tab"){
         	$("#nav-resultados").show();  
 	   		datos_accion();
-		   	datos_laepie();
-		   	datos_objetivopie();
-		   	datos_accionpie();
+		   	// datos_laepie();
+		   	// datos_objetivopie();
+		   	// datos_accionpie();
 		   	accionesRezagadas();
    		}else{
    			$("#nav-resultados").hide();  
