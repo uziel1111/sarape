@@ -25,7 +25,7 @@
          </div>
          <div class="col-md-4 form-group form-group-style-1 div_zona">
            <label for="zona_zona">Seleccione una zona</label>
-            <select id="zona_zona" class="form-control">
+            <select id="zona_zona" class="form-control" disabled>
               <option value="0">Todas las zonas</option>
               <?php foreach ($zonas as $key => $value) { ?>
                 <option value="<?= $value['zona_escolar'] ?>"><?= $value['zona_escolar'] ?></option>
@@ -49,54 +49,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($zonas as $key => $value) { ?>
-				<tr>
-					<td>
-						<?=$value['zona_escolar']?>
-					</td>
-					<?php if ($value['zona_escolar'] == 502){ ?> 
-						<td>40%</td>
-						<td>40%</td>
-						<td>10%</td>
-						<td>20%</td>
-						<td>60%</td>
-					<?php } ?>
-					<?php if ($value['zona_escolar'] == 405){ ?> 
-						<td>60%</td>
-						<td>70%</td>
-						<td>30%</td>
-						<td>10%</td>
-						<td>30%</td>
-					<?php } ?>
-					<?php if ($value['zona_escolar'] == 517){ ?> 
-						<td>10%</td>
-						<td>20%</td>
-						<td>30%</td>
-						<td>50%</td>
-						<td>40%</td>
-					<?php } ?>
-					<?php if ($value['zona_escolar'] == 502){ ?> 
-						<td>10%</td>
-						<td>20%</td>
-						<td>30%</td>
-						<td>40%</td>
-						<td>80%</td>
-					<?php } ?>
-					<?php if ($value['zona_escolar'] == 516){ ?> 
-						<td>80%</td>
-						<td>90%</td>
-						<td>30%</td>
-						<td>40%</td>
-						<td>70%</td>
-					<?php } else { ?>
-						<td>0%</td>
-						<td>0%</td>
-						<td>0%</td>
-						<td>0%</td>
-						<td>0%</td>
-					<?php } ?>
-				</tr>
-			<?php } ?>
+			<?=$tabla?>
 		</tbody>
 	</table>
 </div>
+
+
+<script src="<?= base_url('assets/js/estadistica_pemc/selectEducativo.js') ?>"></script>

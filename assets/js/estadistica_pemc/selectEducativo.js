@@ -60,11 +60,11 @@ $('#radiobtn_zona').click(function() {
 
 $('#zona_zona').change(function() {
 	Notification.loading("");
-   getEstadisticaZona();
+   getTablaZona();
 
 });
 
 $('#sostenimiento_zona').change(function() {
 	Notification.loading("");
-   getEstadisticaZona();
+   getTablaZona();
 });

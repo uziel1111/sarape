@@ -28,7 +28,7 @@ class Estadistica_pemc extends CI_Controller
     {   
       $data = $this->data;
       $data['error'] = '';
-      $this->load->view( "Estadistica_pemc/login", $data);
+      $this->load->view( "estadistica_pemc/login", $data);
   }
 
   public function login_action(){
@@ -76,14 +76,14 @@ class Estadistica_pemc extends CI_Controller
             $data['arr_sostenimientos'] =$arr_sostenimientos;
 
             if(Utilerias::haySesionAbierta($this)){
-                 Utilerias::pagina_basica_pemc($this, 'Estadistica_pemc/index',$data);
-                // $this->load->view('Estadistica_pemc/index',$data);  
+                 Utilerias::pagina_basica_pemc($this, 'estadistica_pemc/index',$data);
+                // $this->load->view('estadistica_pemc/index',$data);  
             }
         }else{
             $data = $this->data;
             $data['error'] = 'Usuario o contraseña incorrecta';
             $data['login_failed'] = TRUE;
-            $this->load->view('Estadistica_pemc/login',$data); 
+            $this->load->view('estadistica_pemc/login',$data); 
         }
     }
 
@@ -279,7 +279,7 @@ public function busquedaxct(){
     }// escuelas_xmunicipio()
     /*BK201 S*/
 function truncar($numero, $digitos) {
-    $truncar = 10**$digitos;
+    $truncar = pow(10, $digitos);
     return intval($numero * $truncar) / $truncar;
 }
 
@@ -364,7 +364,7 @@ function truncar($numero, $digitos) {
      $result = ['tabla' => $tabla, 'total' => $totalEscuelas];
 
      $data['result'] = $result;
-     $str_view = $this->load->view("Estadistica_pemc/grid_general", $data, TRUE);
+     $str_view = $this->load->view("estadistica_pemc/grid_general", $data, TRUE);
      $response = array('str_view' => $str_view, 'porcentajeC' =>$porcentajeC, 'porcentajeNC' =>$porcentajeNC);
      Utilerias::enviaDataJson(200, $response, $this);
      exit;
@@ -385,10 +385,11 @@ public function getEstadisticaLAE(){
    $acc1 = 0;  $acc2 = 0;  $acc3 = 0;  $acc4 = 0;  $acc5 = 0;
 
     $arrayRegion = $this->Estadistica_pemc_model->get_region();
+    $arraySostenimiento = $this->Estadistica_pemc_model->get_region();
     $zonas = $this->Estadistica_pemc_model->allzonas();
 
     foreach ($arrayRegion as $key => $region) {
-      if ($regionPost == $region['id_region'] || $sostenimiento == 1) {
+      if ($regionPost == $region['id_region']) {
            $tabla .= "<tr style='background-color:#DCF5FF; color:black;'>";
            if ($region['id_municipio'] == $municipioPost) {
                $tabla .= "<tr style='background-color:#7FDAFF; color:black;'>";
@@ -470,7 +471,8 @@ public function getEstadisticaLAE(){
                  $acc5 += $lae['num_acciones'];
              }
          }
-     }
+        }
+
  }
         }
 $municipiosResult = $this->Estadistica_pemc_model->get_municipios($regionPost);
@@ -478,7 +480,7 @@ $result = ['obj1'=>$obj1,'obj2'=>$obj2,'obj3'=>$obj3,'obj4'=>$obj4,'obj5'=>$obj5
 $data['tabla'] = $tabla;
 $data['municipio'] = $municipiosResult;
 $data['zonas'] = $zonas;
-$str_view = $this->load->view("Estadistica_pemc/grid_LAE", $data, TRUE);
+$str_view = $this->load->view("estadistica_pemc/grid_LAE", $data, TRUE);
 $response = array('str_view' => $str_view, 'result'=>$result);
 Utilerias::enviaDataJson(200, $response, $this);
 exit;
@@ -487,12 +489,52 @@ exit;
 
 function getTablaZona()
 {
-    $zonas = $this->Estadistica_pemc_model->allzonas();
-    $data['zonas'] = $zonas;
-    $str_view = $this->load->view("Estadistica_pemc/grid_zona", $data, TRUE);
-    $response = array('str_view' => $str_view);
-    Utilerias::enviaDataJson(200, $response, $this);
-    exit;
+   $sostenimiento = $this->input->post('sostenimiento');
+   $zona = $this->input->post('zona');
+
+
+   $zonas = $this->Estadistica_pemc_model->get_zonas($sostenimiento);
+   $tabla = '';
+   foreach ($zonas as $key => $value) {
+         if ($sostenimiento == $value['id_sostenimiento']) {
+           $tabla .= "<tr style='background-color:#DCF5FF; color:black;'>";
+           if ($value['zona_escolar'] == $zona) {
+               $tabla .= "<tr style='background-color:#7FDAFF; color:black;'>";
+           }
+      }else{
+         $tabla .= "<tr>";
+        }
+    $todasZonas = $this->Estadistica_pemc_model->get_todas_zonas();
+    foreach ($todasZonas as $key => $zonas) {
+        $tabla .= "<td>{$zonas['zona_escolar']}</td>";   
+    }
+     $porcentajeZona = $this->Estadistica_pemc_model->get_porcent_zonas();
+    foreach ($porcentajeZona as $key => $PZ) {
+        if ($PZ['orden'] == 1) {
+            $tabla .= "<td>{$PZ['promedio_cte']}</td>";
+        }
+         if ($PZ['orden'] == 2) {
+            $tabla .= "<td>{$PZ['promedio_cte']}</td>";
+        }
+         if ($PZ['orden'] == 3) {
+            $tabla .= "<td>{$PZ['promedio_cte']}</td>";
+        }
+         if ($PZ['orden'] == 4) {
+            $tabla .= "<td>{$PZ['promedio_cte']}</td>";
+        }
+         if ($PZ['orden'] == 5) {
+            $tabla .= "<td>{$PZ['promedio_cte']}</td>";
+        }
+    }
+    $tabla .= "</tr>"; 
+   }
+
+   $data['zonas'] = $zonas;
+   $data['tabla'] = $tabla;
+   $str_view = $this->load->view("estadistica_pemc/grid_zona", $data, TRUE);
+   $response = array('str_view' => $str_view);
+   Utilerias::enviaDataJson(200, $response, $this);
+   exit;
 }
 /*BK201 E*/
 

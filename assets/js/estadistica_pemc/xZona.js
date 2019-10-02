@@ -18,14 +18,14 @@ function getTablaZona() {
     $.ajax({
         url: ruta,
         type: 'POST',
-        data: {},
+        data: {zona:zona, sostenimiento:sostenimiento},
         beforeSend: function(xhr) {
             Notification.loading("");
         },
     })
     .done(function(data) {
-        console.log(data);
         $('#xZona').html(data.str_view);
+        $('#zona_zona').removeAttr('disabled');
 
 
     })

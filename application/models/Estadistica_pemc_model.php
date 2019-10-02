@@ -134,7 +134,7 @@ class Estadistica_pemc_model extends CI_Model
  function get_obj_acc_lae_zona_sost($nivel, $zona, $sostenimiento)
  {
 
-   $query = 'SELECT tp.orden, COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones, e.id_municipio
+   $query = 'SELECT tp.orden, COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones,  group_concat(a.id_accion) as id_acciones, e.id_municipio
    FROM rm_tema_prioritarioxcct tp
    INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
    LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
@@ -186,14 +186,36 @@ function get_filtros($nivel, $municipio, $region)
   return $this->db->query($query)->result_array();
 }
 
- function allzonas(){
-      $this->db->select('su.id_supervision, su.zona_escolar');
-      $this->db->from('supervision as su');
-      $this->db->join('escuela as es','su.id_supervision = es.id_supervision');
-      $this->db->group_by("su.zona_escolar");
-      return  $this->db->get()->result_array();
-    }// all()
-    
+  function get_zonas($sostenimiento)
+ {
+   $str_query = 'SELECT DISTINCT zona_escolar, id_sostenimiento from supervision';
+   if ($sostenimiento != 0) {
+     
+    $str_query .=' where id_sostenimiento ='.$sostenimiento.'';
+   }
+   return $this->db->query($str_query)->result_array();
+ }
+  function get_todas_zonas()
+ {
+   $str_query = 'SELECT DISTINCT zona_escolar, id_sostenimiento from supervision';
+   return $this->db->query($str_query)->result_array();
+ }
+
+    function get_porcent_zonas()
+  {
+    $str_query = 'select avg(acct.cte1) as promedio_cte, acct.id_cct, tp.orden, e.cve_centro, su.zona_escolar from rm_avance_xcctxtpxaccion acct
+inner join rm_tema_prioritarioxcct tp on tp.id_tprioritario = acct.id_tprioritario
+inner join escuela e on e.id_cct = acct.id_cct
+inner join supervision su on su.id_supervision = e.id_supervision
+where cte1 is not null group by su.zona_escolar';
+    return $this->db->query($str_query)->result_array();
+  }
+
+  function get_avance_accion($idaccion)
+ {
+   $str_query = 'SELECT * from rm_avance_xcctxtpxaccion where id_accion = '.$idaccion.'';
+   return $this->db->query($str_query)->result_array();
+ }
 /*BK201 E*/
   function getall_xest_ind(){
     $this->db->select('mu.id_municipio, mu.municipio');

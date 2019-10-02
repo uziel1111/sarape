@@ -15,8 +15,6 @@ function getEstadisticaLAE() {
    sostenimiento = $('#sostenimiento_LAE option:selected').val();
    zona = $('#zona_LAE option:selected').val();
 
-   console.log(sostenimiento);
-   console.log(zona);
    if (nivel == undefined) {
     nivel = 0;
     }
