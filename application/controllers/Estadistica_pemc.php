@@ -312,13 +312,13 @@ function truncar($numero, $digitos) {
                 if ($value['total'] == NULL) {
                     $tabla .= "<td>0</td>";
                     $pEsc = ($value['total'] * 100) /  $values['total'];
-                    $porcenEsc = $this->truncar($pEsc, 2);
+                    $porcenEsc = $this->truncar($pEsc, 0);
                     $tabla .= "<td>{$porcenEsc}%</td>";
                 }else{
 
                 $tabla .= "<td>{$value['total']}</td>";
                  $pEsc = ($value['total'] * 100) /  $values['total'];
-                  $porcenEsc = $this->truncar($pEsc, 2);
+                  $porcenEsc = $this->truncar($pEsc, 0);
                     $tabla .= "<td>{$porcenEsc}%</td>";
                 }
                 $totalPorcentaje += $value['total'];
@@ -358,8 +358,8 @@ function truncar($numero, $digitos) {
      $pC = (($totalPorcentaje * 100) / 7871);
      $pNC = 100 - $pC;
 
-     $porcentajeC = $this->truncar($pC, 2);
-     $porcentajeNC = $this->truncar($pNC, 2);
+     $porcentajeC = $this->truncar($pC, 0);
+     $porcentajeNC = $this->truncar($pNC, 0);
 
      $result = ['tabla' => $tabla, 'total' => $totalEscuelas];
 
@@ -386,7 +386,7 @@ public function getEstadisticaLAE(){
 
     $arrayRegion = $this->Estadistica_pemc_model->get_region();
     $arraySostenimiento = $this->Estadistica_pemc_model->get_region();
-    $zonas = $this->Estadistica_pemc_model->allzonas();
+    // $zonas = $this->Estadistica_pemc_model->allzonas();
 
     foreach ($arrayRegion as $key => $region) {
       if ($regionPost == $region['id_region']) {
@@ -479,7 +479,7 @@ $municipiosResult = $this->Estadistica_pemc_model->get_municipios($regionPost);
 $result = ['obj1'=>$obj1,'obj2'=>$obj2,'obj3'=>$obj3,'obj4'=>$obj4,'obj5'=>$obj5,'acc1'=>$acc1, 'acc2'=>$acc2, 'acc3'=>$acc3, 'acc4'=>$acc4, 'acc5'=>$acc5];
 $data['tabla'] = $tabla;
 $data['municipio'] = $municipiosResult;
-$data['zonas'] = $zonas;
+// $data['zonas'] = $zonas;
 $str_view = $this->load->view("estadistica_pemc/grid_LAE", $data, TRUE);
 $response = array('str_view' => $str_view, 'result'=>$result);
 Utilerias::enviaDataJson(200, $response, $this);
@@ -490,44 +490,59 @@ exit;
 function getTablaZona()
 {
    $sostenimiento = $this->input->post('sostenimiento');
-   $zona = $this->input->post('zona');
+   $zonaPost = $this->input->post('zona');
+   $nivel = $this->input->post('nivel');
 
-
-   $zonas = $this->Estadistica_pemc_model->get_zonas($sostenimiento);
+$zonas= $this->Estadistica_pemc_model->get_zonas($sostenimiento);
    $tabla = '';
-   foreach ($zonas as $key => $value) {
-         if ($sostenimiento == $value['id_sostenimiento']) {
-           $tabla .= "<tr style='background-color:#DCF5FF; color:black;'>";
-           if ($value['zona_escolar'] == $zona) {
-               $tabla .= "<tr style='background-color:#7FDAFF; color:black;'>";
-           }
-      }else{
-         $tabla .= "<tr>";
-        }
-    $todasZonas = $this->Estadistica_pemc_model->get_todas_zonas();
-    foreach ($todasZonas as $key => $zonas) {
-        $tabla .= "<td>{$zonas['zona_escolar']}</td>";   
+
+   $porcentajeZona = $this->Estadistica_pemc_model->get_porcent_zonas($sostenimiento, $zonaPost, $nivel);
+       if (empty($porcentajeZona)) {
+
+         $tabla .= "<tr style='background-color:#7FDAFF; color:black;'>";
+         $tabla.="<td>{$zonaPost}</td>";
+
+         $tabla.="<td>0.0%</td>";
+
+         $tabla.="<td>0.0%</td>";
+
+         $tabla.="<td>0.0%</td>";
+
+         $tabla.="<td>0.0%</td>";
+
+         $tabla.="<td>0.0%</td></tr>";
+     }else{
+        foreach ($porcentajeZona as $key => $pz) {
+
+
+            if ($sostenimiento == $pz['id_sostenimiento']) {
+               $tabla .= "<tr style='background-color:#DCF5FF; color:black;'>";
+               if ($pz['zona_escolar'] == $zonaPost) {
+                   $tabla .= "<tr style='background-color:#7FDAFF; color:black;'>";
+               }
+           }else{
+             $tabla .= "<tr>";
+         }
+
+                // echo "<pre>"; print_r($pz);
+         $tabla.="<td>{$pz['zona_escolar']}</td>";
+
+         $tabla.="<td>{$pz['lae1']}%</td>";
+
+         $tabla.="<td>{$pz['lae2']}%</td>";
+
+         $tabla.="<td>{$pz['lae3']}%</td>";
+
+         $tabla.="<td>{$pz['lae4']}%</td>";
+
+         $tabla.="<td>{$pz['lae5']}%</td></tr>";
+
+     }
     }
-     $porcentajeZona = $this->Estadistica_pemc_model->get_porcent_zonas();
-    foreach ($porcentajeZona as $key => $PZ) {
-        if ($PZ['orden'] == 1) {
-            $tabla .= "<td>{$PZ['promedio_cte']}</td>";
-        }
-         if ($PZ['orden'] == 2) {
-            $tabla .= "<td>{$PZ['promedio_cte']}</td>";
-        }
-         if ($PZ['orden'] == 3) {
-            $tabla .= "<td>{$PZ['promedio_cte']}</td>";
-        }
-         if ($PZ['orden'] == 4) {
-            $tabla .= "<td>{$PZ['promedio_cte']}</td>";
-        }
-         if ($PZ['orden'] == 5) {
-            $tabla .= "<td>{$PZ['promedio_cte']}</td>";
-        }
-    }
-    $tabla .= "</tr>"; 
-   }
+
+       
+    
+
 
    $data['zonas'] = $zonas;
    $data['tabla'] = $tabla;

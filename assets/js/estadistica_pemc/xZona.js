@@ -6,7 +6,10 @@ $('#xZona_tab').click(function() {
 function getTablaZona() {
     zona = $('#zona_zona option:selected').val();
     sostenimiento = $('#sostenimiento_zona option:selected').val();
-
+    nivel = $('#nivel_educativo_zona option:selected').val();
+    if (nivel == undefined) {
+        nivel = 0;
+    }
     if (zona == undefined) {
         zona = 0;
     }
@@ -18,7 +21,7 @@ function getTablaZona() {
     $.ajax({
         url: ruta,
         type: 'POST',
-        data: {zona:zona, sostenimiento:sostenimiento},
+        data: {zona:zona, sostenimiento:sostenimiento, nivel:nivel},
         beforeSend: function(xhr) {
             Notification.loading("");
         },
@@ -27,7 +30,9 @@ function getTablaZona() {
         $('#xZona').html(data.str_view);
         $('#zona_zona').removeAttr('disabled');
 
-
+               $('#zona_zona').val(zona);
+      $('#sostenimiento_zona').val(sostenimiento);
+      $('#nivel_educativo_zona').val(nivel);
     })
     .fail(function() {
         console.info('Error');
