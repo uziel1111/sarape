@@ -34,7 +34,7 @@
 				</tr>
 				<tr>			
 					<th></th>
-					<th>En el estado</th>
+					<th>Existentes</th>
 					<th>Que capturaron</th>
 					<th>% de captura</th>
 					<th>0</th>

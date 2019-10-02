@@ -62,9 +62,17 @@ $('#zona_zona').change(function() {
 	Notification.loading("");
    getTablaZona();
 
+
 });
 
 $('#sostenimiento_zona').change(function() {
 	Notification.loading("");
+   $('#zona_zona').val(0);
    getTablaZona();
 });
+
+$('#nivel_educativo_zona').change(function() {
+	Notification.loading("");
+   getTablaZona();
+});
+

@@ -24,11 +24,11 @@
                    </select></label>
          </div>
          <div class="col-md-4 form-group form-group-style-1 div_zona">
-           <label for="zona_zona">Seleccione una zona</label>
-            <select id="zona_zona" class="form-control" disabled>
+           <label for="zona_zona" disabled>Seleccione una zona</label>
+            <select id="zona_zona" disabled class="form-control">
               <option value="0">Todas las zonas</option>
-              <?php foreach ($zonas as $key => $value) { ?>
-                <option value="<?= $value['zona_escolar'] ?>"><?= $value['zona_escolar'] ?></option>
+              <?php foreach ($zonas as $key => $zona) { ?>
+                <option value="<?= $zona['zona_escolar'] ?>"><?= $zona['zona_escolar'] ?></option>
               <?php } ?>
                    </select></label>
          </div>

@@ -76,16 +76,15 @@ class Estadistica_pemc_model extends CI_Model
 
   function get_escuelasMun($nivel, $id_municipio)
  {
-  $this->db->select('count(*) as total');
-  $this->db->from('escuela');
-  $this->db->where('id_municipio', $id_municipio);
-   if ($nivel != 0) {
-  $this->db->where('id_nivel', $nivel);
-    }
-  $this->db->group_by('id_municipio');
-
-  return  $this->db->get()->result_array();
- }
+  $query = 'SELECT count(*) as total from escuela WHERE (id_estatus=1 OR id_estatus=4) AND id_nivel<6';
+  if ($id_municipio != 0) {
+   $query.= ' and id_municipio = '.$id_municipio. '';
+  }
+  if ($nivel != 0) {
+   $query.= ' and nivel = '.$nivel. '';
+  }
+  return $this->db->query($query)->result_array();
+  }
 
  function get_region(){
    $this->db->select('m.municipio, m.id_municipio, r.region, r.id_region');
@@ -193,6 +192,7 @@ function get_filtros($nivel, $municipio, $region)
      
     $str_query .=' where id_sostenimiento ='.$sostenimiento.'';
    }
+   $str_query .=' order by zona_escolar asc;';
    return $this->db->query($str_query)->result_array();
  }
   function get_todas_zonas()
@@ -201,13 +201,75 @@ function get_filtros($nivel, $municipio, $region)
    return $this->db->query($str_query)->result_array();
  }
 
-    function get_porcent_zonas()
+    function get_porcent_zonas($sostenimiento, $zona, $nivel)
   {
-    $str_query = 'select avg(acct.cte1) as promedio_cte, acct.id_cct, tp.orden, e.cve_centro, su.zona_escolar from rm_avance_xcctxtpxaccion acct
-inner join rm_tema_prioritarioxcct tp on tp.id_tprioritario = acct.id_tprioritario
-inner join escuela e on e.id_cct = acct.id_cct
-inner join supervision su on su.id_supervision = e.id_supervision
-where cte1 is not null group by su.zona_escolar';
+    $str_query = 'SELECT lae1.promedio_cte as lae1, lae2.promedio_cte as lae2, lae3.promedio_cte as lae3, lae4.promedio_cte as lae4, lae5.promedio_cte as lae5, lae1.zona_escolar, lae1.id_sostenimiento, lae1.id_nivel from (SELECT
+IFNULL(ROUND(avg(acct.cte1),1),0) AS promedio_cte,
+tp.orden,
+su.zona_escolar, su.id_sostenimiento, e.id_nivel
+FROM supervision su
+INNER JOIN escuela e ON su.id_supervision = e.id_supervision
+INNER JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+LEFT JOIN rm_avance_xcctxtpxaccion acct ON tp.id_tprioritario = acct.id_tprioritario
+WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 and tp.orden = 1
+GROUP BY
+su.zona_escolar, tp.orden) as lae1 
+inner join (SELECT
+IFNULL(ROUND(avg(acct.cte1),1),0) AS promedio_cte,
+tp.orden,
+su.zona_escolar
+FROM supervision su
+INNER JOIN escuela e ON su.id_supervision = e.id_supervision
+INNER JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+LEFT JOIN rm_avance_xcctxtpxaccion acct ON tp.id_tprioritario = acct.id_tprioritario
+WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 and tp.orden = 2
+GROUP BY
+su.zona_escolar, tp.orden) as lae2 on lae1.zona_escolar = lae2.zona_escolar
+inner join (SELECT
+IFNULL(ROUND(avg(acct.cte1),1),0) AS promedio_cte,
+tp.orden,
+su.zona_escolar
+FROM supervision su
+INNER JOIN escuela e ON su.id_supervision = e.id_supervision
+INNER JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+LEFT JOIN rm_avance_xcctxtpxaccion acct ON tp.id_tprioritario = acct.id_tprioritario
+WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 and tp.orden = 3
+GROUP BY
+su.zona_escolar, tp.orden) as lae3 on lae1.zona_escolar = lae3.zona_escolar
+inner join (SELECT
+IFNULL(ROUND(avg(acct.cte1),1),0) AS promedio_cte,
+tp.orden,
+su.zona_escolar
+FROM supervision su
+INNER JOIN escuela e ON su.id_supervision = e.id_supervision
+INNER JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+LEFT JOIN rm_avance_xcctxtpxaccion acct ON tp.id_tprioritario = acct.id_tprioritario
+WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 and tp.orden = 4
+GROUP BY
+su.zona_escolar, tp.orden) as lae4 on lae1.zona_escolar = lae4.zona_escolar
+inner join (SELECT
+IFNULL(ROUND(avg(acct.cte1),1),0) AS promedio_cte,
+tp.orden,
+su.zona_escolar
+FROM supervision su
+INNER JOIN escuela e ON su.id_supervision = e.id_supervision
+INNER JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+LEFT JOIN rm_avance_xcctxtpxaccion acct ON tp.id_tprioritario = acct.id_tprioritario
+WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 and tp.orden = 5  GROUP BY
+su.zona_escolar, tp.orden) as lae5 on lae1.zona_escolar = lae5.zona_escolar';
+if ($sostenimiento != 0 || $nivel != 0) {
+  $str_query .= ' where ';
+}
+if ( $nivel != 0) {
+  $str_query .=' lae1.id_nivel ='.$nivel.''; 
+}
+if ( $sostenimiento != 0) {
+ $str_query .=' and lae1.id_sostenimiento ='.$sostenimiento.''; 
+  if ($zona != 0) {
+    $str_query .= ' and lae1.zona_escolar = '.$zona.'';
+  }
+}
+// echo "<pre>"; print_r($str_query);
     return $this->db->query($str_query)->result_array();
   }
 
