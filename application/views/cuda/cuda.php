@@ -53,7 +53,20 @@
 		</div>
 	
 			<div class="row">
-				
+				<div class="col-md-12">
+					<a>
+					En la Secretaría de Educación Pública de Coahuila no hemos propuesto disminuir de forma sensible la carga administrativa de los docentes de educación básica, para lo cual se revisaron XXX requerimientos de información de las escuelas de educación básica, de los cuales se acordó eliminar XXX de ellos. A continuación, se publican los requerimientos de información (entre formatos y sistemas automatizados) <strong>Únicos Obligatorios</strong> aplicables para las escuelas al ciclo escolar 2019-2020.
+					</a>
+					<br><br>
+					<a>
+					Nota: Algunos requerimientos son aplicables sólo a escuelas beneficiadas por algún programa educativo, o que son de alguna modalidad o sostenimiento específico, según se señala en lo descrito en el detalle de cada requerimiento.	
+					</a>
+					<br><br>
+					<a>
+					¿Alguna duda con referencia al Catálogo Único de Documentos Autorizados? Manda un mensaje a <a style="color:blue;" href="mailto:cuda@seducoahuila.gob.mx">cuda@seducoahuila.gob.mx</a>  o en el dato de contacto para cada requerimiento.
+					</a>
+					<br><br>
+				</div>
 				<div class="col-md-6">
 					<a class="card-text text-justify"><button type="button" onclick="consultaNivel()" class="btn btn-secondary btn-lg btn-block">Consultar por Nivel</button>
 						
@@ -68,8 +81,8 @@
 								<option value="Preescolar">Preescolar</option>
 								<option value="Primaria">Primaria</option>
 								<option value="Secundaria">Secundaria</option>
-								<option value="Educación para Adultos">Educación para Adultos</option>
-								<option value="Extraescolar">Extraescolar</option>
+								<!-- <option value="Educación para Adultos">Educación para Adultos</option>
+								<option value="Extraescolar">Extraescolar</option> -->
 							</select>
 						</div>
 						</div>	
