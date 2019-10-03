@@ -1,10 +1,8 @@
-
-google.charts.load('current', {'packages':['gantt'],'language':'es'});
-google.charts.load('current', {'packages':['corechart'],'language':'es'});
-
 $(document).ready(function() {
+	google.charts.load('current', {'packages':['gantt'],'language':'es'});
+	google.charts.load('current', {'packages':['corechart'],'language':'es'});
    obj_prioridad = new Prioridad();
-   $("#nav-resultados").hide();
+   // $("#nav-resultados").hide();
    // datos =[];
 
 });
@@ -229,8 +227,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 			    },
 			    success: function(data){
 			      	swal.close();
-			        // drawChart(data.datos);
-			        // datos=data.datos;
+
 			        google.charts.setOnLoadCallback(drawChart(data.datos));
 			    },
 			    error: function(error){
@@ -247,6 +244,7 @@ Prioridad.prototype.funcionalidadselect = function(){
     function drawChart(datos) {
     	// console.log(datos);
       	var data = new google.visualization.DataTable();
+      	let alto=200;
       	data.addColumn('string', 'ID Tarea');
       	data.addColumn('string', 'Tarea');
       	data.addColumn('string', 'Recurso');
@@ -270,7 +268,7 @@ Prioridad.prototype.funcionalidadselect = function(){
         	}
       	}
 
-	    let alto=200;
+	    
 	    if(datos.length>=4 && datos.length<=6){
 	    	alto=400;
 	    }else if(datos.length>=7 && datos.length<=14){
@@ -282,29 +280,13 @@ Prioridad.prototype.funcionalidadselect = function(){
 	    }else if(datos.length>=29 && datos.length<=35){
 	    	alto=2000;
 	    }
-      	var options = {
-      		tooltip: {
-      			isHtml: true
-      		},
+      	let options = {
       		width: 950,
 	        height: alto,
 	        gantt: {
 	          	trackHeight: 40,
-	          	percentEnabled: true,
 	          	labelMaxWidth:300,
-				labelStyle: {
-				  fontName: 'Roboto',
-				  fontSize: 12,
-				  color: 'red',
-				  textAlign:'right'
-				}
-
-
-	        },
-	        
-	        customClass:{
-	        	textAlign:'right'
-	        } 
+	        }
       	};
 
       	var chart = new google.visualization.Gantt(document.getElementById('gantt_p'));
@@ -364,8 +346,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 			    },
 			    success: function(data){
 			      	swal.close();
-			        // drawChart(data.datos);
-			        // datos=data.datos;
 			        google.charts.setOnLoadCallback(pieAccion(data.datos));
 			    },
 			    error: function(error){
@@ -392,9 +372,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 			    },
 			    success: function(data){
 			      	swal.close();
-			      	// console.log(data.datos);
-			        // drawChart(data.datos);
-			        // datos=data.datos;
+
 			        google.charts.setOnLoadCallback(pieObjetivos(data.datos));
 			    },
 			    error: function(error){
@@ -421,8 +399,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 			    },
 			    success: function(data){
 			      	swal.close();
-			        // drawChart(data.datos);
-			        // datos=data.datos;
 			        google.charts.setOnLoadCallback(pieLAE(data.datos));
 			    },
 			    error: function(error){
@@ -444,7 +420,7 @@ Prioridad.prototype.funcionalidadselect = function(){
                 ['Capturadas',parseInt(datos[0]['porcentaje'])],
          		['No capturadas',parseInt(c)]
             ]);
-        var options = {
+        let options = {
           title: '',
           colors: ['#F47D4A', '#E1315B']
         };
@@ -469,12 +445,12 @@ Prioridad.prototype.funcionalidadselect = function(){
                 ['Capturadas',parseInt(datos[0]['porc'])],
          		['No capturadas',parseInt(c)]
             ]);
-        var options = {
+        let options = {
           title: '',
           colors: ['#FA812A', '#FAAF08']
         };
         $("#div_obj_graf").empty();
-        var chart = new google.visualization.PieChart(document.getElementById('div_obj_graf'));
+        let chart = new google.visualization.PieChart(document.getElementById('div_obj_graf'));
 
         chart.draw(data, options);
     }
@@ -489,12 +465,12 @@ Prioridad.prototype.funcionalidadselect = function(){
          		['No capturadas',parseInt(c)]
             ]);
 
-        var options = {
+        let options = {
           title: '',
           colors: ['#2C7873', '#6FB98F']
            };
         $("#div_lae_graf").empty();
-        var chart = new google.visualization.PieChart(document.getElementById('div_lae_graf'));
+        let chart = new google.visualization.PieChart(document.getElementById('div_lae_graf'));
 
         chart.draw(data, options);
     }
@@ -643,13 +619,14 @@ Prioridad.prototype.funcionalidadselect = function(){
 	$("#nav-tab").click(function (e) {
         var id = e.target.id;
         if(id =="nav-resultados-tab"){
-        	$("#nav-resultados").show();  
+        	// $("#nav-resultados").show();  
 	   		datos_accion();
 		   	// datos_laepie();
 		   	// datos_objetivopie();
 		   	// datos_accionpie();
 		   	accionesRezagadas();
-   		}else{
-   			$("#nav-resultados").hide();  
    		}
+   		// else{
+   		// 	$("#nav-resultados").hide();  
+   		// }
     });
