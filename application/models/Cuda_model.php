@@ -82,7 +82,7 @@ class Cuda_model extends CI_Model
 		
 		$querynivel = "SELECT a.tema, r.idaplicar from respuesta r
 		inner join aplicar a on a.idaplicar = r.idaplicar
-		where r.complemento ='{$nivel}'";
+		where a.estatus = 1 and r.complemento ='{$nivel}'";
 
 		$querymes = "SELECT a.tema, r.idaplicar from respuesta r
 		inner join aplicar a on a.idaplicar = r.idaplicar
