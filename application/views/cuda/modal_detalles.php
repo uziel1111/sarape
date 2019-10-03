@@ -10,7 +10,11 @@ foreach ($array_detalles as $key => $value):
 	?>
 	
 	<!-- Modal Detalle -->
-	<?php if ( $value['idpregunta'] != 4 && $value['idpregunta'] != 5 && $value['idpregunta'] != 6 && $value['idpregunta'] != 7 && $value['idpregunta'] != 17 && $value['idpregunta'] != 18): ?>
+	<?php 
+if ($value['respuesta'] == 'Captura en sistema') {
+	
+
+	if ( $value['idpregunta'] != 4 && $value['idpregunta'] != 5 && $value['idpregunta'] != 6  && $value['idpregunta'] != 17 && $value['idpregunta'] != 18): ?>
 		<div class="row">
 			<div class="col-sm">
 				<div class="alert alert-success my-1 py-1 fz-18" role="alert">
@@ -77,6 +81,7 @@ foreach ($array_detalles as $key => $value):
 				</div>		 
 			</div>
 		</div>
+	<?php } ?>
 	<?php } ?>
 	<!-- End Modal -->
 <?php endforeach ?>

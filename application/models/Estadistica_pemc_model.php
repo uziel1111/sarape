@@ -36,7 +36,7 @@ class Estadistica_pemc_model extends CI_Model
         LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
         INNER JOIN escuela e on e.id_cct = tp.id_cct
         INNER JOIN municipio m on e.id_municipio = m.id_municipio
-        where e.id_municipio = '.$municipio.'';
+        where  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 and e.id_municipio = '.$municipio.'';
         if ($nivel != 0) {
         $query .=' and e.id_nivel = '.$nivel.'';
         }
@@ -65,7 +65,7 @@ class Estadistica_pemc_model extends CI_Model
         LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
         INNER JOIN escuela e on e.id_cct = tp.id_cct
         INNER JOIN municipio m on e.id_municipio = m.id_municipio
-        where e.id_municipio = '.$municipio.'';
+        where  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 and e.id_municipio = '.$municipio.'';
         if ($nivel != 0) {
           $query .=' and e.id_nivel = '.$nivel.'';
         }
@@ -118,7 +118,7 @@ class Estadistica_pemc_model extends CI_Model
    LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
    inner join escuela e on e.id_cct = tp.id_cct
    inner join municipio m on m.id_municipio = e.id_municipio
-   WHERE m.id_municipio = '.$municipio.'';
+   WHERE  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 and m.id_municipio = '.$municipio.'';
    if ($nivel != 0) {
     $query .= ' and e.id_nivel = '.$nivel. '';
   }
@@ -142,7 +142,7 @@ class Estadistica_pemc_model extends CI_Model
    inner join municipio m on m.id_municipio = e.id_municipio
    inner join subsostenimiento s on s.id_subsostenimiento = e.id_subsostenimiento
    inner join supervision su on su.id_supervision = e.id_supervision
-   WHERE m.id_municipio is not null  ';
+   WHERE  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 and m.id_municipio is not null  ';
    if ($nivel != 0) {
     $query .= ' and e.id_nivel = '.$nivel. '';
   }
@@ -167,7 +167,7 @@ function get_filtros($nivel, $municipio, $region)
    LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
    inner join escuela e on e.id_cct = tp.id_cct
    inner join municipio m on m.id_municipio = e.id_municipio
-   WHERE m.zona_economica = 5';
+   WHERE  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 and m.zona_economica = 5';
    if ($region =! 0) {
        $query .= ' and m.id_region = '.$region.'';
    }
@@ -263,10 +263,17 @@ if ($sostenimiento != 0 || $nivel != 0) {
 if ( $nivel != 0) {
   $str_query .=' lae1.id_nivel ='.$nivel.''; 
 }
-if ( $sostenimiento != 0) {
+if ( $sostenimiento != 0 && $nivel != 0) {
  $str_query .=' and lae1.id_sostenimiento ='.$sostenimiento.''; 
   if ($zona != 0) {
     $str_query .= ' and lae1.zona_escolar = '.$zona.'';
+  }
+} else {
+  if ($sostenimiento != 0) {
+   $str_query .=' lae1.id_sostenimiento ='.$sostenimiento.''; 
+  if ($zona != 0) {
+    $str_query .= ' and lae1.zona_escolar = '.$zona.'';
+  }
   }
 }
 // echo "<pre>"; print_r($str_query);

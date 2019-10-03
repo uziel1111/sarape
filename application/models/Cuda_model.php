@@ -12,7 +12,7 @@ class Cuda_model extends CI_Model
 		$str_query = "SELECT * from aplicar a
 		inner join respuesta r on r.idaplicar = a.idaplicar
 		inner join usuario u on u.idusuario = a.idusuario
-		where a.idusuario = {$idusuario} and r.idpregunta = 1;
+		where a.idusuario = {$idusuario} and r.idpregunta = 1  and a.estatus = 1;
 		";
 		return $this->ci_db->query($str_query)->result_array();
 	}
@@ -21,7 +21,7 @@ class Cuda_model extends CI_Model
 	{
 		$str_query = "SELECT u.* from usuario u
 		inner join aplicar a on a.idusuario = u.idusuario
-		where u.idsubsecretaria ={$idsubsecretria} group by a.idusuario;";
+		where u.idsubsecretaria ={$idsubsecretria} and a.idusuario <> 12 group by a.idusuario;";
 
 		return $this->ci_db->query($str_query)->result_array();
 	}
@@ -57,7 +57,7 @@ class Cuda_model extends CI_Model
 	{
 		$str_query = "SELECT count(a.idaplicar) as encuestasUsuario from aplicar a
 		inner join usuario u on u.idusuario = a.idusuario
-		where u.idusuario = {$idusuario};";
+		where u.idusuario = {$idusuario} and a.estatus = 1;";
 
 		return $this->ci_db->query($str_query)->result_array();
 	}
@@ -65,14 +65,14 @@ class Cuda_model extends CI_Model
 	{
 		$str_query = "SELECT count(a.idaplicar) as total from aplicar a
 		inner join usuario u on u.idusuario = a.idusuario
-		where u.idsubsecretaria = {$idsubsecretaria};";
+		where u.idsubsecretaria = {$idsubsecretaria} and a.estatus = 1;";
 
 		return $this->ci_db->query($str_query)->result_array();
 	}
 
 	public function getEstadisticaGlobal()
 	{
-		$str_query = "SELECT count(a.idaplicar) as global from aplicar a";
+		$str_query = "SELECT count(a.idaplicar) as global from aplicar a where a.estatus = 1";
 
 		return $this->ci_db->query($str_query)->result_array();
 	}
@@ -136,3 +136,25 @@ class Cuda_model extends CI_Model
 
 
 }// Cuda_model class
+
+
+/**cuando no hay datos la gráfica no aparece, habría que poner una etiqueta de "no hay datos disponibles"
+
+revisar el query de los objetivos 'primer tab'
+
+segundo tab que se recalculé por región y por municipio
+
+"tab seguimiento" que no capture avances
+
+***CUDA***
+revisar ancho de los datos **
+
+ver contacto en un boton y estadistica 
+
+revisar los modals de documentos 
+
+acomodar estadístca solo con los activos **
+
+cuando es captura en sistema mostrar la URL sino pues no
+
+concentrado **/
