@@ -106,11 +106,20 @@ const Planea = {
 			    case "5":
 			    // console.log(result.datos);
 			        if($("#slt_campod_planeaxm").val() == 1){
-					
+			        	//console.log($("#slt_periodo_planeaxm").val());
+						if ($("#slt_periodo_planeaxm").val() == 4) {
+							graficar.graficoplanea_ud_secu_lyc19(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxm").val());
+						}else {
 							graficar.graficoplanea_ud_secu_lyc(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxm").val());
+						}
 						
 					}else{
+						if ($("#slt_periodo_planeaxm").val() == 4) {
+							console.log(result.datos);
+							graficar.graficoplanea_ud_secu_mate19(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxm").val());
+						}else {
 							graficar.graficoplanea_ud_secu_mate(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxm").val());
+						}
 					}
 			        break;
 			    case "6":

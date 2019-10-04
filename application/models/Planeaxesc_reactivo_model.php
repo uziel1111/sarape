@@ -33,6 +33,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       $this->db->where('t2.id_reactivo !=', 350);
       $this->db->where('t2.id_reactivo !=', 374);
       $this->db->where('t2.id_reactivo !=', 422);
+      $this->db->where('t3.id_contenido !=', 424);
       $this->db->where('t2.id_reactivo !=', 426);
       $this->db->where('t2.id_reactivo !=', 433);
       $this->db->where('t2.id_reactivo !=', 440);
@@ -101,6 +102,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       $this->db->where('t2.id_reactivo !=', 350);
       $this->db->where('t2.id_reactivo !=', 374);
       $this->db->where('t2.id_reactivo !=', 422);
+      $this->db->where('t3.id_contenido !=', 424);
       $this->db->where('t2.id_reactivo !=', 426);
       $this->db->where('t2.id_reactivo !=', 433);
       $this->db->where('t2.id_reactivo !=', 440);
@@ -151,7 +153,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                           AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
                           AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
                           AND(t2.id_reactivo!=300 and t2.id_reactivo!=319 and t2.id_reactivo!=328 and t2.id_reactivo!=330 and t2.id_reactivo!=346)
-                          AND(t2.id_reactivo!=350 and t2.id_reactivo!=374 and t2.id_reactivo!=422 and t2.id_reactivo!=426 and t2.id_reactivo!=433)
+                          AND(t2.id_reactivo!=350 and t2.id_reactivo!=374 and t2.id_reactivo!=422 and t3.id_contenido!=424 and t2.id_reactivo!=426 and t2.id_reactivo!=433)
                           AND(t2.id_reactivo!=440 and t2.id_reactivo!=455 and t2.id_reactivo!=471 and t2.id_reactivo!=475 and t2.id_reactivo!=477)
                           AND `t5`.`id_campodisiplinario` = {$idcampodis} {$where}
                           GROUP BY t3.`id_contenido`, e.id_cct) AS datos
@@ -183,7 +185,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                           AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
                           AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
                           AND(t2.id_reactivo!=300 and t2.id_reactivo!=319 and t2.id_reactivo!=328 and t2.id_reactivo!=330 and t2.id_reactivo!=346)
-                          AND(t2.id_reactivo!=350 and t2.id_reactivo!=374 and t2.id_reactivo!=422 and t2.id_reactivo!=426 and t2.id_reactivo!=433)
+                          AND(t2.id_reactivo!=350 and t2.id_reactivo!=374 and t2.id_reactivo!=422 and t3.id_contenido!=424 and t2.id_reactivo!=426 and t2.id_reactivo!=433)
                           AND(t2.id_reactivo!=440 and t2.id_reactivo!=455 and t2.id_reactivo!=471 and t2.id_reactivo!=475 and t2.id_reactivo!=477)
                           AND `t5`.`id_campodisiplinario` = {$idcampodis} {$where}
                           GROUP BY t3.`id_contenido`, e.id_cct) AS datos
@@ -224,7 +226,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
         AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
         AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
         AND(t2.id_reactivo!=300 and t2.id_reactivo!=319 and t2.id_reactivo!=328 and t2.id_reactivo!=330 and t2.id_reactivo!=346)
-        AND(t2.id_reactivo!=350 and t2.id_reactivo!=374 and t2.id_reactivo!=422 and t2.id_reactivo!=426 and t2.id_reactivo!=433)
+        AND(t2.id_reactivo!=350 and t2.id_reactivo!=374 and t2.id_reactivo!=422 and t3.id_contenido!=424 and t2.id_reactivo!=426 and t2.id_reactivo!=433)
         AND(t2.id_reactivo!=440 and t2.id_reactivo!=455 and t2.id_reactivo!=471 and t2.id_reactivo!=475 and t2.id_reactivo!=477)
         AND `t5`.`id_campodisiplinario` = {$idcampodis} GROUP BY `t2`.`id_reactivo`) datos GROUP BY id_reactivo
         ";
@@ -264,7 +266,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                   AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
                   AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
                   AND(t2.id_reactivo!=300 and t2.id_reactivo!=319 and t2.id_reactivo!=328 and t2.id_reactivo!=330 and t2.id_reactivo!=346)
-                  AND(t2.id_reactivo!=350 and t2.id_reactivo!=374 and t2.id_reactivo!=422 and t2.id_reactivo!=426 and t2.id_reactivo!=433)
+                  AND(t2.id_reactivo!=350 and t2.id_reactivo!=374 and t2.id_reactivo!=422 and t3.id_contenido!=424 and t2.id_reactivo!=426 and t2.id_reactivo!=433)
         
                   AND `t5`.`id_campodisiplinario` = {$idcampodis} GROUP BY`t2`.`id_reactivo`) datos GROUP BY id_reactivo
                    ";

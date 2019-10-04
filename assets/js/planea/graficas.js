@@ -368,7 +368,7 @@ function Graficasm(){
                   height: ($(document).width()/10)*12
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2018</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
               },
               subtitle: {
                   text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_lyc[0]['alumnos_evaluados']+'</b>'
@@ -524,7 +524,7 @@ function Graficasm(){
                   // width: 1000
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2018</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
               },
               subtitle: {
                   text:  '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_mate[0]['alumnos_evaluados']+'</b>'
@@ -596,7 +596,263 @@ function Graficasm(){
 
       }// graficoplanea_ud_secu_mate()
 
+      // Planea 2019 I
+        Graficasm.prototype.graficoplanea_ud_secu_lyc19 = function(arr_lyc,id_cct, va_por){
+        
+        arr_lyc.sort(function (a, b) {
+            return (a.porcen_alum_respok - b.porcen_alum_respok)
+        });
+          Highcharts.theme = {
+                colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
 
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+
+
+                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
+                 
+                legend: {
+                    itemStyle: {
+                        font: '9pt',
+                        color: 'black'
+                    },
+                    itemHoverStyle:{
+                        color: 'gray'
+                    },
+                    enabled: false
+                }
+          };
+
+          Highcharts.setOptions(Highcharts.theme);
+
+          var arr_lyc_aux = new Array();;
+          for (var i = 0; i < arr_lyc.length; i++){
+             arr_lyc_aux.push({'id_cont': arr_lyc[i]['id_contenido'],'name': arr_lyc[i]['contenidos'],'y': parseFloat(arr_lyc[i]['porcen_alum_respok']),'drilldown': arr_lyc[i]['total_reac_xua']});
+          }
+
+          // Apply the theme
+
+          // Codigo para graficar la seccion estadistica de la escuela
+          var estadPreescolar = new Highcharts.chart('div_graficas_masivo', {
+              lang: {
+                  //drillUpText: '◁ Regresar a {series.name}'
+              },
+              credits: {
+                  enabled: false
+              },
+              /*
+              chart: {
+                  type: 'bar'
+              },
+              */
+              chart: {
+                  type: 'bar',
+                  backgroundColor: {
+                      linearGradient: [0, 0, 0, 0],
+                      stops: [
+                          [0, 'rgb(255, 255, 255)'],
+                          [1, 'rgb(255, 255, 255)']
+                      ]
+                  },
+                  width: ($(document).width()/10)*6,
+                  height: ($(document).width()/10)*12
+              },
+              title: {
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2019</b>'
+              },
+              subtitle: {
+                  text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_lyc[0]['alumnos_evaluados']+'</b>'
+              },
+              xAxis: {
+                  type: 'category'
+              },
+
+              yAxis: {
+                  title: {
+                      text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos con respuestas correctas</div>'
+                      
+                  },
+              },
+              plotOptions: {
+                  series: {
+                    events: {
+                      click: function (event) {
+                        // nada...
+                      }
+                     },
+                      borderWidth: 0,
+                      dataLabels: {
+                          enabled: true,
+                          format: '{point.y:.1f}%'
+
+                      }
+                  },
+
+                  // agregamos a la columna la propiedad para el clik y enviar el nombre a una función
+                  bar :{
+                       point:{
+                           events:{
+                               click:function(){
+                                var periodo = $('#slt_periodo_planeaxm option:selected').val();
+                                console.log(periodo);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,periodo,1, va_por);
+                               }
+                           }
+                       }
+                   }
+                
+              },
+
+              tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><b>{point.y}%</b><br>',
+                pointFormat: '<span style="font-size:11px">Total de preguntas en el contenido temático: </span><b>{point.drilldown}</b><br><span style="color:{point.color}">{point.name}</span>'
+              },
+
+              series: [{
+                  name: 'Porcentaje de alumnos con respuestas correctas: ',
+                  colorByPoint: true,
+                  data: arr_lyc_aux
+              }],
+
+          });
+
+
+          $(".highcharts-background").css("fill","#FFF");
+        
+      }// graficoplanea_ud_secu_lyc()
+
+      Graficasm.prototype.graficoplanea_ud_secu_mate19 = function(arr_mate,id_cct, va_por){
+        console.info(arr_mate);
+        arr_mate.sort(function (a, b) {
+            return (a.porcen_alum_respok - b.porcen_alum_respok)
+        });
+          Highcharts.theme = {
+                colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900',
+                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
+                chart: {
+                    backgroundColor: {
+                        linearGradient: [0, 0, 0, 0],
+                        stops: [
+                            [0, 'rgb(255, 255, 255)'],
+                            [1, 'rgb(255, 255, 255)']
+                        ]
+                    },
+                    width: ($(document).width()/10)*6,
+                    height: ($(document).width()/10)*12
+                },
+                title: {
+                    style: {
+                        color: '#000',
+                        font: 'bold 18px'
+                    }
+                },
+                subtitle: {
+                    style: {
+                        color: 'blue',
+                        font: 'bold 20px'
+                    }
+                },
+                legend: {
+                    itemStyle: {
+                        font: '9pt',
+                        color: 'black'
+                    },
+                    itemHoverStyle:{
+                        color: 'gray'
+                    }
+                }
+          };
+          var arr_mate_aux = new Array();;
+          for (var i = 0; i < arr_mate.length; i++){
+             arr_mate_aux.push({'id_cont': arr_mate[i]['id_contenido'],'name': arr_mate[i]['contenidos'],'y': parseFloat(arr_mate[i]['porcen_alum_respok']),'drilldown': arr_mate[i]['total_reac_xua']});
+          }
+          // Apply the theme
+          Highcharts.setOptions(Highcharts.theme);
+          // Codigo para graficar la seccion estadistica de la escuela
+          // Create the chart
+          var defaultSubtitle = "Total de alumnos evaluados: "+parseFloat(arr_mate[0]['alumnos_evaluados'])
+          var estadPreescolar = new Highcharts.chart('div_graficas_masivo', {
+              lang: {
+                  //drillUpText: '◁ Regresar a {series.name}'
+              },
+              credits: {
+                  enabled: false
+              },
+              chart: {
+                  type: 'bar'
+                  // width: 1000
+              },
+              title: {
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2019</b>'
+              },
+              subtitle: {
+                  text:  '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_mate[0]['alumnos_evaluados']+'</b>'
+              },
+              xAxis: {
+                  type: 'category'
+              },
+              yAxis: {
+                  title: {
+                      text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos con respuestas correctas</div>'
+                  }
+              },
+              legend: {
+                  enabled: false
+              },
+              plotOptions: {
+                  series: {
+                    events: {
+                      click: function (event) {
+                        // nada...
+                      }
+              },
+                      borderWidth: 0,
+                      dataLabels: {
+                          enabled: true,
+                          format: '{point.y:.1f}%'
+                      }
+                  },
+                  // agregamos a la columna la propiedad para el clik y enviar el nombre a una función
+                  bar :{
+                       point:{
+                           events:{
+                               click:function(){
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2, va_por);
+                               }
+                           }
+                       }
+                   }
+              },
+              tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><b>{point.y}%</b><br>',
+                pointFormat: '<span style="font-size:11px">Total de preguntas en el contenido temático: </span><b>{point.drilldown}</b><br><span style="color:{point.color}">{point.name}</span>'
+
+              },
+              series: [{
+                  name: 'Porcentaje de alumnos con respuestas correctas: ',
+                  colorByPoint: true,
+                  data: arr_mate_aux
+              }],
+          });
+
+          $(".highcharts-background").css("fill","#FFF");
+          
+
+      }// graficoplanea_ud_secu_mate()
+
+      // Planea 2019 F
 
       Graficasm.prototype.get_reactivos_xunidad_de_analisis = function(nombre,id_cont,id_filtro,periodo,idcampodis, tipo_filtro, va_por){
 
@@ -770,7 +1026,7 @@ function Graficasm(){
                   height: ($(document).width()/10)*12
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2018</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
               },
               subtitle: {
                   text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_lyc[0]['alumnos_evaluados']+'</b>'
@@ -920,7 +1176,7 @@ function Graficasm(){
                   // width: 1000
               },
               title: {
-                  text: '<b style="font-size: 2.3vh;">PLANEA 2018</b>'
+                  text: '<b style="font-size: 2.3vh;">PLANEA 2017</b>'
               },
               subtitle: {
                   text:  '<b style="font-size: 1.5vh;"> Total de alumnos evaluados: '+arr_mate[0]['alumnos_evaluados']+'</b>'
