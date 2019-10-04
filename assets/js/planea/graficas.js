@@ -598,7 +598,7 @@ function Graficasm(){
 
       // Planea 2019 I
         Graficasm.prototype.graficoplanea_ud_secu_lyc19 = function(arr_lyc,id_cct, va_por){
-        
+
         arr_lyc.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
@@ -615,7 +615,7 @@ function Graficasm(){
 
 
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
-                 
+
                 legend: {
                     itemStyle: {
                         font: '9pt',
@@ -675,7 +675,7 @@ function Graficasm(){
               yAxis: {
                   title: {
                       text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos con respuestas correctas</div>'
-                      
+
                   },
               },
               plotOptions: {
@@ -699,13 +699,23 @@ function Graficasm(){
                            events:{
                                click:function(){
                                 var periodo = $('#slt_periodo_planeaxm option:selected').val();
-                                console.log(periodo);
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,periodo,1, va_por);
+                                // console.log($('#slt_tipo').val());
+                                if ($('#slt_tipo').val()!=undefined) {
+                                  var tipo = 'zona';
+                                  console.log(tipo);
+                                }
+                                else {
+                                  var tipo = 'municipio';
+                                }
+
+
+                                // console.log(periodo);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,periodo,1,tipo, va_por);
                                }
                            }
                        }
                    }
-                
+
               },
 
               tooltip: {
@@ -723,7 +733,7 @@ function Graficasm(){
 
 
           $(".highcharts-background").css("fill","#FFF");
-        
+
       }// graficoplanea_ud_secu_lyc()
 
       Graficasm.prototype.graficoplanea_ud_secu_mate19 = function(arr_mate,id_cct, va_por){
@@ -848,7 +858,7 @@ function Graficasm(){
           });
 
           $(".highcharts-background").css("fill","#FFF");
-          
+
 
       }// graficoplanea_ud_secu_mate()
 
@@ -857,7 +867,7 @@ function Graficasm(){
       Graficasm.prototype.get_reactivos_xunidad_de_analisis = function(nombre,id_cont,id_filtro,periodo,idcampodis, tipo_filtro, va_por){
 
           var periodo = $('#slt_periodo_planeaxm option:selected').val();
-            if (periodo == 1 && tipo_filtro == 'zona' ) {
+            if ((periodo == 1 || periodo == 2 || periodo == 4) && tipo_filtro == 'zona' ) {
 
                 var periodo = $('#slt_periodo_planeaxz option:selected').val();
              }

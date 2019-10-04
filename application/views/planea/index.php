@@ -87,6 +87,7 @@
                                       <?=form_dropdown('campoD', $camposd, 'large', array('class' => 'form-control', 'id' => 'slt_campod_planeaxz'));?>
                                     </div>
                                   </div><!-- col-md-4 -->
+                                  <input type="hidden" name="slt_tipo"  id="slt_tipo" value="zona">
                                 </div><!-- row -->
                               <!-- </form> -->
                         </div>

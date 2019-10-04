@@ -77,7 +77,7 @@ $("#slt_nivel_planeaxm").change(function(){
 
 	}else if($("#slt_nivel_planeaxm").val() == '6'){
 		$("#slt_periodo_planeaxm").append("<option value='2'>2017</option>");
-		
+
 
 	}
 
@@ -108,16 +108,16 @@ const Planea = {
 			    case "5":
 			    console.log($("#slt_periodo_planeaxm").val());
 			        if($("#slt_campod_planeaxm").val() == 1){
-			        	
+
 						if ($("#slt_periodo_planeaxm").val() == 4) {
 							graficar.graficoplanea_ud_secu_lyc19(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxm").val());
 						}else {
 							graficar.graficoplanea_ud_secu_lyc(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxm").val());
 						}
-						
+
 					}else{
 						if ($("#slt_periodo_planeaxm").val() == 4) {
-							
+
 							graficar.graficoplanea_ud_secu_mate19(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxm").val());
 						}else {
 							graficar.graficoplanea_ud_secu_mate(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxm").val());
@@ -167,17 +167,17 @@ const Planea = {
 			    console.log($("#slt_periodo_planeaxz").val());
 			       	if($("#slt_campod_planeaxz").val() == 1){
 			       		if ($("#slt_periodo_planeaxz").val() == 4) {
-							graficar.graficoplanea_ud_secu_lyc19(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxz").val());
+							graficar.graficoplanea_ud_secu_lyc19(result.datos, $("#slt_zona_planea").val(), "zona",  $("#slt_periodo_planeaxz").val());
 						}else {
-							graficar.graficoplanea_ud_secu_lyc(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxz").val());
+							graficar.graficoplanea_ud_secu_lyc(result.datos, $("#slt_zona_planea").val(), "zona",  $("#slt_periodo_planeaxz").val());
 						}
-						
+
 					}else{
 						if ($("#slt_periodo_planeaxz").val() == 4) {
-							
-							graficar.graficoplanea_ud_secu_mate19(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxz").val());
+
+							graficar.graficoplanea_ud_secu_mate19(result.datos, $("#slt_zona_planea").val(), "zona",  $("#slt_periodo_planeaxz").val());
 						}else {
-							graficar.graficoplanea_ud_secu_mate(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxz").val());
+							graficar.graficoplanea_ud_secu_mate(result.datos, $("#slt_zona_planea").val(), "zona",  $("#slt_periodo_planeaxz").val());
 						}
 					}
 			        break;
