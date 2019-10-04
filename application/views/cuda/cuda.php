@@ -81,8 +81,8 @@
 								<option value="Preescolar">Preescolar</option>
 								<option value="Primaria">Primaria</option>
 								<option value="Secundaria">Secundaria</option>
-								<!-- <option value="Educación para Adultos">Educación para Adultos</option>
-								<option value="Extraescolar">Extraescolar</option> -->
+								<option value="Educación para Adultos">Educación para Adultos</option>
+								<option value="Extraescolar">Extraescolar</option>
 							</select>
 						</div>
 						</div>	
