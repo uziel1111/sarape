@@ -163,6 +163,7 @@ span{
 			</div> <!-- Ruta mejora -->
 
 			<div class="tab-pane fade" id="nav-avances" role="tabpanel" aria-labelledby="nav-avances-tab">
+				
 				<?= $vista_avance ?>
 			</div> <!-- Avances -->
 			<div class="tab-pane fade" id="nav-ayuda" role="tabpanel" aria-labelledby="nav-ayuda-tab">
