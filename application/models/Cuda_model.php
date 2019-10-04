@@ -12,7 +12,7 @@ class Cuda_model extends CI_Model
 		$str_query = "SELECT * from aplicar a
 		inner join respuesta r on r.idaplicar = a.idaplicar
 		inner join usuario u on u.idusuario = a.idusuario
-		where a.idusuario = {$idusuario} and r.idpregunta = 1;
+		where a.idusuario = {$idusuario} and r.idpregunta = 1  and a.estatus = 1;
 		";
 		return $this->ci_db->query($str_query)->result_array();
 	}
@@ -21,7 +21,7 @@ class Cuda_model extends CI_Model
 	{
 		$str_query = "SELECT u.* from usuario u
 		inner join aplicar a on a.idusuario = u.idusuario
-		where u.idsubsecretaria ={$idsubsecretria} group by a.idusuario;";
+		where u.idsubsecretaria ={$idsubsecretria}  and a.estatus = 1 and a.idusuario <> 12 group by a.idusuario;";
 
 		return $this->ci_db->query($str_query)->result_array();
 	}
@@ -33,7 +33,7 @@ class Cuda_model extends CI_Model
 		INNER JOIN pregunta p on p.idpregunta = r.idpregunta
 		INNER JOIN aplicar a on a.idaplicar = r.idaplicar
         INNER JOIN usuario u on a.idusuario = u.idusuario
-		where r.idaplicar = {$idaplicar}
+		where r.idaplicar = {$idaplicar}  and a.estatus = 1
 		group by r.idpregunta;";
 
 		return $this->ci_db->query($str_query)->result_array();
@@ -57,7 +57,7 @@ class Cuda_model extends CI_Model
 	{
 		$str_query = "SELECT count(a.idaplicar) as encuestasUsuario from aplicar a
 		inner join usuario u on u.idusuario = a.idusuario
-		where u.idusuario = {$idusuario};";
+		where u.idusuario = {$idusuario} and a.estatus = 1;";
 
 		return $this->ci_db->query($str_query)->result_array();
 	}
@@ -65,14 +65,14 @@ class Cuda_model extends CI_Model
 	{
 		$str_query = "SELECT count(a.idaplicar) as total from aplicar a
 		inner join usuario u on u.idusuario = a.idusuario
-		where u.idsubsecretaria = {$idsubsecretaria};";
+		where u.idsubsecretaria = {$idsubsecretaria} and a.estatus = 1;";
 
 		return $this->ci_db->query($str_query)->result_array();
 	}
 
 	public function getEstadisticaGlobal()
 	{
-		$str_query = "SELECT count(a.idaplicar) as global from aplicar a";
+		$str_query = "SELECT count(a.idaplicar) as global from aplicar a where a.estatus = 1";
 
 		return $this->ci_db->query($str_query)->result_array();
 	}
@@ -86,7 +86,7 @@ class Cuda_model extends CI_Model
 
 		$querymes = "SELECT a.tema, r.idaplicar from respuesta r
 		inner join aplicar a on a.idaplicar = r.idaplicar
-		where r.complemento ='{$mes}'";
+		where r.complemento ='{$mes}'  and a.estatus = 1";
 
 		$querynivelmes = "SELECT * from ({$querynivel}) as nivel
 		inner join ({$querymes}) as mes on nivel.idaplicar = mes.idaplicar";
@@ -120,7 +120,7 @@ class Cuda_model extends CI_Model
 	{
 		$str_query = "SELECT * from aplicar a
 		inner join respuesta r on r.idaplicar = a.idaplicar
-		where a.tema = {$tema} and r.complemento = '{$nivel}';";
+		where a.tema = {$tema} and r.complemento = '{$nivel}'  and a.estatus = 1;";
 		// echo "<pre>"; print_r($str_query); die();
 		return $this->ci_db->query($str_query)->result_array();
 

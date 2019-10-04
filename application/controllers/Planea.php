@@ -175,7 +175,7 @@ class Planea extends CI_Controller {
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
-		
+
 
 
 }// Planea

@@ -55,7 +55,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<a>
-					En la Secretaría de Educación Pública de Coahuila no hemos propuesto disminuir de forma sensible la carga administrativa de los docentes de educación básica, para lo cual se revisaron XXX requerimientos de información de las escuelas de educación básica, de los cuales se acordó eliminar XXX de ellos. A continuación, se publican los requerimientos de información (entre formatos y sistemas automatizados) <strong>Únicos Obligatorios</strong> aplicables para las escuelas al ciclo escolar 2019-2020.
+					En la Secretaría de Educación del Estado de Coahuila nos hemos propuesto disminuir de forma sensible la carga administrativa de los docentes de educación básica, para lo cual se revisaron 176 requerimientos de información de las escuelas de educación básica, de los cuales se acordó eliminar hasta el momento 63 de ellos. A continuación, se publican los requerimientos de información (entre formatos y sistemas automatizados) <strong>Únicos Obligatorios</strong> aplicables para las escuelas en el ciclo escolar 2019-2020.
 					</a>
 					<br><br>
 					<a>
@@ -63,7 +63,7 @@
 					</a>
 					<br><br>
 					<a>
-					¿Alguna duda con referencia al Catálogo Único de Documentos Autorizados? Manda un mensaje a <a style="color:blue;" href="mailto:cuda@seducoahuila.gob.mx">cuda@seducoahuila.gob.mx</a>  o en el dato de contacto para cada requerimiento.
+					¿Alguna duda con referencia al Catálogo Único de Documentos Autorizados? Manda un mensaje a <a style="color:blue;" href="mailto:cuda@seducoahuila.gob.mx">cuda@seducoahuila.gob.mx</a> o en el dato de contacto para cada requerimiento.
 					</a>
 					<br><br>
 				</div>

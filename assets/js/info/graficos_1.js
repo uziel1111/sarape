@@ -2353,6 +2353,9 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
 
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
 
                 legend: {
@@ -2488,11 +2491,9 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900',
-
-
-                '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                ,'#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900',
                
 
                  '#3CB371', '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],

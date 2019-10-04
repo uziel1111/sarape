@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * 
+ *
  */
 class Estadistica_pemc extends CI_Controller
 {
@@ -25,7 +25,7 @@ class Estadistica_pemc extends CI_Controller
     }
 
     function index()
-    {   
+    {
       $data = $this->data;
       $data['error'] = '';
       $this->load->view( "estadistica_pemc/login", $data);
@@ -58,9 +58,9 @@ class Estadistica_pemc extends CI_Controller
             }else{
                 $arr_niveles['0'] = 'TODOS';
                 foreach ($result_niveles as $row){
-                    
+
                     $arr_niveles[$row['id_nivel']] = $row['nivel'];
-                    
+
                 }
             }
 
@@ -82,13 +82,13 @@ class Estadistica_pemc extends CI_Controller
 
             if(Utilerias::haySesionAbierta($this)){
                  Utilerias::pagina_basica_pemc($this, 'estadistica_pemc/index',$data);
-                // $this->load->view('estadistica_pemc/index',$data);  
+                // $this->load->view('estadistica_pemc/index',$data);
             }
         }else{
             $data = $this->data;
             $data['error'] = 'Usuario o contraseña incorrecta';
             $data['login_failed'] = TRUE;
-            $this->load->view('estadistica_pemc/login',$data); 
+            $this->load->view('estadistica_pemc/login',$data);
         }
     }
 
@@ -176,13 +176,13 @@ public function busquedaxct(){
         $data['arr_progsapoyo'] = $result_progsapoyo;
     }
     $result_apoyosreq = $this->Apoyo_req_model->get_apoyo_req();
-    
+
     if(count($result_apoyosreq)==0){
         $data['arr_apoyosreq'] = array( '-1' => 'Error recuperando los apoyosreq' );
     }else{
         $data['arr_apoyosreq'] = $result_apoyosreq;
     }
-    
+
     $result_ambitos = $this->Ambito_model->get_ambitos();
     if(count($result_ambitos)==0){
         $data['arr_ambitos'] = array(   '-1' => 'Error recuperando los ambitos' );
@@ -291,80 +291,86 @@ function truncar($numero, $digitos) {
     public function getEstadistica(){
         $result = array();
         $nivel = $this->input->post('nivel');
-       
-        $totalPorcentaje = 0;
-        $tabla = '';
-        $totalEscuelas = 0;
 
-        $municipios = $this->Estadistica_pemc_model->municipios();
+        $tabla = $this->Estadistica_pemc_model->get_escuelasMun_gen($nivel);
+        $totalEscuelas = $this->Estadistica_pemc_model->get_toatalesc($nivel);
+        // echo "<pre>";print_r($tabla);die();
+     //    $totalPorcentaje = 0;
+     //    $tabla = '';
+     //    $totalEscuelas = 0;
+     //
+     //    $municipios = $this->Estadistica_pemc_model->municipios();
+     //
+     //    foreach ($municipios as $key => $value) {
+     //        $tabla .= "<tr>
+     //                  <td>{$value['municipio']}</td>
+     //                  ";
+     //        $escuelasxmun = $this->Estadistica_pemc_model->get_escuelasMun($nivel, $value['id_municipio']);
+     //
+     //        foreach ($escuelasxmun as $key => $values) {
+     //            $tabla .= "<td>{$values['total']}</td>";
+     //            $totalEscuelas += $values['total'];
+     //        }
+     //
+     //        $datos = $this->Estadistica_pemc_model->get_cantidad_datos($nivel, $value['id_municipio']);
+     //        $total = $this->Estadistica_pemc_model->get_total($nivel, $value['id_municipio']);
+     //
+     //        foreach ($total as $key => $value) {
+     //             $porcenEsc = 0;
+     //            if ($value['total'] == NULL) {
+     //                $tabla .= "<td>0</td>";
+     //                $pEsc = ($value['total'] * 100) /  $values['total'];
+     //                $porcenEsc = $this->truncar($pEsc, 0);
+     //                $tabla .= "<td>{$porcenEsc}%</td>";
+     //            }else{
+     //
+     //            $tabla .= "<td>{$value['total']}</td>";
+     //             $pEsc = ($value['total'] * 100) /  $values['total'];
+     //              $porcenEsc = $this->truncar($pEsc, 0);
+     //                $tabla .= "<td>{$porcenEsc}%</td>";
+     //            }
+     //            $totalPorcentaje += $value['total'];
+     //        }
+     //
+     //        $rango0 = 0;
+     //        $rango1 = 0;
+     //        $rango2 = 0;
+     //        $rango3 = 0;
+     //
+     //            foreach ($datos as $key => $value) {
+     //               if ($value['num_objetivos'] == 0) {
+     //                    $rango0 += $value['total_obj'];
+     //               }
+     //
+     //               if ($value['num_objetivos'] == 1) {
+     //                   $rango1 += $value['total_obj'];
+     //               }
+     //
+     //               if ($value['num_objetivos'] == 2 || $value['num_objetivos'] == 3) {
+     //                   $rango2 += $value['total_obj'];
+     //               }
+     //
+     //               if ($value['num_objetivos'] >= 4) {
+     //                   $rango3 += $value['total_obj'];
+     //               }
+     //            }
+     //        $tabla .= "<td>{$rango0}</td>
+     //                   <td>{$rango1}</td>
+     //                   <td>{$rango2}</td>
+     //                   <td>{$rango3}</td>
+     //                   </tr>";
+     //
+     //    }
+     //
+     //
+     // $pC = (($totalPorcentaje * 100) / 7871);
+     // $pNC = 100 - $pC;
+     //
+     // $porcentajeC = $this->truncar($pC, 0);
+     // $porcentajeNC = $this->truncar($pNC, 0);
 
-        foreach ($municipios as $key => $value) {
-            $tabla .= "<tr>
-                      <td>{$value['municipio']}</td>
-                      ";
-            $escuelasxmun = $this->Estadistica_pemc_model->get_escuelasMun($nivel, $value['id_municipio']);
-
-            foreach ($escuelasxmun as $key => $values) {
-                $tabla .= "<td>{$values['total']}</td>";
-                $totalEscuelas += $values['total'];
-            }
-           
-            $datos = $this->Estadistica_pemc_model->get_cantidad_datos($nivel, $value['id_municipio']);
-            $total = $this->Estadistica_pemc_model->get_total($nivel, $value['id_municipio']);
-            
-            foreach ($total as $key => $value) {
-                 $porcenEsc = 0;
-                if ($value['total'] == NULL) {
-                    $tabla .= "<td>0</td>";
-                    $pEsc = ($value['total'] * 100) /  $values['total'];
-                    $porcenEsc = $this->truncar($pEsc, 0);
-                    $tabla .= "<td>{$porcenEsc}%</td>";
-                }else{
-
-                $tabla .= "<td>{$value['total']}</td>";
-                 $pEsc = ($value['total'] * 100) /  $values['total'];
-                  $porcenEsc = $this->truncar($pEsc, 0);
-                    $tabla .= "<td>{$porcenEsc}%</td>";
-                }
-                $totalPorcentaje += $value['total'];
-            }
-
-            $rango0 = 0;
-            $rango1 = 0;
-            $rango2 = 0;
-            $rango3 = 0;
-
-                foreach ($datos as $key => $value) {
-                   if ($value['num_objetivos'] == 0) {
-                        $rango0 += $value['total_obj'];
-                   }
-
-                   if ($value['num_objetivos'] == 1) {
-                       $rango1 += $value['total_obj'];
-                   }
-
-                   if ($value['num_objetivos'] == 2 || $value['num_objetivos'] == 3) {
-                       $rango2 += $value['total_obj'];
-                   }
-
-                   if ($value['num_objetivos'] >= 4) {
-                       $rango3 += $value['total_obj'];
-                   }
-                }
-            $tabla .= "<td>{$rango0}</td>
-                       <td>{$rango1}</td>
-                       <td>{$rango2}</td>
-                       <td>{$rango3}</td>
-                       </tr>";
-            
-        }
-
-
-     $pC = (($totalPorcentaje * 100) / 7871);
-     $pNC = 100 - $pC;
-
-     $porcentajeC = $this->truncar($pC, 0);
-     $porcentajeNC = $this->truncar($pNC, 0);
+     $porcentajeC = (float)$this->Estadistica_pemc_model->get_total_gen($nivel)[0]['por_capt'];
+     $porcentajeNC = (float)$this->Estadistica_pemc_model->get_total_gen($nivel)[0]['por_ncapt'];
 
      $result = ['tabla' => $tabla, 'total' => $totalEscuelas];
 
@@ -375,7 +381,7 @@ function truncar($numero, $digitos) {
      exit;
  }
 
- 
+
 
 public function getEstadisticaLAE(){
   $nivel = $this->input->post('nivel');
@@ -383,7 +389,7 @@ public function getEstadisticaLAE(){
   $municipioPost = $this->input->post('municipio');
   $sostenimiento = $this->input->post('sostenimiento');
   $zona = $this->input->post('zona');
-  
+
   $result = array();
   $tabla = '';
    $obj1 = 0;  $obj2 = 0;  $obj3 = 0;  $obj4 = 0;  $obj5 = 0;
@@ -404,14 +410,14 @@ public function getEstadisticaLAE(){
         }
         $tabla .= "<td>{$region['region']}</td>";
         $tabla .="<td>{$region['municipio']}</td>";
-    
+
         if ($sostenimiento != 0 || $zona != 0) {
                 $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae_zona_sost($nivel, $zona, $sostenimiento,  $region['id_municipio']);
             } else {
 
                 $OALae = $this->Estadistica_pemc_model->get_obj_acc_lae($nivel, $region['id_municipio']);
-            }   
-                
+            }
+
         if (empty($OALae)) {
          $tabla .="<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>";
      }else{
@@ -545,8 +551,8 @@ $zonas= $this->Estadistica_pemc_model->get_zonas($sostenimiento);
      }
     }
 
-       
-    
+
+
 
 
    $data['zonas'] = $zonas;
