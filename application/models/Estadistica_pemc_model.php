@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Estadistica_pemc_model extends CI_Model
 {
@@ -41,12 +41,12 @@ class Estadistica_pemc_model extends CI_Model
         $query .=' and e.id_nivel = '.$nivel.'';
         }
         $query .= ' GROUP BY tp.id_tprioritario  ORDER by tp.orden) as obj group by obj.num_objetivos;';
-        
+
      // echo '<pre>'; print_r($query);
       return $this->db->query($query)->result_array();
 
-     
-   
+
+
  }
 
  function municipios()
@@ -99,7 +99,7 @@ class Estadistica_pemc_model extends CI_Model
    $this->db->select('m.municipio, m.id_municipio, r.region, r.id_region');
   $this->db->from('municipio as m');
   $this->db->join('region as r', 'r.id_region = m.id_region');
-  
+
   if ($region != 0) {
   $this->db->where('m.id_region',$region);
   }
@@ -152,7 +152,7 @@ class Estadistica_pemc_model extends CI_Model
     if ($sostenimiento != 0) {
      $query .= ' and s.id_sostenimiento = '.$sostenimiento.'';
    }
-    
+
   $query .= ' GROUP BY tp.orden  ORDER by tp.orden';
 
   return $this->db->query($query)->result_array();
@@ -189,7 +189,7 @@ function get_filtros($nivel, $municipio, $region)
  {
    $str_query = 'SELECT DISTINCT zona_escolar, id_sostenimiento from supervision';
    if ($sostenimiento != 0) {
-     
+
     $str_query .=' where id_sostenimiento ='.$sostenimiento.'';
    }
    $str_query .=' order by zona_escolar asc;';
@@ -213,7 +213,7 @@ INNER JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
 LEFT JOIN rm_avance_xcctxtpxaccion acct ON tp.id_tprioritario = acct.id_tprioritario
 WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 and tp.orden = 1
 GROUP BY
-su.zona_escolar, tp.orden) as lae1 
+su.zona_escolar, tp.orden) as lae1
 inner join (SELECT
 IFNULL(ROUND(avg(acct.cte1),1),0) AS promedio_cte,
 tp.orden,
@@ -261,16 +261,16 @@ if ($sostenimiento != 0 || $nivel != 0) {
   $str_query .= ' where ';
 }
 if ( $nivel != 0) {
-  $str_query .=' lae1.id_nivel ='.$nivel.''; 
+  $str_query .=' lae1.id_nivel ='.$nivel.'';
 }
 if ( $sostenimiento != 0 && $nivel != 0) {
- $str_query .=' and lae1.id_sostenimiento ='.$sostenimiento.''; 
+ $str_query .=' and lae1.id_sostenimiento ='.$sostenimiento.'';
   if ($zona != 0) {
     $str_query .= ' and lae1.zona_escolar = '.$zona.'';
   }
 } else {
   if ($sostenimiento != 0) {
-   $str_query .=' lae1.id_sostenimiento ='.$sostenimiento.''; 
+   $str_query .=' lae1.id_sostenimiento ='.$sostenimiento.'';
   if ($zona != 0) {
     $str_query .= ' and lae1.zona_escolar = '.$zona.'';
   }
@@ -334,4 +334,153 @@ if ( $sostenimiento != 0 && $nivel != 0) {
     $this->db->order_by("ni.id_nivel");
     return  $this->db->get()->result_array();
   }// get_xparams()
+
+  function get_escuelasMun_gen($nivel){
+     if ($nivel != 0) {
+      $where= " and e.id_nivel={$nivel}";
+     }
+     else {
+       $where= "";
+     }
+    $query = "SELECT
+              mastert.id_municipio, mastert.municipio, mastert.n_escxmuni,
+              captobj.esc_que_capt, captobj.porcentaje,
+              IFNULL(x0.esc_que_capt0,0) as esc_con0obj, IFNULL(x1.esc_que_capt1,0) as esc_con1obj,
+              IFNULL(x2.esc_que_capt23,0) as esc_con2y3obj,IFNULL(x3.esc_que_captmay4,0) as esc_conmasde4obj
+              FROM
+              (
+              	SELECT
+              	m.id_municipio, m.municipio, COUNT(DISTINCT e.id_cct) n_escxmuni
+              	FROM municipio m
+              	INNER JOIN escuela e ON m.id_municipio = e.id_municipio
+              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 {$where}
+              	GROUP BY m.id_municipio
+              ) as mastert
+              INNER JOIN
+              (
+              	SELECT
+              	m.id_municipio, COUNT(DISTINCT IF(ISNULL(o.id_cct),NULL, o.id_cct)) as esc_que_capt,
+              	ROUND(IF(COUNT(DISTINCT IF(ISNULL(o.id_cct),NULL, o.id_cct))=0,0,(COUNT( DISTINCT IF(ISNULL(o.id_cct),NULL, o.id_cct))*100)/COUNT(DISTINCT e.id_cct)),1) as porcentaje
+              	FROM municipio m
+              	INNER JOIN escuela e ON m.id_municipio = e.id_municipio
+              	LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+              	LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
+              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 {$where}
+              	GROUP BY m.id_municipio
+              ) captobj on mastert.id_municipio = captobj.id_municipio
+              LEFT JOIN
+              (
+              	SELECT
+              	xcon0.id_municipio, COUNT(DISTINCT xcon0.id_cct) as esc_que_capt0
+              	FROM
+              	(
+              	SELECT
+              	m.id_municipio, e.id_cct,
+              	COUNT(DISTINCT o.id_objetivo)
+              	FROM municipio m
+              	INNER JOIN escuela e ON m.id_municipio = e.id_municipio
+              	LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+              	LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
+              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 {$where}
+              	GROUP BY m.id_municipio, e.id_cct
+              	HAVING COUNT(DISTINCT o.id_objetivo)=0
+              	) as xcon0
+              	GROUP BY xcon0.id_municipio
+              ) as x0 on mastert.id_municipio = x0.id_municipio
+
+              LEFT JOIN
+              (
+              	SELECT
+              	xcon0.id_municipio, COUNT(DISTINCT xcon0.id_cct) as esc_que_capt1
+              	FROM
+              	(
+              	SELECT
+              	m.id_municipio, e.id_cct,
+              	COUNT(DISTINCT o.id_objetivo)
+              	FROM municipio m
+              	INNER JOIN escuela e ON m.id_municipio = e.id_municipio
+              	LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+              	LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
+              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 {$where}
+              	GROUP BY m.id_municipio, e.id_cct
+              	HAVING COUNT(DISTINCT o.id_objetivo)=1
+              	) as xcon0
+              	GROUP BY xcon0.id_municipio
+              ) as x1 on mastert.id_municipio = x1.id_municipio
+
+              LEFT JOIN
+              (
+              	SELECT
+              	xcon0.id_municipio, COUNT(DISTINCT xcon0.id_cct) as esc_que_capt23
+              	FROM
+              	(
+              	SELECT
+              	m.id_municipio, e.id_cct,
+              	COUNT(DISTINCT o.id_objetivo)
+              	FROM municipio m
+              	INNER JOIN escuela e ON m.id_municipio = e.id_municipio
+              	LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+              	LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
+              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 {$where}
+              	GROUP BY m.id_municipio, e.id_cct
+              	HAVING COUNT(DISTINCT o.id_objetivo)=2 OR COUNT(DISTINCT o.id_objetivo)=3
+              	) as xcon0
+              	GROUP BY xcon0.id_municipio
+              ) as x2 on mastert.id_municipio = x2.id_municipio
+
+              LEFT JOIN
+              (
+              	SELECT
+              	xcon0.id_municipio, COUNT(DISTINCT xcon0.id_cct) as esc_que_captmay4
+              	FROM
+              	(
+              	SELECT
+              	m.id_municipio, e.id_cct,
+              	COUNT(DISTINCT o.id_objetivo)
+              	FROM municipio m
+              	INNER JOIN escuela e ON m.id_municipio = e.id_municipio
+              	LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+              	LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
+              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 {$where}
+              	GROUP BY m.id_municipio, e.id_cct
+              	HAVING COUNT(DISTINCT o.id_objetivo)>3
+              	) as xcon0
+              	GROUP BY xcon0.id_municipio
+              ) as x3 on mastert.id_municipio = x3.id_municipio
+    ";
+
+    return $this->db->query($query)->result_array();
+  }//get_escuelasMun_gen()
+
+  function get_toatalesc($nivel){
+     if ($nivel != 0) {
+      $where= " and e.id_nivel={$nivel}";
+     }
+     else {
+       $where= "";
+     }
+    $query = "SELECT
+              COUNT(DISTINCT e.id_cct) as n_esc
+              FROM escuela as e
+              WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 {$where}
+              ";
+    return $this->db->query($query)->row('n_esc');
+  }//get_toatalesc()
+  function get_total_gen($nivel){
+    if ($nivel != 0) {
+     $where= " and e.id_nivel={$nivel}";
+    }
+    else {
+      $where= "";
+    }
+   $query = "SELECT
+						 ROUND(((COUNT(DISTINCT IF(ISNULL(o.id_objetivo),NULL, e.id_cct)) * 100)/COUNT(DISTINCT e.id_cct)),1) as por_capt,
+						 ROUND((100-((COUNT(DISTINCT IF(ISNULL(o.id_objetivo),NULL, e.id_cct)) * 100)/COUNT(DISTINCT e.id_cct))),1) as por_ncapt
+             FROM escuela as e
+						 LEFT JOIN rm_tema_prioritarioxcct tp on e.id_cct = tp.id_cct
+						 LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
+             WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 {$where}
+             ";
+  return $this->db->query($query)->result_array();
+ }
 }
