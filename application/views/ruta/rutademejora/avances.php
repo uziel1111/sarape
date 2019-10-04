@@ -42,7 +42,7 @@
           <td>NORMALIDAD MÍNIMA ESCOLAR</td>                  <td>Dar a conocer actividades y resultados</td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_751_9878&quot;)" id="1_4237_751_9878">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_751_9878&quot;)" id="1_4237_751_9878">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -58,7 +58,7 @@
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_751_9878&quot;)" id="2_4237_751_9878">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_751_9878&quot;)" id="2_4237_751_9878">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -74,7 +74,7 @@
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_751_9878&quot;)" id="3_4237_751_9878">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_751_9878&quot;)" id="3_4237_751_9878">
               <option value="0">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -90,7 +90,7 @@
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_751_9878&quot;)" id="4_4237_751_9878">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_751_9878&quot;)" id="4_4237_751_9878">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -106,7 +106,7 @@
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_751_9878&quot;)" id="5_4237_751_9878">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_751_9878&quot;)" id="5_4237_751_9878">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -122,7 +122,7 @@
           </td>
 
                   <td>
-            <select onchange="obj_rm_avances_acciones.set_avance(&quot;6_4237_751_9878&quot;)" id="6_4237_751_9878">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;6_4237_751_9878&quot;)" id="6_4237_751_9878">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -138,7 +138,7 @@
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_751_9878&quot;)" id="7_4237_751_9878">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_751_9878&quot;)" id="7_4237_751_9878">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -154,7 +154,7 @@
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_751_9878&quot;)" id="8_4237_751_9878">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_751_9878&quot;)" id="8_4237_751_9878">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -179,7 +179,7 @@ Cuadro de honor matemático
 </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_751_9876&quot;)" id="1_4237_751_9876">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_751_9876&quot;)" id="1_4237_751_9876">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -195,7 +195,7 @@ Cuadro de honor matemático
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_751_9876&quot;)" id="2_4237_751_9876">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_751_9876&quot;)" id="2_4237_751_9876">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -211,7 +211,7 @@ Cuadro de honor matemático
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_751_9876&quot;)" id="3_4237_751_9876">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_751_9876&quot;)" id="3_4237_751_9876">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -227,7 +227,7 @@ Cuadro de honor matemático
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_751_9876&quot;)" id="4_4237_751_9876">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_751_9876&quot;)" id="4_4237_751_9876">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -243,7 +243,7 @@ Cuadro de honor matemático
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_751_9876&quot;)" id="5_4237_751_9876">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_751_9876&quot;)" id="5_4237_751_9876">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -275,7 +275,7 @@ Cuadro de honor matemático
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_751_9876&quot;)" id="7_4237_751_9876">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_751_9876&quot;)" id="7_4237_751_9876">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -291,7 +291,7 @@ Cuadro de honor matemático
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_751_9876&quot;)" id="8_4237_751_9876">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_751_9876&quot;)" id="8_4237_751_9876">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -317,7 +317,7 @@ Cuadro de honor matemático
                             <td>Compartir materiales de aplicación entre grados</td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_751_9875&quot;)" id="1_4237_751_9875">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_751_9875&quot;)" id="1_4237_751_9875">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -333,7 +333,7 @@ Cuadro de honor matemático
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_751_9875&quot;)" id="2_4237_751_9875">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_751_9875&quot;)" id="2_4237_751_9875">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -349,7 +349,7 @@ Cuadro de honor matemático
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_751_9875&quot;)" id="3_4237_751_9875">
+            <select <?=(isset($tipou_pemc_avances))?'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_751_9875&quot;)" id="3_4237_751_9875">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -365,7 +365,7 @@ Cuadro de honor matemático
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_751_9875&quot;)" id="4_4237_751_9875">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_751_9875&quot;)" id="4_4237_751_9875">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -381,7 +381,7 @@ Cuadro de honor matemático
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_751_9875&quot;)" id="5_4237_751_9875">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_751_9875&quot;)" id="5_4237_751_9875">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -413,7 +413,7 @@ Cuadro de honor matemático
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_751_9875&quot;)" id="7_4237_751_9875">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_751_9875&quot;)" id="7_4237_751_9875">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -429,7 +429,7 @@ Cuadro de honor matemático
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_751_9875&quot;)" id="8_4237_751_9875">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_751_9875&quot;)" id="8_4237_751_9875">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -453,7 +453,7 @@ Resolución de problemas de manera aleatoria
 </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_751_9874&quot;)" id="1_4237_751_9874">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_751_9874&quot;)" id="1_4237_751_9874">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -469,7 +469,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_751_9874&quot;)" id="2_4237_751_9874">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_751_9874&quot;)" id="2_4237_751_9874">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -485,7 +485,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_751_9874&quot;)" id="3_4237_751_9874">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_751_9874&quot;)" id="3_4237_751_9874">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -501,7 +501,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_751_9874&quot;)" id="4_4237_751_9874">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_751_9874&quot;)" id="4_4237_751_9874">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -517,7 +517,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_751_9874&quot;)" id="5_4237_751_9874">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_751_9874&quot;)" id="5_4237_751_9874">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -549,7 +549,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_751_9874&quot;)" id="7_4237_751_9874">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_751_9874&quot;)" id="7_4237_751_9874">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -565,7 +565,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_751_9874&quot;)" id="8_4237_751_9874">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_751_9874&quot;)" id="8_4237_751_9874">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -589,7 +589,7 @@ Resolución de problemas de manera aleatoria
                             <td>SSSSSSSSSSSSSSSS</td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_751_1435&quot;)" id="1_4237_751_1435">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_751_1435&quot;)" id="1_4237_751_1435">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -605,7 +605,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_751_1435&quot;)" id="2_4237_751_1435">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_751_1435&quot;)" id="2_4237_751_1435">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -621,7 +621,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_751_1435&quot;)" id="3_4237_751_1435">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_751_1435&quot;)" id="3_4237_751_1435">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -637,7 +637,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_751_1435&quot;)" id="4_4237_751_1435">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_751_1435&quot;)" id="4_4237_751_1435">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -653,7 +653,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_751_1435&quot;)" id="5_4237_751_1435">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_751_1435&quot;)" id="5_4237_751_1435">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -685,7 +685,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_751_1435&quot;)" id="7_4237_751_1435">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_751_1435&quot;)" id="7_4237_751_1435">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -701,7 +701,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_751_1435&quot;)" id="8_4237_751_1435">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_751_1435&quot;)" id="8_4237_751_1435">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -724,7 +724,7 @@ Resolución de problemas de manera aleatoria
           <td>MEJORA DE LOS APRENDIZAJES CON ÉNFASIS EN LECTURA, ESCRITURA Y MATEMÁTICAS</td>                  <td>QQQ</td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_4203_10897&quot;)" id="1_4237_4203_10897">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_4203_10897&quot;)" id="1_4237_4203_10897">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -740,7 +740,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_4203_10897&quot;)" id="2_4237_4203_10897">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_4203_10897&quot;)" id="2_4237_4203_10897">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -756,7 +756,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_4203_10897&quot;)" id="3_4237_4203_10897">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_4203_10897&quot;)" id="3_4237_4203_10897">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -772,7 +772,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_4203_10897&quot;)" id="4_4237_4203_10897">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_4203_10897&quot;)" id="4_4237_4203_10897">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -788,7 +788,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_4203_10897&quot;)" id="5_4237_4203_10897">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_4203_10897&quot;)" id="5_4237_4203_10897">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -820,7 +820,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_4203_10897&quot;)" id="7_4237_4203_10897">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_4203_10897&quot;)" id="7_4237_4203_10897">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -836,7 +836,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_4203_10897&quot;)" id="8_4237_4203_10897">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_4203_10897&quot;)" id="8_4237_4203_10897">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -859,7 +859,7 @@ Resolución de problemas de manera aleatoria
           <td>CONVIVENCIA ESCOLAR SANA Y PACÍFICA</td>                  <td>ssssss</td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_5038_14028&quot;)" id="1_4237_5038_14028">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;1_4237_5038_14028&quot;)" id="1_4237_5038_14028">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -875,7 +875,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_5038_14028&quot;)" id="2_4237_5038_14028">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;2_4237_5038_14028&quot;)" id="2_4237_5038_14028">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -891,7 +891,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_5038_14028&quot;)" id="3_4237_5038_14028">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;3_4237_5038_14028&quot;)" id="3_4237_5038_14028">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -907,7 +907,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_5038_14028&quot;)" id="4_4237_5038_14028">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;4_4237_5038_14028&quot;)" id="4_4237_5038_14028">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -923,7 +923,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_5038_14028&quot;)" id="5_4237_5038_14028">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;5_4237_5038_14028&quot;)" id="5_4237_5038_14028">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -955,7 +955,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_5038_14028&quot;)" id="7_4237_5038_14028">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;7_4237_5038_14028&quot;)" id="7_4237_5038_14028">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>
@@ -971,7 +971,7 @@ Resolución de problemas de manera aleatoria
           </td>
 
                   <td>
-            <select disabled="" onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_5038_14028&quot;)" id="8_4237_5038_14028">
+            <select <?=(isset($tipou_pemc_avances))? 'disabled':'' ?> onchange="obj_rm_avances_acciones.set_avance(&quot;8_4237_5038_14028&quot;)" id="8_4237_5038_14028">
               <option value="0" selected="">0%</option>
               <option value="10">10%</option>
               <option value="20">20%</option>

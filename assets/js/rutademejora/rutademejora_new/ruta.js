@@ -2,7 +2,7 @@ $(document).ready(function() {
 	google.charts.load('current', {'packages':['gantt'],'language':'es'});
 	google.charts.load('current', {'packages':['corechart'],'language':'es'});
    obj_prioridad = new Prioridad();
-   // $("#nav-resultados").hide();
+   $("#div_resultados_gral").hide();
    // datos =[];
 
 });
@@ -619,14 +619,13 @@ Prioridad.prototype.funcionalidadselect = function(){
 	$("#nav-tab").click(function (e) {
         var id = e.target.id;
         if(id =="nav-resultados-tab"){
-        	// $("#nav-resultados").show();  
+        	$("#div_resultados_gral").show();  
 	   		datos_accion();
 		   	// datos_laepie();
 		   	// datos_objetivopie();
 		   	// datos_accionpie();
 		   	accionesRezagadas();
+   		}else{
+   			$("#div_resultados_gral").hide();  
    		}
-   		// else{
-   		// 	$("#nav-resultados").hide();  
-   		// }
     });

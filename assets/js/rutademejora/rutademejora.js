@@ -43,12 +43,17 @@ $("#slc_apoyoreq").change(function(){
 });
 
 $("#nav-avances-tab").click(function(){
-  $("#nav-avances").empty();     
+  $("#nav-avances").empty();
+  let tipou_pemc_avances=0;
+  if($("#tipou_pemc2").length){
+    tipou_pemc_avances=1;
+  }
+
   $.ajax({
     url: base_url+'Rutademejora/get_avance',
     type: 'POST',
     dataType: 'JSON',
-    data: {'x':'x'},
+    data: {'x':'x','tipou_pemc_avances':tipou_pemc_avances},
     beforeSend: function(xhr) {
       Notification.loading("");
     },

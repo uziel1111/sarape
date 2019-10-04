@@ -167,14 +167,24 @@
 <?php } else { ?>
   <tr>
     <td style="vertical-align: middle;"><?php echo $avance['accion'] ?><br><span id="spanRestante<?=$avance['id_accion']?>"></span></td>
-    <?php for ($x = 1; $x <= 8; $x++) { 
+    <?php for ($x = 1; $x <= 8; $x++) {
+      $valor='';
+      if($arr_avances_fechas[0]["cte{$x}_var"]=="TRUE" && isset($tipou_pemc_avances)){
+        $valor='disabled';
+      }else if($arr_avances_fechas[0]["cte{$x}_var"]=="TRUE" && !isset($tipou_pemc_avances)){
+        $valor='';
+      }else if($arr_avances_fechas[0]["cte{$x}_var"]=="FALSE" && isset($tipou_pemc_avances)){
+        $valor='disabled';
+      }else if($arr_avances_fechas[0]["cte{$x}_var"]=="FALSE" && !isset($tipou_pemc_avances)){
+        $valor='disabled';
+      }
      $total_horas = $avance['periodo'] * 24;
      $horasRestantes = $total_horas / 3;
      $horasRestantesHoy = $avance['restante'] * 24;
      ?>
      <td style="vertical-align: middle;">
       <?php if ($horasRestantesHoy < 0) { ?>              
-        <select <?=($arr_avances_fechas[0]["cte{$x}_var"]=="TRUE")? '':'disabled' ?> onchange="obj_rm_avances_acciones.set_avance('<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>')" id="<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>" disabled>
+        <select <?= $valor ?>  onchange="obj_rm_avances_acciones.set_avance('<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>')" id="<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>" >
           <option value="0" <?=($avance["cte{$x}"] == '0')? 'selected':'' ?> >0%</option>
           <option value="10" <?=($avance["cte{$x}"] == '10')? 'selected':'' ?> >10%</option>
           <option value="20" <?=($avance["cte{$x}"] == '20')? 'selected':'' ?> >20%</option>
@@ -188,7 +198,7 @@
           <option value="100" <?=($avance["cte{$x}"] == '100')? 'selected':'' ?> >100%</option>
         </select>
       <?php }else{ ?>
-       <select <?=($arr_avances_fechas[0]["cte{$x}_var"]=="TRUE")? '':'disabled' ?> onchange="obj_rm_avances_acciones.set_avance('<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>')" id="<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>">
+       <select <?= $valor ?> onchange="obj_rm_avances_acciones.set_avance('<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>')" id="<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>">
         <option value="0" <?=($avance["cte{$x}"] == '0')? 'selected':'' ?> >0%</option>
         <option value="10" <?=($avance["cte{$x}"] == '10')? 'selected':'' ?> >10%</option>
         <option value="20" <?=($avance["cte{$x}"] == '20')? 'selected':'' ?> >20%</option>
