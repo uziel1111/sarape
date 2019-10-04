@@ -21,7 +21,7 @@ class Cuda_model extends CI_Model
 	{
 		$str_query = "SELECT u.* from usuario u
 		inner join aplicar a on a.idusuario = u.idusuario
-		where u.idsubsecretaria ={$idsubsecretria} and a.idusuario <> 12 group by a.idusuario;";
+		where u.idsubsecretaria ={$idsubsecretria}  and a.estatus = 1 and a.idusuario <> 12 group by a.idusuario;";
 
 		return $this->ci_db->query($str_query)->result_array();
 	}
@@ -33,7 +33,7 @@ class Cuda_model extends CI_Model
 		INNER JOIN pregunta p on p.idpregunta = r.idpregunta
 		INNER JOIN aplicar a on a.idaplicar = r.idaplicar
         INNER JOIN usuario u on a.idusuario = u.idusuario
-		where r.idaplicar = {$idaplicar}
+		where r.idaplicar = {$idaplicar}  and a.estatus = 1
 		group by r.idpregunta;";
 
 		return $this->ci_db->query($str_query)->result_array();
@@ -86,7 +86,7 @@ class Cuda_model extends CI_Model
 
 		$querymes = "SELECT a.tema, r.idaplicar from respuesta r
 		inner join aplicar a on a.idaplicar = r.idaplicar
-		where r.complemento ='{$mes}'";
+		where r.complemento ='{$mes}'  and a.estatus = 1";
 
 		$querynivelmes = "SELECT * from ({$querynivel}) as nivel
 		inner join ({$querymes}) as mes on nivel.idaplicar = mes.idaplicar";
@@ -120,7 +120,7 @@ class Cuda_model extends CI_Model
 	{
 		$str_query = "SELECT * from aplicar a
 		inner join respuesta r on r.idaplicar = a.idaplicar
-		where a.tema = {$tema} and r.complemento = '{$nivel}';";
+		where a.tema = {$tema} and r.complemento = '{$nivel}'  and a.estatus = 1;";
 		// echo "<pre>"; print_r($str_query); die();
 		return $this->ci_db->query($str_query)->result_array();
 
@@ -136,25 +136,3 @@ class Cuda_model extends CI_Model
 
 
 }// Cuda_model class
-
-
-/**cuando no hay datos la gráfica no aparece, habría que poner una etiqueta de "no hay datos disponibles"
-
-revisar el query de los objetivos 'primer tab'
-
-segundo tab que se recalculé por región y por municipio
-
-"tab seguimiento" que no capture avances
-
-***CUDA***
-revisar ancho de los datos **
-
-ver contacto en un boton y estadistica 
-
-revisar los modals de documentos 
-
-acomodar estadístca solo con los activos **
-
-cuando es captura en sistema mostrar la URL sino pues no
-
-concentrado **/
