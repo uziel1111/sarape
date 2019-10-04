@@ -43,9 +43,11 @@ $("#slt_nivel_planeaxz").change(function(){
 	if($("#slt_nivel_planeaxz").val() == '4'){
 		// $("#slt_periodo_planeaxz").append("<option value='1'>2016</option>");
 		$("#slt_periodo_planeaxz").append("<option value='3'>2018</option>");
-	}else if($("#slt_nivel_planeaxz").val() == '5' || $("#slt_nivel_planeaxz").val() == '6'){
+	}else if($("#slt_nivel_planeaxz").val() == '5'){
 		$("#slt_periodo_planeaxz").append("<option value='2'>2017</option>");
 		$("#slt_periodo_planeaxz").append("<option value='4'>2019</option>");
+	} else if( $("#slt_nivel_planeaxz").val() == '6'){
+		$("#slt_periodo_planeaxz").append("<option value='2'>2017</option>");
 	}
 
 	if($("#slt_nivel_planeaxz").val() == 0 || $("#slt_nivel_planeaxz") == '0'){
@@ -104,9 +106,9 @@ const Planea = {
 					}
 			        break;
 			    case "5":
-			    // console.log(result.datos);
+			    console.log($("#slt_periodo_planeaxm").val());
 			        if($("#slt_campod_planeaxm").val() == 1){
-			        	//console.log($("#slt_periodo_planeaxm").val());
+			        	
 						if ($("#slt_periodo_planeaxm").val() == 4) {
 							graficar.graficoplanea_ud_secu_lyc19(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxm").val());
 						}else {
@@ -115,7 +117,7 @@ const Planea = {
 						
 					}else{
 						if ($("#slt_periodo_planeaxm").val() == 4) {
-							console.log(result.datos);
+							
 							graficar.graficoplanea_ud_secu_mate19(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxm").val());
 						}else {
 							graficar.graficoplanea_ud_secu_mate(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxm").val());
@@ -162,10 +164,21 @@ const Planea = {
 					}
 			        break;
 			    case "5":
-			        if($("#slt_campod_planeaxz").val() == 1){
-						graficar.graficoplanea_ud_secu_lyc(result.datos, result.id_region, "zona");
+			    console.log($("#slt_periodo_planeaxz").val());
+			       	if($("#slt_campod_planeaxz").val() == 1){
+			       		if ($("#slt_periodo_planeaxz").val() == 4) {
+							graficar.graficoplanea_ud_secu_lyc19(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxz").val());
+						}else {
+							graficar.graficoplanea_ud_secu_lyc(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxz").val());
+						}
+						
 					}else{
-						graficar.graficoplanea_ud_secu_mate(result.datos, result.id_region, "zona");
+						if ($("#slt_periodo_planeaxz").val() == 4) {
+							
+							graficar.graficoplanea_ud_secu_mate19(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxz").val());
+						}else {
+							graficar.graficoplanea_ud_secu_mate(result.datos, result.id_municipio, "municipio",  $("#slt_periodo_planeaxz").val());
+						}
 					}
 			        break;
 			    case "6":
