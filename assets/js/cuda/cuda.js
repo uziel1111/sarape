@@ -340,20 +340,25 @@
 		});
 	}
 
-	function contacto(idusuario) {
-		console.log(idusuario);
+	function contacto(idusuario,tipo_busqueda) {
+		
 		$.ajax({
 			url: base_url+'Cuda/getContacto',
 			type: 'POST',
 
-			data: {idusuario: idusuario},
+			data: {idusuario: idusuario, tipo_busqueda:tipo_busqueda},
 			beforeSend: function(xhr) {
 				Notification.loading("");
 			},
 		})
 		.done(function(data) {
+			if (tipo_busqueda == 1) {
+
 			$('#contacto'+idusuario).html(data.str_view);
-			// console.log("success");
+			}else{
+			$('#contactoModal').html(data.str_view);
+			}
+			
 		})
 		.fail(function() {
 			console.log("error");

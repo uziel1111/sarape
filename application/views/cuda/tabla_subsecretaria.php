@@ -17,7 +17,7 @@
 							<a class="nav-link" id="estadisitcas-tab" data-toggle="tab" onclick="estadistica(<?= $dato['idusuario']?>, <?= $dato['idsubsecretaria']?>)" href="#estadisticas<?= $dato['idusuario']?>" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-chart-bar text-warning"></i> Estadística</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" id="contacto-tab" data-toggle="tab" onclick="contacto(<?= $dato['idusuario']?>)" href="#contacto<?= $dato['idusuario']?>" role="tab" aria-controls="contact" aria-selected="false"><i class="far fa-id-card text-warning"></i> Contacto</a>
+							<a class="nav-link" id="contacto-tab" data-toggle="tab" onclick="contacto(<?= $dato['idusuario']?>, 1)" href="#contacto<?= $dato['idusuario']?>" role="tab" aria-controls="contact" aria-selected="false"><i class="far fa-id-card text-warning"></i> Contacto</a>
 						</li>
 					</ul>
 					<div class="tab-content tab-content-style-1" id="myTabContent">

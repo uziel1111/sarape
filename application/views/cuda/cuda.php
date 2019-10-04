@@ -237,6 +237,28 @@
 						</div>
 					</div>
 
+					<!-- mdoal contacto -->
+					
+					<div class="modal fade" id="verContacto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content modal-style-1">
+								<div class="modal-header bg-success">
+									<h5 class="modal-title text-white" id="exampleModalLabel">Datos de contacto</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+
+
+
+								</div>
+								<div class="modal-body" id="contactoModal">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- fin modal contacto -->
+
 					<!-- modal index -->
 					<div class="modal fade" id="seleccionaNivelIndex" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
 						<div class="modal-dialog modal-lg modal-dialog-centered" role="document">

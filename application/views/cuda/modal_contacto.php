@@ -1,8 +1,4 @@
-<?php foreach ($array_usuario as $key => $dato): ?>
-
-	<div >
-	<div class="tab-content tab-content-style-1" id="myTabContent">
-		<div class="tab-pane fade" id="contacto<?= $dato['idusuario']?>" role="tabpanel" aria-labelledby="contacto-tab"></div>
+<?php foreach ($array_usuario as $key => $dato): ?>		
 		<div class="row">
 			<div class="col">
 				<div class="wrimagecard wrimagecard-topimage">
@@ -33,11 +29,4 @@
 					</p>
 				</div>
 			</div>
-		</div>
-		<div id="estadistica"></div>
-		<!-- <div id="contacto"></div> -->
-		
-	</div>
-</div>
-
 <?php endforeach ?>

@@ -62,9 +62,14 @@ class Cuda extends CI_Controller
 
 	public function getContacto(){
 		$idusuario = $this->input->post('idusuario');
+		$tipo_busqueda = $this->input->post('tipo_busqueda');
 		$array_usuario = $this->Cuda_model->getContacto($idusuario);
 		$data['array_usuario'] = $array_usuario;
+		if ($tipo_busqueda == 1) {
 		$str_view = $this->load->view('cuda/contacto', $data, TRUE);
+		}else{
+		$str_view = $this->load->view('cuda/modal_contacto', $data, TRUE);
+		}
 		$response = array('str_view' => $str_view);
 		Utilerias::enviaDataJson(200,$response, $this);
 		exit;
@@ -91,9 +96,7 @@ class Cuda extends CI_Controller
 		}
 		$grafica1 = ($estadistica * 100) / $total;
 		$grafica2 = ($estadistica * 100) / $global;
-
-		// $data['grafica2'] =  bcdiv($grafica2,'1',0);
-		// $data['grafica1'] =  bcdiv($grafica1,'1',0);
+		
 		$data['grafica2'] =  round($grafica2,0);
 		$data['grafica1'] =  round($grafica1,0);
 		$data['sub'] = $total;
