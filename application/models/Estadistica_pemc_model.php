@@ -109,27 +109,225 @@ class Estadistica_pemc_model extends CI_Model
  }
 
 
- function get_obj_acc_lae($nivel, $municipio)
- {
-   $query = 'SELECT tp.orden, COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones
-   FROM rm_tema_prioritarioxcct tp
-   INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
-   LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
-   LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
-   inner join escuela e on e.id_cct = tp.id_cct
-   inner join municipio m on m.id_municipio = e.id_municipio
-   WHERE  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel<6 and m.id_municipio = '.$municipio.'';
-   if ($nivel != 0) {
-    $query .= ' and e.id_nivel = '.$nivel. '';
-  }
-
-  $query .= ' GROUP BY tp.orden  ORDER by tp.orden';
-
-   // echo '<pre>'; print_r($query); die();
-
+ function get_obj_acc_lae($nivel,$region,$municipio) {
+  if ($nivel != 0) {
+      $where_nivel= " and e.id_nivel={$nivel}";
+     }
+     else {
+       $where_nivel= "";
+     }
+  if ($region != 0) {
+      $where_region= " and m.id_region={$region}";
+     }
+     else {
+       $where_region= "";
+     }
+   if ($municipio != 0) {
+      $where_municipio= " and m.id_municipio={$municipio}";
+     }
+     else {
+       $where_municipio= "";
+     }
+  
+  $query = "SELECT 
+    l1.region,
+    l1.municipio,
+    l1.total_objetivos AS obj1,
+    l1.total_acciones AS acc1,
+    l2.total_objetivos AS obj2,
+    l2.total_acciones AS acc2,
+    l3.total_objetivos AS obj3,
+    l3.total_acciones AS acc3,
+    l4.total_objetivos AS obj4,
+    l4.total_acciones AS acc4,
+    l5.total_objetivos AS obj5,
+    l5.total_acciones AS acc5
+  FROM
+    (SELECT 
+        COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
+            COUNT(DISTINCT acc.id_accion) AS total_acciones,
+            tp.id_prioridad AS LAE,
+            m.municipio,
+            r.region,
+            r.id_region
+     FROM
+    municipio m
+        INNER JOIN
+    escuela e ON e.id_municipio = m.id_municipio
+        INNER JOIN
+    region r ON m.id_region = r.id_region
+        INNER JOIN
+    rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+        LEFT JOIN
+    rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+        LEFT JOIN
+    rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
+    WHERE
+        (e.id_estatus = 1 OR e.id_estatus = 4)
+            AND e.id_nivel < 6
+            {$where_nivel}
+            {$where_region}
+            {$where_municipio}
+            AND tp.id_prioridad = 1
+    GROUP BY e.id_municipio , tp.id_prioridad) AS l1
+        INNER JOIN
+    (SELECT 
+        COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
+            COUNT(DISTINCT acc.id_accion) AS total_acciones,
+            tp.id_prioridad AS LAE,
+            m.municipio
+      FROM
+    municipio m
+        INNER JOIN
+    escuela e ON e.id_municipio = m.id_municipio
+        INNER JOIN
+    region r ON m.id_region = r.id_region
+        INNER JOIN
+    rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+        LEFT JOIN
+    rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+        LEFT JOIN
+    rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
+    WHERE
+        (e.id_estatus = 1 OR e.id_estatus = 4)
+            AND e.id_nivel < 6
+            {$where_nivel}
+            {$where_region}
+            {$where_municipio}
+            AND tp.id_prioridad = 2
+    GROUP BY e.id_municipio , tp.id_prioridad) AS l2 ON l1.municipio = l2.municipio
+        INNER JOIN
+    (SELECT 
+        COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
+            COUNT(DISTINCT acc.id_accion) AS total_acciones,
+            tp.id_prioridad AS LAE,
+            m.municipio
+     FROM
+    municipio m
+        INNER JOIN
+    escuela e ON e.id_municipio = m.id_municipio
+        INNER JOIN
+    region r ON m.id_region = r.id_region
+        INNER JOIN
+    rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+        LEFT JOIN
+    rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+        LEFT JOIN
+    rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
+    WHERE
+        (e.id_estatus = 1 OR e.id_estatus = 4)
+            AND e.id_nivel < 6
+            {$where_nivel}
+            {$where_region}
+            {$where_municipio}
+            AND tp.id_prioridad = 3
+    GROUP BY e.id_municipio , tp.id_prioridad) AS l3 ON l1.municipio = l3.municipio
+        INNER JOIN
+    (SELECT 
+        COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
+            COUNT(DISTINCT acc.id_accion) AS total_acciones,
+            tp.id_prioridad AS LAE,
+            m.municipio
+      FROM
+    municipio m
+        INNER JOIN
+    escuela e ON e.id_municipio = m.id_municipio
+        INNER JOIN
+    region r ON m.id_region = r.id_region
+        INNER JOIN
+    rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+        LEFT JOIN
+    rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+        LEFT JOIN
+    rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
+    WHERE
+        (e.id_estatus = 1 OR e.id_estatus = 4)
+            AND e.id_nivel < 6
+            {$where_nivel}
+            {$where_region}
+            {$where_municipio}
+            AND tp.id_prioridad = 4
+    GROUP BY e.id_municipio , tp.id_prioridad) AS l4 ON l1.municipio = l4.municipio
+        INNER JOIN
+    (SELECT 
+        COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
+            COUNT(DISTINCT acc.id_accion) AS total_acciones,
+            tp.id_prioridad AS LAE,
+            m.municipio
+     FROM
+    municipio m
+        INNER JOIN
+    escuela e ON e.id_municipio = m.id_municipio
+        INNER JOIN
+    region r ON m.id_region = r.id_region
+        INNER JOIN
+    rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+        LEFT JOIN
+    rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+        LEFT JOIN
+    rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
+    WHERE
+        (e.id_estatus = 1 OR e.id_estatus = 4)
+            AND e.id_nivel < 6
+            {$where_nivel}
+            {$where_region}
+            {$where_municipio}
+            AND tp.id_prioridad = 5
+    GROUP BY e.id_municipio , tp.id_prioridad) AS l5 ON l1.municipio = l5.municipio
+ORDER BY l1.id_region;";
+//echo "<pre>"; print_r($query); die();
   return $this->db->query($query)->result_array();
 }
+  
+  function grafica_obj_acc_lae($nivel, $region, $municipio)
+  {
+    if ($nivel != 0) {
+      $where_nivel = " AND e.id_nivel = {$nivel}";
+    }else{
+      $where_nivel = " ";
+    }
+    if ($region != 0) {
+      $where_region = " AND m.id_region = {$region}";
+    }else{
+      $where_region = " ";
+    }
+    if ($municipio != 0) {
+      $where_municipio = " AND m.id_municipio = {$municipio}";
+    }else{
+      $where_municipio = " ";
+    }
 
+
+    $query = "SELECT 
+    SUM(tl1.total_objetivos) AS obj,
+    SUM(tl1.total_acciones) AS acc,
+    tl1.LAE
+FROM
+    (SELECT 
+        COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
+            COUNT(DISTINCT acc.id_accion) AS total_acciones,
+            tp.id_prioridad AS LAE,
+            m.municipio,
+            r.region,
+            r.id_region
+    FROM
+        municipio m
+    INNER JOIN escuela e ON e.id_municipio = m.id_municipio
+    INNER JOIN region r ON m.id_region = r.id_region
+    INNER JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+    LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+    LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
+    WHERE
+        (e.id_estatus = 1 OR e.id_estatus = 4)
+            AND e.id_nivel < 6
+            {$where_nivel}
+            {$where_region}
+            {$where_municipio}
+    GROUP BY e.id_municipio , tp.id_prioridad) AS tl1
+GROUP BY tl1.LAE";
+return $this->db->query($query)->result_array();
+  }
+  
  function get_obj_acc_lae_zona_sost($nivel, $zona, $sostenimiento)
  {
 
@@ -158,7 +356,7 @@ class Estadistica_pemc_model extends CI_Model
   return $this->db->query($query)->result_array();
 }
 
-function get_filtros($nivel, $municipio, $region)
+/*function get_filtros($nivel, $municipio, $region)
  {
    $query = 'SELECT tp.orden, COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones
    FROM rm_tema_prioritarioxcct tp
@@ -183,7 +381,7 @@ function get_filtros($nivel, $municipio, $region)
    // echo '<pre>'; print_r($query); die();
 
   return $this->db->query($query)->result_array();
-}
+}*/
 
   function get_zonas($sostenimiento)
  {

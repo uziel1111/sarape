@@ -61,7 +61,7 @@
         <table class="table table-striped table-bordered w-auto">
             <thead class="thead-dark">
           <tr>
-            <th scope="col" width="250px">Región</th>
+            <th scope="col" width="220px">Región</th>
             <th scope="col">Municipio</th>
             <th scope="col" colspan="2"><center>LAE 1</center></th>
             <th scope="col" colspan="2"><center>LAE 2</center></th>
@@ -85,7 +85,22 @@
           </tr>
             </thead>
             <tbody id='tablabody'>
-              <?=$tabla?>
+              <?php foreach ($tabla as $key => $value) { ?>
+                <tr>
+                  <td><?=$value['region']?></td>
+                  <td><?=$value['municipio']?></td>
+                  <td><?=$value['obj1']?></td>
+                  <td><?=$value['acc1']?></td>
+                  <td><?=$value['obj2']?></td>
+                  <td><?=$value['acc2']?></td>
+                  <td><?=$value['obj3']?></td>
+                  <td><?=$value['acc3']?></td>
+                  <td><?=$value['obj4']?></td>
+                  <td><?=$value['acc4']?></td>
+                  <td><?=$value['obj5']?></td>
+                  <td><?=$value['acc5']?></td>
+                </tr>
+             <?php } ?>
           </tbody>
           </table>
       </div>

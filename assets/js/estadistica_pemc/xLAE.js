@@ -48,8 +48,8 @@ function getEstadisticaLAE() {
     
         $('#xLAE').html(data.str_view);
 
-        graficaBarObj(data.result); 
-        graficaBarAcc(data.result); 
+        graficaBarObj(data.grafica); 
+        graficaBarAcc(data.grafica); 
         $('#nivel_educativo_LAE').val(nivel);
         $('#region_LAE').val(region);
         $('#municipio_LAE').val(municipio);
@@ -76,15 +76,19 @@ function getEstadisticaLAE() {
 
 }
 
-function graficaBarObj(datos) {
-    
+function graficaBarObj(objetivos) {
+    obj1 = parseInt(objetivos[0]['obj']);
+    obj2 = parseInt(objetivos[1]['obj']);
+    obj3 = parseInt(objetivos[2]['obj']);
+    obj4 = parseInt(objetivos[3]['obj']);
+    obj5 = parseInt(objetivos[4]['obj']);
  var data = google.visualization.arrayToDataTable([
         ['Líneas de Acción Estratégicas', 'Objetivos capturados'],
-        ['LAE-1', datos.obj1],
-        ['LAE-2', datos.obj2],
-        ['LAE-3', datos.obj3],
-        ['LAE-4', datos.obj4],
-        ['LAE-5', datos.obj5]
+        ['LAE-1', obj1],
+        ['LAE-2', obj2],
+        ['LAE-3', obj3],
+        ['LAE-4', obj4],
+        ['LAE-5', obj5],
       ]);
 
         var options = {
@@ -98,15 +102,19 @@ function graficaBarObj(datos) {
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
-function graficaBarAcc(datos) {
-    
+function graficaBarAcc(acciones) {
+    acc1 = parseInt(acciones[0]['acc']);
+    acc2 = parseInt(acciones[1]['acc']);
+    acc3 = parseInt(acciones[2]['acc']);
+    acc4 = parseInt(acciones[3]['acc']);
+    acc5 = parseInt(acciones[4]['acc']);
  var data = google.visualization.arrayToDataTable([
         ['Líneas de Acción Estratégicas', 'Acciones capturadas'],
-        ['LAE-1', datos.acc1],
-        ['LAE-2', datos.acc2],
-        ['LAE-3', datos.acc3],
-        ['LAE-4', datos.acc4],
-        ['LAE-5', datos.acc5]
+        ['LAE-1', acc1],
+        ['LAE-2', acc2],
+        ['LAE-3', acc3],
+        ['LAE-4', acc4],
+        ['LAE-5', acc5],
       ]);
 
         var options = {
