@@ -1,8 +1,10 @@
 $(document).ready(function() {
+	bandera=1;
 	google.charts.load('current', {'packages':['gantt'],'language':'es'});
 	google.charts.load('current', {'packages':['corechart'],'language':'es'});
-   obj_prioridad = new Prioridad();
+   	obj_prioridad = new Prioridad();
    $("#div_resultados_gral").hide();
+   
    // datos =[];
 
 });
@@ -227,8 +229,14 @@ Prioridad.prototype.funcionalidadselect = function(){
 			    },
 			    success: function(data){
 			      	swal.close();
-
-			        google.charts.setOnLoadCallback(drawChart(data.datos));
+			      	if(data.datos.length>0){
+			      		$("#chart_div").show();
+			      		
+			      		google.charts.setOnLoadCallback(drawChart(data.datos));
+			      	}else{
+			      		$("#chart_div").hide();
+			      	}
+			        
 			    },
 			    error: function(error){
 			      swal.close();
@@ -243,6 +251,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 
     function drawChart(datos) {
     	// console.log(datos);
+    	console.info(google.visualization);
       	var data = new google.visualization.DataTable();
       	let alto=200;
       	data.addColumn('string', 'ID Tarea');
@@ -291,7 +300,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 
       	var chart = new google.visualization.Gantt(document.getElementById('gantt_p'));
       	chart.draw(data, options);
-      	// console.log(datos);
+      	console.info(chart);
       	let tabla="";
 			$("#tabla_avances").empty();
 			tabla+="<center>";
@@ -305,6 +314,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 			tabla+='</tr>';
 			tabla+='</thead>';
 			tabla+='<tbody>';
+			let p=0;
 			        if(datos.length>0){
 			        	for(let x=0; x <datos.length; x++){
 
@@ -313,7 +323,10 @@ Prioridad.prototype.funcionalidadselect = function(){
 			        		tabla+=acciones[x]['accion'];
 			        		tabla+='</td>';
 			        		tabla+='<td>';
-			        		tabla+=datos[x]['porcentaje']+"%";
+			        		if(datos[x]['porcentaje']!=0 && datos[x]['porcentaje']!=null){
+			        			p=datos[x]['porcentaje'];
+			        		}
+			        		tabla+=p+"%";
 			        		tabla+='</td>';
 			        		tabla+='<td>';
 			        		tabla+=datos[x]['accion_f_inicio'];
@@ -324,6 +337,8 @@ Prioridad.prototype.funcionalidadselect = function(){
 			        		tabla+='</tr>';
 			        	}
 			        	
+			        }else{
+			        	bandera=2;
 			        }
 			        tabla+='</tbody>';
           			tabla+='</table>';
@@ -571,6 +586,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 			    	// console.log(acciones);
 			    	let tabla="";
 			    	$("#div_acc_rez").empty();
+			    	if(acciones.length>0){
 			    	tabla+="<center>";
 			    	tabla+='<table class="table table-striped table-bordered w-auto">';
             		tabla+='<thead class="thead-dark">';
@@ -582,14 +598,19 @@ Prioridad.prototype.funcionalidadselect = function(){
 				    tabla+='</tr>';
 			        tabla+='</thead>';
 			        tabla+='<tbody>';
-			        if(acciones.length>0){
+			        let porcentaje=0;
 			        	for(let x=0; x <acciones.length; x++){
 			        		tabla+='<tr>';
 			        		tabla+='<td>';
 			        		tabla+=acciones[x]['accion'];
 			        		tabla+='</td>';
 			        		tabla+='<td>';
-			        		tabla+=acciones[x]['porcentaje']+"%";
+			        		if(acciones[x]['porcentaje']!="" || acciones[x]['porcentaje']!=null || acciones[x]['porcentaje']!='null'){
+			        			porcentaje=acciones[x]['porcentaje'];
+			        		}else{
+			        			porcentaje=0;
+			        		}
+			        		tabla+=porcentaje+"%";
 			        		tabla+='</td>';
 			        		tabla+='<td>';
 			        		tabla+=acciones[x]['f_inicio'];
@@ -600,11 +621,16 @@ Prioridad.prototype.funcionalidadselect = function(){
 			        		tabla+='</tr>';
 			        	}
 			        	
-			        }
+			        
 			        tabla+='</tbody>';
           			tabla+='</table>';
           			tabla+='</center>';
           			$("#div_acc_rez").append(tabla);
+          			$("#div_rezagadas").show();
+          			}else{
+          				$("#div_rezagadas").hide();
+          				bandera=2;          				
+          			}
 			    },
 			    error: function(error){
 			      swal.close();
@@ -625,6 +651,11 @@ Prioridad.prototype.funcionalidadselect = function(){
 		   	// datos_objetivopie();
 		   	// datos_accionpie();
 		   	accionesRezagadas();
+		   	if(bandera==2){
+		   		$("#mensaje_res").show();
+		   	}else{
+		   		$("#mensaje_res").hide();
+		   	}
    		}else{
    			$("#div_resultados_gral").hide();  
    		}

@@ -525,6 +525,11 @@ if ( $sostenimiento != 0 && $nivel != 0) {
       $this->db->where('so.id_sostenimiento', $id_sostenimiento);
     }
     if($nombre_escuela!=''){
+      // $this->db->where('es.id_nivel !=','6');
+      // $this->db->where('es.id_nivel !=','7');
+      // $this->db->where('es.id_nivel !=','8');
+      // $this->db->where('es.id_nivel !=','9');
+      // $this->db->where('es.id_nivel !=','10');
       $this->db->like('es.nombre_centro', $nombre_escuela);
     }
 

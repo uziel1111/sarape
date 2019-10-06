@@ -952,12 +952,8 @@ class Rutademejora extends CI_Controller {
 					$clave = $varaux_temp[0];
 				// $clave = "cte4_var";
 				// echo $clave; die();
-					$tipou_pemc_avances = $this->input->post('tipou_pemc_avances');
 					$arr_avances_n = $this->asigna_icono($arr_avances, $clave);
 					$data2['arr_avances'] = $arr_avances_n;
-					if($tipou_pemc_avances=='1' || $tipou_pemc_avances==1){
-						$data2['tipou_pemc_avances'] = $tipou_pemc_avances;
-					}
 				// echo "<pre>";print_r($data2);die();
 					$string_view_avance = $this->load->view('ruta/avances', $data2, TRUE);
 					$response = array('srt_html' => $string_view_avance);

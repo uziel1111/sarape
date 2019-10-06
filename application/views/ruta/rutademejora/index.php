@@ -171,16 +171,20 @@ span{
 			</div> <!-- Ayuda -->
 			<div class="fade" id="nav-resultados" role="tabpanel" aria-labelledby="nav-resultados-tab">
 				<div id="div_resultados_gral">
-					<br>
-					<h1 align="center">Lista de acciones rezagadas</h1>
-					<div align="center"><p style="color:blue;">*Una acción rezagada es aquella cuya fecha de término esta próxima y cuenta con un porcentaje  menor o igual al 60%.</p></div>
-					<div id="div_acc_rez">
+					<div id="mensaje_res"><h1 align="center">Esta escuela no cuenta con datos</h1></div>
+					<div id="div_rezagadas">
+						<br>
+						<h1 align="center">Lista de acciones rezagadas</h1>
+						<div align="center"><p style="color:blue;">*Una acción rezagada es aquella cuya fecha de término esta próxima y cuenta con un porcentaje  menor o igual al 60%.</p></div>
+						<div id="div_acc_rez">
+						</div>
+						<br>
+						
+						<input type="text" name="id_cct_rm" id="id_cct_rm" value="<?=$id_cct_rm?>" hidden>
 					</div>
-					<br>
-					<h1 align="center">Avances de acciones</h1>
-					<input type="text" name="id_cct_rm" id="id_cct_rm" value="<?=$id_cct_rm?>" hidden>
 					<div id="chart_div">
 						<!-- <div class="row"> -->
+							<h1 align="center">Avances de acciones</h1>
 							<div id="gantt_p"></div>
 							<div id="tabla_avances"></div>
 						<!-- </div> -->
@@ -383,6 +387,8 @@ span{
 <!-- fin modal -->
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- <script src="<?= base_url('assets/gstatic/jsapi.js'); ?>"></script> 
+<script src="<?= base_url('assets/gstatic/gstatic/loader.js'); ?>"></script>  -->
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_delete_tp.js') ?>"></script>
 <script src="<?= base_url('assets/js/rutademejora/rm_table_operation.js'); ?>"></script>
 <script src="<?= base_url('assets/js/rutademejora/rutademejora.js'); ?>"></script>
