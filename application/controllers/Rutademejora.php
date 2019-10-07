@@ -21,12 +21,12 @@ class Rutademejora extends CI_Controller {
 	public function index(){
 		if(Utilerias::verifica_sesion_redirige($this)){
 			$this->cct = Utilerias::get_cct_sesion($this);
-			// if(isset($this->cct[0]['tipo_usuario_pemc'])){
-			// 	Utilerias::destroy_all_session_cct($this);
-			// 	redirect('Rutademejora/index');
-			// }else{
+			if(isset($this->cct[0]['tipo_usuario_pemc'])){
+				Utilerias::destroy_all_session_cct($this);
+				redirect('Rutademejora/index');
+			}else{
 				$this->index_new();
-			// }
+			}
 	
 		}else{
 			$data = $this->data;
@@ -46,12 +46,12 @@ class Rutademejora extends CI_Controller {
 				if(isset($this->cct[0]['id_supervision'])){
 					$this->generavistaSupervisor();
 				}else{
-					// if(isset($this->cct[0]['tipo_usuario_pemc'])){
-					// 	Utilerias::destroy_all_session_cct($this);
-					// 	redirect('Rutademejora/index');
-					// }else{
+					if(isset($this->cct[0]['tipo_usuario_pemc'])){
+						Utilerias::destroy_all_session_cct($this);
+						redirect('Rutademejora/index');
+					}else{
 						$this->index_new();
-					// }
+					}
 				}
 
 			}else{
@@ -2227,6 +2227,8 @@ class Rutademejora extends CI_Controller {
   			$response = array('datos' => $datos);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
+		// }else{
+		// 	$this->index();
 		// }
 	}
 

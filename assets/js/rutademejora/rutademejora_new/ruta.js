@@ -630,7 +630,7 @@ Prioridad.prototype.funcionalidadselect = function(){
           				console.log("llego en la linea 633");
           				$("#div_rezagadas").hide();
           				$("#mensaje_res").empty();
-          				$("#mensaje_res").append('<br><h1 align="center">Esta escuela no tiene acciones rezagadas</h1><br>');         				
+          				$("#mensaje_res").append('<br><h1 align="center">Esta escuela no cuenta con datos papa proyectar</h1><br>');         				
           			}
 			    },
 			    error: function(error){

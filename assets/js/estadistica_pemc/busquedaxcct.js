@@ -83,7 +83,8 @@ $("#busqueda_cct_pemc").click(function(e){
     success: function(data){
       swal.close();
       $("#div_busxcct").empty();
-      $("#div_busxcct").append(data.vista);  
+      $("#div_busxcct").append(data.vista);
+      $("#div_busxcct_pemc").empty();  
     },
     error: function(error){
       swal.close();
