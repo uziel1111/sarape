@@ -20,9 +20,14 @@ class Rutademejora extends CI_Controller {
 
 	public function index(){
 		if(Utilerias::verifica_sesion_redirige($this)){
-				// $this->llenadatos();
-			$this->index_new();
-
+			$this->cct = Utilerias::get_cct_sesion($this);
+			// if(isset($this->cct[0]['tipo_usuario_pemc'])){
+			// 	Utilerias::destroy_all_session_cct($this);
+			// 	redirect('Rutademejora/index');
+			// }else{
+				$this->index_new();
+			// }
+	
 		}else{
 			$data = $this->data;
 			$data['error'] = '';
@@ -41,8 +46,12 @@ class Rutademejora extends CI_Controller {
 				if(isset($this->cct[0]['id_supervision'])){
 					$this->generavistaSupervisor();
 				}else{
-					// $this->llenadatos();
-					$this->index_new();
+					// if(isset($this->cct[0]['tipo_usuario_pemc'])){
+					// 	Utilerias::destroy_all_session_cct($this);
+					// 	redirect('Rutademejora/index');
+					// }else{
+						$this->index_new();
+					// }
 				}
 
 			}else{
@@ -2210,7 +2219,7 @@ class Rutademejora extends CI_Controller {
 	}
 
 	public function avancesxcctxaccion(){
-		if(Utilerias::haySesionAbiertacct($this)){
+		// if(Utilerias::haySesionAbiertacct($this)){
 			$id_cct = $this->input->post('id_cct');
 			$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
 			$cte_vigente=$this->cteVigente($arr_avances_fechas);
@@ -2218,7 +2227,7 @@ class Rutademejora extends CI_Controller {
   			$response = array('datos' => $datos);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
-		}
+		// }
 	}
 
 	public function pieAccion(){

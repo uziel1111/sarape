@@ -26,11 +26,14 @@
     </div><!-- col-md-5 -->
   </div>
 
+  <?php
+  if(isset($tipou_pemc)){
+
+  }else{ ?>
   <div class="alert alert-primary flex-center mt-3" role="alert">
   <div class="row flex-center">
     <div class="col-9 col-sm-9 col-md-10 col-lg-10 mt-2">
       <div class="form-group form-group-style-1">
-
           <?= form_open('estadistica/escuelas') ?>
           <?= form_hidden('slc_busquedalista_municipio', $cve_municipio) ?>
           <?= form_hidden('slc_busquedalista_nivel', $cve_nivel) ?>
@@ -41,6 +44,7 @@
           <?= form_hidden('hidden_sostenimiento', $sostenimiento) ?>
           <?= form_input('itxt_busquedalista_nombreescuela', $nombre_escuela, array('id' => 'itxt_busquedalista_nombreescuela', 'class'=>'form-control',
                                                                                     'placeholder'=>'Use este campo para buscar una escuela dentro de la tabla de resultados, ingrese parte del nombre de la escuela' )) ?>
+
         </div>
         </div>
         <div class="col-3 col-sm-3 col-md-1 col-lg-1 mt-2">
@@ -59,8 +63,9 @@
           echo form_button($data);
           ?>
           <?= form_close() ?>
-        </div><!-- col-md-1 -->
 
+        </div><!-- col-md-1 -->
+        <?php }?>
 
         <div class="col-12 col-sm-12 col-md-1 col-lg-1 mt-2">
           <?= form_open('Report/por_escuela') ?>
