@@ -70,6 +70,10 @@
                         </div>
                         <div class="right-bar d-flex align-items-center">
                         </div>
+                        <div class="float-right text-right text-white">
+    
+  <a class="btn btn-secondary btn-sm mt-2" href="<?= site_url("estadistica_pemc/cerrar_sesion")?>">Cerrar Sesión</a>
+</div>
                     </div>
                 </div>
             </div>

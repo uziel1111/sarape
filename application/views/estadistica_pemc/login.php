@@ -9,7 +9,7 @@
 	<link href="<?= base_url('assets/css/login.css'); ?>" rel="stylesheet" media="screen">         
 </head>
 <body>
-    <div class="container-login" style="background-image: url('<?= base_url('assets/img/bg-02.jpg');?>');">
+    <div class="container-login" style="background-image: url('<?= base_url('assets/img/jumbo-bg1.jpg');?>');">
     	<div class="wrap-login">
 	        <div class="login-form validate-form">
 	        		<div class="card" >
