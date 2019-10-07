@@ -289,6 +289,7 @@ function truncar($numero, $digitos) {
 }
 
     public function getEstadistica(){
+          if(Utilerias::haySesionAbierta($this)){
         $result = array();
         $nivel = $this->input->post('nivel');
 
@@ -306,11 +307,15 @@ function truncar($numero, $digitos) {
      $response = array('str_view' => $str_view, 'porcentajeC' =>$porcentajeC, 'porcentajeNC' =>$porcentajeNC);
      Utilerias::enviaDataJson(200, $response, $this);
      exit;
+    } else {
+        $this->index();
+    }
  }
 
 
 
 public function getEstadisticaLAE(){
+      if(Utilerias::haySesionAbierta($this)){
 $nivel = $this->input->post('nivel');
 $region = $this->input->post('region');
 $municipio = $this->input->post('municipio');
@@ -325,11 +330,15 @@ $str_view = $this->load->view("estadistica_pemc/grid_LAE", $data, TRUE);
 $response = array('str_view' => $str_view, 'grafica'=>$grafica);
 Utilerias::enviaDataJson(200, $response, $this);
 exit;
+ } else {
+        $this->index();
+    }
 }
 
 
 function getTablaZona()
 {
+     if(Utilerias::haySesionAbierta($this)){
    $sostenimiento = $this->input->post('sostenimiento');
    $zonaPost = $this->input->post('zona');
    $nivel = $this->input->post('nivel');
@@ -391,6 +400,16 @@ $zonas= $this->Estadistica_pemc_model->get_zonas($sostenimiento);
    $response = array('str_view' => $str_view);
    Utilerias::enviaDataJson(200, $response, $this);
    exit;
+    } else {
+        $this->index();
+    }
+}
+
+public function cerrar_sesion(){
+    Utilerias::destroy_all_session($this);
+    $data = $this->data;
+    $data['error'] = '';
+    $this->load->view( "estadistica_pemc/login", $data);
 }
 /*BK201 E*/
 
