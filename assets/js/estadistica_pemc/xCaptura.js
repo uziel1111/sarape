@@ -1,5 +1,5 @@
  google.charts.load('current', {'packages':['corechart']});
- google.charts.setOnLoadCallback(graficaPie);
+ //google.charts.setOnLoadCallback(graficaPie);
 
 $(document).ready(function() {
 	getEstadistica();	
@@ -29,6 +29,8 @@ function getEstadistica() {
 	.done(function(data) {
 
 		$('#xgeneral').html(data.str_view);
+
+
 		graficaPie(data.porcentajeC,data.porcentajeNC);
 		$('#nivel_educativo_grid_general').val(nivel);
 	})
@@ -41,8 +43,9 @@ function getEstadistica() {
 	});
 	
 }
-
+ 
   function graficaPie(capturado, no_capturado) {
+  	
 
         var data = google.visualization.arrayToDataTable([
           ['Porcentaje', 'Captura por escuela'],
@@ -51,11 +54,16 @@ function getEstadistica() {
         ]);
 
         var options = {
+        	chart:{
           title: 'Porcentaje de escuelas que han capturado'
-        };
+      		},
+      	}
+      	 var chart = new google.visualization.PieChart($('#piechart')[0]);
+       
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+         
 
         chart.draw(data, options);
-      }
+         };
+      
 

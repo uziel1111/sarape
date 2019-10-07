@@ -77,6 +77,9 @@ function getEstadisticaLAE() {
 }
 
 function graficaBarObj(objetivos) {
+    if (objetivos != undefined){
+
+   
     obj1 = parseInt(objetivos[0]['obj']);
     obj2 = parseInt(objetivos[1]['obj']);
     obj3 = parseInt(objetivos[2]['obj']);
@@ -102,7 +105,10 @@ function graficaBarObj(objetivos) {
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
+     } 
 function graficaBarAcc(acciones) {
+    if (acciones != undefined){
+
     acc1 = parseInt(acciones[0]['acc']);
     acc2 = parseInt(acciones[1]['acc']);
     acc3 = parseInt(acciones[2]['acc']);
@@ -130,3 +136,4 @@ function graficaBarAcc(acciones) {
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
+     } 
