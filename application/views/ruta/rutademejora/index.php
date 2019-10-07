@@ -171,7 +171,7 @@ span{
 			</div> <!-- Ayuda -->
 			<div class="fade" id="nav-resultados" role="tabpanel" aria-labelledby="nav-resultados-tab">
 				<div id="div_resultados_gral">
-					<div id="mensaje_res"><h1 align="center">Esta escuela no cuenta con datos</h1></div>
+					<div id="mensaje_res"></div>
 					<div id="div_rezagadas">
 						<br>
 						<h1 align="center">Lista de acciones rezagadas</h1>
@@ -326,21 +326,30 @@ span{
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Fecha de inicio</label>
 										<input id="datepicker1" disabled data-date-format="dd/mm/yyyy"/>
-										<script>
-											$('#datepicker1').datepicker({
-												uiLibrary: 'bootstrap4'
-											});
-										</script>
+										<?php if (isset($tipo_usuario_pemc)): ?>
+		
+										<?php else: ?>
+											<script>
+												$('#datepicker1').datepicker({
+													uiLibrary: 'bootstrap4'
+												});
+											</script>
+										<?php endif; ?>
+
 									</div>
 
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Fecha de término</label>
 										<input id="datepicker2" data-date-format="mm/dd/yyyy" disabled/>
-										<script>
-											$('#datepicker2').datepicker({
-												uiLibrary: 'bootstrap4'
-											});
-										</script>
+										<?php if (isset($tipo_usuario_pemc)): ?>
+		
+										<?php else: ?>
+											<script>
+												$('#datepicker2').datepicker({
+													uiLibrary: 'bootstrap4'
+												});
+											</script>
+										<?php endif; ?>
 									</div>
 								</div>
 
