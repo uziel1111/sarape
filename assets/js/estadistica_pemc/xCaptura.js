@@ -38,7 +38,7 @@ function getEstadistica() {
 		console.log("error");
 	})
 	.always(function() {
-		console.log("complete");
+		
 		 swal.close(); 
 	});
 	
