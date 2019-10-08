@@ -2,6 +2,7 @@ $(function () {
  this_buscador = new Buscador();
 });
 
+
 $("#slc_busquedalista_municipio").change(function (){
   $("input[name=hidden_municipio]").val( $('option:selected',this).text() );
 

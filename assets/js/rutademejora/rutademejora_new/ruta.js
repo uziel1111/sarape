@@ -19,8 +19,10 @@ $(document).ready(function() {
 		   	// datos_laepie();
 		   	// datos_objetivopie();
 		   	// datos_accionpie();	
-   		}else{
-   			$("#div_resultados_gral").hide();  
+   		}else if(id!="nav-ruta-tab" && id!="nav-avances-tab" ){
+   			// console.log(id);
+   			$("#div_resultados_gral").hide();
+   			$("#div_busxcct_pemc").empty();	  
    		}
 	});
 

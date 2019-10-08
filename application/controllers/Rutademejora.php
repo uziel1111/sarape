@@ -947,6 +947,7 @@ class Rutademejora extends CI_Controller {
 			}
 			public function get_avance(){
 				if(Utilerias::haySesionAbiertacct($this)){
+					$tipou_pemc_avances = $this->input->post('tipou_pemc_avances');
 					$this->cct = Utilerias::get_cct_sesion($this);
 					// echo "<pre>";
 					// print_r($this->cct);
@@ -965,8 +966,8 @@ class Rutademejora extends CI_Controller {
 				// $clave = "cte4_var";
 				// echo $clave; die();
 					$arr_avances_n = $this->asigna_icono($arr_avances, $clave);
-					if(isset($this->cct[0]['tipo_usuario_pemc'])){
-						$data2['tipou_pemc_avances'] = $this->cct[0]['tipo_usuario_pemc'];
+					if($tipou_pemc_avances==1 || $tipou_pemc_avances=='1'){
+						$data2['tipou_pemc_avances'] = $tipou_pemc_avances;
 					}
 					$data2['arr_avances'] = $arr_avances_n;
 				// echo "<pre>";print_r($data2);die();
