@@ -21,12 +21,12 @@ class Rutademejora extends CI_Controller {
 	public function index(){
 		if(Utilerias::verifica_sesion_redirige($this)){
 			$this->cct = Utilerias::get_cct_sesion($this);
-			// if(isset($this->cct[0]['tipo_usuario_pemc'])){
-			// 	Utilerias::destroy_all_session_cct($this);
-			// 	redirect('Rutademejora/index');
-			// }else{
+			if(isset($this->cct[0]['tipo_usuario_pemc'])){
+				Utilerias::destroy_all_session_cct($this);
+				redirect('Rutademejora/index');
+			}else{
 				$this->index_new();
-			// }
+			}
 	
 		}else{
 			$data = $this->data;
@@ -46,12 +46,12 @@ class Rutademejora extends CI_Controller {
 				if(isset($this->cct[0]['id_supervision'])){
 					$this->generavistaSupervisor();
 				}else{
-					// if(isset($this->cct[0]['tipo_usuario_pemc'])){
-					// 	Utilerias::destroy_all_session_cct($this);
-					// 	redirect('Rutademejora/index');
-					// }else{
+					if(isset($this->cct[0]['tipo_usuario_pemc'])){
+						Utilerias::destroy_all_session_cct($this);
+						redirect('Rutademejora/index');
+					}else{
 						$this->index_new();
-					// }
+					}
 				}
 
 			}else{
@@ -948,6 +948,9 @@ class Rutademejora extends CI_Controller {
 			public function get_avance(){
 				if(Utilerias::haySesionAbiertacct($this)){
 					$this->cct = Utilerias::get_cct_sesion($this);
+					// echo "<pre>";
+					// print_r($this->cct);
+					// die();
 					$data2 = array();
 					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
 				// echo "<pre>";print_r($arr_avances);die();
@@ -962,6 +965,9 @@ class Rutademejora extends CI_Controller {
 				// $clave = "cte4_var";
 				// echo $clave; die();
 					$arr_avances_n = $this->asigna_icono($arr_avances, $clave);
+					if(isset($this->cct[0]['tipo_usuario_pemc'])){
+						$data2['tipou_pemc_avances'] = $this->cct[0]['tipo_usuario_pemc'];
+					}
 					$data2['arr_avances'] = $arr_avances_n;
 				// echo "<pre>";print_r($data2);die();
 					$string_view_avance = $this->load->view('ruta/avances', $data2, TRUE);
@@ -2227,6 +2233,8 @@ class Rutademejora extends CI_Controller {
   			$response = array('datos' => $datos);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
+		// }else{
+		// 	$this->index();
 		// }
 	}
 

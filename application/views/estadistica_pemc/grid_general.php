@@ -7,7 +7,7 @@
 					<select id="nivel_educativo_grid_general" class="form-control">
 						<option value="0" selected="">Todos los niveles</option>
 						<option value="1">Especial</option>
-						<option value="2">Inicial</option>
+						<!-- <option value="2">Inicial</option> -->
 						<option value="3">Preescolar</option>
 						<option value="4">Primaria</option>
 						<option value="5">Secundaria</option>
@@ -35,8 +35,8 @@
 				<tr>
 					<th></th>
 					<th>Existentes</th>
-					<th>Que capturaron</th>
-					<th>% de captura</th>
+					<th>Con captura</th>
+					<th>% captura</th>
 					<th>0</th>
 					<th>1</th>
 					<th>2-3</th>

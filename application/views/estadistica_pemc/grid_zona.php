@@ -5,7 +5,7 @@
       <select id="nivel_educativo_zona" class="form-control">
         <option value="0">Todos los niveles</option>
         <option value="1">Especial</option>
-        <option value="2">Inicial</option>
+        <!-- <option value="2">Inicial</option> -->
         <option value="3">Preescolar</option>
         <option value="4">Primaria</option>
         <option value="5">Secundaria</option>
@@ -20,7 +20,6 @@
               <option value="0">Todos los sostenimientos</option>
               <option value="1">Publico</option>
               <option value="2">Privado</option>
-              <option value="3">Autonomo</option>
                    </select></label>
          </div>
          <div class="col-md-4 form-group form-group-style-1 div_zona">

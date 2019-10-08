@@ -130,7 +130,8 @@ span{
 <br>
 <div class="container">
     <div class="alert alert-success text-center" role="alert" style="margin-bottom: 30px;">
-        <h3>Programa Escolar de Mejora Continua (PEMC)</h3>
+        <h3>Programa Escolar de Mejora Continua (PEMC)</h3><br>
+        <b><a id='cteActual'></a></b>
     </div>
 	<div class="row justify-content-center flex-column mb-3">
 		<nav>
@@ -210,7 +211,7 @@ span{
 		<input type="text" name="tipou_pemc" id="tipou_pemc" hidden>
 	<?php else: ?>
 		<br><br><br>
-	<b><a id='cteActual'></a></b>
+	<!-- <b><a id='cteActual'></a></b> -->
 	<button class="botonF1 ">
 	   	<span><i class="fas fa-wrench fa-xs"></i></span>
 	</button>

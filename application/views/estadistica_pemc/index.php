@@ -11,10 +11,10 @@
 	                  	<a class="nav-link nav-link-style-1" id="xLAE_tab" data-toggle="tab" href="#xLAE" role="tab" aria-controls="xLAE" aria-selected="false">Por LAE</a>
 	                </li>
 	                 <li class="nav-item">
-	                  	<a class="nav-link nav-link-style-1" id="xZona_tab" data-toggle="tab" href="#xZona" role="tab" aria-controls="xZona" aria-selected="false">Por Zona</a>
+	                  	<a class="nav-link nav-link-style-1" id="xZona_tab" data-toggle="tab" href="#xZona" role="tab" aria-controls="xZona" aria-selected="false">Avance por Zona</a>
 	                </li>
 	                <li class="nav-item">
-	                  	<a class="nav-link nav-link-style-1" id="xcct_turno_tab" data-toggle="tab" href="#xcct_turno" role="tab" aria-controls="xcct_turno" aria-selected="false">Por Municipio, Nivel, Sostenimiento, Nombre</a>
+	                  	<a class="nav-link nav-link-style-1" id="xcct_turno_tab" data-toggle="tab" href="#xcct_turno" role="tab" aria-controls="xcct_turno" aria-selected="false">Por Escuela</a>
 	                </li>
 	            </ul>
 	            <div class="tab-content tab-content-style-1" id="myTabContent">
