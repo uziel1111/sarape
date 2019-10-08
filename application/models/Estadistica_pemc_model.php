@@ -687,3 +687,111 @@ if ( $sostenimiento != 0 && $nivel != 0) {
   return $this->db->query($query)->result_array();
  }
 }
+
+
+
+/**
+ * Query para la zona
+ *
+ * SELECT 
+    zl1.zona_escolar,
+    zl1.id_nivel,
+    zl1.id_sostenimiento,
+    IFNULL(zl1.promedio, 0) AS lae1,
+    IFNULL(zl2.promedio, 0) AS lae2,
+    IFNULL(zl3.promedio, 0) AS lae3,
+    IFNULL(zl4.promedio, 0) AS lae4,
+    IFNULL(zl5.promedio, 0) AS lae5
+FROM
+    (SELECT 
+        s.zona_escolar,
+            s.id_sostenimiento,
+            e.id_nivel,
+            acc.id_accion,
+            AVG(ava.cte1) AS promedio,
+            tp.id_prioridad AS LAE
+    FROM
+        supervision s
+    INNER JOIN escuela e ON e.id_supervision = s.id_supervision
+    INNER JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+    LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+    LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+    WHERE
+        (e.id_estatus = 1 OR e.id_estatus = 4)
+            AND e.id_nivel < 6
+            AND tp.id_prioridad = 1
+    GROUP BY s.zona_escolar
+    ORDER BY s.zona_escolar ASC) AS zl1
+        INNER JOIN
+    (SELECT 
+        s.zona_escolar,
+            s.id_sostenimiento,
+            acc.id_accion,
+            AVG(ava.cte1) AS promedio,
+            tp.id_prioridad AS LAE
+    FROM
+        supervision s
+    INNER JOIN escuela e ON e.id_supervision = s.id_supervision
+    INNER JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+    LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+    LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+    WHERE
+        (e.id_estatus = 1 OR e.id_estatus = 4)
+            AND e.id_nivel < 6
+            AND tp.id_prioridad = 2
+    GROUP BY s.zona_escolar) AS zl2 ON zl1.zona_escolar = zl2.zona_escolar
+        INNER JOIN
+    (SELECT 
+        s.zona_escolar,
+            s.id_sostenimiento,
+            acc.id_accion,
+            AVG(ava.cte1) AS promedio,
+            tp.id_prioridad AS LAE
+    FROM
+        supervision s
+    INNER JOIN escuela e ON e.id_supervision = s.id_supervision
+    INNER JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+    LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+    LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+    WHERE
+        (e.id_estatus = 1 OR e.id_estatus = 4)
+            AND e.id_nivel < 6
+            AND tp.id_prioridad = 3
+    GROUP BY s.zona_escolar) AS zl3 ON zl1.zona_escolar = zl3.zona_escolar
+        INNER JOIN
+    (SELECT 
+        s.zona_escolar,
+            s.id_sostenimiento,
+            acc.id_accion,
+            AVG(ava.cte1) AS promedio,
+            tp.id_prioridad AS LAE
+    FROM
+        supervision s
+    INNER JOIN escuela e ON e.id_supervision = s.id_supervision
+    INNER JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+    LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+    LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+    WHERE
+        (e.id_estatus = 1 OR e.id_estatus = 4)
+            AND e.id_nivel < 6
+            AND tp.id_prioridad = 4
+    GROUP BY s.zona_escolar) AS zl4 ON zl1.zona_escolar = zl4.zona_escolar
+        INNER JOIN
+    (SELECT 
+        s.zona_escolar,
+            s.id_sostenimiento,
+            acc.id_accion,
+            AVG(ava.cte1) AS promedio,
+            tp.id_prioridad AS LAE
+    FROM
+        supervision s
+    INNER JOIN escuela e ON e.id_supervision = s.id_supervision
+    INNER JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+    LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+    LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+    WHERE
+        (e.id_estatus = 1 OR e.id_estatus = 4)
+            AND e.id_nivel < 6
+            AND tp.id_prioridad = 5
+    GROUP BY s.zona_escolar) AS zl5 ON zl1.zona_escolar = zl5.zona_escolar
+ */
