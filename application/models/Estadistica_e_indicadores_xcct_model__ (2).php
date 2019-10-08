@@ -515,6 +515,8 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     if($id_ciclo>0){
       $this->db->where($where_aux);
     }
+    $this->db->where('es.id_estatus =!',2);
+    $this->db->where('es.id_estatus =!',3);
     $this->db->where('ni.id_nivel <',8);
     $this->db->group_by("ni.nivel");
 
@@ -544,6 +546,8 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     if($id_ciclo>0){
       $this->db->where($where_aux);
     }
+    $this->db->where('es.id_estatus =!',2);
+    $this->db->where('es.id_estatus =!',3);
     $this->db->where('ni.id_nivel <',8);
     $this->db->group_by("ni.nivel");
     $this->db->group_by("so.sostenimiento");
@@ -574,6 +578,8 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     if($id_ciclo>0){
       $this->db->where($where_aux);
     }
+    $this->db->where('es.id_estatus =!',2);
+    $this->db->where('es.id_estatus =!',3);
     $this->db->where('ni.id_nivel <',8);
     $this->db->group_by("ni.nivel");
     $this->db->group_by("so.sostenimiento");
