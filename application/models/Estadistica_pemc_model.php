@@ -128,8 +128,8 @@ class Estadistica_pemc_model extends CI_Model
      else {
        $where_municipio= "";
      }
-  
-  $query = "SELECT 
+
+  $query = "SELECT
     l1.region,
     l1.municipio,
     l1.total_objetivos AS obj1,
@@ -143,7 +143,7 @@ class Estadistica_pemc_model extends CI_Model
     l5.total_objetivos AS obj5,
     l5.total_acciones AS acc5
   FROM
-    (SELECT 
+    (SELECT
         COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
             COUNT(DISTINCT acc.id_accion) AS total_acciones,
             tp.id_prioridad AS LAE,
@@ -163,7 +163,7 @@ class Estadistica_pemc_model extends CI_Model
         LEFT JOIN
     rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
     WHERE
-        (e.id_estatus = 1 OR e.id_estatus = 4) 
+        (e.id_estatus = 1 OR e.id_estatus = 4)
             AND e.id_nivel < 6
             AND e.id_nivel <> 2
             {$where_nivel}
@@ -172,7 +172,7 @@ class Estadistica_pemc_model extends CI_Model
             AND tp.id_prioridad = 1
     GROUP BY e.id_municipio , tp.id_prioridad) AS l1
         INNER JOIN
-    (SELECT 
+    (SELECT
         COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
             COUNT(DISTINCT acc.id_accion) AS total_acciones,
             tp.id_prioridad AS LAE,
@@ -190,7 +190,7 @@ class Estadistica_pemc_model extends CI_Model
         LEFT JOIN
     rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
     WHERE
-        (e.id_estatus = 1 OR e.id_estatus = 4) 
+        (e.id_estatus = 1 OR e.id_estatus = 4)
             AND e.id_nivel < 6
             AND e.id_nivel <> 2
             {$where_nivel}
@@ -199,7 +199,7 @@ class Estadistica_pemc_model extends CI_Model
             AND tp.id_prioridad = 2
     GROUP BY e.id_municipio , tp.id_prioridad) AS l2 ON l1.municipio = l2.municipio
         INNER JOIN
-    (SELECT 
+    (SELECT
         COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
             COUNT(DISTINCT acc.id_accion) AS total_acciones,
             tp.id_prioridad AS LAE,
@@ -217,7 +217,7 @@ class Estadistica_pemc_model extends CI_Model
         LEFT JOIN
     rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
     WHERE
-        (e.id_estatus = 1 OR e.id_estatus = 4) 
+        (e.id_estatus = 1 OR e.id_estatus = 4)
             AND e.id_nivel < 6
             AND e.id_nivel <> 2
             {$where_nivel}
@@ -226,7 +226,7 @@ class Estadistica_pemc_model extends CI_Model
             AND tp.id_prioridad = 3
     GROUP BY e.id_municipio , tp.id_prioridad) AS l3 ON l1.municipio = l3.municipio
         INNER JOIN
-    (SELECT 
+    (SELECT
         COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
             COUNT(DISTINCT acc.id_accion) AS total_acciones,
             tp.id_prioridad AS LAE,
@@ -244,7 +244,7 @@ class Estadistica_pemc_model extends CI_Model
         LEFT JOIN
     rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
     WHERE
-        (e.id_estatus = 1 OR e.id_estatus = 4) 
+        (e.id_estatus = 1 OR e.id_estatus = 4)
             AND e.id_nivel < 6
             AND e.id_nivel <> 2
             {$where_nivel}
@@ -253,7 +253,7 @@ class Estadistica_pemc_model extends CI_Model
             AND tp.id_prioridad = 4
     GROUP BY e.id_municipio , tp.id_prioridad) AS l4 ON l1.municipio = l4.municipio
         INNER JOIN
-    (SELECT 
+    (SELECT
         COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
             COUNT(DISTINCT acc.id_accion) AS total_acciones,
             tp.id_prioridad AS LAE,
@@ -271,7 +271,7 @@ class Estadistica_pemc_model extends CI_Model
         LEFT JOIN
     rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
     WHERE
-        (e.id_estatus = 1 OR e.id_estatus = 4) 
+        (e.id_estatus = 1 OR e.id_estatus = 4)
             AND e.id_nivel < 6
             AND e.id_nivel <> 2
             {$where_nivel}
@@ -283,7 +283,7 @@ ORDER BY l1.id_region;";
 //echo "<pre>"; print_r($query); die();
   return $this->db->query($query)->result_array();
 }
-  
+
   function grafica_obj_acc_lae($nivel, $region, $municipio)
   {
     if ($nivel != 0) {
@@ -303,12 +303,12 @@ ORDER BY l1.id_region;";
     }
 
 
-    $query = "SELECT 
+    $query = "SELECT
     SUM(tl1.total_objetivos) AS obj,
     SUM(tl1.total_acciones) AS acc,
     tl1.LAE
 FROM
-    (SELECT 
+    (SELECT
         COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
             COUNT(DISTINCT acc.id_accion) AS total_acciones,
             tp.id_prioridad AS LAE,
@@ -323,7 +323,7 @@ FROM
     LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
     LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
     WHERE
-        (e.id_estatus = 1 OR e.id_estatus = 4) 
+        (e.id_estatus = 1 OR e.id_estatus = 4)
             AND e.id_nivel < 6
             AND e.id_nivel <> 2
             {$where_nivel}
@@ -333,7 +333,7 @@ FROM
 GROUP BY tl1.LAE";
 return $this->db->query($query)->result_array();
   }
-  
+
  function get_obj_acc_lae_zona_sost($nivel, $zona, $sostenimiento)
  {
 
@@ -374,7 +374,7 @@ function get_zonas($sostenimiento, $nivel){
     } else {
         $where_sostenimiento = ' ';
     }
-    $str_query = "SELECT 
+    $str_query = "SELECT
 
     s.zona_escolar
 
@@ -393,16 +393,16 @@ function get_zonas($sostenimiento, $nivel){
     LEFT JOIN
     rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
     WHERE
-    (e.id_estatus = 1 OR e.id_estatus = 4) 
+    (e.id_estatus = 1 OR e.id_estatus = 4)
     AND e.id_nivel < 6
     AND e.id_nivel <> 2
     {$where_nivel}
     {$where_sostenimiento}
-    GROUP BY  s.zona_escolar 
+    GROUP BY  s.zona_escolar
     ORDER BY s.zona_escolar ASC";
     return $this->db->query($str_query)->result_array();
  }
- 
+
 
     function get_porcent_zonas($sostenimiento, $zona, $nivel){
 
@@ -424,7 +424,7 @@ function get_zonas($sostenimiento, $nivel){
             $where_zona = ' ';
         }
 
-        $str_query = "SELECT 
+        $str_query = "SELECT
         zl1.nivel,
         zl1.id_sostenimiento,
         zl1.sostenimiento,
@@ -435,7 +435,7 @@ function get_zonas($sostenimiento, $nivel){
         zl4.promedio AS lae4,
         zl5.promedio AS lae5
         FROM
-        (SELECT 
+        (SELECT
         ne.nivel,
         s.id_sostenimiento,
         so.sostenimiento,
@@ -451,7 +451,7 @@ function get_zonas($sostenimiento, $nivel){
         LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
         LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
         WHERE
-        (e.id_estatus = 1 OR e.id_estatus = 4) 
+        (e.id_estatus = 1 OR e.id_estatus = 4)
         AND e.id_nivel < 6
         AND e.id_nivel <> 2
         AND tp.id_prioridad = 1
@@ -461,7 +461,7 @@ function get_zonas($sostenimiento, $nivel){
         GROUP BY ne.id_nivel , s.id_sostenimiento , s.zona_escolar , tp.id_prioridad
         ORDER BY s.zona_escolar ASC) AS zl1
         INNER JOIN
-        (SELECT 
+        (SELECT
         ne.nivel,
         s.id_sostenimiento,
         so.sostenimiento,
@@ -477,7 +477,7 @@ function get_zonas($sostenimiento, $nivel){
         LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
         LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
         WHERE
-        (e.id_estatus = 1 OR e.id_estatus = 4) 
+        (e.id_estatus = 1 OR e.id_estatus = 4)
         AND e.id_nivel < 6
         AND e.id_nivel <> 2
         AND tp.id_prioridad = 2
@@ -487,7 +487,7 @@ function get_zonas($sostenimiento, $nivel){
         GROUP BY ne.id_nivel , s.id_sostenimiento , s.zona_escolar , tp.id_prioridad
         ORDER BY s.zona_escolar ASC) AS zl2 ON zl1.zona_escolar = zl2.zona_escolar
         INNER JOIN
-        (SELECT 
+        (SELECT
         ne.nivel,
         s.id_sostenimiento,
         so.sostenimiento,
@@ -503,7 +503,7 @@ function get_zonas($sostenimiento, $nivel){
         LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
         LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
         WHERE
-        (e.id_estatus = 1 OR e.id_estatus = 4) 
+        (e.id_estatus = 1 OR e.id_estatus = 4)
         AND e.id_nivel < 6
         AND e.id_nivel <> 2
         AND tp.id_prioridad = 3
@@ -513,7 +513,7 @@ function get_zonas($sostenimiento, $nivel){
         GROUP BY ne.id_nivel , s.id_sostenimiento , s.zona_escolar , tp.id_prioridad
         ORDER BY s.zona_escolar ASC) AS zl3 ON zl1.zona_escolar = zl3.zona_escolar
         INNER JOIN
-        (SELECT 
+        (SELECT
         ne.nivel,
         s.id_sostenimiento,
         so.sostenimiento,
@@ -529,7 +529,7 @@ function get_zonas($sostenimiento, $nivel){
         LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
         LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
         WHERE
-        (e.id_estatus = 1 OR e.id_estatus = 4) 
+        (e.id_estatus = 1 OR e.id_estatus = 4)
         AND e.id_nivel < 6
         AND e.id_nivel <> 2
         AND tp.id_prioridad = 4
@@ -539,7 +539,7 @@ function get_zonas($sostenimiento, $nivel){
         GROUP BY ne.id_nivel , s.id_sostenimiento , s.zona_escolar , tp.id_prioridad
         ORDER BY s.zona_escolar ASC) AS zl4 ON zl1.zona_escolar = zl4.zona_escolar
         INNER JOIN
-        (SELECT 
+        (SELECT
         ne.nivel,
         s.id_sostenimiento,
         so.sostenimiento,
@@ -555,7 +555,7 @@ function get_zonas($sostenimiento, $nivel){
         LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
         LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
         WHERE
-        (e.id_estatus = 1 OR e.id_estatus = 4) 
+        (e.id_estatus = 1 OR e.id_estatus = 4)
         AND e.id_nivel < 6
         AND e.id_nivel <> 2
         AND tp.id_prioridad = 5
@@ -768,7 +768,9 @@ function get_zonas($sostenimiento, $nivel){
     }
    $query = "SELECT
 						 ROUND(((COUNT(DISTINCT IF(ISNULL(o.id_objetivo),NULL, e.id_cct)) * 100)/COUNT(DISTINCT e.id_cct)),1) as por_capt,
-						 ROUND((100-((COUNT(DISTINCT IF(ISNULL(o.id_objetivo),NULL, e.id_cct)) * 100)/COUNT(DISTINCT e.id_cct))),1) as por_ncapt
+						 ROUND((100-((COUNT(DISTINCT IF(ISNULL(o.id_objetivo),NULL, e.id_cct)) * 100)/COUNT(DISTINCT e.id_cct))),1) as por_ncapt,
+             COUNT(DISTINCT IF(ISNULL(o.id_objetivo),NULL, e.id_cct)) as n_esccapt,
+             COUNT(DISTINCT e.id_cct)-COUNT(DISTINCT IF(ISNULL(o.id_objetivo),NULL, e.id_cct)) as n_escncapt
              FROM escuela as e
 						 LEFT JOIN rm_tema_prioritarioxcct tp on e.id_cct = tp.id_cct
 						 LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
@@ -777,4 +779,3 @@ function get_zonas($sostenimiento, $nivel){
   return $this->db->query($query)->result_array();
  }
 }
-

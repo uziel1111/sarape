@@ -295,16 +295,18 @@ function truncar($numero, $digitos) {
 
         $tabla = $this->Estadistica_pemc_model->get_escuelasMun_gen($nivel);
         $totalEscuelas = $this->Estadistica_pemc_model->get_toatalesc($nivel);
-    
+
 
      $porcentajeC = (float)$this->Estadistica_pemc_model->get_total_gen($nivel)[0]['por_capt'];
      $porcentajeNC = (float)$this->Estadistica_pemc_model->get_total_gen($nivel)[0]['por_ncapt'];
+     $n_porcentajeC = (float)$this->Estadistica_pemc_model->get_total_gen($nivel)[0]['n_esccapt'];
+     $n_porcentajeNC = (float)$this->Estadistica_pemc_model->get_total_gen($nivel)[0]['n_escncapt'];
 
      $result = ['tabla' => $tabla, 'total' => $totalEscuelas];
 
      $data['result'] = $result;
      $str_view = $this->load->view("estadistica_pemc/grid_general", $data, TRUE);
-     $response = array('str_view' => $str_view, 'porcentajeC' =>$porcentajeC, 'porcentajeNC' =>$porcentajeNC);
+     $response = array('str_view' => $str_view, 'porcentajeC' =>$porcentajeC, 'porcentajeNC' =>$porcentajeNC, 'n_porcentajeC' =>$n_porcentajeC, 'n_porcentajeNC' =>$n_porcentajeNC);
      Utilerias::enviaDataJson(200, $response, $this);
      exit;
     } else {
@@ -347,7 +349,7 @@ function getTablaZona()
 
    $porcentajeZona = $this->Estadistica_pemc_model->get_porcent_zonas($sostenimiento, $zonaPost, $nivel);
    // echo '<pre>'; print_r($zonas); die();
-      
+
 
    $data['zonas'] = $zonas;
    $data['tabla'] = $porcentajeZona;
