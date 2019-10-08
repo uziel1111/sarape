@@ -1,12 +1,28 @@
+
 $(document).ready(function() {
-	google.charts.load('current', {'packages':['gantt'],'language':'es'});
-	google.charts.load('current', {'packages':['corechart'],'language':'es'});
+	
+	// google.charts.load('current', {'packages':['corechart'],'language':'es'});
    	obj_prioridad = new Prioridad();
    $("#div_resultados_gral").hide();
-   
-   // datos =[];
+
 
 });
+
+	$("#nav-tab").click(function (e) {
+        var id = e.target.id;
+        if(id =="nav-resultados-tab"){
+        	$("#nombreescuela_pemc").val("");
+        	$("#div_resultados_gral").show();
+        	accionesRezagadas(); 
+        	google.charts.load('current', {'packages':['gantt'],'language':'es'}); 
+	   		datos_accion();
+		   	// datos_laepie();
+		   	// datos_objetivopie();
+		   	// datos_accionpie();	
+   		}else{
+   			$("#div_resultados_gral").hide();  
+   		}
+	});
 
 $('#salir').click(function(){
 	$('#myModal').modal('toggle');
@@ -216,7 +232,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 
 
 	function datos_accion(){
-		console.log("llego a la funcion de datos accion");
+		// console.log("llego a la funcion de datos accion");
 		let id_cct_rm=$("#id_cct_rm").val();
 		if(id_cct_rm!=""){
 			$.ajax({
@@ -344,8 +360,6 @@ Prioridad.prototype.funcionalidadselect = function(){
           			tabla+='</table>';
           			tabla+='</center>';
           			$("#tabla_avances").append(tabla);
-
-
     }
 
    	function datos_accionpie(){
@@ -643,19 +657,3 @@ Prioridad.prototype.funcionalidadselect = function(){
 		}
 	}
 
-	$("#nav-tab").click(function (e) {
-        var id = e.target.id;
-        if(id =="nav-resultados-tab"){
-        	$("#nombreescuela_pemc").val("");
-        	$("#div_resultados_gral").show();
-        	accionesRezagadas();  
-	   		datos_accion();
-		   	// datos_laepie();
-		   	// datos_objetivopie();
-		   	// datos_accionpie();
-		   	
-
-   		}else{
-   			$("#div_resultados_gral").hide();  
-   		}
-    });

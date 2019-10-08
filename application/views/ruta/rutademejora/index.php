@@ -131,6 +131,10 @@ span{
 <div class="container">
     <div class="alert alert-success text-center" role="alert" style="margin-bottom: 30px;">
         <h3>Programa Escolar de Mejora Continua (PEMC)</h3><br>
+        <?php if(isset($tipo_usuario_pemc)){ ?>
+        	<b>CCT:</b>  <label><?= $cct ?></label> <b> Nombre:</b> <label><?=$nombreuser ?></label><b> Turno:</b> <label><?= $turno ?></label>
+        	<br>
+    	<?php }?>
         <b><a id='cteActual'></a></b>
     </div>
 	<div class="row justify-content-center flex-column mb-3">
@@ -138,8 +142,12 @@ span{
 			<div class="nav nav-tabs nav-tabs-style-1" id="nav-tab" role="tablist">
 				<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">PEMC</a>
 				<a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Seguimiento</a>
-				<a class="nav-item nav-link nav-link-style-1" id="nav-resultados-tab" data-toggle="tab" href="#nav-resultados" role="tab" aria-controls="nav-resultados" aria-selected="false">Resultados por escuela</a>
-				<a class="nav-item nav-link nav-link-style-1" id="nav-ayuda-tab" data-toggle="tab" href="#nav-ayuda" role="tab" aria-controls="nav-ayuda" aria-selected="false">Ayuda</a>
+				<!-- <a class="nav-item nav-link nav-link-style-1" id="nav-resultados-tab" data-toggle="tab" href="#nav-resultados" role="tab" aria-controls="nav-resultados" aria-selected="false">Resultados por escuela</a> -->
+				<?php if(isset($tipo_usuario_pemc)){ ?>
+
+				<?php }else{?>
+					<a class="nav-item nav-link nav-link-style-1" id="nav-ayuda-tab" data-toggle="tab" href="#nav-ayuda" role="tab" aria-controls="nav-ayuda" aria-selected="false">Ayuda</a>
+				<?php }?>
 				
 			</div>
 		</nav>
@@ -395,10 +403,7 @@ span{
 	</div>
 </div>
 <!-- fin modal -->
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<!-- <script src="<?= base_url('assets/gstatic/jsapi.js'); ?>"></script> 
-<script src="<?= base_url('assets/gstatic/gstatic/loader.js'); ?>"></script>  -->
+<!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_delete_tp.js') ?>"></script>
 <script src="<?= base_url('assets/js/rutademejora/rm_table_operation.js'); ?>"></script>
 <script src="<?= base_url('assets/js/rutademejora/rutademejora.js'); ?>"></script>
@@ -406,6 +411,7 @@ span{
 <script src="<?= base_url('assets/js/rutademejora/rm_edith_tp.js'); ?>"></script>
 <script src="<?= base_url('assets/js/rutademejora/acciones.js'); ?>"></script>
 <script src="<?= base_url('assets/js/rutademejora/avances.js'); ?>"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
 
 

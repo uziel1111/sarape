@@ -60,7 +60,7 @@
 
 //   return bandera;
 // }
-
+$("#filtros_busqueda").collapse('show');
 $("#busqueda_cct_pemc").click(function(e){
   e.preventDefault();
   let cve_municipio=$("#id_municipio").val();

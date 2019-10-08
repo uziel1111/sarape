@@ -27,6 +27,8 @@
 	                <div class="tab-pane fade" id="xcct_turno" role="tabpanel" aria-labelledby="xcct_turno">
 		                <div class="tab-content tab-content-style-1" id="myTabContent">
 			                <div class="tab-pane fade show active" id="xmunicipio" role="tabpanel" aria-labelledby="xmunicipio-tab">
+			                	<div class="panel-heading text-center" style="color: blue"><h3 class="panel-title">Búsqueda de Escuela</h3><span data-toggle="collapse" data-target="#filtros_busqueda" style="cursor: pointer" class="collapsecaret"><i class="fas fa-caret-down rotate"></i></span></div>
+			                	<div class="panel-body collapse in active" id="filtros_busqueda">
 			                  	<?= form_open() ?>
 			                  	<div class="row">
 				                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 mt-2">
@@ -72,6 +74,7 @@
 			                  	<?= form_close() ?>
 			                  	<br>
 			                  	<div id="div_busxcct"></div>
+			                  </div>
 			                  	<br>
 			                  	<div id="div_busxcct_pemc"></div>
 			                </div>

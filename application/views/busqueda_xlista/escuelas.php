@@ -145,9 +145,9 @@
 
   $(document).on("click", "#table_escuelas tbody tr", function(e) {
     if($("#tipou_pemc2").length){
-      // $("#div_busxcct").togle();
-      // $("#div_busxcct_pemc").collapse('hidden');
-      
+
+      $("#filtros_busqueda").collapse('hide');
+    
       let idescuela = $(this).data('idescuela');
       let cct = $(this).data('cve_centro');
       let turno = $(this).data('turno_single');
