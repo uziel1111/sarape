@@ -6,14 +6,17 @@ foreach ($array_detalles as $key => $value):
 	 $auxComple = substr($complemento, -2);
 	if ($auxComple == ', ') {
 		$complemento = rtrim($complemento, ', ');
+
 	}
+
 	?>
 	
 	<!-- Modal Detalle -->
 	<?php 
-
+// if ( $complemento == 'En un sistema automatizado') { 
+	// print_r($complemento);
 if ($value['idpregunta'] == 7 && (stristr(($value['respuesta']), '.') || stristr(($value['respuesta']), '/'))) { 
-	if ( $value['idpregunta'] != 4 && $value['idpregunta'] != 5 && $value['idpregunta'] != 6  && $value['idpregunta'] != 17 && $value['idpregunta'] != 18): ?>
+	if ( $value['idpregunta'] != 4 && $value['idpregunta'] != 5  && $value['idpregunta'] != 17 && $value['idpregunta'] != 18): ?>
 			<div class="row">
 			<div class="col-sm">
 				<div class="alert alert-success my-1 py-1 fz-18" role="alert">
@@ -83,7 +86,7 @@ if ($value['idpregunta'] == 7 && (stristr(($value['respuesta']), '.') || stristr
 	<?php } ?>
 	<?php } else {
 		
-	if ( $value['idpregunta'] != 4 && $value['idpregunta'] != 5 && $value['idpregunta'] != 6 && $value['idpregunta'] != 7  && $value['idpregunta'] != 17 && $value['idpregunta'] != 18): ?>
+	if ( $value['idpregunta'] != 4 && $value['idpregunta'] != 5  && $value['idpregunta'] != 7  && $value['idpregunta'] != 17 && $value['idpregunta'] != 18): ?>
 		<div class="row">
 			<div class="col-sm">
 				<div class="alert alert-success my-1 py-1 fz-18" role="alert">

@@ -282,13 +282,14 @@
 		})
 		.done(function(data) {
 			$('#tabla_documentos'+idusuario).html(data.str_view);
+			swal.close();
 		})
 		.fail(function() {
 			console.log("error");
 		})
 		.always(function() {
 			// console.log("complete");
-			swal.close();
+			
 		});
 
 	}
