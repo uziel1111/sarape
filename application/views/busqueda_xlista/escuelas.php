@@ -1,12 +1,12 @@
-<section class="main-area">
-<div class="container">
 
-  <div class="card mb-3 card-style-1">
-    <div class="card-header card-1-header bg-light">Estadísticas por escuela</div>
-    <div class="card-body">
   <?php if(isset($tipou_pemc)){?>
     <input type="text" name="tipou_pemc2" id="tipou_pemc2" hidden> 
   <?php }else{?>
+  <section class="main-area">
+  <div class="container">
+  <div class="card mb-3 card-style-1">
+  <div class="card-header card-1-header bg-light">Estadísticas por escuela</div>
+  <div class="card-body">
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <center>
@@ -15,16 +15,15 @@
         </center>
       </div>
     </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 mt-3">
+        <?php
+          $mensaje = '';
+        ?>
+        <center><?= $total_escuelas ?> escuelas encontradas del municipio: <?= $municipio ?>, nivel: <?= $nivel ?> y sotenimiento: <?= $sostenimiento ?></center>
+      </div><!-- col-md-5 -->
+    </div>
   <?php }?>
-
-  <div class="row">
-    <div class="col-12 col-sm-12 mt-3">
-      <?php
-        $mensaje = '';
-      ?>
-      <center><?= $total_escuelas ?> escuelas encontradas del municipio: <?= $municipio ?>, nivel: <?= $nivel ?> y sotenimiento: <?= $sostenimiento ?></center>
-    </div><!-- col-md-5 -->
-  </div>
 
   <?php
   if(isset($tipou_pemc)){
@@ -146,15 +145,13 @@
 
   $(document).on("click", "#table_escuelas tbody tr", function(e) {
     if($("#tipou_pemc2").length){
-      $("#div_busxcct").collapse('hide');
-      $("#div_busxcct_pemc").collapse('hide');
+      // $("#div_busxcct").togle();
+      // $("#div_busxcct_pemc").collapse('hidden');
       
       let idescuela = $(this).data('idescuela');
       let cct = $(this).data('cve_centro');
       let turno = $(this).data('turno_single');
-      // console.log(idescuela);
-      // console.log(cct);
-      // console.log(turno);
+
       $.ajax({
         url : base_url+"Estadistica_pemc/busquedaxct",
         dataType : 'json',

@@ -627,7 +627,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 	          			$("#div_acc_rez").append(tabla);
 	          			$("#div_rezagadas").show();
           			}else{
-          				console.log("llego en la linea 633");
+          				// console.log("llego en la linea 633");
           				$("#div_rezagadas").hide();
           				$("#mensaje_res").empty();
           				$("#mensaje_res").append('<br><h1 align="center">Esta escuela no cuenta con datos para proyectar</h1><br>');         				
