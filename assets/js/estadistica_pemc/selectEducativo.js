@@ -46,22 +46,9 @@ $('#sostenimiento_LAE').change(function() {
    getEstadisticaLAE();
 });
 
-
-$('#radiobtn_region').click(function() {
-    $('.div_zona').addClass('d-none');
-    $('.div_region').removeClass('d-none');
-
-});
-
-$('#radiobtn_zona').click(function() {
-    $('.div_region').addClass('d-none');
-    $('.div_zona').removeClass('d-none');
-});
-
 $('#zona_zona').change(function() {
 	Notification.loading("");
    getTablaZona();
-
 
 });
 
