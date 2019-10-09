@@ -220,7 +220,7 @@ span{
 	<?php else: ?>
 		<br><br><br>
 	<!-- <b><a id='cteActual'></a></b> -->
-	<button class="botonF1 ">tipo_usuario_pemc
+	<button class="botonF1 ">
 	   	<span><i class="fas fa-wrench fa-xs"></i></span>
 	</button>
 	<?php endif; ?>
