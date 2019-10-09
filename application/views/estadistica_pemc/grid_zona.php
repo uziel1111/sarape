@@ -18,7 +18,7 @@
      <label for="sostenimiento_zona">Seleccione un sostenimiento</label>
      <select id="sostenimiento_zona" class="form-control">
       <option value="0">Todos los sostenimientos</option>
-      <option value="1">Publico</option>
+      <option value="1">Público</option>
       <option value="2">Privado</option>
     </select></label>
   </div>
