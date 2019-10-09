@@ -61,7 +61,7 @@
         <td><?=$value['lae3']?>%</td>
         <td><?=$value['lae4']?>%</td>
         <td><?=$value['lae5']?>%</td>
-        
+
       </tr>
     <?php } ?>
   </tbody>

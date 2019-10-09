@@ -8,8 +8,8 @@
 	<script src="<?= base_url('assets/jquery-3.3.1.min.js'); ?>"></script>
 	<script src="<?= base_url('assets/bootstrap-411/js/bootstrap.min.js'); ?>"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.2/dist/sweetalert2.all.min.js"></script>
-    <link href="http://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">   
     <link rel="stylesheet" href="<?= base_url('assets/css/main.css'); ?>">
     <link href="<?= base_url('assets/fonts/fontawesome5/css/all.css') ?>" rel="stylesheet" media="screen">
     <script src="<?= base_url('assets/js/messages.js'); ?>"></script>
