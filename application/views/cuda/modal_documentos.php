@@ -15,9 +15,9 @@
 	<div class="row">
 		<div class="col-sm">
 			<?php if ($tipo == 'pdf') { ?>
-				<iframe src="http://qual-edu.org/levantamiento_de_requerimientos/<?= $value['url_comple']?>" width="100%" height="500" style="border: none;"></iframe>
+				<iframe src="https://qual-edu.org/levantamiento_de_requerimientos/<?= $value['url_comple']?>" width="100%" height="500" style="border: none;"></iframe>
 			<?php } else { ?>
-				<img src="http://qual-edu.org/levantamiento_de_requerimientos/<?= $value['url_comple']?>" width="100%" height="100%" style="border: none;" />
+				<img src="https://qual-edu.org/levantamiento_de_requerimientos/<?= $value['url_comple']?>" width="100%" height="100%" style="border: none;" />
 			<?php } ?>
 		</div>
 	</div>	

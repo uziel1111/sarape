@@ -297,12 +297,17 @@ function truncar($numero, $digitos) {
         $totalEscuelas = $this->Estadistica_pemc_model->get_toatalesc($nivel);
 
 
-     $porcentajeC = (float)$this->Estadistica_pemc_model->get_total_gen($nivel)[0]['por_capt'];
-     $porcentajeNC = (float)$this->Estadistica_pemc_model->get_total_gen($nivel)[0]['por_ncapt'];
-     $n_porcentajeC = (float)$this->Estadistica_pemc_model->get_total_gen($nivel)[0]['n_esccapt'];
-     $n_porcentajeNC = (float)$this->Estadistica_pemc_model->get_total_gen($nivel)[0]['n_escncapt'];
+     $porcentajeC = $this->Estadistica_pemc_model->get_total_gen($nivel);
+     $porcentajeNC = $this->Estadistica_pemc_model->get_total_gen($nivel);
+     $n_porcentajeC = $this->Estadistica_pemc_model->get_total_gen($nivel);
+     $n_porcentajeNC = $this->Estadistica_pemc_model->get_total_gen($nivel);
 
-     $result = ['tabla' => $tabla, 'total' => $totalEscuelas];
+     $porcentajeC = (float)$porcentajeC[0]['por_capt'];
+     $porcentajeNC = (float)$porcentajeNC[0]['por_ncapt'];
+     $n_porcentajeC = (float)$n_porcentajeC[0]['n_esccapt'];
+     $n_porcentajeNC = (float)$n_porcentajeNC[0]['n_escncapt'];
+
+     $result = array('tabla' => $tabla, 'total' => $totalEscuelas);
 
      $data['result'] = $result;
      $str_view = $this->load->view("estadistica_pemc/grid_general", $data, TRUE);

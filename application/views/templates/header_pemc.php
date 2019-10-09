@@ -6,7 +6,7 @@
   <!-- Mobile Specific Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Favicon-->
-  <link rel="icon" type="image/png" href="http://coahuila.gob.mx/images/favicon-electoral.png">
+  <link rel="icon" type="image/png" href="https://coahuila.gob.mx/images/favicon-electoral.png">
   <!-- Meta Description -->
   <meta name="description" content="">
   <!-- Meta Keyword -->
@@ -16,8 +16,8 @@
   <!-- Site Title -->
     <title>SARAPE</title>
     <!-- Site Title -->
-    <link href="http://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">
   <!-- CSS -->
     <link href="<?= base_url('assets/css/main.css'); ?>" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="<?= base_url('assets/css/linearicons.css'); ?>">
