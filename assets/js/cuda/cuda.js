@@ -16,9 +16,9 @@
 		var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
 		chart.draw(data, options);
 	}*/
-	$(document).ready(function() {
-		// $('#seleccionaNivelIndex').modal('show');
-	});
+	// $(document).ready(function() {
+	// 	// $('#seleccionaNivelIndex').modal('show');
+	// });
 	
 
 	$('#nivelEducativoModal').change(function() {
@@ -166,6 +166,8 @@
 		$('#divDocumentos').attr('Hidden','TRUE');
 		$('#titulo_h5').text('Catálogo Único de Documentos Autorizados por Subsecretaría');
 		$('#total_documentos').text('Documentos Autorizados');
+		$('#nivelEducativo').val('Seleccione el Nivel educativo');
+		$('#mes').val('Filtrar por mes');
 	}
 	
 

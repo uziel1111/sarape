@@ -20,7 +20,7 @@ foreach ($temas as $key => $dato){
 												<tr>
 													<th scope="col">#</th>
 													<th scope="col">Nombre del documento</th>
-													<th scope="col">Tipo</th>
+													<th scope="col">Sostenimiento</th>
 													<th scope="col">Ver</th>
 												</tr>
 											</thead>

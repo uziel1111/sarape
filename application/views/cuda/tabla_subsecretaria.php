@@ -29,6 +29,7 @@
 											<tr>
 												<th scope="col">#</th>
 												<th scope="col">Nombre del documento</th>
+												<th scope="col">Sostenimiento</th>
 												<th scope="col">Ver</th>
 											</tr>
 										</thead>
