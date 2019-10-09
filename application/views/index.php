@@ -18,7 +18,7 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
-							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Indicepeso/index'); ?>"><span class="color-1 mr-5"><i class="material-icons">report</i></span> Índice de peso</a></li>
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Indicepeso/index'); ?>"><span class="color-1 mr-5"><i class="material-icons">report</i></span> Índice de peso<span class="h4 text-white badge badge-secondary bgcolor-1">Nuevo</span></a></li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Estadistica/estad_indi_generales'); ?>"><span class="color-1"><i class="material-icons">public</i></span> Por estado, municipio y zona</a></li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Busqueda_xlista/index'); ?>"><span class="color-1"><i class="material-icons">location_city</i></span> Por escuela</a></li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">my_location</i></span> Localiza tu escuela</a></li>
@@ -45,13 +45,12 @@
 							</li>
 							<!-- <li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Rutademejora/index_new'); ?>" target="_blank"><span class="color-2 mr-5"><i class="fas fa-star"></i></span> Ruta de Mejora <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a>
 							</li> -->
-							
+							<li class="list-group-item"><a onclick="Index.getRevistaEscolar()" href="javascript:void(0)"><span class="color-2 mr-5"><i class="fas fa-star"></i></span>Revista InfórmeSE</a>
+							</li>
 <!--
 							<li class="list-group-item"><a href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Servicio Profesional Docente</a> -->
-							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/cuda');  ?>" target="_blank"><span class="color-2"><i class="fas fa-star"></i></span> Catálogo Único de Documentos
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/cuda');  ?>" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Catálogo Único de Documentos
 								<a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/cuda'); ?>" target="_blank"><b>Autorizados (CUDA)</b> <span  class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a></li>
-							<li class="list-group-item"><a onclick="Index.getRevistaEscolar()" href="javascript:void(0)"><span class="color-2 mr-5"><i class="material-icons">chevron_right</i></span>Revista InfórmeSE</a>
-							</li>
 
 						<!-- 	<li class="list-group-item"><b><a href="<?= base_url('index.php/cuda'); ?>" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span>Catálogo Único de Documentos <a style="color:grey; padding-left: 10%;">Autorizados (CUDA) <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a></b>
 							</li> -->
@@ -107,7 +106,7 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
-							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Talis/index'); ?>"><span class="color-4 mr-5"><i class="fas fa-star"></i></span> TALIS </a></li>
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Talis/index'); ?>"><span class="color-4 mr-5"><i class="fas fa-star"></i></span> TALIS <span class="h4 text-white badge badge-secondary bgcolor-4">Nuevo</span></a></li>
 							<li class="list-group-item"><a onclick="Index.getmodeloeducativo()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Modelo Coahuilense</a>
 							</li>
 							<li class="list-group-item"><a onclick="Index.getCalendarioEscolar()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Calendario escolar</a>
