@@ -55,6 +55,7 @@ $route['default_controller'] = 'Index';
 $route['estadistica'] = 'Busqueda_xlista';
 $route['estadistica/escuelas'] = 'Busqueda_xlista/escuelas_xmunicipio';
 // End routes Miguel Hernández
+$route['estadistica_pemc'] = 'Estadistica_pemc';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
