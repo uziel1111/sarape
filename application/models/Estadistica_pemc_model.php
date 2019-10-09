@@ -29,18 +29,18 @@ class Estadistica_pemc_model extends CI_Model
 
     /*BK201 S*/
     function get_cantidad_datos($nivel, $municipio){
-        $query = 'select count(obj.num_objetivos) total_obj, obj.municipio, obj.num_objetivos  from (SELECT COUNT(DISTINCT o.id_objetivo) as num_objetivos, m.municipio
+        $query = "select count(obj.num_objetivos) total_obj, obj.municipio, obj.num_objetivos  from (SELECT COUNT(DISTINCT o.id_objetivo) as num_objetivos, m.municipio
         FROM rm_tema_prioritarioxcct tp
         INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
         LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
         LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
         INNER JOIN escuela e on e.id_cct = tp.id_cct
         INNER JOIN municipio m on e.id_municipio = m.id_municipio
-        where  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.id_nivel<6 and e.id_municipio = '.$municipio.'';
+        where  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 and e.id_municipio = {$municipio}";
         if ($nivel != 0) {
-        $query .=' and e.id_nivel = '.$nivel.'';
+        $query .=" and e.id_nivel = {$nivel}";
         }
-        $query .= ' GROUP BY tp.id_tprioritario  ORDER by tp.orden) as obj group by obj.num_objetivos;';
+        $query .= " GROUP BY tp.id_tprioritario  ORDER by tp.orden) as obj group by obj.num_objetivos;";
 
      // echo '<pre>'; print_r($query);
       return $this->db->query($query)->result_array();
@@ -58,18 +58,18 @@ class Estadistica_pemc_model extends CI_Model
 }
 
  function get_total($nivel, $municipio){
-    $query = 'select sum(total.cct) as total from  (select count(obj.num_objetivos), obj.municipio, obj.num_objetivos, count(obj.id_cct) as cct ,obj.id_cct  from (SELECT COUNT(DISTINCT o.id_objetivo) as num_objetivos, m.municipio, e.id_cct
+    $query = "select sum(total.cct) as total from  (select count(obj.num_objetivos), obj.municipio, obj.num_objetivos, count(obj.id_cct) as cct ,obj.id_cct  from (SELECT COUNT(DISTINCT o.id_objetivo) as num_objetivos, m.municipio, e.id_cct
         FROM rm_tema_prioritarioxcct tp
         INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
         LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
         LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
         INNER JOIN escuela e on e.id_cct = tp.id_cct
         INNER JOIN municipio m on e.id_municipio = m.id_municipio
-        where  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.id_nivel<6 and e.id_municipio = '.$municipio.'';
+        where  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 and e.id_municipio = {$municipio}";
         if ($nivel != 0) {
-          $query .=' and e.id_nivel = '.$nivel.'';
+          $query .=" and e.id_nivel = {$nivel}";
         }
-        $query .= ' GROUP BY tp.id_cct  ORDER by tp.orden) as obj group by obj.num_objetivos, obj.id_cct) as total;';
+        $query .= " GROUP BY tp.id_cct  ORDER by tp.orden) as obj group by obj.num_objetivos, obj.id_cct) as total;";
 
         return $this->db->query($query)->result_array();
 }
@@ -165,7 +165,7 @@ class Estadistica_pemc_model extends CI_Model
     WHERE
         (e.id_estatus = 1 OR e.id_estatus = 4)
             AND e.id_nivel < 6
-            AND e.id_nivel <> 2
+            AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%'
             {$where_nivel}
             {$where_region}
             {$where_municipio}
@@ -192,7 +192,7 @@ class Estadistica_pemc_model extends CI_Model
     WHERE
         (e.id_estatus = 1 OR e.id_estatus = 4)
             AND e.id_nivel < 6
-            AND e.id_nivel <> 2
+            AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%'
             {$where_nivel}
             {$where_region}
             {$where_municipio}
@@ -219,7 +219,7 @@ class Estadistica_pemc_model extends CI_Model
     WHERE
         (e.id_estatus = 1 OR e.id_estatus = 4)
             AND e.id_nivel < 6
-            AND e.id_nivel <> 2
+            AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%'
             {$where_nivel}
             {$where_region}
             {$where_municipio}
@@ -246,7 +246,7 @@ class Estadistica_pemc_model extends CI_Model
     WHERE
         (e.id_estatus = 1 OR e.id_estatus = 4)
             AND e.id_nivel < 6
-            AND e.id_nivel <> 2
+            AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%'
             {$where_nivel}
             {$where_region}
             {$where_municipio}
@@ -273,7 +273,7 @@ class Estadistica_pemc_model extends CI_Model
     WHERE
         (e.id_estatus = 1 OR e.id_estatus = 4)
             AND e.id_nivel < 6
-            AND e.id_nivel <> 2
+            AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%'
             {$where_nivel}
             {$where_region}
             {$where_municipio}
@@ -325,7 +325,7 @@ FROM
     WHERE
         (e.id_estatus = 1 OR e.id_estatus = 4)
             AND e.id_nivel < 6
-            AND e.id_nivel <> 2
+            AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%'
             {$where_nivel}
             {$where_region}
             {$where_municipio}
@@ -337,7 +337,7 @@ return $this->db->query($query)->result_array();
  function get_obj_acc_lae_zona_sost($nivel, $zona, $sostenimiento)
  {
 
-     $query = 'SELECT tp.orden, COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones,  group_concat(a.id_accion) as id_acciones, e.id_municipio
+     $query = "SELECT tp.orden, COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones,  group_concat(a.id_accion) as id_acciones, e.id_municipio
      FROM rm_tema_prioritarioxcct tp
      INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
      LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
@@ -346,18 +346,18 @@ return $this->db->query($query)->result_array();
      inner join municipio m on m.id_municipio = e.id_municipio
      inner join subsostenimiento s on s.id_subsostenimiento = e.id_subsostenimiento
      inner join supervision su on su.id_supervision = e.id_supervision
-     WHERE  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.id_nivel<6 and m.id_municipio is not null  ';
+     WHERE  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 and m.id_municipio is not null  ";
      if ($nivel != 0) {
-        $query .= ' and e.id_nivel = '.$nivel. '';
+        $query .= " and e.id_nivel = {$nivel}";
     }
     if ($zona != 0 && $sostenimiento != 0) {
-       $query .= ' and su.zona_escolar = '.$zona.'';
+       $query .= " and su.zona_escolar = {$zona}";
    }
    if ($sostenimiento != 0) {
-       $query .= ' and s.id_sostenimiento = '.$sostenimiento.'';
+       $query .= " and s.id_sostenimiento = {$sostenimiento}";
    }
 
-   $query .= ' GROUP BY tp.orden  ORDER by tp.orden';
+   $query .= " GROUP BY tp.orden  ORDER by tp.orden";
 
    return $this->db->query($query)->result_array();
 }
@@ -395,7 +395,7 @@ function get_zonas($sostenimiento, $nivel){
     WHERE
     (e.id_estatus = 1 OR e.id_estatus = 4)
     AND e.id_nivel < 6
-    AND e.id_nivel <> 2
+    AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%'
     {$where_nivel}
     {$where_sostenimiento}
     GROUP BY  s.zona_escolar
@@ -453,7 +453,7 @@ function get_zonas($sostenimiento, $nivel){
         WHERE
         (e.id_estatus = 1 OR e.id_estatus = 4)
         AND e.id_nivel < 6
-        AND e.id_nivel <> 2
+        AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%'
         AND tp.id_prioridad = 1
         {$where_nivel}
         {$where_sostenimiento}
@@ -479,7 +479,7 @@ function get_zonas($sostenimiento, $nivel){
         WHERE
         (e.id_estatus = 1 OR e.id_estatus = 4)
         AND e.id_nivel < 6
-        AND e.id_nivel <> 2
+        AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%'
         AND tp.id_prioridad = 2
         {$where_nivel}
         {$where_sostenimiento}
@@ -505,7 +505,7 @@ function get_zonas($sostenimiento, $nivel){
         WHERE
         (e.id_estatus = 1 OR e.id_estatus = 4)
         AND e.id_nivel < 6
-        AND e.id_nivel <> 2
+        AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%'
         AND tp.id_prioridad = 3
         {$where_nivel}
         {$where_sostenimiento}
@@ -531,7 +531,7 @@ function get_zonas($sostenimiento, $nivel){
         WHERE
         (e.id_estatus = 1 OR e.id_estatus = 4)
         AND e.id_nivel < 6
-        AND e.id_nivel <> 2
+        AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%'
         AND tp.id_prioridad = 4
         {$where_nivel}
         {$where_sostenimiento}
@@ -557,7 +557,7 @@ function get_zonas($sostenimiento, $nivel){
         WHERE
         (e.id_estatus = 1 OR e.id_estatus = 4)
         AND e.id_nivel < 6
-        AND e.id_nivel <> 2
+        AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%'
         AND tp.id_prioridad = 5
         {$where_nivel}
         {$where_sostenimiento}
@@ -646,7 +646,7 @@ function get_zonas($sostenimiento, $nivel){
               	m.id_municipio, m.municipio, COUNT(DISTINCT e.id_cct) n_escxmuni
               	FROM municipio m
               	INNER JOIN escuela e ON m.id_municipio = e.id_municipio
-              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.id_nivel<6 {$where}
+              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 {$where}
               	GROUP BY m.id_municipio
               ) as mastert
               INNER JOIN
@@ -658,7 +658,7 @@ function get_zonas($sostenimiento, $nivel){
               	INNER JOIN escuela e ON m.id_municipio = e.id_municipio
               	LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
               	LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
-              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.id_nivel<6 {$where}
+              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 {$where}
               	GROUP BY m.id_municipio
               ) captobj on mastert.id_municipio = captobj.id_municipio
               LEFT JOIN
@@ -674,7 +674,7 @@ function get_zonas($sostenimiento, $nivel){
               	INNER JOIN escuela e ON m.id_municipio = e.id_municipio
               	LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
               	LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
-              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.id_nivel<6 {$where}
+              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 {$where}
               	GROUP BY m.id_municipio, e.id_cct
               	HAVING COUNT(DISTINCT o.id_objetivo)=0
               	) as xcon0
@@ -694,7 +694,7 @@ function get_zonas($sostenimiento, $nivel){
               	INNER JOIN escuela e ON m.id_municipio = e.id_municipio
               	LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
               	LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
-              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.id_nivel<6 {$where}
+              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 {$where}
               	GROUP BY m.id_municipio, e.id_cct
               	HAVING COUNT(DISTINCT o.id_objetivo)=1
               	) as xcon0
@@ -714,7 +714,7 @@ function get_zonas($sostenimiento, $nivel){
               	INNER JOIN escuela e ON m.id_municipio = e.id_municipio
               	LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
               	LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
-              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.id_nivel<6 {$where}
+              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 {$where}
               	GROUP BY m.id_municipio, e.id_cct
               	HAVING COUNT(DISTINCT o.id_objetivo)=2 OR COUNT(DISTINCT o.id_objetivo)=3
               	) as xcon0
@@ -734,7 +734,7 @@ function get_zonas($sostenimiento, $nivel){
               	INNER JOIN escuela e ON m.id_municipio = e.id_municipio
               	LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
               	LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
-              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.id_nivel<6 {$where}
+              	WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 {$where}
               	GROUP BY m.id_municipio, e.id_cct
               	HAVING COUNT(DISTINCT o.id_objetivo)>3
               	) as xcon0
@@ -755,7 +755,7 @@ function get_zonas($sostenimiento, $nivel){
     $query = "SELECT
               COUNT(DISTINCT e.id_cct) as n_esc
               FROM escuela as e
-              WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.id_nivel<6 {$where}
+              WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 AND e.cve_centro NOT LIKE '05FUA%' {$where}
               ";
     return $this->db->query($query)->row('n_esc');
   }//get_toatalesc()
@@ -774,7 +774,7 @@ function get_zonas($sostenimiento, $nivel){
              FROM escuela as e
 						 LEFT JOIN rm_tema_prioritarioxcct tp on e.id_cct = tp.id_cct
 						 LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
-             WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.id_nivel<6 {$where}
+             WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 {$where}
              ";
   return $this->db->query($query)->result_array();
  }
