@@ -136,7 +136,7 @@ $("#btn_prioridad").click(function(e){
 				$('.problematica').selectpicker('hide');
 				tipou_pemc=$('#tipou_pemc').val();
 			}  
-        	obj_prioridad.getObjetivos(obj.id_tprioritario,tipou_pemc);
+        	obj_prioridad.getObjetivos_r(obj.id_tprioritario);
 
 		}).fail(function(e) {
 		    console.error("Error in get_datos_edith_tp()");
@@ -177,9 +177,17 @@ $("#btn_actividades").click(function(e){
 
 
 ///
-Prioridad.prototype.getObjetivos = function(tipou_pemc){
+Prioridad.prototype.getObjetivos_r = function(id_tprioritario){
 	// var idtemaprioritario = obj.id_tprioritario ;
-	
+	 let tipou_pemc="";
+		if($('#tipou_pemc').length) {
+			$("#grabar_prioridad").hide();
+			$("#grabar_objetivo").hide();
+			$("#btn_eliminar").hide();
+			$('.problematica').selectpicker('hide');
+			tipou_pemc=$('#tipou_pemc').val();
+		}
+	console.log(tipou_pemc);
 	if(obj.id_tpriotario != 0){
 	//console.log(obj.id_tprioritario);
 		$.ajax({
@@ -206,7 +214,7 @@ Prioridad.prototype.getObjetivos = function(tipou_pemc){
 				$('#evidencias').empty();
 				$('#txt_rm_obs_direc').empty();
 			}
-			console.log(result.id_objetivo);
+			// console.log(result.id_objetivo);
 			obj_prioridad.funcionalidadselect();
 			// obj_prioridad.btnEditar();
 			// btnEditar();

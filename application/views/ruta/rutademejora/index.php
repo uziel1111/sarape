@@ -216,11 +216,11 @@ span{
 </div> <!-- container -->
 <div class="contenedorbtn">
 	<?php if (isset($tipo_usuario_pemc)): ?>
-		<input type="text" name="tipou_pemc" id="tipou_pemc" hidden>
+		<input type="text" name="tipou_pemc" id="tipou_pemc"  value='<?=$tipo_usuario_pemc?>' hidden>
 	<?php else: ?>
 		<br><br><br>
 	<!-- <b><a id='cteActual'></a></b> -->
-	<button class="botonF1 ">
+	<button class="botonF1 ">tipo_usuario_pemc
 	   	<span><i class="fas fa-wrench fa-xs"></i></span>
 	</button>
 	<?php endif; ?>
