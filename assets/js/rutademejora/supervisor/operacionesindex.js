@@ -10,6 +10,92 @@ function Supervision(){
 
 }
 
+
+/*101019 I*/
+$("#btn_seguimiento_modal").click(function(){
+    cve = $("#cct_tmp").val();
+     tipou_pemc_avances=1;
+
+  $.ajax({
+    url: base_url+'Rutademejora/get_avance',
+    type: 'POST',
+    dataType: 'JSON',
+    data: {'x':'x','tipou_pemc_avances':tipou_pemc_avances, 'cve_centro':cve},
+    beforeSend: function(xhr) {
+      Notification.loading("");
+    },
+  }).done(function(result) {
+    swal.close();
+    $("#seguimiento_modal").html(result.srt_html);
+    $('#modal_visor_seguimiento_id').modal('show');
+  }).fail(function(e) {
+    console.error("Error in get avance()"); console.table(e);
+  }).always(function() {
+    // swal.close();
+  })              
+});
+
+$('#cerrar_modal_seguimiento_super').click(function() {
+  $('#modal_visor_seguimiento_id').modal('toggle');
+});
+
+$('#btn_ver_objetivos_super').click(function() {
+   cve = $("#cct_tmp").val();
+  if (id_tprioritario_sup === undefined || id_tprioritario_sup == 0) {
+    swal(
+        '¡Error!',
+        "Selecciona una línea de acción para editar",
+        "error"
+      );
+    return false;
+  } else{
+   $.ajax({
+      url: base_url+'Rutademejora/getObjetivos',
+      type: 'POST',
+      dataType: 'JSON',
+      data: { cve: cve,
+          id_tpriotario:id_tprioritario_sup,
+          id_prioridad: 1,
+          tipou_pemc:1,
+      },
+      beforeSend: function(xhr) {
+            Notification.loading("");
+        },
+    })
+    .done(function(result) {
+      $("#objetivos_modal").empty();
+      $("#objetivos_modal").append(result.table);
+       $('#modal_visor_objetivos_id').modal('show');
+        swal.close();
+      // $('#tema_prioritario').val(result.id_tprioritario);
+      // $('#id_objetivo').val(result.id_objetivo);
+      // if (result.id_objetivo == 0) {
+      //   $('.problematicaTxt').empty();
+      //   $('#evidencias').empty();
+      //   $('#txt_rm_obs_direc').empty();
+      // }
+      // console.log(result.id_objetivo);
+      //obj_prioridad.funcionalidadselect();
+      // obj_prioridad.btnEditar();
+      // btnEditar();
+    })
+    .fail(function(e) {
+      console.error("Error in getObjetivos()");
+    })
+    .always(function() {
+      swal.close();
+    });
+   
+  }
+$('#modal_visor_objetivos_id').modal('show');
+// $('#objetivos_modal').
+});
+
+$('#cerrar_modal_objetivos_super').click(function() {
+  $('#modal_visor_objetivos_id').modal('toggle');
+});
+/*101019 F*/
+
 $("#cerrar_modal_ver_evidencia_super").click(function(){
   $('#exampleModal_ver_evidencia_super').modal('toggle');
 });

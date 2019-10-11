@@ -3,6 +3,9 @@
     background-color: #9ccc65;
     color: #FFF;
 }
+.custom-width-modal {
+  width: 500%;
+}
 </style>
 <!-- Multiselect -->
 <link rel="stylesheet" href="<?= base_url('assets/multiselect/css/bootstrap-select.min.css') ?>">
@@ -33,14 +36,14 @@
                 <div class="card-block">
                   <div class="form-group form-group-style-1">
                     <div class="row">
-                      <div class="col-md-6">
+                      <!-- <div class="col-md-6">
                         <label><label style="color:red;">*</label>Ambitos:</label>
                         <select class="form-control" id="slc_rm_ambito" title="SELECCIONA UN AMBITO" disabled>
-                          <?php foreach ($arr_ambitos as $item): ?>
-                                  <option value="<?= $item['id_ambito'] ?>"><?= $item['ambito'] ?></option>
-                          <?php endforeach; ?>
+                     
+                                  <option value="</option>
+                          <?php// ?>
                         </select>
-                      </div>
+                      </div> -->
                     </div>
                     <div class="row mt-15">
                       <div class="col-md-6">
@@ -118,4 +121,6 @@
         </div>
       </div>
 </div> <!-- End Modal -->
+
+
 <script src="<?= base_url('assets/js/rutademejora/supervisor/jsacciones.js'); ?>"></script>

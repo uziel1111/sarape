@@ -23,6 +23,8 @@ $('#saliract').click(function(){
   $('#exampleModalacciones').modal('toggle');
   obj_rm_acciones_tp.get_view();
   $('#id_objetivos').removeAttr('disabled');
+  $('#btn_editando_accion').hide();
+  $('#btn_agregar_accion').show();
 })
 
 $("#btn_rutamejora_acciones").click(function(){

@@ -78,6 +78,13 @@ class Rutamejora_model extends CI_Model
     	// return $this->db->get_where('rm_accionxtproritario', array('id_tprioritario' => $id_tprioritario))->result_array();
     }
 
+    function getacciones_supervisor($id_objetivo){
+      $str_query = "SELECT * FROM rm_accionxtproritario where id_tprioritario = {$id_objetivo}";
+            // echo "<pre>";print_r($str_query);die();
+    return $this->db->query($str_query)->result_array();
+      // return $this->db->get_where('rm_accionxtproritario', array('id_tprioritario' => $id_tprioritario))->result_array();
+    }
+
     function guardaAvance($idactividad, $avance){
     	$data2 = array(
 			'id_actividad' => $idactividad,
@@ -352,6 +359,29 @@ function  get_datos_edith_tp($id_tprioritario){
     return $this->db->query($str_query)->result_array();
 
   }
+
+  /*111019*/
+  function get_avances_tp_accionxcct_super($id_cct){
+    $str_query = "SELECT
+    tp.id_tprioritario, p.prioridad, o.id_objetivo, upper(o.objetivo) as objetivo, o.id_tprioritario as ob_tp, a.id_accion, a.accion, a.id_objetivos, tp.id_cct,
+    IFNULL(av.cte1,0) as cte1,IFNULL(av.cte2,0) as cte2,IFNULL(av.cte3,0) as cte3,
+    IFNULL(av.cte4,0) as cte4,IFNULL(av.cte5,0) as cte5,IFNULL(av.cte6,0) as cte6,
+    IFNULL(av.cte7,0) as cte7,IFNULL(av.cte8,0) as cte8, '' as icono,
+    datediff(a.accion_f_termino, a.accion_f_inicio) as 'periodo', 
+    datediff(a.accion_f_termino, now()) as 'restante'
+    FROM rm_tema_prioritarioxcct tp
+    INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
+    LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
+    LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
+    LEFT JOIN rm_avance_xcctxtpxaccion av ON tp.id_cct = av.id_cct AND tp.id_tprioritario = av.id_tprioritario AND a.id_accion = av.id_accion
+    INNER JOIN escuela e on e.id_cct = tp.id_cct
+    WHERE e.cve_centro = '{$id_cct}'
+    ORDER BY tp.orden, tp.id_tprioritario, a.id_accion DESC";
+        // echo "<pre>";print_r($str_query); die();
+    return $this->db->query($str_query)->result_array();
+
+  }
+  /*111019*/
 
  
   function accionesRezagadas($id_cct,$cte_vigente){
@@ -676,6 +706,15 @@ function  get_datos_edith_tp($id_tprioritario){
       $str_query = "SELECT * FROM rm_tema_prioritarioxcct tprio
                     LEFT JOIN rm_objetivo obj ON obj.id_tprioritario = tprio.id_tprioritario
                     WHERE tprio.id_cct = {$id_cct} AND tprio.id_tprioritario = {$id_tprioritario} AND tprio.id_prioridad = {$idprioridad} ORDER BY obj.id_objetivo DESC";
+      // echo "<pre>";print_r($str_query);die();
+      return $this->db->query($str_query)->result_array();
+    }
+
+     function getObjetivosSuper($id_cct, $id_tprioritario){
+      $str_query = "SELECT * FROM rm_tema_prioritarioxcct tprio
+                    LEFT JOIN rm_objetivo obj ON obj.id_tprioritario = tprio.id_tprioritario
+                     INNER JOIN escuela e on e.id_cct = tprio.id_cct
+                    WHERE e.cve_centro = '{$id_cct}' AND tprio.id_tprioritario = {$id_tprioritario} ORDER BY obj.id_objetivo DESC";
       // echo "<pre>";print_r($str_query);die();
       return $this->db->query($str_query)->result_array();
     }

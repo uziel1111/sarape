@@ -8,6 +8,10 @@ $(function() {
   });
 });
 
+$('#salir_mision').click(function() {
+  console.info('cerraste el modal de la misión_rutademejora.js');
+});
+
 $("#slc_pa").change(function(){
   var texto="";
   $("#slc_pa option:selected").each(function() {

@@ -41,7 +41,10 @@ color: white;
     <a href="<?= base_url() ?>" class="smooth"><img class="img-fluid" src="<?= base_url('assets/img/logo-dark.png'); ?>" alt=""></a>
 <div class="float-right text-right text-white">
     <i class="fas fa-user color-2"></i>&nbsp; <?=$nombreuser?>
-  &nbsp;<i class="fas fa-caret-right color-3"></i>&nbsp;<?=$nivel?>&nbsp;<i class="fas fa-caret-right color-3"></i>&nbsp;<?=$turno?>&nbsp;<i class="fas fa-caret-right color-3"></i>&nbsp;<?=$cct?><br><i class="fas fa-caret-right color-3"></i>&nbsp;<?=$director?><br>
+  &nbsp;<i class="fas fa-caret-right color-3"></i>&nbsp;<?=$nivel?>&nbsp;<i class="fas fa-caret-right color-3"></i>&nbsp;<?=$turno?>&nbsp;<i class="fas fa-caret-right color-3"></i>&nbsp;<?=$cct?><br>
+<?php if (isset($director)): ?>
+  <i class="fas fa-caret-right color-3"></i>&nbsp;<?=$director?><br>
+<?php endif ?>
   <a class="btn btn-secondary btn-sm mt-2" href="<?= site_url("Rutademejora/cerrar_sesion")?>">Cerrar Sesión</a>
 </div>
   </div>

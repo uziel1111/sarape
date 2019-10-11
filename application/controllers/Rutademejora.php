@@ -27,7 +27,7 @@ class Rutademejora extends CI_Controller {
 			}else{
 				$this->index_new();
 			}
-	
+			
 		}else{
 			$data = $this->data;
 			$data['error'] = '';
@@ -657,20 +657,20 @@ class Rutademejora extends CI_Controller {
 							</thead>
 							<tbody>";*/
 							$tabla = "<div class='table-responsive'>
-		<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
-		<thead>
-		<tr class=info>
-		<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-		<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Acciones</center></th>
-		<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
-		<th colspan='2' scope='col'><center>Fecha</center></th>
-		</tr>
-		<tr>
-		<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
-		<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
-		</tr>
-		</thead>
-		<tbody>";
+							<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+							<thead>
+							<tr class=info>
+							<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+							<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Acciones</center></th>
+							<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+							<th colspan='2' scope='col'><center>Fecha</center></th>
+							</tr>
+							<tr>
+							<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+							<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+							</tr>
+							</thead>
+							<tbody>";
 							if(count($acciones) > 0){
 								foreach ($acciones as $accion) {
 									$tabla .= "<tr>
@@ -715,20 +715,20 @@ class Rutademejora extends CI_Controller {
 							</thead>
 							<tbody>";*/
 							$tabla = "<div class='table-responsive'>
-		<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
-		<thead>
-		<tr class=info>
-		<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-		<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Acciones</center></th>
-		<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
-		<th colspan='2' scope='col'><center>Fecha</center></th>
-		</tr>
-		<tr>
-		<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
-		<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
-		</tr>
-		</thead>
-		<tbody>";
+							<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+							<thead>
+							<tr class=info>
+							<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+							<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Acciones</center></th>
+							<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+							<th colspan='2' scope='col'><center>Fecha</center></th>
+							</tr>
+							<tr>
+							<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+							<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+							</tr>
+							</thead>
+							<tbody>";
 							if(count($acciones) > 0){
 								foreach ($acciones as $accion) {
 									$tabla .= "<tr>
@@ -780,20 +780,20 @@ class Rutademejora extends CI_Controller {
 					</thead>
 					<tbody>"; */
 					$tabla = "<div class='table-responsive'>
-		<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
-		<thead>
-		<tr class=info>
-		<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-		<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Acciones</center></th>
-		<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
-		<th colspan='2' scope='col'><center>Fecha</center></th>
-		</tr>
-		<tr>
-		<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
-		<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
-		</tr>
-		</thead>
-		<tbody>";
+					<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+					<thead>
+					<tr class=info>
+					<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+					<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Acciones</center></th>
+					<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+					<th colspan='2' scope='col'><center>Fecha</center></th>
+					</tr>
+					<tr>
+					<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+					<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+					</tr>
+					</thead>
+					<tbody>";
 					if(count($acciones) > 0){
 						foreach ($acciones as $accion) {
 							$tabla .= "<tr>
@@ -871,20 +871,20 @@ class Rutademejora extends CI_Controller {
 					</thead>
 					<tbody>";*/
 					$tabla = "<div class='table-responsive'>
-		<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
-		<thead>
-		<tr class=info>
-		<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-		<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Acciones</center></th>
-		<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
-		<th colspan='2' scope='col'><center>Fecha</center></th>
-		</tr>
-		<tr>
-		<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
-		<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
-		</tr>
-		</thead>
-		<tbody>";
+					<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
+					<thead>
+					<tr class=info>
+					<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
+					<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Acciones</center></th>
+					<th id='evidencias' style='width:25%; vertical-align: middle;' rowspan='2'><center>Recursos</center></th>
+					<th colspan='2' scope='col'><center>Fecha</center></th>
+					</tr>
+					<tr>
+					<th id='tema' style='width:24%' scope='col'><center>Inicio</center></th>
+					<th id='problemas' style='width:25%' scope='col'><center>Fin</center></th>
+					</tr>
+					</thead>
+					<tbody>";
 					if(count($acciones) > 0){
 						foreach ($acciones as $accion) {
 							$tabla .= "<tr>
@@ -949,11 +949,19 @@ class Rutademejora extends CI_Controller {
 				if(Utilerias::haySesionAbiertacct($this)){
 					$tipou_pemc_avances = $this->input->post('tipou_pemc_avances');
 					$this->cct = Utilerias::get_cct_sesion($this);
+					$id_cct_sup = $this->input->post('x');
+					$cve_centro = $this->input->post('cve_centro');
+					
 					// echo "<pre>";
 					// print_r($this->cct);
 					// die();
 					$data2 = array();
+					if (isset($_POST['x'])) {
+						
+					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct_super($cve_centro);
+					}else{
 					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
+					}
 				// echo "<pre>";print_r($arr_avances);die();
 					$data2['arr_avances'] = $arr_avances;
 					$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
@@ -1193,13 +1201,14 @@ class Rutademejora extends CI_Controller {
 	// 		$this->cct = Utilerias::get_cct_sesion($this);
 						$id_tprioritario = $this->input->post('idruta');
 						$nombreescuela = $this->input->post('nombreescuela');
-						$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
+						// echo '<pre>'; print_r($id_tprioritario); die();
+						$acciones = $this->Rutamejora_model->getacciones_supervisor($id_tprioritario);
 						$tabla = "<div class='table-responsive'>
 						<table id='idtabla_accionestp_super' class='table table-condensed table-hover  table-bordered'>
 						<thead>
 						<tr class=info>
 						<th id='orden' style='width:4%' hidden><center>Id accion</center></th>
-						<th id='orden' style='width:20%'><center>Ámbito</center></th>
+						
 						<th id='tema' style='width:20%'><center>Fecha de inicio</center></th>
 						<th id='problemas' style='width:31%'><center>Fecha de término</center></th>
 						<th id='evidencias' style='width:39%'><center>Acción</center></th>
@@ -1210,7 +1219,7 @@ class Rutademejora extends CI_Controller {
 							foreach ($acciones as $accion) {
 								$tabla .= "<tr>
 								<td hidden>{$accion['id_accion']}</td>
-								<td>{$accion['ambito']}</td>
+								
 								<td>{$accion['accion_f_inicio']}</td>
 								<td>{$accion['accion_f_termino']}</td>
 								<td>{$accion['accion']}</td>
@@ -1564,11 +1573,18 @@ class Rutademejora extends CI_Controller {
 		$id_tprioritario = $this->input->post('id_tpriotario');
 		$idprioridad = $this->input->post('id_prioridad');
 		$tipou_pemc = $this->input->post('tipou_pemc');
+		$cve_centro = $this->input->post('cve');
 		// echo "<pre>";print_r($_POST);die();
 
-		$id_cct = $this->cct[0]['id_cct'];
+		
+
 		$orden = 0;
+		if (isset($_POST['cve'])) {
+			$datos = $this->Rutamejora_model->getObjetivosSuper($cve_centro, $id_tprioritario);
+		}else{
+			$id_cct = $this->cct[0]['id_cct'];
 		$datos = $this->Rutamejora_model->getObjetivos($id_cct, $id_tprioritario, $idprioridad);
+		}
 		// echo "<pre>";print_r($datos);die();
 		$idobjetivo = 0;
 		if($datos[0]['id_objetivo'] == NULL){
@@ -1655,24 +1671,24 @@ class Rutademejora extends CI_Controller {
 				
 				if($tipou_pemc==""){
 					$tabla.= "<button type='button' id='elimina_ini' class='btn btn-sm cerrar'
-						onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
-						<i class='fas fa-times-circle'></i>
-						</button>";
+					onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
+					<i class='fas fa-times-circle'></i>
+					</button>";
 				}
 				
-					$extension = substr($dato['path_ev_inicio'],-3);
+				$extension = substr($dato['path_ev_inicio'],-3);
 
-					if ( $extension == 'pdf' || $extension == 'xsl'  || $extension == 'doc'  || $extension == 'ppt'  || $extension == 'slx'  || $extension == 'ocx'  || $extension == 'ptx'  ) {
-						$tabla.="<a id='preview{$dato['id_objetivo']}'
-				href='../../{$dato['path_ev_inicio']}' target='_blank' alt='Archivo' width='' height='50px'
-				 class='img img-thumbnail'> Archivo de Texto </a>
-				</div>";
-					} else{
-				$tabla.="<img id='preview{$dato['id_objetivo']}'
-				src='../../{$dato['path_ev_inicio']}' alt='Archivo' width='' height='50px'
-				class='img img-thumbnail' onclick='imgPreview({$dato['id_objetivo']})' />
-				</div>";
-			}
+				if ( $extension == 'pdf' || $extension == 'xsl'  || $extension == 'doc'  || $extension == 'ppt'  || $extension == 'slx'  || $extension == 'ocx'  || $extension == 'ptx'  ) {
+					$tabla.="<a id='preview{$dato['id_objetivo']}'
+					href='../../{$dato['path_ev_inicio']}' target='_blank' alt='Archivo' width='' height='50px'
+					class='img img-thumbnail'> Archivo de Texto </a>
+					</div>";
+				} else{
+					$tabla.="<img id='preview{$dato['id_objetivo']}'
+					src='../../{$dato['path_ev_inicio']}' alt='Archivo' width='' height='50px'
+					class='img img-thumbnail' onclick='imgPreview({$dato['id_objetivo']})' />
+					</div>";
+				}
 
 							// if (($dato['path_ev_fin']) != 'evidencias_rm/4237/8183/iron.jpg') {
 							// 	$tabla.= "<span class='btn btn-primary btn-file' id='otroboton'  onclick='subirImg($idobjetivo,1)'>
@@ -1681,14 +1697,14 @@ class Rutademejora extends CI_Controller {
 							// }
 
 				if($tipou_pemc==""){
-				$tabla.="<span class='btn btn-primary btn-file'>
-				<i class='fas fa-paperclip'></i>
+					$tabla.="<span class='btn btn-primary btn-file'>
+					<i class='fas fa-paperclip'></i>
 
-				<form enctype='multipart/form-data' id='form_evidencia_{$dato['id_objetivo']}' >
-				<input type='file' id='imgIni' name='arch1'
-				onchange='cargarEvidencia({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)' accept='application/pdf, image/*' multiple data-toggle='tooltip' data-placement='top' title='Guarda la evidencia al inicio de su objetivo'>
-				</form>
-				</span>";
+					<form enctype='multipart/form-data' id='form_evidencia_{$dato['id_objetivo']}' >
+					<input type='file' id='imgIni' name='arch1'
+					onchange='cargarEvidencia({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)' accept='application/pdf, image/*' multiple data-toggle='tooltip' data-placement='top' title='Guarda la evidencia al inicio de su objetivo'>
+					</form>
+					</span>";
 				}
 				$tabla.="</div>
 				</td>
@@ -1702,17 +1718,17 @@ class Rutademejora extends CI_Controller {
 					<i class='fas fa-times-circle'></i>
 					</button>";
 				}
-					$extension = substr($dato['path_ev_fin'],-3);
-			if ($extension == 'pdf' || $extension == 'xsl'  || $extension == 'doc'  || $extension == 'ppt'  || $extension == 'slx'  || $extension == 'ocx'  || $extension == 'ptx') {
-						$tabla.="<a id='preview{$dato['id_objetivo']}'
-			 	href='../../{$dato['path_ev_fin']}' target='_blank' alt='Archivo' width='' height='50px'
-				 class='img img-thumbnail'> Archivo de Texto </a>
-			 	</div>";
-					} else{
-				$tabla.="<img id='preview_fin{$dato['id_objetivo']}' src='../../{$dato['path_ev_fin']}' alt='Archivo' width='' height='50px' class='img img-thumbnail'
-				onclick='imgPreviewFin({$dato['id_objetivo']})' />
-				</div>";
-			}
+				$extension = substr($dato['path_ev_fin'],-3);
+				if ($extension == 'pdf' || $extension == 'xsl'  || $extension == 'doc'  || $extension == 'ppt'  || $extension == 'slx'  || $extension == 'ocx'  || $extension == 'ptx') {
+					$tabla.="<a id='preview{$dato['id_objetivo']}'
+					href='../../{$dato['path_ev_fin']}' target='_blank' alt='Archivo' width='' height='50px'
+					class='img img-thumbnail'> Archivo de Texto </a>
+					</div>";
+				} else{
+					$tabla.="<img id='preview_fin{$dato['id_objetivo']}' src='../../{$dato['path_ev_fin']}' alt='Archivo' width='' height='50px' class='img img-thumbnail'
+					onclick='imgPreviewFin({$dato['id_objetivo']})' />
+					</div>";
+				}
 
 
 							// if (($dato['path_ev_fin']) != 'evidencias_rm/4237/8183/iron.jpg') {
@@ -1722,12 +1738,12 @@ class Rutademejora extends CI_Controller {
 							// }
 
 				if($tipou_pemc==""){
-				$tabla .= "<span class='btn btn-primary btn-file'>
-				<i class='fas fa-paperclip'></i>
-				<form enctype='multipart/form-data' id='form_evidencia_fin_{$dato['id_objetivo']}'>
-				<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' multiple data-toggle='tooltip' data-placement='top' title='Guarda la evidencial al final de su objetivo'>
-				</form>
-				</span>";
+					$tabla .= "<span class='btn btn-primary btn-file'>
+					<i class='fas fa-paperclip'></i>
+					<form enctype='multipart/form-data' id='form_evidencia_fin_{$dato['id_objetivo']}'>
+					<input type='file' id='imgFin' name='arch2' onchange='cargarEvidenciaFin({$dato['id_objetivo']}, {$dato['id_tprioritario']}, this)'  accept='application/pdf, image/*' multiple data-toggle='tooltip' data-placement='top' title='Guarda la evidencial al final de su objetivo'>
+					</form>
+					</span>";
 				}
 				$tabla.="</div>
 				</td>
@@ -2217,10 +2233,10 @@ class Rutademejora extends CI_Controller {
 
 	public function set_observacion(){
 		$objetivo = $this->input->post('idaccion');
-  		$resultados = $this->input->post('resultados');
-  		$obstaculos = $this->input->post('obstaculos');
-  		$ventajas = $this->input->post('ventajas');
-  		$ajustes = $this->input->post('ajustes');
+		$resultados = $this->input->post('resultados');
+		$obstaculos = $this->input->post('obstaculos');
+		$ventajas = $this->input->post('ventajas');
+		$ajustes = $this->input->post('ajustes');
 
 		$todo = $resultados .' obstaculos: '.$obstaculos .' ventajas: '.$ventajas. 'ajuste: ' .$ajustes;
 
@@ -2229,13 +2245,13 @@ class Rutademejora extends CI_Controller {
 
 	public function avancesxcctxaccion(){
 		// if(Utilerias::haySesionAbiertacct($this)){
-			$id_cct = $this->input->post('id_cct');
-			$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
-			$cte_vigente=$this->cteVigente($arr_avances_fechas);
-  			$datos=$this->Rutamejora_model->avancesxcctxaccion($id_cct,$cte_vigente);
-  			$response = array('datos' => $datos);
-			Utilerias::enviaDataJson(200, $response, $this);
-			exit;
+		$id_cct = $this->input->post('id_cct');
+		$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
+		$cte_vigente=$this->cteVigente($arr_avances_fechas);
+		$datos=$this->Rutamejora_model->avancesxcctxaccion($id_cct,$cte_vigente);
+		$response = array('datos' => $datos);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
 		// }else{
 		// 	$this->index();
 		// }
@@ -2248,8 +2264,8 @@ class Rutademejora extends CI_Controller {
 			$cte_vigente=$this->cteVigente($arr_avances_fechas);
 			// echo $cte_vigente;
 			// die();
-  			$datos=$this->Rutamejora_model->pieAccion($id_cct,$cte_vigente);
-  			$response = array('datos' => $datos);
+			$datos=$this->Rutamejora_model->pieAccion($id_cct,$cte_vigente);
+			$response = array('datos' => $datos);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
@@ -2286,8 +2302,8 @@ class Rutademejora extends CI_Controller {
 			$id_cct = $this->input->post('id_cct');
 			$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
 			$cte_vigente=$this->cteVigente($arr_avances_fechas);
-  			$datos=$this->Rutamejora_model->pieObjetivos($id_cct,$cte_vigente);
-  			$response = array('datos' => $datos);
+			$datos=$this->Rutamejora_model->pieObjetivos($id_cct,$cte_vigente);
+			$response = array('datos' => $datos);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
@@ -2298,8 +2314,8 @@ class Rutademejora extends CI_Controller {
 			$id_cct = $this->input->post('id_cct');
 			$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
 			$cte_vigente=$this->cteVigente($arr_avances_fechas);
-  			$datos=$this->Rutamejora_model->pieLAE($id_cct,$cte_vigente);
-  			$response = array('datos' => $datos);
+			$datos=$this->Rutamejora_model->pieLAE($id_cct,$cte_vigente);
+			$response = array('datos' => $datos);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
@@ -2310,14 +2326,14 @@ class Rutademejora extends CI_Controller {
 			$id_cct = $this->input->post('id_cct');
 			$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
 			$cte_vigente=$this->cteVigente($arr_avances_fechas);
-  			$datos=$this->Rutamejora_model->accionesRezagadas($id_cct,$cte_vigente);
-  			$response = array('datos' => $datos);
+			$datos=$this->Rutamejora_model->accionesRezagadas($id_cct,$cte_vigente);
+			$response = array('datos' => $datos);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
 	}
 
-		public function momentoActual()
+	public function momentoActual()
 	{
 		$momentoActual = $this->Rutamejora_model->momentoActual();
 
