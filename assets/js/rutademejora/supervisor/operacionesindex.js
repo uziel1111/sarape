@@ -96,6 +96,25 @@ $('#cerrar_modal_objetivos_super').click(function() {
 });
 /*101019 F*/
 
+$('#btn_graficas').click(function() {
+  console.log('jejje');
+  $.ajax({
+    url: base_url+'rutademejora/graficas_supervisor',
+    type: 'POST',
+    dataType: 'json',
+    data: {},
+  })
+  .done(function() {
+    console.log("success");
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+});
+
 $("#cerrar_modal_ver_evidencia_super").click(function(){
   $('#exampleModal_ver_evidencia_super').modal('toggle');
 });

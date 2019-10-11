@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Rutademejora extends CI_Controller {
-
+	
 	function __construct() {
 		parent::__construct();
 		$this->data = array( );
@@ -956,10 +956,11 @@ class Rutademejora extends CI_Controller {
 					// print_r($this->cct);
 					// die();
 					$data2 = array();
-					if (isset($_POST['x'])) {
-						
+					if (isset($_POST['cve_centro'])) {	
+				// echo "<pre>";print_r('si existe');die();		
 					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct_super($cve_centro);
 					}else{
+						// echo "<pre>";print_r('no existe');die();
 					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
 					}
 				// echo "<pre>";print_r($arr_avances);die();
@@ -1105,8 +1106,15 @@ class Rutademejora extends CI_Controller {
 					$data['turno'] = "";
 					$data['cct'] = $this->cct[0]['cve_centro'];
 					$data['escuelas'] = $escuelas->Escuelas;
+
+					$this->session->set_userdata('escuela_supervisor', $escuelas->Escuelas);
 	// echo "<pre>";print_r($escuelas->Escuelas[0]->b_cct);die();
 					Utilerias::pagina_basica_rm($this, "ruta/supervisor/index", $data);
+				}
+
+				public function graficas_supervisor()
+				{
+					echo "<pre>"; print_r($this->session->userdata('escuela_supervisor')); die();
 				}
 
 				public function get_rutas_xcctsuper(){
