@@ -14,8 +14,8 @@ $(document).ready(function() {
         	$("#nombreescuela_pemc").val("");
         	$("#div_resultados_gral").show();
         	accionesRezagadas(); 
-        	google.charts.load('current', {'packages':['gantt'],'language':'es'}); 
-	   		datos_accion();
+        	// google.charts.load('current', {'packages':['gantt'],'language':'es'}); 
+	   		// datos_accion();
 		   	// datos_laepie();
 		   	// datos_objetivopie();
 		   	// datos_accionpie();	
@@ -257,8 +257,8 @@ Prioridad.prototype.funcionalidadselect = function(){
 			      	swal.close();
 			      	if(data.datos.length>0){
 			      		$("#chart_div").show();
-			      		
-			      		google.charts.setOnLoadCallback(drawChart(data.datos));
+			      		pintaGrafica(data.datos);
+			      		// google.charts.setOnLoadCallback(drawChart(data.datos));
 			      	}else{
 			      		$("#chart_div").hide();
 			      	}
@@ -275,6 +275,22 @@ Prioridad.prototype.funcionalidadselect = function(){
 
 	}
 
+	function pintaGrafica(datos){
+		let fechas0 =[];
+		let fechas1=[];
+      	for(let i=0; i<datos.length; i++){
+	      	fechas0.push(datos[i]['accion_f_inicio']);
+    		fechas1.push(datos[i]['accion_f_termino']);
+      	}
+
+      	let arrayFechas = fechas0.map((fechaActual) => new Date(fechaActual) );
+
+		var max = new Date(Math.max.apply(null,arrayFechas));
+		var min = new Date(Math.min.apply(null,arrayFechas));
+		console.log(max);
+		console.log(min);
+	}
+
     function drawChart(datos) {
       	var data = new google.visualization.DataTable();
       	let alto=200;
@@ -286,17 +302,18 @@ Prioridad.prototype.funcionalidadselect = function(){
       	data.addColumn('number', 'Duracion');
       	data.addColumn('number', 'Porcentaje de avance');
       	data.addColumn('string', 'Dependencias');
+      	data.addColumn({type: 'string', role: 'tooltip'});
       	// data.addColumn({type: 'string', role: 'tooltip'});
 
       	let acciones =[];
       	for(let i=0; i<datos.length; i++){
         	if(datos[i]['porcentaje']!=0 && datos[i]['porcentaje']!=null){
 	      		data.addRow([datos[i]['ac'],datos[i]['accion'], datos[i]['ac'],
-	         		new Date(datos[i]['a_ini'],datos[i]['m_ini']-1, datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin']-1,datos[i]['d_fin']), null,parseInt(datos[i]['porcentaje']), null]);
+	         		new Date(datos[i]['a_ini'],datos[i]['m_ini']-1, datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin']-1,datos[i]['d_fin']), null,parseInt(datos[i]['porcentaje']), null,'hola']);
         		acciones.push(datos[i]);
         	}else{
         		data.addRow([datos[i]['ac'],datos[i]['accion'], datos[i]['ac'],
-	         		new Date(datos[i]['a_ini'],datos[i]['m_ini']-1, datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin']-1,datos[i]['d_fin']), null,0, null]);
+	         		new Date(datos[i]['a_ini'],datos[i]['m_ini']-1, datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin']-1,datos[i]['d_fin']), null,0, null,'hola']);
         			acciones.push(datos[i]);
         	}
       	}
@@ -316,6 +333,8 @@ Prioridad.prototype.funcionalidadselect = function(){
       	let options = {
       		width: 950,
 	        height: alto,
+	        tooltip: {isHtml: true},
+	        legend: 'none',
 	        gantt: {
 	          	trackHeight: 40,
 	          	labelMaxWidth:300,
@@ -323,8 +342,12 @@ Prioridad.prototype.funcionalidadselect = function(){
       	};
 
       	var chart = new google.visualization.Gantt(document.getElementById('gantt_p'));
+
       	chart.draw(data, options);
 
+  //      	document.addEventListener("click", function(){
+  // 			addMarker('Kermes'); 
+		// });
       	let tabla="";
 			$("#tabla_avances").empty();
 			tabla+="<center>";
@@ -667,3 +690,93 @@ Prioridad.prototype.funcionalidadselect = function(){
 		}
 	}
 
+            function addMarker(markerRow) {
+                var baseline;
+                var baselineBounds;
+                var chartElements;
+                var marker;
+                var markerSpan;
+                var rowLabel;
+                var svg;
+                var svgNS;
+                var gantt;
+                var ganttUnit;
+                var ganttWidth;
+                var timespan;
+                var xCoord;
+                var yCoord; 
+              // initialize chart elements
+              baseline = null; 
+              gantt = null; 
+              rowLabel = null; 
+              svg = null; 
+              svgNS = null; 
+              var container = document.getElementById('gantt_p');
+              chartElements = container.getElementsByTagName('svg'); 
+              if (chartElements.length > 0) { 
+                svg = chartElements[0]; 
+                // console.log(svg);
+                svgNS = svg.namespaceURI;
+                // console.log(svgNS);
+              } 
+              chartElements = container.getElementsByTagName('rect');
+              // console.log(chartElements); 
+              if (chartElements.length > 0) { 
+                gantt = chartElements[0]; 
+                // console.log(gantt);
+              } 
+              // chartElements = container.getElementsByTagName('path');
+              // console.log(chartElements); 
+              // if (chartElements.length > 0) { 
+              //   Array.prototype.forEach.call(chartElements, function(path) { 
+              //     if ((baseline === null) && (path.getAttribute('fill') !== 'none')) {
+              //       baseline = path; 
+              //       console.log(baseline);
+              //     } }); 
+              // } 
+              chartElements = container.getElementsByTagName('text');
+              // console.log(chartElements); 
+              // let elemento;
+              if (chartElements.length > 0) { 
+                Array.prototype.forEach.call(chartElements, function(label) {
+                	console.log(label);
+                	// console.log(label.textContent); 
+                  	if (label.textContent === 'Duration') {
+                  		// rowLabel.text('Duración');
+                  		// label.textContent='<text x="445.90625" y="66.203125" style="cursor: default; user-select: none; -webkit-font-smoothing: antialiased; font-family: Roboto; font-size: 14px;" fill="#757575" dx="0px">Duración:</text>';
+                  		 // this.texto_referencia[contador_referencia].textContent=(this.valor_referencia[contador_referencia]>=0?"+":"")+this.valor_referencia[contador_referencia];
+           
+                  		// chartElements.textContent('Duración');
+       					// document.getElementsByTagName('text').html('holaaa');
+       					$('.text').text('hola');
+
+
+                	}
+                	console.log(label.textContent); 
+            	}); 
+              } 
+              // if ((svg === null) || (gantt === null) || (baseline === null) || (rowLabel === null) || 
+              //     (markerDate.getTime() < dateRangeStart.min.getTime()) || (markerDate.getTime() > dateRangeEnd.max.getTime())) {
+              //   return; 
+              // } 
+              // ganttWidth = parseFloat(gantt.getAttribute('width')); 
+              // baselineBounds = baseline.getBBox(); 
+              // timespan = dateRangeEnd.max.getTime() - dateRangeStart.min.getTime(); 
+              // ganttUnit = (ganttWidth - baselineBounds.x) / timespan;
+              // markerSpan = markerDate.getTime() - dateRangeStart.min.getTime(); 
+              // 
+             // marker = document.createElementNS(svgNS, 'polygon');
+    			
+              // marker.setAttribute('fill', 'transparent'); 
+              // marker.setAttribute('stroke', '#ffeb3b'); 
+              // marker.setAttribute('stroke-width', '3'); 
+              // xCoord = (baselineBounds.x + (ganttUnit * markerSpan) - 4); 
+              // yCoord = parseFloat(rowLabel.getAttribute('y'));
+              // marker.setAttribute('points', 183.671875 + ',' + (65 - 10) + ' ' + (183.671875 - 5) + ',' + 65 + ' ' + (183.671875 + 5)
+              //                     + ',' + 65);
+              // marker.setAttribute('text','x="445.90625" y="66.203125" style="cursor: default; user-select: none; -webkit-font-smoothing: antialiased; font-family: Roboto; font-size: 14px;" fill="#757575" dx="0px">Duration:');
+              // marker.setAttribute('<text x="445.90625" y="66.203125" style="cursor: default; user-select: none; -webkit-font-smoothing: antialiased; font-family: Roboto; font-size: 14px;" fill="#757575" dx="0px">Duration:</text>'); 
+              // svg.insertBefore(marker, rowLabel);
+
+            }
+  
