@@ -47,7 +47,7 @@
    <button class="btn btn-info" id="btn_ver_ruta_super" title="Ver acciones de tema prioritario"><i class="far fa-eye"></i></button>
    <button class="btn btn-warning" id="btn_ver_objetivos_super" title="Ver objetivos de tema prioritario"><i class="fas fa-tasks"></i></button>
    <button class="btn btn-success" id="btn_seguimiento_modal" title="Ver objetivos de tema prioritario"><i class="fas fa-chart-line"></i></button>
-   <button class="btn btn-primary" id="btn_graficas" title="Ver objetivos de tema prioritario"><i class="far fa-chart-bar"></i></button>
+   <button class="btn btn-primary" id="btn_graficas" title="Ver gráficas"><i class="far fa-chart-bar"></i></button>
  </div>
 </div>
 <div class="row">
@@ -144,6 +144,26 @@
     </div><!-- fin del body -->
   </div>
 </div> <!-- fin modal objetivos -->
+
+<!-- Modal graficas-->
+
+<div class="modal fade" id="modal_visor_graficas_id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content modal-style-1">
+      <div class="modal-header bgcolor-2">
+        <h5 class="modal-title text-white" id="exampleModalLabel">Objetvios por Línea de acción</h5>
+        <button type="button" class="close" id="cerrar_modal_graficas_super" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="graficas_objetivos_modal"></div>
+        <div id="graficas_acciones_modal"></div>
+        <div id="graficas_modal"></div>
+      </div><!-- final despues del card card mb-3 card-style-1-->
+    </div><!-- fin del body -->
+  </div>
+</div> <!-- fin modal graficas -->
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

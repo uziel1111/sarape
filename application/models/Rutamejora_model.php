@@ -1038,5 +1038,9 @@ function  get_datos_edith_tp($id_tprioritario){
        return $this->db->query($str_query)->result_array();
     }
 
+    public function getGraficas()
+    {
+      
+    }
 
 }// Rutamejora_model
