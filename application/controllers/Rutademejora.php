@@ -1114,7 +1114,25 @@ class Rutademejora extends CI_Controller {
 
 				public function graficas_supervisor()
 				{
-					echo "<pre>"; print_r($this->session->userdata('escuela_supervisor')); die();
+					$escuelas = $this->session->userdata('escuela_supervisor');
+					$ccts = array();
+					for ($i=0; $i < sizeof($escuelas) ; $i++) { 
+						array_push($ccts, $escuelas[$i]->b_cct);
+					}
+					
+					$ccts_sup = implode( "', '", $ccts ); 
+
+					$graficas = $this->Rutamejora_model->getGraficas($ccts_sup);
+					$tabla = $this->Rutamejora_model->getTablasGraficas($ccts_sup);
+
+					// echo "<pre>"; print_r($graficas); die();
+
+					$data['tabla'] = $tabla;
+				
+					$str_view = $this->load->view("ruta/supervisor/grafica_modal", $data, TRUE);
+					$response = array('str_view' => $str_view, 'grafica'=>$graficas);
+					Utilerias::enviaDataJson(200, $response, $this);
+					exit;
 				}
 
 				public function get_rutas_xcctsuper(){
@@ -2384,12 +2402,6 @@ class Rutademejora extends CI_Controller {
 		$response = array('cte' => $cteActual);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
-	}
-
-	public function getGrafica()
-	{
-		$graficas = $this->Rutamejora_model->getGraficas();
-		$tabla = $this->Rutamejora_model->getTablasGraficas();
 	}
 
 }// Rutamedejora

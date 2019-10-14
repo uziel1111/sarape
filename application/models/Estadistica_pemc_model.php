@@ -285,7 +285,7 @@ ORDER BY l1.id_region;";
 }
 
   function grafica_obj_acc_lae($nivel, $region, $municipio)
-  {
+  { 
     if ($nivel != 0) {
       $where_nivel = " AND e.id_nivel = {$nivel}";
     }else{

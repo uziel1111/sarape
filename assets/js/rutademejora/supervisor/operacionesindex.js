@@ -1,3 +1,7 @@
+ google.charts.load('current', {'packages':['bar']});
+ google.charts.setOnLoadCallback(graficaBarObj);
+ google.charts.setOnLoadCallback(graficaBarAcc);
+
 $(function() {
     obj_supervisor = new Supervision();
     id_tprioritario_sup = 0;
@@ -12,26 +16,36 @@ function Supervision(){
 
 
 /*101019 I*/
-$("#btn_graficas").clic(function() {
-  cves = $("#cve_input");
-  ruta = base_url + 'Rutademejora/getGrafica';
+$("#btn_graficas").click(function() {
+  ruta = base_url + 'Rutademejora/graficas_supervisor';
 
   $.ajax({
     url: ruta,
     type: 'POST',
     dataType: 'json',
-    data: {param1: 'value1'},
+    data: {x : 'x'},
+    beforeSend: function(xhr) {
+      Notification.loading("");
+    },
   })
-  .done(function() {
-    console.log("success");
+  .done(function(data) {
+     swal.close();
+    $('#graficas_modal').html(data.str_view);
+     $('#modal_visor_graficas_id').modal('show');
+     graficaBarObj(data.grafica); 
+     graficaBarAcc(data.grafica); 
   })
   .fail(function() {
     console.log("error");
   })
   .always(function() {
-    console.log("complete");
+ swal.close();
   });
   
+});
+
+$('#cerrar_modal_graficas_super').click(function() {
+  $('#modal_visor_graficas_id').modal('toggle');
 });
 
 $("#btn_seguimiento_modal").click(function(){
@@ -118,24 +132,6 @@ $('#cerrar_modal_objetivos_super').click(function() {
 });
 /*101019 F*/
 
-$('#btn_graficas').click(function() {
-  console.log('jejje');
-  $.ajax({
-    url: base_url+'rutademejora/graficas_supervisor',
-    type: 'POST',
-    dataType: 'json',
-    data: {},
-  })
-  .done(function() {
-    console.log("success");
-  })
-  .fail(function() {
-    console.log("error");
-  })
-  .always(function() {
-    console.log("complete");
-  });
-});
 
 $("#cerrar_modal_ver_evidencia_super").click(function(){
   $('#exampleModal_ver_evidencia_super').modal('toggle');
@@ -301,6 +297,70 @@ Supervision.prototype.get_comentario_super = function(){
         // swal.close();
   })
 }
+
+/* Funciones de Gráficas I*/
+function graficaBarObj(objetivos) {
+    if (objetivos != undefined){
+
+   
+    obj1 = parseInt(objetivos[0]['obj']);
+    obj2 = parseInt(objetivos[1]['obj']);
+    obj3 = parseInt(objetivos[2]['obj']);
+    obj4 = parseInt(objetivos[3]['obj']);
+    obj5 = parseInt(objetivos[4]['obj']);
+ var data = google.visualization.arrayToDataTable([
+        ['Líneas de Acción Estratégicas', 'Objetivos'],
+        ['LAE-1', obj1],
+        ['LAE-2', obj2],
+        ['LAE-3', obj3],
+        ['LAE-4', obj4],
+        ['LAE-5', obj5],
+      ]);
+
+        var options = {
+          chart: {
+            title: 'Objetivos por LAE',
+            subtitle: '',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+     } 
+function graficaBarAcc(acciones) {
+    if (acciones != undefined){
+
+    acc1 = parseInt(acciones[0]['acc']);
+    acc2 = parseInt(acciones[1]['acc']);
+    acc3 = parseInt(acciones[2]['acc']);
+    acc4 = parseInt(acciones[3]['acc']);
+    acc5 = parseInt(acciones[4]['acc']);
+ var data = google.visualization.arrayToDataTable([
+        ['Líneas de Acción Estratégicas', 'Acciones'],
+        ['LAE-1', acc1],
+        ['LAE-2', acc2],
+        ['LAE-3', acc3],
+        ['LAE-4', acc4],
+        ['LAE-5', acc5],
+      ]);
+
+        var options = {
+          chart: {
+            title: 'Acciones por LAE',
+            subtitle: '',
+            height: 250,
+            width: 400,
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material_acciones'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+     } 
+/* Funciones de Gráficas F*/
 
 Supervision.prototype.ver_archivo_evidencia= function(path_evidencia){
   var Protocol = location.protocol;

@@ -151,14 +151,12 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content modal-style-1">
       <div class="modal-header bgcolor-2">
-        <h5 class="modal-title text-white" id="exampleModalLabel">Objetvios por Línea de acción</h5>
+        <h5 class="modal-title text-white" id="exampleModalLabel">Objetvios y Acciones por Línea de acción</h5>
         <button type="button" class="close" id="cerrar_modal_graficas_super" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div id="graficas_objetivos_modal"></div>
-        <div id="graficas_acciones_modal"></div>
         <div id="graficas_modal"></div>
       </div><!-- final despues del card card mb-3 card-style-1-->
     </div><!-- fin del body -->
@@ -168,4 +166,5 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="<?= base_url('assets/js/rutademejora/supervisor/operacionesindex.js'); ?>"></script>
