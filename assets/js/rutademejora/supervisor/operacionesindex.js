@@ -16,6 +16,10 @@ function Supervision(){
 
 
 /*101019 I*/
+$(document).ready(function() {
+  cteActual();
+});
+
 $("#btn_graficas").click(function() {
   ruta = base_url + 'Rutademejora/graficas_supervisor';
 
@@ -189,6 +193,11 @@ $("#btn_guarda_msg_super").click(function(){
         "success"
       );
     $("#exampleModalLong").modal('hide');
+     var cct = $("#slt_cct_excuelasxsuper").val();
+  var selected = $("#slt_cct_excuelasxsuper").find('option:selected');
+  var turno = selected.data('turno');
+  // alert(turno);
+  obj_supervisor.get_rutasxcct(cct, turno);
   })
   .fail(function(e) {
     console.error("Al bajar la informacion"); console.table(e);
@@ -361,6 +370,23 @@ function graficaBarAcc(acciones) {
       }
      } 
 /* Funciones de Gráficas F*/
+
+function cteActual() {
+    ruta = base_url + '/Rutademejora/momentoActual';
+    $.ajax({
+      url: ruta,
+      type: 'POST',
+      data: {},
+    })
+    .done(function(data) {
+      $('#cteActualSup').html('Consejo Técnico Escolar Actual: '+ data.cte);
+    })
+    .fail(function(data) {
+    })
+    .always(function() {
+    });
+    
+  }
 
 Supervision.prototype.ver_archivo_evidencia= function(path_evidencia){
   var Protocol = location.protocol;

@@ -1176,7 +1176,7 @@ class Rutademejora extends CI_Controller {
 					<tr class=info>
 					<th id='idrutamtema' hidden><center>id</center></th>
 					<th id='orden' style='width:4%'><center>Orden</center></th>
-					<th id='tema' style='width:20%'><center>Prioridad</center></th>
+					<th id='tema' style='width:20%'><center>Líneas de Acción Estratégica</center></th>
 					<th id='problemas' style='width:31%'><center>Problemáticas</center></th>
 					<th id='evidencias' style='width:31%'><center>Evidencias</center></th>
 					<th id='n_actividades' style='width:8%'><center>Acciones</center></th>

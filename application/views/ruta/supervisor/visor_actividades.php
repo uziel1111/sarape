@@ -24,7 +24,7 @@
             <div class="alert alert-info" role="alert">
               Escuela: <span class="fw800"><label id="label_escuela"><?= $escuela?></label></span><br>
 
-              Prioridad: <span class="fw800"><label id="label_prioridad"><?= $prioridad?></label></span><br>
+              Linéa de Acción Estrategica: <span class="fw800"><label id="label_prioridad"><?= $prioridad?></label></span><br>
 
               Problemática(s): <span class="fw800"><label id="label_problematica"><?= $problematicas?></label></span><br>
 
