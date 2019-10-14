@@ -12,6 +12,28 @@ function Supervision(){
 
 
 /*101019 I*/
+$("#btn_graficas").clic(function() {
+  cves = $("#cve_input");
+  ruta = base_url + 'Rutademejora/getGrafica';
+
+  $.ajax({
+    url: ruta,
+    type: 'POST',
+    dataType: 'json',
+    data: {param1: 'value1'},
+  })
+  .done(function() {
+    console.log("success");
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+  
+});
+
 $("#btn_seguimiento_modal").click(function(){
     cve = $("#cct_tmp").val();
      tipou_pemc_avances=1;

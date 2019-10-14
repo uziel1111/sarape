@@ -2386,4 +2386,10 @@ class Rutademejora extends CI_Controller {
 		exit;
 	}
 
+	public function getGrafica()
+	{
+		$graficas = $this->Rutamejora_model->getGraficas();
+		$tabla = $this->Rutamejora_model->getTablasGraficas();
+	}
+
 }// Rutamedejora
