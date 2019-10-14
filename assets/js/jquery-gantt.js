@@ -213,6 +213,11 @@ var lazyload = {
       var templateEvent = $$1('<div>', { class: 'gantt-event' });
 
       var tourWidth = (parseInt(element.minNight, 10) + 1) * this.config.cellWidth;
+      var tourWidth2=0;
+      if(element.minNight2>0){
+        tourWidth2 = (parseInt(element.minNight2, 10) + 1) * this.config.cellWidth;
+      }
+
       var remDay = this.dateDiffInDays(this.config.startDate, itemStartDate);
 
       var tooltipData = $$1.extend(element.tooltipData);
@@ -228,10 +233,23 @@ var lazyload = {
 
       var title = element.minNight + ' ';
 
-      var eventBlock = $$1('<a>', {
-        class: this.format('gantt-event-block {0}', tourType),
-        width: tourWidth + 'px'
-      }).css('line-height', this.config.cellHeight - 28 + 'px').data('tooltip', this.tooltipView(tooltipData));
+      // var eventBlock = $$1('<a>', {
+      //   class: this.format('gantt-event-block {0}', tourType),
+      //   width: tourWidth + 'px'
+      // }).css('line-height', this.config.cellHeight - 28 + 'px').data('tooltip', this.tooltipView(tooltipData));
+      var eventBlock='';
+      // var eventBlock = $$1('<a class="gantt-event-block tourFly"> width="'+tourWidth2+'px"></a><a class="gantt-event-block tourFly"> width="'+tourWidth+'px"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
+
+      // var tourWidth2='';
+      if(tourWidth2>0){
+        // eventBlock2 = $$1('<a>', {
+        //   class: this.format('gantt-event-block tourFly2'),
+        //   width: tourWidth2 + 'px'
+        // }).css('line-height', this.config.cellHeight - 28 + 'px').data('tooltip', this.tooltipView(tooltipData));
+        eventBlock = $$1('<a class="gantt-event-block tourFly" width="'+tourWidth+'px"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
+      }else{
+        eventBlock = $$1('<a class="gantt-event-block tourFly" width="'+tourWidth2+'px"><a class="gantt-event-block tourFly" width="'+tourWidth+'px"></a></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
+      }
 
       var left = remDay * this.config.cellWidth + this.gridDefaults.eventsWidth;
       // console.log(left);
@@ -639,25 +657,33 @@ var Gantt = function () {
         var templateEvent = $$1('<div>', { class: 'gantt-event' });
 
         var tourWidth = (parseInt(el.minNight, 10) + 1) * this.config.cellWidth;
+        // console.log(tourWidth);
+        var tourWidth2=0;
+        if(el.minNight2>0){
+          tourWidth2 = (parseInt(el.minNight2, 10) + 1) * this.config.cellWidth;
+        }
+        // console.log(tourWidth2);
         var remDay = this.dateDiffInDays(this.config.startDate, itemStartDate);
 
         var tooltipData = $$1.extend(el.tooltipData);
-
-        var tourType = '';
-        if (el.type === 'Tur') {
-          tourType = 'tourFly';
-        } else if (el.type === 'TurBus') {
-          tourType = 'tourBus';
-        } else {
-          tourType = 'cruise';
-        }
-
+      
+        var tourType = 'tourFly';
+      
         var title = el.minNight + ' ';
 
-        var eventBlock = $$1('<a>', {
-          class: 'gantt-event-block ' + tourType,
-          width: tourWidth + 'px'
-        }).css('line-height', this.config.cellHeight - 28 + 'px').data('tooltip', this.tooltipView(tooltipData));
+        // var eventBlock = $$1('<a>', {
+        //   class: 'gantt-event-block ' + tourType,
+        //   width: tourWidth + 'px'
+        // }).css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
+        // var eventBlock = $$1('<a class="gantt-event-block tourFly"> width="'+tourWidth2+'px"></a><a class="gantt-event-block tourFly"> width="'+tourWidth+'px"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
+        
+        
+        var eventBlock='';
+        if(tourWidth2>0){
+          eventBlock = $$1('<a class="gantt-event-block tourFly" width='+tourWidth2+'px><a class="gantt-event-block tourFly" width="'+tourWidth+'px"></a></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));         
+        }else{
+          eventBlock = $$1('<a class="gantt-event-block tourFly" width='+tourWidth+'px></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
+        }
 
         var left = remDay * this.config.cellWidth;
 

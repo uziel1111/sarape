@@ -2279,19 +2279,22 @@ class Rutademejora extends CI_Controller {
 		$porcentaje=0;
 		$acciones=array();
 		$data_ac=array();
+		$avance=0;
       	for($i=0; $i<count($datos); $i++){
       		if($datos[$i]['porcentaje']!=0 && $datos[$i]['porcentaje']!=null){
       			$porcentaje= $datos[$i]['porcentaje'];
+      			$avance=($datos[$i]['periodo']/100)*$porcentaje;
       		}
       			$accion=array(
 				    "title"=> $datos[$i]['accion'],
 				    "startdate"=> $datos[$i]['accion_f_inicio'],
 				    "enddate"=> $datos[$i]['accion_f_termino'],
 				    "type"=> "Tur",
-				    "minNight"=>$datos[$i]['periodo'],
+				    "minNight"=>$datos[$i]['periodo']-$avance,
+				    "minNight2"=>$avance,
 				    "tooltipData"=>array(
 				        "title"=>$datos[$i]['accion'],
-				        "desc"=> [" Duracion:".$datos[$i]['periodo']." dias ", "Fecha Inicio:".$datos[$i]['accion_f_inicio'], "Fecha Término:" .$datos[$i]['accion_f_termino'], " Porcentaje de Avance: ".$datos[$i]['porcentaje']."%"] 
+				        "desc"=> [" Duracion: ".$datos[$i]['periodo']." dias ", "Fecha Inicio: ".$datos[$i]['accion_f_inicio'], "Fecha Término: " .$datos[$i]['accion_f_termino'], " Porcentaje de Avance:  ".$porcentaje."%"] 
 				    ),
 				    "dateorder"=> "\/Date(1469048400000)\/"
 				);
@@ -2300,11 +2303,15 @@ class Rutademejora extends CI_Controller {
       	$data_ac['acciones']=$acciones;
       	$data_ac['inicio']=$fechas[0]['inicio'];
       	$data_ac['fin']=$fechas[0]['fin'];
+      	$nuevafecha = strtotime ( '+2 day' , strtotime ( $fechas[0]['fin'] ) );
+      	$nuevafecha = date ( 'Y-m-d' , $nuevafecha);
+      	// echo $nuevafecha;
+      	// die(); 
   		// echo "<pre>";
   		// print_r($data_ac);
   		// die();
       	$dom=$this->load->view("ruta/ejemplo", $data_ac, TRUE);
-		$response = array('datos' => $datos,'acciones'=>$acciones,'fechaMin'=>$fechas[0]['inicio'],'fechaMax'=>$fechas[0]['fin'],'dom'=>$dom);
+		$response = array('datos' => $datos,'acciones'=>$acciones,'fechaMin'=>$fechas[0]['inicio'],'fechaMax'=>$nuevafecha,'dom'=>$dom);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 		// }else{

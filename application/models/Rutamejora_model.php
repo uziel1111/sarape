@@ -974,8 +974,8 @@ function  get_datos_edith_tp($id_tprioritario){
     public function avancesxcctxaccion($id_cct,$cte_vigente){
       $str_query = "SELECT ac.id_accion,IF(LENGTH(ac.accion)>32,CONCAT(SUBSTRING(ac.accion,1,28),'...'),ac.accion) AS accion,
                     ac.accion as ac,
-                    ac.accion_f_inicio,
-                    ac.accion_f_termino
+                    REPLACE(ac.accion_f_inicio,'-','/')as accion_f_inicio,
+                    REPLACE(ac.accion_f_termino,'-','/')as accion_f_termino
                     ,MONTH(ac.accion_f_inicio) AS m_ini,
                     DAY(ac.accion_f_inicio) AS d_ini,
                     YEAR(ac.accion_f_inicio) AS a_ini,
