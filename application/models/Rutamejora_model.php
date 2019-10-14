@@ -982,7 +982,20 @@ function  get_datos_edith_tp($id_tprioritario){
                     MONTH(ac.accion_f_termino) AS m_fin,
                     DAY(ac.accion_f_termino) AS d_fin,
                     YEAR(ac.accion_f_termino) AS a_fin,
-                    av.id_cct,av.{$cte_vigente} as porcentaje
+                    av.id_cct,av.{$cte_vigente} as porcentaje,
+                    datediff(ac.accion_f_termino, ac.accion_f_inicio) as 'periodo'
+                    FROM rm_avance_xcctxtpxaccion av
+                    INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
+                    WHERE av.id_cct={$id_cct} order by ac.accion_f_inicio asc";
+      // echo $str_query;
+      // die();
+      return $this->db->query($str_query)->result_array();
+    }
+
+    public function fechaMaxMin($id_cct,$cte_vigente){
+      $str_query = "SELECT 
+                    MIN(ac.accion_f_inicio) as inicio,
+                    MAX(ac.accion_f_termino)as fin
                     FROM rm_avance_xcctxtpxaccion av
                     INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
                     WHERE av.id_cct={$id_cct} order by ac.accion_f_inicio asc";

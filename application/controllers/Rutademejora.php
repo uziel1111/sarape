@@ -2257,7 +2257,36 @@ class Rutademejora extends CI_Controller {
 		$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
 		$cte_vigente=$this->cteVigente($arr_avances_fechas);
 		$datos=$this->Rutamejora_model->avancesxcctxaccion($id_cct,$cte_vigente);
-		$response = array('datos' => $datos);
+		$fechas=$this->Rutamejora_model->fechaMaxMin($id_cct,$cte_vigente);
+		$porcentaje=0;
+		$acciones=array();
+		$data_ac=array();
+      	for($i=0; $i<count($datos); $i++){
+      		if($datos[$i]['porcentaje']!=0 && $datos[$i]['porcentaje']!=null){
+      			$porcentaje= $datos[$i]['porcentaje'];
+      		}
+      			$accion=array(
+				    "title"=> $datos[$i]['accion'],
+				    "startdate"=> $datos[$i]['accion_f_inicio'],
+				    "enddate"=> $datos[$i]['accion_f_termino'],
+				    "type"=> "Tur",
+				    "minNight"=>$datos[$i]['periodo'],
+				    "tooltipData"=>array(
+				        "title"=>$datos[$i]['accion'],
+				        "desc"=> [" Duracion:".$datos[$i]['periodo']." dias ", "Fecha Inicio:".$datos[$i]['accion_f_inicio'], "Fecha Término:" .$datos[$i]['accion_f_termino'], " Porcentaje de Avance: ".$datos[$i]['porcentaje']."%"] 
+				    ),
+				    "dateorder"=> "\/Date(1469048400000)\/"
+				);
+				array_push($acciones,$accion);
+      	}
+      	$data_ac['acciones']=$acciones;
+      	$data_ac['inicio']=$fechas[0]['inicio'];
+      	$data_ac['fin']=$fechas[0]['fin'];
+  		// echo "<pre>";
+  		// print_r($data_ac);
+  		// die();
+      	$dom=$this->load->view("ruta/ejemplo", $data_ac, TRUE);
+		$response = array('datos' => $datos,'acciones'=>$acciones,'fechaMin'=>$fechas[0]['inicio'],'fechaMax'=>$fechas[0]['fin'],'dom'=>$dom);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 		// }else{

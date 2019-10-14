@@ -15,7 +15,7 @@ $(document).ready(function() {
         	$("#div_resultados_gral").show();
         	accionesRezagadas(); 
         	// google.charts.load('current', {'packages':['gantt'],'language':'es'}); 
-	   		// datos_accion();
+	   		datos_accion();
 		   	// datos_laepie();
 		   	// datos_objetivopie();
 		   	// datos_accionpie();	
@@ -257,8 +257,15 @@ Prioridad.prototype.funcionalidadselect = function(){
 			      	swal.close();
 			      	if(data.datos.length>0){
 			      		$("#chart_div").show();
-			      		pintaGrafica(data.datos);
+			      		$('#gantt_p').empty();
+			      		$('#gantt_p').append(data.dom);
+			      		pintaGrafica(data.datos,data.fechaMin,data.fechaMax);
 			      		// google.charts.setOnLoadCallback(drawChart(data.datos));
+			      		    $('#demo').gantt({
+						      data: data.acciones,
+						      startDate: new Date(data.fechaMin),
+						      endDate: new Date(data.fechaMax),
+						    });
 			      	}else{
 			      		$("#chart_div").hide();
 			      	}
@@ -275,21 +282,40 @@ Prioridad.prototype.funcionalidadselect = function(){
 
 	}
 
-	function pintaGrafica(datos){
-		let fechas0 =[];
-		let fechas1=[];
+	function pintaGrafica(datos,fechaMin,fechaMax){
+		let porcentaje=0
+		let acciones=[];
       	for(let i=0; i<datos.length; i++){
-	      	fechas0.push(datos[i]['accion_f_inicio']);
-    		fechas1.push(datos[i]['accion_f_termino']);
+      		if(datos[i]['porcentaje']!=0 && datos[i]['porcentaje']!=null){
+      			porcentaje= datos[i]['porcentaje'];
+      		}
+      			accion={
+				    "title": datos[i]['accion'],
+				    "startdate": datos[i]['accion_f_inicio'],
+				    "enddate": datos[i]['accion_f_termino'],
+				    "type": "Tur",
+				    // en la variable minNight van a ir los dias q va a pintar
+				    "minNight": datos[i]['periodo'],
+				    "tooltipData": {
+				        "title": datos[i]['accion'],
+				        "desc": [" Duracion:"+datos[i]['periodo']+" dias ", "Fecha Inicio:"+datos[i]['accion_f_inicio'], "Fecha Término:" +datos[i]['accion_f_termino'], " Porcentaje de Avance: "+datos[i]['porcentaje']+"%"] 
+				    },
+				    "dateorder": "\/Date(1469048400000)\/"
+				};
+				acciones.push(accion);
+      		
+
+        	
       	}
+      	// console.log(acciones);
+     //  	$('#gantt_p').gantt({
+	    //   data: acciones,
+	    //   startDate: new Date(fechaMin),
+	    //   endDate: new Date(fechaMax)
+	    // });	
 
-      	let arrayFechas = fechas0.map((fechaActual) => new Date(fechaActual) );
+    }
 
-		var max = new Date(Math.max.apply(null,arrayFechas));
-		var min = new Date(Math.min.apply(null,arrayFechas));
-		console.log(max);
-		console.log(min);
-	}
 
     function drawChart(datos) {
       	var data = new google.visualization.DataTable();
