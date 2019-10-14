@@ -137,12 +137,12 @@ span{
     	<?php }?>
         <b><a id='cteActual'></a></b>
     </div>
-	<div class="row justify-content-center flex-column mb-3">
+	<div class="flex-column mb-3">
 		<nav>
 			<div class="nav nav-tabs nav-tabs-style-1" id="nav-tab" role="tablist">
 				<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">PEMC</a>
 				<a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Seguimiento</a>
-		<!-- 		<a class="nav-item nav-link nav-link-style-1" id="nav-resultados-tab" data-toggle="tab" href="#nav-resultados" role="tab" aria-controls="nav-resultados" aria-selected="false">Resultados por escuela</a> -->
+				<a class="nav-item nav-link nav-link-style-1" id="nav-resultados-tab" data-toggle="tab" href="#nav-resultados" role="tab" aria-controls="nav-resultados" aria-selected="false">Resultados por escuela</a>
 				<?php if(isset($tipo_usuario_pemc)){ ?>
 
 				<?php }else{?>
@@ -192,11 +192,9 @@ span{
 						<input type="text" name="id_cct_rm" id="id_cct_rm" value="<?=$id_cct_rm?>" hidden>
 					</div>
 					<div id="chart_div">
-						<!-- <div class="row"> -->
-							<h1 align="center">Avances de acciones</h1>
-							<div id="gantt_p"></div>
-							<div id="tabla_avances"></div>
-						<!-- </div> -->
+						<h1 align="center">Avances de acciones</h1>
+						<div id="gantt_p"></div>
+						<div id="tabla_avances"></div>
 					</div>
 					<br>
 				<!-- 	<h1 align="center">Porcentaje de avance de Acciones</h1>
@@ -413,6 +411,7 @@ span{
 <script src="<?= base_url('assets/js/rutademejora/avances.js'); ?>"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
+ 
 
 
 

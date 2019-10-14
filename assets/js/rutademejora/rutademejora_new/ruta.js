@@ -10,6 +10,7 @@ $(document).ready(function() {
 
 	$("#nav-tab").click(function (e) {
         var id = e.target.id;
+        // console.log(id);
         if(id =="nav-resultados-tab"){
         	$("#nombreescuela_pemc").val("");
         	$("#div_resultados_gral").show();
@@ -19,7 +20,7 @@ $(document).ready(function() {
 		   	// datos_laepie();
 		   	// datos_objetivopie();
 		   	// datos_accionpie();	
-   		}else if(id!="nav-ruta-tab" && id!="nav-avances-tab" ){
+   		}else if(id!="nav-resultados-tab"){
    			// console.log(id);
    			$("#div_resultados_gral").hide();
    			$("#div_busxcct_pemc").empty();	  
@@ -259,16 +260,63 @@ Prioridad.prototype.funcionalidadselect = function(){
 			      		$("#chart_div").show();
 			      		$('#gantt_p').empty();
 			      		$('#gantt_p').append(data.dom);
-			      		pintaGrafica(data.datos,data.fechaMin,data.fechaMax);
+			      		// pintaGrafica(data.datos,data.fechaMin,data.fechaMax);
 			      		// google.charts.setOnLoadCallback(drawChart(data.datos));
 			      		    $('#demo').gantt({
 						      data: data.acciones,
 						      startDate: new Date(data.fechaMin),
 						      endDate: new Date(data.fechaMax),
 						    });
-			      	}else{
-			      		$("#chart_div").hide();
-			      	}
+
+						let tabla="";
+						$("#tabla_avances").empty();
+						tabla+="<center>";
+						tabla+='<table class="table table-striped table-bordered w-auto">';
+			            tabla+='<thead class="thead-dark">';
+						tabla+='<tr>';
+						tabla+='<th scope="col" ><center>Acción</center></th>';
+						tabla+='<th scope="col" ><center>Porcentaje</center></th>';
+						tabla+='<th scope="col" ><center>Fecha Inicio</center></th>';
+						tabla+='<th scope="col" ><center>Fecha Término</center></th>';
+						tabla+='</tr>';
+						tabla+='</thead>';
+						tabla+='<tbody>';
+						let p=0;
+						// console.log(data.acciones);
+						if(data.datos.length>0){
+						    for(let x=0; x <data.datos.length; x++){
+						        tabla+='<tr>';
+						        tabla+='<td>';
+						        tabla+=data.datos[x]['accion'];
+						        tabla+='</td>';
+						        tabla+='<td>';
+						        if(data.datos[x]['porcentaje']!=0 && data.datos[x]['porcentaje']!=null){
+						        	p=data.datos[x]['porcentaje'];
+						        }
+
+						        tabla+=p+"%";
+						        tabla+='</td>';
+						        tabla+='<td>';
+						        tabla+=data.datos[x]['accion_f_inicio'];
+						        tabla+='</td>';
+						        tabla+='<td>';
+						        tabla+=data.datos[x]['accion_f_termino'];
+						        tabla+='</td>';
+						        tabla+='</tr>';
+						    }
+						        	
+						}else{
+						    $("#mensaje_res").empty();
+						    $("#mensaje_res").append('<br><h1 align="center">Esta escuela no cuenta con acciones</h1><br>');
+						}
+						
+						tabla+='</tbody>';
+			          	tabla+='</table>';
+			          	tabla+='</center>';
+			        	$("#tabla_avances").append(tabla);
+					}else{
+						$("#chart_div").hide();
+					}
 			        
 			    },
 			    error: function(error){
@@ -282,39 +330,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 
 	}
 
-	function pintaGrafica(datos,fechaMin,fechaMax){
-		let porcentaje=0
-		let acciones=[];
-      	for(let i=0; i<datos.length; i++){
-      		if(datos[i]['porcentaje']!=0 && datos[i]['porcentaje']!=null){
-      			porcentaje= datos[i]['porcentaje'];
-      		}
-      			accion={
-				    "title": datos[i]['accion'],
-				    "startdate": datos[i]['accion_f_inicio'],
-				    "enddate": datos[i]['accion_f_termino'],
-				    "type": "Tur",
-				    // en la variable minNight van a ir los dias q va a pintar
-				    "minNight": datos[i]['periodo'],
-				    "tooltipData": {
-				        "title": datos[i]['accion'],
-				        "desc": [" Duracion:"+datos[i]['periodo']+" dias ", "Fecha Inicio:"+datos[i]['accion_f_inicio'], "Fecha Término:" +datos[i]['accion_f_termino'], " Porcentaje de Avance: "+datos[i]['porcentaje']+"%"] 
-				    },
-				    "dateorder": "\/Date(1469048400000)\/"
-				};
-				acciones.push(accion);
-      		
-
-        	
-      	}
-      	// console.log(acciones);
-     //  	$('#gantt_p').gantt({
-	    //   data: acciones,
-	    //   startDate: new Date(fechaMin),
-	    //   endDate: new Date(fechaMax)
-	    // });	
-
-    }
 
 
     function drawChart(datos) {
