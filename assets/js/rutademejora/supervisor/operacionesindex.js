@@ -146,7 +146,7 @@ $("#slt_cct_excuelasxsuper").change(function(){
   var cct = $("#slt_cct_excuelasxsuper").val();
   var selected = $("#slt_cct_excuelasxsuper").find('option:selected');
   var turno = selected.data('turno');
-  // alert(cct);
+  id_tprioritario_sup = 0;
   $("#cct_tmp").val(cct);
   $("#turno_tmp").val(turno);
 });
@@ -163,7 +163,7 @@ $("#btn_cargar_mensaje_super").click(function(){
   if (id_tprioritario_sup === undefined || id_tprioritario_sup == 0) {
     swal(
         '¡Error!',
-        "Selecciona un tema prioritario ",
+        "Selecciona una línea de acción estrategica ",
         "error"
       );
   }
@@ -211,7 +211,7 @@ $("#btn_ver_ruta_super").click(function(){
   if (id_tprioritario_sup === undefined || id_tprioritario_sup == 0) {
     swal(
         '¡Error!',
-        "Selecciona un tema prioritario ",
+        "Selecciona una línea de acción estrategica ",
         "error"
       );
   }
