@@ -249,7 +249,7 @@ var lazyload = {
       //   var eventBlock2 = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
       // }
 
-      eventBlock=$$1('<progress  class="gantt-event-block tourFly2" value="'+element.minNight2+'" max="100" min="0"  style="width:'+tourWidth+'px; background:green !important;"   title="'+element.tooltipData.desc[0]+'&#10; '+element.tooltipData.desc[1]+'&#10; '+element.tooltipData.desc[2]+'&#10; '+element.tooltipData.desc[3]+'&#10;'+element.tooltipData.desc[4]+'"></progress>').css('line-height', this.config.cellHeight - 10 + 'px');
+      eventBlock=$$1('<progress  class="progress" value="'+element.minNight2+'" max="100" min="0"  style="width:'+tourWidth+'px; background:green !important;"   title="'+element.tooltipData.desc[0]+'&#10; '+element.tooltipData.desc[1]+'&#10; '+element.tooltipData.desc[2]+'&#10; '+element.tooltipData.desc[3]+'&#10;'+element.tooltipData.desc[4]+'"></progress>').css('line-height', this.config.cellHeight - 10 + 'px');
       var left = remDay * this.config.cellWidth + this.gridDefaults.eventsWidth;
       // console.log(left);
       // console.log( this.config.cellHeight);
@@ -685,7 +685,7 @@ var Gantt = function () {
         // }else{
         //   eventBlock = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
         // }
-        eventBlock=$$1('<progress  class="gantt-event-block tourFly2" value="'+el.minNight2+'" max="100" min="0"  style="width:'+tourWidth+'px;"   title="'+el.tooltipData.desc[0]+'&#10; '+el.tooltipData.desc[1]+'&#10; '+el.tooltipData.desc[2]+'&#10; '+el.tooltipData.desc[3]+'&#10;'+el.tooltipData.desc[4]+'"></progress>').css('line-height', this.config.cellHeight - 10 + 'px');            
+        eventBlock=$$1('<progress  class="progress" value="'+el.minNight2+'" max="100" min="0"  style="width:'+tourWidth+'px;"   title="'+el.tooltipData.desc[0]+'&#10; '+el.tooltipData.desc[1]+'&#10; '+el.tooltipData.desc[2]+'&#10; '+el.tooltipData.desc[3]+'&#10;'+el.tooltipData.desc[4]+'"></progress>').css('line-height', this.config.cellHeight - 10 + 'px');            
           
           //<progress value="80" max="100" style="width: 380px;" title="Accion: Elaborar una lista de faltantes y presupuesto
             // Duracion: 2 meses y 2 dias

@@ -174,52 +174,25 @@
   /*-webkit-appearance: none;*/
 }
 
-progress {
+.progress {
   cursor: pointer;
   text-align: center;
-  padding: 8px 0;
-  color: #fff;
-  /*width: 300px;*/
-  border-radius: 0px;
+  /*padding: 8px 0;*/
+  /*color: #fff;*/
   box-sizing: border-box;
-  /*overflow: hidden;*/
-  /*white-space: nowrap;*/
+  overflow: hidden;
+  white-space: nowrap;
   display: block;
-  /*text-decoration: none;*/
+  text-decoration: none;
   pointer-events: initial;
- border: none;
- /*-webkit-appearance: none;*/
- /*background: crimson;*/
+  -webkit-appearance: none;
 }
 
-/*progress {
- color: lightblue;
+::-webkit-progress-bar {
+   background-color: #5EEE53;
 }
 
-progress::-webkit-progress-value {
- background: lightblue;
-}
 
-progress::-moz-progress-bar {
- background: lightcolor;
-}
-
-progress::-webkit-progress-value {
- background: red;
-}
-
-progress::-webkit-progress-bar {
- background: blue;
-}*/
-
-progress::-webkit-progress-bar {
-   background-color: orange;
-}
-
-/*.gantt-wrapper .gantt-container .gantt-events .gantt-event .progress {
-  width: 300px;
-  
-}*/
 
 .gantt-wrapper .gantt-loading {
   border-radius: 50%;
