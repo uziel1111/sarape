@@ -647,7 +647,7 @@ var Gantt = function () {
       var data = this.config.data;
       var totalWidth = this.getTotalWidth(num);
 
-      var templateEvents = $$1('<div>', { class: 'gantt-events', width: totalWidth });
+      var templateEvents = $$1('<div>', { class: 'gantt-events', width: totalWidth, style: 'background: lightgrey !important' });
 
       data.forEach(function (el) {
         var itemStartDate = new Date(el.startdate);
