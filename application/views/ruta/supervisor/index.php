@@ -33,7 +33,7 @@
  </div>
  <?php  echo form_open(''.base_url().'index.php/Reporte/get_reporte_desde_sup', array('target' => '_blank','id' => 'form_imp_rm')); ?>
  <div class="col-2 margintop35" id="dv_btn_imprpdf">
-   <button type="submit" class="btn btn-primary" title="Generar reporte"  id="btn_imp_rutamejoraxcct">Imprimir PEMC de mejora</button>
+   <button type="submit" class="btn btn-primary" title="Generar reporte"  id="btn_imp_rutamejoraxcct">Imprimir PEMC</button>
 
    <!-- <a class="btn btn-primary"   href="<?= base_url()?>index.php/Reporte/get_reporte_desde_sup/?cct=<?= $escuelas[0]->b_cct ?>&turno=<?= $escuelas[0]->b_desc_turno ?>" >Imprimir ruta de mejora</a> -->
    <input type="text" name="cct_tmp" id="cct_tmp" value="<?= $escuelas[0]->b_cct ?>" hidden>

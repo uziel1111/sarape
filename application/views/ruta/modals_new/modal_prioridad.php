@@ -56,7 +56,7 @@
 			<form id="t_prioritario" enctype="multipart/form-data">
 				<div class="row mt-3">
 					<div class="col-lg-6">
-						<label><span class="badge badge-secondary h5 text-white">1.</span>Problemática(s) por ámbito(s):</label><br>
+						<label><span class="badge badge-secondary h5 text-white">1.</span>Problemática(s) por ámbito(s):<span style="color:red">*</span></label><br>
 						<!-- <textarea id="problematica" name="problematica" class="form-control" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea> -->
 						<?php switch ($prioridad) {
 							case '1': ?>
@@ -126,16 +126,16 @@
 					</div>
 
 					<div class="col-lg-6 mt-3 mt-lg-0">
-						<label><span class="badge badge-secondary h5 text-white">2.</span> Evidencia(s)</label>
+						<label><span class="badge badge-secondary h5 text-white">2.</span> Evidencia(s)<span style="color:red">*</span></label>
 						<br>
-						<textarea id="evidencias" name="evidencia" class="form-control" rows="2" maxlength="400" style="height: 100px !important;"><?= (isset($evidencia))?$evidencia:"" ?></textarea>
+						<textarea required id="evidencias" name="evidencia" class="form-control" rows="2" maxlength="400" style="height: 100px !important;"><?= (isset($evidencia))?$evidencia:"" ?></textarea>
 					</div>
 				</div>
 
 				<div class="row mt-4">
 					<div class="col-lg-6">
-						<label><span class="badge badge-secondary h5 text-white">3.</span> Observaciones del director</label>
-						<textarea id="txt_rm_obs_direc" name="comentario_dir" class="form-control" rows="2"><?= (isset($director))?$director:"" ?></textarea>
+						<label><span class="badge badge-secondary h5 text-white">3.</span> Observaciones del director<span style="color:red">*</span></label>
+						<textarea required id="txt_rm_obs_direc" name="comentario_dir" class="form-control" rows="2"><?= (isset($director))?$director:"" ?></textarea>
 					</div>
 
 					<div class="col-lg-6 mt-2 mt-lg-0">
@@ -148,6 +148,7 @@
 					<div class="row mt-15">
 						<div class="col-12">
 							<button type="button" id="grabar_prioridad" class="btn btn-primary btn-style-1 mr-10">Guardar</button>
+							<span style="color:red">*</span><span>Requisito obligatorio</span>
 						</div>
 					</div>
 			
