@@ -393,6 +393,7 @@ Supervision.prototype.ver_archivo_evidencia= function(path_evidencia){
   var URLactual = window.location.host;
   var pathname = window.location.pathname;
   $('#dv_ver_evidencia_super').empty();
-  $('#dv_ver_evidencia_super').html('<iframe src="'+Protocol+"//"+URLactual+"/"+path_evidencia+'" width="100%" height="500" style="border: none;"></iframe>');
+  $('#dv_ver_evidencia_super').html('<iframe src="'+Protocol+"//"+URLactual+"/pruebas_qualedu/sarape/"+path_evidencia+'" width="100%" height="500" style="border: none;"></iframe>');
   $('#exampleModal_ver_evidencia_super').modal('toggle');
+  console.log(Protocol+"//"+URLactual+"/"+path_evidencia);
 }

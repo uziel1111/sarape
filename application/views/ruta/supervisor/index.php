@@ -26,17 +26,22 @@
     </div>
   </div>
 
-  <div class="col-2 margintop35">
-   <button class="btn btn-primary" id="btn_get_rutamejoraxcct">Buscar ruta</button>
+  <div class="col-3 margintop35">
+   <button class="btn btn-primary" id="btn_get_rutamejoraxcct">Buscar PEMC</button>
+   <button class="btn btn-primary" id="btn_graficas" title="Ver gráficas"><i class="far fa-chart-bar"></i>Ver gráficas</button>
 
  </div>
  <?php  echo form_open(''.base_url().'index.php/Reporte/get_reporte_desde_sup', array('target' => '_blank','id' => 'form_imp_rm')); ?>
  <div class="col-2 margintop35" id="dv_btn_imprpdf">
-   <button type="submit" class="btn btn-primary" title="Generar reporte"  id="btn_imp_rutamejoraxcct">Imprimir ruta de mejora</button>
+   <button type="submit" class="btn btn-primary" title="Generar reporte"  id="btn_imp_rutamejoraxcct">Imprimir PEMC de mejora</button>
+
    <!-- <a class="btn btn-primary"   href="<?= base_url()?>index.php/Reporte/get_reporte_desde_sup/?cct=<?= $escuelas[0]->b_cct ?>&turno=<?= $escuelas[0]->b_desc_turno ?>" >Imprimir ruta de mejora</a> -->
    <input type="text" name="cct_tmp" id="cct_tmp" value="<?= $escuelas[0]->b_cct ?>" hidden>
    <input type="text" name="turno_tmp" id="turno_tmp" value="<?= $escuelas[0]->b_desc_turno ?>" hidden>
  </div>
+
+ 
+
  <?= form_close(); ?>
 </div>
 
@@ -47,7 +52,6 @@
    <button class="btn btn-warning" id="btn_ver_objetivos_super" title="Ver objetivos de Línea de Acción Estrategica"><i class="fas fa-tasks"></i></button>
    <button class="btn btn-info" id="btn_ver_ruta_super" title="Ver acciones de Línea de Acción Estrategica"><i class="far fa-eye"></i></button>
    <button class="btn btn-success" id="btn_seguimiento_modal" title="Ver seguimiento de Línea de Acción Estrategica"><i class="fas fa-chart-line"></i></button>
-   <button class="btn btn-primary" id="btn_graficas" title="Ver gráficas"><i class="far fa-chart-bar"></i></button>
      <b style="color:green;"><a id='cteActualSup'></a></b>
  </div>
 </div>
@@ -152,7 +156,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content modal-style-1">
       <div class="modal-header bgcolor-2">
-        <h5 class="modal-title text-white" id="exampleModalLabel">Objetvios y Acciones por Línea de acción</h5>
+        <h5 class="modal-title text-white" id="exampleModalLabel">Objetvios y Acciones</h5>
         <button type="button" class="close" id="cerrar_modal_graficas_super" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
