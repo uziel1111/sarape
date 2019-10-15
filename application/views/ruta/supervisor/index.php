@@ -138,7 +138,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content modal-style-1">
       <div class="modal-header bgcolor-2">
-        <h5 class="modal-title text-white" id="exampleModalLabel">Objetvios por Línea de acción</h5>
+        <h5 class="modal-title text-white" id="exampleModalLabel">Objetivos por Línea de acción</h5>
         <button type="button" class="close" id="cerrar_modal_objetivos_super" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -156,7 +156,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content modal-style-1">
       <div class="modal-header bgcolor-2">
-        <h5 class="modal-title text-white" id="exampleModalLabel">Objetvios y Acciones</h5>
+        <h5 class="modal-title text-white" id="exampleModalLabel">Objetivos y Acciones</h5>
         <button type="button" class="close" id="cerrar_modal_graficas_super" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
