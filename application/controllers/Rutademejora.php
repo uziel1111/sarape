@@ -2283,18 +2283,18 @@ class Rutademejora extends CI_Controller {
       	for($i=0; $i<count($datos); $i++){
       		if($datos[$i]['porcentaje']!=0 && $datos[$i]['porcentaje']!=null){
       			$porcentaje= $datos[$i]['porcentaje'];
-      			$avance=($datos[$i]['periodo']/100)*$porcentaje;
+      			// $avance=($datos[$i]['periodo']/100)*$porcentaje;
       		}
       			$accion=array(
 				    "title"=> $datos[$i]['accion'],
 				    "startdate"=> $datos[$i]['accion_f_inicio'],
 				    "enddate"=> $datos[$i]['accion_f_termino'],
 				    "type"=> "Tur",
-				    "minNight"=>$datos[$i]['periodo']-$avance,
-				    "minNight2"=>$avance,
+				    "minNight"=>$datos[$i]['periodo'],
+				    "minNight2"=>$porcentaje,
 				    "tooltipData"=>array(
 				        "title"=>$datos[$i]['accion'],
-				        "desc"=> [" Duracion: ".$datos[$i]['periodo']." dias ", "Fecha Inicio: ".$datos[$i]['accion_f_inicio'], "Fecha Término: " .$datos[$i]['accion_f_termino'], " Porcentaje de Avance:  ".$porcentaje."%"] 
+				        "desc"=> [" Acción: ".$datos[$i]['ac'],"Duracion: ".$datos[$i]['periodo']." dias ", "Fecha Inicio: ".$datos[$i]['accion_f_inicio'], "Fecha Término: " .$datos[$i]['accion_f_termino'], " Porcentaje de Avance:  ".$porcentaje."%"] 
 				    ),
 				    "dateorder"=> "\/Date(1469048400000)\/"
 				);
