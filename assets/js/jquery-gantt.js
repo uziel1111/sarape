@@ -221,7 +221,7 @@ var lazyload = {
       var remDay = this.dateDiffInDays(this.config.startDate, itemStartDate);
 
       var tooltipData = $$1.extend(element.tooltipData);
-
+      // console.log(element.tooltipData);
       
       var tourType = 'tourFly';
      
@@ -234,26 +234,26 @@ var lazyload = {
       // }).css('line-height', this.config.cellHeight - 28 + 'px').data('tooltip', this.tooltipView(tooltipData));
       var eventBlock='';
       // var eventBlock = $$1('<a class="gantt-event-block tourFly"> width="'+tourWidth2+'px"></a><a class="gantt-event-block tourFly"> width="'+tourWidth+'px"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-
+      // console.log(element.tooltipData);
       // var tourWidth2='';
-      if(tourWidth2==0){
+      // if(tourWidth2==0){
 
-        // eventBlock2 = $$1('<a>', {
-        //   class: this.format('gantt-event-block tourFly2'),
-        //   width: tourWidth2 + 'px'
-        // }).css('line-height', this.config.cellHeight - 28 + 'px').data('tooltip', this.tooltipView(tooltipData));
-        eventBlock = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-      }else{
-        // console.log(tooltipData);
-        // eventBlock = $$1('<div class="progress-bar" aria-valuemax="100" aria-valuemin="0"  style="width:'+tourWidth2+'px; background:green !important;" role="progressbar"></div><a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-        eventBlock = $$1('<div class="progress-bar" aria-valuemax="100" aria-valuemin="0"  style="width:'+tourWidth2+'px; background:green !important;" role="progressbar"></div>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-        var eventBlock2 = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-      }
+      //   // eventBlock2 = $$1('<a>', {
+      //   //   class: this.format('gantt-event-block tourFly2'),
+      //   //   width: tourWidth2 + 'px'
+      //   // }).css('line-height', this.config.cellHeight - 28 + 'px').data('tooltip', this.tooltipView(tooltipData));
+      //   eventBlock = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
+      // }else{
+      //   // eventBlock = $$1('<div class="progress-bar" aria-valuemax="100" aria-valuemin="0"  style="width:'+tourWidth2+'px; background:green !important;" role="progressbar"></div><a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
+      //   eventBlock = $$1('<div class="progress-bar" aria-valuemax="100" aria-valuemin="0"  style="width:'+tourWidth2+'px; background:green !important;" role="progressbar" data-toggle="tooltip"  data-content="'+el.tooltipData.desc[1]+el.tooltipData.desc[2]+el.tooltipData.desc[3]+'"></div>').css('line-height', this.config.cellHeight - 10 + 'px');
+      //   var eventBlock2 = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
+      // }
 
+      eventBlock=$$1('<progress  class="gantt-event-block tourFly2" value="'+element.minNight2+'" max="100" min="0"  style="width:'+tourWidth+'px; background:green !important;"   title="'+element.tooltipData.desc[0]+'&#10; '+element.tooltipData.desc[1]+'&#10; '+element.tooltipData.desc[2]+'&#10; '+element.tooltipData.desc[3]+'&#10;'+element.tooltipData.desc[4]+'"></progress>').css('line-height', this.config.cellHeight - 10 + 'px');
       var left = remDay * this.config.cellWidth + this.gridDefaults.eventsWidth;
       // console.log(left);
       // console.log( this.config.cellHeight);
-      templateEventRow.append(templateEvent.css('left', left).append(eventBlock).append(eventBlock2)).css('height', this.config.cellHeight);
+      templateEventRow.append(templateEvent.css('left', left).append(eventBlock)).css('height', this.config.cellHeight);
 
       templateEvents.append(templateEventRow);
     }, this);
@@ -665,7 +665,8 @@ var Gantt = function () {
         var remDay = this.dateDiffInDays(this.config.startDate, itemStartDate);
 
         var tooltipData = $$1.extend(el.tooltipData);
-      
+        // console.log(el.tooltipData.title);
+        // console.log(el.tooltipData);
         var tourType = 'tourFly';
       
         var title = el.minNight + ' ';
@@ -678,18 +679,25 @@ var Gantt = function () {
         
         
         var eventBlock='';
-        if(tourWidth2>0){
-          // console.log(tooltipData);
-          // eventBlock = $$1('<div class="progress-bar" aria-valuemax="100" aria-valuemin="0"  style="width:'+tourWidth2+'px; background:green !important;" role="progressbar"></div><a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-          eventBlock = $$1('<div class="progress-bar" aria-valuemax="100" aria-valuemin="0"  style="width:'+tourWidth2+'px; background:green !important;" role="progressbar"></div>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));            
-          var eventBlock2 = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-        }else{
-          eventBlock = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-        }
-
+        // if(tourWidth2>0){
+        //   eventBlock = $$1('<div class="progress-bar" aria-valuemax="100" aria-valuemin="0"  style="width:'+tourWidth2+'px; background:green !important;" role="progressbar" data-toggle="tooltip"  data-content="'+el.tooltipData.desc[1]+el.tooltipData.desc[2]+el.tooltipData.desc[3]+'"></div>').css('line-height', this.config.cellHeight - 10 + 'px');            
+        //   var eventBlock2 = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
+        // }else{
+        //   eventBlock = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
+        // }
+        eventBlock=$$1('<progress  class="gantt-event-block tourFly2" value="'+el.minNight2+'" max="100" min="0"  style="width:'+tourWidth+'px;"   title="'+el.tooltipData.desc[0]+'&#10; '+el.tooltipData.desc[1]+'&#10; '+el.tooltipData.desc[2]+'&#10; '+el.tooltipData.desc[3]+'&#10;'+el.tooltipData.desc[4]+'"></progress>').css('line-height', this.config.cellHeight - 10 + 'px');            
+          
+          //<progress value="80" max="100" style="width: 380px;" title="Accion: Elaborar una lista de faltantes y presupuesto
+            // Duracion: 2 meses y 2 dias
+            // Fecha de Inicio: 20 de mayo
+            // Fecha Fin: 30 de julio" class="gantt-event-block tourFly2"></progress>
+        //<progress value="100" max="100" style="width: 380px;" min="20" class="gantt-event-block tourFly2" title="Accion: Elaborar una lista de faltantes y presupuesto
+// Duracion: 2 meses y 2 dias
+// Fecha de Inicio: 20 de mayo
+// Fecha Fin: 30 de julio"></progress>
         var left = remDay * this.config.cellWidth;
 
-        templateEventRow.append(templateEvent.css('left', left).append(eventBlock).append(eventBlock2)).css('height', this.config.cellHeight);
+        templateEventRow.append(templateEvent.css('left', left).append(eventBlock)).css('height', this.config.cellHeight);
 
         templateEvents.append(templateEventRow);
       }, this);
@@ -751,9 +759,9 @@ var Gantt = function () {
   }, {
     key: 'tooltipView',
     value: function tooltipView(data) {
-      var template = '' + '<div class="gantt-tooltip">' + '    <div class="tooltip-content">'  + '        <span class="title">{1}</span>' + '        <div class="desc">' + '     {2} <br>   {3} <br> {4} <br> {5} ' + '        </div>' + '    </div>' + '    <div class="tooltip-action">'  + '    </div>' + '</div>';
+      var template = '' + '<div class="gantt-tooltip">' + '    <div class="tooltip-content">'  + '        <span class="title">{1}</span>' + '        <div class="desc">' + '     {2} <br>   {3} <br> {4} <br> {5}  <br> {6}' + '        </div>' + '    </div>' + '    <div class="tooltip-action">'  + '    </div>' + '</div>';
 
-      var html = this.format(template, data.image, data.title, data.desc[0], data.desc[1], data.desc[2],data.desc[3]);
+      var html = this.format(template, data.image, data.title, data.desc[0], data.desc[1], data.desc[2],data.desc[3],data.desc[4]);
       return html;
     }
   }, {

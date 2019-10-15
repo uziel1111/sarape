@@ -184,7 +184,7 @@ span{
 					<div id="div_rezagadas">
 						<br>
 						<h1 align="center">Lista de acciones rezagadas</h1>
-						<div align="center"><p style="color:blue;">*Una acción rezagada es aquella cuya fecha de término esta próxima y cuenta con un porcentaje  menor o igual al 60%.</p></div>
+						<div align="center"><p style="color:blue;">*Una acción rezagada es aquella cuya fecha de término esta próxima y cuenta con un porcentaje de avance menor o igual al 60%.</p></div>
 						<div id="div_acc_rez">
 						</div>
 						<br>
