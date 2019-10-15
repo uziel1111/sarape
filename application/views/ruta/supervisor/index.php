@@ -42,11 +42,11 @@
 
 <br>
 <div class="row">
-  <div class="col-3">
-   <button class="btn btn-secondary" id="btn_cargar_mensaje_super" title="Observación de Linéa de Acción Estrategica" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button>
-   <button class="btn btn-info" id="btn_ver_ruta_super" title="Ver acciones de Linéa de Acción Estrategica"><i class="far fa-eye"></i></button>
-   <button class="btn btn-warning" id="btn_ver_objetivos_super" title="Ver objetivos de Linéa de Acción Estrategica"><i class="fas fa-tasks"></i></button>
-   <button class="btn btn-success" id="btn_seguimiento_modal" title="Ver objetivos de Linéa de Acción Estrategica"><i class="fas fa-chart-line"></i></button>
+  <div class="col-6">
+   <button class="btn btn-secondary" id="btn_cargar_mensaje_super" title="Observación de Línea de Acción Estrategica" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button>
+   <button class="btn btn-warning" id="btn_ver_objetivos_super" title="Ver objetivos de Línea de Acción Estrategica"><i class="fas fa-tasks"></i></button>
+   <button class="btn btn-info" id="btn_ver_ruta_super" title="Ver acciones de Línea de Acción Estrategica"><i class="far fa-eye"></i></button>
+   <button class="btn btn-success" id="btn_seguimiento_modal" title="Ver seguimiento de Línea de Acción Estrategica"><i class="fas fa-chart-line"></i></button>
    <button class="btn btn-primary" id="btn_graficas" title="Ver gráficas"><i class="far fa-chart-bar"></i></button>
      <b style="color:green;"><a id='cteActualSup'></a></b>
  </div>
