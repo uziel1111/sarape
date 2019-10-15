@@ -14,7 +14,7 @@
     <b>LAE-4 </b>GENERAR AMBIENTES DE COLABORACIÓN Y CORRESPONSABILIDAD CON LOS PADRES DE FAMILIA <br>
     <b>LAE-5 </b>CONSOLIDAR EL LIDERAZGO DE DIRECTIVOS Y DOCENTES <br>
     <br>
-    <strong>Nota:</strong><span style="color:red;"> Las escuelas no mostradas en la tabla no han ingresado a la plataforma de <strong>Programa Escolar de Mejora Continua</strong></span>
+    <strong>Nota:</strong><span style="color:red;"> Las escuelas no aparecen en la tabla no han ingresado a la plataforma de <strong>Programa Escolar de Mejora Continua</strong></span>
   </p>
 </div>
 <br>

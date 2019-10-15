@@ -146,7 +146,7 @@ $("#slt_cct_excuelasxsuper").change(function(){
   var cct = $("#slt_cct_excuelasxsuper").val();
   var selected = $("#slt_cct_excuelasxsuper").find('option:selected');
   var turno = selected.data('turno');
-  // alert(cct);
+  id_tprioritario_sup = 0;
   $("#cct_tmp").val(cct);
   $("#turno_tmp").val(turno);
 });
@@ -163,7 +163,7 @@ $("#btn_cargar_mensaje_super").click(function(){
   if (id_tprioritario_sup === undefined || id_tprioritario_sup == 0) {
     swal(
         '¡Error!',
-        "Selecciona un tema prioritario ",
+        "Selecciona una línea de acción estrategica ",
         "error"
       );
   }
@@ -211,7 +211,7 @@ $("#btn_ver_ruta_super").click(function(){
   if (id_tprioritario_sup === undefined || id_tprioritario_sup == 0) {
     swal(
         '¡Error!',
-        "Selecciona un tema prioritario ",
+        "Selecciona una línea de acción estrategica ",
         "error"
       );
   }
@@ -393,6 +393,7 @@ Supervision.prototype.ver_archivo_evidencia= function(path_evidencia){
   var URLactual = window.location.host;
   var pathname = window.location.pathname;
   $('#dv_ver_evidencia_super').empty();
-  $('#dv_ver_evidencia_super').html('<iframe src="'+Protocol+"//"+URLactual+"/"+path_evidencia+'" width="100%" height="500" style="border: none;"></iframe>');
+  $('#dv_ver_evidencia_super').html('<iframe src="'+Protocol+"//"+URLactual+"/pruebas_qualedu/sarape/"+path_evidencia+'" width="100%" height="500" style="border: none;"></iframe>');
   $('#exampleModal_ver_evidencia_super').modal('toggle');
+  console.log(Protocol+"//"+URLactual+"/"+path_evidencia);
 }
