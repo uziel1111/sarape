@@ -2295,7 +2295,7 @@ class Rutademejora extends CI_Controller {
 				    "minNight2"=>$porcentaje,
 				    "tooltipData"=>array(
 				        "title"=>$datos[$i]['accion'],
-				        "desc"=> [" Acción: ".$datos[$i]['ac'],"Duracion: ".$datos[$i]['periodo']." dias ", "Fecha Inicio: ".$datos[$i]['accion_f_inicio'], "Fecha Término: " .$datos[$i]['accion_f_termino'], " Porcentaje de Avance:  ".$porcentaje."%"] 
+				        "desc"=> [" Acción: ".$datos[$i]['ac'],"Duracion: ".$datos[$i]['periodo']." dias ", "Fecha Inicio: ".$datos[$i]['fechainicio'], "Fecha Término: " .$datos[$i]['fechafin'], " Porcentaje de Avance:  ".$porcentaje."%"] 
 				    ),
 				    "dateorder"=> "\/Date(1469048400000)\/"
 				);

@@ -298,10 +298,10 @@ Prioridad.prototype.funcionalidadselect = function(){
 						        tabla+=p+"%";
 						        tabla+='</td>';
 						        tabla+='<td>';
-						        tabla+=data.datos[x]['accion_f_inicio'];
+						        tabla+=data.datos[x]['fechainicio'];
 						        tabla+='</td>';
 						        tabla+='<td>';
-						        tabla+=data.datos[x]['accion_f_termino'];
+						        tabla+=data.datos[x]['fechafin'];
 						        tabla+='</td>';
 						        tabla+='</tr>';
 						    }

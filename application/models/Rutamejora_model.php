@@ -391,7 +391,7 @@ function accionesRezagadas($id_cct,$cte_vigente){
   (datediff(a.accion_f_termino, a.accion_f_inicio)*24) as 'total_horas',
   ((datediff(a.accion_f_termino, a.accion_f_inicio)*24)/3) as 'dias_restantes', 
   (datediff(a.accion_f_termino, now())*24) as 'dias_restantes_hoy'
-  ,a.accion_f_termino as f_termino, a.accion_f_inicio as f_inicio
+  ,DATE_FORMAT(a.accion_f_termino,'%m-%d-%Y') AS f_termino, DATE_FORMAT(a.accion_f_inicio,'%m-%d-%Y') AS f_inicio
   FROM rm_tema_prioritarioxcct tp
   INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
   INNER JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
@@ -977,12 +977,8 @@ public function avancesxcctxaccion($id_cct,$cte_vigente){
   ac.accion as ac,
   REPLACE(ac.accion_f_inicio,'-','/')as accion_f_inicio,
   REPLACE(ac.accion_f_termino,'-','/')as accion_f_termino
-  ,MONTH(ac.accion_f_inicio) AS m_ini,
-  DAY(ac.accion_f_inicio) AS d_ini,
-  YEAR(ac.accion_f_inicio) AS a_ini,
-  MONTH(ac.accion_f_termino) AS m_fin,
-  DAY(ac.accion_f_termino) AS d_fin,
-  YEAR(ac.accion_f_termino) AS a_fin,
+  ,DATE_FORMAT(ac.accion_f_inicio,'%m-%d-%Y') AS fechainicio,
+  DATE_FORMAT(ac.accion_f_termino,'%m-%d-%Y') AS fechafin,
   av.id_cct,av.{$cte_vigente} as porcentaje,
   datediff(ac.accion_f_termino, ac.accion_f_inicio) as 'periodo'
   FROM rm_avance_xcctxtpxaccion av
