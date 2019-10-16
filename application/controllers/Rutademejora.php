@@ -2281,6 +2281,7 @@ class Rutademejora extends CI_Controller {
 		$data_ac=array();
 		$avance=0;
       	for($i=0; $i<count($datos); $i++){
+      		$porcentaje=0;
       		if($datos[$i]['porcentaje']!=0 && $datos[$i]['porcentaje']!=null){
       			$porcentaje= $datos[$i]['porcentaje'];
       			// $avance=($datos[$i]['periodo']/100)*$porcentaje;

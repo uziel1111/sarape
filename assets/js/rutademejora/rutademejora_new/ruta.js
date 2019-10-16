@@ -285,6 +285,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 						// console.log(data.acciones);
 						if(data.datos.length>0){
 						    for(let x=0; x <data.datos.length; x++){
+						    	let p=0;
 						        tabla+='<tr>';
 						        tabla+='<td>';
 						        tabla+=data.datos[x]['accion'];
