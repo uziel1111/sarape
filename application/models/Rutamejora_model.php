@@ -720,7 +720,7 @@ function getObjetivosSuper($id_cct, $id_tprioritario){
   return $this->db->query($str_query)->result_array();
 }
 
-function grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir){
+function grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir,$ambito){
   $date = date("Y-m-d");
 
       //Iniciar transaccion
@@ -729,7 +729,8 @@ function grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comen
     'otro_problematica' => $problematica,
     'otro_evidencia' => $evidencia,
     'obs_direc' => $comentario_dir,
-    'f_creacion' => $date
+    'f_creacion' => $date,
+    'ambito' => $ambito
   );
 
       // echo "<pre>";print_r($datos);die();
@@ -745,7 +746,7 @@ function grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comen
 function edith_tp($id_tprioritario){
   $str_query = "SELECT obj.id_tprioritario, tprioritario.id_prioridad, tprioritario.id_subprioridad,  tprioritario.otro_problematica,
   tprioritario.otro_evidencia, tprioritario.path_evidencia,
-  tprioritario.obs_supervisor, tprioritario.obs_direc, obj.id_objetivo, obj.objetivo
+  tprioritario.obs_supervisor, tprioritario.obs_direc, obj.id_objetivo, obj.objetivo, tprioritario.ambito
   FROM rm_tema_prioritarioxcct tprioritario
   LEFT JOIN rm_objetivo obj ON obj.id_tprioritario = tprioritario.id_tprioritario
   WHERE tprioritario.id_tprioritario = {$id_tprioritario}

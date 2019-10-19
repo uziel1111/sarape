@@ -1897,9 +1897,10 @@ class Rutademejora extends CI_Controller {
 		$problematica = $this->input->post('problematica');
 		$evidencia = $this->input->post('evidencias');
 		$comentario_dir = $this->input->post('txt_rm_obs_direc');
+		$ambito = $this->input->post('ambito');
 
 
-		$estatus = $this->Rutamejora_model->grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir);
+		$estatus = $this->Rutamejora_model->grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir,$ambito);
 
 
 		$estatus = true;
@@ -1991,6 +1992,7 @@ class Rutademejora extends CI_Controller {
 			// echo "<pre>";print_r($datos);die();
 
 			$data['prioridad'] = $datos[0]['id_prioridad'];
+			$data['ambito'] = $datos[0]['ambito'];
 			$data['subprioridad'] = $datos[0]['id_subprioridad'];
 			$data['problematica'] = $datos[0]['otro_problematica'];
 			$data['evidencia'] = $datos[0]['otro_evidencia'];

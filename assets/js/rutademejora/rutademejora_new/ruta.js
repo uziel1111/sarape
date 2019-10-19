@@ -118,12 +118,15 @@ $("#btn_prioridad").click(function(e){
 			      Notification.loading("");
 		    }
 		}).done(function(data){
-			//console.log( data.data['problematica'].split(','));
+			// console.log(data.data.ambito);
 			$("#div_generico").empty();
 		    $("#div_generico").append(data.strView);
 		    // $('.problematica').selectpicker('val', data.data['problematica'].split(','));
 		    // $('.problematicaTxt').text( data.data['problematica']);
-		    // $('#problematica').val("");
+		    if (data.data.ambito != null) {
+		    	console.log(data.data.ambito);
+		    $('.problematica').val(data.data.ambito);
+		    }
 		    // $('#evidencias').val("");
 		    // $('#txt_rm_obs_direc').val("");
 		    let tipou_pemc="";
