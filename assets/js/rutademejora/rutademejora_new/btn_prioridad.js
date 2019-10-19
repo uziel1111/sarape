@@ -317,8 +317,8 @@ $('#writeText').click(function(){
 
 //Grabar prioridad
 $('#grabar_prioridad').click(function(){
-	otro = $('#problematicaTxt').val();
-	problematica = $('.problematica option:selected').text() + ': ' +otro;
+	problematica = $('#problematicaTxt').val();
+	ambito =  $('.problematica option:selected').text();
 	// console.log(problematica);
 	$.ajax({
 		url: base_url+'Rutademejora/grabarTema',
@@ -327,7 +327,8 @@ $('#grabar_prioridad').click(function(){
 		data:{ id_tprioritario: obj.id_tprioritario,
 					 problematica: problematica,
 					 evidencias: $('#evidencias').val(),
-					 txt_rm_obs_direc: $('#txt_rm_obs_direc').val()
+					 txt_rm_obs_direc: $('#txt_rm_obs_direc').val(),
+					 ambito: ambito
 				 },
 	 	beforeSend: function(xhr) {
 	        Notification.loading("");
