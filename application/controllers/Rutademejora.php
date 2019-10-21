@@ -353,7 +353,7 @@ class Rutademejora extends CI_Controller {
 						<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
 						<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
 						<td id='orden' style='vertical-align:middle;'><center>LAE-{$tp['orden']}</center></td>
-						<td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}</td>
+						<td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}<br>Ámbito(s): {$tp['ambito']}</td>
 						<td id='num_objetivos' style='vertical-align:middle;'><center>{$tp['num_objetivos']}</center></td>
 						<td id='num_acciones' style='vertical-align:middle;'><center>{$tp['num_acciones']}</center></td>
 						</tr>";
@@ -815,7 +815,7 @@ class Rutademejora extends CI_Controller {
 					</div>  ";
 
 					$get_datos = $this->Rutamejora_model->get_datos_modal($id_tprioritario);
-					$datos =array('escuela' => $this->cct[0]['nombre_centro'],'prioridad'=> $get_datos[0]['prioridad'],'problematicas'=> $get_datos[0]['otro_problematica'],'evidencias'=> $get_datos[0]['otro_evidencia']);
+					$datos =array('escuela' => $this->cct[0]['nombre_centro'],'prioridad'=> $get_datos[0]['prioridad'],'problematicas'=> $get_datos[0]['otro_problematica'],'evidencias'=> $get_datos[0]['otro_evidencia'],'ambito'=> $get_datos[0]['ambito']);
 			// $strView = $this->load->view("ruta/modals_new/modal_actividades", $datos, TRUE);
 			// $response = array('tabla' => $tabla, 'datos' => $datos, 'strView' => $strView);
 					$objetivos = $this->Rutamejora_model->getObjxTp($id_tprioritario);
@@ -1177,6 +1177,7 @@ class Rutademejora extends CI_Controller {
 					<th id='idrutamtema' hidden><center>id</center></th>
 					<th id='orden' style='width:4%'><center>Orden</center></th>
 					<th id='tema' style='width:20%'><center>Líneas de Acción Estratégica</center></th>
+					<th id='ambito' style='width:20%'><center>Ámbitos</center></th>
 					<th id='problemas' style='width:31%'><center>Problemáticas</center></th>
 					<th id='evidencias' style='width:31%'><center>Evidencias</center></th>
 					<th id='n_actividades' style='width:8%'><center>Acciones</center></th>
@@ -1191,8 +1192,10 @@ class Rutademejora extends CI_Controller {
 					foreach ($rutas as $ruta) {
 						$tabla .= "<tr>
 						<td id='id_tprioritario' hidden><center>{$ruta['id_tprioritario']}</center></td>
-						<td id='orden' data='1'>{$ruta['orden']}</td>
-						<td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td><td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
+						<td id='orden' data='1'>LAE-{$ruta['orden']}</td>
+						<td id='tema' data='Normalidad mínima'>{$ruta['prioridad']}</td>
+						<td id='ambito' data=''>{$ruta['ambito']}</td>
+						<td id='problemas' data='Asistencia de profesores' >{$ruta['otro_problematica']}</td>
 						<td id='evidencias' data='SISAT'>{$ruta['otro_evidencia']}</td>
 						<td id='n_actividades' data='0'>{$ruta['n_acciones']}</td>
 						<td id=''><center><i class='{$ruta['objetivos']}'></i></center></td>

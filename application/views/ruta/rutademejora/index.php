@@ -157,10 +157,10 @@ span{
 					<div class="col-md-12 " style="">
 						<span class="text-danger">*Antes de agregar objetivos o acciones, seleccione la línea de acción estratégica (LAE) o ámbito. </span>
 						<span data-toggle="modal" data-target="#prioridad">
-						<button type="" id="btn_prioridad" style="margin-left: 75px" data-toggle="tooltip" title="Agregar Objetivos" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
+						<button type="" id="btn_prioridad" style="margin-left: 175px" data-toggle="tooltip" title="Agregar Objetivos" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
 						</span>		
 						<span data-toggle="modal" data-target="#actividades">
-						<button type="button" style="margin-left: 90px" id="btn_rutamejora_acciones" title="Agregar Acciones" data-toggle="tooltip" title="Agregar Acciones" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
+						<button type="button" style="margin-left: 120px" id="btn_rutamejora_acciones" title="Agregar Acciones" data-toggle="tooltip" title="Agregar Acciones" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
 						</span>
 					</div>
 				</div>
@@ -265,6 +265,7 @@ span{
 					Escuela: <span class="fw800"><label id="label_escuela"></label></span><br>
 
 					<!-- Línea de acción: <span class="fw800"><label id="label_prioridad"></label></span><br> -->
+					Ámbito: <span class="fw800"><label id="label_ambito"></label></span><br>
 
 					Problemática(s): <span class="fw800"><label id="label_problematica"></label></span><br>
 

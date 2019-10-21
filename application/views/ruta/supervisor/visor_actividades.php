@@ -26,6 +26,8 @@
 
           Linéa de Acción Estrategica: <span class="fw800"><label id="label_prioridad"><?= $prioridad?></label></span><br>
 
+          Ámbito: <span class="fw800"><label id="label_ambito"></label></span><br>
+
           Problemática(s): <span class="fw800"><label id="label_problematica"><?= $problematicas?></label></span><br>
 
           Evidencia(s): <span class="fw800"><label id="label_evidencia"><?= $evidencias?></label></span>

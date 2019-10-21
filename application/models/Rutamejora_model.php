@@ -234,7 +234,7 @@ function update_order($orden, $idtema){
 }
 
 function getrutasxcct($idcct){
-	$this->db->select("tpxcct.id_tprioritario, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia, rmp.prioridad,
+	$this->db->select("tpxcct.id_tprioritario, rmp.ambito, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia, rmp.prioridad,
    SUM(IF(ISNULL(acc.id_accion),0,1)) as n_acciones,  IF((ISNULL(obj.id_objetivo) || obj.id_objetivo = ''), '','fas fa-check-circle') AS objetivos,IF((ISNULL(tpxcct.obs_supervisor) || tpxcct.obs_supervisor = ''),'','fas fa-check-circle') AS obs_supervisor,tpxcct.path_evidencia,
    IF ((ISNULL(tpxcct.path_evidencia) || tpxcct.path_evidencia = ''),'none','') as trae_path");
  $this->db->from('rm_tema_prioritarioxcct tpxcct');
@@ -506,7 +506,7 @@ function get_indicadoresxcct($id_cct,$nombre_nivel,$bimestre,$anio){
 }
 
 function get_datos_modal($id_tprioritario){
- $str_query = "SELECT p.prioridad, txcct.otro_problematica, otro_evidencia FROM rm_tema_prioritarioxcct txcct
+ $str_query = "SELECT p.prioridad, txcct.otro_problematica, txcct.otro_evidencia, txcct.ambito FROM rm_tema_prioritarioxcct txcct
  INNER JOIN rm_c_prioridad p ON p.id_prioridad = txcct.id_prioridad
  WHERE id_tprioritario = {$id_tprioritario}";
  return $this->db->query($str_query)->result_array();
@@ -827,7 +827,7 @@ function deleteEvidencia($id_tprioritario){
 }
 
 function getPrioridades($id_cct){
-  $str_query = "SELECT tp.id_tprioritario, o.id_objetivo, a.id_accion, tp.orden, p.prioridad, p.id_prioridad,
+  $str_query = "SELECT tp.id_tprioritario, p.ambito, o.id_objetivo, a.id_accion, tp.orden, p.prioridad, p.id_prioridad,
   COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones
   FROM rm_tema_prioritarioxcct tp
   INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad

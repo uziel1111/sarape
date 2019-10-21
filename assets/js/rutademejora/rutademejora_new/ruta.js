@@ -124,7 +124,7 @@ $("#btn_prioridad").click(function(e){
 		    // $('.problematica').selectpicker('val', data.data['problematica'].split(','));
 		    // $('.problematicaTxt').text( data.data['problematica']);
 		    if (data.data.ambito != null) {
-		    	console.log(data.data.ambito);
+		    	// console.log(data.data.ambito);
 		    $('.problematica').val(data.data.ambito);
 		    }
 		    // $('#evidencias').val("");
