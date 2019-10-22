@@ -1295,7 +1295,8 @@ class Rutademejora extends CI_Controller {
 
 						$data['escuela'] = $nombreescuela;
 						$data['prioridad'] = $get_datos[0]['prioridad'];
-						$data['problematicas'] = $get_datos[0]['otro_problematica'];
+						$data['problematicas'] = $problematica;
+						$data['ambito'] = $ambito;
 						$data['evidencias'] = $get_datos[0]['otro_evidencia'];
 						$data['tacciones'] = $tabla;
 						$data['arr_ambitos'] = $this->Ambito_model->get_ambitos();

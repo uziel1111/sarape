@@ -9,6 +9,7 @@ class Reporte extends CI_Controller {
 		$this->load->library('Utilerias');
 		$this->load->model('Reportepdf_model');
 		$this->load->model('Escuela_model');
+		$this->load->model('Rutamejora_model');
 		$this->load->library('PDF_MC_Table');
 		date_default_timezone_set('America/Mexico_City');
 	}// __construct()
@@ -43,14 +44,28 @@ class Reporte extends CI_Controller {
 			foreach ($rutas as $ruta) {
 				if ($aux_ruta == $ruta['tema']) {
 					$ruta['tema']= '' ;
+					$id_tprioritario_cap= $ruta['id_tprioritario'];
 				}
 				else {
 				}
 				$aux_ruta = $ruta['tema'];
 				$id_tprioritario = $ruta['id_objetivo'];
+				$id_tprioritario_cap= $ruta['id_tprioritario'];
 				//DATOS
 				if ($id_tprioritario!='') {
-					$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cct[0]['cve_centro']);
+					// $this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cct[0]['cve_centro']);
+					$cap = $this->Rutamejora_model->get_problematica_ambito($id_tprioritario_cap);
+							$ambitoA = '';
+							$problematicaA = '';
+							foreach ($cap as $key => $value) {
+								if ($value['tipo'] == 1) {
+									$problematicaA .= $value['descripcion'];
+								}else{
+									$ambitoA .= $value['descripcion'];
+								}
+							}
+						// echo "<pre>"; print_r($cap);
+							$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cct[0]['cve_centro'], $problematicaA, $ambitoA);
 				}
 
 
@@ -98,7 +113,18 @@ class Reporte extends CI_Controller {
 						$id_tprioritario = $ruta['id_tprioritario'];
 						//DATOS
 						if ($id_tprioritario!='') {
-							$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cvecct);
+							$cap = $this->Rutamejora_model->get_problematica_ambito($id_tprioritario);
+							$ambitoA = '';
+							$problematicaA = '';
+							foreach ($cap as $key => $value) {
+								if ($value['tipo'] == 1) {
+									$problematicaA .= $value['descripcion'];
+								}else{
+									$ambitoA .= $value['descripcion'];
+								}
+							}
+
+							$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cvecct, $problematicaA, $ambitoA);
 						}
 
 					}
@@ -115,7 +141,7 @@ class Reporte extends CI_Controller {
 		}
 	}// get_reporte_desde_sup()
 
-	public function pinta_ruta($pdf, $ruta, $y, $id_tprioritario,$cvecct){
+	public function pinta_ruta($pdf, $ruta, $y, $id_tprioritario,$cvecct,$problematicaA, $ambitoA){
 		if(Utilerias::haySesionAbiertacct($this)){
 				$orden = '';
 				// "Orden: {$ruta['orden']}"
@@ -158,7 +184,7 @@ class Reporte extends CI_Controller {
 				// 	$pdf->Row2(array(
 				// 		utf8_decode($obj2)
 				// 	));
-				$ambito = "Ámbito(s): {$ruta['ambito']}";
+				$ambito = "Ámbito(s): {$ambitoA}";
 				$pdf->Ln(2);
 				$pdf->SetFont('Arial','B',9);
 				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
@@ -171,7 +197,7 @@ class Reporte extends CI_Controller {
 						utf8_decode($ambito)
 					));
 
-				$problematica = "Problemática(s): {$ruta['otro_problematica']}";
+				$problematica = "Problemática(s): {$problematicaA}";
 				$pdf->Ln(2);
 				$pdf->SetFont('Arial','B',9);
 				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
