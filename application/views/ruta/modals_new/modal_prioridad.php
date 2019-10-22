@@ -58,42 +58,19 @@
 					<div class="col-lg-6">
 						<label><span class="badge badge-secondary h5 text-white">1.</span>Ámbito(s):<span style="color:red">*</span></label><br>
 						<!-- <textarea id="problematica" name="problematica" class="form-control" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea> -->
-						<?php switch ($prioridad) {
-							case '1': ?>
-							<select class="selectpicker problematica form-control"  title="Seleccione el ámbito" multiple name="problematica" tabindex="-98" >
-								<option value="Infraestructura y equipamiento." selected >Infraestructura y equipamiento.</option>
-							</select>
-							<?php 	break;
-							case '2':?>
-							<select class="selectpicker problematica form-control"  title="Seleccione el(los) ámbito(s)" multiple name="problematica" tabindex="-98" >
-								<option value="Aprovechamiento académico y asistencia de los alumnos.">Aprovechamiento académico y asistencia de los alumnos.</option>
-								<option value="Avance de los planes y programas educativos.">Avance de los planes y programas educativos.</option>
-							</select>
-							<?php 	break;
-							case '3':?>
-							<select class="selectpicker problematica form-control"  title="Seleccione el ámbito" multiple name="problematica" tabindex="-98" >
-								<option value="Formación docente." selected>Formación docente.</option>
-							</select>
-							<?php 	break;	
-							case '4':?>
-							<select class="selectpicker problematica form-control"  title="Seleccione el ámbito" multiple name="problematica" tabindex="-98" >
-								<option value="Corresponsabilidad (Apoyo al aprendizaje en el hogar)" selected>Corresponsabilidad (Apoyo al aprendizaje en el hogar)</option>
-							</select>
-							<?php 	break;
-							case '5':?>
 							<select class="selectpicker problematica form-control"  title="Seleccione la(s) problemática(s) por ámbito(s)" multiple name="problematica" tabindex="-98" >
-								<option value="Prácticas docentes y directivas.">Prácticas docentes y directivas.</option>
-								<option value="Desempeño de la autoridad escolar.">Desempeño de la autoridad escolar.</option>
-								<option value="Carga administrativa.">Carga administrativa.</option>
+								<?php foreach ($cat_select as $key => $value) { ?>
+									<option value="<?=$value['idrm_c_problematica_ambito']?>" data-id="<?=$value['idrm_c_problematica_ambito']?>" data-tipo="<?=$value['tipo']?>"><?=$value['descripcion']?></option>
+								<?php } ?>
 							</select>
-							<?php 	break;
-						} ?>
+							<textarea id="problematicaTxt" name="problematica" class="form-control problematicaTxt" disabled="true" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
+							
 					</div>
-					<div class="col-lg-6 mt-3 mt-lg-0">
+					<!-- <div class="col-lg-6 mt-3 mt-lg-0">
 						<label><span class="badge badge-secondary h5 text-white">2.</span> Problemática<span style="color:red">*</span></label>
 						<br>
 					<textarea id="problematicaTxt" name="problematica" class="form-control problematicaTxt" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
-				</div>
+				</div> -->
 				</div>
 					<!-- <div class="col-lg-6 mt-3 mt-lg-0"> -->
 						<div class="row mt-4">
@@ -110,7 +87,7 @@
 						<textarea required id="txt_rm_obs_direc" name="comentario_dir" class="form-control" rows="2" style="height: 100px !important;"><?= (isset($director))?$director:"" ?></textarea>
 					</div>
 
-					<div class="col-lg-12 mt-2 mt-lg-0">
+					<div class="col-lg-6 mt-2 mt-lg-0">
 						<label><span class="badge badge-secondary h5 text-white">5.</span> Observaciones del supervisor</label>
 						<br>
 						<textarea id="txt_rm_programayuda" class="form-control" rows="2" maxlength="400"  readonly><?= (isset($supervisor))?$supervisor:"" ?></textarea>

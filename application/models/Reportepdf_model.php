@@ -15,6 +15,7 @@ class Reportepdf_model extends CI_Model
       	rtp.otro_evidencia,
       	rtp.obs_direc,
       	rtp.obs_supervisor,
+        rtp.ambito,
         p.prioridad AS tema,
     	o.id_objetivo,
     	o.objetivo AS objetivo

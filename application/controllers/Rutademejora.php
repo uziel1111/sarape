@@ -1901,9 +1901,15 @@ class Rutademejora extends CI_Controller {
 		$evidencia = $this->input->post('evidencias');
 		$comentario_dir = $this->input->post('txt_rm_obs_direc');
 		$ambito = $this->input->post('ambito');
+		for ($i=0; $i < sizeof($ambito) ; $i++) { 
+			if (!empty($ambito[$i]) && $ambito[$i] != null && $ambito[$i] != '') {
+			
+				$guarda_ambito = $this->Rutamejora_model->grabar_ambito($id_tprioritario, $ambito[$i]);
+			}
+		}
+		
 
-
-		$estatus = $this->Rutamejora_model->grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir,$ambito);
+		$estatus = $this->Rutamejora_model->grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir);
 
 
 		$estatus = true;
@@ -1950,7 +1956,7 @@ class Rutademejora extends CI_Controller {
 			$id_tprioritario = $this->input->post('id_tprioritario');
 			$titulo = $this->input->post('txttp');
 			$id_prioritario = $this->input->post('id_prioritario');
-
+			$id_prioridad = $this->input->post('id_prioridad');
 			$id_nivel = $this->cct[0]['nivel'];
 
 			switch ($id_nivel) {
@@ -1991,9 +1997,9 @@ class Rutademejora extends CI_Controller {
 			// die();
 			$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
 			$datos = $this->Rutamejora_model->edith_tp($id_tprioritario);
-
-			// echo "<pre>";print_r($datos);die();
-
+			$cat_prom_amb = $this->Rutamejora_model->catalogo_problematica_ambitos($id_prioridad);
+			// echo "<pre>";print_r($cat_prom_amb);die();
+			$data['cat_select'] = $cat_prom_amb;
 			$data['prioridad'] = $datos[0]['id_prioridad'];
 			$data['ambito'] = $datos[0]['ambito'];
 			$data['subprioridad'] = $datos[0]['id_subprioridad'];

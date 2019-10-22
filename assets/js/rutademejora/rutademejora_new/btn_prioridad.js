@@ -30,7 +30,6 @@ $('#opt_prioridad_especial').change(function(){
 //SELECT PROBLEMATICA
 $('.problematica').change(function() {
 	valor = $('.problematica option:selected').text();
-	
 	if (valor.match(/Otros.*/)) {
 		$('#problematicaTxt').attr('disabled',false);
 		$('#problematicaTxt').empty();
@@ -318,8 +317,11 @@ $('#writeText').click(function(){
 //Grabar prioridad
 $('#grabar_prioridad').click(function(){
 	problematica = $('#problematicaTxt').val();
-	ambito =  $('.problematica option:selected').text();
-	// console.log(problematica);
+	var selected=[];
+ $('.problematica :selected').each(function(){
+     selected[$(this).data('id')]=$(this).data('id');
+    });
+console.log(selected);
 	$.ajax({
 		url: base_url+'Rutademejora/grabarTema',
 		type: 'POST',
@@ -328,7 +330,7 @@ $('#grabar_prioridad').click(function(){
 					 problematica: problematica,
 					 evidencias: $('#evidencias').val(),
 					 txt_rm_obs_direc: $('#txt_rm_obs_direc').val(),
-					 ambito: ambito
+					 ambito: selected
 				 },
 	 	beforeSend: function(xhr) {
 	        Notification.loading("");

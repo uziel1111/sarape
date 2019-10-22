@@ -93,7 +93,7 @@ $("#img_mision").click(function(e){
 //Prioridad (incompleto)
 $("#btn_prioridad").click(function(e){
 	e.preventDefault();
-	//console.log(obj.id_tprioritario);		
+	
 	if(obj.id_tprioritario == undefined || obj.id_tprioritario == ''){
 		swal(
         '¡Error!',

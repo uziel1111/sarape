@@ -158,6 +158,18 @@ class Reporte extends CI_Controller {
 				// 	$pdf->Row2(array(
 				// 		utf8_decode($obj2)
 				// 	));
+				$ambito = "Ámbito(s): {$ruta['ambito']}";
+				$pdf->Ln(2);
+				$pdf->SetFont('Arial','B',9);
+				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
+				$pdf->SetFillColor(255);
+				$pdf->SetAligns(array("L"));
+				// $pdf->SetColors(array(TRUE));
+				$pdf->SetLineW(array(0.2));
+				$pdf->SetTextColor(0,0,0);
+					$pdf->Row1(array(
+						utf8_decode($ambito)
+					));
 
 				$problematica = "Problemática(s): {$ruta['otro_problematica']}";
 				$pdf->Ln(2);

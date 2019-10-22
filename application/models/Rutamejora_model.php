@@ -720,7 +720,7 @@ function getObjetivosSuper($id_cct, $id_tprioritario){
   return $this->db->query($str_query)->result_array();
 }
 
-function grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir,$ambito){
+function grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir){
   $date = date("Y-m-d");
 
       //Iniciar transaccion
@@ -729,8 +729,7 @@ function grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comen
     'otro_problematica' => $problematica,
     'otro_evidencia' => $evidencia,
     'obs_direc' => $comentario_dir,
-    'f_creacion' => $date,
-    'ambito' => $ambito
+    'f_creacion' => $date
   );
 
       // echo "<pre>";print_r($datos);die();
@@ -1192,4 +1191,21 @@ public function getGraficas($ccts)
   return $this->db->query($str_query)->result_array();
 
 }
+
+  function catalogo_problematica_ambitos($id_prioridad)
+    {
+       $str_query = "SELECT * FROM rm_c_problematica_ambito where lae = {$id_prioridad}";
+       return $this->db->query($str_query)->result_array();
+    }
+
+  function grabar_ambito($id_tprioritario, $ambito_prom)
+  {
+     $data = array (
+      array('id_tprioritario' => $id_tprioritario,
+      'problematica' => $ambito_prom,)
+  );
+    echo "<pre>"; print_r($data); 
+
+  $this->db->insert_batch('rm_problematica_ambito_xtprioritario',$data);
+  }
 }// Rutamejora_model
