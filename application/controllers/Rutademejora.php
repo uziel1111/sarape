@@ -767,6 +767,21 @@ class Rutademejora extends CI_Controller {
 					$id_tprioritario = $this->input->post('id_tprioritario');
 					$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
 
+					$encabezado = $this->Rutamejora_model->get_problematica_ambito($id_tprioritario);
+
+					$problematica = '';
+					$ambito = '';
+					foreach ($encabezado as $key => $value) {
+						if ($value['tipo']  == 1) {
+							$problematica .= $value['descripcion'];
+						}else{
+							$ambito .= $value['descripcion'];
+						}
+
+					}
+
+					
+
 				/*	$tabla = "<div class='table-responsive'>
 					<table id='idtabla_accionestp' class='table table-condensed table-hover  table-bordered'>
 					<thead>
@@ -815,7 +830,7 @@ class Rutademejora extends CI_Controller {
 					</div>  ";
 
 					$get_datos = $this->Rutamejora_model->get_datos_modal($id_tprioritario);
-					$datos =array('escuela' => $this->cct[0]['nombre_centro'],'prioridad'=> $get_datos[0]['prioridad'],'problematicas'=> $get_datos[0]['otro_problematica'],'evidencias'=> $get_datos[0]['otro_evidencia'],'ambito'=> $get_datos[0]['ambito']);
+					$datos =array('escuela' => $this->cct[0]['nombre_centro'],'prioridad'=> $get_datos[0]['prioridad'],'problematicas'=> $problematica,'evidencias'=> $get_datos[0]['otro_evidencia'],'ambito'=> $ambito);
 			// $strView = $this->load->view("ruta/modals_new/modal_actividades", $datos, TRUE);
 			// $response = array('tabla' => $tabla, 'datos' => $datos, 'strView' => $strView);
 					$objetivos = $this->Rutamejora_model->getObjxTp($id_tprioritario);
@@ -1232,6 +1247,19 @@ class Rutademejora extends CI_Controller {
 						$nombreescuela = $this->input->post('nombreescuela');
 						// echo '<pre>'; print_r($id_tprioritario); die();
 						$acciones = $this->Rutamejora_model->getacciones_supervisor($id_tprioritario);
+						$encabezado = $this->Rutamejora_model->get_problematica_ambito($id_tprioritario);
+
+					$problematica = '';
+					$ambito = '';
+					foreach ($encabezado as $key => $value) {
+						if ($value['tipo']  == 1) {
+							$problematica .= $value['descripcion'];
+						}else{
+							$ambito .= $value['descripcion'];
+						}
+
+					}
+
 						$tabla = "<div class='table-responsive'>
 						<table id='idtabla_accionestp_super' class='table table-condensed table-hover  table-bordered'>
 						<thead>

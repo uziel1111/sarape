@@ -1192,20 +1192,28 @@ public function getGraficas($ccts)
 
 }
 
-  function catalogo_problematica_ambitos($id_prioridad)
-    {
-       $str_query = "SELECT * FROM rm_c_problematica_ambito where lae = {$id_prioridad}";
-       return $this->db->query($str_query)->result_array();
-    }
+function catalogo_problematica_ambitos($id_prioridad)
+{
+ $str_query = "SELECT * FROM rm_c_problematica_ambito where lae = {$id_prioridad}";
+ return $this->db->query($str_query)->result_array();
+}
 
-  function grabar_ambito($id_tprioritario, $ambito_prom)
-  {
-     $data = array (
-      array('id_tprioritario' => $id_tprioritario,
-      'problematica' => $ambito_prom,)
-  );
-    echo "<pre>"; print_r($data); 
+function grabar_ambito($id_tprioritario, $ambito_prom)
+{
+ $data = array (
+  array('id_tprioritario' => $id_tprioritario,
+    'problematica' => $ambito_prom,)
+);
 
-  $this->db->insert_batch('rm_problematica_ambito_xtprioritario',$data);
-  }
+ $this->db->insert_batch('rm_problematica_ambito_xtprioritario',$data);
+}
+
+function get_problematica_ambito($id_tprioritario)
+{
+  $str_query = "SELECT cap.descripcion, cap.tipo from rm_problematica_ambito_xtprioritario pat
+  inner join rm_c_problematica_ambito cap on cap.idrm_c_problematica_ambito = pat.problematica
+  where pat.id_tprioritario = {$id_tprioritario};";
+  return $this->db->query($str_query)->result_array();
+}
+
 }// Rutamejora_model
