@@ -79,6 +79,9 @@ Rm_edith_tp.prototype.get_datos_edith_tp = function(id_tprioritario){
 
 Rm_edith_tp.prototype.set_tags_edith = function(datos){
 // console.log(datos[0]['como_ayudan_pa']);
+
+      // console.log(datos);
+      // $(".problematica").val(4);
 $("#inp_tmp_id_tprioritario").val(datos[0]['id_tprioritario']);
 $("#slc_rm_prioridad").val(datos[0]['id_prioridad']);
 $("#slc_rm_prioridad").selectpicker("refresh");

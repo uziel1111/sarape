@@ -34,6 +34,8 @@ $('.problematica').change(function() {
 		$('#problematicaTxt').attr('disabled',false);
 		$('#problematicaTxt').empty();
 
+	}else{
+		$('#problematicaTxt').attr('disabled',true);
 	}
 });
 
@@ -612,13 +614,17 @@ Prioridad.prototype.getObjetivos = function(){
 		.done(function(result) {
 			$("#objetivo_meta").empty();
 			$("#objetivo_meta").append(result.table);
-
 			// $('#tema_prioritario').val(result.id_tprioritario);
 			$('#id_objetivo').val(result.id_objetivo);
 			obj_prioridad.funcionalidadselect()
 			// obj_prioridad.getObjetivos()
 			// obj_prioridad.btnEditar();
 			// btnEditar();
+			 for (var i = result.encabezado.length - 1; i >= 0; i--) {
+			 	
+             $(".problematica option[value="+result.encabezado[i]['problematica']+"]").prop("selected",true);
+			 }
+    
 			if (result.id_objetivo == 0) {
 				$('.problematicaTxt').empty();
 				$('#evidencias').empty();

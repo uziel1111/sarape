@@ -353,7 +353,7 @@ class Rutademejora extends CI_Controller {
 						<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
 						<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
 						<td id='orden' style='vertical-align:middle;'><center>LAE-{$tp['orden']}</center></td>
-						<td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}<br>Ámbito(s): {$tp['ambito']}</td>
+						<td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}<br> Ámbito(s): {$tp['ambito']}</td>
 						<td id='num_objetivos' style='vertical-align:middle;'><center>{$tp['num_objetivos']}</center></td>
 						<td id='num_acciones' style='vertical-align:middle;'><center>{$tp['num_acciones']}</center></td>
 						</tr>";
@@ -1634,7 +1634,7 @@ class Rutademejora extends CI_Controller {
 		$cve_centro = $this->input->post('cve');
 		// echo "<pre>";print_r($_POST);die();
 
-		
+		$encabezado = $this->Rutamejora_model->get_problematica_ambito_ids($id_tprioritario);
 
 		$orden = 0;
 		if (isset($_POST['cve'])) {
@@ -1813,7 +1813,7 @@ class Rutademejora extends CI_Controller {
 			$tabla .= "</tbody></table>";
 		}
 
-		$response = array('table' => $tabla, 'id_objetivo' => $idobjetivo);
+		$response = array('table' => $tabla, 'id_objetivo' => $idobjetivo, 'encabezado' => $encabezado);
 
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;

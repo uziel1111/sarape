@@ -56,7 +56,7 @@
 			<form id="t_prioritario" enctype="multipart/form-data">
 				<div class="row mt-3">
 					<div class="col-lg-6">
-						<label><span class="badge badge-secondary h5 text-white">1.</span>Ámbito(s):<span style="color:red">*</span></label><br>
+						<label><span class="badge badge-secondary h5 text-white">1.</span>Ámbito(s) y Problemática(s):<span style="color:red">*</span></label><br>
 						<!-- <textarea id="problematica" name="problematica" class="form-control" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea> -->
 							<select class="selectpicker problematica form-control"  title="Seleccione la(s) problemática(s) por ámbito(s)" multiple name="problematica" tabindex="-98" >
 								<?php foreach ($cat_select as $key => $value) { ?>
@@ -71,24 +71,25 @@
 						<br>
 					<textarea id="problematicaTxt" name="problematica" class="form-control problematicaTxt" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 				</div> -->
-				</div>
-					<!-- <div class="col-lg-6 mt-3 mt-lg-0"> -->
-						<div class="row mt-4">
+				
+					<!-- <div class="col-lg-6 "> -->
+						<!-- <div class="row mt-4"> -->
 						<div class="col-lg-6">
-						<label><span class="badge badge-secondary h5 text-white">3.</span> Evidencia(s)<span style="color:red">*</span></label>
+						<label><span class="badge badge-secondary h5 text-white">2.</span> Evidencia(s)<span style="color:red">*</span></label>
 						<br>
 						<textarea required id="evidencias" name="evidencia" class="form-control" rows="2" maxlength="400" style="height: 100px !important;"><?= (isset($evidencia))?$evidencia:"" ?></textarea>
 					</div>
-				
+				<!-- </div> -->
+			</div>
 
-				
+				<div class="row mt-4">
 					<div class="col-lg-6">
-						<label><span class="badge badge-secondary h5 text-white">4.</span> Observaciones del director<span style="color:red">*</span></label>
-						<textarea required id="txt_rm_obs_direc" name="comentario_dir" class="form-control" rows="2" style="height: 100px !important;"><?= (isset($director))?$director:"" ?></textarea>
+						<label><span class="badge badge-secondary h5 text-white">3.</span> Observaciones del director<span style="color:red">*</span></label>
+						<textarea required id="txt_rm_obs_direc" name="comentario_dir" class="form-control" rows="2"><?= (isset($director))?$director:"" ?></textarea>
 					</div>
 
 					<div class="col-lg-6 mt-2 mt-lg-0">
-						<label><span class="badge badge-secondary h5 text-white">5.</span> Observaciones del supervisor</label>
+						<label><span class="badge badge-secondary h5 text-white">4.</span> Observaciones del supervisor</label>
 						<br>
 						<textarea id="txt_rm_programayuda" class="form-control" rows="2" maxlength="400"  readonly><?= (isset($supervisor))?$supervisor:"" ?></textarea>
 					</div>
@@ -106,7 +107,7 @@
 					<div id="hiddenDiv1" >
 						<div class="row mt-4">
 							<div class="col-12">
-								<label><span class="badge badge-secondary h5 text-white">6.</span> Objetivo(s)<em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Para la(s) problemática(s) mencionada(s) escribe un objetivo que inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o eliminar) seguido por un indicador concreto (por ejemplo: asistencia, aprovechamiento, ... y en algunos casos enfocados a un nivel educativo, a un grado en particular, a una asignatura...), continuando con una meta numérica de mejora del indicador y finalizando con una fecha de cumplimiento máximo (si es para el final del período escolar se puede omitir este elemento dándolo por entendido)"></em></label>
+								<label><span class="badge badge-secondary h5 text-white">5.</span> Objetivo(s)<em class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Para la(s) problemática(s) mencionada(s) escribe un objetivo que inicie con uno de los siguientes verbos (aumentar, disminuir, alcanzar o eliminar) seguido por un indicador concreto (por ejemplo: asistencia, aprovechamiento, ... y en algunos casos enfocados a un nivel educativo, a un grado en particular, a una asignatura...), continuando con una meta numérica de mejora del indicador y finalizando con una fecha de cumplimiento máximo (si es para el final del período escolar se puede omitir este elemento dándolo por entendido)"></em></label>
 							</div>
 						</div>
 						

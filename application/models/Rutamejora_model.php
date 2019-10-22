@@ -1217,4 +1217,13 @@ function get_problematica_ambito($id_tprioritario)
   return $this->db->query($str_query)->result_array();
 }
 
+function get_problematica_ambito_ids($id_tprioritario)
+{
+  $str_query = "SELECT pat.problematica from rm_problematica_ambito_xtprioritario pat
+  inner join rm_c_problematica_ambito cap on cap.idrm_c_problematica_ambito = pat.problematica
+  where pat.id_tprioritario = {$id_tprioritario};";
+  // echo "<pre>"; print_r($str_query); die();
+  return $this->db->query($str_query)->result_array();
+}
+
 }// Rutamejora_model
