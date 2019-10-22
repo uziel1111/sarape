@@ -58,8 +58,8 @@
 							</li>
 
 
-							<li class="list-group-item"><a href="https://www.gob.mx/nuevomodeloeducativo/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Nuevo Modelo Educativo</a>
-							</li>
+							<!-- <li class="list-group-item"><a href="https://www.gob.mx/nuevomodeloeducativo/" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span> Nuevo Modelo Educativo</a>
+							</li> -->
 							<li class="list-group-item"><a href="<?= base_url('index.php/Supervisor/supervision'); ?>"><span class="color-2"><i class="material-icons">chevron_right</i></span> Supervisión escolar</a>
 							</li>
 

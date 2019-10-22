@@ -94,7 +94,7 @@
                                           <a class="dropdown-item hcolor-2" href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank">Servicio Profesional Docente</a>
                                           <a class="dropdown-item hcolor-2" id="btn_index_reconocimientosEstatales" href="javascript:void(0)">Reconocimientos estatales</a>
                                           <a class="dropdown-item hcolor-2" href="http://www.inee.edu.mx/" target="_blank">Instituto Nacional para la Evaluación de la Educación</a>
-                                          <a class="dropdown-item hcolor-2" href="https://www.gob.mx/nuevomodeloeducativo/" target="_blank">Nuevo Modelo Educativo</a>
+                                          <!-- <a class="dropdown-item hcolor-2" href="https://www.gob.mx/nuevomodeloeducativo/" target="_blank">Nuevo Modelo Educativo</a> -->
                                           <a class="dropdown-item hcolor-2" href="<?= base_url('index.php/Supervisor/supervision'); ?>">Supervisión escolar</a>
                                           <a class="dropdown-item hcolor-2" onclick="Index.getRevistaEscolar()" href="javascript:void(0)">Infórme<b>SE</b></a>
                                         </div>
