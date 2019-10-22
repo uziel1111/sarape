@@ -32,7 +32,7 @@ $('.problematica').change(function() {
 	valor = $('.problematica option:selected').text();
 	if (valor.match(/Otros.*/)) {
 		$('#problematicaTxt').attr('disabled',false);
-		$('#problematicaTxt').empty();
+		// $('#problematicaTxt').empty();
 
 	}else{
 		$('#problematicaTxt').attr('disabled',true);

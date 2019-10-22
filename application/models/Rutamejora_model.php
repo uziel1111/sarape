@@ -1200,12 +1200,17 @@ function catalogo_problematica_ambitos($id_prioridad)
 
 function grabar_ambito($id_tprioritario, $ambito_prom)
 {
- $data = array (
-  array('id_tprioritario' => $id_tprioritario,
-    'problematica' => $ambito_prom,)
-);
+  $data = array (
+    array('id_tprioritario' => $id_tprioritario,
+      'problematica' => $ambito_prom,)
+  );
+  echo "<pre>";print_r($data); 
+  $this->db->insert_batch('rm_problematica_ambito_xtprioritario',$data);
 
- $this->db->insert_batch('rm_problematica_ambito_xtprioritario',$data);
+}
+
+function limpiar_ambito($id_tprioritario){
+  $this->db->delete('rm_problematica_ambito_xtprioritario', array('id_tprioritario' => $id_tprioritario)); 
 }
 
 function get_problematica_ambito($id_tprioritario)

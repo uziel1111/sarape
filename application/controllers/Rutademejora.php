@@ -1930,6 +1930,7 @@ class Rutademejora extends CI_Controller {
 		$evidencia = $this->input->post('evidencias');
 		$comentario_dir = $this->input->post('txt_rm_obs_direc');
 		$ambito = $this->input->post('ambito');
+		$limpiar_ambito = $this->Rutamejora_model->limpiar_ambito($id_tprioritario);
 		for ($i=0; $i < sizeof($ambito) ; $i++) { 
 			if (!empty($ambito[$i]) && $ambito[$i] != null && $ambito[$i] != '') {
 			
