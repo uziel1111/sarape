@@ -58,7 +58,7 @@
 					<div class="col-lg-6">
 						<label><span class="badge badge-secondary h5 text-white">1.</span>Ámbito(s) y Problemática(s):<span style="color:red">*</span></label><br>
 						<!-- <textarea id="problematica" name="problematica" class="form-control" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea> -->
-							<select class="selectpicker problematica form-control"  title="Seleccione la(s) problemática(s) por ámbito(s)" multiple name="problematica" tabindex="-98" >
+							<select class="selectpicker problematica form-control"  title="Seleccione la(s) problemática(s) por ámbito(s)" multiple name="problematica" tabindex="-98" id="problematicaSelect">
 								<?php foreach ($cat_select as $key => $value) { ?>
 									<option value="<?=$value['idrm_c_problematica_ambito']?>" data-id="<?=$value['idrm_c_problematica_ambito']?>" data-tipo="<?=$value['tipo']?>"><?=$value['descripcion']?></option>
 								<?php } ?>

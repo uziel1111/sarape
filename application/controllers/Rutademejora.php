@@ -1938,13 +1938,14 @@ class Rutademejora extends CI_Controller {
 			}
 		}
 		
+		$encabezado = $this->Rutamejora_model->get_problematica_ambito_ids($id_tprioritario);
 
 		$estatus = $this->Rutamejora_model->grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir);
 
 
 		$estatus = true;
 
-		$response = array('estatus' => $estatus);
+		$response = array('estatus' => $estatus, 'encabezado'=>$encabezado);
 
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
@@ -2028,6 +2029,7 @@ class Rutademejora extends CI_Controller {
 			$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
 			$datos = $this->Rutamejora_model->edith_tp($id_tprioritario);
 			$cat_prom_amb = $this->Rutamejora_model->catalogo_problematica_ambitos($id_prioridad);
+			$encabezado = $this->Rutamejora_model->get_problematica_ambito_ids($id_tprioritario);
 			// echo "<pre>";print_r($cat_prom_amb);die();
 			$data['cat_select'] = $cat_prom_amb;
 			$data['prioridad'] = $datos[0]['id_prioridad'];
@@ -2053,7 +2055,7 @@ class Rutademejora extends CI_Controller {
 			// $head = 'DOCUMENTAR LA PROBLEMÁTICA: ';
 			$head = $titulo;
 
-			$response = array('strView' => $strView, 'titulo' => $head, 'data'=>$data);
+			$response = array('strView' => $strView, 'titulo' => $head, 'data'=>$data, 'encabezado'=>$encabezado);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}else{

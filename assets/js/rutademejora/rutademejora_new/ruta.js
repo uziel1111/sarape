@@ -118,15 +118,15 @@ $("#btn_prioridad").click(function(e){
 			      Notification.loading("");
 		    }
 		}).done(function(data){
-			// console.log(data.data.ambito);
+				
 			$("#div_generico").empty();
 		    $("#div_generico").append(data.strView);
 		    // $('.problematica').selectpicker('val', data.data['problematica'].split(','));
 		    // $('.problematicaTxt').text( data.data['problematica']);
-		    if (data.data.ambito != null) {
-		    	// console.log(data.data.ambito);
-		    $('.problematica').val(data.data.ambito);
-		    }
+		    // if (data.data.ambito != null) {
+		    // 	// console.log(data.data.ambito);
+		    // $('.problematica').val(data.data.ambito);
+		    // }
 		    // $('#evidencias').val("");
 		    // $('#txt_rm_obs_direc').val("");
 		    let tipou_pemc="";
@@ -210,6 +210,11 @@ Prioridad.prototype.getObjetivos = function(id_tprioritario){
 		.done(function(result) {
 			$("#objetivo_meta").empty();
 			$("#objetivo_meta").append(result.table);
+
+			 for (var i = result.encabezado.length - 1; i >= 0; i--) {
+			
+             $("#problematicaSelect option[value="+result.encabezado[i]['problematica']+"]").prop("selected",true);
+			 }
 
 			$('#tema_prioritario').val(result.id_tprioritario);
 			$('#id_objetivo').val(result.id_objetivo);
