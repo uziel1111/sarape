@@ -22,7 +22,7 @@
 		<a style="padding-left: 7em; cursor: hand; cursor: pointer;" >Ir a acciones</a>
 		<u><a style="padding-left: 7em; cursor: hand; cursor: pointer; color: blue;" id="img_avances">Ir a avances</a></p></u>
 	<br>
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/mkggXE5e2yk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	
 	</div>
 </div>
 
