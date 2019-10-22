@@ -323,7 +323,7 @@ $('#grabar_prioridad').click(function(){
  $('.problematica :selected').each(function(){
      selected[$(this).data('id')]=$(this).data('id');
     });
-console.log(selected);
+// console.log(selected);
 	$.ajax({
 		url: base_url+'Rutademejora/grabarTema',
 		type: 'POST',

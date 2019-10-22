@@ -1044,7 +1044,8 @@ public function pieLAE($id_cct,$cte_vigente){
 
 public function momentoActual()
 {
-  $str_query = 'call proye7nb_pruebas.cteActual();';
+  // $str_query = 'call proye7nb_pruebas.cteActual();';
+    $str_query = 'call sarape.cteActual();';
   return $this->db->query($str_query)->result_array();
 }
 
@@ -1204,7 +1205,7 @@ function grabar_ambito($id_tprioritario, $ambito_prom)
     array('id_tprioritario' => $id_tprioritario,
       'problematica' => $ambito_prom,)
   );
-  echo "<pre>";print_r($data); 
+  // echo "<pre>";print_r($data); 
   $this->db->insert_batch('rm_problematica_ambito_xtprioritario',$data);
 
 }
