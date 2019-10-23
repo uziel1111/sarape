@@ -1120,11 +1120,12 @@ class Rutademejora extends CI_Controller {
 					$data['nivel'] = $this->cct[0]['zona_escolar'];
 					$data['turno'] = "";
 					$data['cct'] = $this->cct[0]['cve_centro'];
-					$data['escuelas'] = $escuelas->Escuelas;
+					// $data['escuelas'] = $escuelas->Escuelas;
 
-					$this->session->set_userdata('escuela_supervisor', $escuelas->Escuelas);
+					// $this->session->set_userdata('escuela_supervisor', $escuelas->Escuelas);
 	// echo "<pre>";print_r($escuelas->Escuelas[0]->b_cct);die();
-					Utilerias::pagina_basica_rm($this, "ruta/supervisor/index", $data);
+					// Utilerias::pagina_basica_rm($this, "ruta/supervisor/index", $data);
+					Utilerias::pagina_basica_rm($this, "ruta/supervisor/error_trabajando", $data);
 				}
 
 				public function graficas_supervisor()
