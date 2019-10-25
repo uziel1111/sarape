@@ -8,7 +8,6 @@ class Index extends CI_Controller {
 			$this->load->helper('url');
 			$this->load->library('Utilerias');
 			$this->load->model('Ciclo_model');
-			$this->load->model('Escuela_model');
 		}
 
 	/**
@@ -33,23 +32,6 @@ class Index extends CI_Controller {
 		
 	}
 
-	public function prueba(){
-		$array=array();
-		$result_escuelas = $this->Escuela_model->filtro_escuela();
-				// echo "<pre>"; print_r($result_escuelas); die();
-		for($i=0; $i<count($result_escuelas); $i++){
-			if($result_escuelas[$i]['turno']==120 && $result_escuelas[$i]['turno_n']==''){
-				$result_escuelas[$i]['turno_n']=100;
-				$result_escuelas[$i]['turno_n_d']='MATUTINO';
-				array_push($array,$result_escuelas[$i]);
-			// }else if($result_escuelas[$i]['turno']==120 && $result_escuelas[$i]['turno_n']!=''){
-				$result_escuelas[$i]['turno_n']=200;
-				$result_escuelas[$i]['turno_n_d']='VESPERTINO';
-				array_push($array,$result_escuelas[$i]);
-			}
-		}
-		// echo "<pre>"; print_r($array); die();
-	}
 	public function getReconocimientosEstatales(){
 
 		$strView = $this->load->view("index/reconocimientosEstatales", array(), TRUE);

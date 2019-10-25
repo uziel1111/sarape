@@ -121,12 +121,12 @@
         <?= form_open('Info/index', array('class' => '', 'id' => '')) ?>
         <div class="row">
           <div class="col-12">
-            <?= form_dropdown('id_cct', array(), '', array('id' => 'id_cct', 'class'=>'form-control')) ?>
+            <?= form_dropdown('cct', array(), '', array('id' => 'cct', 'class'=>'form-control')) ?>
           </div>
         </div>
         <div class="row mt-3">
           <div class="col-12">
-            <?= form_submit('mysubmit', 'Ver', array('id' => '', 'class'=>'btn btn-info btn-block' )); ?>
+            <?= form_submit('mysubmit_cct', 'Ver', array('id' => 'buscador_ccts', 'class'=>'btn btn-info btn-block' )); ?>
           </div>
         </div>
         <?= form_close() ?>

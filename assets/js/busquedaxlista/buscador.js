@@ -111,11 +111,11 @@ Buscador.prototype.get_xcvecentro = function(cve_centro){
           alert('sin resultados');
         }
         if(data.total_escuelas==1){
-          this_buscador.form(data.id_cct);
+          this_buscador.form(data.cct,data.turno,data.turno_single);
         }
         else if (data.total_escuelas>1) {
-          $("#id_cct").empty();
-          $("#id_cct").append(data.str_select);
+          $("#cct").empty();
+          $("#cct").append(data.str_select);
           $("#busquedalista_modal").modal("show");
         }
       })
@@ -127,7 +127,7 @@ Buscador.prototype.get_xcvecentro = function(cve_centro){
     	});
 };
 
-Buscador.prototype.form = function(id_cct){
+Buscador.prototype.form = function(cct,turno,turno_single){
   var form = document.createElement("form");
   form.name = "form_getinfo";
   form.id = "form_getinfo";
@@ -136,15 +136,28 @@ Buscador.prototype.form = function(id_cct){
   form.action = base_url+"info/index/";
 
   var element1 = document.createElement("input");
-  element1.type="hidden";
-  element1.name="id_cct";
-  element1.value=id_cct;
-  form.appendChild(element1);
+  var element2 = document.createElement("input");
+  var element3 = document.createElement("input");
 
+  element1.type = "hidden";
+  element1.name="cct";
+  element1.value = cct;
+
+  element2.type = "hidden";
+  element2.name="turno";
+  element2.value = turno;
+
+  element3.type = "hidden";
+  element3.name="turno_single";
+  element3.value = turno_single;
+  form.appendChild(element1);
+  form.appendChild(element2);
+  form.appendChild(element3);
+  // console.log(form);
   document.body.appendChild(form);
   form.submit();
 };
 
 $('#busquedalista_modal').on('hidden.bs.modal', function (e) {
-  $("#id_cct").empty();
+  $("#cct").empty();
 })

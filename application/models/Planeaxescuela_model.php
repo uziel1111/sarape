@@ -18,10 +18,11 @@ class Planeaxescuela_model extends CI_Model
 
     }// get_planea_xidcct()
 
-    function get_planeaarribai_xidcct($id_cct,$periodo){
+    function get_planeaarribai_xidcct($cct,$id_turno_single,$periodo){
+
       $str_query = "SELECT ROUND(lyc_ii+lyc_iii+lyc_iv,2) as lyc, ROUND(mat_ii+mat_iii+mat_iv,2) as mat
                           FROM planeaxescuela
-                          WHERE id_cct = {$id_cct}  AND periodo = {$periodo}";
+                          WHERE cct = '{$cct}'  AND id_turno={$id_turno_single} AND periodo = {$periodo}";
         return $this->db->query($str_query)->result_array();
 
     }// get_planea_xidcct()

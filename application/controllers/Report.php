@@ -7,6 +7,7 @@ class Report extends CI_Controller {
 		parent::__construct();
 		$this->load->library('ExcelPHP');
 		$this->load->model('Escuela_model');
+		$this->load->model('CentrosE_model');
 		$this->load->model('Estadistica_e_indicadores_xcct_model');
 		$this->load->model('Municipio_model');
 		$this->load->model('Nivel_model');
@@ -94,9 +95,64 @@ class Report extends CI_Controller {
 				$cve_nivel = $this->input->post('slc_busquedalista_nivel_reporte');
 				$cve_sostenimiento = $this->input->post('slc_busquedalista_sostenimiento_reporte');
 				$nombre_escuela = $this->input->post('itxt_busquedalista_nombreescuela_reporte');
-
-				$result_escuelas = $this->Escuela_model->get_xparams($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
+				
+				// $result_escuelas = $this->Escuela_model->get_xparams($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
 				// echo "<pre>"; print_r($result_escuelas); die();
+				$municipio = $this->input->get('hidden_municipio');
+				$nivel = $this->input->get('hidden_nivel');
+				$sostenimiento = $this->input->get('hidden_sostenimiento');
+				$array=array();
+				$result_escuelas = $this->CentrosE_model->filtro_escuela($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
+				for($i=0; $i<count($result_escuelas); $i++){
+					if($result_escuelas[$i]['turno']==120){
+						$result_escuelas[$i]['turno_n']=100;
+						$result_escuelas[$i]['turno_single']='MATUTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=200;
+						$result_escuelas[$i]['turno_single']='VESPERTINO';
+						array_push($array,$result_escuelas[$i]);
+					}else if($result_escuelas[$i]['turno']==123){
+						$result_escuelas[$i]['turno_n']=100;
+						$result_escuelas[$i]['turno_single']='MATUTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=200;
+						$result_escuelas[$i]['turno_single']='VESPERTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=300;
+						$result_escuelas[$i]['turno_single']='NOCTURNO';
+						array_push($array,$result_escuelas[$i]);
+
+					}else if($result_escuelas[$i]['turno']==124){
+						$result_escuelas[$i]['turno_n']=100;
+						$result_escuelas[$i]['turno_single']='MATUTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=200;
+						$result_escuelas[$i]['turno_single']='VESPERTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=400;
+						$result_escuelas[$i]['turno_single']='DISCONTINUO';
+						array_push($array,$result_escuelas[$i]);
+					}else if($result_escuelas[$i]['turno']==130){
+						$result_escuelas[$i]['turno_n']=100;
+						$result_escuelas[$i]['turno_single']='MATUTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=300;
+						$result_escuelas[$i]['turno_single']='NOCTURNO';
+						array_push($array,$result_escuelas[$i]);
+					}else if($result_escuelas[$i]['turno']==230){
+						$result_escuelas[$i]['turno_n']=200;
+						$result_escuelas[$i]['turno_single']='VESPERTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=300;
+						$result_escuelas[$i]['turno_single']='NOCTURNO';
+						array_push($array,$result_escuelas[$i]);
+					}else{
+						$result_escuelas[$i]['turno_n']=$result_escuelas[$i]['turno'];
+						$result_escuelas[$i]['turno_single']=$result_escuelas[$i]['desc_turno'];
+						array_push($array,$result_escuelas[$i]);
+					}
+				}
+
 
 				$obj_excel = new PHPExcel();
 				$obj_excel->getActiveSheet()->SetCellValue('A1', 'Lista de escuelas');
@@ -120,10 +176,10 @@ class Report extends CI_Controller {
 				$obj_excel->getActiveSheet()->getStyle('A2:G2')->applyFromArray($this->style_encabezado);
 
 				$aux = 3;
-				foreach ($result_escuelas as $row) {
-					$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, utf8_encode($row['cve_centro']) );
+				foreach ($array as $row) {
+					$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, utf8_encode($row['cct']) );
 					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, utf8_encode($row['turno_single']) );
-					$obj_excel->getActiveSheet()->SetCellValue('C'.$aux, utf8_encode($row['nombre_centro']) );
+					$obj_excel->getActiveSheet()->SetCellValue('C'.$aux, utf8_encode($row['nombre']) );
 					$obj_excel->getActiveSheet()->SetCellValue('D'.$aux, utf8_encode($row['nivel']) );
 					$obj_excel->getActiveSheet()->SetCellValue('E'.$aux, utf8_encode($row['municipio']) );
 					$obj_excel->getActiveSheet()->SetCellValue('F'.$aux, utf8_encode($row['localidad']) );

@@ -9,6 +9,7 @@ $(document).ready(function() {
 });
 
 	$("#nav-tab").click(function (e) {
+		e.preventDefault()
         var id = e.target.id;
         // console.log(id);
         if(id =="nav-resultados-tab"){
@@ -23,7 +24,7 @@ $(document).ready(function() {
    		}else if(id!="nav-resultados-tab"){
    			// console.log(id);
    			$("#div_resultados_gral").hide();
-   			$("#div_busxcct_pemc").empty();	  
+   			// $("#div_busxcct_pemc").empty();	  
    		}
 	});
 

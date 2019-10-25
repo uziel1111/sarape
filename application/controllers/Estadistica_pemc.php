@@ -21,6 +21,7 @@ class Estadistica_pemc extends CI_Controller
         $this->load->model('Ambito_model');
         $this->load->model('Nivel_model');
         $this->load->model('Sostenimiento_model');
+        $this->load->model('CentrosE_model');
         $this->datos = array();
     }
 
@@ -265,15 +266,64 @@ public function busquedaxct(){
             $municipio = $this->input->post('municipio_pemc');
             $nivel = $this->input->post('nivel_pemc');
             $sostenimiento = $this->input->post('sostenimiento_pemc');
-            $result_escuelas = $this->Estadistica_pemc_model->get_xparams($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
+            $result_escuelas = $this->CentrosE_model->filtro_escuela($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
             // echo "<pre>"; print_r($result_escuelas); die();
-            $data['municipio'] = $municipio;
+            $array=array();
+            for($i=0; $i<count($result_escuelas); $i++){
+                if($result_escuelas[$i]['turno']==120){
+                    $result_escuelas[$i]['turno_n']=100;
+                    $result_escuelas[$i]['turno_single']='MATUTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=200;
+                    $result_escuelas[$i]['turno_single']='VESPERTINO';
+                    array_push($array,$result_escuelas[$i]);
+                }else if($result_escuelas[$i]['turno']==123){
+                    $result_escuelas[$i]['turno_n']=100;
+                    $result_escuelas[$i]['turno_single']='MATUTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=200;
+                    $result_escuelas[$i]['turno_single']='VESPERTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=300;
+                    $result_escuelas[$i]['turno_single']='NOCTURNO';
+                    array_push($array,$result_escuelas[$i]);
+                }else if($result_escuelas[$i]['turno']==124){
+                    $result_escuelas[$i]['turno_n']=100;
+                    $result_escuelas[$i]['turno_single']='MATUTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=200;
+                    $result_escuelas[$i]['turno_single']='VESPERTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=400;
+                    $result_escuelas[$i]['turno_single']='DISCONTINUO';
+                    array_push($array,$result_escuelas[$i]);
+                }else if($result_escuelas[$i]['turno']==130){
+                    $result_escuelas[$i]['turno_n']=100;
+                    $result_escuelas[$i]['turno_single']='MATUTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=300;
+                    $result_escuelas[$i]['turno_single']='NOCTURNO';
+                    array_push($array,$result_escuelas[$i]);
+                }else if($result_escuelas[$i]['turno']==230){
+                    $result_escuelas[$i]['turno_n']=200;
+                    $result_escuelas[$i]['turno_single']='VESPERTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=300;
+                    $result_escuelas[$i]['turno_single']='NOCTURNO';
+                    array_push($array,$result_escuelas[$i]);
+                }else{
+                    $result_escuelas[$i]['turno_n']=$result_escuelas[$i]['turno'];
+                    $result_escuelas[$i]['turno_single']=$result_escuelas[$i]['desc_turno'];
+                    array_push($array,$result_escuelas[$i]);
+                }
+            }
 
+            $data['municipio'] = $municipio;
             $data['nivel'] = $nivel;
             $data['sostenimiento'] = $sostenimiento;
             $data['escuela'] = $nombre_escuela;
-            $data['arr_escuelas'] = $result_escuelas;
-            $data['total_escuelas'] = count($result_escuelas);
+            $data['arr_escuelas'] = $array;
+            $data['total_escuelas'] = count($array);
             // echo "<pre>"; print_r($data); die();
             // Utilerias::pagina_basica($this, "busqueda_xlista/escuelas", $data);
             $str_view = $this->load->view("busqueda_xlista/escuelas", $data, TRUE);

@@ -3,6 +3,8 @@ class Nivel_model extends CI_Model
 {
     function __construct(){
         parent::__construct();
+        $this->load->database();
+        $this->ce_db = $this->load->database('ce_db', TRUE);
     }
 
     function all(){
@@ -21,6 +23,116 @@ class Nivel_model extends CI_Model
       $this->db->group_by('ni.id_nivel');
       return  $this->db->get()->result_array();
     }// get_xidmunicipio()
+
+    function get_xidmunicipio_vista_cct($id_municipio){
+      $filtro="";
+      if($id_municipio>0){
+        $filtro=" and municipio={$id_municipio}";
+      }
+
+      $query="SELECT 
+              CASE  
+                  WHEN a.nivel LIKE '%ESPECIAL%' THEN '1'
+                  WHEN a.nivel LIKE '%INICIAL%' THEN '2'
+                  WHEN a.nivel LIKE '%PREESCOLAR%' THEN '3'
+                  WHEN a.nivel LIKE '%PRIMARIA%' THEN '4'
+                  WHEN a.nivel LIKE '%SECUNDARIA%' THEN '5'
+                  WHEN a.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
+                  WHEN a.nivel LIKE '%SUPERIOR%' THEN '7'
+                  WHEN a.nivel LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
+                  WHEN a.nivel LIKE '%OTRO NIVEL EDUCATIVO' THEN '9'
+                  WHEN a.nivel LIKE '%NO APLICA%'  THEN '10'
+                  END AS id_nivel,a.nivel
+               FROM (
+                  SELECT nivel_educativo,
+                    CASE  WHEN desc_nivel_educativo LIKE '%NO APLICA%'  THEN 'NO APLICA'
+                    WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
+                    WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
+                    WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
+                    WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
+                    WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
+                    WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
+                    WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                    WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
+                    WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN 'OTRO NIVEL EDUCATIVO'
+                    END AS nivel FROM vista_cct
+                  WHERE (`status`= 1 OR `status` = 4) AND tipo_centro=9
+                  {$filtro}
+                  GROUP BY (CASE   
+                              WHEN desc_nivel_educativo LIKE '%NO APLICA%' THEN 'NO APLICA'
+                              WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
+                              WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
+                              WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
+                              WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
+                              WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
+                              WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
+                              WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                              WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
+                              WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN 'OTRO NIVEL EDUCATIVO'
+                              END)   
+                  ) AS a ORDER BY FIELD(a.nivel,'ESPECIAL','INICIAL','PREESCOLAR','PRIMARIA','SECUNDARIA','MEDIA SUPERIOR','SUPERIOR','FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')";
+      return $this->ce_db->query($query)->result_array();
+    }
+
+    function get_xidnivel_vista_cct($id_nivel){
+      $filtro="";
+      if($id_nivel>0){
+        if($id_nivel==1){
+          $nivel="CAM";
+        }else if($id_nivel==2){
+          $nivel="INICIAL";
+        }else if($id_nivel==3){
+          $nivel="PREESCOLAR";
+        }else if($id_nivel==4){
+          $nivel="PRIMARIA";
+        }else if($id_nivel==5){
+          $nivel="SECUNDARIA";
+        }else if($id_nivel==6){
+          $nivel="MEDIA SUPERIOR";
+        }else if($id_nivel==7){
+          $nivel="SUPERIOR";
+        }else if($id_nivel==8){
+          $nivel="FORMACION PARA EL TRABAJO";
+        }else if($id_nivel==9){
+          $nivel="OTRO NIVEL EDUCATIVO";
+        }else if($id_nivel==10){
+          $nivel="NO APLICA";
+        }
+
+        $filtro=" AND desc_nivel_educativo LIKE '%".$nivel."%'";
+      }
+
+      $query="SELECT a.* FROM (
+                SELECT sostenimiento  AS id_sostenimiento,
+                  CASE  WHEN (desc_sostenimiento LIKE '%FEDERAL%') 
+                      OR (desc_sostenimiento LIKE '%ESTATAL%') 
+                      OR (desc_sostenimiento LIKE '%PUBLICA%') 
+                      OR (desc_sostenimiento LIKE '%MUNICIPAL%') 
+                      OR (desc_sostenimiento LIKE '%INSTITUTO%') 
+                      OR (desc_sostenimiento LIKE '%ESTADO%') 
+                      OR (desc_sostenimiento LIKE '%SECRETARIA%')     
+                      THEN 'PUBLICO'
+                    WHEN desc_sostenimiento LIKE '%PARTICULAR%' THEN 'PRIVADO'
+                    WHEN desc_sostenimiento LIKE '%AUTONOMO%' THEN 'AUTONOMO'
+                    END AS sostenimiento
+                FROM vista_cct 
+                  WHERE (`status`= 1 OR `status` = 4) AND tipo_centro=9
+                  {$filtro}
+                    GROUP BY 
+                    (CASE   WHEN (desc_sostenimiento LIKE '%FEDERAL%') 
+                      OR (desc_sostenimiento LIKE '%ESTATAL%') 
+                      OR (desc_sostenimiento LIKE '%PUBLICA%') 
+                      OR (desc_sostenimiento LIKE '%MUNICIPAL%') 
+                      OR (desc_sostenimiento LIKE '%INSTITUTO%') 
+                      OR (desc_sostenimiento LIKE '%ESTADO%') 
+                      OR (desc_sostenimiento LIKE '%SECRETARIA%')     
+                      THEN 'PUBLICO'
+                      WHEN desc_sostenimiento LIKE '%PARTICULAR%' THEN 'PRIVADO'
+                      WHEN desc_sostenimiento LIKE '%AUTONOMO%' THEN 'AUTONOMO'
+                    END) 
+                ) AS a WHERE a.sostenimiento IS NOT NULL ORDER BY FIELD(a.sostenimiento,'PUBLICO','PRIVADO','AUTONOMO')";
+      return $this->ce_db->query($query)->result_array();
+    }
 
     function getall_est_ind(){
       $this->db->select('ni.id_nivel, ni.nivel');

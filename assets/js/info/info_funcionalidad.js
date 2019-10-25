@@ -29,15 +29,17 @@ $("#slt_ciclo_ries").change(function(){
 
 $("#btn_indice_peso").click(function(e){
               e.preventDefault();
-              let id_cct = $("#in_id_cct").val();
+              let cct = $("#in_cct").val();
+              let turno = $("#in_turno").val();
+              let nivel = $("#in_nivel").val();
               // alert(id_cct);
   							$.ajax({
   				        url:  base_url+"info/get_indice_peso",
   				        method: 'POST',
-  				        data: {'id_cct':id_cct},
+  				        data: {'cct':cct,'turno':turno,'nivel':nivel},
   				        beforeSend: function(xhr) {
   				        	Notification.loading("");
-  					  	},
+  					  	  },
   				      })
   				      .done(function( data ) {
                   $("#div_contenedor_indpeso").empty();
@@ -85,11 +87,13 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
 						$("#dv_info_aprendizaje").attr('hidden',true);
 						$("#dv_info_permanencia").attr('hidden',true);
 						$("#dv_info_asistencia").removeAttr('hidden');
-						let id_cct = $("#in_id_cct").val();
+						let cct = $("#in_cct").val();
+            let turno = $("#in_turno").val();
+            let nivel = $("#in_nivel").val();
 							$.ajax({
 				        url:  base_url+"info/info_estadistica_graf",
 				        method: 'POST',
-				        data: {'id_cct':id_cct},
+				        data: {'cct':cct,'turno':turno,'nivel':nivel},
 				        beforeSend: function(xhr) {
 				        	Notification.loading("");
 					  	},
@@ -128,19 +132,19 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
 
 
 								switch(nivel) {
-									case '3':
+									case 3:
 													graf.GraficoEstadisticaSecundaria_alumn(a_g1,a_g2,a_g3,a_g1+a_g2+a_g3);
 													graf.GraficoEstadisticaSecundaria_grupos(g_g1,g_g2,g_g3,g_g1+g_g2+g_g3);
 													graf.GraficoEstadisticaSecundaria_docentes(d_g1,d_g2,d_g3,d_g1+d_g2+d_g3);
 
 									break;
-									case '4':
+									case 4:
 													graf.GraficoEstadisticaPrimaria_alumn(a_g1,a_g2,a_g3,a_g4,a_g5,a_g6,t_alumnos);
 													graf.GraficoEstadisticaPrimaria_grupos(g_g1,g_g2,g_g3,g_g4,g_g5,g_g6,t_grupos);
 													graf.GraficoEstadisticaPrimaria_docentes(d_g1,d_g2,d_g3,d_g4,d_g5,d_g6,t_docentes);
 
 									break;
-									case '5':
+									case 5:
 													graf.GraficoEstadisticaSecundaria_alumn(a_g1,a_g2,a_g3,a_g1+a_g2+a_g3);
 													graf.GraficoEstadisticaSecundaria_grupos(g_g1,g_g2,g_g3,g_g1+g_g2+g_g3);
 													graf.GraficoEstadisticaSecundaria_docentes(d_g1,d_g2,d_g3,d_g1+d_g2+d_g3);
@@ -167,22 +171,24 @@ Info_esc.prototype.get_indica_asist =function(){
             $("#dv_info_graf_Cobertura").empty();
             $("#dv_info_graf_Absorcion").empty();
             $("#lb_ind_asisten").empty();
-						let id_cct = $("#in_id_cct").val();
+						let cct = $("#in_cct").val();
+            let turno = $("#in_turno").val();
+            let nivel = $("#in_nivel").val();
 							$.ajax({
 				        url:  base_url+"info/info_indica_asis",
 				        method: 'POST',
-				        data: {'id_cct':id_cct},
+				        data: {'cct':cct,'turno':turno,'nivel':nivel},
 				        beforeSend: function(xhr) {
 				        	Notification.loading("");
-					  	},
+					  	  },
 				      })
 				      .done(function( data ) {
 							let nivel = data.nivel;
-              if (nivel=='4') {
+              if (nivel==4) {
                 //$("#lb_ind_asisten").text("Ciclo escolar: FIN- 2015-2016");
                 $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2017-2019");
               }
-              else if (nivel=='5' || nivel=='6') {
+              else if (nivel==5 || nivel==6) {
                 //$("#lb_ind_asisten").text("Ciclo escolar: FIN- 2016-2017");
                 $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2017-2019");
               }
@@ -209,21 +215,23 @@ Info_esc.prototype.get_indica_perma =function(){
             $("#dv_info_graf_Aprobacion").empty();
             $("#dv_info_graf_Eficiencia_Terminal").empty();
             $("#lb_ind_perma").empty();
-						let id_cct = $("#in_id_cct").val();
+						let cct = $("#in_cct").val();
+            let turno = $("#in_turno").val();
+            let nivel = $("#in_nivel").val();
 							$.ajax({
 				        url:  base_url+"info/info_indica_perma",
 				        method: 'POST',
-				        data: {'id_cct':id_cct},
+				        data: {'cct':cct,'turno':turno,'nivel':nivel},
 				        beforeSend: function(xhr) {
 				        	Notification.loading("");
 					  	},
 				      })
 				      .done(function( data ) {
 							let nivel = data.nivel;
-              if (nivel=='4') {
+              if (nivel==4) {
                 $("#lb_ind_perma").text("Ciclo escolar: FIN- 2015-2016");
               }
-              else if (nivel=='5' || nivel=='6') {
+              else if (nivel==5 || nivel==6) {
                 $("#lb_ind_perma").text("Ciclo escolar: FIN- 2016-2017");
               }
 							if (data.indica_perma.length>0) {
@@ -254,12 +262,14 @@ Info_esc.prototype.get_indica_perma =function(){
 
 Info_esc.prototype.get_prog_apoyo =function(){
             $("#tab_prog_apoyo").empty();
-						let id_cct = $("#in_id_cct").val();
+						let cct = $("#in_cct").val();
+            let turno = $("#in_turno").val();
+            let nivel = $("#in_nivel").val();
             // alert(id_cct);
 							$.ajax({
 				        url:  base_url+"info/info_prog_apoyo",
 				        method: 'POST',
-				        data: {'id_cct':id_cct},
+				        data: {'cct':cct,'turno':turno,'nivel':nivel},
 				        beforeSend: function(xhr) {
 				        	Notification.loading("");
 					  	},
@@ -328,7 +338,9 @@ Info_esc.prototype.get_riesgo =function(){
 	$("#dv_info_asistencia").attr('hidden',true);
 	$("#dv_info_permanencia").removeAttr('hidden');
 	$("#dv_info_aprendizaje").attr('hidden',true);
-	let id_cct = $("#in_id_cct").val();
+	let cct = $("#in_cct").val();
+  let turno = $("#in_turno").val();
+  let nivel = $("#in_nivel").val();
   let ciclo=$("#slt_ciclo_ries").val();
   let id_bim = $("#slt_bimestre_ries").val();
 
@@ -339,7 +351,7 @@ Info_esc.prototype.get_riesgo =function(){
 		$.ajax({
 			url:  base_url+"info/info_riesgo_graf",
 			method: 'POST',
-			data: {'id_cct':id_cct,'id_bim':id_bim,'ciclo':ciclo},
+			data: {'cct':cct,'turno':turno,'nivel':nivel,'id_bim':id_bim,'ciclo':ciclo},
 			beforeSend: function(xhr) {
 				Notification.loading("");
 			}
@@ -373,7 +385,7 @@ Info_esc.prototype.get_riesgo =function(){
 
 								switch(nivel) {
 
-								case '4':
+								case 4:
                           $("#total_bajas").text(data.numero_bajas[0]['total']);
 													$("#dv_riesgo_esc_pie").empty();
 													$("#dv_riesgo_esc_bar").empty();
@@ -442,7 +454,7 @@ Info_esc.prototype.get_riesgo =function(){
                   $("#dv_riesgotab_esc_pie").append(html_tb_riego);
 
 								break;
-								case '5':
+								case 5:
                           $("#total_bajas").text(data.numero_bajas[0]['total']);
 													$("#dv_riesgo_esc_pie").empty();
 													$("#dv_riesgo_esc_bar").empty();
@@ -528,18 +540,20 @@ Info_esc.prototype.get_planea =function(){
 	$("#dv_info_asistencia").attr('hidden',true);
 							$("#dv_info_permanencia").attr('hidden',true);
 							$("#dv_info_aprendizaje").removeAttr('hidden');
-							let id_cct = $("#in_id_cct").val();
+							let cct = $("#in_cct").val();
+              let turno = $("#in_turno").val();
+              let nivel = $("#in_nivel").val();
 							$.ajax({
 								url:  base_url+"info/info_plaea_graf",
 								method: 'POST',
-								data: {'id_cct':id_cct},
+								data: {'cct':cct,'turno':turno,'nivel':nivel},
 								beforeSend: function(xhr) {
 							        Notification.loading("");
 							    },
 							})
 							.done(function( data ) {
 								let nivel = data.nivel;
-
+                // console.log(data);
 								if (data.planea15_escuela.length>0) {
 								var lyc1_15  = parseFloat(data.planea15_escuela[0]['lyc_i']);
 								var lyc2_15  = parseFloat(data.planea15_escuela[0]['lyc_ii']);
@@ -615,7 +629,7 @@ Info_esc.prototype.get_planea =function(){
 
 								switch(nivel) {
 
-									case '3':
+									case 3:
 
 													if (data.graph_cont_tema_lyc.length==0) {
 															$("#dv_info_aprendizaje").empty();
@@ -626,10 +640,10 @@ Info_esc.prototype.get_planea =function(){
 															$("#dv_info_graf_contmat").append('<input type="text" value="No se encontraron datos">');
 														}
 									break;
-									case '4':
+									case 4:
 
 														if (data.graph_cont_tema_lyc.length>0) {
-															graf.graficoplanea_ud_prim_lyc(data.graph_cont_tema_lyc, data.id_cct);
+															graf.graficoplanea_ud_prim_lyc(data.graph_cont_tema_lyc,data.cct,data.turno,data.nivel);
 														}
 														else{
 															$("#dv_info_graf_contlyc").empty();
@@ -637,7 +651,7 @@ Info_esc.prototype.get_planea =function(){
 														}
 													 // Por Unidades de Análisis lyc
 													 if (data.graph_cont_tema_mate.length>0) {
-															graf.graficoplanea_ud_prim_mate(data.graph_cont_tema_mate, data.id_cct);
+															graf.graficoplanea_ud_prim_mate(data.graph_cont_tema_mate,data.cct,data.turno,data.nivel);
 														}
 														else{
 															$("#dv_info_graf_contmat").empty();
@@ -655,10 +669,10 @@ Info_esc.prototype.get_planea =function(){
             								}
 
 									break;
-									case '5':
+									case 5:
 
 														if (data.graph_cont_tema_lyc.length>0) {
-															graf.graficoplanea_ud_secu_lyc(data.graph_cont_tema_lyc, data.id_cct);
+															graf.graficoplanea_ud_secu_lyc(data.graph_cont_tema_lyc,data.cct,data.turno,data.nivel);
 														}
 														else{
 															$("#dv_info_graf_contlyc").empty();
@@ -666,7 +680,7 @@ Info_esc.prototype.get_planea =function(){
 														}
 													 // Por Unidades de Análisis lyc
 													 if (data.graph_cont_tema_mate.length>0) {
-															graf.graficoplanea_ud_secu_mate(data.graph_cont_tema_mate, data.id_cct);
+															graf.graficoplanea_ud_secu_mate(data.graph_cont_tema_mate,data.cct,data.turno,data.nivel);
 														}
 														else{
 															$("#dv_info_graf_contmat").empty();
@@ -698,10 +712,10 @@ Info_esc.prototype.get_planea =function(){
 
 									break;
 
-                  case '6':
+                  case 6:
 
                   if (data.graph_cont_tema_lyc.length>0) {
-                    graf.graficoplanea_ud_ms_lyc(data.graph_cont_tema_lyc, data.id_cct);
+                    graf.graficoplanea_ud_ms_lyc(data.graph_cont_tema_lyc,data.cct,data.turno,data.nivel);
                   }
                   else{
                     $("#dv_info_graf_contlyc").empty();
@@ -709,7 +723,7 @@ Info_esc.prototype.get_planea =function(){
                   }
                  // Por Unidades de Análisis lyc
                  if (data.graph_cont_tema_mate.length>0) {
-                    graf.graficoplanea_ud_ms_mate(data.graph_cont_tema_mate, data.id_cct);
+                    graf.graficoplanea_ud_ms_mate(data.graph_cont_tema_mate,data.cct,data.turno,data.nivel);
                   }
                   else{
                     $("#dv_info_graf_contmat").empty();
@@ -730,6 +744,7 @@ Info_esc.prototype.get_planea =function(){
 
 									default:
 													$("#dv_info_aprendizaje").empty();
+                          // console.log("llego en la linea 746");
 									break;
 
 
@@ -770,38 +785,34 @@ Info_esc.prototype.get_ete =function(){
             $("#containerRPB03ete").empty();
             $("#lb_ind_efi").empty();
             $("#lb_ind_planea").empty();
-							let id_cct = $("#in_id_cct").val();
+							let cct = $("#in_cct").val();
+              let turno = $("#in_turno").val();
+              let nivel = $("#in_nivel").val();
 							$.ajax({
 								url:  base_url+"info/info_ete",
 								method: 'POST',
-								data: {'id_cct':id_cct},
+								data: {'cct':cct,'turno':turno,'nivel':nivel},
 								beforeSend: function(xhr) {
 							        Notification.loading("");
 							    },
 							})
 							.done(function( data ) {
 								let nivel = data.nivel;
-                if (nivel=='4') {
+                if (nivel==4) {
                   $("#lb_ind_efi").text("ET_Ciclo escolar: FIN- 2015-2016");
                   $("#lb_ind_planea").text("PLANEA 2016");
-                }
-                else if (nivel=='5' || nivel=='6') {
+                }else if (nivel==5 || nivel==6) {
                   $("#lb_ind_efi").text("ET_Ciclo escolar: FIN- 2018-2019");
                   $("#lb_ind_planea").text("PLANEA 2019");
-                }
-								if (data.ete>0) {
+                }if (data.ete>0) {
                   $("#dv_ete_esc").removeAttr('hidden');
-								var a_ete  = (data.ete);
+  								var a_ete  = (data.ete);
 
-                graf.DibujarRadialProgressBarET(a_ete);
-							}
-              else {
+                  graf.DibujarRadialProgressBarET(a_ete);
+							  }else {
 
-                $("#dv_ete_esc").attr('hidden',true);
-              }
-
-
-
+                  $("#dv_ete_esc").attr('hidden',true);
+                }
 
 							})
 							.fail(function(e) {
@@ -815,7 +826,9 @@ Info_esc.prototype.get_ete =function(){
 Info_esc.prototype.get_riesgo2 =function(){
 	let id_bim = $("#slt_bimestre_ries").val();
 	let ciclo = $("#slt_ciclo_ries").val();
-	let id_cct = $("#in_id_cct").val();
+	let cct = $("#in_cct").val();
+  let turno = $("#in_turno").val();
+  let nivel = $("#in_nivel").val();
 
   if(ciclo=='2018-2019' && id_bim==3){
     alert("Periodo no disponible");
@@ -823,7 +836,7 @@ Info_esc.prototype.get_riesgo2 =function(){
 							$.ajax({
 				        url:  base_url+"info/info_riesgo_graf",
 				        method: 'POST',
-				        data: {'id_cct':id_cct,'id_bim':id_bim,'ciclo':ciclo},
+				        data: {'cct':cct,'id_bim':id_bim,'ciclo':ciclo,'turno':turno,'nivel':nivel},
 				        beforeSend: function(xhr) {
 							        Notification.loading("");
 							    },
@@ -852,7 +865,7 @@ Info_esc.prototype.get_riesgo2 =function(){
                 }
 								switch(nivel) {
 
-								case '4':
+								case 4:
 													$("#dv_riesgo_esc_pie").empty();
 													$("#dv_riesgo_esc_bar").empty();
 													grafr.TablaPieGraficaPie(q1,q2,q3,q4);
@@ -891,7 +904,7 @@ Info_esc.prototype.get_riesgo2 =function(){
                       $("#dv_riesgtab_esc_bar").append(html_tbm_riego);
 
 								break;
-								case '5':
+								case 5:
 													$("#dv_riesgo_esc_pie").empty();
 													$("#dv_riesgo_esc_bar").empty();
 													grafr.TablaPieGraficaPie(q1,q2,q3,q4);

@@ -4,7 +4,9 @@
 		<div class="card mb-3 card-style-1">
 			<div class="card-header card-1-header bg-light">
 				Datos generales
-				<input hidden type="text" id="in_id_cct" value="<?=$id_cct?>">
+				<input hidden type="text" id="in_cct" value="<?=$cve_centro?>">
+				<input hidden type="text" id="in_turno" value="<?=$turno?>">
+				<input hidden type="text" id="in_nivel" value="<?=$nivel?>">
 			</div>
 			<div class="card-body">
 				<div class="row">
@@ -25,7 +27,7 @@
 					<div class="col">
 						Turno:
 						<label class="fw800">
-							<?=$turno?>
+							<?=$desc_turno?>
 						</label>
 					</div>
 					<div class="col">

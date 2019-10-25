@@ -8,12 +8,17 @@ class Busqueda_xlista extends CI_Controller {
 			$this->load->library('Utilerias');
 			$this->load->model('Municipio_model');
 			$this->load->model('Nivel_model');
+			$this->load->model('CentrosE_model');
 			$this->load->model('Sostenimiento_model');
 			$this->load->model('Escuela_model');
 		}
 
 		public function index(){
-			$result_municipios = $this->Municipio_model->all();
+			// $result_municipios = $this->Municipio_model->all();
+			$result_municipios = $this->CentrosE_model->municipios();
+			// echo "<pre>";
+			// print_r($result_municipios);
+			// die();
 			$arr_municipios = array();
 			$arr_sostenimientos = array();
 			$arr_niveles = array();
@@ -27,7 +32,8 @@ class Busqueda_xlista extends CI_Controller {
 				}
 			}
 
-			$result_niveles = $this->Nivel_model->all();
+			// $result_niveles = $this->Nivel_model->all();
+			$result_niveles = $this->CentrosE_model->niveles();
 			if(count($result_niveles)==0){
 				$data['arr_niveles'] = array(	'-1' => 'Error recuperando los niveles' );
 			}else{
@@ -37,14 +43,15 @@ class Busqueda_xlista extends CI_Controller {
 				}
 			}
 
-			$result_sostenimientos = $this->Sostenimiento_model->all();
+			// $result_sostenimientos = $this->Sostenimiento_model->all();
+			$result_sostenimientos = $this->CentrosE_model->sostenimientos();
 			// echo "<pre>"; print_r($result_sostenimientos); die();
 			if(count($result_sostenimientos)==0){
 				$data['arr_sostenimientos'] = array(	'-1' => 'Error recuperando los sostenimientos' );
 			}else{
 				$arr_sostenimientos['-1'] = 'TODOS';
 				foreach ($result_sostenimientos as $row){
-					 $arr_sostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
+					$arr_sostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
 				}
 			}
 
@@ -63,7 +70,17 @@ class Busqueda_xlista extends CI_Controller {
 				$cve_nivel = $this->input->get('slc_busquedalista_nivel');
 				$cve_sostenimiento = $this->input->get('slc_busquedalista_sostenimiento');
 				$nombre_escuela = $this->input->get('itxt_busquedalista_nombreescuela');
-
+				if($cve_municipio==""){
+					$cve_municipio = $this->input->post('slc_busquedalista_municipio');
+					$cve_nivel = $this->input->post('slc_busquedalista_nivel');
+					$cve_sostenimiento = $this->input->post('slc_busquedalista_sostenimiento');
+					$nombre_escuela = $this->input->post('itxt_busquedalista_nombreescuela');
+				}
+				// echo  $cve_municipio."ww\n";
+				// echo  $cve_nivel."\n";
+				// echo  $cve_sostenimiento."\n";
+				// echo  $nombre_escuela."\n";
+				// die();
 				$data['cve_municipio'] = $cve_municipio;
 				$data['cve_nivel'] = $cve_nivel;
 				$data['cve_sostenimiento'] = $cve_sostenimiento;
@@ -73,14 +90,75 @@ class Busqueda_xlista extends CI_Controller {
 				$municipio = $this->input->get('hidden_municipio');
 				$nivel = $this->input->get('hidden_nivel');
 				$sostenimiento = $this->input->get('hidden_sostenimiento');
-				$result_escuelas = $this->Escuela_model->get_xparams($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
+				// echo $municipio."\n";
+				// echo $nivel."\n";
+				// echo $sostenimiento."\n";
+				// die();
+				// $result_escuelas = $this->Escuela_model->get_xparams($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
 				// echo "<pre>"; print_r($result_escuelas); die();
+
+				$array=array();
+				$result_escuelas = $this->CentrosE_model->filtro_escuela($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
+						// echo "<pre>"; print_r($result_escuelas); die();
+				for($i=0; $i<count($result_escuelas); $i++){
+					if($result_escuelas[$i]['turno']==120){
+						$result_escuelas[$i]['turno_n']=100;
+						$result_escuelas[$i]['turno_single']='MATUTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=200;
+						$result_escuelas[$i]['turno_single']='VESPERTINO';
+						array_push($array,$result_escuelas[$i]);
+					}else if($result_escuelas[$i]['turno']==123){
+						$result_escuelas[$i]['turno_n']=100;
+						$result_escuelas[$i]['turno_single']='MATUTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=200;
+						$result_escuelas[$i]['turno_single']='VESPERTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=300;
+						$result_escuelas[$i]['turno_single']='NOCTURNO';
+						array_push($array,$result_escuelas[$i]);
+
+					}else if($result_escuelas[$i]['turno']==124){
+						$result_escuelas[$i]['turno_n']=100;
+						$result_escuelas[$i]['turno_single']='MATUTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=200;
+						$result_escuelas[$i]['turno_single']='VESPERTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=400;
+						$result_escuelas[$i]['turno_single']='DISCONTINUO';
+						array_push($array,$result_escuelas[$i]);
+					}else if($result_escuelas[$i]['turno']==130){
+						$result_escuelas[$i]['turno_n']=100;
+						$result_escuelas[$i]['turno_single']='MATUTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=300;
+						$result_escuelas[$i]['turno_single']='NOCTURNO';
+						array_push($array,$result_escuelas[$i]);
+					}else if($result_escuelas[$i]['turno']==230){
+						$result_escuelas[$i]['turno_n']=200;
+						$result_escuelas[$i]['turno_single']='VESPERTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=300;
+						$result_escuelas[$i]['turno_single']='NOCTURNO';
+						array_push($array,$result_escuelas[$i]);
+					}else{
+						$result_escuelas[$i]['turno_n']=$result_escuelas[$i]['turno'];
+						$result_escuelas[$i]['turno_single']=$result_escuelas[$i]['desc_turno'];
+						array_push($array,$result_escuelas[$i]);
+					}
+				}
+
+
+
+
 				$data['municipio'] = $municipio;
 				$data['nivel'] = $nivel;
 				$data['sostenimiento'] = $sostenimiento;
 				$data['escuela'] = $nombre_escuela;
 
-				$data['arr_escuelas'] = $result_escuelas;
+				$data['arr_escuelas'] = $array;
 				$data['total_escuelas'] = count($result_escuelas);
 				// echo "<pre>"; print_r($data); die();
 				Utilerias::pagina_basica($this, "busqueda_xlista/escuelas", $data);
@@ -91,23 +169,84 @@ class Busqueda_xlista extends CI_Controller {
 			$cve_centro = $this->input->post('cve_centro');
 			$cve_centro = '05'.trim($cve_centro);
 			// echo "<pre>"; print_r($cve_centro); die();
-			$result_escuelas = $this->Escuela_model->get_xcvecentro($cve_centro);
-			// echo "<pre>"; print_r($result_escuelas); die();
-			$total_escuelas = count($result_escuelas);
+			$result_escuelas = $this->CentrosE_model->get_xcvecentro($cve_centro);
+			// echo "<pre>";
+			// print_r($result_escuelas);
+			// die();
+			$array=array();
+			for($i=0; $i<count($result_escuelas); $i++){
+					if($result_escuelas[$i]['turno']==120){
+						$result_escuelas[$i]['turno_n']=100;
+						$result_escuelas[$i]['turno_single']='MATUTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=200;
+						$result_escuelas[$i]['turno_single']='VESPERTINO';
+						array_push($array,$result_escuelas[$i]);
+					}else if($result_escuelas[$i]['turno']==123){
+						$result_escuelas[$i]['turno_n']=100;
+						$result_escuelas[$i]['turno_single']='MATUTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=200;
+						$result_escuelas[$i]['turno_single']='VESPERTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=300;
+						$result_escuelas[$i]['turno_single']='NOCTURNO';
+						array_push($array,$result_escuelas[$i]);
 
-			$id_cct = 0;
+					}else if($result_escuelas[$i]['turno']==124){
+						$result_escuelas[$i]['turno_n']=100;
+						$result_escuelas[$i]['turno_single']='MATUTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=200;
+						$result_escuelas[$i]['turno_single']='VESPERTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=400;
+						$result_escuelas[$i]['turno_single']='DISCONTINUO';
+						array_push($array,$result_escuelas[$i]);
+					}else if($result_escuelas[$i]['turno']==130){
+						$result_escuelas[$i]['turno_n']=100;
+						$result_escuelas[$i]['turno_single']='MATUTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=300;
+						$result_escuelas[$i]['turno_single']='NOCTURNO';
+						array_push($array,$result_escuelas[$i]);
+					}else if($result_escuelas[$i]['turno']==230){
+						$result_escuelas[$i]['turno_n']=200;
+						$result_escuelas[$i]['turno_single']='VESPERTINO';
+						array_push($array,$result_escuelas[$i]);
+						$result_escuelas[$i]['turno_n']=300;
+						$result_escuelas[$i]['turno_single']='NOCTURNO';
+						array_push($array,$result_escuelas[$i]);
+					}else{
+						$result_escuelas[$i]['turno_n']=$result_escuelas[$i]['turno'];
+						$result_escuelas[$i]['turno_single']=$result_escuelas[$i]['desc_turno'];
+						array_push($array,$result_escuelas[$i]);
+					}
+				}
+
+
+			// echo "<pre>"; print_r($array); die();
+			$total_escuelas = count($array);
+
+			$cct = 0;
+			$turno = 0;
+			$turno_single = 0;
 			$str_select = '';
-			if(count($result_escuelas)>0){
-				foreach ($result_escuelas as $key => $value) {
-					$id_cct = $value['id_cct'];
-					$str_select .= "<option value={$value['id_cct']}>{$value['cve_centro']} - {$value['turno_single']}</option>";
+			if(count($array)>0){
+				foreach ($array as $key => $value) {
+					$cct = $value['cct'];
+					$turno_single = $value['turno_single'];
+					$turno = $value['turno_n'];
+					$str_select .= "<option value={$value['cct']}{$value['turno']}{$value['turno_single']}>{$value['cct']}-{$value['turno_n']} - {$value['turno_single']}</option>";
 				}
 			}
 			// echo "<pre>"; print_r($id_cct); die();
 			$response = array(
 												'total_escuelas' => $total_escuelas,
 												'str_select' => $str_select,
-												'id_cct' => $id_cct
+												'cct' => $cct,
+												'turno' => $turno,
+												'turno_single' => $turno_single
 												);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;

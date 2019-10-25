@@ -112,16 +112,16 @@
         </thead>
         <tbody>
           <?php foreach($arr_escuelas as $escuela) { ?>
-            <tr data-idescuela="<?= $escuela['id_cct'] ?>" data-cve_centro="<?= $escuela['cve_centro'] ?>" data-turno_single="<?= $escuela['turno_single'] ?>">
+            <tr  data-cve_centro="<?= $escuela['cct'] ?>" data-turno_single="<?= $escuela['turno_single'] ?>" data-turno="<?= $escuela['turno'] ?>">
               <td>
-                <?= $escuela['cve_centro'] ?>
+                <?= $escuela['cct'] ?>
               </td>
-              <td ><?= $escuela['turno_single'] ?></td>
-              <td><?= $escuela['nombre_centro'] ?></td>
-              <td><?= $escuela['nivel'] ?></td>
-              <td><?= $escuela['municipio'] ?></td>
-              <td><?= $escuela['localidad'] ?></td>
-              <td><?= $escuela['domicilio'] ?></td>
+              <td ><?=$escuela['turno_single']?></td>
+              <td><?=$escuela['nombre']?></td>
+              <td><?=$escuela['nivel']?></td>
+              <td><?=$escuela['municipio']?></td>
+              <td><?=$escuela['localidad']?></td>
+              <td><?=$escuela['domicilio']?></td>
             </tr>
           <?php } ?>
         </tbody>
@@ -144,24 +144,26 @@
   });
 
   $(document).on("click", "#table_escuelas tbody tr", function(e) {
+    e.preventDefault();
     if($("#tipou_pemc2").length){
-
-      $("#filtros_busqueda").collapse('hide');
+      
     
-      let idescuela = $(this).data('idescuela');
+      // let idescuela = $(this).data('idescuela');
       let cct = $(this).data('cve_centro');
       let turno = $(this).data('turno_single');
+      var turno_single = $(this).data('turno_single');
 
       $.ajax({
         url : base_url+"Estadistica_pemc/busquedaxct",
         dataType : 'json',
         method : 'POST',
-        data : {"cct":cct,"turno":turno},
+        data : {"cct":cct,"turno":turno,"turno_single":turno_single},
         beforeSend: function(xhr) {
           Notification.loading("");
         },
         success: function(data){
           $("#wait").modal("hide");
+          $("#filtros_busqueda").collapse('hide');
           $("#div_busxcct_pemc").empty();
           $("#div_busxcct_pemc").append(data.vista);  
         },
@@ -173,13 +175,26 @@
 
     }else{
 
-      var idescuela = $(this).data('idescuela');
+      var cct = $(this).data('cve_centro');
+      var turno = $(this).data('turno');
+      var turno_single = $(this).data('turno_single');
       var form = document.createElement("form");
       var element1 = document.createElement("input");
-
+      var element2 = document.createElement("input");
+      var element3 = document.createElement("input");
+      // console.log(cct);
       element1.type = "hidden";
-      element1.name="id_cct";
-      element1.value = idescuela;
+      element1.name="cct";
+      element1.value = cct;
+
+      element2.type = "hidden";
+      element2.name="turno";
+      element2.value = turno;
+
+      element3.type = "hidden";
+      element3.name="turno_single";
+      element3.value = turno_single;
+
       form.name = "form_escuelas_getinfo";
       form.id = "form_escuelas_getinfo";
       form.method = "POST";
@@ -188,6 +203,8 @@
 
       document.body.appendChild(form);
       form.appendChild(element1);
+      form.appendChild(element2);
+      form.appendChild(element3);
       form.submit();
     }
 });

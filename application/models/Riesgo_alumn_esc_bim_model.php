@@ -5,8 +5,9 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         parent::__construct();
     }
 
-    function get_riesgo_pie_xidct($id_cct,$bimestre,$ciclo, $id_nivel){
+    function get_riesgo_pie_xidct($cct,$id_turno_single,$bimestre,$ciclo, $id_nivel){
       // return  $this->db->get('nivel')->result_array();
+
       $nivel = ($id_nivel == 4)? "primaria":"secundaria";
       $str_query = "SELECT
       COUNT(curp) total,
@@ -14,7 +15,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
       IFNULL(SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))=2,1,0)), 0) as alto,
       IFNULL(SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))=1,1,0)), 0) as medio,
       IFNULL(SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))=0,1,0)), 0) as bajo
-      FROM alumnos_riesgo_{$nivel} WHERE id_cct=".$id_cct." AND ciclo='".$ciclo."'
+      FROM alumnos_riesgo_{$nivel} WHERE cct='{$cct}' AND id_turno_single={$id_turno_single}  AND ciclo='".$ciclo."'
       ";
       // echo $str_query; die();
       $query = $this->db->query($str_query);
@@ -22,18 +23,18 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
 
     }// get_riesgo_pie_xidct()
 
-    function get_riesgo_bar_grados_xidct($id_cct,$bimestre,$ciclo, $id_nivel){
+    function get_riesgo_bar_grados_xidct($cct,$id_turno_single,$bimestre,$ciclo, $id_nivel){
       // return  $this->db->get('nivel')->result_array();
       $nivel = ($id_nivel == 4)? "primaria":"secundaria";
       $str_query = "SELECT id_cct,
-      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE id_cct=".$id_cct." AND ciclo='".$ciclo."') as muyalto_t,
-      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE id_cct=".$id_cct." AND ciclo='".$ciclo."' AND grado=1) as muyalto_1,
-      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE id_cct=".$id_cct." AND ciclo='".$ciclo."' AND grado=2) as muyalto_2,
-      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE id_cct=".$id_cct." AND ciclo='".$ciclo."' AND grado=3) as muyalto_3,
-      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE id_cct=".$id_cct." AND ciclo='".$ciclo."' AND grado=4) as muyalto_4,
-      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE id_cct=".$id_cct." AND ciclo='".$ciclo."' AND grado=5) as muyalto_5,
-      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE id_cct=".$id_cct." AND ciclo='".$ciclo."' AND grado=6) as muyalto_6
-      FROM alumnos_riesgo_{$nivel} WHERE id_cct=".$id_cct." AND ciclo='".$ciclo."' GROUP BY id_cct
+      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE cct='".$cct."' AND id_turno_single={$id_turno_single} AND ciclo='".$ciclo."') as muyalto_t,
+      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE cct='".$cct."' AND id_turno_single={$id_turno_single} AND ciclo='".$ciclo."' AND grado=1) as muyalto_1,
+      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE cct='".$cct."' AND id_turno_single={$id_turno_single} AND ciclo='".$ciclo."' AND grado=2) as muyalto_2,
+      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE cct='".$cct."' AND id_turno_single={$id_turno_single} AND ciclo='".$ciclo."' AND grado=3) as muyalto_3,
+      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE cct='".$cct."' AND id_turno_single={$id_turno_single} AND ciclo='".$ciclo."' AND grado=4) as muyalto_4,
+      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE cct='".$cct."' AND id_turno_single={$id_turno_single} AND ciclo='".$ciclo."' AND grado=5) as muyalto_5,
+      (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE cct='".$cct."' AND id_turno_single={$id_turno_single} AND ciclo='".$ciclo."' AND grado=6) as muyalto_6
+      FROM alumnos_riesgo_{$nivel} WHERE cct='{$cct}' AND id_turno_single={$id_turno_single}   AND ciclo='".$ciclo."' GROUP BY id_cct
       ";
       // echo $str_query; die();
       $query = $this->db->query($str_query);
@@ -110,9 +111,9 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
     }// get_riesgo_bar_grados_xidmuni()
 
 
-    function get_numero_bajas($id_cct, $id_nivel, $bimestre){
+    function get_numero_bajas($cct,$turno, $id_nivel, $bimestre){
       $nivel = ($id_nivel == 4)? "primaria":"secundaria";
-      $str_query = "SELECT COUNT(id_cct) total FROM alumnos_bajas_{$nivel} WHERE id_cct = {$id_cct} AND bimestre = {$bimestre}" ;
+      $str_query = "SELECT COUNT(id_cct) total FROM alumnos_bajas_{$nivel} WHERE cct = '{$cct}' AND id_turno_single={$turno} AND bimestre = {$bimestre}" ;
       $query = $this->db->query($str_query);
       return $query->result_array();
     }

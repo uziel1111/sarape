@@ -713,10 +713,11 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
 
   }// get_infraest_xzona
 
-  function get_nalumnos_xesc($id_cct){
+  function get_nalumnos_xesc($cct,$id_turno_single){
     $this->db->select('alumn_t_1,alumn_t_2,alumn_t_3,alumn_t_4,alumn_t_5,alumn_t_6,alumn_t_t');
     $this->db->from('estadistica_e_indicadores_xcct');
-    $this->db->where('id_cct', $id_cct);
+    $this->db->where('cct', $cct);
+    $this->db->where('id_turno_single', $id_turno_single);
     $this->db->where('id_corte', 2);
     $this->db->where('id_ciclo', 4);
     // $this->db->get();
@@ -726,10 +727,11 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
   }//get_nalumnos_xesc()
 
 
-  function get_ndocentes_xesc($id_cct){
+  function get_ndocentes_xesc($cct,$id_turno_single){
     $this->db->select('docentes_1_g,docentes_2_g,docentes_3_g,docentes_4_g,docentes_5_g,docentes_6_g');
     $this->db->from('estadistica_e_indicadores_xcct');
-    $this->db->where('id_cct', $id_cct);
+    $this->db->where('cct', $cct);
+    $this->db->where('id_turno_single', $id_turno_single);
     $this->db->where('id_corte', 2);
     $this->db->where('id_ciclo', 4);
     // $this->db->get();
@@ -738,10 +740,11 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     return  $this->db->get()->result_array();
   }//get_ndocentes_xesc()
 
-  function get_ngrupos_xesc($id_cct){
+  function get_ngrupos_xesc($cct,$id_turno_single){
     $this->db->select('grupos_1,grupos_2,grupos_3,grupos_4,grupos_5,grupos_6');
     $this->db->from('estadistica_e_indicadores_xcct');
-    $this->db->where('id_cct', $id_cct);
+    $this->db->where('cct', $cct);
+    $this->db->where('id_turno_single', $id_turno_single);
     $this->db->where('id_corte', 2);
     $this->db->where('id_ciclo', 4);
     // $this->db->get();
@@ -750,21 +753,23 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     return  $this->db->get()->result_array();
   }//get_ngrupos_xesc()
 
-  function get_ind_asistenciaxcct($id_cct,$id_corte,$id_ciclo){
-
+  function get_ind_asistenciaxcct($cct,$id_turno_single,$id_corte,$id_ciclo){
     $this->db->select('REPLACE(cobertura,"%","") as cobertura, REPLACE(absorcion,"%","") as absorcion');
     $this->db->from('indicadores_x_esc');
-    $this->db->where('id_cct', $id_cct);
+    $this->db->where('cct', $cct);
+    $this->db->where('id_turno_single', $id_turno_single);
     $this->db->where('id_ciclo', $id_ciclo);
     $this->db->where('id_corte', $id_corte);
     return  $this->db->get()->result_array();
   }// get_ind_asistenciaxcct
 
-  function get_ind_permananciaxcct($id_cct,$id_corte,$id_ciclo){
-
+  function get_ind_permananciaxcct($cct,$id_turno_single,$id_corte,$id_ciclo){
+    // echo $turno;
+    // die();
     $this->db->select('REPLACE(retencion,"%","") as retencion,REPLACE(aprobacion,"%","") as aprobacion, IF(REPLACE(et, "%", "")>100, 100,REPLACE(et, "%", "")) as et');
     $this->db->from('indicadores_x_esc');
-    $this->db->where('id_cct', $id_cct);
+    $this->db->where('cct', $cct);
+    $this->db->where('id_turno_single', $id_turno_single);
     $this->db->where('id_ciclo', $id_ciclo);
     $this->db->where('id_corte', $id_corte);
     //
@@ -774,11 +779,12 @@ SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup
     return  $this->db->get()->result_array();
   }// get_ind_asistenciaxcct
 
-  function get_ind_efixcct($id_cct,$id_corte,$id_ciclo){
+  function get_ind_efixcct($cct,$id_turno_single,$id_corte,$id_ciclo){
 
     $this->db->select('IF(REPLACE(et, "%", "")>100, 100,REPLACE(et, "%", "")) as et');
     $this->db->from('indicadores_x_esc');
-    $this->db->where('id_cct', $id_cct);
+    $this->db->where('cct', $cct);
+    $this->db->where('id_turno_single', $id_turno_single);
     $this->db->where('id_ciclo', $id_ciclo);
     $this->db->where('id_corte', $id_corte);
     // $this->db->get();

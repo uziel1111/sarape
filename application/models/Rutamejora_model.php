@@ -1044,8 +1044,8 @@ public function pieLAE($id_cct,$cte_vigente){
 
 public function momentoActual()
 {
-  // $str_query = 'call proye7nb_pruebas.cteActual();';
-    $str_query = 'call sarape.cteActual();';
+  $str_query = 'call proye7nb_pruebas.cteActual();';
+    // $str_query = 'call sarape.cteActual();';
   return $this->db->query($str_query)->result_array();
 }
 

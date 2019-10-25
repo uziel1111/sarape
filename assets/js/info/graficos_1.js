@@ -2061,7 +2061,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
       //////////////////////////////////////////////////////////// Por Unidades de Análisis
       //////////////////////////////////////////////////////////// Por Unidades de Análisis
-      HaceGraficas.prototype.graficoplanea_ud_prim_lyc = function(arr_lyc,id_cct){
+      HaceGraficas.prototype.graficoplanea_ud_prim_lyc = function(arr_lyc,cct,turno,nivel){
 
         arr_lyc.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
@@ -2164,7 +2164,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,3,1);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,cct,turno,nivel,3,1);
                                }
                            }
                        }
@@ -2202,7 +2202,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           // }
       }// graficoplanea_ud_prim_lyc()
 
-      HaceGraficas.prototype.graficoplanea_ud_prim_mate = function(arr_mate,id_cct){
+      HaceGraficas.prototype.graficoplanea_ud_prim_mate = function(arr_mate,cct,turno,nivel){
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
@@ -2305,7 +2305,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,3,2);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,cct,turno,nivel,3,2);
                                }
                            }
                        }
@@ -2341,7 +2341,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
       }// graficoplanea_ud_prim_mate()
 
-      HaceGraficas.prototype.graficoplanea_ud_secu_lyc = function(arr_lyc,id_cct){
+      HaceGraficas.prototype.graficoplanea_ud_secu_lyc = function(arr_lyc,cct,turno,nivel){
         arr_lyc.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
@@ -2440,7 +2440,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,4,1);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,cct,turno,nivel,4,1);
                                 }
                            }
                        }
@@ -2480,7 +2480,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           // }
       }// graficoplanea_ud_secu_lyc()
 
-      HaceGraficas.prototype.graficoplanea_ud_secu_mate = function(arr_mate,id_cct){
+      HaceGraficas.prototype.graficoplanea_ud_secu_mate = function(arr_mate,cct,turno,nivel){
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
@@ -2585,7 +2585,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,4,2);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,cct,turno,nivel,4,2);
                                 }
                            }
                        }
@@ -2623,7 +2623,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
       }// graficoplanea_ud_secu_mate()
 
 
-      HaceGraficas.prototype.graficoplanea_ud_ms_lyc = function(arr_lyc,id_cct){
+      HaceGraficas.prototype.graficoplanea_ud_ms_lyc = function(arr_lyc,cct,turno,nivel){
         arr_lyc.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
@@ -2714,7 +2714,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,1);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,cct,turno,nivel,2,1);
                                }
                            }
                        }
@@ -2754,7 +2754,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           // }
       }// graficoplanea_ud_ms_lyc()
 
-      HaceGraficas.prototype.graficoplanea_ud_ms_mate = function(arr_mate,id_cct){
+      HaceGraficas.prototype.graficoplanea_ud_ms_mate = function(arr_mate,cct,turno,nivel){
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
@@ -2851,7 +2851,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                        point:{
                            events:{
                                click:function(){
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,2,2);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,cct,turno,nivel,2,2);
                                 }
                            }
                        }
@@ -2876,15 +2876,16 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
 
 
-      HaceGraficas.prototype.get_reactivos_xunidad_de_analisis = function(nombre,id_cont,id_cct,periodo,idcampodis, callback){
-            
+      HaceGraficas.prototype.get_reactivos_xunidad_de_analisis = function(nombre,id_cont,cct,turno,nivel,periodo,idcampodis, callback){
+          // console.log(nombre);
+
           // alert(periodo);
           // console.log(nombre);
           var ruta = base_url+"info/info_xcont_xcct";
           $.ajax({
             url: ruta,
             method: 'POST',
-            data: { 'id_cont':id_cont,'id_cct':id_cct,'periodo':periodo,'idcampodis':idcampodis,'nombre':nombre
+            data: { 'id_cont':id_cont,'cct':cct,'turno':turno,'nivel':nivel,'periodo':periodo,'idcampodis':idcampodis,'nombre':nombre
                   },
             beforeSend: function( xhr ) {
               // alert("cargando");

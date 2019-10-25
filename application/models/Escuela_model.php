@@ -5,6 +5,8 @@ class Escuela_model extends CI_Model
     function __construct(){
         parent::__construct();
         ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+        $this->load->database();
+        $this->ce_db = $this->load->database('ce_db', TRUE);
     }
 
     function get_xparams($id_municipio,$id_nivel,$id_sostenimiento,$nombre_escuela){
@@ -44,44 +46,7 @@ class Escuela_model extends CI_Model
       return  $this->db->get()->result_array();
     }// get_xparams()
 
-    function filtro_escuela(){
 
-      $query="SELECT  v.cct,v.turno,v.desc_turno, v.nombre,v.desc_nivel_educativo,
-        CASE  WHEN (v.desc_sostenimiento LIKE '%FEDERAL%') 
-        OR (v.desc_sostenimiento LIKE '%ESTATAL%') 
-        OR (v.desc_sostenimiento LIKE '%PUBLICA%') 
-        OR (v.desc_sostenimiento LIKE '%MUNICIPAL%') 
-        OR (v.desc_sostenimiento LIKE '%INSTITUTO%') 
-        OR (v.desc_sostenimiento LIKE '%ESTADO%') 
-        OR (v.desc_sostenimiento LIKE '%SECRETARIA%')     
-        THEN 'PUBLICO'
-        WHEN desc_sostenimiento LIKE '%PARTICULAR%' THEN 'PRIVADO'
-        WHEN desc_sostenimiento LIKE '%AUTONOMO%' THEN 'AUTONOMO'
-        END AS desc_sostenimiento,
-        v.sostenimiento,v.status,v.municipio, v.nombre_de_municipio,v.localidad,v.nombre_de_localidad, 
-        v.latitud, v.longitud,v.nombre_vialidad_principal,v.zona_escolar,'' as turno_n,'' AS turno_n_d
-        FROM vista_cct AS v
-
-        WHERE (v.status != 2 AND v.status != 3)
-        /*AND v.latitud != 0
-          AND v.latitud != ''
-          AND v.nombre_de_municipio like  '%ABASOLO%'*/
-          AND v.desc_nivel_educativo LIKE '%SECUNDARIA%'
-          AND (
-              (v.desc_sostenimiento LIKE '%FEDERAL%') 
-                    OR (v.desc_sostenimiento LIKE '%ESTATAL%') 
-                    OR (v.desc_sostenimiento LIKE '%PUBLICA%') 
-                    OR (v.desc_sostenimiento LIKE '%MUNICIPAL%') 
-                    OR (v.desc_sostenimiento LIKE '%INSTITUTO%') 
-                    OR (v.desc_sostenimiento LIKE '%ESTADO%') 
-                    OR (v.desc_sostenimiento LIKE '%SECRETARIA%')     
-              )
-          AND desc_tipo_centro='ESCUELA'
-          AND turno IN(123,120,230)
-          GROUP BY v.cct,v.desc_turno
-          ORDER BY v.desc_nivel_educativo";
-          return $this->db->query($query)->result_array();
-    }
 
     function get_xcvecentro($cve_centro){
       $this->db->select('es.id_cct,es.cve_centro,es.nombre_centro,ni.nivel, tu.turno_single, es.latitud, es.longitud, es.id_nivel, mu.municipio, loc.localidad, s.zona_escolar, so.sostenimiento');
@@ -187,7 +152,7 @@ function get_xidcct($idcct){
         return  $this->db->get()->row('id_nivel');
     }// get_nivel()
 
-    function get_indicpeso_xidcct($id_cct,$id_ciclo){
+    function get_indicpeso_xidcct($cct,$turno,$id_ciclo){
         $this->db->select('
           ROUND(`Bajo-peso`*100,1) as `bajo`,
           ROUND(`Normal`*100,1) as Normal,

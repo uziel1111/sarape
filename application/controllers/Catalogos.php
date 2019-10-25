@@ -12,7 +12,11 @@ class Catalogos extends CI_Controller {
 
 		public function getniveles_xcvemunicipio(){
 			$cve_municipio  = $this->input->post('cve_municipio');
-			$result_niveles = $this->Nivel_model->get_xidmunicipio($cve_municipio);
+			// $result_niveles = $this->Nivel_model->get_xidmunicipio($cve_municipio);
+			$result_niveles = $this->Nivel_model->get_xidmunicipio_vista_cct($cve_municipio);
+			// echo "<pre>";
+			// print_r($result_niveles);
+			// die();
 			$str_select = '<option value=-1>TODOS</option>';
 			foreach ($result_niveles as $key => $value) {
 				$str_select .= "<option value={$value['id_nivel']}> {$value['nivel']} </option>";
@@ -24,7 +28,8 @@ class Catalogos extends CI_Controller {
 
 		public function getsostenimientos_xcvenivel(){
 			$cve_nivel  = $this->input->post('cve_nivel');
-			$result_sostenimientos = $this->Sostenimiento_model->get_xidnivel($cve_nivel);
+			// $result_sostenimientos = $this->Sostenimiento_model->get_xidnivel($cve_nivel);
+			$result_sostenimientos = $this->Nivel_model->get_xidnivel_vista_cct($cve_nivel);
 
 			$str_select = '<option value=-1>TODOS</option>';
 			foreach ($result_sostenimientos as $key => $value) {
