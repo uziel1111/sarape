@@ -41,7 +41,7 @@ class CentrosE_model extends CI_Model
 
     function niveles(){
       $query="SELECT 
-              CASE  WHEN a.nivel LIKE '%NO APLICA%'  THEN '0'
+              CASE  
                   WHEN a.nivel LIKE '%ESPECIAL%' THEN '1'
                   WHEN a.nivel LIKE '%INICIAL%' THEN '2'
                   WHEN a.nivel LIKE '%PREESCOLAR%' THEN '3'
@@ -50,6 +50,8 @@ class CentrosE_model extends CI_Model
                   WHEN a.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
                   WHEN a.nivel LIKE '%SUPERIOR%' THEN '7'
                   WHEN a.nivel LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
+                  WHEN a.nivel LIKE '%OTRO NIVEL EDUCATIVO%' THEN '9'
+                  WHEN a.nivel LIKE '%NO APLICA%'  THEN '10'
                   END AS id_nivel,a.nivel
                FROM (
               SELECT nivel_educativo,
@@ -62,6 +64,7 @@ class CentrosE_model extends CI_Model
                   WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
                   WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
                   WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
+                  WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN 'OTRO NIVEL EDUCATIVO'
                   END AS nivel
                 FROM vista_cct 
                 WHERE (`status`= 1 OR `status` = 4) AND tipo_centro=9 
@@ -74,9 +77,10 @@ class CentrosE_model extends CI_Model
                   WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
                   WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
                   WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
+                  WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN 'OTRO NIVEL EDUCATIVO'
                   END
                   
-                  ) AS a ORDER BY FIELD(a.nivel,'ESPECIAL','INICIAL','PREESCOLAR','PRIMARIA','SECUNDARIA','MEDIA SUPERIOR','SUPERIOR','FORMACION PARA EL TRABAJO','NO APLICA')";
+                  ) AS a ORDER BY FIELD(a.nivel,'ESPECIAL','INICIAL','PREESCOLAR','PRIMARIA','SECUNDARIA','MEDIA SUPERIOR','SUPERIOR','FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')";
       return $this->ce_db->query($query)->result_array();
     }
 
@@ -163,6 +167,7 @@ class CentrosE_model extends CI_Model
                   WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
                   WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
                   WHEN v.desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
+                  WHEN v.desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN 'OTRO NIVEL EDUCATIVO'
                   END AS nivel,
               CASE  WHEN (v.desc_sostenimiento LIKE '%FEDERAL%') 
               OR (v.desc_sostenimiento LIKE '%ESTATAL%') 
@@ -203,6 +208,7 @@ class CentrosE_model extends CI_Model
                   WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
                   WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
                   WHEN v.desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
+                  WHEN v.desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN 'OTRO NIVEL EDUCATIVO'
                   END AS nivel,
               IF(status in(1,4),'ACTIVA','') as estatus
                   ,

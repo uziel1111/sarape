@@ -847,16 +847,28 @@ Info_esc.prototype.get_riesgo2 =function(){
 				      	// $("#total_bajas").text("4");
 				      	$("#total_bajas").text(data.numero_bajas[0]['total']);
 								let nivel = data.nivel;
-							var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
-								var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
-								var q3 = parseInt(data.graph_pie_riesgo[0]['medio']);
-								var q4 = parseInt(data.graph_pie_riesgo[0]['bajo']);
-							  var t1 = parseInt(data.graph_bar_riesgo[0]['muyalto_1']);
-								var t2 = parseInt(data.graph_bar_riesgo[0]['muyalto_2']);
-								var t3 = parseInt(data.graph_bar_riesgo[0]['muyalto_3']);
-								var t4 = parseInt(data.graph_bar_riesgo[0]['muyalto_4']);
-								var t5 = parseInt(data.graph_bar_riesgo[0]['muyalto_5']);
-								var t6 = parseInt(data.graph_bar_riesgo[0]['muyalto_6']);
+                let q1 = 0;
+                let q2 = 0;
+                let q3 = 0;
+                let q4 = 0;
+                let t1 = 0;
+                let t2 = 0;
+                let t3 = 0;
+                let t4 = 0;
+                let t5 = 0;
+                let t6 = 0;
+                if(data.graph_bar_riesgo.length>0){
+  							  q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
+  								q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
+  								q3 = parseInt(data.graph_pie_riesgo[0]['medio']);
+  								q4 = parseInt(data.graph_pie_riesgo[0]['bajo']);
+  							  t1 = parseInt(data.graph_bar_riesgo[0]['muyalto_1']);
+  								t2 = parseInt(data.graph_bar_riesgo[0]['muyalto_2']);
+  								t3 = parseInt(data.graph_bar_riesgo[0]['muyalto_3']);
+  								t4 = parseInt(data.graph_bar_riesgo[0]['muyalto_4']);
+  								t5 = parseInt(data.graph_bar_riesgo[0]['muyalto_5']);
+  								t6 = parseInt(data.graph_bar_riesgo[0]['muyalto_6']);
+                }
                 if (q1==0) {
                   $("#dv_barras_muyaltor").attr('hidden',true);
                 }
