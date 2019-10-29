@@ -15,7 +15,7 @@ class Reporte extends CI_Controller {
 	}// __construct()
 
 
-	public function get_reporte(){
+	public function Reporte_PEMC(){
 		if(Utilerias::haySesionAbiertacct($this)){
 			$cct = Utilerias::get_cct_sesion($this);
 			$id_cct = $cct[0]['id_cct'];

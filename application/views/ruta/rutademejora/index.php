@@ -225,7 +225,7 @@ span{
 	<button class="btnespe botonF2" id="btn_mision" data-toggle="tooltip" title="Misión">
 	  	<span><i class="fas fa-flag fa-xs"></i></span>
 	</button>
-	<a class="btnespe botonF3" id="btn_get_reporte_1" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/get_reporte') ?>">
+	<a class="btnespe botonF3" id="btn_get_reporte_1" title="Generar reporte" target="_blank" href="<?= base_url('index.php/Reporte/Reporte_PEMC') ?>">
 	  	<center><i class="fas fa-print fa-xs"></i></center>
 	</a>
 </div>
