@@ -318,6 +318,7 @@ $('#writeText').click(function(){
 
 //Grabar prioridad
 $('#grabar_prioridad').click(function(){
+	id_tprioritario = $('#id_tema_prioritario').val();
 	problematica = $('#problematicaTxt').val();
 	var selected=[];
  $('.problematica :selected').each(function(){
@@ -328,7 +329,7 @@ $('#grabar_prioridad').click(function(){
 		url: base_url+'Rutademejora/grabarTema',
 		type: 'POST',
 		dataType: 'JSON',
-		data:{ id_tprioritario: obj.id_tprioritario,
+		data:{ id_tprioritario: id_tprioritario,
 					 problematica: problematica,
 					 evidencias: $('#evidencias').val(),
 					 txt_rm_obs_direc: $('#txt_rm_obs_direc').val(),

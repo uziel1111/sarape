@@ -31,7 +31,7 @@
    <button class="btn btn-primary" id="btn_graficas" title="Ver gráficas"><i class="far fa-chart-bar"></i>Ver gráficas</button>
 
  </div>
- <?php  echo form_open(''.base_url().'index.php/Reporte/get_reporte_desde_sup', array('target' => '_blank','id' => 'form_imp_rm')); ?>
+ <?php  echo form_open(''.base_url().'index.php/Reporte/Reporte_PEMC_Supervisor', array('target' => '_blank','id' => 'form_imp_rm')); ?>
  <div class="col-2 margintop35" id="dv_btn_imprpdf">
    <button type="submit" class="btn btn-primary" title="Generar reporte"  id="btn_imp_rutamejoraxcct">Imprimir PEMC</button>
 

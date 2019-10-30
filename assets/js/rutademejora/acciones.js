@@ -12,6 +12,8 @@ $(function() {
   });
 
 $("#cerrar_modal_acciones").click(function(){
+  $('#btn_editando_accion').hide();
+  $('#btn_agregar_accion').show();
   obj_rm_acciones_tp.limpia_camposform();
   $('#exampleModalacciones').modal('toggle');
   obj.get_view();

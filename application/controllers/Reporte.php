@@ -76,7 +76,7 @@ class Reporte extends CI_Controller {
 		}
 	}// get_reporte()
 
-	public function get_reporte_desde_sup(){
+	public function Reporte_PEMC_Supervisor(){
 		if(Utilerias::haySesionAbiertacct($this)){
 			// $cvecct = $_GET['cct'];
 			// $turno_single = $_GET['turno'];

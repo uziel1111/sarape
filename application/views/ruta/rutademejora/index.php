@@ -142,7 +142,7 @@ span{
 			<div class="nav nav-tabs nav-tabs-style-1" id="nav-tab" role="tablist">
 				<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">PEMC</a>
 				<a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Seguimiento</a>
-				<a class="nav-item nav-link nav-link-style-1" id="nav-resultados-tab" hidden data-toggle="tab" href="#nav-resultados" role="tab" aria-controls="nav-resultados" aria-selected="false">Resultados por escuela</a>
+				<a class="nav-item nav-link nav-link-style-1" id="nav-resultados-tab" data-toggle="tab" href="#nav-resultados" role="tab" aria-controls="nav-resultados" aria-selected="false">Resultados por escuela</a>
 				<?php if(isset($tipo_usuario_pemc)){ ?>
 
 				<?php }else{?>
@@ -156,10 +156,10 @@ span{
 				<div class="row">
 					<div class="col-md-12 " style="">
 						<span class="text-danger">*Antes de agregar objetivos o acciones, seleccione la línea de acción estratégica (LAE) o ámbito. </span>
-						<span data-toggle="modal" data-target="#prioridad">
+						<span  data-target="#prioridad">
 						<button type="" id="btn_prioridad" style="margin-left: 175px" data-toggle="tooltip" title="Agregar Objetivos" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
 						</span>		
-						<span data-toggle="modal" data-target="#actividades">
+						<span  data-target="#actividades">
 						<button type="button" style="margin-left: 120px" id="btn_rutamejora_acciones" title="Agregar Acciones" data-toggle="tooltip" title="Agregar Acciones" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
 						</span>
 					</div>
