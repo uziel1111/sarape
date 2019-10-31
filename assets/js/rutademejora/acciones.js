@@ -1,4 +1,5 @@
 $(function() {
+  Rm_acciones_tp.id_accion_select = undefined;
   obj_rm_acciones_tp = new Rm_acciones_tp();
   $("#div_otro_responsable").hide();
     // $('#otro_responsable').hide();
@@ -12,6 +13,7 @@ $(function() {
   });
 
 $("#cerrar_modal_acciones").click(function(){
+  Rm_acciones_tp.id_accion_select = undefined;
   $('#btn_editando_accion').hide();
   $('#btn_agregar_accion').show();
   obj_rm_acciones_tp.limpia_camposform();
@@ -335,6 +337,7 @@ Rm_acciones_tp.prototype.delete_accion = function(idaccion){
            console.log(error);
          }
        });
+  Rm_acciones_tp.id_accion_select = undefined;
 };
 
 Rm_acciones_tp.prototype.edit_accion = function(idaccion){
@@ -382,6 +385,7 @@ Rm_acciones_tp.prototype.edit_accion = function(idaccion){
            console.log(error);
          }
        });
+ Rm_acciones_tp.id_accion_select = undefined;
 };
 
 Rm_acciones_tp.prototype.validaform = function(llamado){

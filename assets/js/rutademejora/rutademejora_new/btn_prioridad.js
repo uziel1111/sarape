@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	obj.id_objetivo = undefined;
 	obj_prioridad = new Prioridad();
 	// $('#normalidad').attr('hidden', true);
 	// boxes()
@@ -536,6 +537,7 @@ function btnEditar(){
 	    swal.close();
 		});
 	}
+	obj.id_objetivo = undefined;
 
 }
 
@@ -592,6 +594,7 @@ function btnEliminar(){
 			}
 		})
 	}
+	obj.id_objetivo = undefined;
 }
 
 Prioridad.prototype.getObjetivos = function(){
