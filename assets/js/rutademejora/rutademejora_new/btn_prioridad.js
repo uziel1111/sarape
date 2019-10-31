@@ -500,7 +500,7 @@ function btnEditar(){
 	// console.log(idobjetivo);
 	// console.log(idtprioritario);
 
-	if (obj.id_objetivo === undefined) {
+	if (obj.id_objetivo == undefined) {
 		swal(
       '¡Error!',
       "Selecciona una tema prioritario a editar ",
@@ -525,6 +525,7 @@ function btnEditar(){
 	 		$("#CAPoutput").empty();
 	 		$("#CAPoutput").val(result.datos['objetivo']);
 	 		$('#update_flag').val(obj.id_objetivo);
+	 		obj.id_objetivo = undefined;
 	 		// $("#CAPoutput").append(result.datos);
 	 		// $('#normalidad').attr('hidden', false);
 	 	})
