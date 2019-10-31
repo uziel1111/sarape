@@ -89,8 +89,10 @@
   </div>
 </section>
 
-    <script src="http://jawj.github.io/OverlappingMarkerSpiderfier/bin/oms.min.js"></script>
+    <script src="https://jawj.github.io/OverlappingMarkerSpiderfier/bin/oms.min.js"></script>
     <script src="<?= base_url('assets/js/mapa/mapa.js') ?>"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr-mxcs6tJeQWzLDQHLzefGqB79Clbj0I&callback=initMap" async defer>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBORp5ivGEk1dyiq2_6K5c85IbDOzuYymQ&callback=initMap" async defer>
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
+    <!-- es la key de escuelapoblana -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBORp5ivGEk1dyiq2_6K5c85IbDOzuYymQ&callback=myMap&libraries=geometry"></script> -->
