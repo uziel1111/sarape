@@ -4,6 +4,10 @@ $(function() {
     grafr = new GraficasRiesgo();
 });
 
+function goBack() {
+  window.history.back();
+}
+
 function Info_esc(){
   _thisinfo = this;
 }
@@ -15,7 +19,7 @@ $("#slt_ciclo_ries").change(function(){
     $('#slt_bimestre_ries').append('<option value="1">1er Periodo</option>');
     $('#slt_bimestre_ries').append('<option value="2">2do Periodo</option>');
     $('#slt_bimestre_ries').append('<option value="3">3er Periodo</option>');
-         
+
   }else{
     $("#slt_bimestre_ries").empty();
     $('#slt_bimestre_ries').append('<option value="1">1er Bimestre</option>');
@@ -688,7 +692,7 @@ Info_esc.prototype.get_planea =function(){
 														}
 
                             if (data.planea16_escuela.length>0 && data.planea17_escuela.length>0) {
-                            
+
             									graf.PieDrilldownPlanea05y06(lyc1_16,lyc2_16,lyc3_16,lyc4_16,mat1_16,mat2_16,mat3_16,mat4_16,lyc1_17,lyc2_17,lyc3_17,lyc4_17,mat1_17,mat2_17,mat3_17,mat4_17);
             								}
             								else{

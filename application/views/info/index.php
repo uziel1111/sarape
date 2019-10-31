@@ -4,6 +4,7 @@
 		<div class="card mb-3 card-style-1">
 			<div class="card-header card-1-header bg-light">
 				Datos generales
+				<button class="btn btn-warning btn-style-1 color-6 mb-3" onclick="goBack()">Regresar</button>
 				<input hidden type="text" id="in_cct" value="<?=$cve_centro?>">
 				<input hidden type="text" id="in_turno" value="<?=$turno?>">
 				<input hidden type="text" id="in_nivel" value="<?=$nivel?>">
@@ -212,8 +213,8 @@
 						$arr_bimestres[ '1' ] = '1er Periodo';
 						$arr_bimestres[ '2' ] = '2do Periodo';
 						$arr_bimestres[ '3' ] = '3er Periodo';
-						
-						
+
+
 						$arr_ciclos[ '2018-2019' ] = '2018-2019';
 						$arr_ciclos[ '2017-2018' ] = '2017-2018';
 						?>
@@ -263,7 +264,7 @@
 												<div class="table-responsive" id="dv_riesgtab_esc_bar"></div>
 											</div>
 										</div>
-										
+
 									</div>
 								</div>
 							</div>
@@ -835,7 +836,7 @@
 					-->
 					<!-- End Modal -->
 					<!-- Modal Apoyos -->
-					
+
 					<!-- End Modal -->
 					<!-- Modal Apoyos -->
 					<!-- End Modal -->
@@ -860,7 +861,7 @@
 
 					<!-- End Modal -->
 					<!-- Modal Apoyos -->
-					
+
 					<!-- End Modal -->
 
 				</div>
