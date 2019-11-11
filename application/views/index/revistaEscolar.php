@@ -11,6 +11,12 @@
       <div class="modal-body">
         <div class="container">
           <div class="row">
+            <div class="col-sm-3">
+             <!-- onclick="Index.getinformese(6)" -->
+             <a href="https://issuu.com/ginaorozcoo/docs/revista_noviembre_2019"  target="_blank" title="Edición #15 Noviembre">
+               <img src="<?= base_url('assets/img/revista-noviembre.png'); ?>" class="img-fluid" alt="Responsive image">
+             </a>
+           </div>
              <div class="col-sm-3">
               <!-- onclick="Index.getinformese(6)" -->
               <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_octubre_2019"  target="_blank" title="Edición #14 Octubre">
