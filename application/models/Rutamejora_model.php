@@ -140,21 +140,40 @@ class Rutamejora_model extends CI_Model
    }
 
    function getdatoscct($cct, $turno){
-    $this->db->select('e.id_cct, e.cve_centro, e.nombre_centro, e.id_turno_single, ts.turno_single, n.nivel, e.nombre_director');
+   /* $this->db->select('e.id_cct, e.cve_centro, e.nombre_centro, e.id_turno_single, ts.turno_single, n.nivel, e.nombre_director');
     $this->db->from('escuela e');
     $this->db->join('turno_single AS ts ',' e.id_turno_single = ts.id_turno_single');
     $this->db->join('nivel AS n ', 'n.id_nivel = e.id_nivel');
     $this->db->where("e.cve_centro = '{$cct}'");
-    $this->db->where("ts.id_turno_single = {$turno}");
+    $this->db->where("ts.id_turno_single = {$turno}");*/
+
       // $this->db->get();
       // echo $this->db->last_query();die();
-    return  $this->db->get()->result_array();
+    // return  $this->db->get()->result_array();
+
+    $str_query = "SELECT 
+    #e.id_cct,
+    e.cct as cve_centro,
+    e.nombre as nombre_centro,
+    e.turno as id_turno_single,
+    e.desc_turno as turno_single,
+    e.desc_nivel_educativo as nivel,
+    CONCAT_WS(' ', e.nombre_director, e.apellido_paterno_director, e.apellido_materno_director) as nombre_director
+    FROM
+    centros_educativos.vista_cct e
+
+    WHERE
+    e.cct ='{$cct}'
+    AND e.turno like '%{$turno}%'";
+    return $this->db->query($str_query)->result_array();
+
   }
 
-  function existe_misionxidcct($id_cct, $id_ciclo){
-    $this->db->select('id_cct');
+  function existe_misionxidcct($cct, $turno, $id_ciclo){
+    $this->db->select('cct,turno');
     $this->db->from('rm_misionxcct');
-    $this->db->where("id_cct = '{$id_cct}'");
+    $this->db->where("cct = '{$cct}'");
+    $this->db->where("turno = {$turno}");
     $this->db->where("id_ciclo = {$id_ciclo}");
     if ($this->db->get()->num_rows()>0) {
       return  true;
@@ -164,14 +183,22 @@ class Rutamejora_model extends CI_Model
     }
   }
 
-  function insert_misionxidcct($id_cct,$misioncct, $id_ciclo){
+  function insert_misionxidcct($cct,$turno,$misioncct, $id_ciclo){
    $date=date("Y-m-d");
    $this->db->trans_start();
-   $data = array(
+   /*$data = array(
           'id_cct' => $id_cct,//obtenemos el id de la cct cargada en la sesion
           'mision' => $misioncct,
           'id_ciclo' => $id_ciclo, //de donde obtenemos el idciclo?
           'f_crea' => $date,
+        );*/
+
+        $data = array(
+          'cct' => $cct,//obtenemos el id de la cct cargada en la sesion
+          'mision' => $misioncct,
+          'id_ciclo' => $id_ciclo, //de donde obtenemos el idciclo?
+          'f_crea' => $date,
+          'turno' => $turno,
         );
    $this->db->insert('rm_misionxcct', $data);
    $this->db->trans_complete();
@@ -183,7 +210,7 @@ class Rutamejora_model extends CI_Model
   }
 }
 
-function update_misionxidcct($id_cct,$misioncct, $id_ciclo){
+function update_misionxidcct($cct,$turno,$misioncct, $id_ciclo){
   $date=date("Y-m-d");
   $this->db->trans_start();
   $data = array(
@@ -192,7 +219,8 @@ function update_misionxidcct($id_cct,$misioncct, $id_ciclo){
     'f_mod' => $date
   );
 
-  $this->db->where('id_cct', $id_cct);
+  $this->db->where('cct', $cct);
+  $this->db->where('turno', $turno);
   $this->db->update('rm_misionxcct', $data);
   $this->db->trans_complete();
   if ($this->db->trans_status() === FALSE)
@@ -214,10 +242,11 @@ function getTemasxcct($idcct){
   //   return $this->db->query($str_query)->result_array();
   // }
 
-function get_misionxcct($id_cct, $id_ciclo){
+function get_misionxcct($cct, $turno, $id_ciclo){
   $this->db->select('mision');
   $this->db->from('rm_misionxcct');
-  $this->db->where("id_cct = '{$id_cct}'");
+  $this->db->where("cct = '{$cct}'");
+  $this->db->where("turno = {$turno}");
   $this->db->where("id_ciclo = {$id_ciclo}");
 
   return $this->db->get()->row('mision');
@@ -233,7 +262,7 @@ function update_order($orden, $idtema){
   $this->db->update('rm_tema_prioritarioxcct', $data);
 }
 
-function getrutasxcct($idcct){
+function getrutasxcct($cct, $turno){
 	$this->db->select("tpxcct.id_tprioritario, rmp.ambito, tpxcct.orden, tpxcct.id_cct, tpxcct.id_prioridad, tpxcct.otro_problematica, tpxcct.otro_evidencia, rmp.prioridad,
    SUM(IF(ISNULL(acc.id_accion),0,1)) as n_acciones,  IF((ISNULL(obj.id_objetivo) || obj.id_objetivo = ''), '','fas fa-check-circle') AS objetivos,IF((ISNULL(tpxcct.obs_supervisor) || tpxcct.obs_supervisor = ''),'','fas fa-check-circle') AS obs_supervisor,tpxcct.path_evidencia,
    IF ((ISNULL(tpxcct.path_evidencia) || tpxcct.path_evidencia = ''),'none','') as trae_path");
@@ -241,10 +270,11 @@ function getrutasxcct($idcct){
  $this->db->join('rm_c_prioridad AS rmp ',' rmp.id_prioridad = tpxcct.id_prioridad');
  $this->db->join('rm_accionxtproritario as acc', 'tpxcct.id_tprioritario = acc.id_tprioritario', 'left');
  $this->db->join('rm_objetivo AS obj', 'tpxcct.id_tprioritario = obj.id_tprioritario', 'left');
- $this->db->where("tpxcct.id_cct = {$idcct}");
+ $this->db->where("tpxcct.cct = '{$cct}'");
+ $this->db->where("tpxcct.turno = {$turno}");
  $this->db->group_by("tpxcct.id_tprioritario");
  $this->db->order_by("tpxcct.orden", "asc");
-    //      $this->db->get();
+         // $this->db->get();
     // $str = $this->db->last_query();
     // echo $str; die();
  return  $this->db->get()->result_array();
@@ -341,7 +371,7 @@ function delete_tema_prioritario($id_cct,$id_tprioritario){
     //   return $this->db->query($str_query)->result_array();
 }
 
-function get_avances_tp_accionxcct($id_cct){
+function get_avances_tp_accionxcct($cct, $turno){
   $str_query = "SELECT
   tp.id_tprioritario, p.prioridad, o.id_objetivo, upper(o.objetivo) as objetivo, o.id_tprioritario as ob_tp, a.id_accion, a.accion, a.id_objetivos, tp.id_cct,
   IFNULL(av.cte1,0) as cte1,IFNULL(av.cte2,0) as cte2,IFNULL(av.cte3,0) as cte3,
@@ -353,8 +383,8 @@ function get_avances_tp_accionxcct($id_cct){
   INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
   LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
   LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
-  LEFT JOIN rm_avance_xcctxtpxaccion av ON tp.id_cct = av.id_cct AND tp.id_tprioritario = av.id_tprioritario AND a.id_accion = av.id_accion
-  WHERE tp.id_cct = {$id_cct}
+  LEFT JOIN rm_avance_xcctxtpxaccion av ON tp.cct = av.cct AND tp.id_tprioritario = av.id_tprioritario AND a.id_accion = av.id_accion
+  WHERE tp.cct = '{$cct}' AND tp.turno = {$turno}
   ORDER BY tp.orden, tp.id_tprioritario, a.id_accion DESC";
         // echo "<pre>";print_r($str_query); die();
   return $this->db->query($str_query)->result_array();
@@ -362,7 +392,7 @@ function get_avances_tp_accionxcct($id_cct){
 }
 
 /*111019*/
-function get_avances_tp_accionxcct_super($id_cct){
+function get_avances_tp_accionxcct_super($id_cct,$turno){
   $str_query = "SELECT
   tp.id_tprioritario, p.prioridad, o.id_objetivo, upper(o.objetivo) as objetivo, o.id_tprioritario as ob_tp, a.id_accion, a.accion, a.id_objetivos, tp.id_cct,
   IFNULL(av.cte1,0) as cte1,IFNULL(av.cte2,0) as cte2,IFNULL(av.cte3,0) as cte3,
@@ -375,8 +405,8 @@ function get_avances_tp_accionxcct_super($id_cct){
   LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
   LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
   LEFT JOIN rm_avance_xcctxtpxaccion av ON tp.id_cct = av.id_cct AND tp.id_tprioritario = av.id_tprioritario AND a.id_accion = av.id_accion
-  INNER JOIN escuela e on e.id_cct = tp.id_cct
-  WHERE e.cve_centro = '{$id_cct}'
+  #INNER JOIN centros_educativos.vista_cct e on e.cct = tp.cct AND e.turno = tp.turno
+  WHERE av.cct = '{$id_cct}' and av.turno = {$turno}
   ORDER BY tp.orden, tp.id_tprioritario, a.id_accion DESC";
         // echo "<pre>";print_r($str_query); die();
   return $this->db->query($str_query)->result_array();
@@ -404,10 +434,11 @@ function accionesRezagadas($id_cct,$cte_vigente){
   return $this->db->query($str_query)->result_array();
 }
 
-function existe_avance($var_id_cct,$var_id_idtp,$var_id_idacc){
-  $this->db->select('id_cct');
+function existe_avance($var_id_cct,$turno,$var_id_idtp,$var_id_idacc){
+  $this->db->select('cct, turno');
   $this->db->from('rm_avance_xcctxtpxaccion');
-  $this->db->where("id_cct = '{$var_id_cct}'");
+  $this->db->where("cct = '{$var_id_cct}'");
+  $this->db->where("turno = '{$turno}'");
   $this->db->where("id_tprioritario = '{$var_id_idtp}'");
   $this->db->where("id_accion = '{$var_id_idacc}'");
   if ($this->db->get()->num_rows() == 0)
@@ -419,12 +450,13 @@ function existe_avance($var_id_cct,$var_id_idtp,$var_id_idacc){
 
 }
 
-function insert_avance($var_id_cct,$var_id_idtp,$var_id_idacc){
+function insert_avance($var_id_cct,$turno,$var_id_idtp,$var_id_idacc){
  $this->db->trans_start();
  $data = array(
-           'id_cct' => $var_id_cct,//obtenemos el id de la cct cargada en la sesion
+           'cct' => $var_id_cct,//obtenemos el id de la cct cargada en la sesion
            'id_tprioritario' => $var_id_idtp,
            'id_accion' => $var_id_idacc, //de donde obtenemos el idciclo?
+           'turno' => $turno,
          );
  $this->db->insert('rm_avance_xcctxtpxaccion', $data);
  $this->db->trans_complete();
@@ -437,14 +469,15 @@ function insert_avance($var_id_cct,$var_id_idtp,$var_id_idacc){
 
 }
 
-function update_avance_xcte($val_slc,$var_id_cte,$var_id_cct,$var_id_idtp,$var_id_idacc){
+function update_avance_xcte($val_slc,$var_id_cte,$var_id_cct,$turno,$var_id_idtp,$var_id_idacc){
   $date=date("Y-m-d");
   $this->db->trans_start();
   $data = array(
            "cte{$var_id_cte}" => $val_slc,//
            "f_mod{$var_id_cte}" => $date,
          );
-  $this->db->where("id_cct = '{$var_id_cct}'");
+  $this->db->where("cct = '{$var_id_cct}'");
+  $this->db->where("turno = '{$turno}'");
   $this->db->where("id_tprioritario = '{$var_id_idtp}'");
   $this->db->where("id_accion = '{$var_id_idacc}'");
   $this->db->update('rm_avance_xcctxtpxaccion', $data);
@@ -703,19 +736,19 @@ function getMetricas($id_indicador){
   return $this->db->query($str_query)->result_array();
 }
 
-function getObjetivos($id_cct, $id_tprioritario, $idprioridad){
+function getObjetivos($cct, $turno, $id_tprioritario, $idprioridad){
   $str_query = "SELECT * FROM rm_tema_prioritarioxcct tprio
   LEFT JOIN rm_objetivo obj ON obj.id_tprioritario = tprio.id_tprioritario
-  WHERE tprio.id_cct = {$id_cct} AND tprio.id_tprioritario = {$id_tprioritario} AND tprio.id_prioridad = {$idprioridad} ORDER BY obj.id_objetivo DESC";
+  WHERE tprio.cct = '{$cct}' AND tprio.turno = {$turno} AND tprio.id_tprioritario = {$id_tprioritario} AND tprio.id_prioridad = {$idprioridad} ORDER BY obj.id_objetivo DESC";
       // echo "<pre>";print_r($str_query);die();
   return $this->db->query($str_query)->result_array();
 }
 
-function getObjetivosSuper($id_cct, $id_tprioritario){
+function getObjetivosSuper($id_cct, $turno ,$id_tprioritario){
   $str_query = "SELECT * FROM rm_tema_prioritarioxcct tprio
   LEFT JOIN rm_objetivo obj ON obj.id_tprioritario = tprio.id_tprioritario
-  INNER JOIN escuela e on e.id_cct = tprio.id_cct
-  WHERE e.cve_centro = '{$id_cct}' AND tprio.id_tprioritario = {$id_tprioritario} ORDER BY obj.id_objetivo DESC";
+  #INNER JOIN escuela e on e.id_cct = tprio.id_cct
+  WHERE tprio.cct = '{$id_cct}' AND  tprio.turno = {$turno} AND tprio.id_tprioritario = {$id_tprioritario} ORDER BY obj.id_objetivo DESC";
       // echo "<pre>";print_r($str_query);die();
   return $this->db->query($str_query)->result_array();
 }
@@ -825,23 +858,24 @@ function deleteEvidencia($id_tprioritario){
   return $this->db->update('rm_tema_prioritarioxcct', $data);
 }
 
-function getPrioridades($id_cct){
+function getPrioridades($cct, $turno){
   $str_query = "SELECT tp.id_tprioritario, p.ambito, o.id_objetivo, a.id_accion, tp.orden, p.prioridad, p.id_prioridad,
   COUNT(DISTINCT o.id_objetivo) as num_objetivos, COUNT(DISTINCT a.id_accion) as num_acciones
   FROM rm_tema_prioritarioxcct tp
   INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
   LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
   LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
-  WHERE tp.id_cct = {$id_cct}
+  WHERE tp.cct = '{$cct}'
+  AND tp.turno = {$turno}
   GROUP BY tp.id_tprioritario
   ORDER by tp.orden";
       // echo "<pre>";print_r($str_query);die();
   return $this->db->query($str_query)->result_array();
 }
 
-function insertaTprioritarios($id_cct){
+function insertaTprioritarios($cct, $turno){
 
-  $data = array (
+  /*$data = array (
     array(  'orden'=> 1,
       'id_cct' => $id_cct,
       'id_prioridad'=> 1,
@@ -871,6 +905,44 @@ function insertaTprioritarios($id_cct){
       'id_cct' => $id_cct,
       'id_prioridad'=> 5,
       'id_subprioridad'=> '',
+    ),
+  );*/
+
+  $data = array (
+    array(  'orden'=> 1,
+      'id_prioridad'=> 1,
+      'id_subprioridad'=> 1,
+      'cct' => $cct,
+      'turno' => $turno,
+    ),
+
+
+    array(  'orden'=> 2,
+      'id_prioridad'=> 2,
+      'id_subprioridad'=> '',
+      'cct' => $cct,
+      'turno' => $turno,
+    ),
+
+    array(  'orden'=> 3,
+      'id_prioridad'=> 3,
+      'id_subprioridad'=> '',
+      'cct' => $cct,
+      'turno' => $turno,
+    ),
+
+    array(  'orden'=> 4,
+      'id_prioridad'=> 4,
+      'id_subprioridad'=> '',
+      'cct' => $cct,
+      'turno' => $turno,
+    ),
+
+    array(  'orden'=> 5,
+      'id_prioridad'=> 5,
+      'id_subprioridad'=> '',
+      'cct' => $cct,
+      'turno' => $turno,
     ),
   );
 

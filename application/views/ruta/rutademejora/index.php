@@ -360,7 +360,7 @@ span{
 										<?php endif; ?>
 									</div>
 								</div>
-
+								<input type="hidden" id="idaccion">
 								<!-- <div class="row mt-15"> -->
 								<div class="row mt-15">
 									<div class="col-md-12">

@@ -38,6 +38,7 @@
    <!-- <a class="btn btn-primary"   href="<?= base_url()?>index.php/Reporte/get_reporte_desde_sup/?cct=<?= $escuelas[0]->b_cct ?>&turno=<?= $escuelas[0]->b_desc_turno ?>" >Imprimir ruta de mejora</a> -->
    <input type="text" name="cct_tmp" id="cct_tmp" value="<?= $escuelas[0]->b_cct ?>" hidden>
    <input type="text" name="turno_tmp" id="turno_tmp" value="<?= $escuelas[0]->b_desc_turno ?>" hidden>
+   <input type="text" name="turno_tmp_id" id="turno_tmp_id" value="<?= $escuelas[0]->b_turno ?>" hidden>
  </div>
 
  

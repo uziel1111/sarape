@@ -509,7 +509,7 @@ function btnEditar(){
     );
 		return false
 	}else {
-		console.log(obj.id_objetivo);
+		//console.log(obj.id_objetivo);
 		$('#btn_eliminar').addClass("d-none");
 		$('#btn_guardar').removeClass("fa-save");
 		$('#btn_guardar').addClass("fa-edit")
@@ -523,10 +523,11 @@ function btnEditar(){
 	   },
 	 })
 	 .done(function(result) {
+	 	// console.info(result.idobj);
 	 		$("#CAPoutput").empty();
 	 		$("#CAPoutput").val(result.datos['objetivo']);
-	 		$('#update_flag').val(obj.id_objetivo);
-	 		obj.id_objetivo = undefined;
+	 		$('#update_flag').val(result.idobj);
+	 		//obj.id_objetivo = undefined;
 	 		// $("#CAPoutput").append(result.datos);
 	 		// $('#normalidad').attr('hidden', false);
 	 	})
@@ -542,6 +543,8 @@ function btnEditar(){
 }
 
 function btnEliminar(){
+	console.log('idobj ' + obj.id_objetivo);
+	objetivo = obj.id_objetivo;
 	if (obj.id_objetivo == undefined) {
 		swal(
       '¡Error!',
@@ -562,12 +565,14 @@ function btnEliminar(){
 			cancelButtonText: 'Cancelar'
 		})
 		.then((result) => {
+			console.log('idobj2 ' + objetivo);
 			if (result.value) {
+
 				$.ajax({
 					url: base_url+'Rutademejora/btnEliminar',
 					type: 'POST',
 					dataType: 'JSON',
-					data: { id_objetivo: obj.id_objetivo },
+					data: { id_objetivo: objetivo },
 					beforeSend: function(xhr) {
 				        Notification.loading("");
 			    },

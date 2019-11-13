@@ -18,7 +18,10 @@ class Reporte extends CI_Controller {
 	public function Reporte_PEMC(){
 		if(Utilerias::haySesionAbiertacct($this)){
 			$cct = Utilerias::get_cct_sesion($this);
+			// echo "<pre>";print_r($cct);die();
 			$id_cct = $cct[0]['id_cct'];
+			$cve_centro = $cct[0]['cve_centro'];
+			$turno = $cct[0]['id_turno_single'];
 			$str_cct = "CCT: {$cct[0]['cve_centro']}";
 			$str_nombre = "ESCUELA: {$cct[0]['nombre_centro']}";
 
@@ -37,7 +40,7 @@ class Reporte extends CI_Controller {
 			$pdf->AliasNbPages();
 			$pdf->AddPage('L','Legal');
 
-			$rutas = $this->Reportepdf_model->get_rutasxcct($id_cct);
+			$rutas = $this->Reportepdf_model->get_rutasxcct($cve_centro,$turno);
 			$aux_ruta = '';
 			$loque_imprime= '' ;
 			// echo "<pre>";print_r($rutas);die();
@@ -87,7 +90,7 @@ class Reporte extends CI_Controller {
 			$arr_cct = $this->Escuela_model->get_xcvecentro_turnosingle($cvecct, $turno_single);
 			// echo "<pre>";print_r(($arr_cct));die();
 			if (count($arr_cct)==1) {
-				$id_cct = $arr_cct[0]['id_cct'];
+				// $id_cct = $arr_cct[0]['id_cct'];
 				$str_cct = "CCT: {$arr_cct[0]['cve_centro']}";
 				$str_nombre = "ESCUELA: {$arr_cct[0]['nombre_centro']}";
 
@@ -98,7 +101,7 @@ class Reporte extends CI_Controller {
 				$mes_i = $arr_aux[1];
 				$dia_i = $arr_aux[2];
 				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
-				$ciclo =$this->Reportepdf_model->get_ciclo($id_cct);
+				$ciclo =$this->Reportepdf_model->get_ciclo($arr_cct[0]['cve_centro'], $arr_cct[0]['turno']);
 				// echo "<pre>";print_r(count($ciclo));die();
 				if (count($ciclo)==1) {
 					$ciclo = "CICLO:".$ciclo[0]->ciclo.$fecha;
@@ -108,7 +111,7 @@ class Reporte extends CI_Controller {
 					$pdf->AliasNbPages();
 					$pdf->AddPage('L','Legal');
 
-					$rutas = $this->Reportepdf_model->get_rutasxcct($id_cct);
+					$rutas = $this->Reportepdf_model->get_rutasxcct($arr_cct[0]['cve_centro'], $arr_cct[0]['turno']);
 					foreach ($rutas as $ruta) {
 						$id_tprioritario = $ruta['id_tprioritario'];
 						//DATOS

@@ -305,12 +305,14 @@ class Rutademejora extends CI_Controller {
 					$this->cct = Utilerias::get_cct_sesion($this);
 				// echo "<pre>";print_r($_POST);die();
 					$id_cct = $this->cct[0]['id_cct'];
+					$cct = $this->cct[0]['cve_centro'];
+					$turno = $this->cct[0]['id_turno_single'];
 					$misioncct = $this->input->post("misioncct");
-					if ($this->Rutamejora_model->existe_misionxidcct($id_cct,'4')) {
-						$estatus = $this->Rutamejora_model->update_misionxidcct($id_cct,$misioncct,'4');
+					if ($this->Rutamejora_model->existe_misionxidcct($cct, $turno,'4')) {
+						$estatus = $this->Rutamejora_model->update_misionxidcct($cct,$turno,$misioncct,'4');
 					}
 					else {
-						$estatus = $this->Rutamejora_model->insert_misionxidcct($id_cct,$misioncct,'4');
+						$estatus = $this->Rutamejora_model->insert_misionxidcct($cct,$turno,$misioncct,'4');
 					}
 
 					$response = array('estatus' => $estatus);
@@ -325,9 +327,12 @@ class Rutademejora extends CI_Controller {
 				if(Utilerias::haySesionAbiertacct($this)){
 					$this->cct = Utilerias::get_cct_sesion($this);
 					$id_cct = $this->cct[0]['id_cct'];
+					$cct = $this->cct[0]['cve_centro'];
+					$turno = $this->cct[0]['id_turno_single'];
+					// echo"<pre>";print_r($this->cct[0]['cve_centro']);  die();
 					$tam = 0;
 				// $rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
-				$temas_prioritarios = $this->Rutamejora_model->getPrioridades($id_cct); //Verificamos si esa cct ya tiene temas prioritarios
+				$temas_prioritarios = $this->Rutamejora_model->getPrioridades($cct, $turno); //Verificamos si esa cct ya tiene temas prioritarios
 				$tam = count($temas_prioritarios);
 					//echo"<pre>";print_r($tam);  die();
 
@@ -366,8 +371,8 @@ class Rutademejora extends CI_Controller {
 
 				} else {
 						//echo "else";  die();
-					$new_tprioritarios = $this->Rutamejora_model->insertaTprioritarios($id_cct);
-					$temas_prioritarios = $this->Rutamejora_model->getPrioridades($id_cct);
+					$new_tprioritarios = $this->Rutamejora_model->insertaTprioritarios($cct, $turno);
+					$temas_prioritarios = $this->Rutamejora_model->getPrioridades($cct, $turno);
 
 					$tabla = "<div class='table-responsive text-center' >
 					<table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
@@ -927,17 +932,19 @@ class Rutademejora extends CI_Controller {
 
 			public function set_avance(){
 				if(Utilerias::haySesionAbiertacct($this)){
+					$this->cct = Utilerias::get_cct_sesion($this);
+					
 					$val_slc = $this->input->post('val_slc');
 					$var_id_cte = $this->input->post('var_id_cte');
 					$var_id_cct = $this->input->post('var_id_cct');
 					$var_id_idtp = $this->input->post('var_id_idtp');
 					$var_id_idacc = $this->input->post('var_id_idacc');
 
-					$exite_enavance = $this->Rutamejora_model->existe_avance($var_id_cct,$var_id_idtp,$var_id_idacc);
+					$exite_enavance = $this->Rutamejora_model->existe_avance($this->cct[0]['cve_centro'], $this->cct[0]['id_turno_single'],$var_id_idtp,$var_id_idacc);
 					if (!$exite_enavance) {
-						$estatusinsert = $this->Rutamejora_model->insert_avance($var_id_cct,$var_id_idtp,$var_id_idacc);
+						$estatusinsert = $this->Rutamejora_model->insert_avance($this->cct[0]['cve_centro'], $this->cct[0]['id_turno_single'],$var_id_idtp,$var_id_idacc);
 					}
-					$estatus = $this->Rutamejora_model->update_avance_xcte($val_slc,$var_id_cte,$var_id_cct,$var_id_idtp,$var_id_idacc);
+					$estatus = $this->Rutamejora_model->update_avance_xcte($val_slc,$var_id_cte,$this->cct[0]['cve_centro'], $this->cct[0]['id_turno_single'],$var_id_idtp,$var_id_idacc);
 
 					$response = array('estatus' => $estatus);
 					Utilerias::enviaDataJson(200, $response, $this);
@@ -966,6 +973,7 @@ class Rutademejora extends CI_Controller {
 					$this->cct = Utilerias::get_cct_sesion($this);
 					$id_cct_sup = $this->input->post('x');
 					$cve_centro = $this->input->post('cve_centro');
+					$turno = $this->input->post('turno');
 					
 					// echo "<pre>";
 					// print_r($this->cct);
@@ -973,16 +981,16 @@ class Rutademejora extends CI_Controller {
 					$data2 = array();
 					if (isset($_POST['cve_centro'])) {	
 				// echo "<pre>";print_r('si existe');die();		
-					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct_super($cve_centro);
+					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct_super($cve_centro,$turno);
 					}else{
 						// echo "<pre>";print_r('no existe');die();
-					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['id_cct']);
+					$arr_avances = $this->Rutamejora_model->get_avances_tp_accionxcct($this->cct[0]['cve_centro'], $this->cct[0]['id_turno_single']);
 					}
 				// echo "<pre>";print_r($arr_avances);die();
 					$data2['arr_avances'] = $arr_avances;
 					$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
 					$data2['arr_avances_fechas'] = $arr_avances_fechas;
-				// echo "<pre>";print_r($data2);die();
+				// echo "<pre>";print_r($arr_avances);die();
 				// explode(" ", $pizza);
 					$varaux_temp = explode("_", array_search('TRUE', $arr_avances_fechas[0]));
 					// echo "<pre>"; print_r($varaux_temp); die();
@@ -1032,15 +1040,15 @@ class Rutademejora extends CI_Controller {
 
 			public function retorna_icono($porcentaje){
 				if($porcentaje == 0){
-					return "0.png";
+					return "R0.png";
 				}else if($porcentaje == 10 || $porcentaje == 20 || $porcentaje == 30){
-					return "1.png";
+					return "R1.png";
 				}else if($porcentaje == 40 || $porcentaje == 50 || $porcentaje == 60 || $porcentaje == 70){
-					return "2.png";
+					return "Y2.png";
 				}else if($porcentaje == 80 || $porcentaje == 90){
-					return "3.png";
+					return "G3.png";
 				}else if($porcentaje == 100){
-					return "4.png";
+					return "G4.png";
 				}
 			}
 
@@ -1120,12 +1128,12 @@ class Rutademejora extends CI_Controller {
 					$data['nivel'] = $this->cct[0]['zona_escolar'];
 					$data['turno'] = "";
 					$data['cct'] = $this->cct[0]['cve_centro'];
-					// $data['escuelas'] = $escuelas->Escuelas;
+					$data['escuelas'] = $escuelas->Escuelas;
 
-					// $this->session->set_userdata('escuela_supervisor', $escuelas->Escuelas);
+					$this->session->set_userdata('escuela_supervisor', $escuelas->Escuelas);
 	// echo "<pre>";print_r($escuelas->Escuelas[0]->b_cct);die();
-					// Utilerias::pagina_basica_rm($this, "ruta/supervisor/index", $data);
-					Utilerias::pagina_basica_rm($this, "ruta/supervisor/error_trabajando", $data);
+					Utilerias::pagina_basica_rm($this, "ruta/supervisor/index", $data);
+					// Utilerias::pagina_basica_rm($this, "ruta/supervisor/error_trabajando", $data);
 				}
 
 				public function graficas_supervisor()
@@ -1173,18 +1181,19 @@ class Rutademejora extends CI_Controller {
 						$idturno = 8;
 					}
 					$datos_cct = $this->Rutamejora_model->getdatoscct($cct, $idturno);
+	// 				$datos = $datos_cct[0];
 	// echo "<pre>";
-	// print_r($datos_cct[0]['id_cct']);
+	// print_r($datos_cct);
 	// die();
-					$tabla_rutas = $this->get_table_rutas($datos_cct[0]['id_cct']);
+					$tabla_rutas = $this->get_table_rutas($datos_cct[0]['cve_centro'],$idturno);
 
 					$response = array('tabla' => $tabla_rutas, 'cct_escuela' => $cct);
 					Utilerias::enviaDataJson(200, $response, $this);
 					exit;
 				}
 
-				public function get_table_rutas($idcct){
-					$rutas = $this->Rutamejora_model->getrutasxcct($idcct);
+				public function get_table_rutas($idcct, $turno){
+					$rutas = $this->Rutamejora_model->getrutasxcct($idcct, $turno);
 
 					$tabla = "<div class='table-responsive'>
 					<table id='id_tabla_rutas_super' class='table table-condensed table-hover  table-bordered'>
@@ -1417,7 +1426,7 @@ class Rutademejora extends CI_Controller {
 					$data['responsables'] = $options;
 
 
-					$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
+					$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['cve_centro'],$this->cct[0]['id_turno_single'],'4');
 					$data['mision'] = $mision;
 					$result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->cct[0]['nivel']);
 		 //echo "<pre>";print_r($result_prioridades);die();
@@ -1487,7 +1496,7 @@ class Rutademejora extends CI_Controller {
 		$data = array();
 		$this->cct = Utilerias::get_cct_sesion($this);
 		$id_cct = $this->cct[0]['id_cct'];
-		$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
+		$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['cve_centro'], $this->cct[0]['id_turno_single'],'4');
 		$data['mision'] = $mision;
 
 		$strView = $this->load->view("ruta/modals_new/modal_ruta", $data, TRUE);
@@ -1502,7 +1511,7 @@ class Rutademejora extends CI_Controller {
 		$data = array();
 		$this->cct = Utilerias::get_cct_sesion($this);
 
-		$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['id_cct'],'4');
+		$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['cve_centro'],$this->cct[0]['id_turno_single'],'4');
 		$data['mision'] = $mision;
 
 		$strView = $this->load->view("ruta/modals_new/modal_mision", $data, TRUE);
@@ -1633,20 +1642,22 @@ class Rutademejora extends CI_Controller {
 		$idprioridad = $this->input->post('id_prioridad');
 		$tipou_pemc = $this->input->post('tipou_pemc');
 		$cve_centro = $this->input->post('cve');
+		$turno_sup = $this->input->post('turno');
 		// echo "<pre>";print_r($_POST);die();
 
 		$encabezado = $this->Rutamejora_model->get_problematica_ambito_ids($id_tprioritario);
 
 		$orden = 0;
 		if (isset($_POST['cve'])) {
-			$datos = $this->Rutamejora_model->getObjetivosSuper($cve_centro, $id_tprioritario);
+			$datos = $this->Rutamejora_model->getObjetivosSuper($cve_centro,$turno_sup, $id_tprioritario);
 		}else{
-			$id_cct = $this->cct[0]['id_cct'];
-		$datos = $this->Rutamejora_model->getObjetivos($id_cct, $id_tprioritario, $idprioridad);
+			$cct = $this->cct[0]['cve_centro'];
+			$turno = $this->cct[0]['id_turno_single'];
+		$datos = $this->Rutamejora_model->getObjetivos($cct, $turno, $id_tprioritario, $idprioridad);
 		}
 		// echo "<pre>";print_r($datos);die();
 		$idobjetivo = 0;
-		if($datos[0]['id_objetivo'] == NULL){
+		if(!isset($datos[0]) || $datos[0]['id_objetivo'] == NULL){
 			// echo 'if'; die();
 			$tabla = "<table id='metas_objetivos' class='table table-condensed table-hover table-light table-bordered'>
 			<thead>
@@ -1958,9 +1969,9 @@ class Rutademejora extends CI_Controller {
 
 		$datos_aux = $this->Rutamejora_model->getObjetivo($id_objetivo);
 		$datos = $datos_aux[0];
-// echo "<pre>";print_r($datos); die();
+		$idobj = $id_objetivo;
 
-		$response = array('datos' => $datos);
+		$response = array('datos' => $datos, 'idobj' => $idobj);
 
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;

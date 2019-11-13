@@ -54,13 +54,14 @@ $('#cerrar_modal_graficas_super').click(function() {
 
 $("#btn_seguimiento_modal").click(function(){
     cve = $("#cct_tmp").val();
+    turno = $("#turno_tmp_id").val();
      tipou_pemc_avances=1;
 
   $.ajax({
     url: base_url+'Rutademejora/get_avance',
     type: 'POST',
     dataType: 'JSON',
-    data: {'x':'x','tipou_pemc_avances':tipou_pemc_avances, 'cve_centro':cve},
+    data: {'x':'x','tipou_pemc_avances':tipou_pemc_avances, 'cve_centro':cve, 'turno':turno},
     beforeSend: function(xhr) {
       Notification.loading("");
     },
@@ -81,6 +82,7 @@ $('#cerrar_modal_seguimiento_super').click(function() {
 
 $('#btn_ver_objetivos_super').click(function() {
    cve = $("#cct_tmp").val();
+   turno = $('#turno_tmp_id').val();
   if (id_tprioritario_sup === undefined || id_tprioritario_sup == 0) {
     swal(
         '¡Error!',
@@ -97,6 +99,7 @@ $('#btn_ver_objetivos_super').click(function() {
           id_tpriotario:id_tprioritario_sup,
           id_prioridad: 1,
           tipou_pemc:1,
+          turno: turno,
       },
       beforeSend: function(xhr) {
             Notification.loading("");

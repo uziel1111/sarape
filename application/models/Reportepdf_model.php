@@ -5,7 +5,7 @@ class Reportepdf_model extends CI_Model
         parent::__construct();
     }
 
-    function get_rutasxcct($idcct){
+    function get_rutasxcct($cct, $turno){
       $charaux='\n';
       $str_query = "SELECT
       	rtp.id_cct,
@@ -24,7 +24,7 @@ class Reportepdf_model extends CI_Model
       INNER JOIN rm_c_prioridad p ON p.id_prioridad = rtp.id_prioridad
       LEFT JOIN rm_c_subprioridad s ON rtp.id_subprioridad=s.id_subprioridad
       LEFT JOIN rm_objetivo o ON rtp.id_tprioritario=o.id_tprioritario
-      WHERE rtp.id_cct = {$idcct}
+      WHERE rtp.cct = '{$cct}' AND rtp.turno = {$turno}
       ORDER BY orden ASC";
 // echo $str_query; die();
       return $this->db->query($str_query)->result_array();
@@ -90,10 +90,10 @@ WHERE
         return $this->db->query($str_query)->result_array();
     }
 
-    function get_ciclo($id_cct){
+    function get_ciclo($cct, $turno){
       $str_query = "SELECT c.ciclo FROM rm_misionxcct mxcct
                     INNER JOIN ciclo c ON c.id_ciclo = mxcct.id_ciclo
-                    WHERE id_cct = {$id_cct}";
+                    WHERE cct = '{$cct}' AND turno = {$turno}";
       return $this->db->query($str_query)->result();
     }
 }// Rutamejora_model

@@ -76,7 +76,7 @@ $("#id_btn_elimina_accion").click(function(){
 });
 
 $("#id_btn_edita_accion").click(function() {
-  if(Rm_acciones_tp.id_accion_select === undefined){
+  if(Rm_acciones_tp.id_accion_select == undefined){
     swal(
       '¡Error!',
       "Favor de seleccionar una acción para editar ",
@@ -89,8 +89,7 @@ $("#id_btn_edita_accion").click(function() {
 
 $("#btn_editando_accion").click(function(){
  if (obj_rm_acciones_tp.validaform(0)) {
-
-  obj_rm_acciones_tp.editar_accion()
+    obj_rm_acciones_tp.editar_accion()
 } else{
 
 // console.log(obj_rm_acciones_tp.validaform(0) + "else");
@@ -253,15 +252,16 @@ Rm_acciones_tp.prototype.editar_accion = function(){
    var medicion = $("#txt_rm_indimed").val();
    var id_objetivo = $("#id_objetivos").val();
   // var responsable = $('#main_responsable').val()
+   var id_accion = $('#idaccion').val();
 
-  // alert(responsable)
+  // alert( $('#idaccion').val());
   // return false
 
   $.ajax({
    url:base_url+"rutademejora/save_accion",
    method:"POST",
    data:{
-     "id_accion": Rm_acciones_tp.id_accion_select, "accion":accion, "materiales":materiales,
+     "id_accion": id_accion, "accion":accion, "materiales":materiales,
      "ids_responsables":encargados, "finicio":finicio, "ffin":ffin, "medicion":medicion,
      'id_tprioritario': obj.id_tprioritario,
      'otroresp': $("#otro_responsable").val(),
@@ -282,6 +282,7 @@ Rm_acciones_tp.prototype.editar_accion = function(){
              // $('#id_objetivos').removeAttr('disabled');
 
              $('#id_objetivos').attr('disabled', false);
+             $('#idaccion').val('');
 
            },
            error: function(error){
@@ -296,6 +297,7 @@ Rm_acciones_tp.prototype.iniciatabla = function(){
    var value=$(this).find('td:first').text();
      // alert(value);
      Rm_acciones_tp.id_accion_select = value;
+     $('#idaccion').val(value);
      // alert(Rm_acciones_tp.id_accion_select);
    });
 }

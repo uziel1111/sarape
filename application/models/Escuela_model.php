@@ -73,16 +73,21 @@ class Escuela_model extends CI_Model
     }// get_xcentro()
 
     function get_xcvecentro_turnosingle($cve_centro, $turno_single){
-      $this->db->select('es.id_cct, es.cve_centro, es.nombre_centro');
+      /*$this->db->select('es.id_cct, es.cve_centro, es.nombre_centro');
       $this->db->from('escuela as es');
-      $this->db->join('turno_single as tu', 'es.id_turno_single = tu.id_turno_single');
-
-      $this->db->where('es.cve_centro =',$cve_centro);
-      $this->db->where('tu.turno_single =',$turno_single);
-      // $this->db->get();
-      // $str = $this->db->last_query();
+      $this->db->where('es.cct =',$cve_centro);
+      $this->db->where('tu.turno =',$turno_single);
+      $this->db->get();
+      $str = $this->db->last_query();*/
+      $str_query = "SELECT 
+      es.cct as cve_centro, es.nombre as nombre_centro, es.turno
+      FROM
+      centros_educativos.vista_cct AS es
+      WHERE
+      es.cct = '{$cve_centro}'
+      AND es.turno like '%{$turno_single}%'";
       // echo $str; die();
-      return  $this->db->get()->result_array();
+      return $this->db->query($str_query)->result_array();
     }// get_xcvecentro_turnosingle()
 
 
