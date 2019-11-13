@@ -5,13 +5,6 @@
   <div class="pb-1 pt-1 card-body">
     <div><?=$buscador;?> </div>
     <div id="title_bsq_est" class="card-header card-1-header bg-light"></div>
-  <!-- <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-      <center>
-        <button type="button" class="btn btn-warning btn-style-1 color-6 flex-center" name="button"><?= anchor('Estadistica/estad_indi_generales', 'Regrese a la búsqueda', 'class="link-class"') ?></button>
-      </center>
-    </div>
-  </div> -->
   <div class="dv_filtro">
   <div class="row">
 

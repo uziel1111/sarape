@@ -3,6 +3,8 @@ class Planeaxesc_reactivo_model extends CI_Model
 {
     function __construct(){
         parent::__construct();
+        $this->load->database();
+        $this->ce_db = $this->load->database('ce_db', TRUE);
     }
 
 
@@ -146,9 +148,9 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                           SELECT *, SUM(n_aciertos) AS total, SUM(n_almn_eval) AS alumnos_evaluados FROM (SELECT t3.id_contenido, t3.`contenido` AS contenidos,
                           GROUP_CONCAT(t2.n_reactivo) AS reactivos, COUNT(t3.id_contenido) AS total_reac_xua, t1.n_aciertos, t1.n_almn_eval
                           FROM municipio m
-                          INNER JOIN escuela e ON e.id_municipio = m.id_municipio
-                          INNER JOIN nivel n ON n.id_nivel = e.id_nivel
-                          INNER JOIN planeaxesc_reactivo t1 ON t1.`id_ct` = e.`id_cct`
+                          INNER JOIN vista_cct e ON e.municipio = m.id_municipio
+                          INNER JOIN nivel n ON n.id_nivel = e.nivel_educativo
+                          INNER JOIN planeaxesc_reactivo t1 ON t1.cct = e.cct
                           JOIN `planea_reactivo` `t2` ON `t1`.`id_reactivo`=`t2`.`id_reactivo`
                           JOIN `planea_contenido` `t3` ON `t2`.`id_contenido`= `t3`.`id_contenido`
                           JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
@@ -218,9 +220,9 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       		COUNT(DISTINCT t7.id_propuesta)
       	) AS n_prop
         FROM municipio m
-        INNER JOIN escuela e ON e.id_municipio = m.id_municipio
-        INNER JOIN nivel n ON n.id_nivel = e.id_nivel
-        INNER JOIN planeaxesc_reactivo t1 ON t1.`id_ct` = e.`id_cct`
+        INNER JOIN vista_cct e ON e.municipio = m.id_municipio
+        INNER JOIN nivel n ON n.id_nivel = e.nivel_educativo
+        INNER JOIN planeaxesc_reactivo t1 ON t1.cct = e.cct
         JOIN `planea_reactivo` `t2` ON `t1`.`id_reactivo`=`t2`.`id_reactivo`
         JOIN `planea_contenido` `t3` ON `t2`.`id_contenido`= `t3`.`id_contenido`
         JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
@@ -280,23 +282,94 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
 
     }// get_reactivos_xcctxcont()
 
-     function zonaxnivel($nivel, $idsubsostenimiento){
-      $str_query = "SELECT s.zona_escolar, s.id_supervision FROM escuela e
-                    INNER JOIN supervision s ON e.id_supervision = s.id_supervision
-                    WHERE e.id_nivel = {$nivel} AND e.id_subsostenimiento = {$idsubsostenimiento}
-                    GROUP BY s.id_supervision
-                    ORDER BY s.zona_escolar
-                    ";
-                    // echo $str_query; die();
-      return $this->db->query($str_query)->result_array();
-     }
+    function zonaxnivel($nivel, $idsubsostenimiento){
+      // $str_query = "SELECT s.zona_escolar, s.id_supervision FROM escuela e
+      //               INNER JOIN supervision s ON e.id_supervision = s.id_supervision
+      //               WHERE e.id_nivel = {$nivel} AND e.id_subsostenimiento = {$idsubsostenimiento}
+      //               GROUP BY s.id_supervision
+      //               ORDER BY s.zona_escolar
+      //               ";
+      //               // echo $str_query; die();
+      // return $this->db->query($str_query)->result_array();
+      $auxiliar="";
+      if($idsubsostenimiento==1){
+        $auxiliar= " AND sostenimiento in(22,44)";
+      }else if($idsubsostenimiento==2){
+        $auxiliar= " AND sostenimiento in(01,21,26,27,29,30)";
+      }else if($idsubsostenimiento==3){
+        $auxiliar= " AND sostenimiento in(11,24,31,15,16,70,86,77)";
+      }else if($idsubsostenimiento==4){
+        $auxiliar= " AND sostenimiento in(43,17,92,93,48,41)";
+      }else if($idsubsostenimiento==5){
+        $auxiliar= " AND sostenimiento in(51)";
+      }
+
+      $query="SELECT cct as id_supervision,zona_escolar
+              FROM vista_cct
+              WHERE (`status`= 1 OR `status` = 4) 
+              AND tipo_centro=1 
+                -- AND desc_nivel_educativo LIKE '%{$nivel}%'
+              {$auxiliar} ";
+      // echo $query;
+      // die();
+      return $this->ce_db->query($query)->result_array();
+    }
 
      function subsostenimientoxnivel($nivel){
-      $str_query = "SELECT s.id_subsostenimiento, s.subsostenimiento FROM escuela e
-                  INNER JOIN subsostenimiento s ON e.id_subsostenimiento = s.id_subsostenimiento
-                  WHERE e.id_nivel = {$nivel}
-                  GROUP BY s.id_subsostenimiento";
-      return $this->db->query($str_query)->result_array();
+      // $str_query = "SELECT s.id_subsostenimiento, s.subsostenimiento FROM escuela e
+      //             INNER JOIN subsostenimiento s ON e.id_subsostenimiento = s.id_subsostenimiento
+      //             WHERE e.id_nivel = {$nivel}
+      //             GROUP BY s.id_subsostenimiento";
+      $str_query = "SELECT a.subsostenimiento,
+                        CASE  WHEN a.subsostenimiento='MUNICIPAL' THEN '1'
+                              WHEN a.subsostenimiento='ESTATAL' THEN '2'
+                              WHEN a.subsostenimiento='FEDERAL' THEN '3'
+                              WHEN a.subsostenimiento='PARTICULAR' THEN '4'
+                              WHEN a.subsostenimiento='AUTONOMO' THEN '5' 
+                        END
+                          as id_subsostenimiento FROM (
+                      SELECT 
+                        CASE  WHEN (sostenimiento=11) OR (sostenimiento=24) OR 
+                         (sostenimiento=31) OR (sostenimiento=15) OR
+                         (sostenimiento=16) OR (sostenimiento=70) OR
+                         (sostenimiento=86) OR (sostenimiento=77)
+                          THEN 'FEDERAL'
+                        WHEN (sostenimiento=21) OR (sostenimiento=01) OR 
+                          (sostenimiento=29) OR (sostenimiento=30) OR
+                          (sostenimiento=26) OR (sostenimiento=27)  
+                          THEN 'ESTATAL'
+                        WHEN (sostenimiento=22) OR (sostenimiento=44) 
+                          THEN 'MUNICIPAL'
+                        WHEN (sostenimiento=43) OR (sostenimiento=17) OR 
+                          (sostenimiento=92) OR (sostenimiento=93) OR
+                          (sostenimiento=48) OR (sostenimiento=41)  
+                          THEN 'PARTICULAR'
+                        WHEN sostenimiento=51 THEN 'AUTONOMO'
+                          END AS subsostenimiento
+                      FROM vista_cct 
+                      WHERE (`status`= 1 OR `status` = 4) AND tipo_centro=9 AND desc_nivel_educativo LIKE '%{$nivel}%'
+                      GROUP BY 
+                        ( CASE  WHEN (sostenimiento=11) OR (sostenimiento=24) OR 
+                           (sostenimiento=31) OR (sostenimiento=15) OR
+                           (sostenimiento=16) OR (sostenimiento=70) OR
+                           (sostenimiento=86) OR (sostenimiento=77)
+                          THEN 'FEDERAL'
+                          WHEN (sostenimiento=21) OR (sostenimiento=01) OR 
+                            (sostenimiento=29) OR (sostenimiento=30) OR
+                            (sostenimiento=26) OR (sostenimiento=27)  
+                          THEN 'ESTATAL'
+                          WHEN (sostenimiento=22) OR (sostenimiento=44) 
+                          THEN 'MUNICIPAL'
+                          WHEN (sostenimiento=43) OR (sostenimiento=17) OR 
+                          (sostenimiento=92) OR (sostenimiento=93) OR
+                          (sostenimiento=48) OR (sostenimiento=41)  
+                          THEN 'PARTICULAR'
+                          WHEN sostenimiento=51 THEN 'AUTONOMO'
+                          END
+                        ) 
+                    ) AS a WHERE a.subsostenimiento IS NOT NULL  ORDER BY FIELD(a.subsostenimiento,'MUNICIPAL','ESTATAL','FEDERAL','PARTICULAR','AUTONOMO')";
+                  
+      return $this->ce_db->query($str_query)->result_array();
      }
 
 }// Planeaxesc_reactivo_model

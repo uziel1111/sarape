@@ -55,30 +55,58 @@ class Ciclo_model extends CI_Model
 
     }// getciclo_xidmun_idnivel_xsost
 
-    function getciclo_idnivel_xsost_xzona($id_nivel, $id_subsost, $id_zona){
-      $this->db->select('ci.id_ciclo, ci.ciclo');
-      $this->db->from('ciclo ci');
-      $this->db->join('estadistica_e_indicadores_xcct as est ',' ci.id_ciclo = est.id_ciclo');
-      $this->db->join('escuela as es','est.id_cct = es.id_cct');
-      $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
-      $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
-      if($id_nivel>0){
-        $this->db->where('ni.id_nivel', $id_nivel);
+    function getciclo_idnivel_xsost_xzona($nivel, $sostenimiento, $id_zona){
+      // $this->db->select('ci.id_ciclo, ci.ciclo');
+      // $this->db->from('ciclo ci');
+      // $this->db->join('estadistica_e_indicadores_xcct as est ',' ci.id_ciclo = est.id_ciclo');
+      // $this->db->join('escuela as es','est.id_cct = es.id_cct');
+      // $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
+      // $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
+      $filtro_nivel_sos = "";
+      $filtro = "";
+      if($nivel== 'PREESCOLAR'){
+        $filtro_nivel_sos .= " AND v.desc_nivel_educativo LIKE '%PREESCOLAR%'";
+      }else if($nivel=="PRIMARIA"){
+        $filtro_nivel_sos .= " AND v.desc_nivel_educativo LIKE '%PRIMARIA%'";
+      }else if($nivel== "SECUNDARIA"){
+        $filtro_nivel_sos .= " AND v.desc_nivel_educativo LIKE '%SECUNDARIA%'";
       }
-      if($id_subsost>0){
-        $this->db->where('sso.id_subsostenimiento', $id_subsost);
+      
+      if($sostenimiento=="PRIVADO"){
+          $filtro_nivel_sos .= " AND v.sostenimiento IN ('61','41','92','96')";
+      }else if($sostenimiento=="AUTONOMO"){
+          $filtro_nivel_sos .= " AND v.sostenimiento IN  ('51')";
+      }else if($sostenimiento== "PUBLICO"){
+          $filtro_nivel_sos .= " AND v.sostenimiento NOT IN('61','41','92','96','51')";
       }
-      if($id_zona>0){
-        $this->db->where('es.id_supervision', $id_zona);
+
+      $filtro_zona = "";
+      if($id_zona!=''){
+          $filtro_zona .= " AND supervisiones.cct = '{$id_zona}'";
       }
-      $this->db->where('ci.id_ciclo', 4);
-      $this->db->group_by(" ci.id_ciclo");
+      // $this->db->where('ci.id_ciclo', 4);
+      // $this->db->group_by(" ci.id_ciclo");
 
       // $this->db->get();
       // $str = $this->db->last_query();
       // echo $str; die();
-      return  $this->db->get()->result_array();
-
+      
+      $query = "SELECT ci.id_ciclo, ci.ciclo 
+                FROM sarape.ciclo ci 
+                INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON  ci.id_ciclo = est.id_ciclo
+                INNER JOIN vista_cct AS v ON v.cct = est.cct 
+                AND (v.status = 1 OR v.status = 4) AND v.tipo_centro= 9
+                {$filtro_nivel_sos}
+                INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo, 
+                            SUBSTRING(cct, 3, 3) AS tipo
+                        FROM vista_cct cct
+                        WHERE (status = 1 OR status = 4) AND tipo_centro = 1
+                ) AS supervisiones ON v.zona_escolar = supervisiones.zona_escolar
+                AND v.sostenimiento = supervisiones.sostenimiento
+                {$filtro} {$filtro_zona}
+                WHERE ci.id_ciclo=4
+                GROUP BY ci.id_ciclo";
+      return  $this->db->query($query)->result_array();
     }// getciclo_idnivel_xsost_xzona
 
 

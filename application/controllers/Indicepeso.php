@@ -11,6 +11,7 @@ class Indicepeso extends CI_Controller {
 			$this->load->model('Sostenimiento_model');
 			$this->load->model('Ciclo_model');
 			$this->load->model('Escuela_model');
+			$this->load->model('CentrosE_model');
 		}
 
 		public function index(){

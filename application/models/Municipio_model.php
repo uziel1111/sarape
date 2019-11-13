@@ -10,12 +10,18 @@ class Municipio_model extends CI_Model
     }// all()
 
     function getall_xest_ind(){
-      $this->db->select('mu.id_municipio, mu.municipio');
-      $this->db->from('municipio mu');
-      $this->db->join('escuela as es', 'mu.id_municipio = es.id_municipio');
-      $this->db->join('estadistica_e_indicadores_xcct as  est', 'es.id_cct = est.id_cct');
-      $this->db->group_by('mu.id_municipio');
-      return  $this->db->get()->result_array();
+      // $this->db->select('mu.id_municipio, mu.municipio');
+      // $this->db->from('municipio mu');
+      // $this->db->join('escuela as es', 'mu.id_municipio = es.id_municipio');
+      // $this->db->join('estadistica_e_indicadores_xcct as  est', 'es.id_cct = est.id_cct');
+      // $this->db->group_by('mu.id_municipio');
+
+      $query="SELECT mu.id_municipio,mu.municipio 
+                from municipio mu 
+              INNER JOIN vista_cct v on v.municipio=mu.id_municipio
+              INNER JOIN estadistica_e_indicadores_xcct es on es.cct=v.cct
+              group by mu.id_municipio";
+      return  $this->db->query($query)->result_array();
     }// getall_xest_ind()
 
     function get_muncipio($id_municipio){

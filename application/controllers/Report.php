@@ -209,7 +209,7 @@ class Report extends CI_Controller {
 				$id_sostenimiento = $this->input->post('id_sostenimiento');
 				$id_modalidad = $this->input->post('id_modalidad');
 				$id_ciclo = $this->input->post('id_ciclo');
-
+				$nivel=$this->Nivel_model->get_nivel($id_nivel);
 				$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xmunciclo($id_municipio, $id_ciclo);
 				$result_docentes = $this->Estadistica_e_indicadores_xcct_model->get_pdocente_xmunciclo($id_municipio, $id_ciclo);
 				$result_infraest = $this->Estadistica_e_indicadores_xcct_model->get_infraest_xmunciclo($id_municipio, $id_ciclo);
@@ -236,7 +236,7 @@ class Report extends CI_Controller {
 				// echo "<pre>";print_r($result_analfinegi); die();
 				$obj_excel = new PHPExcel();
 				$obj_excel->getActiveSheet()->SetCellValue('A1', 'Estadística e indicadores educativos generales');
-				$obj_excel->getActiveSheet()->SetCellValue('A2', 'Municipio: '.$this->Municipio_model->get_muncipio($id_municipio).', Nivel: '.$this->Nivel_model->get_nivel($id_nivel).', Sostenimiento: '.$this->Sostenimiento_model->get_sostenimiento($id_sostenimiento).', Modalidad: '.$this->Modalidad_model->get_modalidad($id_modalidad).', Ciclo escolar: '.$this->Ciclo_model->get_ciclo($id_ciclo).'');
+				$obj_excel->getActiveSheet()->SetCellValue('A2', 'Municipio: '.$this->Municipio_model->get_muncipio($id_municipio).', Nivel: '.$this->Nivel_model->get_nivel($id_nivel).', Sostenimiento: '.$this->Sostenimiento_model->get_sostenimiento($id_sostenimiento).', Modalidad: '.$this->Modalidad_model->get_modalidad($id_modalidad,$nivel).', Ciclo escolar: '.$this->Ciclo_model->get_ciclo($id_ciclo).'');
 				$obj_excel->getActiveSheet()->SetCellValue('A3', 'Alumnos');
 				$obj_excel->getActiveSheet()->SetCellValue('A4', 'Nivel educativo');
 				$obj_excel->getActiveSheet()->SetCellValue('B4', 'Sostenimiento');

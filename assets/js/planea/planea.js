@@ -204,7 +204,7 @@ const Planea = {
 			url: base_url+'planea/get_zonaxnivel',
 			type: 'POST',
 			dataType: 'JSON',
-			data: {nivel: $("#slt_nivel_planeaxz").val(), idsubsostenimiento: $("#slt_subsostenimiento_planeaxz").val()},
+			data: {nivel: $("#slt_nivel_planeaxz").val(),nombre_nivel:$("#slt_nivel_planeaxz option:selected").text(), idsubsostenimiento: $("#slt_subsostenimiento_planeaxz").val()},
 			beforeSend: function(xhr) {
 						Notification.loading("");
 		    },
@@ -229,7 +229,7 @@ const Planea = {
 			url: base_url+'planea/get_subsostenimientoxnivel',
 			type: 'POST',
 			dataType: 'JSON',
-			data: {nivel: $("#slt_nivel_planeaxz").val()},
+			data: {nivel: $("#slt_nivel_planeaxz").val(),nombre_nivel:$("#slt_nivel_planeaxz option:selected").text()},
 			beforeSend: function(xhr) {
 						Notification.loading("");
 		    },
