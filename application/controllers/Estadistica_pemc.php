@@ -400,10 +400,10 @@ function getTablaZona()
    $zonaPost = $this->input->post('zona');
    $nivel = $this->input->post('nivel');
 
+   // echo '<pre>'; print_r($nivel); die();
    $zonas= $this->Estadistica_pemc_model->get_zonas($sostenimiento, $nivel);
 
    $porcentajeZona = $this->Estadistica_pemc_model->get_porcent_zonas($sostenimiento, $zonaPost, $nivel);
-   // echo '<pre>'; print_r($zonas); die();
 
 
    $data['zonas'] = $zonas;

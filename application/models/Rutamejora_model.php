@@ -754,7 +754,7 @@ function getObjetivosSuper($id_cct, $turno ,$id_tprioritario){
   return $this->db->query($str_query)->result_array();
 }
 
-function grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir){
+function grabarTema($cct, $turno,$id_tprioritario, $problematica, $evidencia, $comentario_dir){
   $date = date("Y-m-d");
 
       //Iniciar transaccion
@@ -768,7 +768,8 @@ function grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comen
 
       // echo "<pre>";print_r($datos);die();
   $this->db->where('id_tprioritario', $id_tprioritario);
-  $this->db->where('id_cct', $id_cct);
+  $this->db->where('cct', $cct);
+  $this->db->where('turno', $turno);
   $this->db->update('rm_tema_prioritarioxcct', $datos);
       // $id_insertado_tmp = $this->db->insert_id();
 

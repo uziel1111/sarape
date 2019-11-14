@@ -10,7 +10,7 @@ class Escuela_model extends CI_Model
     }
 
     function get_xparams($id_municipio,$id_nivel,$id_sostenimiento,$nombre_escuela){
-      $this->db->select('es.id_cct, es.cve_centro, tu.turno_single, es.nombre_centro,ni.nivel,sso.subsostenimiento, mo.modalidad,mu.municipio,loc.localidad,es.domicilio, es.latitud, es.longitud, es.id_nivel, s.zona_escolar, so.sostenimiento');
+      /*$this->db->select('es.id_cct, es.cve_centro, tu.turno_single, es.nombre_centro,ni.nivel,sso.subsostenimiento, mo.modalidad,mu.municipio,loc.localidad,es.domicilio, es.latitud, es.longitud, es.id_nivel, s.zona_escolar, so.sostenimiento');
       $this->db->from('escuela as es');
       $this->db->join('turno_single as tu', 'es.id_turno_single = tu.id_turno_single');
       $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
@@ -43,7 +43,7 @@ class Escuela_model extends CI_Model
       // $this->db->get();
       // $str = $this->db->last_query();
       // echo $str; die();
-      return  $this->db->get()->result_array();
+      return  $this->db->get()->result_array();*/
     }// get_xparams()
 
 
@@ -88,6 +88,8 @@ class Escuela_model extends CI_Model
       AND es.turno like '%{$turno_single}%'";
       // echo $str; die();
       return $this->ce_db->query($str_query)->result_array();
+
+     
     }// get_xcvecentro_turnosingle()
 
 
