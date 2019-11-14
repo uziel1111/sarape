@@ -94,6 +94,7 @@ WHERE
       $str_query = "SELECT c.ciclo FROM rm_misionxcct mxcct
                     INNER JOIN ciclo c ON c.id_ciclo = mxcct.id_ciclo
                     WHERE cct = '{$cct}' AND turno = {$turno}";
+      // echo $str_query; die();
       return $this->db->query($str_query)->result();
     }
 }// Rutamejora_model

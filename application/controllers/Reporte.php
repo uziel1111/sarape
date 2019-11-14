@@ -19,7 +19,7 @@ class Reporte extends CI_Controller {
 		if(Utilerias::haySesionAbiertacct($this)){
 			$cct = Utilerias::get_cct_sesion($this);
 			// echo "<pre>";print_r($cct);die();
-			$id_cct = $cct[0]['id_cct'];
+			//$id_cct = $cct[0]['id_cct'];
 			$cve_centro = $cct[0]['cve_centro'];
 			$turno = $cct[0]['id_turno_single'];
 			$str_cct = "CCT: {$cct[0]['cve_centro']}";
@@ -32,7 +32,7 @@ class Reporte extends CI_Controller {
 			$mes_i = $arr_aux[1];
 			$dia_i = $arr_aux[2];
 			$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
-			$ciclo =$this->Reportepdf_model->get_ciclo($id_cct);
+			$ciclo =$this->Reportepdf_model->get_ciclo($cve_centro,$turno);
 			$ciclo = "CICLO:".$ciclo[0]->ciclo.$fecha;
 			$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
 			//incializamos variables de header
@@ -94,6 +94,24 @@ class Reporte extends CI_Controller {
 				$str_cct = "CCT: {$arr_cct[0]['cve_centro']}";
 				$str_nombre = "ESCUELA: {$arr_cct[0]['nombre_centro']}";
 
+				switch ($turno_single) {
+					case 'MATUTINO':
+						$turno_case = 1;
+						break;
+					case 'VESPERTINO':
+						$turno_case = 2;
+						break;
+					case 'CONTINUO':
+						$turno_case = 3;
+						break;
+					case 'DISCONTINUO':
+						$turno_case = 4;
+						break;
+					case 'MIXTO':
+						$turno_case = 5;
+						break;
+				}
+
 				$fecha = date("Y-m-d");
 				$arr_aux = explode("-",$fecha);
 
@@ -101,7 +119,7 @@ class Reporte extends CI_Controller {
 				$mes_i = $arr_aux[1];
 				$dia_i = $arr_aux[2];
 				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
-				$ciclo =$this->Reportepdf_model->get_ciclo($arr_cct[0]['cve_centro'], $arr_cct[0]['turno']);
+				$ciclo =$this->Reportepdf_model->get_ciclo($arr_cct[0]['cve_centro'], $turno_case);
 				// echo "<pre>";print_r(count($ciclo));die();
 				if (count($ciclo)==1) {
 					$ciclo = "CICLO:".$ciclo[0]->ciclo.$fecha;
@@ -111,7 +129,7 @@ class Reporte extends CI_Controller {
 					$pdf->AliasNbPages();
 					$pdf->AddPage('L','Legal');
 
-					$rutas = $this->Reportepdf_model->get_rutasxcct($arr_cct[0]['cve_centro'], $arr_cct[0]['turno']);
+					$rutas = $this->Reportepdf_model->get_rutasxcct($arr_cct[0]['cve_centro'], $turno_case);
 					foreach ($rutas as $ruta) {
 						$id_tprioritario = $ruta['id_tprioritario'];
 						//DATOS
@@ -134,11 +152,11 @@ class Reporte extends CI_Controller {
 					$pdf->Output();
 				}
 				else {
-					echo "error";
+					echo "error2";
 				}
 			}
 			else {
-				echo "error";
+				echo "error1";
 			}
 
 		}

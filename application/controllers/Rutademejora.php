@@ -64,6 +64,7 @@ class Rutademejora extends CI_Controller {
 					if($datos_sesion->procede == 1 && $datos_sesion->status == 1){
 					// if(1 == 1 && 1 == 1){
 						$datoscct = $this->Rutamejora_model->getdatossupervicion($usuario, $turno);
+						$datoscct[0]['id_turno_single'] = $turno;
 						Utilerias::set_cct_sesion($this, $datoscct);
 
 
