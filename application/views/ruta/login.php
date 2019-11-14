@@ -7,6 +7,9 @@
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">
   <link href="<?= base_url('assets/bootstrap-411/css/bootstrap.min.css'); ?>" rel="stylesheet" media="screen">
   <link href="<?= base_url('assets/css/login.css'); ?>" rel="stylesheet" media="screen">
+  <link href="<?= base_url('assets/fonts/fontawesome5/css/all.css') ?>" rel="stylesheet" media="screen">
+  <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,400i,500,500i,800,800i" rel="stylesheet">  
 </head>
 <body>
   <style>
@@ -60,6 +63,39 @@
     transform: rotate(0deg) xscale(1.03);
   }
 
+  /** Float btn **/
+.float-btn {
+  font-family: 'Fira Sans Condensed', sans-serif !important;
+  font-size: 16px;
+margin: 0px 0px 0px -47px;;
+  border-radius: 10px 10px 0 0px;
+-moz-border-radius: 10px 10px 0 0px;
+-webkit-border-radius: 10px 10px 0 0px;
+border: 0px solid #000000;
+-webkit-box-shadow: 3px 3px 12px -4px rgba(0,0,0,0.75);
+-moz-box-shadow: 3px 3px 12px -4px rgba(0,0,0,0.75);
+box-shadow: 3px 3px 12px -4px rgba(0,0,0,0.75);
+background-color: rgba(0,0,0,0.5);
+
+-webkit-transform: rotate(90deg);
+     -moz-transform: rotate(90deg);
+     -ms-transform: rotate(90deg);
+     -o-transform: rotate(90deg);
+     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+     position: absolute;
+     color: #FFF;
+
+     font-weight: bold;
+
+     transition: all 0.5s ease;
+}
+.float-btn:hover {
+color: #fff;
+background-color: rgba(0,0,0,1.0);
+
+}
+  /** end Float btn **/
+
   </style>
   <div class="container-login" style="background-image: url('<?= base_url('assets/img/bg-01.jpg');?>');">
     <div class="row">
@@ -105,15 +141,17 @@
      </div>
     </div>
     
-    <div class="row offset-md-1">
-    
+    <div class="row">
+    <div class="col">
+    <a class="btn float-btn" href="#" role="button" data-toggle="modal" data-target="#T1_SARAPE"><i class="far fa-play-circle"></i> Iniciar Sesión</a>
+    </div>
         
-        <li class="li">
+        <!-- <li class="li">
            <a class="link" data-toggle="modal" data-target="#T1_SARAPE">
              <i></i>
              <img src="<?= base_url('assets/vid/T1.png')?>" class="vt" alt=""></a>
            </a>
-         </li>
+         </li> -->
        
      
     </div>

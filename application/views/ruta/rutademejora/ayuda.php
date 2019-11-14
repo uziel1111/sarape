@@ -51,23 +51,62 @@
 </style>
 <div class="tab-pane fade active show" id="nav-ayuda" role="tabpanel" aria-labelledby="nav-ayuda-tab">
 	<div class="card bg-light mb-3 center">
-		<p>
-			<img src="<?= base_url('assets/img/mapa/mision.png')?>" width="200" height="200" alt="">
-			<img src="<?= base_url('assets/img/mapa/objetivos.png')?>" width="200" height="200" alt="">
+	<div class="row mb-3">	
+			<div class="col-12">
+			<img src="<?= base_url('assets/img/mapa/flujo-sarape-2.png')?>" class="img-fluid" width="100%" alt="">
+			<!-- <img src="<?= base_url('assets/img/mapa/objetivos.png')?>" width="200" height="200" alt="">
 			<img src="<?= base_url('assets/img/mapa/actividades.png')?>" width="200" height="200" alt="">
 			<img src="<?= base_url('assets/img/mapa/avances.png')?>" width="200" height="200" alt="">
-			<img src="<?= base_url('assets/img/mapa/fin.png')?>" width="100" height="200" alt="">
+			<img src="<?= base_url('assets/img/mapa/fin.png')?>" width="100" height="200" alt=""> -->
 			<br>
-			<u><a style="padding-left: 7em; cursor: hand; cursor: pointer; color: blue;" id="img_mision">Ir a misión</a></u>
+			<!-- <u><a style="padding-left: 7em; cursor: hand; cursor: pointer; color: blue;" id="img_mision">Ir a misión</a></u>
 			<a style="padding-left: 7em; cursor: hand; cursor: pointer;" >Ir a objetivos</a>
 			<a style="padding-left: 7em; cursor: hand; cursor: pointer;" >Ir a acciones</a>
 			<u><a style="padding-left: 7em; cursor: hand; cursor: pointer; color: blue;" id="img_avances">Ir a avances</a></p></u>
-			<br>
+			<br> -->
 			
-			
+			</div>
+</div>	
 
-			<div class="row">	
-				<li class="li">
+			<div class="row justify-content-md-center m-5">	
+			<div class="col-12">	
+			<div class="alert alert-light shadow" role="alert">
+
+<h3><i class="fas fa-play-circle text-black-50"></i></a> Video tutoriales</h3>
+			<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Título del video</th>
+      <th scope="col">Ver video</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td class="font-weight-bold">Inicio de sesión</td>
+      <td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T1_SARAPE"><i class="fas fa-play-circle"></i></a></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td class="font-weight-bold">Conociendo la aplicación del Programa Escolar de Mejora Continua</td>
+      <td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T2_SARAPE"><i class="fas fa-play-circle"></i></a></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td class="font-weight-bold">Ingresando objetivos y metas</td>
+      <td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T3_SARAPE"><i class="fas fa-play-circle"></i></a></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td class="font-weight-bold">Registrando acciones y avances</td>
+      <td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T4_SARAPE"><i class="fas fa-play-circle"></i></a></td>
+    </tr>	
+  </tbody>
+</table>
+</div>
+</div>
+				<!-- <li class="li">
 					<a class="link" data-toggle="modal" data-target="#T1_SARAPE">
 						<i></i>
 						<img src="<?= base_url('assets/vid/T1.png')?>" class="vt" alt=""></a>
@@ -90,8 +129,8 @@
 						<i></i>
 						<img src="<?= base_url('assets/vid/T4.png')?>" class="vt" alt=""></a>
 					</a>
-				</li>
-				<br>	<br>	
+				</li> -->
+	
 			</div>
 		</div>
 	</div>
