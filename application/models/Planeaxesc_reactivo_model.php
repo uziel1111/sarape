@@ -147,20 +147,20 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       $str_query = "SELECT id_contenido, contenidos, reactivos, total_reac_xua, total, alumnos_evaluados, ROUND((total* 100)/(total_reac_xua * alumnos_evaluados), 1)AS porcen_alum_respok FROM (
               SELECT *, SUM(n_aciertos) AS total, SUM(n_almn_eval) AS alumnos_evaluados FROM (SELECT t3.id_contenido, t3.`contenido` AS contenidos,
               GROUP_CONCAT(t2.n_reactivo) AS reactivos, COUNT(t3.id_contenido) AS total_reac_xua, t1.n_aciertos, t1.n_almn_eval
-              FROM vista_cct e 
-              INNER JOIN planeaxesc_reactivo t1 ON t1.cct = e.cct
-              JOIN `planea_reactivo` `t2` ON `t1`.`id_reactivo`=`t2`.`id_reactivo`
-              JOIN `planea_contenido` `t3` ON `t2`.`id_contenido`= `t3`.`id_contenido`
-              JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
-              JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
-              WHERE e.desc_nivel_educativo LIKE '%{$nivel}%'  AND `t1`.`id_periodo` = {$periodo}
+              FROM centros_educativos.vista_cct e 
+              INNER JOIN sarape.planeaxesc_reactivo t1 ON t1.cct = e.cct
+              JOIN sarape.planea_reactivo t2 ON t1.id_reactivo=t2.id_reactivo
+              JOIN sarape.planea_contenido t3 ON t2.id_contenido= t3.id_contenido
+              JOIN sarape.planea_unidad_analisis t4 ON t3.id_unidad_analisis=t4.id_unidad_analisis
+              JOIN sarape.planea_camposdisciplinares t5 ON t4.id_campodisiplinario=t5.id_campodisiplinario
+              WHERE e.desc_nivel_educativo LIKE '%{$nivel}%'  AND t1.id_periodo= {$periodo}
               AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
               AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
               AND(t2.id_reactivo!=300 and t2.id_reactivo!=319 and t2.id_reactivo!=328 and t2.id_reactivo!=330 and t2.id_reactivo!=346)
               AND(t2.id_reactivo!=350 and t2.id_reactivo!=374 and t2.id_reactivo!=422 and t3.id_contenido!=424 and t2.id_reactivo!=426 and t2.id_reactivo!=433)
               AND(t2.id_reactivo!=440 and t2.id_reactivo!=455 and t2.id_reactivo!=471 and t2.id_reactivo!=475 and t2.id_reactivo!=477)
-              AND `t5`.`id_campodisiplinario` = {$idcampodis} {$where}
-              GROUP BY t3.`id_contenido`, e.cct) AS datos
+              AND t5.id_campodisiplinario = {$idcampodis} {$where}
+              GROUP BY t3.id_contenido, e.cct) AS datos
               GROUP BY id_contenido
             ) AS datos2";
                         // echo $str_query; die();
@@ -202,20 +202,20 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                       SELECT *, SUM(n_aciertos) AS total, SUM(n_almn_eval) AS alumnos_evaluados 
                         FROM (
                           SELECT t3.id_contenido, t3.`contenido` AS contenidos,GROUP_CONCAT(t2.n_reactivo) AS reactivos, COUNT(t3.id_contenido) AS total_reac_xua, t1.n_aciertos, t1.n_almn_eval                       
-                          FROM vista_cct  escuelas            
+                          FROM centros_educativos.vista_cct  escuelas            
                           INNER JOIN (
                             SELECT cct, zona_escolar, sostenimiento,
                                     SUBSTRING(cct, 3, 3) AS tipo
-                                 FROM vista_cct 
+                                 FROM centros_educativos.vista_cct 
                                  WHERE (status = 1 OR status = 4) AND tipo_centro = 1
                           ) AS supervisiones ON escuelas.zona_escolar = supervisiones.zona_escolar
                           AND escuelas.sostenimiento = supervisiones.sostenimiento
                           {$filtro}      
-                          INNER JOIN planeaxesc_reactivo t1 ON t1.cct = escuelas.cct
-                          INNER JOIN planea_reactivo t2 ON t1.id_reactivo=t2.id_reactivo
-                          INNER JOIN planea_contenido t3 ON t2.id_contenido= t3.id_contenido
-                          INNER JOIN planea_unidad_analisis t4 ON t3.id_unidad_analisis=t4.id_unidad_analisis
-                          INNER JOIN planea_camposdisciplinares t5 ON t4.id_campodisiplinario=t5.id_campodisiplinario
+                          INNER JOIN sarape.planeaxesc_reactivo t1 ON t1.cct = escuelas.cct
+                          INNER JOIN sarape.planea_reactivo t2 ON t1.id_reactivo=t2.id_reactivo
+                          INNER JOIN sarape.planea_contenido t3 ON t2.id_contenido= t3.id_contenido
+                          INNER JOIN sarape.planea_unidad_analisis t4 ON t3.id_unidad_analisis=t4.id_unidad_analisis
+                          INNER JOIN sarape.planea_camposdisciplinares t5 ON t4.id_campodisiplinario=t5.id_campodisiplinario
                           WHERE escuelas.desc_nivel_educativo LIKE '%{$nivel}%'  AND t1.id_periodo = {$periodo}
                           AND(t2.id_reactivo!=118 AND t2.id_reactivo!=123 AND t2.id_reactivo!=126)
                           AND(t2.id_reactivo!=176 AND t2.id_reactivo!=152 AND t2.id_reactivo!=197)
@@ -235,7 +235,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
     function get_reactivos_xcctxcont_municipio($id_municipio,$id_cont,$periodo,$idcampodis){
       $where = "";
       if($id_municipio != 0 || $id_municipio != '0'){
-        $where = "AND m.id_municipio = {$id_municipio}";
+        $where = "AND e.municipio = {$id_municipio}";
       }
       $str_query = "SELECT *,((SUM(n_aciertos)*100)/SUM(n_almn_eval))AS porcen, IF(((SUM(n_aciertos)*100)/SUM(n_almn_eval)) <100, 'si','no') AS mostrar, n_reactivo FROM(SELECT t1.n_almn_eval, t1.n_aciertos, t1.id_reactivo, t2.n_reactivo,
         CONCAT(IF(t4.id_nivel=4, 'primaria', IF(t4.id_nivel=5, 'secundaria', IF(t4.id_nivel=6, 'ms', 'nada'))), IF(t4.id_periodo=1, '2016', IF(t4.id_periodo=2, '2017',IF(t4.id_periodo=3, '2018', IF(t4.id_periodo=4, '2019', 'nada')))), '/reactivo_', IF(t4.id_campodisiplinario=1, 'lyc', IF(t4.id_campodisiplinario=2, 'mat', 'nada')), '/r', t2.n_reactivo, '.JPG') as path_react,
@@ -248,16 +248,14 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       	(
       		COUNT(DISTINCT t7.id_propuesta)
       	) AS n_prop
-        FROM municipio m
-        INNER JOIN vista_cct e ON e.municipio = m.id_municipio
-        INNER JOIN nivel n ON n.id_nivel = e.nivel_educativo
-        INNER JOIN planeaxesc_reactivo t1 ON t1.cct = e.cct
-        JOIN `planea_reactivo` `t2` ON `t1`.`id_reactivo`=`t2`.`id_reactivo`
-        JOIN `planea_contenido` `t3` ON `t2`.`id_contenido`= `t3`.`id_contenido`
-        JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
-        JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
-        LEFT JOIN `recursos_apoyo` `t6` ON `t2`.`id_reactivo` = `t6`.`id_reactivo`
-        LEFT JOIN `prop_mapoyo` `t7` ON `t2`.`id_reactivo` = `t7`.`id_reactivo`
+        FROM centros_educativos.vista_cct e 
+        INNER JOIN sarape.planeaxesc_reactivo t1 ON t1.cct = e.cct
+        JOIN sarape.planea_reactivo t2 ON t1.id_reactivo=t2.id_reactivo
+        JOIN sarape.planea_contenido t3 ON t2.id_contenido= t3.id_contenido
+        JOIN sarape.planea_unidad_analisis t4 ON t3.id_unidad_analisis=t4.id_unidad_analisis
+        JOIN sarape.planea_camposdisciplinares t5 ON t4.id_campodisiplinario=t5.id_campodisiplinario
+        LEFT JOIN sarape.recursos_apoyo t6 ON t2.id_reactivo = t6.id_reactivo
+        LEFT JOIN sarape.prop_mapoyo t7 ON t2.id_reactivo = t7.id_reactivo
         WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} {$where}
         AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
         AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
@@ -323,9 +321,9 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                     (
                       COUNT(DISTINCT t7.id_propuesta)
                     ) AS n_prop
-            FROM vista_cct AS e
+            FROM centros_educativos.vista_cct AS e
             INNER JOIN (SELECT cct, zona_escolar, sostenimiento,SUBSTRING(cct, 3, 3) AS tipo
-                        FROM vista_cct 
+                        FROM centros_educativos.vista_cct 
                         WHERE (STATUS = 1 OR STATUS = 4) AND tipo_centro = 1
             ) AS s ON e.zona_escolar = s.zona_escolar
             AND e.sostenimiento = s.sostenimiento
@@ -341,13 +339,13 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
               IF(e.desc_servicio LIKE '%PREESCOLAR%' AND s.tipo='FZP',TRUE, 
               IF(e.desc_servicio LIKE '%INICIAL%' AND s.tipo='FCJ',TRUE,
               IF(e.desc_servicio LIKE '%CAM%' AND s.tipo='FSE',TRUE,FALSE)  ) ) ) ) ) )
-              INNER JOIN planeaxesc_reactivo t1 ON t1.`cct` = e.`cct`
-              JOIN `planea_reactivo` `t2` ON `t1`.`id_reactivo`=`t2`.`id_reactivo`
-              JOIN `planea_contenido` `t3` ON `t2`.`id_contenido`= `t3`.`id_contenido`
-              JOIN `planea_unidad_analisis` `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
-              JOIN `planea_camposdisciplinares` `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
-              LEFT JOIN `recursos_apoyo` `t6` ON `t2`.`id_reactivo` = `t6`.`id_reactivo`
-              LEFT JOIN `prop_mapoyo` `t7` ON `t2`.`id_reactivo` = `t7`.`id_reactivo`
+              INNER JOIN sarape.planeaxesc_reactivo t1 ON t1.`cct` = e.`cct`
+              JOIN sarape.planea_reactivo `t2` ON `t1`.`id_reactivo`=`t2`.`id_reactivo`
+              JOIN sarape.planea_contenido `t3` ON `t2`.`id_contenido`= `t3`.`id_contenido`
+              JOIN sarape.planea_unidad_analisis `t4` ON `t3`.`id_unidad_analisis`=`t4`.`id_unidad_analisis`
+              JOIN sarape.planea_camposdisciplinares `t5` ON `t4`.`id_campodisiplinario`=`t5`.`id_campodisiplinario`
+              LEFT JOIN sarape.recursos_apoyo `t6` ON `t2`.`id_reactivo` = `t6`.`id_reactivo`
+              LEFT JOIN sarape.prop_mapoyo `t7` ON `t2`.`id_reactivo` = `t7`.`id_reactivo`
               WHERE t3.id_contenido = {$id_cont}  AND t1.id_periodo = {$periodo} {$where}
               AND(t2.id_reactivo!=118 AND t2.id_reactivo!=123 AND t2.id_reactivo!=126)
               AND(t2.id_reactivo!=176 AND t2.id_reactivo!=152 AND t2.id_reactivo!=197)
@@ -386,7 +384,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
               {$filtro} ";
       // echo $query;
       // die();
-      return $this->db->query($query)->result_array();
+      return $this->ce_db->query($query)->result_array();
     }
 
      function subsostenimientoxnivel($nivel){
@@ -415,7 +413,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
               GROUP BY id_sostenimiento";
       // echo $query;
       // die();
-      return $this->db->query($query)->result_array();
+      return $this->ce_db->query($query)->result_array();
      }
 
 }// Planeaxesc_reactivo_model

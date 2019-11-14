@@ -92,8 +92,8 @@ class Ciclo_model extends CI_Model
       // echo $str; die();
       
       $query = "SELECT ci.id_ciclo, ci.ciclo 
-                FROM sarape.ciclo ci 
-                INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON  ci.id_ciclo = est.id_ciclo
+                FROM ciclo ci 
+                INNER JOIN estadistica_e_indicadores_xcct AS est ON  ci.id_ciclo = est.id_ciclo
                 INNER JOIN vista_cct AS v ON v.cct = est.cct 
                 AND (v.status = 1 OR v.status = 4) AND v.tipo_centro= 9
                 {$filtro_nivel_sos}
