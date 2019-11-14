@@ -208,7 +208,7 @@ $("#slc_xest_zona").change(function(){
       swal.close();
       $("#slc_xest_cicloe_zona").empty();
          $("#slc_xest_cicloe_zona").append('<option value="2">2017-2018</option><option value="4">2018-2019</option>');
-      console.log('ok ok');
+      // console.log('ok ok');
       $.each(data, function (index, item) {
           // $("#slc_xest_cicloe_zona").append('<option value="'+index+'">'+item+'</option>');
         });

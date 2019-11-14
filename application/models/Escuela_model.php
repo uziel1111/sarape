@@ -82,12 +82,14 @@ class Escuela_model extends CI_Model
       $str_query = "SELECT 
       es.cct as cve_centro, es.nombre as nombre_centro, es.turno
       FROM
-      centros_educativos.vista_cct AS es
+      vista_cct AS es
       WHERE
       es.cct = '{$cve_centro}'
-      AND es.desc_turno like '%{$turno_single}%'";
-      // echo $str_query; die();
-      return $this->db->query($str_query)->result_array();
+      AND es.turno like '%{$turno_single}%'";
+      // echo $str; die();
+      return $this->ce_db->query($str_query)->result_array();
+
+     
     }// get_xcvecentro_turnosingle()
 
 
