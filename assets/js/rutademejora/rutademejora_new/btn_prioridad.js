@@ -475,7 +475,7 @@ $('#grabar_objetivo').click(function(){
 				obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val(),tipou_pemc);
 				$('#update_flag').val('')
 
-				$("#id_tema_prioritario").val(result.idtemaprioritario);
+				//$("#id_tema_prioritario").val(result.idtemaprioritario);
 				$("#opt_prioridad").attr('disabled', true);
 				$("#opt_prioridad_especial").attr('disabled', true);
 			})
@@ -606,6 +606,8 @@ Prioridad.prototype.getObjetivos = function(){
 	// console.log('js btn_prioridad.js');
 	var idtemaprioritario = obj.id_tprioritario ;
 	let idtemap = $('#id_tema_prioritario').val();
+	idtprio = $('#id_tema_prioritario').val();
+	// alert();
 	//console.log('aquí estamos {');
 //console.log( idtemap);	
 //console.log( idtemaprioritario);	

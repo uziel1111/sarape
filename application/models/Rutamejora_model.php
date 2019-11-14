@@ -415,7 +415,7 @@ function get_avances_tp_accionxcct_super($id_cct,$turno){
 /*111019*/
 
 
-function accionesRezagadas($id_cct,$cte_vigente){
+function accionesRezagadas($id_cct,$turno,$cte_vigente){
   $str_query = "SELECT 
   IFNULL(av.{$cte_vigente},0) as porcentaje,a.accion,a.id_accion,
   (datediff(a.accion_f_termino, a.accion_f_inicio)*24) as 'total_horas',
@@ -428,7 +428,7 @@ function accionesRezagadas($id_cct,$cte_vigente){
   INNER JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
   INNER JOIN rm_avance_xcctxtpxaccion av ON tp.id_cct = av.id_cct AND tp.id_tprioritario = av.id_tprioritario 
   AND a.id_accion = av.id_accion
-  WHERE tp.id_cct = {$id_cct}
+  WHERE tp.cct = '{$id_cct}' AND tp.turno = {$turno}
   ORDER BY tp.orden, tp.id_tprioritario, a.id_accion DESC";
         // echo "<pre>";print_r($str_query); die();
   return $this->db->query($str_query)->result_array();
@@ -622,13 +622,14 @@ function get_coment_super($idtemap){
 }
 
     //Nuevas funciones para RM Ismael Castillo
-function insertaObjetivo($id_cct, $id_prioridad, $objetivo, $id_tprioritario){
+function insertaObjetivo($cct, $turno, $id_prioridad, $objetivo, $id_tprioritario){
   $date=date("Y-m-d");
 
   $objetivos = array(
     'objetivo' => $objetivo,
     'id_tprioritario' => $id_tprioritario,
-    'id_cct'=> $id_cct,
+    'cct'=> $cct,
+    'turno' => $turno, 
     'fecha_creacion' => $date
   );
         // echo "<pre>";print_r($this->db->insert('rm_objetivo', $objetivos));die();
@@ -1044,7 +1045,7 @@ public function set_observacion($objetivo, $resultados, $obstaculos, $ventajas, 
       // return $this->db->query($str_query)->result_array();
 }
 
-public function avancesxcctxaccion($id_cct,$cte_vigente){
+public function avancesxcctxaccion($id_cct,$turno,$cte_vigente){
   $str_query = "SELECT ac.id_accion,IF(LENGTH(ac.accion)>32,CONCAT(SUBSTRING(ac.accion,1,28),'...'),ac.accion) AS accion,
   ac.accion as ac,
   REPLACE(ac.accion_f_inicio,'-','/')as accion_f_inicio,
@@ -1055,19 +1056,19 @@ public function avancesxcctxaccion($id_cct,$cte_vigente){
   datediff(ac.accion_f_termino, ac.accion_f_inicio) as 'periodo'
   FROM rm_avance_xcctxtpxaccion av
   INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
-  WHERE av.id_cct={$id_cct} order by ac.accion_f_inicio asc";
+  WHERE av.cct='{$id_cct}' and av.turno = {$turno} order by ac.accion_f_inicio asc";
       // echo $str_query;
       // die();
   return $this->db->query($str_query)->result_array();
 }
 
-public function fechaMaxMin($id_cct,$cte_vigente){
+public function fechaMaxMin($id_cct,$turno,$cte_vigente){
   $str_query = "SELECT 
   MIN(ac.accion_f_inicio) as inicio,
   MAX(ac.accion_f_termino)as fin
   FROM rm_avance_xcctxtpxaccion av
   INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
-  WHERE av.id_cct={$id_cct} order by ac.accion_f_inicio asc";
+  WHERE av.cct='{$id_cct}' and av.turno = {$turno}  order by ac.accion_f_inicio asc";
       // echo $str_query;
       // die();
   return $this->db->query($str_query)->result_array();
@@ -1116,8 +1117,8 @@ public function pieLAE($id_cct,$cte_vigente){
 
 public function momentoActual()
 {
-  $str_query = 'call proye7nb_pruebas.cteActual();';
-    // $str_query = 'call sarape.cteActual();';
+  // $str_query = 'call proye7nb_pruebas.cteActual();';
+    $str_query = 'call sarape.cteActual();';
   return $this->db->query($str_query)->result_array();
 }
 

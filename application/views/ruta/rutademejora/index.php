@@ -189,7 +189,7 @@ span{
 						</div>
 						<br>
 						
-						<input type="text" name="id_cct_rm" id="id_cct_rm" value="<?=$id_cct_rm?>" hidden>
+						<!-- <input type="text" name="id_cct_rm" id="id_cct_rm" value="<?=$id_cct_rm?>" hidden> -->
 					</div>
 					<div id="chart_div">
 						<h1 align="center">Avances de acciones</h1>

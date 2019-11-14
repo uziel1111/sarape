@@ -246,6 +246,7 @@ Prioridad.prototype.funcionalidadselect = function(){
      	var t_prioritario = $(this).find('td:first').next().text();
 		obj.id_objetivo = value;
 		obj.id_tprioritario = t_prioritario;
+		
 		id_objetivo = 0;
 	});
 }

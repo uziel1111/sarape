@@ -113,6 +113,8 @@ class Rutademejora extends CI_Controller {
 
 					if($response->procede == 1 && $response->status == 1){
 						$datoscct = $this->Rutamejora_model->getdatoscct($usuario, $turno);
+						$datoscct[0]['id_turno_single'] = $turno;
+							// echo "<pre>";print_r($datoscct);die();
 						Utilerias::set_cct_sesion($this, $datoscct);
 
 						// $this->llenadatos();
@@ -248,7 +250,7 @@ class Rutademejora extends CI_Controller {
 		public function insert_tema_prioritario(){
 			if(Utilerias::haySesionAbiertacct($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
-				$id_cct = $this->cct[0]['id_cct'];
+				//$id_cct = $this->cct[0]['id_cct'];
 				$id_prioridad = $this->input->post("id_prioridad");
 				$objetivo1 = $this->input->post("objetivo1");
 				$meta1 = $this->input->post("meta1");
@@ -304,7 +306,7 @@ class Rutademejora extends CI_Controller {
 				if(Utilerias::haySesionAbiertacct($this)){
 					$this->cct = Utilerias::get_cct_sesion($this);
 				// echo "<pre>";print_r($_POST);die();
-					$id_cct = $this->cct[0]['id_cct'];
+					//$id_cct = $this->cct[0]['id_cct'];
 					$cct = $this->cct[0]['cve_centro'];
 					$turno = $this->cct[0]['id_turno_single'];
 					$misioncct = $this->input->post("misioncct");
@@ -326,7 +328,7 @@ class Rutademejora extends CI_Controller {
 			public function bajarutamejora(){
 				if(Utilerias::haySesionAbiertacct($this)){
 					$this->cct = Utilerias::get_cct_sesion($this);
-					$id_cct = $this->cct[0]['id_cct'];
+					//$id_cct = $this->cct[0]['id_cct'];
 					$cct = $this->cct[0]['cve_centro'];
 					$turno = $this->cct[0]['id_turno_single'];
 					// echo"<pre>";print_r($this->cct[0]['cve_centro']);  die();
@@ -1497,7 +1499,7 @@ $arr_indicadoresxct = '';
 	public function modal_recomendacion(){
 		$data = array();
 		$this->cct = Utilerias::get_cct_sesion($this);
-		$id_cct = $this->cct[0]['id_cct'];
+		//$id_cct = $this->cct[0]['id_cct'];
 		$mision = $this->Rutamejora_model->get_misionxcct($this->cct[0]['cve_centro'], $this->cct[0]['id_turno_single'],'4');
 		$data['mision'] = $mision;
 
@@ -1528,7 +1530,7 @@ $arr_indicadoresxct = '';
 		if(Utilerias::haySesionAbiertacct($this)){
 			$data = array();
 			$this->cct = Utilerias::get_cct_sesion($this);
-			$id_cct = $this->cct[0]['id_cct'];
+			////$id_cct = $this->cct[0]['id_cct'];
 			$tam = 0;
 			$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
 
@@ -1565,14 +1567,14 @@ $arr_indicadoresxct = '';
 	public function tabla_up(){
 		if(Utilerias::haySesionAbiertacct($this)){
 			$this->cct = Utilerias::get_cct_sesion($this);
-			$id_cct = $this->cct[0]['id_cct'];
+			//$id_cct = $this->cct[0]['id_cct'];
 			$datos = $this->input->post('orden');
 			for($i = 0; $i < count($datos); $i++){
 				$arr_datos = $this->Rutamejora_model->update_order($datos[$i][1], $datos[$i][0]);
 			}
 
 
-			$id_cct = $this->cct[0]['id_cct'];
+			//$id_cct = $this->cct[0]['id_cct'];
 			$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
 		}else{
 			redirect('Rutademejora/index');
@@ -1604,7 +1606,7 @@ $arr_indicadoresxct = '';
 		// print_r($_FILES);
 		// die();
 		$id_tprioritario = $this->input->post("id_tprioritario");
-		$id_cct = $this->cct[0]['id_cct'];
+		//$id_cct = $this->cct[0]['id_cct'];
 		$id_prioridad = $this->input->post('id_prioridad');
 		$objetivo = $this->input->post('objetivo');
 		$otra_fecha = $this->input->post('otra_fecha');
@@ -1616,7 +1618,7 @@ $arr_indicadoresxct = '';
 		// if($id_tprioritario == 0){
 		// 		$estatus = $this->Rutamejora_model->insertaCreaObjetivo($id_cct, $id_prioridad, $objetivo, $id_subprioridad);
 		// }else{
-		$estatus = $this->Rutamejora_model->insertaObjetivo($id_cct, $id_prioridad, strtoupper($objetivo), $id_tprioritario);
+		$estatus = $this->Rutamejora_model->insertaObjetivo($this->cct[0]['cve_centro'],$this->cct[0]['id_turno_single'], $id_prioridad, strtoupper($objetivo), $id_tprioritario);
 		// }
 
 		$response = array('estatus' => $estatus['status'], 'idtemaprioritario' =>$estatus['idtemaprioritario']);
@@ -1657,7 +1659,7 @@ $arr_indicadoresxct = '';
 			$turno = $this->cct[0]['id_turno_single'];
 		$datos = $this->Rutamejora_model->getObjetivos($cct, $turno, $id_tprioritario, $idprioridad);
 		}
-		// echo "<pre>";print_r($datos);die();
+		
 		$idobjetivo = 0;
 		if(!isset($datos[0]) || $datos[0]['id_objetivo'] == NULL){
 			// echo 'if'; die();
@@ -1937,7 +1939,7 @@ $arr_indicadoresxct = '';
 	public function grabarTema(){
 		$this->cct = Utilerias::get_cct_sesion($this);
 		// echo "<pre>";print_r($_POST);print_r($_FILES);die();
-		$id_cct = $this->cct[0]['id_cct'];
+		//$id_cct = $this->cct[0]['id_cct'];
 
 		$id_tprioritario = $this->input->post('id_tprioritario');
 		$problematica = $this->input->post('problematica');
@@ -2084,7 +2086,7 @@ $arr_indicadoresxct = '';
 		$nombre_archivo = str_replace(" ", "_", $_FILES['arch1']['name']);
 		// echo "<pre>";print_r($nombre_archivo);die();
 		$this->cct = Utilerias::get_cct_sesion($this);
-		$id_cct = $this->cct[0]['id_cct'];
+		//$id_cct = $this->cct[0]['id_cct'];
 
 		if ( $nombre_archivo != '' ) {
 			$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}";
@@ -2128,7 +2130,7 @@ $arr_indicadoresxct = '';
 		$nombre_archivo = str_replace(" ", "_", $_FILES['arch2']['name']);
 		// echo "<pre>";print_r($nombre_archivo);die();
 		$this->cct = Utilerias::get_cct_sesion($this);
-		$id_cct = $this->cct[0]['id_cct'];
+		//$id_cct = $this->cct[0]['id_cct'];
 
 		if ( $nombre_archivo != '' ) {
 			$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}";
@@ -2328,37 +2330,40 @@ $arr_indicadoresxct = '';
 
 	public function avancesxcctxaccion(){
 		// if(Utilerias::haySesionAbiertacct($this)){
+		$this->cct = Utilerias::get_cct_sesion($this);
+		$cctS = $this->cct[0]['cve_centro'];
+		$turnoS = $this->cct[0]['id_turno_single'];
 		$id_cct = $this->input->post('id_cct');
 		$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
 		$cte_vigente=$this->cteVigente($arr_avances_fechas);
-		$datos=$this->Rutamejora_model->avancesxcctxaccion($id_cct,$cte_vigente);
-		$fechas=$this->Rutamejora_model->fechaMaxMin($id_cct,$cte_vigente);
+		$datos=$this->Rutamejora_model->avancesxcctxaccion($cctS, $turnoS,$cte_vigente);
+		$fechas=$this->Rutamejora_model->fechaMaxMin($cctS,$turnoS,$cte_vigente);
 		$porcentaje=0;
 		$acciones=array();
 		$data_ac=array();
 		$avance=0;
-    //   	for($i=0; $i<count($datos); $i++){
-    //   		$porcentaje=0;
-    //   		if($datos[$i]['porcentaje']!=0 && $datos[$i]['porcentaje']!=null){
-    //   			$porcentaje= $datos[$i]['porcentaje'];
-    //   			// $avance=($datos[$i]['periodo']/100)*$porcentaje;
-    //   		}
-    //   			$accion=array(
-				//     "title"=> $datos[$i]['accion'],
-				//     "startdate"=> $datos[$i]['accion_f_inicio'],
-				//     "enddate"=> $datos[$i]['accion_f_termino'],
-				//     "type"=> "Tur",
-				//     "minNight"=>$datos[$i]['periodo'],
-				//     "minNight2"=>$porcentaje,
-				//     "tooltipData"=>array(
-				//         "title"=>$datos[$i]['accion'],
-				//         "desc"=> [" Acción: ".$datos[$i]['ac'],"Duracion: ".$datos[$i]['periodo']." dias ", "Fecha Inicio: ".$datos[$i]['fechainicio'], "Fecha Término: " .$datos[$i]['fechafin'], " Porcentaje de Avance:  ".$porcentaje."%"] 
-				//     ),
-				//     "dateorder"=> "\/Date(1469048400000)\/"
-				// );
-				// array_push($acciones,$accion);
-    //   	}
-    //   	$data_ac['acciones']=$acciones;
+      	for($i=0; $i<count($datos); $i++){
+      		$porcentaje=0;
+      		if($datos[$i]['porcentaje']!=0 && $datos[$i]['porcentaje']!=null){
+      			$porcentaje= $datos[$i]['porcentaje'];
+      			// $avance=($datos[$i]['periodo']/100)*$porcentaje;
+      		}
+      			$accion=array(
+				    "title"=> $datos[$i]['accion'],
+				    "startdate"=> $datos[$i]['accion_f_inicio'],
+				    "enddate"=> $datos[$i]['accion_f_termino'],
+				    "type"=> "Tur",
+				    "minNight"=>$datos[$i]['periodo'],
+				    "minNight2"=>$porcentaje,
+				    "tooltipData"=>array(
+				        "title"=>$datos[$i]['accion'],
+				        "desc"=> [" Acción: ".$datos[$i]['ac'],"Duracion: ".$datos[$i]['periodo']." dias ", "Fecha Inicio: ".$datos[$i]['fechainicio'], "Fecha Término: " .$datos[$i]['fechafin'], " Porcentaje de Avance:  ".$porcentaje."%"] 
+				    ),
+				    "dateorder"=> "\/Date(1469048400000)\/"
+				);
+				array_push($acciones,$accion);
+      	}
+      	$data_ac['acciones']=$acciones;
       	$data_ac['inicio']=$fechas[0]['inicio'];
       	$data_ac['fin']=$fechas[0]['fin'];
       	$nuevafecha = strtotime ( '+2 day' , strtotime ( $fechas[0]['fin'] ) );
@@ -2443,10 +2448,13 @@ $arr_indicadoresxct = '';
 
 	public function accionesRezagadas(){
 		if(Utilerias::haySesionAbiertacct($this)){
+			$this->cct = Utilerias::get_cct_sesion($this);
+			$cctS = $this->cct[0]['cve_centro'];
+			$turnoS = $this->cct[0]['id_turno_single'];
 			$id_cct = $this->input->post('id_cct');
 			$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
 			$cte_vigente=$this->cteVigente($arr_avances_fechas);
-			$datos=$this->Rutamejora_model->accionesRezagadas($id_cct,$cte_vigente);
+			$datos=$this->Rutamejora_model->accionesRezagadas($cctS,$turnoS,$cte_vigente);
 			$response = array('datos' => $datos);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
