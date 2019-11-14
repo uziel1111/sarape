@@ -3,7 +3,7 @@
     <div class="col-md-4 form-group form-group-style-1">
       <label for="nivel_educativo_zona">Seleccione un nivel educativo</label>
       <select id="nivel_educativo_zona" class="form-control">
-        <option value="0">Todos los niveles</option>
+        <option value="0" selected>Todos los niveles</option>
         <option value="1">Especial</option>
         <!-- <option value="2">Inicial</option> -->
         <option value="3">Preescolar</option>

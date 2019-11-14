@@ -1940,7 +1940,8 @@ $arr_indicadoresxct = '';
 	public function grabarTema(){
 		$this->cct = Utilerias::get_cct_sesion($this);
 		// echo "<pre>";print_r($_POST);print_r($_FILES);die();
-		//$id_cct = $this->cct[0]['id_cct'];
+		$cct = $this->cct[0]['cve_centro'];
+		$turno = $this->cct[0]['id_turno_single'];
 
 		$id_tprioritario = $this->input->post('id_tprioritario');
 		$problematica = $this->input->post('problematica');
@@ -1957,7 +1958,7 @@ $arr_indicadoresxct = '';
 		
 		$encabezado = $this->Rutamejora_model->get_problematica_ambito_ids($id_tprioritario);
 
-		$estatus = $this->Rutamejora_model->grabarTema($id_cct, $id_tprioritario, $problematica, $evidencia, $comentario_dir);
+		$estatus = $this->Rutamejora_model->grabarTema($cct, $turno, $id_tprioritario, $problematica, $evidencia, $comentario_dir);
 
 
 		$estatus = true;
