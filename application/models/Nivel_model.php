@@ -314,7 +314,7 @@ class Nivel_model extends CI_Model
                     GROUP BY  desc_nivel_educativo   
                   ) AS a ORDER BY FIELD(a.nivel,'PRIMARIA','SECUNDARIA')";
 
-      return $this->ce_db->query($query)->result_array();
+      return $this->db->query($query)->result_array();
     }// get_xidmunicipio()
 
 

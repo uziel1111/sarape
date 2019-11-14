@@ -6,7 +6,7 @@ class Planea extends CI_Controller {
 		function __construct() {
 			parent::__construct();
 			$this->load->library('Utilerias');
-			// $this->load->model('Escuela_model');
+			$this->load->model('CentrosE_model');
 			$this->load->model('Municipio_model');
 			$this->load->model('Nivel_model');
 			$this->load->model('Supervision_model');
@@ -20,7 +20,7 @@ class Planea extends CI_Controller {
 
 		public function index(){
 			$data=array();
-			$municipios = $this->Municipio_model->all();
+			$municipios = $this->CentrosE_model->municipios();
 			$arr_municipios['0'] = 'TODOS';
 			foreach ($municipios as $municipio){
 				 $arr_municipios[$municipio['id_municipio']] = $municipio['municipio'];
@@ -137,7 +137,11 @@ class Planea extends CI_Controller {
 			$nombre_nivel = $this->input->post("nombre_nivel");
 			$idsubsostenimiento = $this->input->post('idsubsostenimiento');
 
-			$zonas = $this->Planeaxesc_reactivo_model->zonaxnivel($nombre_nivel, $idsubsostenimiento);
+			// $zonas = $this->Planeaxesc_reactivo_model->zonaxnivel($nombre_nivel, $idsubsostenimiento);
+			$zonas = $this->Supervision_model->getzona_idnivel_xsost($nombre_nivel,$idsubsostenimiento);
+			// echo "<pre>";
+			// print_r($zonas);
+			// die();
 			$arr_zonas = array();
 			array_push($arr_zonas, array("data" => 0, "label" => "SELECCIONE"));
 			foreach ($zonas as $zona){
@@ -157,7 +161,7 @@ class Planea extends CI_Controller {
 			$arr_subsostenimientos = array();
 			array_push($arr_subsostenimientos, array("data" => 0, "label" => "SELECCIONE"));
 			foreach ($subsostenimientos as $subsostenimiento){
-				array_push($arr_subsostenimientos, array("data" => $subsostenimiento['id_subsostenimiento'], "label" => $subsostenimiento['subsostenimiento']));
+				array_push($arr_subsostenimientos, array("data" => $subsostenimiento['id_sostenimiento'], "label" => $subsostenimiento['sostenimiento2']));
 			}
 
 			$response = array('subsostenimientos' => $arr_subsostenimientos);

@@ -57,7 +57,7 @@ class Estadistica extends CI_Controller {
 			}else{
 				$arr_nivelesz['0'] = 'SELECCIONE UN NIVEL EDUCATIVO';
 				foreach ($result_nivelesz as $row){
-					 $arr_nivelesz[$row['id_nivel']] = $row['nivel'];
+					$arr_nivelesz[$row['id_nivel']] = $row['nivel'];
 				}
 			}
 

@@ -90,12 +90,13 @@ const Planea = {
 			url: base_url+'planea/get_xmunicipio',
 			type: 'POST',
 			dataType: 'JSON',
-			data: {idmunicipio: $("#slt_municipio_mapa").val(), nivel: $("#slt_nivel_planeaxm").val(), periodo: $("#slt_periodo_planeaxm").val(), campodisip: $("#slt_campod_planeaxm").val()},
+			data: {idmunicipio: $("#slt_municipio_mapa").val(), nivel: $("#slt_nivel_planeaxm option:selected").text(), periodo: $("#slt_periodo_planeaxm").val(), campodisip: $("#slt_campod_planeaxm").val()},
 			beforeSend: function(xhr) {
 						Notification.loading("");
 				},
 		})
 		.done(function(result) {
+			swal.close();
 			var nivelxmuni = $("#slt_nivel_planeaxm").val();
 			switch(nivelxmuni) {
 			    case "4":
@@ -106,7 +107,7 @@ const Planea = {
 					}
 			        break;
 			    case "5":
-			    console.log($("#slt_periodo_planeaxm").val());
+			    // console.log($("#slt_periodo_planeaxm").val());
 			        if($("#slt_campod_planeaxm").val() == 1){
 
 						if ($("#slt_periodo_planeaxm").val() == 4) {
@@ -136,6 +137,7 @@ const Planea = {
 
 		})
 		.fail(function(e) {
+			swal.close();
 			console.error("Error in Planea.get_xmunicipio()"); console.table(e);
 		})
 		.always(function() {
@@ -148,12 +150,13 @@ const Planea = {
 			url: base_url+'planea/get_xregion',
 			type: 'POST',
 			dataType: 'JSON',
-			data: {id_supervision: $("#slt_zona_planea").val(), nivel: $("#slt_nivel_planeaxz").val(), periodo: $("#slt_periodo_planeaxz").val(), campodisip: $("#slt_campod_planeaxz").val()},
+			data: {id_supervision: $("#slt_zona_planea").val(), nivel:$("#slt_nivel_planeaxz option:selected").text(), periodo: $("#slt_periodo_planeaxz").val(), campodisip: $("#slt_campod_planeaxz").val()},
 			beforeSend: function(xhr) {
 						Notification.loading("");
 		    },
 		})
 		.done(function(result) {
+			swal.close();
 			var nivelxzona = $("#slt_nivel_planeaxz").val();
 			switch(nivelxzona) {
 			    case "4":
@@ -191,6 +194,7 @@ const Planea = {
 			}
 		})
 		.fail(function(e) {
+			swal.close();
 			console.error("Error in Planea.get_xregion()"); console.table(e);
 		})
 		.always(function() {

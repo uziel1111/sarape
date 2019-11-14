@@ -42,21 +42,21 @@ class Supervision_model extends CI_Model
       // return  $this->db->get()->result_array();
       $filtro="";
       $filtro_nivel_sos="";
-      if($sostenimiento=="PUBLICO"){
+      if(trim($sostenimiento)=="PUBLICO"){
         $filtro_nivel_sos .= " AND sostenimiento NOT IN('61','41','92','96','51') ";
-      }else if($sostenimiento=="PRIVADO"){
+      }else if(trim($sostenimiento)=="PRIVADO"){
         $filtro_nivel_sos .= " AND sostenimiento IN ('61','41','92','96')";
-      }else if($sostenimiento=="AUTONOMO"){
+      }else if(trim($sostenimiento)=="AUTONOMO"){
         $filtro_nivel_sos .= " AND sostenimiento IN  ('51')";
       }
 
-      if($nivel=="PREESCOLAR"){
+      if(trim($nivel)=="PREESCOLAR"){
         $filtro .= " AND IF(escuelas.desc_servicio LIKE '%PREESCOLAR%' AND supervisiones.tipo='FZP',TRUE,FALSE)";
         $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%PREESCOLAR%'";
-      }else if($nivel="PRIMARIA"){
+      }else if(trim($nivel)=="PRIMARIA"){
         $filtro .= " AND IF(escuelas.desc_servicio LIKE '%PRIMARIA%' AND supervisiones.tipo='FIZ',TRUE,FALSE)";
         $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%PRIMARIA%'";
-      }else if($nivel="SECUNDARIA"){
+      }else if(trim($nivel)=="SECUNDARIA"){
         $filtro .= "  AND
               IF((escuelas.desc_servicio='SECUNDARIA GENERAL' OR escuelas.desc_servicio='SECUNDARIA COMUNITARIA'
               OR(escuelas.desc_servicio='SECUNDARIA TECNICA INDUSTRIAL' AND escuelas.desc_sostenimiento='ESTATAL')

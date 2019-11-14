@@ -221,6 +221,7 @@ $("#slc_xest_zona").change(function(){
 
 });
 $("#btn_buscar_zona").click(function(){
+  // console.log("llego en la funcion del boton");
   var id_nivel = $( "#slc_xest_nivel_zona" ).val();
   var id_subsost = $( "#slc_xest_sostenimiento_zona" ).val();
   var id_zona = $( "#slc_xest_zona" ).val();
@@ -249,6 +250,7 @@ $("#btn_buscar_zona").click(function(){
         Notification.loading("");
       },
       success:function(data){
+        // console.log("fui por el data");
         swal.close();
         $("#resultado_filtros").empty();
         $("#resultado_filtros").append(data.vista);
@@ -314,14 +316,14 @@ $("#btn_buscar_mun_est").click(function(){
 $("#xest_muni-tab").click(function(){
   $(".dv_tablas_estzona").empty();
   $(".dv_tablas_estmuni").empty();
-  $(".dv_filtro").empty();
+  // $(".dv_filtro").empty();
   $("#resultado_filtros").empty();
 });
 
 $("#xzona-tab").click(function(){
   $(".dv_tablas_estmuni").empty();
   $(".dv_tablas_estzona").empty();
-  $(".dv_filtro").empty();
+  // $(".dv_filtro").empty();
   $("#resultado_filtros").empty();
 
 });

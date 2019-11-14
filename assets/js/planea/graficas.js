@@ -878,7 +878,7 @@ function Graficasm(){
             data: { 'id_cont':id_cont,'id_xzona_o_municipio':id_filtro,'periodo':periodo,'idcampodis':idcampodis, 'tipo_filtro': tipo_filtro
                   },
             beforeSend: function( xhr ) {
-              // obj_loader.show();
+              Notification.loading("");
             }
           })
           .done(function( data ) {
@@ -970,6 +970,7 @@ function Graficasm(){
 
           })
           .fail(function(e) {
+            swal.close();
               console.error("Error in get_reactivos_xunidad_de_analisis()"); console.table(e);
           });
       }// get_reactivos_xunidad_de_analisis()
