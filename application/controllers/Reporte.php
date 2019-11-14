@@ -88,7 +88,7 @@ class Reporte extends CI_Controller {
 				$turno_single = $this->input->post('turno_tmp');
 			// echo "<pre>";print_r($turno_single);die();
 			$arr_cct = $this->Escuela_model->get_xcvecentro_turnosingle($cvecct, $turno_single);
-			// echo "<pre>";print_r(($arr_cct));die();
+			// echo "<pre>";print_r(count($arr_cct));die(); 
 			if (count($arr_cct)==1) {
 				// $id_cct = $arr_cct[0]['id_cct'];
 				$str_cct = "CCT: {$arr_cct[0]['cve_centro']}";
