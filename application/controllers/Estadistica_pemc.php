@@ -122,7 +122,7 @@ public function busquedaxct(){
         // print_r($this->datos);
         // die();
     $usuario = $this->datos[0]['cve_centro'];
-    $id_cct = $this->datos[0]['id_cct'];
+    //$id_cct = $this->datos[0]['id_cct'];
     $responsables = $this->getPersonal($usuario);
     $nomenclatura = substr($usuario,0,5);
 
@@ -146,7 +146,7 @@ public function busquedaxct(){
 
     $data['responsables'] = $options;
 
-    $mision = $this->Rutamejora_model->get_misionxcct($this->datos[0]['id_cct'],'4');
+    $mision = $this->Rutamejora_model->get_misionxcct($this->datos[0]['cve_centro'],$this->datos[0]['id_turno_single'],'4');
     $data['mision'] = $mision;
     $result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->datos[0]['nivel']);
 
