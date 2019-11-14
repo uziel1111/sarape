@@ -176,7 +176,7 @@ class Rutademejora extends CI_Controller {
 				$data['arr_evidencias'] = $result_evidencias;
 			}
 				// echo "<pre>";print_r($this->cct[0]['id_cct']);die();
-			  $result_progsapoyo = $this->Prog_apoyo_xcct_model->get_prog_apoyo_xcctxciclo($this->cct[0]['id_cct'],4);//id_cct, id_ciclo
+			 /* $result_progsapoyo = $this->Prog_apoyo_xcct_model->get_prog_apoyo_xcctxciclo($this->cct[0]['id_cct'],4);//id_cct, id_ciclo
 			  if(count($result_progsapoyo)==0){
 			  	$data['arr_progsapoyo'] = '';
 			  }else{
@@ -204,7 +204,7 @@ class Rutademejora extends CI_Controller {
 
 			$data4 = array();
 			$string_view_instructivo = $this->load->view('ruta/instructivo', $data4, TRUE);
-			$data['tab_instructivo'] = $string_view_instructivo;
+			$data['tab_instructivo'] = $string_view_instructivo;*/
 
 			$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
 			$data['nombreuser'] = $this->cct[0]['nombre_centro'];
@@ -1400,7 +1400,7 @@ class Rutademejora extends CI_Controller {
 				public function index_new(){
 					$this->cct = Utilerias::get_cct_sesion($this);
 					$usuario = $this->cct[0]['cve_centro'];
-					$id_cct = $this->cct[0]['id_cct'];
+					//$id_cct = $this->cct[0]['id_cct'];
 					$responsables = $this->getPersonal($usuario);
 					$nomenclatura = substr($usuario,0,5);
 		 // echo "<pre>";print_r($nomenclatura);die();
@@ -1448,7 +1448,7 @@ class Rutademejora extends CI_Controller {
 						$data['arr_evidencias'] = $result_evidencias;
 					}
 			// echo "<pre>";print_r($this->cct[0]['id_cct']);die();
-			$result_progsapoyo = $this->Prog_apoyo_xcct_model->get_prog_apoyo_xcctxciclo($this->cct[0]['id_cct'],4);//id_cct, id_ciclo
+			/*$result_progsapoyo = $this->Prog_apoyo_xcct_model->get_prog_apoyo_xcctxciclo($this->cct[0]['id_cct'],4);//id_cct, id_ciclo
 			if(count($result_progsapoyo)==0){
 				$data['arr_progsapoyo'] = '';
 			}else{
@@ -1468,7 +1468,9 @@ class Rutademejora extends CI_Controller {
 			}
 
 			$data3 = array();
-		$arr_indicadoresxct = $this->Rutamejora_model->get_indicadoresxcct($this->cct[0]['id_cct'],$this->cct[0]['nivel'],'1', '2018');//id_cct,nombre_nivel,bimestre,año
+		$arr_indicadoresxct = $this->Rutamejora_model->get_indicadoresxcct($this->cct[0]['id_cct'],$this->cct[0]['nivel'],'1', '2018');
+$arr_indicadoresxct = '';
+		//id_cct,nombre_nivel,bimestre,año
 		$data3['arr_indicadores'] = $arr_indicadoresxct;
 		// echo "<pre>";print_r($arr_avances);die();
 		$string_view_indicadores = $this->load->view('ruta/indicadores', $data3, TRUE);
@@ -1476,14 +1478,14 @@ class Rutademejora extends CI_Controller {
 
 		$data4 = array();
 		$string_view_instructivo = $this->load->view('ruta/instructivo', $data4, TRUE);
-		$data['tab_instructivo'] = $string_view_instructivo;
+		$data['tab_instructivo'] = $string_view_instructivo;*/
 
 		$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
 		$data['nombreuser'] = $this->cct[0]['nombre_centro'];
 		$data['turno'] = $this->cct[0]['turno_single'];
 		$data['cct'] = $this->cct[0]['cve_centro'];
 		$data['director'] = $this->cct[0]['nombre_director'];
-		$data['id_cct_rm'] =$this->cct[0]['id_cct'];
+		//$data['id_cct_rm'] =$this->cct[0]['id_cct'];
 		$data['vista_avance'] = $this->load->view("ruta/rutademejora/avances", $data, TRUE);
 		$data['vista_indicadores'] = $this->load->view("ruta/rutademejora/indicadores", $data, TRUE);
 		$data['vista_ayuda'] = $this->load->view("ruta/rutademejora/ayuda", $data, TRUE);

@@ -15,7 +15,7 @@ class Prog_apoyo_xcct_model extends CI_Model
           CROSS JOIN (SELECT @cnt := 0) AS dummy
           INNER JOIN programa_apoyo t2 ON t1.id_prog_apoyo =t2.id_programa_apoyo
           INNER JOIN ciclo t3 ON t1.id_ciclo = t3.id_ciclo
-          WHERE t1.cct='{$cct}' AND t1.id_turno_single={$turno} ";
+          WHERE  t1.id_turno_single={$turno} ";
           // echo $str_query; die();
         return $this->db->query($str_query)->result_array();
     }// get_prog_apoyo_xcct()
@@ -26,7 +26,7 @@ class Prog_apoyo_xcct_model extends CI_Model
           FROM prog_apoyo_xcct t1
           INNER JOIN programa_apoyo t2 ON t1.id_prog_apoyo =t2.id_programa_apoyo
           INNER JOIN ciclo t3 ON t1.id_ciclo = t3.id_ciclo
-          WHERE t1.id_cct={$id_cct} AND t1.id_ciclo={$id_ciclo}";
+          WHERE t1.id_ciclo={$id_ciclo}";
           // echo $str_query; die();
         return $this->db->query($str_query)->result_array();
     }// get_prog_apoyo_xcct()
