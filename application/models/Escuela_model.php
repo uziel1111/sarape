@@ -55,17 +55,30 @@ class Escuela_model extends CI_Model
       $str_query = "SELECT 
     #es.id_cct,
       es.cct as cve_centro,
-      es.turno as turno_single,
+      es.turno as turno,
+      es.desc_turno as turno_single,
       es.nombre as nombre_centro,
       es.desc_nivel_educativo as nivel,
-      es.sostenimiento as subsostenimiento,
+      es.desc_sostenimiento as subsostenimiento,
       es.modalidad,
       es.municipio,
       es.localidad,
       concat_ws(' ', es.nombre_vialidad_principal, es.numero_exterior, es.numero_interior) as domicilio,
       es.latitud,
       es.longitud,
-      es.nivel_educativo as id_nivel,
+      CASE  WHEN nivel_educativo LIKE '%NO APLICA%'  THEN '0'
+                  WHEN desc_nivel_educativo LIKE '%CAM%' THEN '1'
+                  WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN '2'
+                  WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN '3'
+                  WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN '4'
+                  WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN '5'
+                  WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN '6'
+                  WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN '7'
+                  WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
+                  WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN '9'
+                  WHEN nivel_educativo = null  THEN '0'
+                  END AS id_nivel,
+      #es.nivel_educativo as id_nivel,
       es.zona_escolar,
       es.sostenimiento
       FROM
