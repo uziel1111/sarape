@@ -25,13 +25,21 @@ class Escuela_model extends CI_Model
       $this->db->where('es.latitud !=',0);
       $this->db->where('es.latitud !=','');
       $this->db->where('es.latitud !=','#VALUE!');*/
+        if ($id_nivel == 1 || $id_nivel == 2 || $id_nivel == 3 || $id_nivel >5) {
+          $id_nivel = 1;
+        }elseif ($id_nivel == 4) {
+          $id_nivel = 2;
+        }elseif ($id_nivel == 5) {
+          $id_nivel = 3;
+        }
+
       if($id_municipio>0){
         $where_mun = " and es.municipio = {$id_municipio}";
       } else{
         $where_mun = ' ';
       }
       if($id_nivel>0){
-        $where_niv = " and es.nivel_educativo = $id_nivel)";
+        $where_niv = " and es.nivel_educativo = $id_nivel";
       } else{
         $where_niv = ' ';
       }

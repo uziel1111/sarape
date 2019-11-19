@@ -13,15 +13,31 @@ class Nivel_model extends CI_Model
 
 
     function get_xidmunicipio($id_municipio){
-      $this->db->select('ni.id_nivel, ni.nivel');
+      /*$this->db->select('ni.id_nivel, ni.nivel');
       $this->db->from('nivel as ni');
       $this->db->join('vista_cct as es', 'ni.id_nivel = es.id_nivel');
-      $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
+      $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');*/
       if($id_municipio>0){
-        $this->db->where('mu.id_municipio', $id_municipio);
+        $where = "where municipio = {$id_municipio}";
       }
-      $this->db->group_by('ni.id_nivel');
-      return  $this->db->get()->result_array();
+      else{
+        $where = ' ';
+      }
+      $str_query = "SELECT CASE  
+                  WHEN desc_nivel_educativo LIKE '%ESPECIAL%' THEN '1'
+                  WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN '2'
+                  WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN '3'
+                  WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN '4'
+                  WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN '5'
+                  WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN '6'
+                  WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN '7'
+                  WHEN desc_nivel_educativo LIKE '%NO APLICA%' THEN '0'
+                  END AS id_nivel, desc_nivel_educativo as nivel
+        from centros_educativos.vista_cct 
+        {$where}
+        GROUP by id_nivel";
+
+      return $this->ce_db->query($str_query)->result_array();
     }// get_xidmunicipio()
 
     function get_xidmunicipio_vista_cct($id_municipio){

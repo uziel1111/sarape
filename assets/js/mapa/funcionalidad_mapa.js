@@ -208,6 +208,7 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	           // animation: google.maps.Animation.DROP
 	       });
 	          cct_mapa = "'"+marcadores[i][3]+"'";
+	          cct_turno_mapa = "'"+marcadores[i][3]+"',"+marcadores[i][6];
 	           oms.addMarker(marker);  // <-- here attempted to add markers
 	          google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	           return function() {
@@ -236,7 +237,7 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
                       contentString +='<p class="text-center">';                      
                       contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.cct_mismo_nivel('+cct_mapa+')" data-toggle="tooltip" data-placement="top" title="Busca 5 escuelas del mismo nivel"><i class="far fa-clone"></i></button>'; 
                       contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.cct_siguiente_nivel('+cct_mapa+')" data-toggle="tooltip" data-placement="top" title="Busca 5 escuelas del siguiente nivel"><i class="fa fa-share-square"></i></button>';
-                      contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.get_info('+cct_mapa+')" data-toggle="tooltip" data-placement="top" title="Información de la escuela"><i class="fa fa-info-circle"></i></button>';
+                      contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.get_info('+cct_turno_mapa+')" data-toggle="tooltip" data-placement="top" title="Información de la escuela"><i class="fa fa-info-circle"></i></button>';
                       contentString +='</p>';
                       contentString +='</div>';                      
                       contentString +='</div>';
@@ -247,12 +248,17 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	     }
 }
 
-Mapa.prototype.get_info = function(id_cct){
+Mapa.prototype.get_info = function(id_cct, turno){
+
 	var form = document.createElement("form");
 	var element1 = document.createElement("input");
 		  element1.type="hidden";
 		  element1.name="id_cct";
 		  element1.value= id_cct;
+    var element2 = document.createElement("input");
+		  element2.type="hidden";
+		  element2.name="turno";
+		  element2.value= turno;
 
 	form.name = "form_info";
 	form.id = "form_info";
@@ -260,6 +266,7 @@ Mapa.prototype.get_info = function(id_cct){
 	// form.target = "_self";
 	form.action = base_url+"info/index";
 	form.appendChild(element1);
+	form.appendChild(element2);
 
 	document.body.appendChild(form);
 	form.submit();
