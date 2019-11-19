@@ -25,7 +25,7 @@ class Info extends CI_Controller {
 		$turno_single = $this->input->post("turno_single");
 		$cct= $this->input->post("id_cct");
 
-			// echo "<pre>"; print_r($turno); die();
+			// echo "<pre>"; print_r($cct); die();
 		if(strlen($cct)>10){
 			$cadena=substr ($cct ,0 , 10);
 			$cadena2=substr ($cct ,10 ,3);

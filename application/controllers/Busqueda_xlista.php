@@ -240,7 +240,6 @@ class Busqueda_xlista extends CI_Controller {
 					$str_select .= "<option value={$value['cct']}{$value['turno']}{$value['turno_single']}>{$value['cct']}-{$value['turno_n']} - {$value['turno_single']}</option>";
 				}
 			}
-			// echo "<pre>"; print_r($id_cct); die();
 			$response = array(
 												'total_escuelas' => $total_escuelas,
 												'str_select' => $str_select,
@@ -248,6 +247,7 @@ class Busqueda_xlista extends CI_Controller {
 												'turno' => $turno,
 												'turno_single' => $turno_single
 												);
+			// echo "<pre>"; print_r($response); die();
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}// escuelas_xcvecentro()

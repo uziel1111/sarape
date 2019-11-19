@@ -197,7 +197,7 @@ class CentrosE_model extends CI_Model
 
     function get_info_escuela($cct,$turno){
 
-      if (is_string($turno)) {
+      if (strlen($turno)>3) {
         $where_turno = " v.desc_turno like '%{$turno}%'";
       }else{
         $where_turno = " v.turno={$turno}";
@@ -254,7 +254,7 @@ class CentrosE_model extends CI_Model
               AND municipio is not null
               GROUP BY v.cct,v.desc_turno
               ORDER BY v.desc_nivel_educativo";
-        //echo $query; die();
+        // echo $query; die();
         return $this->ce_db->query($query)->result_array();
     }
 

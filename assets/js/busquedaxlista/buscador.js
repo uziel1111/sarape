@@ -107,6 +107,7 @@ Buscador.prototype.get_xcvecentro = function(cve_centro){
     	  },
       })
       .done(function( data ) {
+         // alert('khe pex?');
         if(data.total_escuelas==0){
           alert('sin resultados');
         }
@@ -140,7 +141,7 @@ Buscador.prototype.form = function(cct,turno,turno_single){
   var element3 = document.createElement("input");
 
   element1.type = "hidden";
-  element1.name="cct";
+  element1.name="id_cct";
   element1.value = cct;
 
   element2.type = "hidden";

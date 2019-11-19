@@ -242,7 +242,9 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
                       contentString +='<p class="text-center">';                      
                       contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.cct_mismo_nivel('+cct_mapa+')" data-toggle="tooltip" data-placement="top" title="Busca 5 escuelas del mismo nivel"><i class="far fa-clone"></i></button>'; 
                       contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.cct_siguiente_nivel('+cct_mapa+')" data-toggle="tooltip" data-placement="top" title="Busca 5 escuelas del siguiente nivel"><i class="fa fa-share-square"></i></button>';
+                     if (marcadores[i][8] != 'NO APLICA') {
                       contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.get_info('+cct_turno_mapa+')" data-toggle="tooltip" data-placement="top" title="Información de la escuela"><i class="fa fa-info-circle"></i></button>';
+                     }
                       contentString +='</p>';
                       contentString +='</div>';                      
                       contentString +='</div>';

@@ -184,7 +184,7 @@
       var element3 = document.createElement("input");
       // console.log(cct);
       element1.type = "hidden";
-      element1.name="cct";
+      element1.name="id_cct";
       element1.value = cct;
 
       element2.type = "hidden";
