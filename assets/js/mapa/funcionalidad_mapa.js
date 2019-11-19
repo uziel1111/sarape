@@ -150,6 +150,7 @@ Mapa.prototype.cct_mismo_nivel = function(idcct){
 }
 
 Mapa.prototype.cct_siguiente_nivel = function(idcct){
+	console.log(idcct);
 	$.ajax({
 		url: base_url+'mapa/get_siguiente_nivel',
 		type: 'POST',
@@ -207,12 +208,12 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	           icon: iconBase,
 	           // animation: google.maps.Animation.DROP
 	       });
-	          cct_mapa = "'"+marcadores[i][3]+"'";
-	          cct_turno_mapa = "'"+marcadores[i][3]+"','"+marcadores[i][6]+"'";
+	          
 	           oms.addMarker(marker);  // <-- here attempted to add markers
-	           console.log(marcadores[i]);
 	          google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	           return function() {
+	           	cct_mapa = "'"+marcadores[i][3]+"'";
+	          cct_turno_mapa = "'"+marcadores[i][3]+"','"+marcadores[i][6]+"'";
 	              var contentString = '<div class="card-map">';
                       contentString +='<div class="cardmap-body">';
                       contentString +='<h5 class="card-title fw-800">'+marcadores[i][0]+'</h5>';
@@ -246,6 +247,7 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	              infowindow.open(map, marker);
 	          }
 	      })(marker, i));
+	           
 	     }
 }
 
