@@ -37,9 +37,9 @@
               </div>
             </div>
         </div>
-          <div class="col-xs-12 col-sm-6 col-lg-4 mt-2">
+          <div class="col-xs-12 col-sm-6 col-lg-4 mt-2 d-none">
             <?=form_label('', '');?>
-            <button class="btn btn-success btn-block btn-style-1" id="btn_ayuda_mapa">Ayuda</button>
+            <button class="btn btn-success btn-block btn-style-1 d-none" id="btn_ayuda_mapa">Ayuda</button>
           </div><!--  col-sm-6 -->
 
           <div class="col-xs-12 col-sm-6 col-lg-4 mt-2">

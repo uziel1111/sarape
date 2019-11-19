@@ -208,8 +208,9 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	           // animation: google.maps.Animation.DROP
 	       });
 	          cct_mapa = "'"+marcadores[i][3]+"'";
-	          cct_turno_mapa = "'"+marcadores[i][3]+"',"+marcadores[i][6];
+	          cct_turno_mapa = "'"+marcadores[i][3]+"','"+marcadores[i][6]+"'";
 	           oms.addMarker(marker);  // <-- here attempted to add markers
+	           console.log(marcadores[i]);
 	          google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	           return function() {
 	              var contentString = '<div class="card-map">';
@@ -226,11 +227,11 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
                       contentString +='</tr>';                      
                       contentString +='<tr>';
                       contentString +='<td><span class="fw800" data-toggle="tooltip" data-placement="right" title="Nivel"><i class="fa fa-chalkboard-teacher"></i>: '+marcadores[i][8]+'</span></td>';
-                      contentString +='<td><span class="fw800" data-toggle="tooltip" data-placement="right" title="Sostenimiento"><i class="fa fa-hand-holding-usd"><span data-toggle="tooltip" data-placement="right" title="Municipio"></i>: '+marcadores[i][11]+'</span></td>';                     
+                      contentString +='<td><span class="fw800" data-toggle="tooltip" data-placement="right" title="Sostenimiento"><i class="fa fa-hand-holding-usd"><span data-toggle="tooltip" data-placement="right" title="Municipio"></i>: '+marcadores[i][7]+'</span></td>';                     
                       contentString +='</tr>';
                       contentString +='<tr>';
                       contentString +='<td><span class="fw800" data-toggle="tooltip" data-placement="right" title="Turno"><i class="fa fa-clock"></i>: '+marcadores[i][6]+'</span></td>';
-                      contentString +='<td><span class="fw800" data-toggle="tooltip" data-placement="right" title="Zona"><i class="fa fa-crosshairs"></i>: '+marcadores[i][10]+'</span></td>';                     
+                      contentString +='<td><span class="fw800" data-toggle="tooltip" data-placement="right" title="Zona"><i class="fa fa-crosshairs"></i>: '+marcadores[i][9]+'</span></td>';                     
                       contentString +='</tr>';                      
                       contentString +='</tbody>';
                       contentString +='</table>';

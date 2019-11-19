@@ -187,7 +187,8 @@ class Escuela_model extends CI_Model
       es.nombre_de_municipio as municipio,
       es.nombre_de_localidad as localidad,
       es.zona_escolar,
-      es.sostenimiento
+      es.sostenimiento,
+      es.desc_sostenimiento as subsostenimiento
       FROM
       centros_educativos.vista_cct AS es
       WHERE

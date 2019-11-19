@@ -107,7 +107,7 @@ class Mapa extends CI_Controller {
 	            array_push($marcadorb, $marcador['id_nivel']);
 	            array_push($marcadorb, $marcador['municipio']);
 	            array_push($marcadorb, $marcador['turno_single']);
-	            // array_push($marcadorb, $marcador['turno']);
+	            array_push($marcadorb, $marcador['subsostenimiento']);
 	            array_push($marcadorb, $marcador['nivel']);
 	            array_push($marcadorb, $marcador['localidad']);
 	            array_push($marcadorb, $marcador['zona_escolar']);
@@ -140,7 +140,7 @@ class Mapa extends CI_Controller {
 		            array_push($marcadorb, $marcador['id_nivel']);
 		            array_push($marcadorb, $marcador['municipio']);
 								array_push($marcadorb, $marcador['turno_single']);
-								// array_push($marcadorb, $marcador['id_cct']);
+								array_push($marcadorb, $marcador['subsostenimiento']);
 								array_push($marcadorb, $marcador['nivel']);
 								array_push($marcadorb, $marcador['localidad']);
 								array_push($marcadorb, $marcador['zona_escolar']);
@@ -172,7 +172,7 @@ class Mapa extends CI_Controller {
 		            array_push($marcadorb, $marcador['id_nivel']);
 		            array_push($marcadorb, $marcador['municipio']);
 								array_push($marcadorb, $marcador['turno_single']);
-								// array_push($marcadorb, $marcador['id_cct']);
+								array_push($marcadorb, $marcador['subsostenimiento']);
 								array_push($marcadorb, $marcador['nivel']);
 								array_push($marcadorb, $marcador['localidad']);
 								array_push($marcadorb, $marcador['zona_escolar']);
