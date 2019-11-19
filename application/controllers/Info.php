@@ -23,9 +23,10 @@ class Info extends CI_Controller {
 	public function index(){
 		$turno = $this->input->post("turno");
 		$turno_single = $this->input->post("turno_single");
-		$cct= $this->input->post("cct");
-
+		$cct= $this->input->post("id_cct");
+		
 		if(strlen($cct)>10){
+			// echo "<pre>"; print_r($cct); die();
 			$cadena=substr ($cct ,0 , 10);
 			$cadena2=substr ($cct ,10 ,3);
 			$cadena3=substr ($cct ,13);
@@ -38,6 +39,7 @@ class Info extends CI_Controller {
 			// die();
 		}else{
 			$cct=$cct;
+
 		}
 
 		$turno_e=$this->getTurno($turno_single);
@@ -45,6 +47,7 @@ class Info extends CI_Controller {
 			$data = array();
 			$array = array();
 			// $escuela = $this->Info_model->get_info_escuela($cct,$turno);
+			// $escuela = $this->CentrosE_model->get_info_escuela($cct,$turno); 
 			$escuela = $this->CentrosE_model->get_info_escuela($cct,$turno);
 			// echo "<pre>";print_r($escuela);die();
 			// echo $turno_e;

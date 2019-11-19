@@ -125,6 +125,7 @@ Mapa.prototype.retur_icon = function(nivel){
 }
 
 Mapa.prototype.cct_mismo_nivel = function(idcct){
+	console.log(idcct);
 	$.ajax({
 		url: base_url+'mapa/get_mismo_nivel',
 		type: 'POST',
@@ -206,6 +207,7 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	           icon: iconBase,
 	           // animation: google.maps.Animation.DROP
 	       });
+	          cct_mapa = "'"+marcadores[i][3]+"'";
 	           oms.addMarker(marker);  // <-- here attempted to add markers
 	          google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	           return function() {
@@ -232,9 +234,9 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
                       contentString +='</tbody>';
                       contentString +='</table>';
                       contentString +='<p class="text-center">';                      
-                      contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.cct_mismo_nivel('+marcadores[i][7]+')" data-toggle="tooltip" data-placement="top" title="Busca 5 escuelas del mismo nivel"><i class="far fa-clone"></i></button>'; 
-                      contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.cct_siguiente_nivel('+marcadores[i][7]+')" data-toggle="tooltip" data-placement="top" title="Busca 5 escuelas del siguiente nivel"><i class="fa fa-share-square"></i></button>';
-                      contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.get_info('+marcadores[i][7]+')" data-toggle="tooltip" data-placement="top" title="Información de la escuela"><i class="fa fa-info-circle"></i></button>';
+                      contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.cct_mismo_nivel('+cct_mapa+')" data-toggle="tooltip" data-placement="top" title="Busca 5 escuelas del mismo nivel"><i class="far fa-clone"></i></button>'; 
+                      contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.cct_siguiente_nivel('+cct_mapa+')" data-toggle="tooltip" data-placement="top" title="Busca 5 escuelas del siguiente nivel"><i class="fa fa-share-square"></i></button>';
+                      contentString +='<button class="btn btn-primary mr-5" onclick="obj_mapa.get_info('+cct_mapa+')" data-toggle="tooltip" data-placement="top" title="Información de la escuela"><i class="fa fa-info-circle"></i></button>';
                       contentString +='</p>';
                       contentString +='</div>';                      
                       contentString +='</div>';

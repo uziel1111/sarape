@@ -96,6 +96,7 @@ class Mapa extends CI_Controller {
 				$escuelas = $this->Escuela_model->get_xcvecentro("05".$cct);
 			}else{
 				$escuelas = $this->Escuela_model->get_xparams($idmunicipio,$idnivel,$id_sostenimiento,$nombre_centro);
+				
 			}
 
 			foreach ($escuelas as $marcador) {
@@ -106,7 +107,7 @@ class Mapa extends CI_Controller {
 	            array_push($marcadorb, $marcador['id_nivel']);
 	            array_push($marcadorb, $marcador['municipio']);
 	            array_push($marcadorb, $marcador['turno_single']);
-	            // array_push($marcadorb, $marcador['id_cct']);
+	            // array_push($marcadorb, $marcador['turno']);
 	            array_push($marcadorb, $marcador['nivel']);
 	            array_push($marcadorb, $marcador['localidad']);
 	            array_push($marcadorb, $marcador['zona_escolar']);

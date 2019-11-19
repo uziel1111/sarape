@@ -61,58 +61,40 @@ class Escuela_model extends CI_Model
       es.desc_nivel_educativo as nivel,
       es.desc_sostenimiento as subsostenimiento,
       es.modalidad,
-      es.municipio,
-      es.localidad,
+      es.nombre_de_municipio as municipio,
+      es.nombre_de_localidad as localidad,
       concat_ws(' ', es.nombre_vialidad_principal, es.numero_exterior, es.numero_interior) as domicilio,
       es.latitud,
       es.longitud,
-      CASE  WHEN nivel_educativo LIKE '%NO APLICA%'  THEN '0'
-                  WHEN desc_nivel_educativo LIKE '%CAM%' THEN '1'
-                  WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN '2'
-                  WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN '3'
-                  WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN '4'
-                  WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN '5'
-                  WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN '6'
-                  WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN '7'
-                  WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
-                  WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN '9'
-                  WHEN nivel_educativo = null  THEN '0'
-                  END AS id_nivel,
-      #es.nivel_educativo as id_nivel,
+      CASE  WHEN desc_nivel_educativo LIKE '%NO APLICA%'  THEN '0'
+      WHEN desc_nivel_educativo LIKE '%CAM%' THEN '1'
+      WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN '2'
+      WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN '3'
+      WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN '4'
+      WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN '5'
+      WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN '6'
+      WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN '7'
+      WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
+      WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN '9'
+      WHEN nivel_educativo = null  THEN '0'
+      END AS id_nivel,
       es.zona_escolar,
       es.sostenimiento
       FROM
       centros_educativos.vista_cct AS es
-    /*    JOIN
-    turno_single AS tu ON es.id_turno_single = tu.id_turno_single
-        JOIN
-    nivel AS ni ON es.id_nivel = ni.id_nivel
-        JOIN
-    subsostenimiento AS sso ON es.id_subsostenimiento = sso.id_subsostenimiento
-        JOIN
-    sostenimiento AS so ON sso.id_sostenimiento = so.id_sostenimiento
-        JOIN
-    modalidad AS mo ON es.id_modalidad = mo.id_modalidad
-        JOIN
-    municipio AS mu ON es.id_municipio = mu.id_municipio
-        JOIN
-    supervision AS s ON es.id_supervision = s.id_supervision
-        JOIN
-    localidad AS loc ON mu.id_municipio = loc.id_municipio
-    AND es.id_localidad = loc.cve_localidad*/
-    WHERE
-    (es.status != 2
-    AND es.status != 3)
-    AND es.latitud != 0
-    AND es.latitud != ''
-    AND es.latitud != '#VALUE!'
-    {$where_mun}
-    {$where_niv}
-    {$where_sos}
-    {$like}
-    GROUP BY es.cct
-    ORDER BY es.nivel_educativo";
-        return $this->ce_db->query($str_query)->result_array();
+      WHERE
+      (es.status != 2
+      AND es.status != 3)
+      AND es.latitud != 0
+      AND es.latitud != ''
+      AND es.latitud != '#VALUE!'
+      {$where_mun}
+      {$where_niv}
+      {$where_sos}
+      {$like}
+      GROUP BY es.cct
+      ORDER BY es.nivel_educativo";
+      return $this->ce_db->query($str_query)->result_array();
     }// get_xparams()
 
 
@@ -147,39 +129,34 @@ class Escuela_model extends CI_Model
       es.turno as turno_single,
       es.latitud,
       es.longitud,
-      es.nivel_educativo as id_nivel,
-      es.municipio as municipio,
-      es.localidad,
+      CASE  WHEN desc_nivel_educativo LIKE '%NO APLICA%'  THEN '0'
+      WHEN desc_nivel_educativo LIKE '%CAM%' THEN '1'
+      WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN '2'
+      WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN '3'
+      WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN '4'
+      WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN '5'
+      WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN '6'
+      WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN '7'
+      WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
+      WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN '9'
+      WHEN nivel_educativo = null  THEN '0'
+      END AS id_nivel,
+      #es.nivel_educativo as id_nivel,
+      es.nombre_de_municipio as municipio,
+      es.nombre_de_localidad as localidad,
       es.zona_escolar,
       es.sostenimiento
       FROM
       centros_educativos.vista_cct AS es
-    /*    JOIN
-    turno_single AS tu ON es.id_turno_single = tu.id_turno_single
-        JOIN
-    nivel AS ni ON es.id_nivel = ni.id_nivel
-        JOIN
-    subsostenimiento AS sso ON es.id_subsostenimiento = sso.id_subsostenimiento
-        JOIN
-    sostenimiento AS so ON sso.id_sostenimiento = so.id_sostenimiento
-        JOIN
-    modalidad AS mo ON es.id_modalidad = mo.id_modalidad
-        JOIN
-    municipio AS mu ON es.id_municipio = mu.id_municipio
-        JOIN
-    supervision AS s ON es.id_supervision = s.id_supervision
-        JOIN
-    localidad AS loc ON mu.id_municipio = loc.id_municipio
-    AND es.id_localidad = loc.cve_localidad */
-    WHERE
-    es.cct = '{$cve_centro}'
-    AND (es.status != 2
-    AND es.status != 3)
-    AND es.latitud != 0
-    AND es.latitud != ''
-    AND es.latitud != '#VALUE!'
-    GROUP BY es.turno";
-    return $this->ce_db->query($str_query)->result_array();
+      WHERE
+      es.cct = '{$cve_centro}'
+      AND (es.status != 2
+      AND es.status != 3)
+      AND es.latitud != 0
+      AND es.latitud != ''
+      AND es.latitud != '#VALUE!'
+      GROUP BY es.turno";
+      return $this->ce_db->query($str_query)->result_array();
     }// get_xcentro()
 
     function get_xcvecentro_turnosingle($cve_centro, $turno_single){
@@ -214,7 +191,7 @@ class Escuela_model extends CI_Model
 
 
     function get_xidcct($idcct){
-      // echo $idcct; die();
+      /*// echo $idcct; die();
       $this->db->select('es.id_cct,es.cve_centro,es.nombre_centro, es.latitud, es.longitud, es.id_nivel');
       $this->db->from('escuela as es');
       $this->db->join('turno as tu', 'es.id_turno = tu.id_turno');
@@ -222,7 +199,25 @@ class Escuela_model extends CI_Model
       // $this->db->get();
       // $str = $this->db->last_query();
       // echo $str; die();
-      return  $this->db->get()->result_array();
+      return  $this->db->get()->result_array();*/
+
+      $str_query = "SELECT es.cct as cve_centro ,es.nombre as nombre_centro, es.latitud, es.longitud,  CASE  WHEN desc_nivel_educativo LIKE '%NO APLICA%'  THEN '0'
+      WHEN desc_nivel_educativo LIKE '%CAM%' THEN '1'
+      WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN '2'
+      WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN '3'
+      WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN '4'
+      WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN '5'
+      WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN '6'
+      WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN '7'
+      WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
+      WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN '9'
+      WHEN nivel_educativo = null  THEN '0'
+      END AS id_nivel
+      from centros_educativos.vista_cct as es
+      where cct = '{$idcct}';";
+      
+      return $this->ce_db->query($str_query)->result_array();
+
     }
 
     function get_mismo_nivel($latitud, $longitud, $nivel, $siguiente){
