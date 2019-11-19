@@ -10,38 +10,38 @@ class CentrosE_model extends CI_Model
     function sostenimientos(){
       $query="SELECT a.* FROM (
                 SELECT sostenimiento  AS id_sostenimiento,
-                  CASE  WHEN (desc_sostenimiento LIKE '%FEDERAL%') 
-                      OR (desc_sostenimiento LIKE '%ESTATAL%') 
-                      OR (desc_sostenimiento LIKE '%PUBLICA%') 
-                      OR (desc_sostenimiento LIKE '%MUNICIPAL%') 
-                      OR (desc_sostenimiento LIKE '%INSTITUTO%') 
-                      OR (desc_sostenimiento LIKE '%ESTADO%') 
-                      OR (desc_sostenimiento LIKE '%SECRETARIA%')     
+                  CASE  WHEN (desc_sostenimiento LIKE '%FEDERAL%')
+                      OR (desc_sostenimiento LIKE '%ESTATAL%')
+                      OR (desc_sostenimiento LIKE '%PUBLICA%')
+                      OR (desc_sostenimiento LIKE '%MUNICIPAL%')
+                      OR (desc_sostenimiento LIKE '%INSTITUTO%')
+                      OR (desc_sostenimiento LIKE '%ESTADO%')
+                      OR (desc_sostenimiento LIKE '%SECRETARIA%')
                       THEN 'PUBLICO'
                     WHEN desc_sostenimiento LIKE '%PARTICULAR%' THEN 'PRIVADO'
                     WHEN desc_sostenimiento LIKE '%AUTONOMO%' THEN 'AUTONOMO'
                     END AS sostenimiento
-                FROM vista_cct 
+                FROM vista_cct
                   WHERE (`status`= 1 OR `status` = 4) AND tipo_centro=9
-                    GROUP BY 
-                    (CASE   WHEN (desc_sostenimiento LIKE '%FEDERAL%') 
-                      OR (desc_sostenimiento LIKE '%ESTATAL%') 
-                      OR (desc_sostenimiento LIKE '%PUBLICA%') 
-                      OR (desc_sostenimiento LIKE '%MUNICIPAL%') 
-                      OR (desc_sostenimiento LIKE '%INSTITUTO%') 
-                      OR (desc_sostenimiento LIKE '%ESTADO%') 
-                      OR (desc_sostenimiento LIKE '%SECRETARIA%')     
+                    GROUP BY
+                    (CASE   WHEN (desc_sostenimiento LIKE '%FEDERAL%')
+                      OR (desc_sostenimiento LIKE '%ESTATAL%')
+                      OR (desc_sostenimiento LIKE '%PUBLICA%')
+                      OR (desc_sostenimiento LIKE '%MUNICIPAL%')
+                      OR (desc_sostenimiento LIKE '%INSTITUTO%')
+                      OR (desc_sostenimiento LIKE '%ESTADO%')
+                      OR (desc_sostenimiento LIKE '%SECRETARIA%')
                       THEN 'PUBLICO'
                       WHEN desc_sostenimiento LIKE '%PARTICULAR%' THEN 'PRIVADO'
                       WHEN desc_sostenimiento LIKE '%AUTONOMO%' THEN 'AUTONOMO'
-                    END) 
+                    END)
                 ) AS a WHERE a.sostenimiento IS NOT NULL ORDER BY FIELD(a.sostenimiento,'PUBLICO','PRIVADO','AUTONOMO')";
       return $this->ce_db->query($query)->result_array();
     }// all()
 
     function niveles(){
-      $query="SELECT 
-              CASE  
+      $query="SELECT
+              CASE
                   WHEN a.nivel LIKE '%ESPECIAL%' THEN '1'
                   WHEN a.nivel LIKE '%INICIAL%' THEN '2'
                   WHEN a.nivel LIKE '%PREESCOLAR%' THEN '3'
@@ -66,8 +66,8 @@ class CentrosE_model extends CI_Model
                   WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
                   WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN 'OTRO NIVEL EDUCATIVO'
                   END AS nivel
-                FROM vista_cct 
-                WHERE (`status`= 1 OR `status` = 4) AND tipo_centro=9 
+                FROM vista_cct
+                WHERE (`status`= 1 OR `status` = 4) AND tipo_centro=9
                 GROUP BY CASE   WHEN desc_nivel_educativo LIKE '%NO APLICA%' THEN 'NO APLICA'
                   WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
                   WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
@@ -79,14 +79,14 @@ class CentrosE_model extends CI_Model
                   WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
                   WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN 'OTRO NIVEL EDUCATIVO'
                   END
-                  
+
                   ) AS a ORDER BY FIELD(a.nivel,'ESPECIAL','INICIAL','PREESCOLAR','PRIMARIA','SECUNDARIA','MEDIA SUPERIOR','SUPERIOR','FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')";
       return $this->ce_db->query($query)->result_array();
     }
 
     function municipios(){
-      $query="SELECT municipio as id_municipio,nombre_de_municipio as municipio FROM vista_cct 
-                WHERE  municipio IS NOT NULL 
+      $query="SELECT municipio as id_municipio,nombre_de_municipio as municipio FROM vista_cct
+                WHERE  municipio IS NOT NULL
                 GROUP BY municipio,nombre_de_municipio";
       return $this->ce_db->query($query)->result_array();
     }
@@ -133,25 +133,25 @@ class CentrosE_model extends CI_Model
         // echo $sostenimiento; die();
         if($sostenimiento==11){
           $auxiliar.=" AND (
-                      (v.desc_sostenimiento LIKE '%FEDERAL%') 
-                            OR (v.desc_sostenimiento LIKE '%ESTATAL%') 
-                            OR (v.desc_sostenimiento LIKE '%PUBLICA%') 
-                            OR (v.desc_sostenimiento LIKE '%MUNICIPAL%') 
-                            OR (v.desc_sostenimiento LIKE '%INSTITUTO%') 
-                            OR (v.desc_sostenimiento LIKE '%ESTADO%') 
-                            OR (v.desc_sostenimiento LIKE '%SECRETARIA%')     
+                      (v.desc_sostenimiento LIKE '%FEDERAL%')
+                            OR (v.desc_sostenimiento LIKE '%ESTATAL%')
+                            OR (v.desc_sostenimiento LIKE '%PUBLICA%')
+                            OR (v.desc_sostenimiento LIKE '%MUNICIPAL%')
+                            OR (v.desc_sostenimiento LIKE '%INSTITUTO%')
+                            OR (v.desc_sostenimiento LIKE '%ESTADO%')
+                            OR (v.desc_sostenimiento LIKE '%SECRETARIA%')
                       )";
         }else if($sostenimiento==61){
           $auxiliar.=" AND (
-                      (v.desc_sostenimiento LIKE '%PARTICULAR%') 
-                      OR (v.desc_sostenimiento LIKE '%PRIVADO%')    
+                      (v.desc_sostenimiento LIKE '%PARTICULAR%')
+                      OR (v.desc_sostenimiento LIKE '%PRIVADO%')
                     )";
         }else if($sostenimiento==51){
           $auxiliar.=" AND (
-                      v.desc_sostenimiento LIKE '%AUTONOMO%'  
+                      v.desc_sostenimiento LIKE '%AUTONOMO%'
                     )";
         }
-        
+
       }
       if($nombre_escuela!=''){
         $auxiliar.= " AND nombre LIKE '%".$nombre_escuela."%'";
@@ -169,24 +169,24 @@ class CentrosE_model extends CI_Model
                   WHEN v.desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
                   WHEN v.desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN 'OTRO NIVEL EDUCATIVO'
                   END AS nivel,
-              CASE  WHEN (v.desc_sostenimiento LIKE '%FEDERAL%') 
-              OR (v.desc_sostenimiento LIKE '%ESTATAL%') 
-              OR (v.desc_sostenimiento LIKE '%PUBLICA%') 
-              OR (v.desc_sostenimiento LIKE '%MUNICIPAL%') 
-              OR (v.desc_sostenimiento LIKE '%INSTITUTO%') 
-              OR (v.desc_sostenimiento LIKE '%ESTADO%') 
-              OR (v.desc_sostenimiento LIKE '%SECRETARIA%')     
+              CASE  WHEN (v.desc_sostenimiento LIKE '%FEDERAL%')
+              OR (v.desc_sostenimiento LIKE '%ESTATAL%')
+              OR (v.desc_sostenimiento LIKE '%PUBLICA%')
+              OR (v.desc_sostenimiento LIKE '%MUNICIPAL%')
+              OR (v.desc_sostenimiento LIKE '%INSTITUTO%')
+              OR (v.desc_sostenimiento LIKE '%ESTADO%')
+              OR (v.desc_sostenimiento LIKE '%SECRETARIA%')
               THEN 'PUBLICO'
               WHEN desc_sostenimiento LIKE '%PARTICULAR%' THEN 'PRIVADO'
               WHEN desc_sostenimiento LIKE '%AUTONOMO%' THEN 'AUTONOMO'
               END AS desc_sostenimiento,
-              v.sostenimiento,v.status,v.municipio as id_municipio, v.nombre_de_municipio as municipio,v.localidad as id_localidad,v.nombre_de_localidad as localidad, 
+              v.sostenimiento,v.status,v.municipio as id_municipio, v.nombre_de_municipio as municipio,v.localidad as id_localidad,v.nombre_de_localidad as localidad,
               v.latitud, v.longitud,v.nombre_vialidad_principal as domicilio,v.zona_escolar,'' as turno_n,'' AS turno_single
               FROM vista_cct AS v
 
               WHERE (v.status != 2 AND v.status != 3)
               /*AND v.latitud != 0
-                AND v.latitud != ''*/ 
+                AND v.latitud != ''*/
               AND desc_tipo_centro='ESCUELA' {$auxiliar}
                and municipio is not null
               GROUP BY v.cct,v.desc_turno
@@ -218,19 +218,19 @@ class CentrosE_model extends CI_Model
                   END AS nivel,
               IF(status in(1,4),'ACTIVA','') as estatus
                   ,
-              CASE  WHEN (v.desc_sostenimiento LIKE '%FEDERAL%') 
-              OR (v.desc_sostenimiento LIKE '%ESTATAL%') 
-              OR (v.desc_sostenimiento LIKE '%PUBLICA%') 
-              OR (v.desc_sostenimiento LIKE '%MUNICIPAL%') 
-              OR (v.desc_sostenimiento LIKE '%INSTITUTO%') 
-              OR (v.desc_sostenimiento LIKE '%ESTADO%') 
-              OR (v.desc_sostenimiento LIKE '%SECRETARIA%')     
+              CASE  WHEN (v.desc_sostenimiento LIKE '%FEDERAL%')
+              OR (v.desc_sostenimiento LIKE '%ESTATAL%')
+              OR (v.desc_sostenimiento LIKE '%PUBLICA%')
+              OR (v.desc_sostenimiento LIKE '%MUNICIPAL%')
+              OR (v.desc_sostenimiento LIKE '%INSTITUTO%')
+              OR (v.desc_sostenimiento LIKE '%ESTADO%')
+              OR (v.desc_sostenimiento LIKE '%SECRETARIA%')
               THEN 'PUBLICO'
               WHEN desc_sostenimiento LIKE '%PARTICULAR%' THEN 'PRIVADO'
               WHEN desc_sostenimiento LIKE '%AUTONOMO%' THEN 'AUTONOMO'
               END AS desc_sostenimiento,
               v.sostenimiento,v.status,v.municipio as id_municipio, v.nombre_de_municipio as municipio,v.localidad as id_localidad,
-              v.nombre_de_localidad as localidad, 
+              v.nombre_de_localidad as localidad,
               v.latitud, v.longitud,v.nombre_vialidad_principal as domicilio,v.zona_escolar,'' as turno_n,'' AS turno_single,
               CASE  WHEN desc_subnivel_educativo LIKE '%GENERAL%' THEN 'GENERAL'
               WHEN desc_subnivel_educativo LIKE '%LACTANTE Y MATERNAL%' THEN 'LACTANTE Y MATERNAL'
@@ -249,12 +249,12 @@ class CentrosE_model extends CI_Model
 
               WHERE (v.status != 2 AND v.status != 3)
               /*AND v.latitud != 0
-                AND v.latitud != ''*/ 
-              AND v.desc_tipo_centro='ESCUELA'  and v.cct='{$cct}' and {$where_turno}
+                AND v.latitud != ''*/
+              AND (v.desc_tipo_centro='ESCUELA' or v.desc_tipo_centro='APOYO A LA EDUCACION' or v.desc_tipo_centro='PLANTEL (MEDIA SUPERIOR)')  and v.cct='{$cct}' and {$where_turno}
               AND municipio is not null
               GROUP BY v.cct,v.desc_turno
               ORDER BY v.desc_nivel_educativo";
-        // echo $query; die();
+        //echo $query; die();
         return $this->ce_db->query($query)->result_array();
     }
 
@@ -299,7 +299,7 @@ class CentrosE_model extends CI_Model
     }// get_indicpeso_xidcct()
 
     function get_xcvecentro($cve_centro){
-      $query="SELECT cct,nivel_educativo,turno,desc_turno,'' as turno_n,'' AS turno_single FROM vista_cct WHERE cct='{$cve_centro}' 
+      $query="SELECT cct,nivel_educativo,turno,desc_turno,'' as turno_n,'' AS turno_single FROM vista_cct WHERE cct='{$cve_centro}'
       and (status != 2 AND status != 3)  and desc_tipo_centro='ESCUELA' and municipio is not null";
       // echo $query;
       // die();
