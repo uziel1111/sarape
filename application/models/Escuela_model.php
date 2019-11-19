@@ -25,13 +25,47 @@ class Escuela_model extends CI_Model
       $this->db->where('es.latitud !=',0);
       $this->db->where('es.latitud !=','');
       $this->db->where('es.latitud !=','#VALUE!');*/
-        if ($id_nivel == 1 || $id_nivel == 2 || $id_nivel == 3 || $id_nivel >5) {
-          $id_nivel = 1;
-        }elseif ($id_nivel == 4) {
-          $id_nivel = 2;
-        }elseif ($id_nivel == 5) {
-          $id_nivel = 3;
-        }
+       switch ($id_nivel) {
+         case '1':
+          $nivel = 'CAM';
+           break;
+          case '2':
+           $nivel = 'INICIAL';
+           break;
+           case '3':
+           $nivel = 'PREESCOLAR';
+           break;
+           case '4':
+           $nivel = 'PRIMARIA';
+           break;
+           case '5':
+           $nivel = 'SECUNDARIA';
+           break;
+           case '6':
+           $nivel = 'MEDIA SUPERIOR';
+           break;
+           case '7':
+           $nivel = 'SUPERIOR';
+           break;
+         default:
+           $nivel = 'NO APLICA';
+           break;
+       }
+
+       switch ($id_sostenimiento) {
+         case '1':
+           $sostenimiento = "AND es.sostenimiento not in ('61','41','92','96', '51')";
+           break;
+          case '2':
+           $sostenimiento = "AND es.sostenimiento in ('61','41','92','96')";
+           break;
+           case '3':
+           $sostenimiento = "AND es.sostenimiento = '51'";
+           break;
+         default:
+           $id_sostenimiento = 0;
+           break;
+       }
 
       if($id_municipio>0){
         $where_mun = " and es.municipio = {$id_municipio}";
@@ -39,12 +73,12 @@ class Escuela_model extends CI_Model
         $where_mun = ' ';
       }
       if($id_nivel>0){
-        $where_niv = " and es.nivel_educativo = $id_nivel";
+        $where_niv = " and es.desc_nivel_educativo = '{$nivel}'";
       } else{
         $where_niv = ' ';
       }
       if($id_sostenimiento>0){
-        $where_sos = " and es.sostenimiento = $id_sostenimiento";
+        $where_sos = " {$sostenimiento}";
       } else{
         $where_sos = ' ';
       }
