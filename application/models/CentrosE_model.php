@@ -197,11 +197,11 @@ class CentrosE_model extends CI_Model
 
     function get_info_escuela($cct,$turno){
 
-      // if (is_string($turno)) {
-        // $where_turno = " v.desc_turno like '%{$turno}%'";
-      // }else{
+      if (is_string($turno)) {
+        $where_turno = " v.desc_turno like '%{$turno}%'";
+      }else{
         $where_turno = " v.turno={$turno}";
-      // }
+      }
       // echo $where_turno;
       // die();
       $query="SELECT  v.cct as cve_centro,v.turno,v.desc_turno, v.nombre as nombre_centro, v.des_region as region,concat_ws(' ',v.nombre_director,v.apellido_paterno_director,v.apellido_materno_director) as nombre_director,
