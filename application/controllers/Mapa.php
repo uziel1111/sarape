@@ -21,9 +21,7 @@ class Mapa extends CI_Controller {
 			$arr_sostenimientos = array();
 			$arr_federales = array();
 
-			// echo "<pre>";
-			// print_r($options);
-			// die();
+			
 			$municipios = $this->Municipio_model->all();
 			$arr_municipios['0'] = 'TODOS';
 			foreach ($municipios as $municipio){
@@ -32,6 +30,7 @@ class Mapa extends CI_Controller {
 
 			$niveles = $this->Nivel_model->all();
 			$arr_niveles['0'] = 'TODOS';
+
 			foreach ($niveles as $nivel){
 				 $arr_niveles[$nivel['id_nivel']] = $nivel['nivel'];
 			}
@@ -50,6 +49,9 @@ class Mapa extends CI_Controller {
 			$data2['niveles'] = $arr_niveles;
 			$data2['sostenimientos'] = $arr_sostenimientos;
 			$data2['programas'] = $arr_federales;
+			// echo "<pre>";
+			// print_r($arr_niveles);
+			// die();
 			$string = $this->load->view('mapa/buscador_x_mapa', $data2, TRUE);
 			$data['buscador'] = $string;
 			Utilerias::pagina_basica($this, "mapa/index", $data);

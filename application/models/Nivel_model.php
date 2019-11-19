@@ -24,6 +24,7 @@ class Nivel_model extends CI_Model
         $where = ' ';
       }
       $str_query = "SELECT CASE  
+                  WHEN desc_nivel_educativo LIKE '%CAM%' THEN '1'
                   WHEN desc_nivel_educativo LIKE '%ESPECIAL%' THEN '1'
                   WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN '2'
                   WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN '3'
@@ -31,7 +32,9 @@ class Nivel_model extends CI_Model
                   WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN '5'
                   WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN '6'
                   WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN '7'
-                  WHEN desc_nivel_educativo LIKE '%NO APLICA%' THEN '0'
+                  WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
+                  WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN '9'
+                  WHEN desc_nivel_educativo LIKE '%NO APLICA%' THEN '10'
                   END AS id_nivel, desc_nivel_educativo as nivel
         from centros_educativos.vista_cct 
         {$where}

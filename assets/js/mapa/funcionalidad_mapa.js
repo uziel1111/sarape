@@ -77,9 +77,11 @@ Mapa.prototype.get_marcadores_filtro = function(){
 	.done(function(result) {
 		var marcadores = result.response;
 	    obj_mapa.pinta_en_mapa(marcadores);
+	     swal.close();
 	})
 	.fail(function(e) {
 		console.error("Error in get_marcadores_filtro()"); console.table(e);
+		 swal.close();
 
 	})
 	.always(function() {
@@ -175,6 +177,7 @@ Mapa.prototype.cct_siguiente_nivel = function(idcct){
 }
 
 Mapa.prototype.pinta_en_mapa = function(marcadores){
+	if (marcadores != '') {
 	document.getElementById('contenedor_mapa_id').scrollIntoView();
 	// console.table(marcadores);
 	// console.log(marcadores[0][4]);
@@ -249,6 +252,14 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	      })(marker, i));
 	           
 	     }
+	   }else {
+	   	console.log('marcadores');
+	   	swal({
+			title: 'No se encontraron escuelas',
+			text:'',
+			type: 'info',
+		})
+	   }
 }
 
 Mapa.prototype.get_info = function(id_cct, turno){

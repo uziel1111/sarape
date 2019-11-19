@@ -25,6 +25,7 @@ class Escuela_model extends CI_Model
       $this->db->where('es.latitud !=',0);
       $this->db->where('es.latitud !=','');
       $this->db->where('es.latitud !=','#VALUE!');*/
+     
        switch ($id_nivel) {
          case '1':
           $nivel = 'CAM';
@@ -47,10 +48,19 @@ class Escuela_model extends CI_Model
            case '7':
            $nivel = 'SUPERIOR';
            break;
-         default:
+            case '8':
+           $nivel = 'FORMACION PARA EL TRABAJO';
+           break;
+            case '9':
+           $nivel = 'OTRO NIVEL EDUCATIVO';
+           break;
+           case '10':
            $nivel = 'NO APLICA';
            break;
+          
        }
+
+ 
 
        switch ($id_sostenimiento) {
          case '1':
@@ -108,7 +118,7 @@ class Escuela_model extends CI_Model
       concat_ws(' ', es.nombre_vialidad_principal, es.numero_exterior, es.numero_interior) as domicilio,
       es.latitud,
       es.longitud,
-      CASE  WHEN desc_nivel_educativo LIKE '%NO APLICA%'  THEN '0'
+      CASE  WHEN desc_nivel_educativo LIKE '%NO APLICA%'  THEN '10'
       WHEN desc_nivel_educativo LIKE '%CAM%' THEN '1'
       WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN '2'
       WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN '3'
@@ -136,6 +146,7 @@ class Escuela_model extends CI_Model
       {$like}
       GROUP BY es.cct
       ORDER BY es.nivel_educativo";
+             // echo "<pre>"; print_r($str_query); die();
       return $this->ce_db->query($str_query)->result_array();
     }// get_xparams()
 
