@@ -231,7 +231,7 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
                       contentString +='</tr>';
                       contentString +='<tr>';
                       contentString +='<td><span class="fw800" data-toggle="tooltip" data-placement="right" title="Turno"><i class="fa fa-clock"></i>: '+marcadores[i][6]+'</span></td>';
-                      contentString +='<td><span class="fw800" data-toggle="tooltip" data-placement="right" title="Zona"><i class="fa fa-crosshairs"></i>: '+marcadores[i][9]+'</span></td>';                     
+                      contentString +='<td><span class="fw800" data-toggle="tooltip" data-placement="right" title="Zona"><i class="fa fa-crosshairs"></i>: '+marcadores[i][10]+'</span></td>';                     
                       contentString +='</tr>';                      
                       contentString +='</tbody>';
                       contentString +='</table>';
