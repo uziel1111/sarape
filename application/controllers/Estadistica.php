@@ -71,7 +71,7 @@ class Estadistica extends CI_Controller {
 			// 	}
 			// }
 
-		
+
 			// $result_modalidad = $this->Modalidad_model->getmodali_xidmun_idnivel_idsost(0,'TODOS','TODOS');
 			// if(count($result_modalidad)==0){
 			// 	$data['arr_modalidad'] = array(	'0' => 'Error recuperando los modalidad' );
@@ -300,7 +300,7 @@ class Estadistica extends CI_Controller {
 			$id_subsost = $this->input->post('id_subsost');
 			$id_zona = $this->input->post('id_zona');
 			$nivel=$this->Nivel_model->get_nivel($id_nivel);
-			
+
 			$sostenimiento= $this->Sostenimiento_model->get_sostenimiento($id_subsost);
 
 			$arr_cicloe = array();
@@ -1101,7 +1101,7 @@ class Estadistica extends CI_Controller {
 				<td>'.$row['nivel'].'</td>
 				<td style="text-align: center;">'.($row['retencion']).'%</td>
 				<td style="text-align: center;">'.($row['aprobacion']).'%</td>
-				<td style="text-align: center;">'.($row['et']).'%</td>
+				<td style="text-align: center;">'.(($row['et']='0.00')?'N/D':$row['et'].'%').'</td>
 				</tr>';
 			}
 			$str_html_alumn.='</tbody>
@@ -1109,6 +1109,7 @@ class Estadistica extends CI_Controller {
 
 								<div class="pie_tabla">
 												<div id="fuentes_pie">Fuente: SEDU (Formato 911) - ciclo escolar 2016-2017</div>
+												<div id="">N/D : Dato no disponible</div>
 								</div>';
 
 			return $str_html_alumn;
