@@ -1101,7 +1101,7 @@ class Estadistica extends CI_Controller {
 				<td>'.$row['nivel'].'</td>
 				<td style="text-align: center;">'.($row['retencion']).'%</td>
 				<td style="text-align: center;">'.($row['aprobacion']).'%</td>
-				<td style="text-align: center;">'.(($row['et']='0.00')?'N/D':$row['et'].'%').'</td>
+				<td style="text-align: center;">'.(($row['et']=='0.00')?'N/D':$row['et'].'%').'</td>
 				</tr>';
 			}
 			$str_html_alumn.='</tbody>

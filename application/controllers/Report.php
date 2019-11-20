@@ -95,7 +95,7 @@ class Report extends CI_Controller {
 				$cve_nivel = $this->input->post('slc_busquedalista_nivel_reporte');
 				$cve_sostenimiento = $this->input->post('slc_busquedalista_sostenimiento_reporte');
 				$nombre_escuela = $this->input->post('itxt_busquedalista_nombreescuela_reporte');
-				
+
 				// $result_escuelas = $this->Escuela_model->get_xparams($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
 				// echo "<pre>"; print_r($result_escuelas); die();
 				$municipio = $this->input->get('hidden_municipio');
@@ -431,7 +431,7 @@ class Report extends CI_Controller {
 					$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, utf8_encode($row['nivel']) );
 					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, ($row['retencion']).'%' );
 					$obj_excel->getActiveSheet()->SetCellValue('C'.$aux, ($row['aprobacion']).'%' );
-					$obj_excel->getActiveSheet()->SetCellValue('D'.$aux, ($row['et']).'%' );
+					$obj_excel->getActiveSheet()->SetCellValue('D'.$aux, ($row['et']=='0.00')?'N/D':$row['et'].'%');
 					$obj_excel->getActiveSheet()->getStyle('A'.$aux.':D'.$aux)->applyFromArray($this->style_contenido);
 					$aux++;
 				}
