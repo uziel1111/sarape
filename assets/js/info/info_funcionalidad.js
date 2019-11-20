@@ -137,22 +137,39 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
 
 								switch(nivel) {
 									case 3:
-													graf.GraficoEstadisticaSecundaria_alumn(a_g1,a_g2,a_g3,a_g1+a_g2+a_g3);
-													graf.GraficoEstadisticaSecundaria_grupos(g_g1,g_g2,g_g3,g_g1+g_g2+g_g3);
-													graf.GraficoEstadisticaSecundaria_docentes(d_g1,d_g2,d_g3,d_g1+d_g2+d_g3);
+                        if (a_g1+a_g2+a_g3!=0 && (!isNaN(a_g1+a_g2+a_g3))) {
+                          graf.GraficoEstadisticaSecundaria_alumn(a_g1,a_g2,a_g3,a_g1+a_g2+a_g3);
+                        }
+                        if (g_g1+g_g2+g_g3!=0 && (!isNaN(g_g1+g_g2+g_g3))) {
+                          graf.GraficoEstadisticaSecundaria_grupos(g_g1,g_g2,g_g3,g_g1+g_g2+g_g3);
+                        }
+                        if (d_g1+d_g2+d_g3!=0 && (!isNaN(d_g1+d_g2+d_g3))) {
+                          graf.GraficoEstadisticaSecundaria_docentes(d_g1,d_g2,d_g3,d_g1+d_g2+d_g3);
+                        }
 
 									break;
 									case 4:
-													graf.GraficoEstadisticaPrimaria_alumn(a_g1,a_g2,a_g3,a_g4,a_g5,a_g6,t_alumnos);
-													graf.GraficoEstadisticaPrimaria_grupos(g_g1,g_g2,g_g3,g_g4,g_g5,g_g6,t_grupos);
-													graf.GraficoEstadisticaPrimaria_docentes(d_g1,d_g2,d_g3,d_g4,d_g5,d_g6,t_docentes);
-
+                          if (t_alumnos!=0 && (!isNaN(t_alumnos))) {
+                            graf.GraficoEstadisticaPrimaria_alumn(a_g1,a_g2,a_g3,a_g4,a_g5,a_g6,t_alumnos);
+                          }
+                          if (t_grupos!=0 && (!isNaN(t_grupos))) {
+                            graf.GraficoEstadisticaPrimaria_grupos(g_g1,g_g2,g_g3,g_g4,g_g5,g_g6,t_grupos);
+                          }
+                          if (t_docentes!=0 && (!isNaN(t_docentes))) {
+                            graf.GraficoEstadisticaPrimaria_docentes(d_g1,d_g2,d_g3,d_g4,d_g5,d_g6,t_docentes);
+                          }
 									break;
 									case 5:
-													graf.GraficoEstadisticaSecundaria_alumn(a_g1,a_g2,a_g3,a_g1+a_g2+a_g3);
-													graf.GraficoEstadisticaSecundaria_grupos(g_g1,g_g2,g_g3,g_g1+g_g2+g_g3);
-													graf.GraficoEstadisticaSecundaria_docentes(d_g1,d_g2,d_g3,d_g1+d_g2+d_g3);
-
+                  // console.log(d_g1+d_g2+d_g3);
+                          if (a_g1+a_g2+a_g3!=0 && (!isNaN(a_g1+a_g2+a_g3))) {
+                            graf.GraficoEstadisticaSecundaria_alumn(a_g1,a_g2,a_g3,a_g1+a_g2+a_g3);
+                          }
+                          if (g_g1+g_g2+g_g3!=0 && (!isNaN(g_g1+g_g2+g_g3))) {
+                            graf.GraficoEstadisticaSecundaria_grupos(g_g1,g_g2,g_g3,g_g1+g_g2+g_g3);
+                          }
+                          if (d_g1+d_g2+d_g3!=0 && (!isNaN(d_g1+d_g2+d_g3))) {
+                            graf.GraficoEstadisticaSecundaria_docentes(d_g1,d_g2,d_g3,d_g1+d_g2+d_g3);
+                          }
 									break;
 
 									default:
