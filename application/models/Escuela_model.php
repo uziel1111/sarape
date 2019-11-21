@@ -25,78 +25,78 @@ class Escuela_model extends CI_Model
       $this->db->where('es.latitud !=',0);
       $this->db->where('es.latitud !=','');
       $this->db->where('es.latitud !=','#VALUE!');*/
-     
-       switch ($id_nivel) {
-         case '1':
-          $nivel = 'CAM';
-           break;
-          case '2':
-           $nivel = 'INICIAL';
-           break;
-           case '3':
-           $nivel = 'PREESCOLAR';
-           break;
-           case '4':
-           $nivel = 'PRIMARIA';
-           break;
-           case '5':
-           $nivel = 'SECUNDARIA';
-           break;
-           case '6':
-           $nivel = 'MEDIA SUPERIOR';
-           break;
-           case '7':
-           $nivel = 'SUPERIOR';
-           break;
-            case '8':
-           $nivel = 'FORMACION PARA EL TRABAJO';
-           break;
-            case '9':
-           $nivel = 'OTRO NIVEL EDUCATIVO';
-           break;
-           case '10':
-           $nivel = 'NO APLICA';
-           break;
-          
-       }
 
- 
+      switch ($id_nivel) {
+       case '1':
+       $nivel = 'CAM';
+       break;
+       case '2':
+       $nivel = 'INICIAL';
+       break;
+       case '3':
+       $nivel = 'PREESCOLAR';
+       break;
+       case '4':
+       $nivel = 'PRIMARIA';
+       break;
+       case '5':
+       $nivel = 'SECUNDARIA';
+       break;
+       case '6':
+       $nivel = 'MEDIA SUPERIOR';
+       break;
+       case '7':
+       $nivel = 'SUPERIOR';
+       break;
+       case '8':
+       $nivel = 'FORMACION PARA EL TRABAJO';
+       break;
+       case '9':
+       $nivel = 'OTRO NIVEL EDUCATIVO';
+       break;
+       case '10':
+       $nivel = 'NO APLICA';
+       break;
 
-       switch ($id_sostenimiento) {
-         case '1':
-           $sostenimiento = "AND es.sostenimiento not in ('61','41','92','96', '51')";
-           break;
-          case '2':
-           $sostenimiento = "AND es.sostenimiento in ('61','41','92','96')";
-           break;
-           case '3':
-           $sostenimiento = "AND es.sostenimiento = '51'";
-           break;
-         default:
-           $id_sostenimiento = 0;
-           break;
-       }
+     }
 
-      if($id_municipio>0){
-        $where_mun = " and es.municipio = {$id_municipio}";
-      } else{
-        $where_mun = ' ';
-      }
-      if($id_nivel>0){
-        $where_niv = " and es.desc_nivel_educativo = '{$nivel}'";
-      } else{
-        $where_niv = ' ';
-      }
-      if($id_sostenimiento>0){
-        $where_sos = " {$sostenimiento}";
-      } else{
-        $where_sos = ' ';
-      }
-      if($nombre_escuela!=''){
-        $like = " and es.nombre like '%{$nombre_escuela}%'";
-      } else{
-        $like = ' ';
-      }
+
+
+     switch ($id_sostenimiento) {
+       case '1':
+       $sostenimiento = "AND es.sostenimiento not in ('61','41','92','96', '51')";
+       break;
+       case '2':
+       $sostenimiento = "AND es.sostenimiento in ('61','41','92','96')";
+       break;
+       case '3':
+       $sostenimiento = "AND es.sostenimiento = '51'";
+       break;
+       default:
+       $id_sostenimiento = 0;
+       break;
+     }
+
+     if($id_municipio>0){
+      $where_mun = " and es.municipio = {$id_municipio}";
+    } else{
+      $where_mun = ' ';
+    }
+    if($id_nivel>0){
+      $where_niv = " and es.desc_nivel_educativo = '{$nivel}'";
+    } else{
+      $where_niv = ' ';
+    }
+    if($id_sostenimiento>0){
+      $where_sos = " {$sostenimiento}";
+    } else{
+      $where_sos = ' ';
+    }
+    if($nombre_escuela!=''){
+      $like = " and es.nombre like '%{$nombre_escuela}%'";
+    } else{
+      $like = ' ';
+    }
 
       /*$this->db->group_by("es.id_cct");
       $this->db->order_by("ni.id_nivel");
@@ -274,12 +274,46 @@ class Escuela_model extends CI_Model
 
     }
 
-    function get_mismo_nivel($latitud, $longitud, $nivel, $siguiente){
-      if($siguiente == true && $nivel < 10){
-        $nivel = $nivel+1;
+    function get_mismo_nivel($latitud, $longitud, $id_nivel, $siguiente){
+      if($siguiente == true && $id_nivel < 10){
+        $id_nivel = $id_nivel+1;
+
+        switch ($id_nivel) {
+       case '1':
+       $nivel = 'CAM';
+       break;
+       case '2':
+       $nivel = 'INICIAL';
+       break;
+       case '3':
+       $nivel = 'PREESCOLAR';
+       break;
+       case '4':
+       $nivel = 'PRIMARIA';
+       break;
+       case '5':
+       $nivel = 'SECUNDARIA';
+       break;
+       case '6':
+       $nivel = 'MEDIA SUPERIOR';
+       break;
+       case '7':
+       $nivel = 'SUPERIOR';
+       break;
+       case '8':
+       $nivel = 'FORMACION PARA EL TRABAJO';
+       break;
+       case '9':
+       $nivel = 'OTRO NIVEL EDUCATIVO';
+       break;
+       case '10':
+       $nivel = 'NO APLICA';
+       break;
+       
+     }
       }
 
-      $this->db->select("es.id_cct, es.cve_centro, tu.turno_single, es.nombre_centro,ni.nivel,sso.subsostenimiento, mo.modalidad,mu.municipio,loc.localidad,es.domicilio, es.latitud, es.longitud, es.id_nivel, s.zona_escolar, so.sostenimiento, ( 6371 * ACOS(
+      /*$this->db->select("es.id_cct, es.cve_centro, tu.turno_single, es.nombre_centro,ni.nivel,sso.subsostenimiento, mo.modalidad,mu.municipio,loc.localidad,es.domicilio, es.latitud, es.longitud, es.id_nivel, s.zona_escolar, so.sostenimiento, ( 6371 * ACOS(
        COS( RADIANS({$latitud}) )
                                        * COS(RADIANS( latitud ) )
                                        * COS(RADIANS( longitud )
@@ -306,10 +340,55 @@ class Escuela_model extends CI_Model
       $this->db->having('distance < 1000 ');
       $this->db->order_by('distance');
       $this->db->limit(6);
-      //  $this->db->get();
-      // $str = $this->db->last_query();
-      // echo $str; die();
-      return  $this->db->get()->result_array();
+       $this->db->get();
+      $str = $this->db->last_query();
+      echo $str; die();
+      return  $this->db->get()->result_array();*/
+
+      $str_query = "SELECT 
+    #es.id_cct,
+      es.cct as cve_centro,
+      es.turno as turno,
+      es.desc_turno as turno_single,
+      es.nombre as nombre_centro,
+      es.desc_nivel_educativo as nivel,
+      es.desc_sostenimiento as subsostenimiento,
+      es.modalidad,
+      es.nombre_de_municipio as municipio,
+      es.nombre_de_localidad as localidad,
+      concat_ws(' ', es.nombre_vialidad_principal, es.numero_exterior, es.numero_interior) as domicilio,
+      es.latitud,
+      es.longitud,
+      CASE  WHEN desc_nivel_educativo LIKE '%NO APLICA%'  THEN '0'
+      WHEN desc_nivel_educativo LIKE '%CAM%' THEN '1'
+      WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN '2'
+      WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN '3'
+      WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN '4'
+      WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN '5'
+      WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN '6'
+      WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN '7'
+      WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
+      WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN '9'
+      WHEN nivel_educativo = null  THEN '0'
+      END AS id_nivel,
+      es.zona_escolar,
+      es.sostenimiento,
+      (6371 * ACOS(COS(RADIANS(27.239658)) * COS(RADIANS(latitud)) * COS(RADIANS(longitud) - RADIANS(- 101.225968)) + SIN(RADIANS(27.239658)) * SIN(RADIANS(latitud)))) AS distance
+      FROM
+      centros_educativos.vista_cct as es
+      WHERE
+      (es.status != 2
+      AND es.status != 3)
+      AND es.latitud != 0
+      AND es.latitud != ''
+      AND es.latitud != '#VALUE!'
+      AND es.desc_nivel_educativo = '{$nivel}'
+      HAVING distance < 1000
+      ORDER BY distance
+      LIMIT 6";
+
+      return $this->ce_db->query($str_query)->result_array();
+
     }
     function get_nivel_xidcct($id_cct){
       $this->db->select('id_nivel');
