@@ -185,6 +185,11 @@ $("#slc_xest_sostenimiento_zona").change(function(){
     },
     error: function(error){
       console.log(error);
+      swal.close();
+      alert("No hay zonas escolares para este sostenimiento");
+      $("#slc_xest_zona").empty();
+      $("#slc_xest_zona").html('<option selected>Sin zonas escolares</option>');
+      $("#resultado_filtros").empty();
     }
   });
 
@@ -216,6 +221,8 @@ $("#slc_xest_zona").change(function(){
     },
     error: function(error){
       console.log(error);
+
+
     }
   });
 
@@ -258,6 +265,9 @@ $("#btn_buscar_zona").click(function(){
       },
       error: function(error){
         console.log(error);
+        swal.close();
+        alert("No se pudieron obtener los datos solicitados");
+        $("#resultado_filtros").empty();
       }
     });
   }
