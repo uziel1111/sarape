@@ -216,7 +216,7 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	          google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	           return function() {
 	           	cct_mapa = "'"+marcadores[i][3]+"'";
-	          cct_turno_mapa = "'"+marcadores[i][3]+"','"+marcadores[i][6]+"'";
+	          	cct_turno_mapa = "'"+marcadores[i][3]+"','"+marcadores[i][6]+"'";
 	              var contentString = '<div class="card-map">';
                       contentString +='<div class="cardmap-body">';
                       contentString +='<h5 class="card-title fw-800">'+marcadores[i][0]+'</h5>';
@@ -255,12 +255,9 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	           
 	     }
 	   }else {
-	   	console.log('marcadores');
-	   	swal({
-			title: 'No se encontraron escuelas',
-			text:'',
-			type: 'info',
-		})
+	   	alert('No se encontraron escuelas');
+	   	swal.close();
+	   	initMap();
 	   }
 }
 
