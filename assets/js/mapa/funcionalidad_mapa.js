@@ -127,7 +127,7 @@ Mapa.prototype.retur_icon = function(nivel){
 }
 
 Mapa.prototype.cct_mismo_nivel = function(idcct){
-	console.log(idcct);
+	// console.log(idcct);
 	$.ajax({
 		url: base_url+'mapa/get_mismo_nivel',
 		type: 'POST',
@@ -135,6 +135,8 @@ Mapa.prototype.cct_mismo_nivel = function(idcct){
 		data: "idcct="+idcct,
 		beforeSend: function(xhr) {
 	        // obj_loader.show();
+	        Notification.loading("Cargando");
+	        
 	    },
 	})
 	.done(function(result) {
@@ -144,15 +146,17 @@ Mapa.prototype.cct_mismo_nivel = function(idcct){
 	})
 	.fail(function(error) {
 		console.log("error");
+		swal.close();
+		alert('Tiempo de conexión excedido.');
 	})
 	.always(function(complete) {
-		console.log("complete");
+		swal.close();
 	});
 
 }
 
 Mapa.prototype.cct_siguiente_nivel = function(idcct){
-	console.log(idcct);
+	// console.log(idcct);
 	$.ajax({
 		url: base_url+'mapa/get_siguiente_nivel',
 		type: 'POST',
@@ -160,6 +164,7 @@ Mapa.prototype.cct_siguiente_nivel = function(idcct){
 		data: "idcct="+idcct,
 		beforeSend: function(xhr) {
 	        // obj_loader.show();
+	        Notification.loading("Cargando");
 	    },
 	})
 	.done(function(result) {
@@ -169,9 +174,12 @@ Mapa.prototype.cct_siguiente_nivel = function(idcct){
 	})
 	.fail(function(error) {
 		console.log("error");
+		swal.close();
+		alert('Tiempo de conexión excedido.');
 	})
 	.always(function(complete) {
 		console.log("complete");
+		swal.close();
 	});
 
 }
@@ -262,7 +270,7 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 }
 
 Mapa.prototype.get_info = function(id_cct, turno){
-
+Notification.loading("Cargando");
 	var form = document.createElement("form");
 	var element1 = document.createElement("input");
 		  element1.type="hidden";

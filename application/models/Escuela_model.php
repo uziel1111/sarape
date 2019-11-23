@@ -214,6 +214,11 @@ class Escuela_model extends CI_Model
     }// get_xcentro()
 
     function get_xcvecentro_turnosingle($cve_centro, $turno_single){
+      if (strlen($turno_single)>4) {
+        $where_turno = "AND es.desc_turno like '%{$turno_single}%'";
+      }else{
+        $where_tunro = "AND es.turno like '%{$turno_single}%'";
+      }
       /*$this->db->select('es.id_cct, es.cve_centro, es.nombre_centro');
       $this->db->from('escuela as es');
       $this->db->where('es.cct =',$cve_centro);
@@ -226,8 +231,8 @@ class Escuela_model extends CI_Model
       vista_cct AS es
       WHERE
       es.cct = '{$cve_centro}'
-      AND es.turno like '%{$turno_single}%'";
-      // echo $str; die();
+      {$where_turno}";
+      // echo $str_query; die();
       return $this->ce_db->query($str_query)->result_array();
 
 
@@ -277,8 +282,8 @@ class Escuela_model extends CI_Model
     function get_mismo_nivel($latitud, $longitud, $id_nivel, $siguiente){
       if($siguiente == true && $id_nivel < 10){
         $id_nivel = $id_nivel+1;
-
-        switch ($id_nivel) {
+      }
+      switch ($id_nivel) {
        case '1':
        $nivel = 'CAM';
        break;
@@ -309,9 +314,8 @@ class Escuela_model extends CI_Model
        case '10':
        $nivel = 'NO APLICA';
        break;
-       
      }
-      }
+     // echo $nivel; die();
 
       /*$this->db->select("es.id_cct, es.cve_centro, tu.turno_single, es.nombre_centro,ni.nivel,sso.subsostenimiento, mo.modalidad,mu.municipio,loc.localidad,es.domicilio, es.latitud, es.longitud, es.id_nivel, s.zona_escolar, so.sostenimiento, ( 6371 * ACOS(
        COS( RADIANS({$latitud}) )

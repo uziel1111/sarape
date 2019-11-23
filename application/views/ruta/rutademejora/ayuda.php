@@ -98,7 +98,7 @@
       <td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T3_SARAPE"><i class="fas fa-play-circle"></i></a></td>
     </tr>
     <tr>
-      <th scope="row">3</th>
+      <th scope="row">4</th>
       <td class="font-weight-bold">Registrando acciones y avances</td>
       <td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T4_SARAPE"><i class="fas fa-play-circle"></i></a></td>
     </tr>	
