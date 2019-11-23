@@ -58,7 +58,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
       IFNULL(SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim".$bimestre.">7, 2,IF(rie.falta_bim".$bimestre.">3, 1,0))) + (IF(rie.espanol_b".$bimestre."<6 AND rie.espanol_b".$bimestre.">0,1,0)) + (IF(rie.matematicas_b".$bimestre."<6 and rie.matematicas_b".$bimestre.">0,1,0)))=1,1,0)), 0) as medio,
       IFNULL(SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim".$bimestre.">7, 2,IF(rie.falta_bim".$bimestre.">3, 1,0))) + (IF(rie.espanol_b".$bimestre."<6 AND rie.espanol_b".$bimestre.">0,1,0)) + (IF(rie.matematicas_b".$bimestre."<6 and rie.matematicas_b".$bimestre.">0,1,0)))=0,1,0)), 0) as bajo
       FROM sarape.alumnos_riesgo_{$nivel} rie
-      INNER JOIN centros_educativos.vista_cct esc ON rie.cct = esc.cct /*AND (esc.status= 1 OR esc.status = 4)*/ AND esc.tipo_centro=9
+      INNER JOIN centros_educativos.vista_cct esc ON rie.cct = esc.cct AND (esc.status= 1 OR esc.status = 4) AND esc.tipo_centro=9
       WHERE ".$var_aux." esc.desc_nivel_educativo LIKE '%{$nivel}%' AND rie.ciclo='".$ciclo."'";
 
       // echo $str_query;

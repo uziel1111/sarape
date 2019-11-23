@@ -1240,8 +1240,8 @@ class Estadistica extends CI_Controller {
 				$data["nivel_z"] = $nivel;
 				$data["sostenimiento_z"] = $sostenimiento;
 				$data["zona_z"] = $this->Supervision_model->get_zona($id_nivel_z, $id_sostenimiento_z,$id_zona_z);
-				// $data["ciclo_z"] = $this->Ciclo_model->get_ciclo($id_ciclo_z);
-				$data["ciclo_z"] = $id_ciclo_z;
+				$data["ciclo_z"] = $this->Ciclo_model->get_ciclo($id_ciclo_z);
+				// $data["ciclo_z"] = $id_ciclo_z;
 				$data["srt_tab_alumnos"] = $this->tabla_alumnos_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento);
 				$data["srt_tab_pdocentes"] = $this->tabla_pdocentes_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento);
 				$data["srt_tab_infraestructura"] =$this->tabla_infraestructura_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento);

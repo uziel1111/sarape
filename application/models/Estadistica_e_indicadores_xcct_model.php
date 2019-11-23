@@ -15,7 +15,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     // SUM(est.alumn_t_1) as alumn_t_1, SUM(est.alumn_t_2) as alumn_t_2, SUM(est.alumn_t_3) as alumn_t_3,
     // SUM(est.alumn_t_4) as alumn_t_4, SUM(est.alumn_t_5) as alumn_t_5, SUM(est.alumn_t_6) as alumn_t_6');
     // $this->db->from('escuela as es');
-    // $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    // $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     // $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     // $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     // $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo');
@@ -64,8 +64,8 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     SUM(es.alumn_m_t) AS alumn_m_t, SUM(es.alumn_h_t) AS alumn_h_t, SUM(es.alumn_t_t) AS alumn_t_t,
                     SUM(es.alumn_t_1) AS alumn_t_1, SUM(es.alumn_t_2) AS alumn_t_2, SUM(es.alumn_t_3) AS alumn_t_3,
                     SUM(es.alumn_t_4) AS alumn_t_4, SUM(es.alumn_t_5) AS alumn_t_5, SUM(es.alumn_t_6) AS alumn_t_6
-                FROM vista_cct v
-                INNER JOIN estadistica_e_indicadores_xcct es ON es.cct=v.cct
+                FROM centros_educativos.vista_cct v
+                INNER JOIN sarape.estadistica_e_indicadores_xcct es ON es.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 {$filtro}               
@@ -87,7 +87,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     // SUM(est.alumn_t_1) as alumn_t_1, SUM(est.alumn_t_2) as alumn_t_2, SUM(est.alumn_t_3) as alumn_t_3,
     // SUM(est.alumn_t_4) as alumn_t_4, SUM(est.alumn_t_5) as alumn_t_5, SUM(est.alumn_t_6) as alumn_t_6');
     // $this->db->from('escuela as es');
-    // $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    // $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     // $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     // $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     // $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -143,8 +143,8 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 SUM(es.alumn_m_t) AS alumn_m_t, SUM(es.alumn_h_t) AS alumn_h_t, SUM(es.alumn_t_t) AS alumn_t_t,
                 SUM(es.alumn_t_1) AS alumn_t_1, SUM(es.alumn_t_2) AS alumn_t_2, SUM(es.alumn_t_3) AS alumn_t_3,
                 SUM(es.alumn_t_4) AS alumn_t_4, SUM(es.alumn_t_5) AS alumn_t_5, SUM(es.alumn_t_6) AS alumn_t_6
-                FROM vista_cct v
-                INNER JOIN estadistica_e_indicadores_xcct es ON es.cct=v.cct
+                FROM centros_educativos.vista_cct v
+                INNER JOIN sarape.estadistica_e_indicadores_xcct es ON es.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 {$filtro}
@@ -168,7 +168,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     // SUM(est.alumn_t_1) as alumn_t_1, SUM(est.alumn_t_2) as alumn_t_2, SUM(est.alumn_t_3) as alumn_t_3,
     // SUM(est.alumn_t_4) as alumn_t_4, SUM(est.alumn_t_5) as alumn_t_5, SUM(est.alumn_t_6) as alumn_t_6');
     // $this->db->from('escuela as es');
-    // $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    // $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     // $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     // $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     // $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -228,8 +228,8 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         SUM(es.alumn_m_t) AS alumn_m_t, SUM(es.alumn_h_t) AS alumn_h_t, SUM(es.alumn_t_t) AS alumn_t_t,
                         SUM(es.alumn_t_1) AS alumn_t_1, SUM(es.alumn_t_2) AS alumn_t_2, SUM(es.alumn_t_3) AS alumn_t_3,
                         SUM(es.alumn_t_4) AS alumn_t_4, SUM(es.alumn_t_5) AS alumn_t_5, SUM(es.alumn_t_6) AS alumn_t_6
-                FROM vista_cct v
-                INNER JOIN estadistica_e_indicadores_xcct es ON es.cct=v.cct
+                FROM centros_educativos.vista_cct v
+                INNER JOIN sarape.estadistica_e_indicadores_xcct es ON es.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 {$filtro}
@@ -244,7 +244,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     END),(CASE  
                           WHEN v.sostenimiento IN  ('51') THEN 'AUTONOMO' 
                           WHEN v.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
-                          ELSE 'PUBLICO' END),v.servicio
+                          ELSE 'PUBLICO' END),v.desc_servicio
             ) AS a ORDER BY FIELD(nivel,'ESPECIAL','INICIAL','PREESCOLAR','PRIMARIA','SECUNDARIA','MEDIA SUPERIOR','SUPERIOR')
                 ,id_sostenimiento,id_modalidad ";
 
@@ -265,7 +265,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     // SUM(est.alumn_t_1) as alumn_t_1, SUM(est.alumn_t_2) as alumn_t_2, SUM(est.alumn_t_3) as alumn_t_3,
     // SUM(est.alumn_t_4) as alumn_t_4, SUM(est.alumn_t_5) as alumn_t_5, SUM(est.alumn_t_6) as alumn_t_6');
     // $this->db->from('escuela as es');
-    // $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    // $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     // $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     // $this->db->join('subsostenimiento as sso', '`es`.`id_subsostenimiento` = `sso`.`id_subsostenimiento`');
     // $this->db->join('supervision as su', '`es`.`id_supervision` = `su`.`id_supervision`');
@@ -352,15 +352,15 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                       WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
                       WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
                     END AS nivel
-                    FROM vista_cct 
+                    FROM centros_educativos.vista_cct 
                     WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9 
                     {$filtro_nivel_sos}
                 ) AS escuelas
-            INNER JOIN estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct 
+            INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct 
                         {$filtro_ciclo} 
             INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo, 
                         SUBSTRING(cct, 3, 3) AS tipo
-                        FROM vista_cct cct
+                        FROM centros_educativos.vista_cct cct
                         WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 1) AS supervisiones 
                         ON escuelas.zona_escolar = supervisiones.zona_escolar
                         AND escuelas.sostenimiento = supervisiones.sostenimiento
@@ -381,7 +381,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     // SUM(est.alumn_t_1) as alumn_t_1, SUM(est.alumn_t_2) as alumn_t_2, SUM(est.alumn_t_3) as alumn_t_3,
     // SUM(est.alumn_t_4) as alumn_t_4, SUM(est.alumn_t_5) as alumn_t_5, SUM(est.alumn_t_6) as alumn_t_6');
     // $this->db->from('escuela as es');
-    // $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    // $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     // $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     // $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     // $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -448,15 +448,15 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         WHEN sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
                         ELSE 'PUBLICO'
                     END) AS sostenimiento2,sostenimiento
-                    FROM vista_cct 
+                    FROM centros_educativos.vista_cct 
                     WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9  
                     {$filtro_nivel_sos}
                 ) AS escuelas
-                INNER JOIN estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
+                INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
                 {$filtro_ciclo}
                 INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo, 
                                 SUBSTRING(cct, 3, 3) AS tipo
-                            FROM vista_cct cct
+                            FROM centros_educativos.vista_cct cct
                             WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 1
                             ) AS supervisiones ON escuelas.zona_escolar = supervisiones.zona_escolar
                             AND escuelas.sostenimiento = supervisiones.sostenimiento
@@ -482,7 +482,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     // SUM(est.alumn_t_1) as alumn_t_1, SUM(est.alumn_t_2) as alumn_t_2, SUM(est.alumn_t_3) as alumn_t_3,
     // SUM(est.alumn_t_4) as alumn_t_4, SUM(est.alumn_t_5) as alumn_t_5, SUM(est.alumn_t_6) as alumn_t_6');
     // $this->db->from('escuela as es');
-    // $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    // $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     // $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     // $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     // $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -557,15 +557,15 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         WHEN sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
                         ELSE 'PUBLICO'
                     END) AS sostenimiento2,sostenimiento
-                    FROM vista_cct 
+                    FROM centros_educativos.vista_cct 
                     WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9  
                     {$filtro_nivel_sos}
                 ) AS escuelas
-                INNER JOIN estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
+                INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
                 {$filtro_ciclo}
                 INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo, 
                                 SUBSTRING(cct, 3, 3) AS tipo
-                            FROM vista_cct cct
+                            FROM centros_educativos.vista_cct cct
                             WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 1
                             ) AS supervisiones ON escuelas.zona_escolar = supervisiones.zona_escolar
                             AND escuelas.sostenimiento = supervisiones.sostenimiento
@@ -618,7 +618,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 //     SUM(est.directivo_m_congrup) as directivo_m_congrup, SUM(est.directivo_h_congrup) as directivo_h_congrup, SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) as directivo_t_congrup,
 //     SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup) as directivo_h_singrup, SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) as directivo_t_singrup');
 //     $this->db->from('escuela as es');
-//     $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+//     $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
 //     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
 //     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
 //     $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo');
@@ -684,8 +684,8 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     SUM(est.directivo_m_singrup) AS directivo_m_singrup,
                     SUM(est.directivo_h_singrup) AS directivo_h_singrup, 
                     SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) AS directivo_t_singrup
-                FROM vista_cct v
-                INNER JOIN estadistica_e_indicadores_xcct est ON est.cct=v.cct
+                FROM centros_educativos.vista_cct v
+                INNER JOIN sarape.estadistica_e_indicadores_xcct est ON est.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 {$filtro}            
@@ -723,7 +723,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 // SUM(est.directivo_m_congrup) as directivo_m_congrup, SUM(est.directivo_h_congrup) as directivo_h_congrup, SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) as directivo_t_congrup,
 // SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup) as directivo_h_singrup, SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) as directivo_t_singrup');
 //     $this->db->from('escuela as es');
-//     $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+//     $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
 //     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
 //     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
 //     $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -799,8 +799,8 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     SUM(est.directivo_m_singrup) AS directivo_m_singrup, 
                     SUM(est.directivo_h_singrup) AS directivo_h_singrup, 
                     SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) AS directivo_t_singrup
-                FROM vista_cct v
-                INNER JOIN estadistica_e_indicadores_xcct est ON est.cct=v.cct
+                FROM centros_educativos.vista_cct v
+                INNER JOIN sarape.estadistica_e_indicadores_xcct est ON est.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 {$filtro}         
@@ -844,7 +844,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 // SUM(est.directivo_m_congrup) as directivo_m_congrup, SUM(est.directivo_h_congrup) as directivo_h_congrup, SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) as directivo_t_congrup,
 // SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup) as directivo_h_singrup, SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) as directivo_t_singrup');
 //     $this->db->from('escuela as es');
-//     $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+//     $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
 //     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
 //     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
 //     $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -928,8 +928,8 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     SUM(est.directivo_m_singrup) AS directivo_m_singrup, 
                     SUM(est.directivo_h_singrup) AS directivo_h_singrup, 
                     SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) AS directivo_t_singrup
-                FROM vista_cct v
-                INNER JOIN estadistica_e_indicadores_xcct est ON est.cct=v.cct
+                FROM centros_educativos.vista_cct v
+                INNER JOIN sarape.estadistica_e_indicadores_xcct est ON est.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA','MEDIA SUPERIOR','SUPERIOR')
                 {$filtro}           
@@ -944,7 +944,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                             WHEN v.sostenimiento IN  ('51') THEN '3' 
                             WHEN v.sostenimiento IN ('61','41','92','96') THEN '2'
                             ELSE '1'
-                        END),v.servicio
+                        END),v.desc_servicio
                 ) AS a ORDER BY FIELD(nivel,'ESPECIAL','INICIAL','PREESCOLAR','PRIMARIA','SECUNDARIA','MEDIA SUPERIOR','SUPERIOR')
                 ,id_sostenimiento,id_modalidad ";
 
@@ -1022,7 +1022,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 //     SUM(est.directivo_m_congrup) as directivo_m_congrup, SUM(est.directivo_h_congrup) as directivo_h_congrup, SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) as directivo_t_congrup,
 //     SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup) as directivo_h_singrup, SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) as directivo_t_singrup');
 //     $this->db->from('escuela as es');
-//     $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+//     $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
 //     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
 //     $this->db->join('subsostenimiento as sso', '`es`.`id_subsostenimiento` = `sso`.`id_subsostenimiento`');
 //     $this->db->join('supervision as su', '`es`.`id_supervision` = `su`.`id_supervision`');
@@ -1080,15 +1080,15 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
                         WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
                     END AS nivel
-                FROM vista_cct 
+                FROM centros_educativos.vista_cct 
                 WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9 
                 {$filtro_nivel_sos}
             ) AS escuelas
-            INNER JOIN estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
+            INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
             {$filtro_ciclo}
             INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo, 
                             SUBSTRING(cct, 3, 3) AS tipo
-                        FROM vista_cct cct
+                        FROM centros_educativos.vista_cct cct
                         WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 1
             ) AS supervisiones ON escuelas.zona_escolar = supervisiones.zona_escolar
             AND escuelas.sostenimiento = supervisiones.sostenimiento
@@ -1126,7 +1126,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 // SUM(est.directivo_m_congrup) as directivo_m_congrup, SUM(est.directivo_h_congrup) as directivo_h_congrup, SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) as directivo_t_congrup,
 // SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup) as directivo_h_singrup, SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) as directivo_t_singrup');
 //     $this->db->from('escuela as es');
-//     $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+//     $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
 //     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
 //     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
 //     $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -1196,15 +1196,15 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
                         WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
                     END AS nivel
-                FROM vista_cct 
+                FROM centros_educativos.vista_cct 
                 WHERE (status = 1 OR status = 4) AND tipo_centro = 9  
                 {$filtro_nivel_sos}
             ) AS escuelas
-            INNER JOIN estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
+            INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
             {$filtro_ciclo}
             INNER JOIN (SELECT cct, zona_escolar,sostenimiento,desc_nivel_educativo,
                             SUBSTRING(cct, 3, 3) AS tipo
-                        FROM vista_cct cct
+                        FROM centros_educativos.vista_cct cct
                         WHERE (status = 1 OR status = 4) AND tipo_centro = 1
             ) AS supervisiones 
                         ON escuelas.zona_escolar = supervisiones.zona_escolar
@@ -1248,7 +1248,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 // SUM(est.directivo_m_congrup) as directivo_m_congrup, SUM(est.directivo_h_congrup) as directivo_h_congrup, SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) as directivo_t_congrup,
 // SUM(est.directivo_m_singrup) as directivo_m_singrup, SUM(est.directivo_h_singrup) as directivo_h_singrup, SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) as directivo_t_singrup');
 //     $this->db->from('escuela as es');
-//     $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+//     $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
 //     $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
 //     $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
 //     $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -1327,15 +1327,15 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                             WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
                             WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
                         END AS nivel
-                    FROM vista_cct 
+                    FROM centros_educativos.vista_cct 
                     WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9
                     {$filtro_nivel_sos} 
                 ) AS escuelas
-                INNER JOIN estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
+                INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
                 {$filtro_ciclo}
                 INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo,
                                 SUBSTRING(cct, 3, 3) AS tipo
-                            FROM vista_cct cct
+                            FROM centros_educativos.vista_cct cct
                             WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 1) AS supervisiones ON escuelas.zona_escolar = supervisiones.zona_escolar
                             AND escuelas.sostenimiento = supervisiones.sostenimiento
                 {$filtro} {$filtro_zona}
@@ -1373,7 +1373,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     // 	SUM(est.grupos_multi) AS grupos_multi,
     // 	SUM(est.grupos_t) AS grupos_t');
     // $this->db->from('escuela as es');
-    // $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    // $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     // $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
     // $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     // $this->db->join('ciclo as ci', 'est.id_ciclo = ci.id_ciclo','left');
@@ -1424,8 +1424,8 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     SUM(est.grupos_6) AS grupos_6,
                     SUM(est.grupos_multi) AS grupos_multi,
                     SUM(est.grupos_t) AS grupos_t  
-                FROM vista_cct v
-                INNER JOIN estadistica_e_indicadores_xcct est ON est.cct=v.cct
+                FROM centros_educativos.vista_cct v
+                INNER JOIN sarape.estadistica_e_indicadores_xcct est ON est.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 {$filtro}      
@@ -1452,7 +1452,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 	// SUM(est.grupos_multi) AS grupos_multi,
 	// SUM(est.grupos_t) AS grupos_t');
  //    $this->db->from('escuela as es');
- //    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+ //    $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
  //    $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
  //    $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
  //    $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -1514,8 +1514,8 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         SUM(est.grupos_6) AS grupos_6,
                         SUM(est.grupos_multi) AS grupos_multi,
                         SUM(est.grupos_t) AS grupos_t 
-                    FROM vista_cct v
-                    INNER JOIN estadistica_e_indicadores_xcct est ON est.cct=v.cct
+                    FROM centros_educativos.vista_cct v
+                    INNER JOIN sarape.estadistica_e_indicadores_xcct est ON est.cct=v.cct
                     WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                     AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                     {$filtro}
@@ -1545,7 +1545,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 	// SUM(est.grupos_multi) AS grupos_multi,
 	// SUM(est.grupos_t) AS grupos_t');
  //    $this->db->from('escuela as es');
- //    $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+ //    $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
  //    $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
  //    $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
  //    $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -1611,8 +1611,8 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         SUM(est.grupos_6) AS grupos_6,
                         SUM(est.grupos_multi) AS grupos_multi,
                         SUM(est.grupos_t) AS grupos_t 
-                    FROM vista_cct v
-                    INNER JOIN estadistica_e_indicadores_xcct est ON est.cct=v.cct
+                    FROM centros_educativos.vista_cct v
+                    INNER JOIN sarape.estadistica_e_indicadores_xcct est ON est.cct=v.cct
                     WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                     AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                     {$filtro}         
@@ -1652,7 +1652,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     //   SUM(est.grupos_multi) AS grupos_multi,
     //   SUM(est.grupos_t) AS grupos_t');
     // $this->db->from('escuela as es');
-    // $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+    // $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
     // $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
     // $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
     // $this->db->join('supervision as su', '`es`.`id_supervision` = `su`.`id_supervision`');
@@ -1740,15 +1740,15 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
                         WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
                     END AS nivel
-                FROM vista_cct 
+                FROM centros_educativos.vista_cct 
                 WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9 
                 {$filtro_nivel_sos}
             ) AS escuelas
-            INNER JOIN estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
+            INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
             {$filtro_ciclo}
             INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo, 
                             SUBSTRING(cct, 3, 3) AS tipo
-                        FROM vista_cct cct
+                        FROM centros_educativos.vista_cct cct
                         WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 1
             ) AS supervisiones ON escuelas.zona_escolar = supervisiones.zona_escolar
             AND escuelas.sostenimiento = supervisiones.sostenimiento
@@ -1774,7 +1774,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
   // SUM(est.grupos_multi) AS grupos_multi,
   // SUM(est.grupos_t) AS grupos_t');
   //   $this->db->from('escuela as es');
-  //   $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+  //   $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
   //   $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
   //   $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
   //   $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -1839,14 +1839,14 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
                         WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
                     END AS nivel
-                FROM vista_cct 
+                FROM centros_educativos.vista_cct 
                 WHERE (status = 1 OR status = 4) AND tipo_centro = 9  
                 {$filtro_nivel_sos}
             ) AS escuelas
-            INNER JOIN estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
+            INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
             {$filtro_ciclo}
             INNER JOIN (SELECT cct, zona_escolar,sostenimiento,desc_nivel_educativo,SUBSTRING(cct, 3, 3) AS tipo
-                        FROM vista_cct cct
+                        FROM centros_educativos.vista_cct cct
                         WHERE (status = 1 OR status = 4) AND tipo_centro = 1) AS supervisiones 
                         ON escuelas.zona_escolar = supervisiones.zona_escolar
                         AND escuelas.sostenimiento = supervisiones.sostenimiento
@@ -1876,7 +1876,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
   // SUM(est.grupos_multi) AS grupos_multi,
   // SUM(est.grupos_t) AS grupos_t');
   //   $this->db->from('escuela as es');
-  //   $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
+  //   $this->db->join('sarape.estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
   //   $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
   //   $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
   //   $this->db->join('modalidad as mo', 'es.id_modalidad = mo.id_modalidad');
@@ -1949,14 +1949,14 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
                         WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
                     END AS nivel
-                FROM vista_cct 
+                FROM centros_educativos.vista_cct 
                 WHERE (status = 1 OR status = 4) AND tipo_centro = 9  
                 {$filtro_nivel_sos}
             ) AS escuelas
-            INNER JOIN estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
+            INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
             {$filtro_ciclo}
             INNER JOIN (SELECT cct, zona_escolar,sostenimiento,desc_nivel_educativo,SUBSTRING(cct, 3, 3) AS tipo
-                        FROM vista_cct cct
+                        FROM centros_educativos.vista_cct cct
                         WHERE (status = 1 OR status = 4) AND tipo_centro = 1) AS supervisiones 
                         ON escuelas.zona_escolar = supervisiones.zona_escolar
                         AND escuelas.sostenimiento = supervisiones.sostenimiento
@@ -1974,7 +1974,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         WHEN escuelas.sostenimiento IN  ('51') THEN 'AUTONOMO'
                         WHEN escuelas.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
                         ELSE 'PUBLICO'
-                    END),escuelas.servicio";
+                    END),escuelas.desc_servicio";
     // echo $query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3;
     // die();
     return $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
@@ -1983,7 +1983,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
   function get_nalumnos_xesc($cct,$id_turno_single){
     $this->db->select('alumn_t_1,alumn_t_2,alumn_t_3,alumn_t_4,alumn_t_5,alumn_t_6,alumn_t_t');
-    $this->db->from('estadistica_e_indicadores_xcct');
+    $this->db->from('sarape.estadistica_e_indicadores_xcct');
     $this->db->where('cct', $cct);
     $this->db->where('id_turno_single', $id_turno_single);
     $this->db->where('id_corte', 2);
@@ -1997,7 +1997,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
   function get_ndocentes_xesc($cct,$id_turno_single){
     $this->db->select('docentes_1_g,docentes_2_g,docentes_3_g,docentes_4_g,docentes_5_g,docentes_6_g');
-    $this->db->from('estadistica_e_indicadores_xcct');
+    $this->db->from('sarape.estadistica_e_indicadores_xcct');
     $this->db->where('cct', $cct);
     $this->db->where('id_turno_single', $id_turno_single);
     $this->db->where('id_corte', 2);
@@ -2010,7 +2010,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
   function get_ngrupos_xesc($cct,$id_turno_single){
     $this->db->select('grupos_1,grupos_2,grupos_3,grupos_4,grupos_5,grupos_6');
-    $this->db->from('estadistica_e_indicadores_xcct');
+    $this->db->from('sarape.estadistica_e_indicadores_xcct');
     $this->db->where('cct', $cct);
     $this->db->where('id_turno_single', $id_turno_single);
     $this->db->where('id_corte', 2);
