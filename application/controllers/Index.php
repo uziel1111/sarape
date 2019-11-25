@@ -114,12 +114,4 @@ class Index extends CI_Controller {
 		exit;
 	}// getinformese()
 
-	public function getVideotutoriales(){
-		$data = 'jeje';
-		$strView = $this->load->view("index/videotutoriales", $data, TRUE);
-		$response = array('strView' => $strView );
-		Utilerias::enviaDataJson(200, $response, $this);
-		exit;
-	}// getVideotutoriales()
-
 }
