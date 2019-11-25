@@ -366,13 +366,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         AND escuelas.sostenimiento = supervisiones.sostenimiento
             {$filtro} {$filtro_zona}
             GROUP BY CASE   
-                WHEN escuelas.desc_nivel_educativo  'CAM' THEN 'ESPECIAL'
-                WHEN escuelas.desc_nivel_educativo  'INICIAL' THEN 'INICIAL'
-                WHEN escuelas.desc_nivel_educativo  'PREESCOLAR' THEN 'PREESCOLAR'
-                WHEN escuelas.desc_nivel_educativo  'PRIMARIA' THEN 'PRIMARIA'
-                WHEN escuelas.desc_nivel_educativo  'SECUNDARIA' THEN 'SECUNDARIA'
-                WHEN escuelas.desc_nivel_educativo  'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
-                WHEN escuelas.desc_nivel_educativo  'SUPERIOR' THEN 'SUPERIOR'
+                WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                 END ";
 
 
