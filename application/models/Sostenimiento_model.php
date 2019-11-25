@@ -44,7 +44,7 @@ class Sostenimiento_model extends CI_Model
         $filtro.=" and v.municipio={$id_municipio} ";
       }
       if($nivel!="TODOS"){
-        $filtro.=" and v.desc_nivel_educativo LIKE '%{$nivel}%' ";
+        $filtro.=" and v.desc_nivel_educativo = '{$nivel}' ";
       }
 
       $query="SELECT (SELECT CASE  

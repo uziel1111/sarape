@@ -153,7 +153,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
               JOIN sarape.planea_contenido t3 ON t2.id_contenido= t3.id_contenido
               JOIN sarape.planea_unidad_analisis t4 ON t3.id_unidad_analisis=t4.id_unidad_analisis
               JOIN sarape.planea_camposdisciplinares t5 ON t4.id_campodisiplinario=t5.id_campodisiplinario
-              WHERE e.desc_nivel_educativo LIKE '%{$nivel}%'  AND t1.id_periodo= {$periodo}
+              WHERE e.desc_nivel_educativo = '{$nivel}'  AND t1.id_periodo= {$periodo}
               AND(t2.id_reactivo!=118 and t2.id_reactivo!=123 and t2.id_reactivo!=126)
               AND(t2.id_reactivo!=176 and t2.id_reactivo!=152 and t2.id_reactivo!=197)
               AND(t2.id_reactivo!=300 and t2.id_reactivo!=319 and t2.id_reactivo!=328 and t2.id_reactivo!=330 and t2.id_reactivo!=346)
@@ -177,10 +177,10 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       $filtro_nivel = "";
       if($nivel=="PREESCOLAR"){
         $filtro .= " AND IF(escuelas.desc_servicio LIKE '%PREESCOLAR%' AND supervisiones.tipo='FZP',TRUE,FALSE)";
-        $filtro_nivel .= " AND desc_nivel_educativo LIKE '%PREESCOLAR%'";
+        $filtro_nivel .= " AND desc_nivel_educativo = 'PREESCOLAR'";
       }else if($nivel=="PRIMARIA"){
         $filtro .= " AND IF(escuelas.desc_servicio LIKE '%PRIMARIA%' AND supervisiones.tipo='FIZ',TRUE,FALSE)";
-        $filtro_nivel .= " AND desc_nivel_educativo LIKE '%PRIMARIA%'";
+        $filtro_nivel .= " AND desc_nivel_educativo = 'PRIMARIA'";
       }else if($nivel=="SECUNDARIA"){
         $filtro .= "  AND
               IF((escuelas.desc_servicio='SECUNDARIA GENERAL' OR escuelas.desc_servicio='SECUNDARIA COMUNITARIA'
@@ -190,7 +190,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
               IF(((escuelas.desc_servicio='SECUNDARIA TECNICA INDUSTRIAL' AND escuelas.desc_sostenimiento='FEDERAL TRANSFERIDO')
               OR (escuelas.desc_servicio='SECUNDARIA TECNICA AGROPECUARIA' AND escuelas.desc_sostenimiento='FEDERAL TRANSFERIDO')) AND supervisiones.tipo='FZT',TRUE,
               IF(escuelas.desc_servicio='TELESECUNDARIA' AND supervisiones.tipo='FTV', TRUE, FALSE) ))";
-        $filtro_nivel .= " AND desc_nivel_educativo LIKE '%SECUNDARIA%'";
+        $filtro_nivel .= " AND desc_nivel_educativo = 'SECUNDARIA'";
       }
       $where = "";
       if($zona != 0 ){
@@ -216,7 +216,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                           INNER JOIN sarape.planea_contenido t3 ON t2.id_contenido= t3.id_contenido
                           INNER JOIN sarape.planea_unidad_analisis t4 ON t3.id_unidad_analisis=t4.id_unidad_analisis
                           INNER JOIN sarape.planea_camposdisciplinares t5 ON t4.id_campodisiplinario=t5.id_campodisiplinario
-                          WHERE escuelas.desc_nivel_educativo LIKE '%{$nivel}%'  AND t1.id_periodo = {$periodo}
+                          WHERE escuelas.desc_nivel_educativo = '{$nivel}'  AND t1.id_periodo = {$periodo}
                           AND(t2.id_reactivo!=118 AND t2.id_reactivo!=123 AND t2.id_reactivo!=126)
                           AND(t2.id_reactivo!=176 AND t2.id_reactivo!=152 AND t2.id_reactivo!=197)
                           AND(t2.id_reactivo!=300 AND t2.id_reactivo!=319 AND t2.id_reactivo!=328 AND t2.id_reactivo!=330 AND t2.id_reactivo!=346)
@@ -394,7 +394,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       //             GROUP BY s.id_subsostenimiento";
       $filtro ="";
       if($nivel!="TODOS"){
-        $filtro.=" and v.desc_nivel_educativo LIKE '%{$nivel}%' ";
+        $filtro.=" and v.desc_nivel_educativo = '{$nivel}' ";
       }
 
       $query="SELECT (SELECT CASE  

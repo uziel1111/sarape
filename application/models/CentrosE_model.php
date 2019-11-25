@@ -42,42 +42,42 @@ class CentrosE_model extends CI_Model
     function niveles(){
       $query="SELECT
               CASE
-                  WHEN a.nivel LIKE '%ESPECIAL%' THEN '1'
-                  WHEN a.nivel LIKE '%INICIAL%' THEN '2'
-                  WHEN a.nivel LIKE '%PREESCOLAR%' THEN '3'
-                  WHEN a.nivel LIKE '%PRIMARIA%' THEN '4'
-                  WHEN a.nivel LIKE '%SECUNDARIA%' THEN '5'
-                  WHEN a.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                  WHEN a.nivel LIKE '%SUPERIOR%' THEN '7'
-                  WHEN a.nivel LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
-                  WHEN a.nivel LIKE '%OTRO NIVEL EDUCATIVO%' THEN '9'
-                  WHEN a.nivel LIKE '%NO APLICA%'  THEN '10'
+                  WHEN a.nivel = 'ESPECIAL' THEN '1'
+                  WHEN a.nivel = 'INICIAL' THEN '2'
+                  WHEN a.nivel = 'PREESCOLAR' THEN '3'
+                  WHEN a.nivel = 'PRIMARIA' THEN '4'
+                  WHEN a.nivel = 'SECUNDARIA' THEN '5'
+                  WHEN a.nivel = 'MEDIA SUPERIOR' THEN '6'
+                  WHEN a.nivel = 'SUPERIOR' THEN '7'
+                  WHEN a.nivel = 'FORMACION PARA EL TRABAJO' THEN '8'
+                  WHEN a.nivel = 'OTRO NIVEL EDUCATIVO' THEN '9'
+                  WHEN a.nivel = 'NO APLICA'  THEN '10'
                   END AS id_nivel,a.nivel
                FROM (
               SELECT nivel_educativo,
-                CASE  WHEN desc_nivel_educativo LIKE '%NO APLICA%'  THEN 'NO APLICA'
-                  WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                  WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                  WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                  WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                  WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                  WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                  WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
-                  WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
-                  WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN 'OTRO NIVEL EDUCATIVO'
+                CASE  WHEN desc_nivel_educativo = 'NO APLICA'  THEN 'NO APLICA'
+                  WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                  WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                  WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                  WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                  WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                  WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                  WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
+                  WHEN desc_nivel_educativo = 'FORMACION PARA EL TRABAJO' THEN 'FORMACION PARA EL TRABAJO'
+                  WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN 'OTRO NIVEL EDUCATIVO'
                   END AS nivel
                 FROM vista_cct
                 WHERE (`status`= 1 OR `status` = 4) AND tipo_centro=9
-                GROUP BY CASE   WHEN desc_nivel_educativo LIKE '%NO APLICA%' THEN 'NO APLICA'
-                  WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                  WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                  WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                  WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                  WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                  WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                  WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
-                  WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
-                  WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN 'OTRO NIVEL EDUCATIVO'
+                GROUP BY CASE   WHEN desc_nivel_educativo = 'NO APLICA' THEN 'NO APLICA'
+                  WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                  WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                  WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                  WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                  WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                  WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                  WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
+                  WHEN desc_nivel_educativo = 'FORMACION PARA EL TRABAJO' THEN 'FORMACION PARA EL TRABAJO'
+                  WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN 'OTRO NIVEL EDUCATIVO'
                   END
 
                   ) AS a ORDER BY FIELD(a.nivel,'ESPECIAL','INICIAL','PREESCOLAR','PRIMARIA','SECUNDARIA','MEDIA SUPERIOR','SUPERIOR','FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')";
@@ -158,16 +158,16 @@ class CentrosE_model extends CI_Model
       }
 
       $query="SELECT  v.cct,v.turno,v.desc_turno, v.nombre,
-              CASE  WHEN v.desc_nivel_educativo LIKE '%NO APLICA%'  THEN 'NO APLICA'
-                  WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                  WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                  WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                  WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                  WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                  WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                  WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
-                  WHEN v.desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
-                  WHEN v.desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN 'OTRO NIVEL EDUCATIVO'
+              CASE  WHEN v.desc_nivel_educativo = 'NO APLICA'  THEN 'NO APLICA'
+                  WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                  WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                  WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                  WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                  WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                  WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                  WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
+                  WHEN v.desc_nivel_educativo = 'FORMACION PARA EL TRABAJO' THEN 'FORMACION PARA EL TRABAJO'
+                  WHEN v.desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN 'OTRO NIVEL EDUCATIVO'
                   END AS nivel,
               CASE  WHEN (v.desc_sostenimiento LIKE '%FEDERAL%')
               OR (v.desc_sostenimiento LIKE '%ESTATAL%')
@@ -205,16 +205,16 @@ class CentrosE_model extends CI_Model
       // echo $where_turno;
       // die();
       $query="SELECT  v.cct as cve_centro,v.turno,v.desc_turno, v.nombre as nombre_centro, v.des_region as region,concat_ws(' ',v.nombre_director,v.apellido_paterno_director,v.apellido_materno_director) as nombre_director,
-              CASE  WHEN v.desc_nivel_educativo LIKE '%NO APLICA%'  THEN 'NO APLICA'
-                  WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                  WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                  WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                  WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                  WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                  WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                  WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
-                  WHEN v.desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
-                  WHEN v.desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN 'OTRO NIVEL EDUCATIVO'
+              CASE  WHEN v.desc_nivel_educativo = 'NO APLICA'  THEN 'NO APLICA'
+                  WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                  WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                  WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                  WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                  WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                  WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                  WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
+                  WHEN v.desc_nivel_educativo = 'FORMACION PARA EL TRABAJO' THEN 'FORMACION PARA EL TRABAJO'
+                  WHEN v.desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN 'OTRO NIVEL EDUCATIVO'
                   END AS nivel,
               IF(status in(1,4),'ACTIVA','') as estatus
                   ,
@@ -232,19 +232,7 @@ class CentrosE_model extends CI_Model
               v.sostenimiento,v.status,v.municipio as id_municipio, v.nombre_de_municipio as municipio,v.localidad as id_localidad,
               v.nombre_de_localidad as localidad,
               v.latitud, v.longitud,v.nombre_vialidad_principal as domicilio,v.zona_escolar,'' as turno_n,'' AS turno_single,
-              CASE  WHEN desc_subnivel_educativo LIKE '%GENERAL%' THEN 'GENERAL'
-              WHEN desc_subnivel_educativo LIKE '%LACTANTE Y MATERNAL%' THEN 'LACTANTE Y MATERNAL'
-              WHEN desc_subnivel_educativo LIKE '%COMUNITARIO%' THEN 'COMUNITARIO'
-              WHEN desc_subnivel_educativo LIKE '%INDIGENA%' THEN 'INDIGENA'
-              WHEN desc_subnivel_educativo LIKE '%TECNOLOGICO%' THEN 'TECNOLOGICO'
-              WHEN desc_subnivel_educativo LIKE '%PROFESIONAL TECNICO%' THEN 'PROFESIONAL TECNICO'
-              WHEN desc_subnivel_educativo LIKE '%LICENCIATURA Y POSGRADO%' THEN 'LICENCIATURA Y POSGRADO'
-              WHEN desc_subnivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN 'FORMACION PARA EL TRABAJO'
-              WHEN desc_subnivel_educativo LIKE '%TELESECUNDARIA%' THEN 'TELESECUNDARIA'
-              WHEN desc_subnivel_educativo LIKE '%TECNICA%' THEN 'TECNICA'
-              WHEN desc_subnivel_educativo LIKE '%CAM%' THEN 'CAM'
-              WHEN desc_subnivel_educativo LIKE '%NO APLICA%' THEN 'NO APLICA'
-              END AS modalidad
+             v.desc_servicio AS modalidad
               FROM vista_cct AS v
 
               WHERE (v.status != 2 AND v.status != 3)

@@ -65,11 +65,11 @@ class Ciclo_model extends CI_Model
       $filtro_nivel_sos = "";
       $filtro = "";
       if($nivel== 'PREESCOLAR'){
-        $filtro_nivel_sos .= " AND v.desc_nivel_educativo LIKE '%PREESCOLAR%'";
+        $filtro_nivel_sos .= " AND v.desc_nivel_educativo = 'PREESCOLAR'";
       }else if($nivel=="PRIMARIA"){
-        $filtro_nivel_sos .= " AND v.desc_nivel_educativo LIKE '%PRIMARIA%'";
+        $filtro_nivel_sos .= " AND v.desc_nivel_educativo = 'PRIMARIA'";
       }else if($nivel== "SECUNDARIA"){
-        $filtro_nivel_sos .= " AND v.desc_nivel_educativo LIKE '%SECUNDARIA%'";
+        $filtro_nivel_sos .= " AND v.desc_nivel_educativo = 'SECUNDARIA'";
       }
       
       if($sostenimiento=="PRIVADO"){

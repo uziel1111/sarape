@@ -34,7 +34,7 @@ class Modalidad_model extends CI_Model
         $filtro.=" AND municipio={$id_municipio}";
       }
       if($nivel!="TODOS"){
-        $filtro.=" AND desc_nivel_educativo LIKE '%{$nivel}%'";
+        $filtro.=" AND desc_nivel_educativo = '{$nivel}'";
       }
       if($sostenimiento!="TODOS"){
         if($sostenimiento=="PRIVADO"){
@@ -69,7 +69,7 @@ class Modalidad_model extends CI_Model
         // return  $this->ce_db->get()->row('modalidad');
         $query = "SELECT desc_servicio as modalidad FROM vista_cct 
                   WHERE  servicio={$id_modalidad} 
-                  AND desc_nivel_educativo LIKE '%{$nivel}%'";
+                  AND desc_nivel_educativo = '{$nivel}'";
                   // echo $query;
                   // die();
         return $this->ce_db->query($query)->row('modalidad');

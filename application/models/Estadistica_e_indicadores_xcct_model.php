@@ -39,26 +39,26 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     $query1="SELECT 
               CASE  
-                  WHEN a.nivel LIKE '%ESPECIAL%' THEN '1'
-                  WHEN a.nivel LIKE '%INICIAL%' THEN '2'
-                  WHEN a.nivel LIKE '%PREESCOLAR%' THEN '3'
-                  WHEN a.nivel LIKE '%PRIMARIA%' THEN '4'
-                  WHEN a.nivel LIKE '%SECUNDARIA%' THEN '5'
-                  WHEN a.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                  WHEN a.nivel LIKE '%SUPERIOR%' THEN '7'
+                  WHEN a.nivel = 'ESPECIAL' THEN '1'
+                  WHEN a.nivel = 'INICIAL' THEN '2'
+                  WHEN a.nivel = 'PREESCOLAR' THEN '3'
+                  WHEN a.nivel = 'PRIMARIA' THEN '4'
+                  WHEN a.nivel = 'SECUNDARIA' THEN '5'
+                  WHEN a.nivel = 'MEDIA SUPERIOR' THEN '6'
+                  WHEN a.nivel = 'SUPERIOR' THEN '7'
                   END AS id_nivel,a.nivel,a.id_sostenimiento,a.sostenimiento,a.id_modalidad,a.modalidad,
                   alumn_m_t,alumn_h_t,alumn_t_t,alumn_t_1,alumn_t_2,alumn_t_3
                   ,alumn_t_4,alumn_t_5,alumn_t_6
                FROM (
               SELECT v.nivel_educativo,
                 CASE  
-                    WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                    WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                    WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                    WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                    WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                    WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                    WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                    WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                    WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                    WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                    WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                    WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                    WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                    WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END AS nivel,'0' AS id_sostenimiento,'total' AS sostenimiento, '0' AS id_modalidad,
                     'total' AS modalidad,
                     SUM(es.alumn_m_t) AS alumn_m_t, SUM(es.alumn_h_t) AS alumn_h_t, SUM(es.alumn_t_t) AS alumn_t_t,
@@ -70,13 +70,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 {$filtro}               
                 GROUP BY CASE  
-                  WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                  WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                  WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                  WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                  WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                  WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                  WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                  WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                  WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                  WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                  WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                  WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                  WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                  WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                   END
                   ) AS a ";
 
@@ -108,26 +108,26 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     $query2="SELECT 
               CASE  
-                  WHEN a.nivel LIKE '%ESPECIAL%' THEN '1'
-                  WHEN a.nivel LIKE '%INICIAL%' THEN '2'
-                  WHEN a.nivel LIKE '%PREESCOLAR%' THEN '3'
-                  WHEN a.nivel LIKE '%PRIMARIA%' THEN '4'
-                  WHEN a.nivel LIKE '%SECUNDARIA%' THEN '5'
-                  WHEN a.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                  WHEN a.nivel LIKE '%SUPERIOR%' THEN '7'
+                  WHEN a.nivel = 'ESPECIAL' THEN '1'
+                  WHEN a.nivel = 'INICIAL' THEN '2'
+                  WHEN a.nivel = 'PREESCOLAR' THEN '3'
+                  WHEN a.nivel = 'PRIMARIA' THEN '4'
+                  WHEN a.nivel = 'SECUNDARIA' THEN '5'
+                  WHEN a.nivel = 'MEDIA SUPERIOR' THEN '6'
+                  WHEN a.nivel = 'SUPERIOR' THEN '7'
                   END AS id_nivel,a.nivel,a.id_sostenimiento,a.sostenimiento,a.id_modalidad,a.modalidad,
                   alumn_m_t,alumn_h_t,alumn_t_t,alumn_t_1,alumn_t_2,alumn_t_3
                   ,alumn_t_4,alumn_t_5,alumn_t_6
                FROM (
               SELECT v.nivel_educativo,
                 CASE  
-                  WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                  WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                  WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                  WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                  WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                  WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                  WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                  WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                  WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                  WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                  WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                  WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                  WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                  WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                   END AS nivel,
                     (SELECT CASE  
                           WHEN v.sostenimiento IN  ('51') THEN '3' 
@@ -149,13 +149,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 {$filtro}
                 GROUP BY (CASE  
-                  WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                  WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                  WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                  WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                  WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                  WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                  WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                  WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                  WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                  WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                  WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                  WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                  WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                  WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                   END),(CASE  
                           WHEN v.sostenimiento IN  ('51') THEN 'AUTONOMO' 
                           WHEN v.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
@@ -194,25 +194,25 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     $query3="SELECT 
             CASE  
-                WHEN a.nivel LIKE '%ESPECIAL%' THEN '1'
-                WHEN a.nivel LIKE '%INICIAL%' THEN '2'
-                WHEN a.nivel LIKE '%PREESCOLAR%' THEN '3'
-                WHEN a.nivel LIKE '%PRIMARIA%' THEN '4'
-                WHEN a.nivel LIKE '%SECUNDARIA%' THEN '5'
-                WHEN a.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                WHEN a.nivel LIKE '%SUPERIOR%' THEN '7'
+                WHEN a.nivel = 'ESPECIAL' THEN '1'
+                WHEN a.nivel = 'INICIAL' THEN '2'
+                WHEN a.nivel = 'PREESCOLAR' THEN '3'
+                WHEN a.nivel = 'PRIMARIA' THEN '4'
+                WHEN a.nivel = 'SECUNDARIA' THEN '5'
+                WHEN a.nivel = 'MEDIA SUPERIOR' THEN '6'
+                WHEN a.nivel = 'SUPERIOR' THEN '7'
                 END AS id_nivel,a.nivel,a.id_sostenimiento,a.sostenimiento,a.id_modalidad,a.modalidad,
                 alumn_m_t,alumn_h_t,alumn_t_t,alumn_t_1,alumn_t_2,alumn_t_3,alumn_t_4,alumn_t_5,alumn_t_6
             FROM (
                 SELECT v.nivel_educativo,
                     CASE  
-                        WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                        WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                        WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                        WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                        WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                        WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                         END AS nivel,
                         (SELECT CASE  
                             WHEN v.sostenimiento IN  ('51') THEN '3' 
@@ -234,13 +234,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 {$filtro}
                 GROUP BY (CASE  
-                    WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                    WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                    WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                    WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                    WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                    WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                    WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                    WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                    WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                    WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                    WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                    WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                    WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                    WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END),(CASE  
                           WHEN v.sostenimiento IN  ('51') THEN 'AUTONOMO' 
                           WHEN v.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
@@ -297,11 +297,11 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     }
 
     if($nivel=="PREESCOLAR"){
-        $filtro .= " AND IF(escuelas.desc_servicio LIKE '%PREESCOLAR%' AND supervisiones.tipo='FZP',TRUE,FALSE)";
-        $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%PREESCOLAR%' ";
+        $filtro .= " AND IF(escuelas.desc_servicio = '%PREESCOLAR%' AND supervisiones.tipo='FZP',TRUE,FALSE)";
+        $filtro_nivel_sos .= " AND desc_nivel_educativo = 'PREESCOLAR' ";
     }else if($nivel=="PRIMARIA"){
         $filtro .= " AND IF(escuelas.desc_servicio LIKE '%PRIMARIA%' AND supervisiones.tipo='FIZ',TRUE,FALSE)";
-        $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%PRIMARIA%'";
+        $filtro_nivel_sos .= " AND desc_nivel_educativo = 'PRIMARIA'";
     }else if($nivel=="SECUNDARIA"){
         $filtro .= "AND 
             IF( (escuelas.desc_servicio='SECUNDARIA GENERAL' OR escuelas.desc_servicio='SECUNDARIA COMUNITARIA'
@@ -311,7 +311,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
             IF( ((escuelas.desc_servicio='SECUNDARIA TECNICA INDUSTRIAL' AND escuelas.desc_sostenimiento='FEDERAL TRANSFERIDO')
                 OR (escuelas.desc_servicio='SECUNDARIA TECNICA AGROPECUARIA' AND escuelas.desc_sostenimiento='FEDERAL TRANSFERIDO')) AND supervisiones.tipo='FZT',TRUE,
             IF(escuelas.desc_servicio='TELESECUNDARIA' AND supervisiones.tipo='FTV', TRUE, FALSE ) ) )";
-        $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%SECUNDARIA%'";
+        $filtro_nivel_sos .= " AND desc_nivel_educativo = 'SECUNDARIA'";
     }
 
     $filtro_zona = "";
@@ -326,13 +326,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     $query1=" SELECT
                 CASE  
-                    WHEN escuelas.nivel LIKE '%ESPECIAL%' THEN '1'
-                    WHEN escuelas.nivel LIKE '%INICIAL%' THEN '2'
-                    WHEN escuelas.nivel LIKE '%PREESCOLAR%' THEN '3'
-                    WHEN escuelas.nivel LIKE '%PRIMARIA%' THEN '4'
-                    WHEN escuelas.nivel LIKE '%SECUNDARIA%' THEN '5'
-                    WHEN escuelas.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                    WHEN escuelas.nivel LIKE '%SUPERIOR%' THEN '7'
+                    WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
+                    WHEN escuelas.nivel = 'INICIAL' THEN '2'
+                    WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
+                    WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
+                    WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
+                    WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
+                    WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
                 END AS id_nivel,escuelas.nivel,'0' AS id_sostenimiento,'total' AS sostenimiento,
                 '0' AS id_modalidad, 'total' AS modalidad,
                 SUM(est.alumn_m_t) AS alumn_m_t, SUM(est.alumn_h_t) AS alumn_h_t, 
@@ -344,13 +344,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
             FROM (SELECT cct, turno, sostenimiento,zona_escolar,desc_nivel_educativo,
                     desc_servicio, desc_sostenimiento,nivel_educativo,
                     CASE 
-                      WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                      WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                      WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                      WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                      WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                      WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                      WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                      WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                      WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                      WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                      WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                      WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                      WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                      WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END AS nivel
                     FROM centros_educativos.vista_cct 
                     WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9 
@@ -366,13 +366,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         AND escuelas.sostenimiento = supervisiones.sostenimiento
             {$filtro} {$filtro_zona}
             GROUP BY CASE   
-                WHEN escuelas.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                WHEN escuelas.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                WHEN escuelas.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                WHEN escuelas.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                WHEN escuelas.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                WHEN escuelas.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                WHEN escuelas.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                WHEN escuelas.desc_nivel_educativo  'CAM' THEN 'ESPECIAL'
+                WHEN escuelas.desc_nivel_educativo  'INICIAL' THEN 'INICIAL'
+                WHEN escuelas.desc_nivel_educativo  'PREESCOLAR' THEN 'PREESCOLAR'
+                WHEN escuelas.desc_nivel_educativo  'PRIMARIA' THEN 'PRIMARIA'
+                WHEN escuelas.desc_nivel_educativo  'SECUNDARIA' THEN 'SECUNDARIA'
+                WHEN escuelas.desc_nivel_educativo  'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                WHEN escuelas.desc_nivel_educativo  'SUPERIOR' THEN 'SUPERIOR'
                 END ";
 
 
@@ -409,13 +409,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     $query2 = " SELECT
                 CASE  
-                    WHEN escuelas.nivel LIKE '%ESPECIAL%' THEN '1'
-                    WHEN escuelas.nivel LIKE '%INICIAL%' THEN '2'
-                    WHEN escuelas.nivel LIKE '%PREESCOLAR%' THEN '3'
-                    WHEN escuelas.nivel LIKE '%PRIMARIA%' THEN '4'
-                    WHEN escuelas.nivel LIKE '%SECUNDARIA%' THEN '5'
-                    WHEN escuelas.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                    WHEN escuelas.nivel LIKE '%SUPERIOR%' THEN '7'
+                    WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
+                    WHEN escuelas.nivel = 'INICIAL' THEN '2'
+                    WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
+                    WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
+                    WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
+                    WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
+                    WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
                 END AS id_nivel,escuelas.nivel
                 ,escuelas.id_sostenimiento, escuelas.sostenimiento2 as sostenimiento, '0' AS id_modalidad, 'total' AS modalidad,
                 SUM(est.alumn_m_t) AS alumn_m_t, 
@@ -430,13 +430,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 FROM (SELECT cct, turno, zona_escolar, desc_nivel_educativo, desc_servicio, 
                         desc_sostenimiento,nivel_educativo,
                     CASE 
-                       WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                       WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                       WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                       WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                       WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                       WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                       WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                       WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                       WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                       WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                       WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                       WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                       WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                       WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END AS nivel,
                     (SELECT CASE  
                         WHEN sostenimiento IN  ('51') THEN '3'
@@ -462,13 +462,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                             AND escuelas.sostenimiento = supervisiones.sostenimiento
                 {$filtro} {$filtro_zona}
                 GROUP BY (CASE   
-                            WHEN escuelas.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                            WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                            WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                            WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                            WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                            WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                            WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                            WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                         END), 
                         (CASE  
                             WHEN escuelas.sostenimiento IN  ('51') THEN 'AUTONOMO'
@@ -517,13 +517,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     // $str = $this->db->last_query();
     // echo $str; die();
         $query3 = "SELECT CASE  
-                    WHEN escuelas.nivel LIKE '%ESPECIAL%' THEN '1'
-                    WHEN escuelas.nivel LIKE '%INICIAL%' THEN '2'
-                    WHEN escuelas.nivel LIKE '%PREESCOLAR%' THEN '3'
-                    WHEN escuelas.nivel LIKE '%PRIMARIA%' THEN '4'
-                    WHEN escuelas.nivel LIKE '%SECUNDARIA%' THEN '5'
-                    WHEN escuelas.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                    WHEN escuelas.nivel LIKE '%SUPERIOR%' THEN '7'
+                    WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
+                    WHEN escuelas.nivel = 'INICIAL' THEN '2'
+                    WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
+                    WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
+                    WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
+                    WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
+                    WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
                 END AS id_nivel,escuelas.nivel
                 ,escuelas.id_sostenimiento, escuelas.sostenimiento2 as sostenimiento, escuelas.servicio AS id_modalidad,
                 escuelas.desc_servicio AS modalidad,
@@ -539,13 +539,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 FROM (SELECT cct, turno, zona_escolar, desc_nivel_educativo, servicio,desc_servicio, 
                         desc_sostenimiento,nivel_educativo,
                     CASE 
-                       WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                       WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                       WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                       WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                       WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                       WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                       WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                       WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                       WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                       WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                       WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                       WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                       WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                       WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END AS nivel,
                     (SELECT CASE  
                         WHEN sostenimiento IN  ('51') THEN '3'
@@ -571,13 +571,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                             AND escuelas.sostenimiento = supervisiones.sostenimiento
                 {$filtro} {$filtro_zona}
                 GROUP BY (CASE   
-                            WHEN escuelas.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                            WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                            WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                            WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                            WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                            WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                            WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                            WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                         END), 
                         (CASE  
                             WHEN escuelas.sostenimiento IN  ('51') THEN 'AUTONOMO'
@@ -636,13 +636,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     $query1 = "SELECT 
                 CASE  
-                    WHEN a.nivel LIKE '%ESPECIAL%' THEN '1'
-                    WHEN a.nivel LIKE '%INICIAL%' THEN '2'
-                    WHEN a.nivel LIKE '%PREESCOLAR%' THEN '3'
-                    WHEN a.nivel LIKE '%PRIMARIA%' THEN '4'
-                    WHEN a.nivel LIKE '%SECUNDARIA%' THEN '5'
-                    WHEN a.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                    WHEN a.nivel LIKE '%SUPERIOR%' THEN '7'
+                    WHEN a.nivel = 'ESPECIAL' THEN '1'
+                    WHEN a.nivel = 'INICIAL' THEN '2'
+                    WHEN a.nivel = 'PREESCOLAR' THEN '3'
+                    WHEN a.nivel = 'PRIMARIA' THEN '4'
+                    WHEN a.nivel = 'SECUNDARIA' THEN '5'
+                    WHEN a.nivel = 'MEDIA SUPERIOR' THEN '6'
+                    WHEN a.nivel = 'SUPERIOR' THEN '7'
                 END AS id_nivel,a.nivel,id_sostenimiento,sostenimiento
                 ,id_modalidad,modalidad,docente_m,docente_h,docentes_t_g,
                 directivo_m_congrup,directivo_h_congrup,directivo_t_congrup,
@@ -650,25 +650,25 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                FROM (
                 SELECT v.nivel_educativo,
                 CASE  
-                    WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                    WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                    WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                    WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                    WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                    WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                    WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                    WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                    WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                    WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                    WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                    WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                    WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                    WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                 END AS nivel,'0' AS id_sostenimiento,
                 'total' AS sostenimiento, '0' AS id_modalidad, 'total' AS modalidad,
-                IF(v.desc_nivel_educativo LIKE '%SECUNDARIA%', (SUM(est.docente_m)+SUM(est.docente_m_ef)
+                IF(v.desc_nivel_educativo = 'SECUNDARIA', (SUM(est.docente_m)+SUM(est.docente_m_ef)
                     +SUM(est.docente_m_artis)
                     +SUM(est.docente_m_tecnolo)
                     +SUM(est.docente_m_idiomas)) ,SUM(est.docente_m)) AS docente_m,
-                IF(v.desc_nivel_educativo LIKE '%SECUNDARIA%', (SUM(est.docente_h)
+                IF(v.desc_nivel_educativo = 'SECUNDARIA', (SUM(est.docente_h)
                     +SUM(est.docente_h_ef)
                     +SUM(est.docente_h_artis)
                     +SUM(est.docente_h_tecnolo)
                     +SUM(est.docente_h_idiomas)) ,SUM(est.docente_h)) AS docente_h,
-                IF(v.desc_nivel_educativo LIKE '%SECUNDARIA%', (SUM(est.docentes_t_g)
+                IF(v.desc_nivel_educativo = 'SECUNDARIA', (SUM(est.docentes_t_g)
                     +SUM(est.docente_h_ef)
                     +SUM(est.docente_m_ef)
                     +SUM(est.docente_h_artis)
@@ -690,13 +690,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 {$filtro}            
                 GROUP BY CASE  
-                  WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                  WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                  WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                  WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                  WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                  WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                  WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                  WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                  WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                  WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                  WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                  WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                  WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                  WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                   END
                   ) AS a";
 
@@ -744,13 +744,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     $query2="SELECT 
                 CASE  
-                    WHEN a.nivel LIKE '%ESPECIAL%' THEN '1'
-                    WHEN a.nivel LIKE '%INICIAL%' THEN '2'
-                    WHEN a.nivel LIKE '%PREESCOLAR%' THEN '3'
-                    WHEN a.nivel LIKE '%PRIMARIA%' THEN '4'
-                    WHEN a.nivel LIKE '%SECUNDARIA%' THEN '5'
-                    WHEN a.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                    WHEN a.nivel LIKE '%SUPERIOR%' THEN '7'
+                    WHEN a.nivel = 'ESPECIAL' THEN '1'
+                    WHEN a.nivel = 'INICIAL' THEN '2'
+                    WHEN a.nivel = 'PREESCOLAR' THEN '3'
+                    WHEN a.nivel = 'PRIMARIA' THEN '4'
+                    WHEN a.nivel = 'SECUNDARIA' THEN '5'
+                    WHEN a.nivel = 'MEDIA SUPERIOR' THEN '6'
+                    WHEN a.nivel = 'SUPERIOR' THEN '7'
                 END AS id_nivel,a.nivel,id_sostenimiento,sostenimiento
                 ,id_modalidad,modalidad,docente_m,docente_h,docentes_t_g,
                 directivo_m_congrup,directivo_h_congrup,directivo_t_congrup,
@@ -758,13 +758,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                FROM (
                 SELECT v.nivel_educativo,
                     CASE  
-                        WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                        WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                        WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                        WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                        WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                        WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END AS nivel,
                     (SELECT CASE  
                         WHEN v.sostenimiento IN  ('51') THEN '3' 
@@ -777,14 +777,14 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         ELSE 'PUBLICO'
                     END) AS sostenimiento, 
                     '0' AS id_modalidad, 'total' AS modalidad,
-                    IF(v.desc_nivel_educativo LIKE '%SECUNDARIA%', (SUM(est.docente_m)+SUM(est.docente_m_ef)+SUM(est.docente_m_artis)
+                    IF(v.desc_nivel_educativo = 'SECUNDARIA', (SUM(est.docente_m)+SUM(est.docente_m_ef)+SUM(est.docente_m_artis)
                         +SUM(est.docente_m_tecnolo)
                         +SUM(est.docente_m_idiomas)) ,SUM(est.docente_m)) AS docente_m,
-                    IF(v.desc_nivel_educativo LIKE '%SECUNDARIA%', (SUM(est.docente_h)+SUM(est.docente_h_ef)
+                    IF(v.desc_nivel_educativo = 'SECUNDARIA', (SUM(est.docente_h)+SUM(est.docente_h_ef)
                         +SUM(est.docente_h_artis)
                         +SUM(est.docente_h_tecnolo)
                         +SUM(est.docente_h_idiomas)) ,SUM(est.docente_h)) AS docente_h,
-                    IF(v.desc_nivel_educativo LIKE '%SECUNDARIA%', (SUM(est.docentes_t_g)+SUM(est.docente_h_ef)
+                    IF(v.desc_nivel_educativo = 'SECUNDARIA', (SUM(est.docentes_t_g)+SUM(est.docente_h_ef)
                         +SUM(est.docente_m_ef)
                         +SUM(est.docente_h_artis)
                         +SUM(est.docente_m_artis)
@@ -805,13 +805,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 {$filtro}         
                 GROUP BY (CASE  
-                              WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                              WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                              WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                              WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                              WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                              WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                              WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                              WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                              WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                              WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                              WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                              WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                              WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                              WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                         END),
                     (CASE  
                         WHEN v.sostenimiento IN  ('51') THEN 'AUTONOMO' 
@@ -873,11 +873,11 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     $query3 = "SELECT 
                 CASE  
-                    WHEN a.nivel LIKE '%ESPECIAL%' THEN '1'
-                    WHEN a.nivel LIKE '%INICIAL%' THEN '2'
-                    WHEN a.nivel LIKE '%PREESCOLAR%' THEN '3'
-                    WHEN a.nivel LIKE '%PRIMARIA%' THEN '4'
-                    WHEN a.nivel LIKE '%SECUNDARIA%' THEN '5'
+                    WHEN a.nivel = 'ESPECIAL' THEN '1'
+                    WHEN a.nivel = 'INICIAL' THEN '2'
+                    WHEN a.nivel = 'PREESCOLAR' THEN '3'
+                    WHEN a.nivel = 'PRIMARIA' THEN '4'
+                    WHEN a.nivel = 'SECUNDARIA' THEN '5'
                 END AS id_nivel,a.nivel,id_sostenimiento,sostenimiento
                 ,id_modalidad,modalidad,docente_m,docente_h,docentes_t_g,
                 directivo_m_congrup,directivo_h_congrup,directivo_t_congrup,
@@ -885,11 +885,11 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                FROM (
                 SELECT v.nivel_educativo,
                     CASE  
-                        WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
+                        WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
                     END AS nivel,
                         (SELECT CASE  
                               WHEN v.sostenimiento IN  ('51') THEN '3' 
@@ -902,17 +902,17 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                             ELSE 'PUBLICO'
                         END) AS sostenimiento, 
                     v.servicio AS id_modalidad,v.desc_servicio AS modalidad,
-                    IF(v.desc_nivel_educativo LIKE '%SECUNDARIA%', (SUM(est.docente_m)
+                    IF(v.desc_nivel_educativo = 'SECUNDARIA', (SUM(est.docente_m)
                         +SUM(est.docente_m_ef)
                         +SUM(est.docente_m_artis)
                         +SUM(est.docente_m_tecnolo)
                         +SUM(est.docente_m_idiomas)) ,SUM(est.docente_m)) AS docente_m,
-                    IF(v.desc_nivel_educativo LIKE '%SECUNDARIA%', (SUM(est.docente_h)
+                    IF(v.desc_nivel_educativo = 'SECUNDARIA', (SUM(est.docente_h)
                         +SUM(est.docente_h_ef)
                         +SUM(est.docente_h_artis)
                         +SUM(est.docente_h_tecnolo)
                         +SUM(est.docente_h_idiomas)),SUM(est.docente_h)) AS docente_h,
-                    IF(v.desc_nivel_educativo LIKE '%SECUNDARIA%', (SUM(est.docentes_t_g)
+                    IF(v.desc_nivel_educativo = 'SECUNDARIA', (SUM(est.docentes_t_g)
                         +SUM(est.docente_h_ef)
                         +SUM(est.docente_m_ef)
                         +SUM(est.docente_h_artis)
@@ -934,11 +934,11 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA','MEDIA SUPERIOR','SUPERIOR')
                 {$filtro}           
                 GROUP BY (CASE  
-                            WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                            WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                            WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                            WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                            WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
+                            WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                            WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                            WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                            WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                            WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
                         END),
                         (CASE  
                             WHEN v.sostenimiento IN  ('51') THEN '3' 
@@ -972,10 +972,10 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     if($nivel=="PREESCOLAR"){
         $filtro .= " AND IF(escuelas.desc_servicio LIKE '%PREESCOLAR%' AND supervisiones.tipo='FZP',TRUE,FALSE)";
-        $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%PREESCOLAR%' ";
+        $filtro_nivel_sos .= " AND desc_nivel_educativo = 'PREESCOLAR' ";
     }else if($nivel=="PRIMARIA"){
         $filtro .= " AND IF(escuelas.desc_servicio LIKE '%PRIMARIA%' AND supervisiones.tipo='FIZ',TRUE,FALSE)";
-        $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%PRIMARIA%'";
+        $filtro_nivel_sos .= " AND desc_nivel_educativo = 'PRIMARIA'";
     }else if($nivel=="SECUNDARIA"){
         $filtro .= "AND 
             IF( (escuelas.desc_servicio='SECUNDARIA GENERAL' OR escuelas.desc_servicio='SECUNDARIA COMUNITARIA'
@@ -985,7 +985,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
             IF( ((escuelas.desc_servicio='SECUNDARIA TECNICA INDUSTRIAL' AND escuelas.desc_sostenimiento='FEDERAL TRANSFERIDO')
                 OR (escuelas.desc_servicio='SECUNDARIA TECNICA AGROPECUARIA' AND escuelas.desc_sostenimiento='FEDERAL TRANSFERIDO')) AND supervisiones.tipo='FZT',TRUE,
             IF(escuelas.desc_servicio='TELESECUNDARIA' AND supervisiones.tipo='FTV', TRUE, FALSE ) ) )";
-        $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%SECUNDARIA%'";
+        $filtro_nivel_sos .= " AND desc_nivel_educativo = 'SECUNDARIA'";
     }
 
 
@@ -1044,19 +1044,19 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
 //     $query1 = $this->db->get_compiled_select();
     $query1 = "SELECT CASE  
-                    WHEN escuelas.nivel LIKE '%ESPECIAL%' THEN '1'
-                    WHEN escuelas.nivel LIKE '%INICIAL%' THEN '2'
-                    WHEN escuelas.nivel LIKE '%PREESCOLAR%' THEN '3'
-                    WHEN escuelas.nivel LIKE '%PRIMARIA%' THEN '4'
-                    WHEN escuelas.nivel LIKE '%SECUNDARIA%' THEN '5'
-                    WHEN escuelas.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                    WHEN escuelas.nivel LIKE '%SUPERIOR%' THEN '7'
+                    WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
+                    WHEN escuelas.nivel = 'INICIAL' THEN '2'
+                    WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
+                    WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
+                    WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
+                    WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
+                    WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
                 END AS id_nivel,escuelas.nivel,'0' AS id_sostenimiento, 'total' AS sostenimiento, '0' AS id_modalidad, 'total' AS modalidad,
-                IF(escuelas.nivel LIKE '%SECUNDARIA%', (SUM(est.docente_m)+SUM(est.docente_m_ef)+SUM(est.docente_m_artis)+SUM(est.docente_m_tecnolo)+SUM(est.docente_m_idiomas)) ,
+                IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docente_m)+SUM(est.docente_m_ef)+SUM(est.docente_m_artis)+SUM(est.docente_m_tecnolo)+SUM(est.docente_m_idiomas)) ,
                     SUM(est.docente_m)) AS docente_m,
-                IF(escuelas.nivel LIKE '%SECUNDARIA%', (SUM(est.docente_h)+SUM(est.docente_h_ef)+SUM(est.docente_h_artis)+SUM(est.docente_h_tecnolo)+SUM(est.docente_h_idiomas)) ,
+                IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docente_h)+SUM(est.docente_h_ef)+SUM(est.docente_h_artis)+SUM(est.docente_h_tecnolo)+SUM(est.docente_h_idiomas)) ,
                     SUM(est.docente_h)) AS docente_h,
-                IF(escuelas.nivel LIKE '%SECUNDARIA%', (SUM(est.docentes_t_g)+SUM(est.docente_h_ef)+SUM(est.docente_m_ef)
+                IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docentes_t_g)+SUM(est.docente_h_ef)+SUM(est.docente_m_ef)
                     +SUM(est.docente_h_artis)
                     +SUM(est.docente_m_artis)
                     +SUM(est.docente_h_tecnolo)
@@ -1072,13 +1072,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
             FROM (SELECT cct, turno, sostenimiento, zona_escolar, desc_nivel_educativo,
                     desc_servicio,desc_sostenimiento,nivel_educativo,
                     CASE 
-                        WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                        WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                        WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                        WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                        WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                        WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END AS nivel
                 FROM centros_educativos.vista_cct 
                 WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9 
@@ -1094,13 +1094,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
             AND escuelas.sostenimiento = supervisiones.sostenimiento
             {$filtro} {$filtro_zona}   
             GROUP BY CASE   
-                WHEN escuelas.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                WHEN escuelas.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                WHEN escuelas.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                WHEN escuelas.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                WHEN escuelas.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                WHEN escuelas.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                WHEN escuelas.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
             END ";
 
 //     $this->db->select('ni.id_nivel,ni.nivel, sso.id_subsostenimiento, sso.subsostenimiento, "0" as id_modalidad, "total" as modalidad,
@@ -1152,13 +1152,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
 //     $query2 = $this->db->get_compiled_select();
     $query2 = "SELECT CASE  
-                        WHEN escuelas.nivel LIKE '%ESPECIAL%' THEN '1'
-                        WHEN escuelas.nivel LIKE '%INICIAL%' THEN '2'
-                        WHEN escuelas.nivel LIKE '%PREESCOLAR%' THEN '3'
-                        WHEN escuelas.nivel LIKE '%PRIMARIA%' THEN '4'
-                        WHEN escuelas.nivel LIKE '%SECUNDARIA%' THEN '5'
-                        WHEN escuelas.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                        WHEN escuelas.nivel LIKE '%SUPERIOR%' THEN '7'
+                        WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
+                        WHEN escuelas.nivel = 'INICIAL' THEN '2'
+                        WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
+                        WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
+                        WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
+                        WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
+                        WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
                     END AS id_nivel,escuelas.nivel,
                     (SELECT CASE  
                         WHEN escuelas.sostenimiento IN  ('51') THEN '3'
@@ -1171,11 +1171,11 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         ELSE 'PUBLICO'
                     END)  as sostenimiento
                     , '0' AS id_modalidad, 'total' AS modalidad,
-                    IF(escuelas.nivel LIKE '%SECUNDARIA%', (SUM(est.docente_m)+SUM(est.docente_m_ef)+SUM(est.docente_m_artis)+SUM(est.docente_m_tecnolo)+SUM(est.docente_m_idiomas)) ,
+                    IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docente_m)+SUM(est.docente_m_ef)+SUM(est.docente_m_artis)+SUM(est.docente_m_tecnolo)+SUM(est.docente_m_idiomas)) ,
                         SUM(est.docente_m)) AS docente_m,
-                    IF(escuelas.nivel LIKE '%SECUNDARIA%', (SUM(est.docente_h)+SUM(est.docente_h_ef)+SUM(est.docente_h_artis)+SUM(est.docente_h_tecnolo)+SUM(est.docente_h_idiomas)) ,
+                    IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docente_h)+SUM(est.docente_h_ef)+SUM(est.docente_h_artis)+SUM(est.docente_h_tecnolo)+SUM(est.docente_h_idiomas)) ,
                         SUM(est.docente_h)) AS docente_h,
-                    IF(escuelas.nivel LIKE '%SECUNDARIA%', (SUM(est.docentes_t_g)+SUM(est.docente_h_ef)+SUM(est.docente_m_ef)+SUM(est.docente_h_artis)+SUM(est.docente_m_artis)+SUM(est.docente_h_tecnolo)
+                    IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docentes_t_g)+SUM(est.docente_h_ef)+SUM(est.docente_m_ef)+SUM(est.docente_h_artis)+SUM(est.docente_m_artis)+SUM(est.docente_h_tecnolo)
                         +SUM(est.docente_m_tecnolo)
                         +SUM(est.docente_h_idiomas)
                         +SUM(est.docente_m_idiomas)),SUM(est.docentes_t_g)) AS docentes_t_g,
@@ -1188,13 +1188,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
             FROM (SELECT cct, turno, sostenimiento, zona_escolar, desc_nivel_educativo,
                     desc_servicio, desc_sostenimiento,nivel_educativo,
                     CASE 
-                        WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                        WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                        WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                        WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                        WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                        WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END AS nivel
                 FROM centros_educativos.vista_cct 
                 WHERE (status = 1 OR status = 4) AND tipo_centro = 9  
@@ -1211,13 +1211,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         AND escuelas.sostenimiento = supervisiones.sostenimiento
             {$filtro} {$filtro_zona}
             GROUP BY (CASE   
-                        WHEN escuelas.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                        WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                        WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                        WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END),
                     (CASE  
                         WHEN escuelas.sostenimiento IN  ('51') THEN 'AUTONOMO'
@@ -1281,13 +1281,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
 //     $query3 = $this->db->get_compiled_select();
     $query3 = "SELECT CASE  
-                    WHEN escuelas.nivel LIKE '%ESPECIAL%' THEN '1'
-                    WHEN escuelas.nivel LIKE '%INICIAL%' THEN '2'
-                    WHEN escuelas.nivel LIKE '%PREESCOLAR%' THEN '3'
-                    WHEN escuelas.nivel LIKE '%PRIMARIA%' THEN '4'
-                    WHEN escuelas.nivel LIKE '%SECUNDARIA%' THEN '5'
-                    WHEN escuelas.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                    WHEN escuelas.nivel LIKE '%SUPERIOR%' THEN '7'
+                    WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
+                    WHEN escuelas.nivel = 'INICIAL' THEN '2'
+                    WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
+                    WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
+                    WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
+                    WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
+                    WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
                 END AS id_nivel,escuelas.nivel,
                 (SELECT CASE  
                     WHEN escuelas.sostenimiento IN  ('51') THEN '3'
@@ -1300,12 +1300,12 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     ELSE 'PUBLICO'
                 END) AS sostenimiento, escuelas.servicio AS id_modalidad, 
                 escuelas.desc_servicio AS modalidad,
-                IF(escuelas.nivel LIKE '%SECUNDARIA%', (SUM(est.docente_m)+SUM(est.docente_m_ef)+SUM(est.docente_m_artis)
+                IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docente_m)+SUM(est.docente_m_ef)+SUM(est.docente_m_artis)
                 +SUM(est.docente_m_tecnolo)+SUM(est.docente_m_idiomas)),
                 SUM(est.docente_m)) AS docente_m,
-                IF(escuelas.nivel LIKE '%SECUNDARIA%', (SUM(est.docente_h)+SUM(est.docente_h_ef)+SUM(est.docente_h_artis)+SUM(est.docente_h_tecnolo)+SUM(est.docente_h_idiomas)) ,
+                IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docente_h)+SUM(est.docente_h_ef)+SUM(est.docente_h_artis)+SUM(est.docente_h_tecnolo)+SUM(est.docente_h_idiomas)) ,
                     SUM(est.docente_h)) AS docente_h,
-                IF(escuelas.nivel LIKE '%SECUNDARIA%', (SUM(est.docentes_t_g)+SUM(est.docente_h_ef)+SUM(est.docente_m_ef)+SUM(est.docente_h_artis)+SUM(est.docente_m_artis)+SUM(est.docente_h_tecnolo)
+                IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docentes_t_g)+SUM(est.docente_h_ef)+SUM(est.docente_m_ef)+SUM(est.docente_h_artis)+SUM(est.docente_m_artis)+SUM(est.docente_h_tecnolo)
                     +SUM(est.docente_m_tecnolo)
                     +SUM(est.docente_h_idiomas)
                     +SUM(est.docente_m_idiomas)),
@@ -1319,13 +1319,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 FROM (SELECT cct, turno, sostenimiento, zona_escolar, desc_nivel_educativo,servicio,
                         desc_servicio, desc_sostenimiento,nivel_educativo,
                         CASE 
-                            WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                            WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                            WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                            WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                            WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                            WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                            WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                            WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                            WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                            WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                            WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                            WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                            WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                            WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                         END AS nivel
                     FROM centros_educativos.vista_cct 
                     WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9
@@ -1340,13 +1340,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                             AND escuelas.sostenimiento = supervisiones.sostenimiento
                 {$filtro} {$filtro_zona}
                 GROUP BY (CASE   
-                            WHEN escuelas.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                            WHEN escuelas.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                            WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                            WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                            WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                            WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                            WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                            WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                            WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                         END),
                         (CASE  WHEN escuelas.sostenimiento IN  ('51') THEN 'AUTONOMO'
                             WHEN escuelas.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
@@ -1392,13 +1392,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     $query1="SELECT 
                 CASE  
-                    WHEN a.nivel LIKE '%ESPECIAL%' THEN '1'
-                    WHEN a.nivel LIKE '%INICIAL%' THEN '2'
-                    WHEN a.nivel LIKE '%PREESCOLAR%' THEN '3'
-                    WHEN a.nivel LIKE '%PRIMARIA%' THEN '4'
-                    WHEN a.nivel LIKE '%SECUNDARIA%' THEN '5'
-                    WHEN a.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                    WHEN a.nivel LIKE '%SUPERIOR%' THEN '7'
+                    WHEN a.nivel = 'ESPECIAL' THEN '1'
+                    WHEN a.nivel = 'INICIAL' THEN '2'
+                    WHEN a.nivel = 'PREESCOLAR' THEN '3'
+                    WHEN a.nivel = 'PRIMARIA' THEN '4'
+                    WHEN a.nivel = 'SECUNDARIA' THEN '5'
+                    WHEN a.nivel = 'MEDIA SUPERIOR' THEN '6'
+                    WHEN a.nivel = 'SUPERIOR' THEN '7'
                     END AS id_nivel,a.nivel,id_sostenimiento,sostenimiento
                     ,id_modalidad,modalidad,nescuelas,grupos_1,grupos_2,
                     grupos_3,grupos_4,grupos_5,
@@ -1406,13 +1406,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
             FROM (
                 SELECT v.nivel_educativo,
                     CASE  
-                        WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                        WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                        WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                        WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                        WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                        WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END AS nivel, 
                     '0' AS id_sostenimiento, 'total' AS sostenimiento, '0' AS id_modalidad, 'total' AS modalidad,
                     COUNT(v.cct) AS nescuelas,
@@ -1430,13 +1430,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 {$filtro}      
                 GROUP BY (CASE  
-                    WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                    WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                    WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                    WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                    WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                    WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                    WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                    WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                    WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                    WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                    WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                    WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                    WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                    WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END)
             ) AS a";
 
@@ -1473,26 +1473,26 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     $query2 = "SELECT 
                 CASE  
-                    WHEN a.nivel LIKE '%ESPECIAL%' THEN '1'
-                    WHEN a.nivel LIKE '%INICIAL%' THEN '2'
-                    WHEN a.nivel LIKE '%PREESCOLAR%' THEN '3'
-                    WHEN a.nivel LIKE '%PRIMARIA%' THEN '4'
-                    WHEN a.nivel LIKE '%SECUNDARIA%' THEN '5'
-                    WHEN a.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                    WHEN a.nivel LIKE '%SUPERIOR%' THEN '7'
+                    WHEN a.nivel = 'ESPECIAL' THEN '1'
+                    WHEN a.nivel = 'INICIAL' THEN '2'
+                    WHEN a.nivel = 'PREESCOLAR' THEN '3'
+                    WHEN a.nivel = 'PRIMARIA' THEN '4'
+                    WHEN a.nivel = 'SECUNDARIA' THEN '5'
+                    WHEN a.nivel = 'MEDIA SUPERIOR' THEN '6'
+                    WHEN a.nivel = 'SUPERIOR' THEN '7'
                     END AS id_nivel,a.nivel,id_sostenimiento,sostenimiento
                     ,id_modalidad,modalidad,nescuelas,grupos_1,grupos_2,grupos_3,
                     grupos_4,grupos_5,grupos_6,grupos_multi,grupos_t 
                 FROM (
                     SELECT v.nivel_educativo,
                         CASE  
-                            WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                            WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                            WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                            WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                            WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                            WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                            WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                            WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                            WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                            WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                            WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                            WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                            WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                            WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                             END AS nivel,
                         (SELECT CASE  
                             WHEN v.sostenimiento IN  ('51') THEN '3' 
@@ -1520,13 +1520,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                     {$filtro}
                     GROUP BY (CASE  
-                        WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                        WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                        WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                        WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                        WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                        WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                         END),(CASE  
                             WHEN v.sostenimiento IN  ('51') THEN 'AUTONOMO' 
                             WHEN v.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
@@ -1570,26 +1570,26 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
  //    $query3 = $this->db->get_compiled_select();
     $query3 = "SELECT 
                     CASE  
-                        WHEN a.nivel LIKE '%ESPECIAL%' THEN '1'
-                        WHEN a.nivel LIKE '%INICIAL%' THEN '2'
-                        WHEN a.nivel LIKE '%PREESCOLAR%' THEN '3'
-                        WHEN a.nivel LIKE '%PRIMARIA%' THEN '4'
-                        WHEN a.nivel LIKE '%SECUNDARIA%' THEN '5'
-                        WHEN a.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                        WHEN a.nivel LIKE '%SUPERIOR%' THEN '7'
+                        WHEN a.nivel = 'ESPECIAL' THEN '1'
+                        WHEN a.nivel = 'INICIAL' THEN '2'
+                        WHEN a.nivel = 'PREESCOLAR' THEN '3'
+                        WHEN a.nivel = 'PRIMARIA' THEN '4'
+                        WHEN a.nivel = 'SECUNDARIA' THEN '5'
+                        WHEN a.nivel = 'MEDIA SUPERIOR' THEN '6'
+                        WHEN a.nivel = 'SUPERIOR' THEN '7'
                         END AS id_nivel,a.nivel,id_sostenimiento,sostenimiento
                     ,id_modalidad,modalidad,nescuelas,grupos_1,grupos_2,
                     grupos_3,grupos_4,grupos_5,grupos_6,grupos_multi,grupos_t 
                 FROM (
                     SELECT v.nivel_educativo,
                         CASE  
-                        WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                        WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                        WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                        WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                        WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                        WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                         END AS nivel,
                         (SELECT CASE  
                             WHEN v.sostenimiento IN  ('51') THEN '3' 
@@ -1617,13 +1617,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                     {$filtro}         
                     GROUP BY (CASE  
-                            WHEN v.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                            WHEN v.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                            WHEN v.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                            WHEN v.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                            WHEN v.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                            WHEN v.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                            WHEN v.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                            WHEN v.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                            WHEN v.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                            WHEN v.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                            WHEN v.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                            WHEN v.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                            WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                            WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                         END),(CASE  
                                 WHEN v.sostenimiento IN  ('51') THEN 'AUTONOMO' 
                                 WHEN v.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
@@ -1685,10 +1685,10 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
     if($nivel=="PREESCOLAR"){
         $filtro .= " AND IF(escuelas.desc_servicio LIKE '%PREESCOLAR%' AND supervisiones.tipo='FZP',TRUE,FALSE)";
-        $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%PREESCOLAR%' ";
+        $filtro_nivel_sos .= " AND desc_nivel_educativo = 'PREESCOLAR' ";
     }else if($nivel=="PRIMARIA"){
         $filtro .= " AND IF(escuelas.desc_servicio LIKE '%PRIMARIA%' AND supervisiones.tipo='FIZ',TRUE,FALSE)";
-        $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%PRIMARIA%'";
+        $filtro_nivel_sos .= " AND desc_nivel_educativo = 'PRIMARIA'";
     }else if($nivel=="SECUNDARIA"){
         $filtro .= "AND 
             IF( (escuelas.desc_servicio='SECUNDARIA GENERAL' OR escuelas.desc_servicio='SECUNDARIA COMUNITARIA'
@@ -1698,7 +1698,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
             IF( ((escuelas.desc_servicio='SECUNDARIA TECNICA INDUSTRIAL' AND escuelas.desc_sostenimiento='FEDERAL TRANSFERIDO')
                 OR (escuelas.desc_servicio='SECUNDARIA TECNICA AGROPECUARIA' AND escuelas.desc_sostenimiento='FEDERAL TRANSFERIDO')) AND supervisiones.tipo='FZT',TRUE,
             IF(escuelas.desc_servicio='TELESECUNDARIA' AND supervisiones.tipo='FTV', TRUE, FALSE ) ) )";
-        $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%SECUNDARIA%'";
+        $filtro_nivel_sos .= " AND desc_nivel_educativo = 'SECUNDARIA'";
     }
 
    $filtro_zona = "";
@@ -1712,13 +1712,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     }
 
     $query1 = "SELECT CASE  
-                    WHEN escuelas.nivel LIKE '%ESPECIAL%' THEN '1'
-                    WHEN escuelas.nivel LIKE '%INICIAL%' THEN '2'
-                    WHEN escuelas.nivel LIKE '%PREESCOLAR%' THEN '3'
-                    WHEN escuelas.nivel LIKE '%PRIMARIA%' THEN '4'
-                    WHEN escuelas.nivel LIKE '%SECUNDARIA%' THEN '5'
-                    WHEN escuelas.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                    WHEN escuelas.nivel LIKE '%SUPERIOR%' THEN '7'
+                    WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
+                    WHEN escuelas.nivel = 'INICIAL' THEN '2'
+                    WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
+                    WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
+                    WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
+                    WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
+                    WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
                 END AS id_nivel,escuelas.nivel,'0' as id_sostenimiento, 'total' as sostenimiento, '0' as id_modalidad, 'total' as modalidad,
                 COUNT(escuelas.cct) as nescuelas,
                 SUM(est.grupos_1) AS grupos_1,
@@ -1732,13 +1732,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
             FROM (SELECT cct, turno, sostenimiento, zona_escolar, desc_nivel_educativo,
                     desc_servicio,desc_sostenimiento,nivel_educativo,
                     CASE 
-                        WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                        WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                        WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                        WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                        WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                        WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END AS nivel
                 FROM centros_educativos.vista_cct 
                 WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9 
@@ -1754,13 +1754,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
             AND escuelas.sostenimiento = supervisiones.sostenimiento
             {$filtro} {$filtro_zona}   
             GROUP BY CASE   
-                WHEN escuelas.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                WHEN escuelas.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                WHEN escuelas.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                WHEN escuelas.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                WHEN escuelas.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                WHEN escuelas.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                WHEN escuelas.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
             END ";
 
   //   $this->db->select('ni.id_nivel,ni.nivel, sso.id_subsostenimiento, sso.subsostenimiento, "0" as id_modalidad, "total" as modalidad,
@@ -1800,13 +1800,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
 
   //   $query2 = $this->db->get_compiled_select();
     $query2 = "SELECT CASE  
-                        WHEN escuelas.nivel LIKE '%ESPECIAL%' THEN '1'
-                        WHEN escuelas.nivel LIKE '%INICIAL%' THEN '2'
-                        WHEN escuelas.nivel LIKE '%PREESCOLAR%' THEN '3'
-                        WHEN escuelas.nivel LIKE '%PRIMARIA%' THEN '4'
-                        WHEN escuelas.nivel LIKE '%SECUNDARIA%' THEN '5'
-                        WHEN escuelas.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                        WHEN escuelas.nivel LIKE '%SUPERIOR%' THEN '7'
+                        WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
+                        WHEN escuelas.nivel = 'INICIAL' THEN '2'
+                        WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
+                        WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
+                        WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
+                        WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
+                        WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
                     END AS id_nivel,escuelas.nivel,
                     (SELECT CASE  
                         WHEN escuelas.sostenimiento IN  ('51') THEN '3'
@@ -1831,13 +1831,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
             FROM (SELECT cct, turno, sostenimiento, zona_escolar, desc_nivel_educativo,
                     desc_servicio, desc_sostenimiento,nivel_educativo,
                     CASE 
-                        WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                        WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                        WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                        WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                        WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                        WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END AS nivel
                 FROM centros_educativos.vista_cct 
                 WHERE (status = 1 OR status = 4) AND tipo_centro = 9  
@@ -1852,13 +1852,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         AND escuelas.sostenimiento = supervisiones.sostenimiento
             {$filtro} {$filtro_zona}
             GROUP BY (CASE   
-                        WHEN escuelas.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                        WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                        WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                        WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END),
                     (CASE  
                         WHEN escuelas.sostenimiento IN  ('51') THEN 'AUTONOMO'
@@ -1910,13 +1910,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     // $str = $this->db->last_query();
     // echo $str; die();
     $query3 = "SELECT CASE  
-                        WHEN escuelas.nivel LIKE '%ESPECIAL%' THEN '1'
-                        WHEN escuelas.nivel LIKE '%INICIAL%' THEN '2'
-                        WHEN escuelas.nivel LIKE '%PREESCOLAR%' THEN '3'
-                        WHEN escuelas.nivel LIKE '%PRIMARIA%' THEN '4'
-                        WHEN escuelas.nivel LIKE '%SECUNDARIA%' THEN '5'
-                        WHEN escuelas.nivel LIKE '%MEDIA SUPERIOR%' THEN '6'
-                        WHEN escuelas.nivel LIKE '%SUPERIOR%' THEN '7'
+                        WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
+                        WHEN escuelas.nivel = 'INICIAL' THEN '2'
+                        WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
+                        WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
+                        WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
+                        WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
+                        WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
                     END AS id_nivel,escuelas.nivel,
                     (SELECT CASE  
                         WHEN escuelas.sostenimiento IN  ('51') THEN '3'
@@ -1941,13 +1941,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
             FROM (SELECT cct, turno, sostenimiento,servicio, zona_escolar, desc_nivel_educativo,
                     desc_servicio, desc_sostenimiento,nivel_educativo,
                     CASE 
-                        WHEN desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                        WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                        WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                        WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                        WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                        WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END AS nivel
                 FROM centros_educativos.vista_cct 
                 WHERE (status = 1 OR status = 4) AND tipo_centro = 9  
@@ -1962,13 +1962,13 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         AND escuelas.sostenimiento = supervisiones.sostenimiento
             {$filtro} {$filtro_zona}
             GROUP BY (CASE   
-                        WHEN escuelas.desc_nivel_educativo LIKE '%CAM%' THEN 'ESPECIAL'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%INICIAL%' THEN 'INICIAL'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%PREESCOLAR%' THEN 'PREESCOLAR'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%PRIMARIA%' THEN 'PRIMARIA'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%SECUNDARIA%' THEN 'SECUNDARIA'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN 'MEDIA SUPERIOR'
-                        WHEN escuelas.desc_nivel_educativo LIKE '%SUPERIOR%' THEN 'SUPERIOR'
+                        WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
+                        WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
+                        WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
+                        WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
+                        WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
+                        WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
+                        WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END),
                     (CASE  
                         WHEN escuelas.sostenimiento IN  ('51') THEN 'AUTONOMO'

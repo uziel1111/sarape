@@ -52,10 +52,10 @@ class Supervision_model extends CI_Model
 
       if(trim($nivel)=="PREESCOLAR"){
         $filtro .= " AND IF(escuelas.desc_servicio LIKE '%PREESCOLAR%' AND supervisiones.tipo='FZP',TRUE,FALSE)";
-        $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%PREESCOLAR%'";
+        $filtro_nivel_sos .= " AND desc_nivel_educativo = 'PREESCOLAR'";
       }else if(trim($nivel)=="PRIMARIA"){
         $filtro .= " AND IF(escuelas.desc_servicio LIKE '%PRIMARIA%' AND supervisiones.tipo='FIZ',TRUE,FALSE)";
-        $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%PRIMARIA%'";
+        $filtro_nivel_sos .= " AND desc_nivel_educativo = 'PRIMARIA'";
       }else if(trim($nivel)=="SECUNDARIA"){
         $filtro .= "  AND
               IF((escuelas.desc_servicio='SECUNDARIA GENERAL' OR escuelas.desc_servicio='SECUNDARIA COMUNITARIA'
@@ -65,7 +65,7 @@ class Supervision_model extends CI_Model
               IF(((escuelas.desc_servicio='SECUNDARIA TECNICA INDUSTRIAL' AND escuelas.desc_sostenimiento='FEDERAL TRANSFERIDO')
               OR (escuelas.desc_servicio='SECUNDARIA TECNICA AGROPECUARIA' AND escuelas.desc_sostenimiento='FEDERAL TRANSFERIDO')) AND supervisiones.tipo='FZT',TRUE,
               IF(escuelas.desc_servicio='TELESECUNDARIA' AND supervisiones.tipo='FTV', TRUE, FALSE) ))";
-        $filtro_nivel_sos .= " AND desc_nivel_educativo LIKE '%SECUNDARIA%'";
+        $filtro_nivel_sos .= " AND desc_nivel_educativo = 'SECUNDARIA'";
       }
 
       $query="SELECT supervisiones.cct AS id_supervision,escuelas.zona_escolar

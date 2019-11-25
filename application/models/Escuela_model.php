@@ -93,7 +93,7 @@ class Escuela_model extends CI_Model
       $where_sos = ' ';
     }
     if($nombre_escuela!=''){
-      $like = " and es.nombre like '%{$nombre_escuela}%'";
+      $like = " and es.nombre LIKE '%{$nombre_escuela}%'";
     } else{
       $like = ' ';
     }
@@ -118,16 +118,16 @@ class Escuela_model extends CI_Model
       concat_ws(' ', es.nombre_vialidad_principal, es.numero_exterior, es.numero_interior) as domicilio,
       es.latitud,
       es.longitud,
-      CASE  WHEN desc_nivel_educativo LIKE '%NO APLICA%'  THEN '10'
-      WHEN desc_nivel_educativo LIKE '%CAM%' THEN '1'
-      WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN '2'
-      WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN '3'
-      WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN '4'
-      WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN '5'
-      WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN '6'
-      WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN '7'
-      WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
-      WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN '9'
+      CASE  WHEN desc_nivel_educativo ='NO APLICA'  THEN '10'
+      WHEN desc_nivel_educativo ='CAM' THEN '1'
+      WHEN desc_nivel_educativo ='INICIAL' THEN '2'
+      WHEN desc_nivel_educativo ='PREESCOLAR' THEN '3'
+      WHEN desc_nivel_educativo ='PRIMARIA' THEN '4'
+      WHEN desc_nivel_educativo ='SECUNDARIA' THEN '5'
+      WHEN desc_nivel_educativo ='MEDIA SUPERIOR' THEN '6'
+      WHEN desc_nivel_educativo ='SUPERIOR' THEN '7'
+      WHEN desc_nivel_educativo ='FORMACION PARA EL TRABAJO' THEN '8'
+      WHEN desc_nivel_educativo ='OTRO NIVEL EDUCATIVO' THEN '9'
       WHEN nivel_educativo = null  THEN '0'
       END AS id_nivel,
       es.zona_escolar,
@@ -182,16 +182,16 @@ class Escuela_model extends CI_Model
       es.turno as turno_single,
       es.latitud,
       es.longitud,
-      CASE  WHEN desc_nivel_educativo LIKE '%NO APLICA%'  THEN '0'
-      WHEN desc_nivel_educativo LIKE '%CAM%' THEN '1'
-      WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN '2'
-      WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN '3'
-      WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN '4'
-      WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN '5'
-      WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN '6'
-      WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN '7'
-      WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
-      WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN '9'
+      CASE  WHEN desc_nivel_educativo ='NO APLICA'  THEN '0'
+      WHEN desc_nivel_educativo ='CAM' THEN '1'
+      WHEN desc_nivel_educativo ='INICIAL' THEN '2'
+      WHEN desc_nivel_educativo ='PREESCOLAR' THEN '3'
+      WHEN desc_nivel_educativo ='PRIMARIA' THEN '4'
+      WHEN desc_nivel_educativo ='SECUNDARIA' THEN '5'
+      WHEN desc_nivel_educativo ='MEDIA SUPERIOR' THEN '6'
+      WHEN desc_nivel_educativo ='SUPERIOR' THEN '7'
+      WHEN desc_nivel_educativo ='FORMACION PARA EL TRABAJO' THEN '8'
+      WHEN desc_nivel_educativo ='OTRO NIVEL EDUCATIVO' THEN '9'
       WHEN nivel_educativo = null  THEN '0'
       END AS id_nivel,
       #es.nivel_educativo as id_nivel,
@@ -215,9 +215,9 @@ class Escuela_model extends CI_Model
 
     function get_xcvecentro_turnosingle($cve_centro, $turno_single){
       if (strlen($turno_single)>4) {
-        $where_turno = "AND es.desc_turno like '%{$turno_single}%'";
+        $where_turno = "AND es.desc_turno LIKE '%{$turno_single}%'";
       }else{
-        $where_tunro = "AND es.turno like '%{$turno_single}%'";
+        $where_tunro = "AND es.turno LIKE '%{$turno_single}%'";
       }
       /*$this->db->select('es.id_cct, es.cve_centro, es.nombre_centro');
       $this->db->from('escuela as es');
@@ -260,16 +260,16 @@ class Escuela_model extends CI_Model
       // echo $str; die();
       return  $this->db->get()->result_array();*/
 
-      $str_query = "SELECT es.cct as cve_centro ,es.nombre as nombre_centro, es.latitud, es.longitud,  CASE  WHEN desc_nivel_educativo LIKE '%NO APLICA%'  THEN '0'
-      WHEN desc_nivel_educativo LIKE '%CAM%' THEN '1'
-      WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN '2'
-      WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN '3'
-      WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN '4'
-      WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN '5'
-      WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN '6'
-      WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN '7'
-      WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
-      WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN '9'
+      $str_query = "SELECT es.cct as cve_centro ,es.nombre as nombre_centro, es.latitud, es.longitud,  CASE  WHEN desc_nivel_educativo ='NO APLICA'  THEN '0'
+      WHEN desc_nivel_educativo ='CAM' THEN '1'
+      WHEN desc_nivel_educativo ='INICIAL' THEN '2'
+      WHEN desc_nivel_educativo ='PREESCOLAR' THEN '3'
+      WHEN desc_nivel_educativo ='PRIMARIA' THEN '4'
+      WHEN desc_nivel_educativo ='SECUNDARIA' THEN '5'
+      WHEN desc_nivel_educativo ='MEDIA SUPERIOR' THEN '6'
+      WHEN desc_nivel_educativo ='SUPERIOR' THEN '7'
+      WHEN desc_nivel_educativo ='FORMACION PARA EL TRABAJO' THEN '8'
+      WHEN desc_nivel_educativo ='OTRO NIVEL EDUCATIVO' THEN '9'
       WHEN nivel_educativo = null  THEN '0'
       END AS id_nivel
       from centros_educativos.vista_cct as es
@@ -363,16 +363,16 @@ class Escuela_model extends CI_Model
       concat_ws(' ', es.nombre_vialidad_principal, es.numero_exterior, es.numero_interior) as domicilio,
       es.latitud,
       es.longitud,
-      CASE  WHEN desc_nivel_educativo LIKE '%NO APLICA%'  THEN '0'
-      WHEN desc_nivel_educativo LIKE '%CAM%' THEN '1'
-      WHEN desc_nivel_educativo LIKE '%INICIAL%' THEN '2'
-      WHEN desc_nivel_educativo LIKE '%PREESCOLAR%' THEN '3'
-      WHEN desc_nivel_educativo LIKE '%PRIMARIA%' THEN '4'
-      WHEN desc_nivel_educativo LIKE '%SECUNDARIA%' THEN '5'
-      WHEN desc_nivel_educativo LIKE '%MEDIA SUPERIOR%' THEN '6'
-      WHEN desc_nivel_educativo LIKE '%SUPERIOR%' THEN '7'
-      WHEN desc_nivel_educativo LIKE '%FORMACION PARA EL TRABAJO%' THEN '8'
-      WHEN desc_nivel_educativo LIKE '%OTRO NIVEL EDUCATIVO%' THEN '9'
+      CASE  WHEN desc_nivel_educativo ='NO APLICA'  THEN '0'
+      WHEN desc_nivel_educativo ='CAM' THEN '1'
+      WHEN desc_nivel_educativo ='INICIAL' THEN '2'
+      WHEN desc_nivel_educativo ='PREESCOLAR' THEN '3'
+      WHEN desc_nivel_educativo ='PRIMARIA' THEN '4'
+      WHEN desc_nivel_educativo ='SECUNDARIA' THEN '5'
+      WHEN desc_nivel_educativo ='MEDIA SUPERIOR' THEN '6'
+      WHEN desc_nivel_educativo ='SUPERIOR' THEN '7'
+      WHEN desc_nivel_educativo ='FORMACION PARA EL TRABAJO' THEN '8'
+      WHEN desc_nivel_educativo ='OTRO NIVEL EDUCATIVO' THEN '9'
       WHEN nivel_educativo = null  THEN '0'
       END AS id_nivel,
       es.zona_escolar,
