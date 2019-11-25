@@ -33,7 +33,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="dv_tablas_estmuni">
+                <div class="dv_tablas_estmuni col-md-12">
                       <div class="card mb-3 card-style-1">
                         <div class="card-header card-1-header bgcolor-2 text-white">Alumnos</div>
                         <div class="card-body">
@@ -125,7 +125,7 @@
                 </div>
               </div>
               <div class="row">
-                    <div class="dv_tablas_estzona">
+                    <div class="dv_tablas_estzona col-md-12">
                       <div class="card mb-3 card-style-1">
                         <div class="card-header card-1-header bgcolor-2 text-white">Alumnos</div>
                         <div class="card-body">
