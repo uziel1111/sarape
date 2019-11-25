@@ -61,9 +61,14 @@ class Mapa extends CI_Controller {
 			$idmunicipio = $this->input->post('idmunicipio');
 
 			$niveles = $this->Nivel_model->get_xidmunicipio($idmunicipio);
+
 			$str_select = '<option value=-1>TODOS</option>';
 			foreach ($niveles as $key => $value) {
+				if ($value['nivel'] == 'CAM') {
+				$str_select .= "<option value={$value['id_nivel']}> ESPECIAL </option>";	
+				}else{
 				$str_select .= "<option value={$value['id_nivel']}> {$value['nivel']} </option>";
+				}
 			}
 			$response = array('options' => $str_select);
 			Utilerias::enviaDataJson(200, $response, $this);

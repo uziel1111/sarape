@@ -68,7 +68,7 @@ class Reporte extends CI_Controller {
 								}
 							}
 						// echo "<pre>"; print_r($cap);
-							$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cct[0]['cve_centro'], $problematicaA, $ambitoA);
+							$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cct[0]['cve_centro'], $problematicaA, $ambitoA, 'E');
 				}
 
 
@@ -145,7 +145,7 @@ class Reporte extends CI_Controller {
 								}
 							}
 
-							$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cvecct, $problematicaA, $ambitoA);
+							$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cvecct, $problematicaA, $ambitoA, 'S');
 						}
 
 					}
@@ -162,7 +162,7 @@ class Reporte extends CI_Controller {
 		}
 	}// get_reporte_desde_sup()
 
-	public function pinta_ruta($pdf, $ruta, $y, $id_tprioritario,$cvecct,$problematicaA, $ambitoA){
+	public function pinta_ruta($pdf, $ruta, $y, $id_tprioritario,$cvecct,$problematicaA, $ambitoA,$tipo){
 		if(Utilerias::haySesionAbiertacct($this)){
 				$orden = '';
 				// "Orden: {$ruta['orden']}"
@@ -272,7 +272,7 @@ class Reporte extends CI_Controller {
 				//Table with 4 columns
 				$pdf->SetWidths(array(10,81,45,46,46,20,80)); // ancho de primer columna, segunda, tercera y cuarta
 
-				$result = $this->Reportepdf_model->get_acciones($id_tprioritario);
+				$result = $this->Reportepdf_model->get_acciones($id_tprioritario, $tipo);
 				// echo "<pre>";
 				// print_r($result);
 				// die();

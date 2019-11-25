@@ -56,7 +56,7 @@ class Index extends CI_Controller {
 
 	public function getCalendarioEscolar(){
 		$result_ciclo = $this->Ciclo_model->ultimo_ciclo_escolar();
-		$data=[];
+		$data=array();
 		$data['ciclo']=$result_ciclo;
 		$strView = $this->load->view("index/calendarioEscolar", $data, TRUE);
 		$response = array(
@@ -113,13 +113,5 @@ class Index extends CI_Controller {
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}// getinformese()
-
-	public function getVideotutoriales(){
-		$data = 'jeje';
-		$strView = $this->load->view("index/videotutoriales", $data, TRUE);
-		$response = array('strView' => $strView );
-		Utilerias::enviaDataJson(200, $response, $this);
-		exit;
-	}// getVideotutoriales()
 
 }
