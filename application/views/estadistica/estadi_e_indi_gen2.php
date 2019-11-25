@@ -4,7 +4,7 @@
   <div class="card mb-3 card-style-1">
     <div class="pb-1 pt-1 card-body">
       <div>
-        <div class="row">
+        <div class="">
           <div id="demo" class="collapse show">
             <?= form_label('', 'lb_titbusq') ?>
             <ul class="nav nav-tabs nav-tabs-style-1" id="tab_busqg" role="tablist">
