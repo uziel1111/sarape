@@ -30,7 +30,12 @@ class Reportepdf_model extends CI_Model
       return $this->db->query($str_query)->result_array();
     }
 
-    function get_acciones($id_tprioritario){
+    function get_acciones($id_tprioritario, $tipo){
+      if ($tipo == 'S') {
+        $where = "acc.id_tprioritario = {$id_tprioritario}";
+      }else{
+         $where = "acc.id_objetivos = {$id_tprioritario}";
+      }
       $str_query = "SELECT
 	acc.id_accion,
 	acc.accion,
@@ -85,7 +90,7 @@ FROM
 LEFT JOIN rm_avance_xcctxtpxaccion av ON av.id_accion = acc.id_accion
 AND acc.id_tprioritario = av.id_tprioritario
 WHERE
-	acc.id_objetivos = {$id_tprioritario}";
+	{$where}";
         // echo $str_query; die();
         return $this->db->query($str_query)->result_array();
     }
