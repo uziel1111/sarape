@@ -952,7 +952,7 @@ function insertaTprioritarios($cct, $turno){
 
 }
 
-function evidenciaObjInicio($id_objetivo, $id_cct, $ruta_archivos_save, $id_tprioritario){
+function evidenciaObjInicio($id_objetivo, $ruta_archivos_save, $id_tprioritario){
 
   $data = array(
     "path_ev_inicio" => $ruta_archivos_save,
@@ -964,7 +964,7 @@ function evidenciaObjInicio($id_objetivo, $id_cct, $ruta_archivos_save, $id_tpri
 
 }
 
-function evidenciaObjFin($id_objetivo, $id_cct, $ruta_archivos_save, $id_tprioritario){
+function evidenciaObjFin($id_objetivo, $ruta_archivos_save, $id_tprioritario){
   $data = array(
     "path_ev_fin" => $ruta_archivos_save,
   );

@@ -565,7 +565,7 @@ function btnEliminar(){
 			cancelButtonText: 'Cancelar'
 		})
 		.then((result) => {
-			console.log('idobj2 ' + objetivo);
+			// console.log('idobj2 ' + objetivo);
 			if (result.value) {
 
 				$.ajax({
@@ -597,7 +597,11 @@ function btnEliminar(){
 			    swal.close();
 				});
 			}
-		})
+		},
+		(cancel) => {
+console.log('idobj2 ' );
+	obj_prioridad.getObjetivos();
+	})
 	}
 	obj.id_objetivo = undefined;
 }

@@ -1744,7 +1744,7 @@ $arr_indicadoresxct = '';
 
 				<div style='margin-bottom: 10px;'>";
 				
-				if($tipou_pemc==""){
+				if($tipou_pemc=="" && $dato['path_ev_inicio'] != "" && $dato['path_ev_inicio'] != null){
 					$tabla.= "<button type='button' id='elimina_ini' class='float-right btn btn-sm '
 					onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
 					<i class='far fa-trash-alt'></i>
@@ -1787,7 +1787,7 @@ $arr_indicadoresxct = '';
 				<div class='text-center'>
 
 				<div style='margin-bottom: 10px;'>";
-				if($tipou_pemc==""){
+				if($tipou_pemc=="" && $dato['path_ev_fin'] != "" && $dato['path_ev_fin'] != null){
 					$tabla.="<button type='button' value='Quack_2' class='float-right btn btn-sm '
 					onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>
 					<i class='far fa-trash-alt'></i>
@@ -2088,13 +2088,13 @@ $arr_indicadoresxct = '';
 		$nombre_archivo = str_replace(" ", "_", $_FILES['arch1']['name']);
 		// echo "<pre>";print_r($nombre_archivo);die();
 		$this->cct = Utilerias::get_cct_sesion($this);
-		//$id_cct = $this->cct[0]['id_cct'];
+		$id_cct = $this->cct[0]['cve_centro'];
 
 		if ( $nombre_archivo != '' ) {
 			$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}";
 			$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}/$nombre_archivo";
 			// echo "<pre>";print_r($ruta_archivos_save);die();
-			$ev_obj = $this->Rutamejora_model->evidenciaObjInicio($id_objetivo, $id_cct, $ruta_archivos_save, $id_tprioritario);
+			$ev_obj = $this->Rutamejora_model->evidenciaObjInicio($id_objetivo, $ruta_archivos_save, $id_tprioritario);
 			// echo "<pre>";print_r($ev_obj);die();
 
 			if(!is_dir($ruta_archivos)){
@@ -2132,13 +2132,13 @@ $arr_indicadoresxct = '';
 		$nombre_archivo = str_replace(" ", "_", $_FILES['arch2']['name']);
 		// echo "<pre>";print_r($nombre_archivo);die();
 		$this->cct = Utilerias::get_cct_sesion($this);
-		//$id_cct = $this->cct[0]['id_cct'];
+		$id_cct = $this->cct[0]['cve_centro'];
 
 		if ( $nombre_archivo != '' ) {
 			$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}";
 			$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$id_tprioritario}/{$id_objetivo}/$nombre_archivo";
 			// echo "<pre>";print_r($ruta_archivos_save);die();
-			$ev_obj = $this->Rutamejora_model->evidenciaObjFin($id_objetivo, $id_cct, $ruta_archivos_save, $id_tprioritario);
+			$ev_obj = $this->Rutamejora_model->evidenciaObjFin($id_objetivo, $ruta_archivos_save, $id_tprioritario);
 			// echo "<pre>";print_r($ev_obj);die();
 
 			if(!is_dir($ruta_archivos)){

@@ -57,6 +57,7 @@ function eliminaEvidencia(id_objetivo, elemento){
            "La evidencia se eliminó correctamente",
            'success'
          );
+         obj_prioridad.getObjetivos();
        }, 1000)
        $('#preview'+id_objetivo).attr('src', '#');
       })
@@ -83,36 +84,36 @@ function eliminaEvidenciaFin(id_objetivo, elemento){
     confirmButtonText: 'Eliminar',
     cancelButtonText: 'Cancelar'
   })
-  .then((result) =>{
-    $.ajax({
-      url: base_url+'Rutademejora/eliminaEvObjFin/'+id_objetivo,
-     	type: 'POST',
-   	  dataType: 'JSON',
-   	  data: { id_objetivo: id_objetivo },
-   	  beforeSend: function(xhr) {
-     				 Notification.loading("");
-      },
-    })
-    .done(function(result) {
-   	 //Recargamos el grid
-   	 setTimeout(function(){
-   		 swal(
-   			 '¡Correcto!',
-   			 "La evidencia se eliminó correctamente",
-   			 'success'
-   		 );
-       $('#preview_fin'+id_objetivo).attr('src', '#');
-   	 }, 1000)
-
-    })
-    .fail(function(e) {
-   	 console.error("Error in eliminaEvidenciaFin()");
-    })
-    .always(function() {
-   	 swal.close();
-    });
-
-    // $('#preview_fin'+id_objetivo).attr('src', '#');
+  .then((result)=>{
+    if (result.value) {
+      $.ajax({
+        url: base_url+'Rutademejora/eliminaEvObjFin/'+id_objetivo,
+        type: 'POST',
+        dataType: 'JSON',
+        data: { id_objetivo: id_objetivo },
+        beforeSend: function(xhr) {
+               Notification.loading("");
+        },
+      })
+      .done(function(result) {
+       //Recargamos el grid
+       setTimeout(function(){
+         swal(
+           '¡Correcto!',
+           "La evidencia se eliminó correctamente",
+           'success'
+         );
+         obj_prioridad.getObjetivos();
+       }, 1000)
+       $('#preview'+id_objetivo).attr('src', '#');
+      })
+      .fail(function(e) {
+       console.error("Error in eliminaEvidencia()");
+      })
+      .always(function() {
+       swal.close();
+      });
+    }
   })
 }
 
@@ -146,6 +147,7 @@ function cargarEvidencia(id_objetivo, id_tprioritario, elemento){
 			 "La evidencia se cargó correctamente",
 			 'success'
 		 );
+     obj_prioridad.getObjetivos();
 	 }, 1000)
  })
  .fail(function(e) {
@@ -183,6 +185,7 @@ function cargarEvidenciaFin(id_objetivo, id_tprioritario, elemento){
 			 "La evidencia se cargó correctamente",
 			 'success'
 		 );
+     obj_prioridad.getObjetivos();
 	 }, 1000)
  })
  .fail(function(e) {
