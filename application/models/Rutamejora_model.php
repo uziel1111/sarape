@@ -384,7 +384,7 @@ function get_avances_tp_accionxcct($cct, $turno){
   LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
   LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
   LEFT JOIN rm_avance_xcctxtpxaccion av ON tp.cct = av.cct AND tp.id_tprioritario = av.id_tprioritario AND a.id_accion = av.id_accion
-  WHERE tp.cct = '{$cct}' AND tp.turno = {$turno}
+  WHERE tp.cct = '{$cct}' AND tp.turno = {$turno} AND a.accion is not null
   ORDER BY tp.orden, tp.id_tprioritario, a.id_accion DESC";
         // echo "<pre>";print_r($str_query); die();
   return $this->db->query($str_query)->result_array();

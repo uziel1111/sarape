@@ -91,6 +91,18 @@ $("#img_mision").click(function(e){
 	}
 });
 
+$("#id_tabla_rutas tr:gt()").click(function () {
+    console.log('header de la tabla jeje');
+    var selected = $(this).hasClass("highlight");
+
+    $("#data tr").removeClass("highlight");
+
+    if (!selected) {
+        $(this).addClass("highlight");
+    }
+
+});
+
 //Prioridad (incompleto)
 $("#btn_prioridad").click(function(e){
 	e.preventDefault();
