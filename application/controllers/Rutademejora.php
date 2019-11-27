@@ -2350,7 +2350,7 @@ $arr_indicadoresxct = '';
       			$porcentaje= $datos[$i]['porcentaje'];
       			// $avance=($datos[$i]['periodo']/100)*$porcentaje;
       		}
-      			/*$accion=array(
+      			$accion=array(
 				    "title"=> $datos[$i]['accion'],
 				    "startdate"=> $datos[$i]['accion_f_inicio'],
 				    "enddate"=> $datos[$i]['accion_f_termino'],
@@ -2359,10 +2359,10 @@ $arr_indicadoresxct = '';
 				    "minNight2"=>$porcentaje,
 				    "tooltipData"=>array(
 				        "title"=>$datos[$i]['accion'],
-				        "desc"=> [" Acción: ".$datos[$i]['ac'],"Duracion: ".$datos[$i]['periodo']." dias ", "Fecha Inicio: ".$datos[$i]['fechainicio'], "Fecha Término: " .$datos[$i]['fechafin'], " Porcentaje de Avance:  ".$porcentaje."%"] 
+				        "desc"=> array(" Acción: ".$datos[$i]['ac'],"Duracion: ".$datos[$i]['periodo']." dias ", "Fecha Inicio: ".$datos[$i]['fechainicio'], "Fecha Término: " .$datos[$i]['fechafin'], " Porcentaje de Avance:  ".$porcentaje."%") 
 				    ),
 				    "dateorder"=> "\/Date(1469048400000)\/"
-				);*/
+				);
 				$acciones = array();
 				array_push($acciones,$accion);
       	}
