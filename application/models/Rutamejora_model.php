@@ -426,7 +426,7 @@ function accionesRezagadas($id_cct,$turno,$cte_vigente){
   INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
   INNER JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
   INNER JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
-  INNER JOIN rm_avance_xcctxtpxaccion av ON tp.id_cct = av.id_cct AND tp.id_tprioritario = av.id_tprioritario 
+  LEFT JOIN rm_avance_xcctxtpxaccion av on tp.id_tprioritario = av.id_tprioritario 
   AND a.id_accion = av.id_accion
   WHERE tp.cct = '{$id_cct}' AND tp.turno = {$turno}
   ORDER BY tp.orden, tp.id_tprioritario, a.id_accion DESC";
@@ -1047,18 +1047,21 @@ public function set_observacion($objetivo, $resultados, $obstaculos, $ventajas, 
 }
 
 public function avancesxcctxaccion($id_cct,$turno,$cte_vigente){
-  $str_query = "SELECT ac.id_accion,IF(LENGTH(ac.accion)>32,CONCAT(SUBSTRING(ac.accion,1,28),'...'),ac.accion) AS accion,
-  ac.accion as ac,
-  REPLACE(ac.accion_f_inicio,'-','/')as accion_f_inicio,
-  REPLACE(ac.accion_f_termino,'-','/')as accion_f_termino
-  ,DATE_FORMAT(ac.accion_f_inicio,'%m-%d-%Y') AS fechainicio,
-  DATE_FORMAT(ac.accion_f_termino,'%m-%d-%Y') AS fechafin,
-  av.id_cct,av.{$cte_vigente} as porcentaje,
-  datediff(ac.accion_f_termino, ac.accion_f_inicio) as 'periodo'
-  FROM rm_avance_xcctxtpxaccion av
-  INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
-  WHERE av.cct='{$id_cct}' and av.turno = {$turno} order by ac.accion_f_inicio asc";
-      // echo $str_query;
+
+  $str_query = "SELECT ac.id_accion,IF(LENGTH(ac.accion)>32,CONCAT(SUBSTRING(ac.accion,1,28),'...'),
+                ac.accion) AS accion,
+                ac.accion AS ac,
+                REPLACE(ac.accion_f_inicio,'-','/')AS accion_f_inicio,
+                REPLACE(ac.accion_f_termino,'-','/')AS accion_f_termino
+                ,DATE_FORMAT(ac.accion_f_inicio,'%m-%d-%Y') AS fechainicio,
+                DATE_FORMAT(ac.accion_f_termino,'%m-%d-%Y') AS fechafin,
+                av.id_cct,av.cte3 AS porcentaje,
+                DATEDIFF(ac.accion_f_termino, ac.accion_f_inicio) AS 'periodo'
+              FROM rm_tema_prioritarioxcct w
+              INNER JOIN rm_accionxtproritario ac ON ac.id_tprioritario= w.id_tprioritario
+              LEFT JOIN rm_avance_xcctxtpxaccion av ON ac.id_accion = av.id_accion
+              WHERE w.cct='{$id_cct}' AND w.turno={$turno}";
+        // echo $str_query;
       // die();
   return $this->db->query($str_query)->result_array();
 }

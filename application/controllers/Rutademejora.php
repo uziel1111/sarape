@@ -2343,12 +2343,11 @@ $arr_indicadoresxct = '';
 		$porcentaje=0;
 		$acciones=array();
 		$data_ac=array();
-		$avance=0;
+		$acciones = array();
       	for($i=0; $i<count($datos); $i++){
       		$porcentaje=0;
       		if($datos[$i]['porcentaje']!=0 && $datos[$i]['porcentaje']!=null){
       			$porcentaje= $datos[$i]['porcentaje'];
-      			// $avance=($datos[$i]['periodo']/100)*$porcentaje;
       		}
       			$accion=array(
 				    "title"=> $datos[$i]['accion'],
@@ -2362,8 +2361,7 @@ $arr_indicadoresxct = '';
 				        "desc"=> array(" Acción: ".$datos[$i]['ac'],"Duracion: ".$datos[$i]['periodo']." dias ", "Fecha Inicio: ".$datos[$i]['fechainicio'], "Fecha Término: " .$datos[$i]['fechafin'], " Porcentaje de Avance:  ".$porcentaje."%") 
 				    ),
 				    "dateorder"=> "\/Date(1469048400000)\/"
-				);
-				$acciones = array();
+				);	
 				array_push($acciones,$accion);
       	}
       	$data_ac['acciones']=$acciones;
