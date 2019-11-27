@@ -344,8 +344,8 @@ class Rutademejora extends CI_Controller {
 					//echo "if"; die();
 					$tabla = "<div class='table-responsive' >
 					<table id='id_tabla_rutas' class='table table-condensed table-hover  table-bordered'>
-					<thead>
-					<tr class=info style='vertical-align:middle' disable='true'>
+					<thead disabled>
+					<tr class=info style='vertical-align:middle'>
 					<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
 					<th id='id_prioridad' hidden><center>id_prioridad</center></th>
 					<th id='orden' style='width:3%; vertical-align:middle;'><center>#</center></th>
@@ -1745,9 +1745,9 @@ $arr_indicadoresxct = '';
 				<div style='margin-bottom: 10px;'>";
 				
 				if($tipou_pemc==""){
-					$tabla.= "<button type='button' id='elimina_ini' class='btn btn-sm cerrar'
+					$tabla.= "<button type='button' id='elimina_ini' class='float-right btn btn-sm '
 					onclick='eliminaEvidencia({$dato['id_objetivo']}, this)'>
-					<i class='fas fa-times-circle'></i>
+					<i class='far fa-trash-alt'></i>
 					</button>";
 				}
 				
@@ -1788,9 +1788,9 @@ $arr_indicadoresxct = '';
 
 				<div style='margin-bottom: 10px;'>";
 				if($tipou_pemc==""){
-					$tabla.="<button type='button' value='Quack_2' class='btn btn-sm cerrar'
+					$tabla.="<button type='button' value='Quack_2' class='float-right btn btn-sm '
 					onclick='eliminaEvidenciaFin({$dato['id_objetivo']}, this)'>
-					<i class='fas fa-times-circle'></i>
+					<i class='far fa-trash-alt'></i>
 					</button>";
 				}
 				$extension = substr($dato['path_ev_fin'],-3);
