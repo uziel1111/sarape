@@ -1059,7 +1059,7 @@ public function avancesxcctxaccion($id_cct,$turno,$cte_vigente){
                 DATEDIFF(ac.accion_f_termino, ac.accion_f_inicio) AS 'periodo'
               FROM rm_tema_prioritarioxcct w
               INNER JOIN rm_accionxtproritario ac ON ac.id_tprioritario= w.id_tprioritario
-              LEFT JOIN rm_avance_xcctxtpxaccion av ON ac.id_accion = av.id_accion
+              LEFT JOIN rm_avance_xcctxtpxaccion av ON  ac.id_tprioritario = av.id_tprioritario and ac.id_accion = av.id_accion
               WHERE w.cct='{$id_cct}' AND w.turno={$turno}";
         // echo $str_query;
       // die();
