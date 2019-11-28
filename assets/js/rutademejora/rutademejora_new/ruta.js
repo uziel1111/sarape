@@ -277,9 +277,11 @@ Prioridad.prototype.funcionalidadselect = function(){
 			    },
 			    success: function(data){
 			      	swal.close();
+			      	$("#mensaje_res_acciones").empty();
+			      	$('#gantt_p').empty();
+			      	$("#tabla_avances").empty();
 			      	if(data.datos.length>0){
 			      		$("#chart_div").show();
-			      		$('#gantt_p').empty();
 			      		$('#gantt_p').append(data.dom);
 			      		// pintaGrafica(data.datos,data.fechaMin,data.fechaMax);
 			      		    $('#demo').gantt({
@@ -327,7 +329,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 						    }
 						        	
 						}else{
-						    $("#mensaje_res_acciones").empty();
 						    $("#mensaje_res_acciones").append('<br><h3 align="center" class="panel-title">Esta escuela no cuenta con acciones</h1><br>');
 						}
 						
@@ -337,7 +338,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 			        	// $("#tabla_avances").append(tabla);
 					}else{
 						// $("#chart_div").hide();
-						$("#mensaje_res_acciones").empty();
 						$("#mensaje_res_acciones").append('<br><h3 align="center" class="panel-title">Esta escuela no cuenta con acciones</h1><br>');
 					}
 			        
@@ -594,6 +594,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 
 			    	let tabla="";
 			    	$("#div_acc_rez").empty();
+			    	$("#mensaje_res_rezagadas").empty();
 			    	if(acciones.length>0){
 				    	tabla+="<center>";
 				    	tabla+='<table class="table table-striped table-bordered w-auto">';
@@ -638,7 +639,6 @@ Prioridad.prototype.funcionalidadselect = function(){
           			}else{
           				// console.log("llego en la linea 633");
           				// $("#div_rezagadas").hide();
-          				$("#mensaje_res_rezagadas").empty();
           				$("#mensaje_res_rezagadas").append('<br><h3 align="center" class="panel-title">Esta escuela no cuenta con acciones rezagadas</h1><br>');         				
           			}
 			    },

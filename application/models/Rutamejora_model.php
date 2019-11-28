@@ -1055,7 +1055,7 @@ public function avancesxcctxaccion($id_cct,$turno,$cte_vigente){
                 REPLACE(ac.accion_f_termino,'-','/')AS accion_f_termino
                 ,DATE_FORMAT(ac.accion_f_inicio,'%m-%d-%Y') AS fechainicio,
                 DATE_FORMAT(ac.accion_f_termino,'%m-%d-%Y') AS fechafin,
-                av.id_cct,av.cte3 AS porcentaje,
+                av.id_cct,av.{$cte_vigente} AS porcentaje,
                 DATEDIFF(ac.accion_f_termino, ac.accion_f_inicio) AS 'periodo'
               FROM rm_tema_prioritarioxcct w
               INNER JOIN rm_accionxtproritario ac ON ac.id_tprioritario= w.id_tprioritario
