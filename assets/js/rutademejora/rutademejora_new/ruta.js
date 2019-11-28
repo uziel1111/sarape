@@ -4,7 +4,9 @@ $(document).ready(function() {
 	// google.charts.load('current', {'packages':['corechart'],'language':'es'});
    	obj_prioridad = new Prioridad();
    $("#div_resultados_gral").hide();
-
+$('[data-toggle="tooltip"]').tooltip({
+    trigger : 'hover'
+	});
 
 });
 
