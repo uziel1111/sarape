@@ -1729,7 +1729,7 @@ $arr_indicadoresxct = '';
 				<td id='id_tprioritario' hidden><center>{$dato['id_tprioritario']}</center></td>
 				<td id='num_rutamtema' data='1' class='text-center'>{$orden}
 
-				<a onclick='publicar({$dato['id_objetivo']})' data-estado='{$dato['estado_publicacion']}' id='aPublicar_{$dato['id_objetivo']}'><i id='publicar_{$dato['id_objetivo']}'";
+				<a hidden onclick='publicar({$dato['id_objetivo']})' data-estado='{$dato['estado_publicacion']}' id='aPublicar_{$dato['id_objetivo']}'><i id='publicar_{$dato['id_objetivo']}'";
 				if ($dato['estado_publicacion'] == 0) {
 					 	// echo "<pre>";print_r($dato);die();
 					$tabla.="class='fas fa-user-secret'></i></a>";

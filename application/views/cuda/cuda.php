@@ -59,7 +59,7 @@
 						<div class="card-body text-justify">
 
 							<p>
-					En la Secretaría de Educación del Estado de Coahuila nos hemos propuesto disminuir de forma sensible la carga administrativa de los docentes de educación básica: se revisaron 176 requerimientos de información de las escuelas de educación básica, de los cuales se acordó eliminar hasta el momento 66 de ellos. A continuación, se publican los requerimientos de información (entre formatos y sistemas automatizados) <strong>Únicos Obligatorios</strong> aplicables para las escuelas en el ciclo escolar 2019-2020.
+					En la Secretaría de Educación del Estado de Coahuila nos hemos propuesto disminuir de forma sensible la carga administrativa de los docentes de educación básica: se revisaron 176 requerimientos de información de las escuelas de educación básica, de los cuales se acordó eliminar hasta el momento 67 de ellos. A continuación, se publican los requerimientos de información (entre formatos y sistemas automatizados) <strong>Únicos Obligatorios</strong> aplicables para las escuelas en el ciclo escolar 2019-2020.
 					</p>
 					
 					<p>
