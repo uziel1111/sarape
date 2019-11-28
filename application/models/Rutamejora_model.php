@@ -1068,11 +1068,12 @@ public function avancesxcctxaccion($id_cct,$turno,$cte_vigente){
 
 public function fechaMaxMin($id_cct,$turno,$cte_vigente){
   $str_query = "SELECT 
-  MIN(ac.accion_f_inicio) as inicio,
-  MAX(ac.accion_f_termino)as fin
-  FROM rm_avance_xcctxtpxaccion av
-  INNER JOIN rm_accionxtproritario ac ON ac.id_accion=av.id_accion
-  WHERE av.cct='{$id_cct}' and av.turno = {$turno}  order by ac.accion_f_inicio asc";
+                  MIN(ac.accion_f_inicio) AS inicio,
+                  MAX(ac.accion_f_termino)AS fin
+                FROM rm_tema_prioritarioxcct w
+                INNER JOIN rm_accionxtproritario ac ON ac.id_tprioritario= w.id_tprioritario
+                LEFT JOIN rm_avance_xcctxtpxaccion av ON ac.id_accion = av.id_accion
+                WHERE w.cct='{$id_cct}' AND w.turno={$turno}";
       // echo $str_query;
       // die();
   return $this->db->query($str_query)->result_array();
