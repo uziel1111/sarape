@@ -2,7 +2,9 @@
 $(document).ready(function() {
    	obj_prioridad = new Prioridad();
    $("#div_resultados_gral").hide();
-
+$('[data-toggle="tooltip"]').tooltip({
+    trigger : 'hover'
+	});
 
 });
 

@@ -1,5 +1,8 @@
 $(function() {
   obj_rm = new Rutademejora();
+  $('[data-toggle="tooltip"]').tooltip({
+    trigger : 'hover'
+  });
   $("[data-toggle=popover]").each(function(i, obj) {
     $(this).popover({
       html: true,
