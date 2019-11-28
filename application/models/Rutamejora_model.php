@@ -1018,7 +1018,7 @@ function deleteEvidenciaObjFin($id_objetivo){
 }
 
 function getAccxObj($id_objetivo){
-  $str_query = "SELECT acc.id_accion, acc.accion, acc.mat_insumos, acc.accion_f_inicio, acc.accion_f_termino
+  $str_query = "SELECT acc.id_accion, acc.accion, acc.mat_insumos, acc.accion_f_inicio, acc.accion_f_termino, acc.id_tprioritario
   FROM rm_accionxtproritario acc
   INNER JOIN rm_objetivo obj ON acc.id_objetivos = obj.id_objetivo
   WHERE acc.id_objetivos = {$id_objetivo}";

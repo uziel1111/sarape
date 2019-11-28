@@ -69,7 +69,7 @@ $("#id_btn_elimina_accion").click(function(){
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.value) {
-        obj_rm_acciones_tp.delete_accion(Rm_acciones_tp.id_accion_select);
+        obj_rm_acciones_tp.delete_accion(Rm_acciones_tp.id_accion_select, Rm_acciones_tp.id_accion_select1);
       }
     })
   }
@@ -83,7 +83,7 @@ $("#id_btn_edita_accion").click(function() {
       "error"
       );
   }else{
-    obj_rm_acciones_tp.edit_accion(Rm_acciones_tp.id_accion_select);
+    obj_rm_acciones_tp.edit_accion(Rm_acciones_tp.id_accion_select, Rm_acciones_tp.id_accion_select1);
   }
 });
 
@@ -295,19 +295,21 @@ Rm_acciones_tp.prototype.iniciatabla = function(){
   $("#idtabla_accionestp tr").click(function(){
    $(this).addClass('selected').siblings().removeClass('selected');
    var value=$(this).find('td:first').text();
-     // alert(value);
+   var value1=$(this).find('td:nth-child(2)').text();
+     // alert(value1);
      Rm_acciones_tp.id_accion_select = value;
+     Rm_acciones_tp.id_accion_select1 = value1;
      $('#idaccion').val(value);
      // alert(Rm_acciones_tp.id_accion_select);
    });
 }
 
-Rm_acciones_tp.prototype.delete_accion = function(idaccion){
+Rm_acciones_tp.prototype.delete_accion = function(idaccion, idtprioriario){
   id_objetivo = $("#id_objetivos").val();
   $.ajax({
    url:base_url+"rutademejora/delete_accion",
    method:"POST",
-   data:{"idaccion":idaccion, 'id_tprioritario': obj.id_tprioritario},
+   data:{"idaccion":idaccion, 'id_tprioritario': idtprioriario},
    success:function(data){
     if(data.mensaje == 'ok'){
       swal(
@@ -342,13 +344,13 @@ Rm_acciones_tp.prototype.delete_accion = function(idaccion){
   Rm_acciones_tp.id_accion_select = undefined;
 };
 
-Rm_acciones_tp.prototype.edit_accion = function(idaccion){
+Rm_acciones_tp.prototype.edit_accion = function(idaccion, id_tprioritario){
  let id_objetivo = $('#id_objetivos').val();
 
  $.ajax({
    url:base_url+"rutademejora/edit_accion",
    method:"POST",
-   data:{"idaccion":idaccion, 'id_tprioritario': obj.id_tprioritario},
+   data:{"idaccion":idaccion, 'id_tprioritario': id_tprioritario},
    success:function(data){
     var editado = data.editado;
             // alert(editado['id_ambito']);

@@ -2227,6 +2227,7 @@ $arr_indicadoresxct = '';
 			foreach ($acciones as $accion) {
 				$tabla .= "<tr>
 				<td hidden>{$accion['id_accion']}</td>
+				<td hidden>{$accion['id_tprioritario']}</td>
 				<td>{$accion['accion']}</td>
 				<td>{$accion['mat_insumos']}</td>
 				<td>{$accion['accion_f_inicio']}</td>
