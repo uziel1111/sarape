@@ -596,11 +596,9 @@ function btnEliminar(){
 				.always(function() {
 			    swal.close();
 				});
-			}
-		},
-		(cancel) => {
-console.log('idobj2 ' );
+			}else{
 	obj_prioridad.getObjetivos();
+			}
 	})
 	}
 	obj.id_objetivo = undefined;
@@ -671,7 +669,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 
 		 obj.id_objetivo = value;
 		 obj.id_tprioritario = t_prioritario;
-		 // obj.id_subprioridad = val3;
+		 // $('#id_objetivo').text(obj.id_objetivo);
 
      console.log(obj.id_objetivo);
      // console.log(val2);
