@@ -179,12 +179,14 @@ span{
 				<?= $vista_ayuda ?>
 			</div> <!-- Ayuda -->
 			<div class="fade" id="nav-resultados" role="tabpanel" aria-labelledby="nav-resultados-tab">
-				<div id="div_resultados_gral">
-					<div id="mensaje_res"></div>
+				<div id="div_resultados_gral" >
+					
 					<div id="div_rezagadas">
 						<br>
-						<h1 align="center">Lista de acciones rezagadas</h1>
+						<div class="card-header text-center" style="background-color: #FFCC80; "><h1 class="panel-title">Lista de acciones rezagadas</h1></div>
 						<div align="center"><p style="color:blue;">*Una acción rezagada es aquella cuya fecha de término esta próxima y cuenta con un porcentaje de avance menor o igual al 60%.</p></div>
+						<br>
+						<div id="mensaje_res_rezagadas"></div>
 						<div id="div_acc_rez">
 						</div>
 						<br>
@@ -192,9 +194,11 @@ span{
 						<!-- <input type="text" name="id_cct_rm" id="id_cct_rm" value="<?=$id_cct_rm?>" hidden> -->
 					</div>
 					<div id="chart_div">
-						<h1 align="center">Avances de acciones</h1>
+						<div class="card-header text-center" style="background-color: #FFCC80; "><h1 class="panel-title">Avances de acciones </h1></div>
+						<br>
 						<div id="gantt_p"></div>
-						<div id="tabla_avances"></div>
+						<div id="mensaje_res_acciones"></div>
+						<!-- <div id="tabla_avances"></div> -->
 					</div>
 					<br>
 				<!-- 	<h1 align="center">Porcentaje de avance de Acciones</h1>

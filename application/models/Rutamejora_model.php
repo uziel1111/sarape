@@ -429,7 +429,7 @@ function accionesRezagadas($id_cct,$turno,$cte_vigente){
   LEFT JOIN rm_avance_xcctxtpxaccion av on tp.id_tprioritario = av.id_tprioritario 
   AND a.id_accion = av.id_accion
   WHERE tp.cct = '{$id_cct}' AND tp.turno = {$turno}
-  ORDER BY tp.orden, tp.id_tprioritario, a.id_accion DESC";
+  ORDER BY a.accion_f_inicio asc";
         // echo "<pre>";print_r($str_query); die();
   return $this->db->query($str_query)->result_array();
 }
@@ -1060,7 +1060,7 @@ public function avancesxcctxaccion($id_cct,$turno,$cte_vigente){
               FROM rm_tema_prioritarioxcct w
               INNER JOIN rm_accionxtproritario ac ON ac.id_tprioritario= w.id_tprioritario
               LEFT JOIN rm_avance_xcctxtpxaccion av ON  ac.id_tprioritario = av.id_tprioritario and ac.id_accion = av.id_accion
-              WHERE w.cct='{$id_cct}' AND w.turno={$turno}";
+              WHERE w.cct='{$id_cct}' AND w.turno={$turno} ORDER BY ac.accion_f_inicio asc";
         // echo $str_query;
       // die();
   return $this->db->query($str_query)->result_array();

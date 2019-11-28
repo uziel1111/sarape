@@ -1,7 +1,5 @@
 
 $(document).ready(function() {
-	
-	// google.charts.load('current', {'packages':['corechart'],'language':'es'});
    	obj_prioridad = new Prioridad();
    $("#div_resultados_gral").hide();
 
@@ -16,7 +14,6 @@ $(document).ready(function() {
         	$("#nombreescuela_pemc").val("");
         	$("#div_resultados_gral").show();
         	accionesRezagadas(); 
-        	// google.charts.load('current', {'packages':['gantt'],'language':'es'}); 
 	   		datos_accion();
 		   	// datos_laepie();
 		   	// datos_objetivopie();
@@ -283,7 +280,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 			      		$('#gantt_p').empty();
 			      		$('#gantt_p').append(data.dom);
 			      		// pintaGrafica(data.datos,data.fechaMin,data.fechaMax);
-			      		// google.charts.setOnLoadCallback(drawChart(data.datos));
 			      		    $('#demo').gantt({
 						      data: data.acciones,
 						      startDate: new Date(data.fechaMin),
@@ -329,16 +325,18 @@ Prioridad.prototype.funcionalidadselect = function(){
 						    }
 						        	
 						}else{
-						    $("#mensaje_res").empty();
-						    $("#mensaje_res").append('<br><h1 align="center">Esta escuela no cuenta con acciones</h1><br>');
+						    $("#mensaje_res_acciones").empty();
+						    $("#mensaje_res_acciones").append('<br><h3 align="center" class="panel-title">Esta escuela no cuenta con acciones</h1><br>');
 						}
 						
 						tabla+='</tbody>';
 			          	tabla+='</table>';
 			          	tabla+='</center>';
-			        	$("#tabla_avances").append(tabla);
+			        	// $("#tabla_avances").append(tabla);
 					}else{
-						$("#chart_div").hide();
+						// $("#chart_div").hide();
+						$("#mensaje_res_acciones").empty();
+						$("#mensaje_res_acciones").append('<br><h3 align="center" class="panel-title">Esta escuela no cuenta con acciones</h1><br>');
 					}
 			        
 			    },
@@ -355,109 +353,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 
 
 
-    function drawChart(datos) {
-      	var data = new google.visualization.DataTable();
-      	let alto=200;
-      	data.addColumn('string', 'ID Tarea');
-      	data.addColumn('string', 'Tarea');
-      	data.addColumn('string', 'Recurso');
-      	data.addColumn('date', 'Fecha inicio');
-      	data.addColumn('date', 'Fecha fin');
-      	data.addColumn('number', 'Duracion');
-      	data.addColumn('number', 'Porcentaje de avance');
-      	data.addColumn('string', 'Dependencias');
-      	data.addColumn({type: 'string', role: 'tooltip'});
-      	// data.addColumn({type: 'string', role: 'tooltip'});
 
-      	let acciones =[];
-      	for(let i=0; i<datos.length; i++){
-        	if(datos[i]['porcentaje']!=0 && datos[i]['porcentaje']!=null){
-	      		data.addRow([datos[i]['ac'],datos[i]['accion'], datos[i]['ac'],
-	         		new Date(datos[i]['a_ini'],datos[i]['m_ini']-1, datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin']-1,datos[i]['d_fin']), null,parseInt(datos[i]['porcentaje']), null,'hola']);
-        		acciones.push(datos[i]);
-        	}else{
-        		data.addRow([datos[i]['ac'],datos[i]['accion'], datos[i]['ac'],
-	         		new Date(datos[i]['a_ini'],datos[i]['m_ini']-1, datos[i]['d_ini']), new Date(datos[i]['a_fin'],datos[i]['m_fin']-1,datos[i]['d_fin']), null,0, null,'hola']);
-        			acciones.push(datos[i]);
-        	}
-      	}
-
-	    
-	    if(datos.length>=4 && datos.length<=6){
-	    	alto=400;
-	    }else if(datos.length>=7 && datos.length<=14){
-	    	alto=800;
-	    }else if(datos.length>=15 && datos.length<=21){
-	    	alto=1200;
-	    }else if(datos.length>=22 && datos.length<=28){
-	    	alto=1600;
-	    }else if(datos.length>=29 && datos.length<=35){
-	    	alto=2000;
-	    }
-      	let options = {
-      		width: 950,
-	        height: alto,
-	        tooltip: {isHtml: true},
-	        legend: 'none',
-	        gantt: {
-	          	trackHeight: 40,
-	          	labelMaxWidth:300,
-	        }
-      	};
-
-      	var chart = new google.visualization.Gantt(document.getElementById('gantt_p'));
-
-      	chart.draw(data, options);
-
-  //      	document.addEventListener("click", function(){
-  // 			addMarker('Kermes'); 
-		// });
-      	let tabla="";
-			$("#tabla_avances").empty();
-			tabla+="<center>";
-			tabla+='<table class="table table-striped table-bordered w-auto">';
-            tabla+='<thead class="thead-dark">';
-			tabla+='<tr>';
-			tabla+='<th scope="col" ><center>Acción</center></th>';
-			tabla+='<th scope="col" ><center>Porcentaje</center></th>';
-			tabla+='<th scope="col" ><center>Fecha Inicio</center></th>';
-			tabla+='<th scope="col" ><center>Fecha Término</center></th>';
-			tabla+='</tr>';
-			tabla+='</thead>';
-			tabla+='<tbody>';
-			let p=0;
-			        if(datos.length>0){
-			        	for(let x=0; x <datos.length; x++){
-
-			        		tabla+='<tr>';
-			        		tabla+='<td>';
-			        		tabla+=acciones[x]['accion'];
-			        		tabla+='</td>';
-			        		tabla+='<td>';
-			        		if(datos[x]['porcentaje']!=0 && datos[x]['porcentaje']!=null){
-			        			p=datos[x]['porcentaje'];
-			        		}
-			        		tabla+=p+"%";
-			        		tabla+='</td>';
-			        		tabla+='<td>';
-			        		tabla+=datos[x]['accion_f_inicio'];
-			        		tabla+='</td>';
-			        		tabla+='<td>';
-			        		tabla+=datos[x]['accion_f_termino'];
-			        		tabla+='</td>';
-			        		tabla+='</tr>';
-			        	}
-			        	
-			        }else{
-			        	
-			        	$("#mensaje_res").empty();
-			        	$("#mensaje_res").append('<br><h1 align="center">Esta escuela no cuenta con acciones</h1><br>');
-			        }
-			        tabla+='</tbody>';
-          			tabla+='</table>';
-          			tabla+='</center>';
-          			$("#tabla_avances").append(tabla);
-    }
 
    	function datos_accionpie(){
 		let id_cct_rm=$("#id_cct_rm").val();
@@ -739,9 +635,9 @@ Prioridad.prototype.funcionalidadselect = function(){
 	          			$("#div_rezagadas").show();
           			}else{
           				// console.log("llego en la linea 633");
-          				$("#div_rezagadas").hide();
-          				$("#mensaje_res").empty();
-          				$("#mensaje_res").append('<br><h1 align="center">Esta escuela no cuenta con datos para proyectar</h1><br>');         				
+          				// $("#div_rezagadas").hide();
+          				$("#mensaje_res_rezagadas").empty();
+          				$("#mensaje_res_rezagadas").append('<br><h3 align="center" class="panel-title">Esta escuela no cuenta con acciones rezagadas</h1><br>');         				
           			}
 			    },
 			    error: function(error){
@@ -754,93 +650,4 @@ Prioridad.prototype.funcionalidadselect = function(){
 		}
 	}
 
-            function addMarker(markerRow) {
-                var baseline;
-                var baselineBounds;
-                var chartElements;
-                var marker;
-                var markerSpan;
-                var rowLabel;
-                var svg;
-                var svgNS;
-                var gantt;
-                var ganttUnit;
-                var ganttWidth;
-                var timespan;
-                var xCoord;
-                var yCoord; 
-              // initialize chart elements
-              baseline = null; 
-              gantt = null; 
-              rowLabel = null; 
-              svg = null; 
-              svgNS = null; 
-              var container = document.getElementById('gantt_p');
-              chartElements = container.getElementsByTagName('svg'); 
-              if (chartElements.length > 0) { 
-                svg = chartElements[0]; 
-                // console.log(svg);
-                svgNS = svg.namespaceURI;
-                // console.log(svgNS);
-              } 
-              chartElements = container.getElementsByTagName('rect');
-              // console.log(chartElements); 
-              if (chartElements.length > 0) { 
-                gantt = chartElements[0]; 
-                // console.log(gantt);
-              } 
-              // chartElements = container.getElementsByTagName('path');
-              // console.log(chartElements); 
-              // if (chartElements.length > 0) { 
-              //   Array.prototype.forEach.call(chartElements, function(path) { 
-              //     if ((baseline === null) && (path.getAttribute('fill') !== 'none')) {
-              //       baseline = path; 
-              //       console.log(baseline);
-              //     } }); 
-              // } 
-              chartElements = container.getElementsByTagName('text');
-              // console.log(chartElements); 
-              // let elemento;
-              if (chartElements.length > 0) { 
-                Array.prototype.forEach.call(chartElements, function(label) {
-                	console.log(label);
-                	// console.log(label.textContent); 
-                  	if (label.textContent === 'Duration') {
-                  		// rowLabel.text('Duración');
-                  		// label.textContent='<text x="445.90625" y="66.203125" style="cursor: default; user-select: none; -webkit-font-smoothing: antialiased; font-family: Roboto; font-size: 14px;" fill="#757575" dx="0px">Duración:</text>';
-                  		 // this.texto_referencia[contador_referencia].textContent=(this.valor_referencia[contador_referencia]>=0?"+":"")+this.valor_referencia[contador_referencia];
-           
-                  		// chartElements.textContent('Duración');
-       					// document.getElementsByTagName('text').html('holaaa');
-       					$('.text').text('hola');
-
-
-                	}
-                	console.log(label.textContent); 
-            	}); 
-              } 
-              // if ((svg === null) || (gantt === null) || (baseline === null) || (rowLabel === null) || 
-              //     (markerDate.getTime() < dateRangeStart.min.getTime()) || (markerDate.getTime() > dateRangeEnd.max.getTime())) {
-              //   return; 
-              // } 
-              // ganttWidth = parseFloat(gantt.getAttribute('width')); 
-              // baselineBounds = baseline.getBBox(); 
-              // timespan = dateRangeEnd.max.getTime() - dateRangeStart.min.getTime(); 
-              // ganttUnit = (ganttWidth - baselineBounds.x) / timespan;
-              // markerSpan = markerDate.getTime() - dateRangeStart.min.getTime(); 
-              // 
-             // marker = document.createElementNS(svgNS, 'polygon');
-    			
-              // marker.setAttribute('fill', 'transparent'); 
-              // marker.setAttribute('stroke', '#ffeb3b'); 
-              // marker.setAttribute('stroke-width', '3'); 
-              // xCoord = (baselineBounds.x + (ganttUnit * markerSpan) - 4); 
-              // yCoord = parseFloat(rowLabel.getAttribute('y'));
-              // marker.setAttribute('points', 183.671875 + ',' + (65 - 10) + ' ' + (183.671875 - 5) + ',' + 65 + ' ' + (183.671875 + 5)
-              //                     + ',' + 65);
-              // marker.setAttribute('text','x="445.90625" y="66.203125" style="cursor: default; user-select: none; -webkit-font-smoothing: antialiased; font-family: Roboto; font-size: 14px;" fill="#757575" dx="0px">Duration:');
-              // marker.setAttribute('<text x="445.90625" y="66.203125" style="cursor: default; user-select: none; -webkit-font-smoothing: antialiased; font-family: Roboto; font-size: 14px;" fill="#757575" dx="0px">Duration:</text>'); 
-              // svg.insertBefore(marker, rowLabel);
-
-            }
   
