@@ -12,8 +12,6 @@ class Estadistica_pemc_model extends CI_Model
       $this->db->join('est_pemc_usuario as u', 'u.id_usuario = s.id_usuario');
       $this->db->where('s.user', $usuario);
       $this->db->where('s.clave', $contrasena);
-       // $this->db->get();
-      // echo $this->db->last_query();die();
       return  $this->db->get()->result_array();
     }// get_datos_sesion()
 
@@ -407,26 +405,34 @@ function get_zonas($sostenimiento, $nivel){
 
 
     function get_porcent_zonas($sostenimiento, $zona, $nivel){
-
-        if ($nivel != 0) {
-            $where_nivel = " AND e.id_nivel = {$nivel}";
-        } else {
+        if ($nivel == 'Todos los niveles') {
+            // echo $nivel; die();
             $where_nivel = ' ';
+        } else {
+            $where_nivel = " AND e.desc_nivel_educativo = '{$nivel}'";
+            
         }
 
         if ($sostenimiento != 0) {
-            $where_sostenimiento = " AND s.id_sostenimiento = {$sostenimiento} ";
+            if ($sostenimiento == 1) {
+                $where_sostenimiento = " AND e.sostenimiento not in ('61','41','92','96', '51')";
+            }else{
+                if ($sostenimiento == 2) {
+                   $where_sostenimiento = " AND e.sostenimiento in ('61','41','92','96') "; 
+                }
+            }
+            
         } else {
             $where_sostenimiento = ' ';
         }
 
-        if ($sostenimiento != 0 && $zona != 0) {
-            $where_zona = " AND s.zona_escolar = {$zona}";
+        if ($sostenimiento != '0' && $zona != 0) {
+            $where_zona = " AND e.zona_escolar = {$zona}";
         } else {
             $where_zona = ' ';
         }
 
-        $str_query = "SELECT
+       /* $str_query = "SELECT
         zl1.nivel,
         zl1.id_sostenimiento,
         zl1.sostenimiento,
@@ -566,8 +572,135 @@ function get_zonas($sostenimiento, $nivel){
         {$where_zona}
         GROUP BY ne.id_nivel , s.id_sostenimiento , s.zona_escolar , tp.id_prioridad
         ORDER BY s.zona_escolar ASC) AS zl5 ON zl1.zona_escolar = zl5.zona_escolar
+        GROUP BY zl1.zona_escolar , zl1.nivel";*/
+
+        $str_query = "SELECT
+        zl1.nivel,
+        zl1.id_sostenimiento,
+        zl1.sostenimiento,
+        zl1.zona_escolar,
+        zl1.promedio AS lae1,
+        zl2.promedio AS lae2,
+        zl3.promedio AS lae3,
+        zl4.promedio AS lae4,
+        zl5.promedio AS lae5
+        FROM
+        (SELECT
+        e.desc_nivel_educativo as nivel,
+        e.sostenimiento as id_sostenimiento,
+        e.desc_sostenimiento as sostenimiento,
+        e.zona_escolar,
+        tp.id_prioridad AS LAE,
+        ROUND(IFNULL(AVG(ava.cte1), 0), 1) AS promedio
+        FROM
+        centros_educativos.vista_cct e
+        INNER JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
+        LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+        LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+        WHERE
+        (e.status = 1 OR e.status = 4)
+        AND e.desc_nivel_educativo not in ('MEDIA SUPERIOR', 'SUPERIOR', 'FORMACION PARA EL TRABAJO', 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL')
+        AND e.cct NOT LIKE '05FUA%'
+        AND tp.id_prioridad = 1
+        {$where_nivel}
+        {$where_sostenimiento}
+        {$where_zona}
+        GROUP BY e.nivel_educativo , e.sostenimiento , e.zona_escolar , tp.id_prioridad
+        ORDER BY e.zona_escolar ASC) AS zl1
+        INNER JOIN
+        (SELECT
+        e.desc_nivel_educativo as nivel,
+        e.sostenimiento as id_sostenimiento,
+        e.desc_sostenimiento as sostenimiento,
+        e.zona_escolar,
+        tp.id_prioridad AS LAE,
+        ROUND(IFNULL(AVG(ava.cte1), 0), 1) AS promedio
+        FROM
+        centros_educativos.vista_cct e
+        INNER JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
+        LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+        LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+        WHERE
+        (e.status = 1 OR e.status = 4)
+        AND e.desc_nivel_educativo not in ('MEDIA SUPERIOR', 'SUPERIOR', 'FORMACION PARA EL TRABAJO', 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL')
+        AND e.cct NOT LIKE '05FUA%'
+        AND tp.id_prioridad = 2
+        {$where_nivel}
+        {$where_sostenimiento}
+        {$where_zona}
+        GROUP BY e.nivel_educativo , e.sostenimiento , e.zona_escolar , tp.id_prioridad
+        ORDER BY e.zona_escolar ASC) AS zl2 ON zl1.zona_escolar = zl2.zona_escolar
+        INNER JOIN
+        (SELECT
+        e.desc_nivel_educativo as nivel,
+        e.sostenimiento as id_sostenimiento,
+        e.desc_sostenimiento as sostenimiento,
+        e.zona_escolar,
+        tp.id_prioridad AS LAE,
+        ROUND(IFNULL(AVG(ava.cte1), 0), 1) AS promedio
+        FROM
+        centros_educativos.vista_cct e
+        INNER JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
+        LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+        LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+        WHERE
+        (e.status = 1 OR e.status = 4)
+        AND e.desc_nivel_educativo not in ('MEDIA SUPERIOR', 'SUPERIOR', 'FORMACION PARA EL TRABAJO', 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL')
+        AND e.cct NOT LIKE '05FUA%'
+        AND tp.id_prioridad = 3
+        {$where_nivel}
+        {$where_sostenimiento}
+        {$where_zona}
+        GROUP BY e.nivel_educativo , e.sostenimiento , e.zona_escolar , tp.id_prioridad
+        ORDER BY e.zona_escolar ASC) AS zl3 ON zl1.zona_escolar = zl3.zona_escolar
+        INNER JOIN
+        (SELECT
+        e.desc_nivel_educativo as nivel,
+        e.sostenimiento as id_sostenimiento,
+        e.desc_sostenimiento as sostenimiento,
+        e.zona_escolar,
+        tp.id_prioridad AS LAE,
+        ROUND(IFNULL(AVG(ava.cte1), 0), 1) AS promedio
+        FROM
+        centros_educativos.vista_cct e
+        INNER JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
+        LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+        LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+        WHERE
+        (e.status = 1 OR e.status = 4)
+        AND e.desc_nivel_educativo not in ('MEDIA SUPERIOR', 'SUPERIOR', 'FORMACION PARA EL TRABAJO', 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL')
+        AND e.cct NOT LIKE '05FUA%'
+        AND tp.id_prioridad = 4
+        {$where_nivel}
+        {$where_sostenimiento}
+        {$where_zona}
+        GROUP BY e.nivel_educativo , e.sostenimiento , e.zona_escolar , tp.id_prioridad
+        ORDER BY e.zona_escolar ASC) AS zl4 ON zl1.zona_escolar = zl4.zona_escolar
+        INNER JOIN
+        (SELECT
+        e.desc_nivel_educativo as nivel,
+        e.sostenimiento as id_sostenimiento,
+        e.desc_sostenimiento as sostenimiento,
+        e.zona_escolar,
+        tp.id_prioridad AS LAE,
+        ROUND(IFNULL(AVG(ava.cte1), 0), 1) AS promedio
+        FROM
+        centros_educativos.vista_cct e
+        INNER JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
+        LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
+        LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+        WHERE
+        (e.status = 1 OR e.status = 4)
+        AND e.desc_nivel_educativo not in ('MEDIA SUPERIOR', 'SUPERIOR', 'FORMACION PARA EL TRABAJO', 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL')
+        AND e.cct NOT LIKE '05FUA%'
+        AND tp.id_prioridad = 5
+        {$where_nivel}
+        {$where_sostenimiento}
+        {$where_zona}
+        GROUP BY e.nivel_educativo , e.sostenimiento , e.zona_escolar , tp.id_prioridad
+        ORDER BY e.zona_escolar ASC) AS zl5 ON zl1.zona_escolar = zl5.zona_escolar
         GROUP BY zl1.zona_escolar , zl1.nivel";
-// echo "<pre>"; print_r($str_query);
+// echo "<pre>"; print_r($str_query); die();
         return $this->db->query($str_query)->result_array();
   }
 
