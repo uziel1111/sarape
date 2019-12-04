@@ -8,7 +8,6 @@ function getTablaZona() {
     sostenimiento = $('#sostenimiento_zona option:selected').val();
     nivel = $('#nivel_educativo_zona option:selected').text();
     nivelval = $('#nivel_educativo_zona option:selected').val();
-    console.log(nivelval);
     if (nivel == undefined) {
         nivel = 'Todos los niveles';
     }
