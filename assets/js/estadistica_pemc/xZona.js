@@ -22,7 +22,7 @@ function getTablaZona() {
     $.ajax({
         url: ruta,
         type: 'POST',
-        data: {zona:zona, sostenimiento:sostenimiento, nivel:nivel},
+        data: {zona:zona, sostenimiento:sostenimiento, nivel:nivelval},
         beforeSend: function(xhr) {
             Notification.loading("");
         },
