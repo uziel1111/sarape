@@ -57,6 +57,8 @@ function getEstadistica() {
         	chart:{
           title: 'Porcentaje de escuelas que han capturado'
       		},
+          height: 400,
+          width: 700,
       	}
       	 var chart = new google.visualization.PieChart($('#piechart')[0]);
 

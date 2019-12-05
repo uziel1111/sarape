@@ -19,7 +19,7 @@
 			</div>
 
 			<div class="col-md-12 offset-md-4">
-				<div id="piechart" style="width: 800px; height: 500px;"></div>
+				<div id="piechart" style="width: 800px; height: 400px;"></div>
 			</div>
 
 	</div>
