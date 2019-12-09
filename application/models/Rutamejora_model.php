@@ -1069,7 +1069,8 @@ public function avancesxcctxaccion($id_cct,$turno,$cte_vigente){
 public function fechaMaxMin($id_cct,$turno,$cte_vigente){
   $str_query = "SELECT 
                   MIN(ac.accion_f_inicio) AS inicio,
-                  MAX(ac.accion_f_termino)AS fin
+                  MAX(ac.accion_f_termino)AS fin,
+                  TIMESTAMPDIFF(DAY,MIN(ac.accion_f_inicio), MAX(ac.accion_f_termino)) AS dias_dif
                 FROM rm_tema_prioritarioxcct w
                 INNER JOIN rm_accionxtproritario ac ON ac.id_tprioritario= w.id_tprioritario
                 LEFT JOIN rm_avance_xcctxtpxaccion av ON ac.id_accion = av.id_accion

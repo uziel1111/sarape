@@ -2350,6 +2350,11 @@ $arr_indicadoresxct = '';
       		if($datos[$i]['porcentaje']!=0 && $datos[$i]['porcentaje']!=null){
       			$porcentaje= $datos[$i]['porcentaje'];
       		}
+      		if($datos[$i]['periodo']+1==1){
+      			$duracion="1 día";
+      		}else{
+      			$duracion=($datos[$i]['periodo']+1)." días";
+      		}
       			$accion=array(
 				    "title"=> $datos[$i]['accion'],
 				    "startdate"=> $datos[$i]['accion_f_inicio'],
@@ -2359,7 +2364,7 @@ $arr_indicadoresxct = '';
 				    "minNight2"=>$porcentaje,
 				    "tooltipData"=>array(
 				        "title"=>$datos[$i]['accion'],
-				        "desc"=> array(" Acción: ".$datos[$i]['ac'],"Duracion: ".$datos[$i]['periodo']." dias ", "Fecha Inicio: ".$datos[$i]['fechainicio'], "Fecha Término: " .$datos[$i]['fechafin'], " Porcentaje de Avance:  ".$porcentaje."%") 
+				        "desc"=> array(" Acción: ".$datos[$i]['ac'],"Duración: ".$duracion, "Fecha Inicio: ".$datos[$i]['fechainicio'], "Fecha Término: " .$datos[$i]['fechafin'], " Porcentaje de Avance:  ".$porcentaje."%") 
 				    ),
 				    "dateorder"=> "\/Date(1469048400000)\/"
 				);	
@@ -2368,8 +2373,25 @@ $arr_indicadoresxct = '';
       	$data_ac['acciones']=$acciones;
       	$data_ac['inicio']=$fechas[0]['inicio'];
       	$data_ac['fin']=$fechas[0]['fin'];
-      	$nuevafecha = strtotime ( '+2 day' , strtotime ( $fechas[0]['fin'] ) );
-      	$nuevafecha = date ( 'Y-m-d' , $nuevafecha);
+      	if($fechas[0]['dias_dif']<=10){
+      		$nuevafecha = strtotime ( '+50 day' , strtotime ( $fechas[0]['fin'] ) );
+      		$nuevafecha = date ( 'Y-m-d' , $nuevafecha);
+      	}else if($fechas[0]['dias_dif']>10 && $fechas[0]['dias_dif']<=20 ){
+      		$nuevafecha = strtotime ( '+40 day' , strtotime ( $fechas[0]['fin'] ) );
+      		$nuevafecha = date ( 'Y-m-d' , $nuevafecha);
+      	}else if($fechas[0]['dias_dif']>20 && $fechas[0]['dias_dif']<=30 ){
+      		$nuevafecha = strtotime ( '+30 day' , strtotime ( $fechas[0]['fin'] ) );
+      		$nuevafecha = date ( 'Y-m-d' , $nuevafecha);
+      	}else if($fechas[0]['dias_dif']>30 && $fechas[0]['dias_dif']<=40 ){
+      		$nuevafecha = strtotime ( '+20 day' , strtotime ( $fechas[0]['fin'] ) );
+      		$nuevafecha = date ( 'Y-m-d' , $nuevafecha);
+      	}else if($fechas[0]['dias_dif']>40 && $fechas[0]['dias_dif']<=50 ){
+      		$nuevafecha = strtotime ( '+10 day' , strtotime ( $fechas[0]['fin'] ) );
+      		$nuevafecha = date ( 'Y-m-d' , $nuevafecha);
+      	}else{
+      		$nuevafecha = strtotime ( '+3 day' , strtotime ( $fechas[0]['fin'] ) );
+      		$nuevafecha = date ( 'Y-m-d' , $nuevafecha);
+      	}
       	// echo $nuevafecha;
       	// die(); 
   		// echo "<pre>";
