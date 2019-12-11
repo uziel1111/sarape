@@ -5,7 +5,6 @@
       <select id="nivel_educativo_LAE" class="form-control">
         <option value="0">Todos los niveles</option>
         <option value="1">Especial</option>
-        <!-- <option value="2">Inicial</option> -->
         <option value="3">Preescolar</option>
         <option value="4">Primaria</option>
         <option value="5">Secundaria</option>

@@ -21,7 +21,6 @@ class Estadistica_pemc extends CI_Controller
         $this->load->model('Ambito_model');
         $this->load->model('Nivel_model');
         $this->load->model('Sostenimiento_model');
-        // $this->load->model('CentrosE_model');
         $this->datos = array();
     }
 
@@ -38,7 +37,6 @@ class Estadistica_pemc extends CI_Controller
         $pwd = $this->input->post('password');
 
         $user_data = $this->Estadistica_pemc_model->get_datos_sesion($user, md5($pwd));
-        // $user_data = array('id_usuario' => '1', 'nombre' => 'Administrador', 'paterno' => 'General', 'materno' => 'Sarape');
         if(count($user_data) > 0){
             $data = array();
             Utilerias::set_usuario_sesion($this, $user_data);
@@ -54,8 +52,6 @@ class Estadistica_pemc extends CI_Controller
                 }
             }
 
-            // $result_niveles = $this->Nivel_model->getall_est_ind();
-              // echo 'Entras o no?'; die();
 $result_niveles = array();
             if(count($result_niveles)==0){
                 $data['arr_niveles'] = array(   '0' => 'Error recuperando los niveles' );
@@ -79,14 +75,10 @@ $result_niveles = array();
             }
 
             $data['arr_municipios'] = $arr_municipios;
-            // $arr_niveles = array_diff($arr_niveles, array('MEDIA SUPERIOR'));
-            // $arr_niveles = array_diff($arr_niveles, array('SUPERIOR'));
-            // $data['arr_niveles'] = $arr_niveles;
             $data['arr_sostenimientos'] =$arr_sostenimientos;
 
             if(Utilerias::haySesionAbierta($this)){
                  Utilerias::pagina_basica_pemc($this, 'estadistica_pemc/index',$data);
-                // $this->load->view('estadistica_pemc/index',$data);
             }
         }else{
             $data = $this->data;
@@ -98,7 +90,6 @@ $result_niveles = array();
 
 
 public function busquedaxct(){
-    // echo "en la linea 92\n"; die();
     $cct = $this->input->post('cct');
     $turno = $this->input->post('turno');
     if($turno=="MATUTINO"){
@@ -112,18 +103,12 @@ public function busquedaxct(){
     }else if($turno=="CONTINUO"){
         $turno_single=5;
     }
-        // echo $turno."\n";
-        // echo $cct."\n";
-        // die();
+
     $datoscct = $this->Estadistica_pemc_model->getdatoscct_pemc($cct, $turno_single);
     Utilerias::set_cct_sesion($this, $datoscct);
-        // echo "<pre>";
-        // print_r($datoscct);
-        // die();
+
     $this->datos = Utilerias::get_cct_sesion($this);
-        // echo "<pre>";
-        // print_r($this->datos);
-        // die();
+
     $usuario = $this->datos[0]['cve_centro'];
     $id_cct = $this->datos[0]['id_cct'];
     $responsables = $this->getPersonal($usuario);
@@ -213,7 +198,6 @@ public function busquedaxct(){
     $data['vista_indicadores'] = $this->load->view("ruta/rutademejora/indicadores", $data, TRUE);
     $data['vista_ayuda'] = $this->load->view("ruta/rutademejora/ayuda", $data, TRUE);
 
-        // Utilerias::pagina_basica_rm($this, "ruta/rutademejora/index", $data);
     $dom = $this->load->view("ruta/rutademejora/index",$data,TRUE);
     $response = array('vista' => $dom);
     Utilerias::enviaDataJson(200, $response, $this);
@@ -221,7 +205,6 @@ public function busquedaxct(){
 }
 
     public function getPersonal($cct){
-            // if(Utilerias::haySesionAbiertacct($this)){
         $curl = curl_init();
         $method = "POST";
         $url = "http://servicios.seducoahuila.gob.mx/wservice/personal/w_service_personal_by_cct.php";
@@ -246,96 +229,9 @@ public function busquedaxct(){
 
         curl_close($curl);
         return $response = json_decode($result);
-            // }else{
-            //  redirect('Rutademejora/index');
-            // }
     }
 
-    // public function escuelas_xmunicipio(){
-    //     if(Utilerias::haySesionAbierta($this)){
-    //         $cve_municipio = $this->input->post('cve_municipio');
-    //         $cve_nivel = $this->input->post('cve_nivel');
-    //         $cve_sostenimiento = $this->input->post('cve_sostenimiento');
-    //         $nombre_escuela = $this->input->post('nombre_escuela');
-    //         $this->datos = Utilerias::get_cct_sesion($this);
-    //         // echo "<pre>"; print_r($this->datos); die();
-    //         $data['tipou_pemc']="upemc";
-
-    //         $data['cve_municipio'] = $cve_municipio;
-    //         $data['cve_nivel'] = $cve_nivel;
-    //         $data['cve_sostenimiento'] = $cve_sostenimiento;
-    //         $data['nombre_escuela'] = $nombre_escuela;
-
-    //         $municipio = $this->input->post('municipio_pemc');
-    //         $nivel = $this->input->post('nivel_pemc');
-    //         $sostenimiento = $this->input->post('sostenimiento_pemc');
-    //         $result_escuelas = $this->CentrosE_model->filtro_escuela($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
-    //         // echo "<pre>"; print_r($result_escuelas); die();
-    //         $array=array();
-    //         for($i=0; $i<count($result_escuelas); $i++){
-    //             if($result_escuelas[$i]['turno']==120){
-    //                 $result_escuelas[$i]['turno_n']=100;
-    //                 $result_escuelas[$i]['turno_single']='MATUTINO';
-    //                 array_push($array,$result_escuelas[$i]);
-    //                 $result_escuelas[$i]['turno_n']=200;
-    //                 $result_escuelas[$i]['turno_single']='VESPERTINO';
-    //                 array_push($array,$result_escuelas[$i]);
-    //             }else if($result_escuelas[$i]['turno']==123){
-    //                 $result_escuelas[$i]['turno_n']=100;
-    //                 $result_escuelas[$i]['turno_single']='MATUTINO';
-    //                 array_push($array,$result_escuelas[$i]);
-    //                 $result_escuelas[$i]['turno_n']=200;
-    //                 $result_escuelas[$i]['turno_single']='VESPERTINO';
-    //                 array_push($array,$result_escuelas[$i]);
-    //                 $result_escuelas[$i]['turno_n']=300;
-    //                 $result_escuelas[$i]['turno_single']='NOCTURNO';
-    //                 array_push($array,$result_escuelas[$i]);
-    //             }else if($result_escuelas[$i]['turno']==124){
-    //                 $result_escuelas[$i]['turno_n']=100;
-    //                 $result_escuelas[$i]['turno_single']='MATUTINO';
-    //                 array_push($array,$result_escuelas[$i]);
-    //                 $result_escuelas[$i]['turno_n']=200;
-    //                 $result_escuelas[$i]['turno_single']='VESPERTINO';
-    //                 array_push($array,$result_escuelas[$i]);
-    //                 $result_escuelas[$i]['turno_n']=400;
-    //                 $result_escuelas[$i]['turno_single']='DISCONTINUO';
-    //                 array_push($array,$result_escuelas[$i]);
-    //             }else if($result_escuelas[$i]['turno']==130){
-    //                 $result_escuelas[$i]['turno_n']=100;
-    //                 $result_escuelas[$i]['turno_single']='MATUTINO';
-    //                 array_push($array,$result_escuelas[$i]);
-    //                 $result_escuelas[$i]['turno_n']=300;
-    //                 $result_escuelas[$i]['turno_single']='NOCTURNO';
-    //                 array_push($array,$result_escuelas[$i]);
-    //             }else if($result_escuelas[$i]['turno']==230){
-    //                 $result_escuelas[$i]['turno_n']=200;
-    //                 $result_escuelas[$i]['turno_single']='VESPERTINO';
-    //                 array_push($array,$result_escuelas[$i]);
-    //                 $result_escuelas[$i]['turno_n']=300;
-    //                 $result_escuelas[$i]['turno_single']='NOCTURNO';
-    //                 array_push($array,$result_escuelas[$i]);
-    //             }else{
-    //                 $result_escuelas[$i]['turno_n']=$result_escuelas[$i]['turno'];
-    //                 $result_escuelas[$i]['turno_single']=$result_escuelas[$i]['desc_turno'];
-    //                 array_push($array,$result_escuelas[$i]);
-    //             }
-    //         }
-
-    //         $data['municipio'] = $municipio;
-    //         $data['nivel'] = $nivel;
-    //         $data['sostenimiento'] = $sostenimiento;
-    //         $data['escuela'] = $nombre_escuela;
-    //         $data['arr_escuelas'] = $array;
-    //         $data['total_escuelas'] = count($array);
-    //         // echo "<pre>"; print_r($data); die();
-    //         // Utilerias::pagina_basica($this, "busqueda_xlista/escuelas", $data);
-    //         $str_view = $this->load->view("busqueda_xlista/escuelas", $data, TRUE);
-    //         $response = array('vista' => $str_view);
-    //         Utilerias::enviaDataJson(200, $response, $this);
-    //         exit;
-    //     }
-    // }// escuelas_xmunicipio()
-    /*BK201 S*/
+   
 function truncar($numero, $digitos) {
     $truncar = pow(10, $digitos);
     return intval($numero * $truncar) / $truncar;
@@ -406,8 +302,6 @@ function getTablaZona()
    $zonas= $this->Estadistica_pemc_model->get_zonas($sostenimiento, $nivel);
 
    $porcentajeZona = $this->Estadistica_pemc_model->get_porcent_zonas($sostenimiento, $zonaPost, $nivel);
-   // echo '<pre>'; print_r($zonas); die();
-
 
    $data['zonas'] = $zonas;
    $data['tabla'] = $porcentajeZona;
@@ -426,7 +320,6 @@ public function cerrar_sesion(){
     $data['error'] = '';
     $this->load->view( "estadistica_pemc/login", $data);
 }
-/*BK201 E*/
 
 
 }

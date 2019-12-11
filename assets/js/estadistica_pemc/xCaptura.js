@@ -1,5 +1,4 @@
  google.charts.load('current', {'packages':['corechart']});
- //google.charts.setOnLoadCallback(graficaPie);
 
 $(document).ready(function() {
 	getEstadistica();
