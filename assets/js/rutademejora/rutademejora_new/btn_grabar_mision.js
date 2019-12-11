@@ -14,8 +14,6 @@ $('#btn_grabar').click(function(e){
 		}
 	})
 	.done(function( data ) {
-		// alert('funciona');
-
 		setTimeout(function(){
 			Swal.fire(
 			  '¡Correcto!',

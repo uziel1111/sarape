@@ -11,19 +11,13 @@ $('[data-toggle="tooltip"]').tooltip({
 	$("#nav-tab").click(function (e) {
 		e.preventDefault()
         var id = e.target.id;
-        // console.log(id);
         if(id =="nav-resultados-tab"){
         	$("#nombreescuela_pemc").val("");
         	$("#div_resultados_gral").show();
         	accionesRezagadas(); 
-	   		datos_accion();
-		   	// datos_laepie();
-		   	// datos_objetivopie();
-		   	// datos_accionpie();	
+	   		datos_accion();	
    		}else if(id!="nav-resultados-tab"){
-   			// console.log(id);
-   			$("#div_resultados_gral").hide();
-   			// $("#div_busxcct_pemc").empty();	  
+   			$("#div_resultados_gral").hide();  
    		}
 	});
 
@@ -91,7 +85,6 @@ $("#img_mision").click(function(e){
 });
 
 $("#id_tabla_rutas tr:gt()").click(function () {
-    console.log('header de la tabla jeje');
     var selected = $(this).hasClass("highlight");
 
     $("#data tr").removeClass("highlight");
@@ -114,7 +107,6 @@ $("#btn_prioridad").click(function(e){
       );
     return false;
 	} else{
-		//console.log(obj);
 		var ruta = base_url + 'Rutademejora/get_datos_edith_tp'
 		$.ajax({
 			url:ruta,
@@ -133,14 +125,6 @@ $("#btn_prioridad").click(function(e){
 				
 			$("#div_generico").empty();
 		    $("#div_generico").append(data.strView);
-		    // $('.problematica').selectpicker('val', data.data['problematica'].split(','));
-		    // $('.problematicaTxt').text( data.data['problematica']);
-		    // if (data.data.ambito != null) {
-		    // 	// console.log(data.data.ambito);
-		    // $('.problematica').val(data.data.ambito);
-		    // }
-		    // $('#evidencias').val("");
-		    // $('#txt_rm_obs_direc').val("");
 		    let tipou_pemc="";
 			$('h5').empty();
 			$('h5').append(data.titulo);
@@ -158,7 +142,6 @@ $("#btn_prioridad").click(function(e){
 		    console.error("Error in get_datos_edith_tp()");
 		}).always(function() {
 		    swal.close();
-				// $("#myModal").modal("hide");
 		});
 	}
 });
@@ -192,9 +175,7 @@ $("#btn_actividades").click(function(e){
 
 
 
-///
 Prioridad.prototype.getObjetivos = function(id_tprioritario){
-	// var idtemaprioritario = obj.id_tprioritario ;
 	 let tipou_pemc="";
 		if($('#tipou_pemc').length) {
 			$("#grabar_prioridad").hide();
@@ -203,9 +184,7 @@ Prioridad.prototype.getObjetivos = function(id_tprioritario){
 			$('.problematica').selectpicker('hide');
 			tipou_pemc=$('#tipou_pemc').val();
 		}
-	console.log(tipou_pemc);
 	if(obj.id_tpriotario != 0){
-	//console.log(obj.id_tprioritario);
 		$.ajax({
 			url: base_url+'Rutademejora/getObjetivos',
 			type: 'POST',
@@ -235,10 +214,7 @@ Prioridad.prototype.getObjetivos = function(id_tprioritario){
 				$('#evidencias').empty();
 				$('#txt_rm_obs_direc').empty();
 			}
-			// console.log(result.id_objetivo);
 			obj_prioridad.funcionalidadselect();
-			// obj_prioridad.btnEditar();
-			// btnEditar();
 		})
 		.fail(function(e) {
 			console.error("Error in getObjetivos()");
@@ -264,7 +240,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 
 
 	function datos_accion(){
-		// console.log("llego a la funcion de datos accion");
 		let id_cct_rm=$("#id_cct_rm").val();
 		if(id_cct_rm!=""){
 			$.ajax({
@@ -283,7 +258,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 			      	if(data.datos.length>0){
 			      		$("#chart_div").show();
 			      		$('#gantt_p').append(data.dom);
-			      		// pintaGrafica(data.datos,data.fechaMin,data.fechaMax);
 			      		    $('#demo').gantt({
 						      data: data.acciones,
 						      startDate: new Date(data.fechaMin),
@@ -304,7 +278,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 						tabla+='</thead>';
 						tabla+='<tbody>';
 						let p=0;
-						// console.log(data.acciones);
+						
 						if(data.datos.length>0){
 						    for(let x=0; x <data.datos.length; x++){
 						    	let p=0;
@@ -335,9 +309,9 @@ Prioridad.prototype.funcionalidadselect = function(){
 						tabla+='</tbody>';
 			          	tabla+='</table>';
 			          	tabla+='</center>';
-			        	// $("#tabla_avances").append(tabla);
+			        	
 					}else{
-						// $("#chart_div").hide();
+						
 						$("#mensaje_res_acciones").append('<br><h3 align="center" class="panel-title">Esta escuela no cuenta con acciones</h1><br>');
 					}
 			        
@@ -457,11 +431,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 
     function pieObjetivos(datos) {
     	let c=100-datos[0]['porc'];
-        // var data = google.visualization.arrayToDataTable([
-        // 	['Objetivos', 'Avance Objetivos'],
-        //   	['Capturadas',datos[0]['porc']],
-        //   	['No capturadas',c]
-        // ]);
         var data = new google.visualization.DataTable();
             data.addColumn('string', 'Browser');
             data.addColumn('number', 'Percentage');
@@ -524,7 +493,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 								    }
 									if (data.datos[i]['porcentaje'] <= 66) {
 								      	acciones.push(data.datos[i]);
-								      	// console.log("entro en la linea 550");
 								    }else{
 								      	if (data.datos[i]['porcentaje'] >= 67 && data.datos[i]['porcentaje'] <= 89) {
 								      		acciones1.push(data.datos[i]);
@@ -545,7 +513,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 									    }
 									    if (data.datos[i]['porcentaje'] <= 33) {
 									     	acciones.push(data.datos[i]);
-									     	// console.log("entro en la linea 571");
 									   	}else{
 										    if (data.datos[i]['porcentaje'] >= 33 && data.datos[i]['porcentaje'] <= 66) {
 										      	acciones1.push(data.datos[i]);
@@ -587,7 +554,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 								}
 							}else{
 						    	acciones.push(data.datos[i]);
-						    	// console.log("entro en la linea 613");
 							}  	
 			    		}
 			    	}
@@ -637,8 +603,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 	          			$("#div_acc_rez").append(tabla);
 	          			$("#div_rezagadas").show();
           			}else{
-          				// console.log("llego en la linea 633");
-          				// $("#div_rezagadas").hide();
           				$("#mensaje_res_rezagadas").append('<br><h3 align="center" class="panel-title">Esta escuela no cuenta con acciones rezagadas</h1><br>');         				
           			}
 			    },

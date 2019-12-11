@@ -4,29 +4,12 @@ $(function() {
 
 $("#btn_grabar_tp").click(function(){
 
-  // obj_rm_tp = new Rm_tp();
-
   obj_rm_tp.insert_update_mision_cct();
 
 
   var validacion = obj_rm_tp.valida_campos_tp();
 
   if (validacion == true) {
-    //obtenemos un array con los datos del archivo
-    // var file = $("#imagen")[0].files[0];
-    // //obtenemos el nombre del archivo
-    // var fileName = file.name;
-    // //obtenemos la extensión del archivo
-    // fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
-    // //obtenemos el tamaño del archivo
-    // fileSize = file.size;
-    // //obtenemos el tipo de archivo image/png ejemplo
-    // var fileType = file.type;
-    // //mensaje con la información del archivo
-    // var formData = new FormData($(".formulario1")[0]);
-
-    // alert(fileName);
-    // console.log(fileName);
     var id_prioridad = $("#slc_rm_prioridad").val();
     var objetivo1 = $("#txt_rm_ob1").val();
     var meta1 = $("#txt_rm_met1").val();
@@ -71,10 +54,6 @@ $("#btn_grabar_tp").click(function(){
     type: 'POST',
     dataType: 'JSON',
     data: formData,
-    // data: {id_prioridad:id_prioridad,objetivo1:objetivo1,meta1:meta1,objetivo2:objetivo2,meta2:meta2,problematica:problematica,
-    // evidencia:evidencia,ids_progapoy:ids_progapoy,otro_pa:otro_pa,como_prog_ayuda:como_prog_ayuda,obs_direct:obs_direct,
-    // ids_apoyreq:ids_apoyreq,otroapoyreq:otroapoyreq,especifiqueapyreq:especifiqueapyreq,formData: formData},
-    //necesario para subir archivos via ajax
     cache: false,
     contentType: false,
     processData: false,
@@ -84,9 +63,7 @@ $("#btn_grabar_tp").click(function(){
   })
   .done(function(result) {
     swal.close();
-    //console.log(result.estatus);
     if (result.estatus) {
-      // obj_rm_tp.subir_archivo();
       obj_rm_tp.limpia_campos_tp();
 
       swal(
@@ -109,7 +86,6 @@ $("#btn_grabar_tp").click(function(){
     console.error("Error in insertar tema prioritario()"); console.table(e);
   })
   .always(function() {
-        // swal.close();
   })
 
   }
@@ -166,8 +142,6 @@ else {
     return false;
 }
 
-// alert(ids_apoyreq);
-
 };
 
 Rm_tp.prototype.insert_update_mision_cct = function(){
@@ -178,19 +152,15 @@ Rm_tp.prototype.insert_update_mision_cct = function(){
   dataType: 'JSON',
   data: {misioncct:misioncct},
   beforeSend: function(xhr) {
-        // Notification.loading("");
     },
 })
 .done(function(result) {
-  // swal.close();
-  //console.log(result.estatus);
 
 })
 .fail(function(e) {
   console.error("Error in insertar mision cct()"); console.table(e);
 })
 .always(function() {
-      // swal.close();
 })
 };
 
@@ -219,7 +189,6 @@ Rm_tp.prototype.limpia_campos_tp = function(){
 };
 
 Rm_tp.prototype.subir_archivo = function(){
-      // console.log("botón de adjuntar imagen del modal objetivos");
     //información del formulario
     var formData = new FormData($(".formulario1")[0]);
     var message = "";
@@ -245,15 +214,9 @@ Rm_tp.prototype.subir_archivo = function(){
 		      'Su archivo se subio correctamente',
 		      'success'
 		    );
-        	// $("#modal_operacion_recursos").modal('hide');
-        	// obj_recursos.get_tabla();
-        	// $("#idseleccionadofile").val("false");//regresa false la varible que valida si ya se a seleccionado un archivo
-        	// $("#validaexixtente").val("false");//regresa en false la valicacion del archivo exixtente
         },
         //si ha ocurrido un error
         error: function(){
-            // message = $("<span class='error'>Ha ocurrido un error.</span>");
-            // showMessage(message);
         }
     });
 }
@@ -277,8 +240,6 @@ Rm_tp.prototype.contar= function(elem, idGlosa){
 }
 
 Rm_tp.prototype.readURL= function(input){
-  // console.log(input.files[0]['width']);
-// console.log(input.files[0]['size']);
   if (input.files[0]['size']>3670016) {
 
     $("#img_evid").prop("src", "");
@@ -286,12 +247,6 @@ Rm_tp.prototype.readURL= function(input){
     document.getElementById('btn_clr_img').setAttribute("hidden", true);
     $("#edit_img").val(false);
     $("#imagen").val(null);
-
-
-    // $("#img_evid").prop("src", "");
-    // $("#glosaArchivos").html("Ningun archivo seleccionado");
-    // document.getElementById('btn_clr_img').setAttribute("hidden", true);
-    // $("#edit_img").val(false);
   }
   else {
     if (input.files && input.files[0]) {
@@ -330,21 +285,11 @@ Rm_tp.prototype.readURL= function(input){
           ctx.drawImage(this, 0, 0, imageWidth, imageHeight);
           // The resized file ready for upload
           var finalFile = canvas.toDataURL(fileType);
-          // console.log(finalFile);
           $('#img_evid').attr('src', finalFile);
         }
         document.getElementById('btn_clr_img').removeAttribute("hidden");
-        // console.log(e.target.result);
-        // console.log(input.files[0]);
-
-        // obj_rm_tp.resizeBase64Img(e.target.result,100,100);
-
       }
       reader.readAsDataURL(file);
-      // imagen1 = document.getElementById('img_evid');
-      // reader.readAsDataURL(input.files[0]);
-      // console.log(filesize(imagen1));
-      // console.log(input.files[0]);
     }
   }
 
@@ -391,7 +336,6 @@ Rm_tp.prototype.eliminaEvidencia= function(idtemaprioritario){
       })
       .done(function(result) {
       swal.close();
-    //  console.log(result.status);
         swal(
             '¡Correcto!',
             "Se eliminó el tema prioritario correctamente",
@@ -403,7 +347,6 @@ Rm_tp.prototype.eliminaEvidencia= function(idtemaprioritario){
       console.error("Error in get_datos_edith_tp()"); console.table(e);
       })
       .always(function() {
-          // swal.close();
       })
 
 }

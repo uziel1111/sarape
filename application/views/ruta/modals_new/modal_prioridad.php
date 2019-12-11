@@ -57,7 +57,6 @@
 				<div class="row mt-3">
 					<div class="col-lg-6">
 						<label><span class="badge badge-secondary h5 text-white">1.</span>Ámbito(s) y Problemática(s):<span style="color:red">*</span></label><br>
-						<!-- <textarea id="problematica" name="problematica" class="form-control" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea> -->
 							<select class="selectpicker problematica form-control"  title="Seleccione la(s) problemática(s) por ámbito(s)" multiple name="problematica" tabindex="-98" id="problematicaSelect">
 								<?php foreach ($cat_select as $key => $value) { ?>
 									<option value="<?=$value['idrm_c_problematica_ambito']?>" data-id="<?=$value['idrm_c_problematica_ambito']?>" data-tipo="<?=$value['tipo']?>"><?=$value['descripcion']?></option>
@@ -66,20 +65,11 @@
 							<textarea id="problematicaTxt" name="problematica" class="form-control problematicaTxt" disabled="true" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
 							
 					</div>
-					<!-- <div class="col-lg-6 mt-3 mt-lg-0">
-						<label><span class="badge badge-secondary h5 text-white">2.</span> Problemática<span style="color:red">*</span></label>
-						<br>
-					<textarea id="problematicaTxt" name="problematica" class="form-control problematicaTxt" rows="2" maxlength="400"><?= (isset($problematica))?$problematica:"" ?></textarea>
-				</div> -->
-				
-					<!-- <div class="col-lg-6 "> -->
-						<!-- <div class="row mt-4"> -->
 						<div class="col-lg-6">
 						<label><span class="badge badge-secondary h5 text-white">2.</span> Evidencia(s)<span style="color:red">*</span></label>
 						<br>
 						<textarea required id="evidencias" name="evidencia" class="form-control" rows="2" maxlength="400" style="height: 100px !important;"><?= (isset($evidencia))?$evidencia:"" ?></textarea>
 					</div>
-				<!-- </div> -->
 			</div>
 
 				<div class="row mt-4">
@@ -265,15 +255,8 @@
 
 											<div class="col">
 												<label class="mb-1"><span class="badge badge-secondary h5 text-white">4.Meta</span><span class="badge badge-success h5 text-white ml-2"><i class="fas fa-angle-double-right"></i> </span></label>
-												<!-- <input type="text" id="slt_meta" class="form-control"> -->
+												
 												<textarea id="slt_meta" rows="2" class="form-control" id="slt_meta"></textarea>
-										<!-- <select class="form-control" id="slt_meta" tabindex="-98">
-											<option selected='selected' value="0">SELECCIONAR</option>
-											<option>OPCIÓN 1</option>
-											<option>OPCIÓN 2</option>
-											<option>OPCIÓN 3</option>
-											<option>OPCIÓN 4</option>
-										</select> -->
 									</div>
 
 									<div class="col">
@@ -308,7 +291,7 @@
 											<option value="-1">Otro</option>
 										</select>
 
-										<!-- <input type="text" id="otra_fecha" class="form-control" style="margin-top: 15px"> -->
+										
 										<textarea id="otra_fecha" rows="2" class="form-control" style="margin-top:15px"></textarea>
 									</div>
 
@@ -404,10 +387,10 @@
 			</div>
 		</div>
 	</div>
-	<!--  -->
+	
 
 	<input type="hidden" id="nivel" value="  ">
-	<!-- <input type="hidden" value="" id="idtemap_seleccionado" name="tema_prioritario"> -->
+	
 	<input type="hidden" value="" id="id_objetivo">
 
 

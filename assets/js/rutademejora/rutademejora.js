@@ -70,7 +70,6 @@ $("#nav-avances-tab").click(function(){
   }).fail(function(e) {
     console.error("Error in get avance()"); console.table(e);
   }).always(function() {
-    // swal.close();
   })              
 });
 
@@ -97,7 +96,6 @@ $("#btn_rutamejora_obs_super").click(function(){
     })
     .done(function(result) {
       swal.close();
-      // console.log(result.srt_html);
       $('#exampleModal_obs_super').modal('toggle');
       $("#txt_rm_obs_super1").empty();
       $("#txt_rm_obs_super1").html(result.str_obs_super);
@@ -106,7 +104,6 @@ $("#btn_rutamejora_obs_super").click(function(){
       console.error("Error in get obs_sup()"); console.table(e);
     })
     .always(function() {
-          // swal.close();
     })
     //llamado a la vista de acciones
   }

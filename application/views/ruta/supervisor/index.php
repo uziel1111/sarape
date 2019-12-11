@@ -62,9 +62,7 @@
  </div>
 </div>
 <br>
-<!-- <div class="row"> -->
   <div id="contenedor_tabla_rutas"></div>
-  <!-- </div> -->
 </div>
 <!-- Button trigger modal -->
 
