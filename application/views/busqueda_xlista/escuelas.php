@@ -147,8 +147,6 @@
     e.preventDefault();
     if($("#tipou_pemc2").length){
       
-    
-      // let idescuela = $(this).data('idescuela');
       let cct = $(this).data('cve_centro');
       let turno = $(this).data('turno_single');
       var turno_single = $(this).data('turno_single');
@@ -182,7 +180,7 @@
       var element1 = document.createElement("input");
       var element2 = document.createElement("input");
       var element3 = document.createElement("input");
-      // console.log(cct);
+
       element1.type = "hidden";
       element1.name="id_cct";
       element1.value = cct;
@@ -198,7 +196,7 @@
       form.name = "form_escuelas_getinfo";
       form.id = "form_escuelas_getinfo";
       form.method = "POST";
-      // form.target = "_self";
+
       form.action = base_url+"info/index/";
 
       document.body.appendChild(form);

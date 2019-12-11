@@ -345,8 +345,6 @@ class Panel extends CI_Controller {
 						$ruta_archivos = explode("/", $propuesta[0]['ruta']);
 						$ruta_archivos_save = "recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/";
 
-						// echo $ruta_archivos_save;
-						// die();
 
 						if(!is_dir($ruta_archivos_save)){
 						mkdir($ruta_archivos_save, 0777, true);}
@@ -358,8 +356,6 @@ class Panel extends CI_Controller {
 						$ruta_archivos = explode("/", $propuesta[0]['ruta']);
 						$ruta_archivos_save = "recursos/{$propuesta[0]['id_reactivo']}/{$carpeta}/";
 
-							// echo $ruta_archivos_save;
-							// die();
 
 						if(!is_dir($ruta_archivos_save)){
 						mkdir($ruta_archivos_save, 0777, true);}

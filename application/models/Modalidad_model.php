@@ -21,14 +21,7 @@ class Modalidad_model extends CI_Model
 
 
     function getmodali_xidmun_idnivel_idsost($id_municipio,$nivel,$sostenimiento){
-      // $this->db->select('mo.id_modalidad, mo.modalidad');
-      // $this->db->from('modalidad as mo');
-      // $this->db->join('escuela as es', 'mo.id_modalidad = es.id_modalidad');
-      // $this->db->join('estadistica_e_indicadores_xcct as  est', 'es.id_cct = est.id_cct');
-      // $this->db->join('municipio as mu', 'es.id_municipio = mu.id_municipio');
-      // $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
-      // $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
-      // $this->db->join('sostenimiento as so', 'sso.id_sostenimiento = so.id_sostenimiento');
+
       $filtro="";
       if($id_municipio>0){
         $filtro.=" AND municipio={$id_municipio}";
@@ -45,8 +38,7 @@ class Modalidad_model extends CI_Model
           $filtro.="AND sostenimiento NOT IN('61','41','92','96','51')";
         }
       }
-      // $this->db->group_by("mo.id_modalidad");
-      // return  $this->db->get()->result_array();
+
       $query="SELECT cct,nivel_educativo AS nivel,desc_nivel_educativo,
               servicio AS id_modalidad,desc_servicio AS modalidad 
               FROM vista_cct WHERE status IN ('1','4') 
@@ -63,15 +55,11 @@ class Modalidad_model extends CI_Model
         return "TODOS";
       }
       else {
-        // $this->db->select('v.desc_servicio as modalidad');
-        // $this->db->from('vista_cct as v');
-        // $this->db->where('v.servicio', $id_modalidad);
-        // return  $this->ce_db->get()->row('modalidad');
+
         $query = "SELECT desc_servicio as modalidad FROM vista_cct 
                   WHERE  servicio={$id_modalidad} 
                   AND desc_nivel_educativo = '{$nivel}'";
-                  // echo $query;
-                  // die();
+
         return $this->ce_db->query($query)->row('modalidad');
       }
 

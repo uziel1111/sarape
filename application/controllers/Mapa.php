@@ -41,17 +41,12 @@ class Mapa extends CI_Controller {
 				 $arr_sostenimientos[$sostenimiento['id_sostenimiento']] = $sostenimiento['sostenimiento'];
 			}
 			$arr_federales['0'] = 'TODOS';
-			// foreach ($sostenimientos as $sostenimiento){
-			// 	 $arr_sostenimientos[$sostenimiento['id_sostenimiento']] = $sostenimiento['sostenimiento'];
-			// }
 
 			$data2['municipios'] = $arr_municipios;
 			$data2['niveles'] = $arr_niveles;
 			$data2['sostenimientos'] = $arr_sostenimientos;
 			$data2['programas'] = $arr_federales;
-			// echo "<pre>";
-			// print_r($arr_niveles);
-			// die();
+
 			$string = $this->load->view('mapa/buscador_x_mapa', $data2, TRUE);
 			$data['buscador'] = $string;
 			Utilerias::pagina_basica($this, "mapa/index", $data);
@@ -137,9 +132,6 @@ class Mapa extends CI_Controller {
 				$escuelas = $this->Escuela_model->get_mismo_nivel($escuela[0]['latitud'], $escuela[0]['longitud'], $escuela[0]['id_nivel'], false);
 
 				foreach ($escuelas as $marcador) {
-				// 	echo"<pre>";
-				// print_r($marcador);
-				// die();
 		            array_push($marcadorb, $marcador['nombre_centro']);
 		            array_push($marcadorb, (float) $marcador['latitud']);
 		            array_push($marcadorb, (float) $marcador['longitud']);

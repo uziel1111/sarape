@@ -36,7 +36,7 @@ $("#btn_indice_peso").click(function(e){
               let cct = $("#in_cct").val();
               let turno = $("#in_turno").val();
               let nivel = $("#in_nivel").val();
-              // alert(id_cct);
+
   							$.ajax({
   				        url:  base_url+"info/get_indice_peso",
   				        method: 'POST',
@@ -77,8 +77,6 @@ $("#btn_info_aprendiz").click(function(e){
               e.preventDefault();
               obj_info.get_planea();
               obj_info.get_ete();
-              // alert("entramos");
-
             });
 
 $("#btn_buscar_ries_esc").click(function(e){
@@ -104,7 +102,7 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
 				      })
 				      .done(function( data ) {
 							let nivel = data.nivel;
-              // alert("quiubo");
+
 							if (data.estadis_alumnos_escuela.length>0) {
 						    var a_g1 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_1']);//5;
 						    var a_g2 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_2']);//5;
@@ -160,7 +158,7 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
                           }
 									break;
 									case 5:
-                  // console.log(d_g1+d_g2+d_g3);
+
                           if (a_g1+a_g2+a_g3!=0 && (!isNaN(a_g1+a_g2+a_g3))) {
                             graf.GraficoEstadisticaSecundaria_alumn(a_g1,a_g2,a_g3,a_g1+a_g2+a_g3);
                           }
@@ -206,11 +204,9 @@ Info_esc.prototype.get_indica_asist =function(){
 				      .done(function( data ) {
 							let nivel = data.nivel;
               if (nivel==4) {
-                //$("#lb_ind_asisten").text("Ciclo escolar: FIN- 2015-2016");
                 $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2017-2019");
               }
               else if (nivel==5 || nivel==6) {
-                //$("#lb_ind_asisten").text("Ciclo escolar: FIN- 2016-2017");
                 $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2017-2019");
               }
 							if (data.indica_asisten.length>0) {
@@ -286,7 +282,7 @@ Info_esc.prototype.get_prog_apoyo =function(){
 						let cct = $("#in_cct").val();
             let turno = $("#in_turno").val();
             let nivel = $("#in_nivel").val();
-            // alert(id_cct);
+
 							$.ajax({
 				        url:  base_url+"info/info_prog_apoyo",
 				        method: 'POST',
@@ -298,7 +294,7 @@ Info_esc.prototype.get_prog_apoyo =function(){
 				      .done(function( data ) {
 							let programas = data.programs;
               var str_view_table='';
-              // alert(programas);
+
               str_view_table+="<div class='col'>";
             str_view_table+="<div class='table-responsive'>";
 
@@ -378,8 +374,7 @@ Info_esc.prototype.get_riesgo =function(){
 			}
 		})
 		.done(function( data ) {
-			// console.log("DATOS BAJADOS");
-			// console.log(data);
+
 			var nivel = data.nivel;
       if (data.graph_pie_riesgo.length>0) {
 				var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
@@ -540,7 +535,7 @@ Info_esc.prototype.get_riesgo =function(){
 								break;
 
 								default:
-                  // alert("no hubo");
+
 								break;
 
 								}
@@ -557,7 +552,7 @@ Info_esc.prototype.get_riesgo =function(){
 },
 
 Info_esc.prototype.get_planea =function(){
-	// alert("Entramos");
+
 	$("#dv_info_asistencia").attr('hidden',true);
 							$("#dv_info_permanencia").attr('hidden',true);
 							$("#dv_info_aprendizaje").removeAttr('hidden');
@@ -574,7 +569,7 @@ Info_esc.prototype.get_planea =function(){
 							})
 							.done(function( data ) {
 								let nivel = data.nivel;
-                // console.log(data);
+
 								if (data.planea15_escuela.length>0) {
 								var lyc1_15  = parseFloat(data.planea15_escuela[0]['lyc_i']);
 								var lyc2_15  = parseFloat(data.planea15_escuela[0]['lyc_ii']);
@@ -627,7 +622,7 @@ Info_esc.prototype.get_planea =function(){
                     var mat3_19  = parseFloat(data.planea19_escuela[0]['mat_iii']);
                     var mat4_19  = parseFloat(data.planea19_escuela[0]['mat_iv']);
                   }
-                // alert();
+
                 if ((lyc1_16+lyc2_16+lyc3_16+lyc4_16+mat1_16+mat2_16+mat3_16+mat4_16)>0) {
                   $("#dv_lyc_mat_esc_nl").removeAttr('hidden');}
                 else {
@@ -765,7 +760,6 @@ Info_esc.prototype.get_planea =function(){
 
 									default:
 													$("#dv_info_aprendizaje").empty();
-                          // console.log("llego en la linea 746");
 									break;
 
 
@@ -802,7 +796,7 @@ Info_esc.prototype.get_planea =function(){
 },
 
 Info_esc.prototype.get_ete =function(){
-	// alert("Entramos");
+
             $("#containerRPB03ete").empty();
             $("#lb_ind_efi").empty();
             $("#lb_ind_planea").empty();
@@ -863,9 +857,7 @@ Info_esc.prototype.get_riesgo2 =function(){
 							    },
 				      })
 				      .done(function( data ) {
-				      	// console.log("DATOS BAJADOS");
-				      	// console.log(data);
-				      	// $("#total_bajas").text("4");
+
 				      	$("#total_bajas").text(data.numero_bajas[0]['total']);
 								let nivel = data.nivel;
                 let q1 = 0;

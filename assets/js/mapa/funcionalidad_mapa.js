@@ -127,20 +127,17 @@ Mapa.prototype.retur_icon = function(nivel){
 }
 
 Mapa.prototype.cct_mismo_nivel = function(idcct){
-	// console.log(idcct);
 	$.ajax({
 		url: base_url+'mapa/get_mismo_nivel',
 		type: 'POST',
 		dataType: 'json',
 		data: "idcct="+idcct,
 		beforeSend: function(xhr) {
-	        // obj_loader.show();
 	        Notification.loading("Cargando");
 	        
 	    },
 	})
 	.done(function(result) {
-		// obj_loader.hide();
 		var marcadores = result.response;
 	    obj_mapa.pinta_en_mapa(marcadores);
 	})
@@ -156,19 +153,17 @@ Mapa.prototype.cct_mismo_nivel = function(idcct){
 }
 
 Mapa.prototype.cct_siguiente_nivel = function(idcct){
-	// console.log(idcct);
 	$.ajax({
 		url: base_url+'mapa/get_siguiente_nivel',
 		type: 'POST',
 		dataType: 'json',
 		data: "idcct="+idcct,
 		beforeSend: function(xhr) {
-	        // obj_loader.show();
 	        Notification.loading("Cargando");
 	    },
 	})
 	.done(function(result) {
-		// obj_loader.hide();
+
 		var marcadores = result.response;
 	    obj_mapa.pinta_en_mapa(marcadores);
 	})
@@ -187,8 +182,6 @@ Mapa.prototype.cct_siguiente_nivel = function(idcct){
 Mapa.prototype.pinta_en_mapa = function(marcadores){
 	if (marcadores != '') {
 	document.getElementById('contenedor_mapa_id').scrollIntoView();
-	// console.table(marcadores);
-	// console.log(marcadores[0][4]);
 	var map = new google.maps.Map(document.getElementById('map'), {
 	         zoom: 10,
 	         center: new google.maps.LatLng(marcadores[0][1],marcadores[0][2]),
@@ -199,7 +192,6 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	      });
 
 	      var oms = new OverlappingMarkerSpiderfier(map); //Spiderfied it here
-	      // var iw = new gm.InfoWindow();
 	      oms.addListener('click', function(marker, event) {
 	        infowindow.setContent(marker.desc);
 	        infowindow.open(map, marker);
@@ -212,12 +204,10 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	      var iconBase = '../../assets/img/markets/';
 	      for (i = 0; i < marcadores.length; i++) {
 	      	var iconBase = '../../assets/img/markets/'+obj_mapa.retur_icon(marcadores[i][4])+".png";
-	      	// iconBase += obj_mapa.retur_icon(marcadores[i][3]);
 	          marker = new google.maps.Marker({
 	           position: new google.maps.LatLng(marcadores[i][1], marcadores[i][2]),
 	           map: map,
 	           icon: iconBase,
-	           // animation: google.maps.Animation.DROP
 	       });
 	          
 	           oms.addMarker(marker);  // <-- here attempted to add markers
@@ -284,7 +274,6 @@ Notification.loading("Cargando");
 	form.name = "form_info";
 	form.id = "form_info";
 	form.method = "POST";
-	// form.target = "_self";
 	form.action = base_url+"info/index";
 	form.appendChild(element1);
 	form.appendChild(element2);

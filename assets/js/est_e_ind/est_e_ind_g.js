@@ -5,17 +5,14 @@ $("#slc_xest_muni_estmunicipio").change(function(){
     method:"POST",
     data:{"id_municipio":id_municipio},
     beforeSend: function(xhr) {
-      // $("#wait").modal("show");
       Notification.loading("");
     },
     success:function(data){
-      // $("#wait").modal("hide");
       swal.close();
       $("#slc_xest_muni_nivel").empty();
       $.each(data, function (index, item) {
           $("#slc_xest_muni_nivel").append('<option value="'+index+'">'+item+'</option>');
         });
-      // console.log(data);
     },
     error: function(error){
       console.log(error);
@@ -34,17 +31,14 @@ $("#slc_xest_muni_nivel").change(function(){
     method:"POST",
     data:{"id_municipio":id_municipio,"id_nivel":id_nivel,'nivel':nivel},
     beforeSend: function(xhr) {
-      // $("#wait").modal("show");
       Notification.loading("");
     },
     success:function(data){
-      // $("#wait").modal("hide");
       swal.close();
       $("#slc_xest_muni_sostenimiento").empty();
       $.each(data, function (index, item) {
           $("#slc_xest_muni_sostenimiento").append('<option value="'+index+'">'+item+'</option>');
         });
-      // console.log(data);
     },
     error: function(error){
       $("#wait").modal("hide");
@@ -66,17 +60,14 @@ $("#slc_xest_muni_sostenimiento").change(function(){
     method:"POST",
     data:{"id_municipio":id_municipio,"id_nivel":id_nivel,"id_sostenimiento":id_sostenimiento,'nivel':nivel,'sostenimiento':sostenimiento},
     beforeSend: function(xhr) {
-      // $("#wait").modal("show");
       Notification.loading("");
     },
     success:function(data){
-      // $("#wait").modal("hide");
       swal.close();
       $("#slc_xest_muni_modalidad").empty();
       $.each(data, function (index, item) {
           $("#slc_xest_muni_modalidad").append('<option value="'+index+'">'+item+'</option>');
         });
-      // console.log(data);
     },
     error: function(error){
       console.log(error);
@@ -106,17 +97,14 @@ $("#slc_xest_nivel_zona").change(function(){
     method:"POST",
     data:{"id_nivel":id_nivel,'nivel':nivel},
     beforeSend: function(xhr) {
-      // $("#wait").modal("show");
       Notification.loading("");
     },
     success:function(data){
-      // $("#wait").modal("hide");
       swal.close();
       $("#slc_xest_sostenimiento_zona").empty();
       $.each(data, function (index, item) {
           $("#slc_xest_sostenimiento_zona").append('<option value="'+index+'">'+item+'</option>');
         });
-      // console.log(data);
     },
     error: function(error){
       console.log(error);
@@ -146,15 +134,9 @@ $("#slc_xest_sostenimiento_zona").change(function(){
       Notification.loading("");
     },
     success:function(data){
-      // console.table(data.array);
-      // $("#wait").modal("hide");
       swal.close();
       $("#slc_xest_zona").empty();
       $("#slc_xest_zona").append(data.array);
-      // $.each(data, function (index, item) {
-      //     $("#slc_xest_zona").append('<option value="'+index+'">'+item+'</option>');
-      //   });
-      // console.log(data);
     },
     error: function(error){
       console.log(error);
@@ -182,15 +164,12 @@ $("#slc_xest_zona").change(function(){
           Notification.loading("");
     },
     success:function(data){
-      // $("#wait").modal("hide");
       swal.close();
       $("#slc_xest_cicloe_zona").empty();
          $("#slc_xest_cicloe_zona").append('<option value="2">2017-2018</option><option value="4">2018-2019</option>');
-      // console.log('ok ok');
       $.each(data, function (index, item) {
-          // $("#slc_xest_cicloe_zona").append('<option value="'+index+'">'+item+'</option>');
         });
-      // console.log(data);
+
     },
     error: function(error){
       console.log(error);
@@ -201,7 +180,6 @@ $("#slc_xest_zona").change(function(){
 
 });
 $("#btn_buscar_zona").click(function(){
-  // console.log("llego en la funcion del boton");
   var id_nivel = $( "#slc_xest_nivel_zona" ).val();
   var id_subsost = $( "#slc_xest_sostenimiento_zona" ).val();
   var id_zona = $( "#slc_xest_zona" ).val();
@@ -230,7 +208,6 @@ $("#btn_buscar_zona").click(function(){
         Notification.loading("");
       },
       success:function(data){
-        // console.log("fui por el data");
         swal.close();
         $("#resultado_filtros").empty();
         $("#resultado_filtros").append(data.vista);
@@ -277,7 +254,6 @@ $("#btn_buscar_mun_est").click(function(){
       Notification.loading("");
     },
     success:function(data){
-      // console.log(data);
       swal.close();
       $("#resultado_filtros").empty();
       $("#resultado_filtros").append(data.vista);

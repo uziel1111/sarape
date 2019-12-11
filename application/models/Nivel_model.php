@@ -288,7 +288,7 @@ class Nivel_model extends CI_Model
       if($id_municipio>0){
         $auxiliar.= " AND v.municipio= {$id_municipio} ";
       }
-      // $this->db->group_by('ni.id_nivel');
+
       $query="SELECT 
               CASE  
                   WHEN a.nivel = 'PRIMARIA' THEN '4'

@@ -12,8 +12,6 @@ class Estadistica_pemc_model extends CI_Model
       $this->db->join('est_pemc_usuario as u', 'u.id_usuario = s.id_usuario');
       $this->db->where('s.user', $usuario);
       $this->db->where('s.clave', $contrasena);
-       // $this->db->get();
-      // echo $this->db->last_query();die();
       return  $this->db->get()->result_array();
     }// get_datos_sesion()
 
@@ -24,8 +22,7 @@ class Estadistica_pemc_model extends CI_Model
       $this->db->join('nivel AS n ', 'n.id_nivel = e.id_nivel');
       $this->db->where("e.cve_centro = '{$cct}'");
       $this->db->where("ts.id_turno_single = {$turno}");
-      // $this->db->get();
-      // echo $this->db->last_query();die();
+
       return  $this->db->get()->result_array();
     }
 
@@ -44,7 +41,7 @@ class Estadistica_pemc_model extends CI_Model
         }
         $query .= " GROUP BY tp.id_tprioritario  ORDER by tp.orden) as obj group by obj.num_objetivos;";
 
-     // echo '<pre>'; print_r($query);
+
       return $this->db->query($query)->result_array();
 
 
@@ -282,7 +279,7 @@ class Estadistica_pemc_model extends CI_Model
             AND tp.id_prioridad = 5
     GROUP BY e.id_municipio , tp.id_prioridad) AS l5 ON l1.municipio = l5.municipio
 ORDER BY l1.id_region;";
-//echo "<pre>"; print_r($query); die();
+
   return $this->db->query($query)->result_array();
 }
 
@@ -567,15 +564,11 @@ function get_zonas($sostenimiento, $nivel){
         GROUP BY ne.id_nivel , s.id_sostenimiento , s.zona_escolar , tp.id_prioridad
         ORDER BY s.zona_escolar ASC) AS zl5 ON zl1.zona_escolar = zl5.zona_escolar
         GROUP BY zl1.zona_escolar , zl1.nivel";
-// echo "<pre>"; print_r($str_query);
+
         return $this->db->query($str_query)->result_array();
   }
 
-/*function get_avance_accion($idaccion){
-     $str_query = 'SELECT * from rm_avance_xcctxtpxaccion where id_accion = '.$idaccion.'';
-     return $this->db->query($str_query)->result_array();
- }*/
-/*BK201 E*/
+
   function getall_xest_ind(){
     $this->db->select('mu.id_municipio, mu.municipio');
     $this->db->from('municipio mu');
@@ -587,11 +580,7 @@ function get_zonas($sostenimiento, $nivel){
 
 
   function get_xparams($id_municipio,$id_nivel,$id_sostenimiento,$nombre_escuela){
-    // echo $id_municipio."\n";
-    // echo $id_nivel."\n";
-    // echo $id_sostenimiento."\n";
-    // echo $nombre_escuela."\n";
-    // die();
+
     $this->db->select('es.id_cct, es.cve_centro, tu.turno_single, es.nombre_centro,ni.nivel,sso.subsostenimiento, mo.modalidad,mu.municipio,loc.localidad,es.domicilio, es.latitud, es.longitud, es.id_nivel, s.zona_escolar, so.sostenimiento');
     $this->db->from('escuela as es');
     $this->db->join('turno_single as tu', 'es.id_turno_single = tu.id_turno_single');
@@ -617,11 +606,7 @@ function get_zonas($sostenimiento, $nivel){
       $this->db->where('so.id_sostenimiento', $id_sostenimiento);
     }
     if($nombre_escuela!=''){
-      // $this->db->where('es.id_nivel !=','6');
-      // $this->db->where('es.id_nivel !=','7');
-      // $this->db->where('es.id_nivel !=','8');
-      // $this->db->where('es.id_nivel !=','9');
-      // $this->db->where('es.id_nivel !=','10');
+
       $this->db->like('es.nombre_centro', $nombre_escuela);
     }
 

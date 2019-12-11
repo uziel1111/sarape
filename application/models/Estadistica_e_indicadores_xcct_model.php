@@ -408,8 +408,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         END), escuelas.desc_servicio
                 ORDER BY FIELD(nivel,'ESPECIAL','INICIAL','PREESCOLAR','PRIMARIA','SECUNDARIA','MEDIA SUPERIOR','SUPERIOR')
                 ,id_sostenimiento,id_modalidad ";
-    // echo $query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3;
-    // die();
+
 
     return $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
 
@@ -648,8 +647,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 ) AS a ORDER BY FIELD(nivel,'ESPECIAL','INICIAL','PREESCOLAR','PRIMARIA','SECUNDARIA','MEDIA SUPERIOR','SUPERIOR')
                 ,id_sostenimiento,id_modalidad ";
 
-    // echo $query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3;
-    // die();
+
     return $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
 
   }// get_pdocente_xmunciclo()
@@ -1328,8 +1326,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         WHEN escuelas.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
                         ELSE 'PUBLICO'
                     END),escuelas.desc_servicio";
-    // echo $query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3;
-    // die();
+
     return $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
 
   }// get_infraest_xzona
@@ -1355,9 +1352,6 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     $this->db->where('id_turno_single', $id_turno_single);
     $this->db->where('id_corte', 2);
     $this->db->where('id_ciclo', 4);
-    // $this->db->get();
-    // $str = $this->db->last_query();
-    // echo $str; die();
     return  $this->db->get()->result_array();
   }//get_ndocentes_xesc()
 
@@ -1368,9 +1362,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     $this->db->where('id_turno_single', $id_turno_single);
     $this->db->where('id_corte', 2);
     $this->db->where('id_ciclo', 4);
-    // $this->db->get();
-    // $str = $this->db->last_query();
-    // echo $str; die();
+
     return  $this->db->get()->result_array();
   }//get_ngrupos_xesc()
 
@@ -1393,10 +1385,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     $this->db->where('id_turno_single', $id_turno_single);
     $this->db->where('id_ciclo', $id_ciclo);
     $this->db->where('id_corte', $id_corte);
-    //
-    // $this->db->get();
-    // $str = $this->db->last_query();
-    // echo $str; die();
+
     return  $this->db->get()->result_array();
   }// get_ind_asistenciaxcct
 
@@ -1408,9 +1397,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     $this->db->where('id_turno_single', $id_turno_single);
     $this->db->where('id_ciclo', $id_ciclo);
     $this->db->where('id_corte', $id_corte);
-    // $this->db->get();
-    // $str = $this->db->last_query();
-    // echo $str; die();
+
     return  $this->db->get()->result_array();
   }// get_ind_efixcct
 

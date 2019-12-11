@@ -25,7 +25,6 @@ class Info extends CI_Controller {
 		$turno_single = $this->input->post("turno_single");
 		$cct= $this->input->post("id_cct");
 
-			// echo "<pre>"; print_r($cct); die();
 		if(strlen($cct)>10){
 			$cadena=substr ($cct ,0 , 10);
 			$cadena2=substr ($cct ,10 ,3);
@@ -71,7 +70,7 @@ class Info extends CI_Controller {
 			}
 
 			$data['contenidos'] = $arr_contenidos;
-			// $data['trae_indicpeso'] = COUNT($this->Escuela_model->get_indicpeso_xidcct($id_cct,4));
+
 			$arr_peso = $this->CentrosE_model->get_indicpeso_xidcct($cct,$turno_e,4);
 			if (COUNT($arr_peso)==1) {
 				$data['trae_indicpeso'] = $arr_peso[0]['bajo']+$arr_peso[0]['Normal']+$arr_peso[0]['Sobrepeso']+$arr_peso[0]['Obesidad'];
@@ -161,7 +160,7 @@ class Info extends CI_Controller {
 		$cct = $this->input->post("cct");
 		$turno = $this->input->post("turno");
 		$nivel_e = $this->input->post("nivel");
-		// $turno=$this->getTurno($turno_e);
+
 		$nivel=$this->getNivel($nivel_e);
 		$periodo = $this->input->post("periodo");
 		$nombre = $this->input->post("nombre");
@@ -180,7 +179,7 @@ class Info extends CI_Controller {
 			'longitud' =>count($graph_cont_reactivos_xcctxcont)
 		);
 
-		// echo $str_view;
+
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}
@@ -189,7 +188,7 @@ class Info extends CI_Controller {
 		$id_reactivo = $this->input->post("id_reactivo");
 
 		$arr_apoyosacade_xidreact = $this->Planeaxesc_reactivo_model->get_apoyos_academ_xidreact($id_reactivo);
-		// echo "<pre>";print_r($arr_apoyosacade_xidreact);die();
+
 		$response = array(
 			'arr_apoyosacade_xidreact'=>$arr_apoyosacade_xidreact
 		);
@@ -310,7 +309,7 @@ class Info extends CI_Controller {
 		$nivel_e = $this->input->post("nivel");
 		$nivel=$this->getNivel($nivel_e);
 		$turno=$this->getTurno($turno_e);
-		// $nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
+
 		$indica_perma=array();
 		if ($nivel == 4) {
 				$indica_perma = $this->Estadistica_e_indicadores_xcct_model->get_ind_permananciaxcct($cct,$turno,2,1);
@@ -385,8 +384,7 @@ class Info extends CI_Controller {
 	}
 
 	public function getNivel($nivel_e){
-		// echo $nivel_e;
-		// die();
+
 		$nivel=0;
 		if($nivel_e=='ESPECIAL'){
 			$nivel=1;
@@ -465,7 +463,7 @@ class Info extends CI_Controller {
 		$nivel_e = $this->input->post("nivel");
 		$nivel=$this->getNivel($nivel_e);
 		$turno=$this->getTurno($turno_e);
-		// $nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
+
 
 		$planea15_escuela = $this->CentrosE_model->get_planea_xidcct($cct,$turno,'2015');
 		$planea16_escuela = $this->CentrosE_model->get_planea_xidcct($cct,$turno,'2016');

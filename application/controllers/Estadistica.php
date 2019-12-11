@@ -73,8 +73,7 @@ class Estadistica extends CI_Controller {
 			$data['arr_subsostenimientos'] =$arr_subsostenimientos;
 			$data['arr_nzonae'] =$arr_nzonae;
 			$data['arr_ciclos'] =$arr_ciclo;
-			// echo $tipo;
-			// die();
+
 			if ($tipo=="zona") {
 				$data['tzona'] = 'nav-link nav-link-style-1 active';
 				$data['tmuni'] = 'nav-link nav-link-style-1';
@@ -158,7 +157,7 @@ class Estadistica extends CI_Controller {
 			if(count($result_cicloe)==0){
 				$data['arr_cicloe'] = array(	'0' => 'Error recuperando los niveles' );
 			}else{
-				// $arr_cicloe['0'] = 'TODOS';
+
 				foreach ($result_cicloe as $row){
 					 $arr_cicloe[$row['id_ciclo']] = $row['ciclo'];
 				}
@@ -173,7 +172,7 @@ class Estadistica extends CI_Controller {
 			$id_nivel = $this->input->post('id_nivel');
 			$nivel = $this->input->post('nivel');
 			$arr_subsost = array();
-			// $result_subsost = $this->Subsostenimiento_model->getsubsost_xidnivel($id_nivel);
+
 			$result_subsost= $this->Sostenimiento_model->getsost_xidmun_idnivel(0,$nivel);
 			if(count($result_subsost)==0){
 				$data['arr_subsost'] = array(	'0' => 'Error recuperando subsostenimientos' );
@@ -195,9 +194,6 @@ class Estadistica extends CI_Controller {
 			$sostenimiento = $this->input->post('sostenimiento');
 			$arr_nzonae = array();
 			$result_nzonae = $this->Supervision_model->getzona_idnivel_xsost($nivel, $sostenimiento);
-			// echo "<pre>";
-			// print_r($result_nzonae);
-			// die();
 			if(count($result_nzonae)==0){
 				$data['arr_nzonae'] = array(	'0' => 'Error recuperando nuemro de zona escolar' );
 			}else{
@@ -205,13 +201,10 @@ class Estadistica extends CI_Controller {
 				$arr_nzonae['0'] = 'SELECCIONE UNA ZONA ESCOLAR';
 				$select .= "<option value = '0'>SELECCIONE UNA ZONA ESCOLAR</option>";
 				foreach ($result_nzonae as $row){
-					 // $arr_nzonae[$row['id_supervision']] = $row['zona_escolar'];
 					$select .= "<option value = '".$row['id_supervision']."'>".$row['zona_escolar']."</option>";
 				}
 			}
-			// echo "<pre>";
-			// print_r($select);
-			// die();
+
 			$response= array("array" => $select);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
@@ -231,7 +224,7 @@ class Estadistica extends CI_Controller {
 			if(count($result_cicloe)==0){
 				$data['arr_cicloe'] = array(	'0' => 'Error recuperando nuemro de zona escolar' );
 			}else{
-				// $arr_cicloe['0'] = 'TODOS';
+
 				foreach ($result_cicloe as $row){
 					 $arr_cicloe[$row['id_ciclo']] = $row['ciclo'];
 				}
@@ -293,7 +286,7 @@ class Estadistica extends CI_Controller {
 
 		function tabla_alumnos($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xmunciclo($id_municipio, $id_ciclo);
-			// echo "<pre>"; print_r($result_alumnos); die();
+
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
           	<thead class="bg-info">
           		<tr>
@@ -368,7 +361,7 @@ class Estadistica extends CI_Controller {
 
 		function tabla_alumnos_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xzona($nivel,$sostenimiento,$id_zona_z,$id_ciclo_z);
-			// echo "<pre>";print_r($result_alumnos);die();
+
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
           	<thead class="bg-info">
           		<tr>
@@ -442,7 +435,7 @@ class Estadistica extends CI_Controller {
 
 		function tabla_pdocentes($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_pdocente_xmunciclo($id_municipio, $id_ciclo);
-			// echo "<pre>";print_r($result_alumnos);die();
+
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
           	<thead class="bg-info">
 							<tr>
@@ -521,7 +514,7 @@ class Estadistica extends CI_Controller {
 
 		function tabla_pdocentes_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_pdocente_xzona($nivel,$sostenimiento,$id_zona_z,$id_ciclo_z);
-			// echo "<pre>";print_r($result_alumnos);die();
+
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
 						<thead class="bg-info">
 							<tr>
@@ -598,9 +591,6 @@ class Estadistica extends CI_Controller {
 
 		function tabla_infraestructura($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_infraest_xmunciclo($id_municipio, $id_ciclo);
-			// echo "<pre>";
-			// print_r($result_alumnos);
-			// die();
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
           	<thead class="bg-info">
 						<tr>
@@ -677,7 +667,6 @@ class Estadistica extends CI_Controller {
 
 		function tabla_infraestructura_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_infraest_xzona($nivel,$sostenimiento,$id_zona_z,$id_ciclo_z);
-			// echo "<pre>";print_r($result_alumnos);die();
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
 						<thead class="bg-info">
 						<tr>
@@ -754,9 +743,7 @@ class Estadistica extends CI_Controller {
 		function tabla_planea($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			$result_planea = array();
 			$result_planea_prim = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2018, 4);
-			// echo "<pre>";
-			// print_r($result_planea_prim);
-			// die();
+
 			$result_planea_sec = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2019, 5);
 			$result_planea_msuperior = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2017, 6);
 			array_push($result_planea, $result_planea_prim[0]);
@@ -828,7 +815,6 @@ class Estadistica extends CI_Controller {
 							</tr>
 				</thead>
 				<tbody>';
-				// echo "<pre>";print_r($result_asistencia_nv);die();
 
 			foreach ($result_asistencia_nv as $row){
 
@@ -895,7 +881,7 @@ class Estadistica extends CI_Controller {
 
 		function tabla_rezinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			 $result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, '2015');
-			 // echo "<pre>";print_r($result_rezinegi); die();
+
 			$str_html_rezinegi='<table class="table table-style-1 table-striped table-hover">
 				<thead class="bg-info">
 					<tr>
@@ -1009,7 +995,7 @@ class Estadistica extends CI_Controller {
 				$data["sostenimiento_z"] = $sostenimiento;
 				$data["zona_z"] = $this->Supervision_model->get_zona($id_nivel_z, $id_sostenimiento_z,$id_zona_z);
 				$data["ciclo_z"] = $this->Ciclo_model->get_ciclo($id_ciclo_z);
-				// $data["ciclo_z"] = $id_ciclo_z;
+
 				$data["srt_tab_alumnos"] = $this->tabla_alumnos_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento);
 				$data["srt_tab_pdocentes"] = $this->tabla_pdocentes_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento);
 				$data["srt_tab_infraestructura"] =$this->tabla_infraestructura_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento);

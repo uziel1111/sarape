@@ -204,7 +204,7 @@ Recursos.prototype.validaExisteArchivo = function(nombre){
 	    },
 	})
 	.done(function(result) {
-		console.log(result);
+	
 		if(result.respuesta == true){
 			$("#validaexixtente").val("true");
 			swal(
@@ -268,7 +268,7 @@ Recursos.prototype.valida_url = function(url){
   var expression = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/ ;
 var regex = new RegExp(expression);
 if (url.match(regex)) {
-  // alert("entro1");
+
   var expression_adul = /porn|xxx|gay|redtube|porin|lesbian|culo|pinga|verga|pelos|teta|titi|chichi/;
   var regex_a = new RegExp(expression_adul);
   if (url.match(regex_a)) {

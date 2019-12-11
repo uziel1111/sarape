@@ -124,7 +124,7 @@ class Escuela_model extends CI_Model
       {$like}
       GROUP BY es.cct
       ORDER BY es.nivel_educativo";
-             // echo "<pre>"; print_r($str_query); die();
+
       return $this->ce_db->query($str_query)->result_array();
     }// get_xparams()
 
@@ -133,7 +133,6 @@ class Escuela_model extends CI_Model
     function get_xcvecentro($cve_centro){
  
       $str_query = "SELECT 
-    #es.id_cct,
       es.cct as cve_centro,
       es.nombre as nombre_centro,
       es.desc_nivel_educativo as nivel,
@@ -152,7 +151,6 @@ class Escuela_model extends CI_Model
       WHEN desc_nivel_educativo ='OTRO NIVEL EDUCATIVO' THEN '9'
       WHEN nivel_educativo = null  THEN '0'
       END AS id_nivel,
-      #es.nivel_educativo as id_nivel,
       es.nombre_de_municipio as municipio,
       es.nombre_de_localidad as localidad,
       es.zona_escolar,
@@ -185,7 +183,7 @@ class Escuela_model extends CI_Model
       WHERE
       es.cct = '{$cve_centro}'
       {$where_turno}";
-      // echo $str_query; die();
+
       return $this->ce_db->query($str_query)->result_array();
 
 
@@ -195,9 +193,6 @@ class Escuela_model extends CI_Model
     function get_marcadores(){
       $this->db->select('latitud, longitud, nombre_centro');
       $query = $this->db->get('escuela')->result_array();
-      // echo "";
-      // print_r($query);
-      // die();
       return $query;
     }
 
@@ -261,7 +256,6 @@ class Escuela_model extends CI_Model
      }
 
       $str_query = "SELECT 
-    #es.id_cct,
       es.cct as cve_centro,
       es.turno as turno,
       es.desc_turno as turno_single,
@@ -343,7 +337,6 @@ class Escuela_model extends CI_Model
       (IF (GREATEST(SUM(`Bajo-peso`),SUM(Normal),SUM(Sobrepeso),SUM(Obesidad)) = (SUM(Obesidad)),1,0)) AS t_obesidad
       FROM pesoxcct
       where id_cct in ({$ids}) and id_ciclo = 4";
-                    // echo $str_query;die();
       return $this->db->query($str_query)->result_array();
       // echo
     }

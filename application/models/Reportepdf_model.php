@@ -26,7 +26,7 @@ class Reportepdf_model extends CI_Model
       LEFT JOIN rm_objetivo o ON rtp.id_tprioritario=o.id_tprioritario
       WHERE rtp.cct = '{$cct}' AND rtp.turno = {$turno}
       ORDER BY orden ASC";
-// echo $str_query; die();
+
       return $this->db->query($str_query)->result_array();
     }
 
@@ -91,7 +91,7 @@ LEFT JOIN rm_avance_xcctxtpxaccion av ON av.id_accion = acc.id_accion
 AND acc.id_tprioritario = av.id_tprioritario
 WHERE
 	{$where}";
-        // echo $str_query; die();
+     
         return $this->db->query($str_query)->result_array();
     }
 
@@ -99,7 +99,7 @@ WHERE
       $str_query = "SELECT c.ciclo FROM rm_misionxcct mxcct
                     INNER JOIN ciclo c ON c.id_ciclo = mxcct.id_ciclo
                     WHERE cct = '{$cct}' AND turno = {$turno}";
-      // echo $str_query; die();
+
       return $this->db->query($str_query)->result();
     }
 }// Rutamejora_model

@@ -59,7 +59,7 @@ class Supervision_model extends CI_Model
               AND escuelas.sostenimiento = supervisiones.sostenimiento
               {$filtro}
             GROUP BY supervisiones.zona_escolar";
-      // echo $query; die();
+
       return $this->db->query($query)->result_array();
 
     }// getzona_idnivel_xsost

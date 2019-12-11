@@ -33,7 +33,7 @@ class Recursos_model extends CI_Model
 					WHERE pua.id_periodo = {$periodo} AND pua.id_campodisiplinario = {$campo_dis} AND pua.id_nivel = {$nivel}
 					GROUP BY pr.id_reactivo
 					ORDER BY pr.id_reactivo ASC";
-					// echo $str_query; die();
+	
       	return $this->db->query($str_query)->result_array();
     }// all()
 
@@ -94,7 +94,7 @@ class Recursos_model extends CI_Model
     	$str_query = "SELECT id_reactivo, REPLACE ( ruta, 'propuestas/', 'recursos/' ) as ruta, idtipo, titulo, fuente  FROM prop_mapoyo
 						WHERE id_propuesta = '{$idpropuesta}'";
 		$autorizado = $this->db->query($str_query)->result_array();
-		// echo "<pre>";print_r($autorizado[0]);die();
+
 
 		$seinserto = $this->inserta_url($autorizado[0]['id_reactivo'], $autorizado[0]['ruta'], $idusuario, $autorizado[0]['idtipo'], $autorizado[0]['titulo'], $autorizado[0]['fuente']);
 

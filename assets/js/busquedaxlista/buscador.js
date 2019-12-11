@@ -154,7 +154,6 @@ Buscador.prototype.form = function(cct,turno,turno_single){
   form.appendChild(element1);
   form.appendChild(element2);
   form.appendChild(element3);
-  // console.log(form);
   document.body.appendChild(form);
   form.submit();
 };

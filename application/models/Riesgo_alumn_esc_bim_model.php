@@ -8,7 +8,6 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
     }
 
     function get_riesgo_pie_xidct($cct,$id_turno_single,$bimestre,$ciclo, $id_nivel){
-      // return  $this->db->get('nivel')->result_array();
 
       $nivel = ($id_nivel == 4)? "primaria":"secundaria";
       $str_query = "SELECT
@@ -19,14 +18,14 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
       IFNULL(SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))=0,1,0)), 0) as bajo
       FROM alumnos_riesgo_{$nivel} WHERE cct='{$cct}' AND id_turno_single={$id_turno_single}  AND ciclo='".$ciclo."'
       ";
-      // echo $str_query; die();
+
       $query = $this->db->query($str_query);
         return $query->result_array();
 
     }// get_riesgo_pie_xidct()
 
     function get_riesgo_bar_grados_xidct($cct,$id_turno_single,$bimestre,$ciclo, $id_nivel){
-      // return  $this->db->get('nivel')->result_array();
+
       $nivel = ($id_nivel == 4)? "primaria":"secundaria";
       $str_query = "SELECT id_cct,
       (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE cct='".$cct."' AND id_turno_single={$id_turno_single} AND ciclo='".$ciclo."') as muyalto_t,
@@ -38,7 +37,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
       (SELECT SUM(IF(((IF(extraedad>1,1,0)) + (IF(falta_bim".$bimestre.">7, 2,IF(falta_bim".$bimestre.">3, 1,0))) + (IF(espanol_b".$bimestre."<6 AND espanol_b".$bimestre.">0,1,0)) + (IF(matematicas_b".$bimestre."<6 and matematicas_b".$bimestre.">0,1,0)))>2,1,0)) as muy_alto FROM alumnos_riesgo_{$nivel} WHERE cct='".$cct."' AND id_turno_single={$id_turno_single} AND ciclo='".$ciclo."' AND grado=6) as muyalto_6
       FROM alumnos_riesgo_{$nivel} WHERE cct='{$cct}' AND id_turno_single={$id_turno_single}   AND ciclo='".$ciclo."' GROUP BY id_cct
       ";
-      // echo $str_query; die();
+
       $query = $this->db->query($str_query);
         return $query->result_array();
 
@@ -61,15 +60,14 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
       INNER JOIN centros_educativos.vista_cct esc ON rie.cct = esc.cct AND (esc.status= 1 OR esc.status = 4) AND esc.tipo_centro=9
       WHERE ".$var_aux." esc.desc_nivel_educativo = '{$nivel}' AND rie.ciclo='".$ciclo."'";
 
-      // echo $str_query;
-      // die();
+
       $query = $this->db->query($str_query);
         return $query->result_array();
 
     }// get_riesgo_pie_xidmuni()
 
     function get_riesgo_bar_grados_xidmuni($id_municipio,$id_nivel,$bimestre,$ciclo){
-      // return  $this->db->get('nivel')->result_array();
+  
       $nivel = ($id_nivel == 4)? "primaria":"secundaria";
 
       if ($id_municipio>0) {
@@ -86,8 +84,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         INNER JOIN escuela esc ON rie.id_cct = esc.id_cct
         WHERE esc.id_municipio=".$id_municipio." AND esc.id_nivel=".$id_nivel." AND rie.ciclo='".$ciclo."' GROUP BY esc.id_municipio
         ";
-        // echo "municipio...";
-        // echo $str_query1; die();
+
         $query = $this->db->query($str_query1);
       }
       else {
@@ -104,8 +101,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         INNER JOIN escuela esc ON rie.id_cct = esc.id_cct
         WHERE esc.id_nivel=".$id_nivel." AND rie.ciclo='".$ciclo."' limit 1
         ";
-        // echo "estado...";
-        // echo $str_query1; die();
+   
         $query = $this->db->query($str_query1);
       }
 
@@ -130,7 +126,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
       $str_query = "SELECT COUNT(ab.id_cct) AS total FROM alumnos_bajas_{$nivel} ab
                     INNER JOIN escuela e ON e.id_cct = ab.id_cct
                     WHERE e.id_nivel = {$id_nivel} AND ab.bimestre = {$id_bim} {$where}";
-                    // echo $str_query; die();
+
       $query = $this->db->query($str_query);
 
       return $query->result_array();

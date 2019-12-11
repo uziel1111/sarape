@@ -112,9 +112,7 @@ class Planea extends CI_Controller {
 		}
 
 		public function planea_xcont_xmunicipio(){
-			// echo "<pre>";
-			// print_r($_POST);
-			// die();
+
 			$id_contenido = $this->input->post("id_cont");
 		    $id_zona_municipio = $this->input->post("id_xzona_o_municipio");
 		    $id_perioso = $this->input->post("periodo");
@@ -137,11 +135,8 @@ class Planea extends CI_Controller {
 			$nombre_nivel = $this->input->post("nombre_nivel");
 			$idsubsostenimiento = $this->input->post('idsubsostenimiento');
 
-			// $zonas = $this->Planeaxesc_reactivo_model->zonaxnivel($nombre_nivel, $idsubsostenimiento);
 			$zonas = $this->Supervision_model->getzona_idnivel_xsost($nombre_nivel,$idsubsostenimiento);
-			// echo "<pre>";
-			// print_r($zonas);
-			// die();
+
 			$arr_zonas = array();
 			array_push($arr_zonas, array("data" => 0, "label" => "SELECCIONE"));
 			foreach ($zonas as $zona){
@@ -173,7 +168,7 @@ class Planea extends CI_Controller {
 			$id_reactivo = $this->input->post("id_reactivo");
 
 			$arr_apoyosacade_xidreact = $this->Planeaxesc_reactivo_model->get_apoyos_academ_xidreact($id_reactivo);
-			// echo "<pre>";print_r($arr_apoyosacade_xidreact);die();
+
 			$response = array(
 				'arr_apoyosacade_xidreact'=>$arr_apoyosacade_xidreact
 			);

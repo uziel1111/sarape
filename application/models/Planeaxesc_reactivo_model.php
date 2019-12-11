@@ -17,7 +17,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
       $this->db->join('planea_unidad_analisis t4', 't3.id_unidad_analisis=t4.id_unidad_analisis');
       $this->db->join('planea_camposdisciplinares t5', 't4.id_campodisiplinario=t5.id_campodisiplinario');
       $this->db->where('t1.cct', $cct);
-      // $this->db->where('t1.turno_single', $turno);
+
       $this->db->where('t1.id_periodo', $periodo);
       $this->db->where('t5.id_campodisiplinario', $idcampodis);
 
@@ -160,7 +160,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
               GROUP BY t3.id_contenido, e.cct) AS datos
               GROUP BY id_contenido
             ) AS datos2";
-                        // echo $str_query; die();
+
         return $this->db->query($str_query)->result_array();
     }
 
@@ -219,7 +219,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
                             GROUP BY t3.id_contenido,escuelas.cct) AS datos
                             GROUP BY id_contenido
                           ) AS datos2";
-        // echo $str_query; die();
+
         return $this->db->query($str_query)->result_array();
     }
 
@@ -256,7 +256,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
         AND(t2.id_reactivo!=440 and t2.id_reactivo!=455 and t2.id_reactivo!=471 and t2.id_reactivo!=475 and t2.id_reactivo!=477)
         AND `t5`.`id_campodisiplinario` = {$idcampodis} GROUP BY `t2`.`id_reactivo`) datos GROUP BY id_reactivo
         ";
-        // echo $str_query; die();
+
       return $this->db->query($str_query)->result_array();
 
     }// get_reactivos_xcctxcont()
@@ -316,7 +316,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
               AND(t2.id_reactivo!=300 AND t2.id_reactivo!=319 AND t2.id_reactivo!=328 AND t2.id_reactivo!=330 AND t2.id_reactivo!=346)
               AND(t2.id_reactivo!=350 AND t2.id_reactivo!=374 AND t2.id_reactivo!=422 AND t3.id_contenido!=424 AND t2.id_reactivo!=426 AND t2.id_reactivo!=433)
               AND `t5`.`id_campodisiplinario` = {$idcampodis} GROUP BY`t2`.`id_reactivo`) datos GROUP BY id_reactivo";
-                  // echo $str_query; die();
+        
                   return $this->db->query($str_query)->result_array();
 
     }// get_reactivos_xcctxcont()
@@ -335,10 +335,9 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
               FROM vista_cct
               WHERE (`status`= 1 OR `status` = 4) 
               AND tipo_centro=1 
-             -- AND desc_nivel_educativo LIKE '%{$nivel}%'
+
               {$filtro} ";
-      // echo $query;
-      // die();
+
       return $this->ce_db->query($query)->result_array();
     }
 
@@ -362,8 +361,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
               WHERE v.status IN ('1','4') AND v.tipo_centro='9'
               {$filtro}
               GROUP BY id_sostenimiento";
-      // echo $query;
-      // die();
+
       return $this->ce_db->query($query)->result_array();
      }
 

@@ -27,7 +27,7 @@ Panel.prototype.get_reactivos =function(){
 	})
 	.done(function(result) {
 		$("#contenedor_tabla").empty();
-		console.log(result);
+
 		var table = "";
 		$("#contenedor_tabla").append(result);
 
@@ -53,7 +53,7 @@ Panel.prototype.get_tabla = function(idreactivo){
 	    },
 	})
 	.done(function(result) {
-		console.log(result.totalre);
+
 		$("#div_contenedor_de_tablarec").empty();
 		$("#div_contenedor_hidden").empty();
 		$("#div_contenedor_de_tablarec").append(result.tabla);
@@ -123,7 +123,7 @@ Panel.prototype.show_propuestas = function(id_reactivo){
 	    },
 	})
 	.done(function(result) {
-		console.log(result.respuesta);
+
 		$("#div_contenedor_de_propuestas").empty();
 		$("#div_contenedor_de_propuestas").append(result.respuesta);
 		$("#modal_visor_propuestas").modal('show');
@@ -155,7 +155,7 @@ Panel.prototype.autorizar_propuesta = function(idpropuesta){
 	    },
 	})
 	.done(function(result) {
-		console.log(result.respuesta);
+
 		swal.close();
 
 		if(result.respuesta == 'maximovalor'){
@@ -212,7 +212,7 @@ Panel.prototype.elimina_propuesta = function(idpropuesta){
 		})
 		.done(function(result) {
 			swal.close();
-			console.log(result.respuesta);
+
 			if(result.respuesta == true){
 				swal(
 			      'Correcto!',

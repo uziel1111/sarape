@@ -28,7 +28,6 @@ class Estadistica_pemc extends CI_Controller
     {
       $data = $this->data;
       $data['error'] = '';
-      // echo 'Entras o no?'; die();
       $this->load->view( "estadistica_pemc/login", $data);
   }
 
@@ -41,7 +40,6 @@ class Estadistica_pemc extends CI_Controller
             $data = array();
             Utilerias::set_usuario_sesion($this, $user_data);
             $result_municipios = $this->Estadistica_pemc_model->getall_xest_ind();
-            // $result_municipios = array();
             $arr_municipios = array();
             if(count($result_municipios)==0){
                 $data['arr_municipios'] = array(    '0' => 'Error recuperando los municipios' );

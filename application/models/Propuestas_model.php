@@ -25,9 +25,7 @@ class Propuestas_model extends CI_Model
       $this->db->select('COUNT(id_reactivo) as n_prop');
       $this->db->from('prop_mapoyo');
       $this->db->where('id_reactivo', $idreactivo);
-      // $this->db->get();
-      // $str = $this->db->last_query();
-      // echo $str; die();
+
       return  $this->db->get()->row()->n_prop;
 }
 

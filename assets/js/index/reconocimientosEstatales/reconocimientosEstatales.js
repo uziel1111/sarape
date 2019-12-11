@@ -24,9 +24,7 @@ $("#btn_reconocimientosEstatales_rafael").click(function(e){
 });
 
 $('#modal_reconocimientosEstatales').on('hidden.bs.modal', function (e) {
-  // console.info("close");
 });
 
 $('#modal_reconocimientosEstatalesPdf').on('hidden.bs.modal', function (e) {
-  // console.info("close");
 });

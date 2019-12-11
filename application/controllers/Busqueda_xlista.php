@@ -14,11 +14,8 @@ class Busqueda_xlista extends CI_Controller {
 		}
 
 		public function index(){
-			// $result_municipios = $this->Municipio_model->all();
+
 			$result_municipios = $this->CentrosE_model->municipios();
-			// echo "<pre>";
-			// print_r($result_municipios);
-			// die();
 			$arr_municipios = array();
 			$arr_sostenimientos = array();
 			$arr_niveles = array();
@@ -32,7 +29,7 @@ class Busqueda_xlista extends CI_Controller {
 				}
 			}
 
-			// $result_niveles = $this->Nivel_model->all();
+
 			$result_niveles = $this->CentrosE_model->niveles();
 			if(count($result_niveles)==0){
 				$data['arr_niveles'] = array(	'-1' => 'Error recuperando los niveles' );
@@ -43,9 +40,9 @@ class Busqueda_xlista extends CI_Controller {
 				}
 			}
 
-			// $result_sostenimientos = $this->Sostenimiento_model->all();
+
 			$result_sostenimientos = $this->CentrosE_model->sostenimientos();
-			// echo "<pre>"; print_r($result_sostenimientos); die();
+	
 			if(count($result_sostenimientos)==0){
 				$data['arr_sostenimientos'] = array(	'-1' => 'Error recuperando los sostenimientos' );
 			}else{
@@ -89,7 +86,7 @@ class Busqueda_xlista extends CI_Controller {
 
 				$array=array();
 				$result_escuelas = $this->CentrosE_model->filtro_escuela($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
-						// echo "<pre>"; print_r($result_escuelas); die();
+
 				for($i=0; $i<count($result_escuelas); $i++){
 					if($result_escuelas[$i]['turno']==120){
 						$result_escuelas[$i]['turno_n']=100;
@@ -147,7 +144,7 @@ class Busqueda_xlista extends CI_Controller {
 
 				$data['arr_escuelas'] = $array;
 				$data['total_escuelas'] = count($result_escuelas);
-				// echo "<pre>"; print_r($data); die();
+
 				Utilerias::pagina_basica($this, "busqueda_xlista/escuelas", $data);
 
 		}// escuelas_xmunicipio()
@@ -155,11 +152,9 @@ class Busqueda_xlista extends CI_Controller {
 		public function escuelas_xcvecentro(){
 			$cve_centro = $this->input->post('cve_centro');
 			$cve_centro = '05'.trim($cve_centro);
-			// echo "<pre>"; print_r($cve_centro); die();
+
 			$result_escuelas = $this->CentrosE_model->get_xcvecentro($cve_centro);
-			// echo "<pre>";
-			// print_r($result_escuelas);
-			// die();
+
 			$array=array();
 			for($i=0; $i<count($result_escuelas); $i++){
 					if($result_escuelas[$i]['turno']==120){
@@ -212,7 +207,7 @@ class Busqueda_xlista extends CI_Controller {
 				}
 
 
-			// echo "<pre>"; print_r($array); die();
+
 			$total_escuelas = count($array);
 
 			$cct = 0;
@@ -234,7 +229,7 @@ class Busqueda_xlista extends CI_Controller {
 												'turno' => $turno,
 												'turno_single' => $turno_single
 												);
-			// echo "<pre>"; print_r($response); die();
+	
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}// escuelas_xcvecentro()

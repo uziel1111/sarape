@@ -1380,7 +1380,6 @@ HaceGraficas.prototype.PieDrilldownPlanea05y06 = function(lyc1_15,lyc2_15,lyc3_1
         // Create the chart
         var defaultTitle="Resultados PLANEA 2016 ";
         var defaultSubtitle="Haz clic para ver los porcentajes por área.";
-        // var drilldownTitle = "Matemáticas";
 
         var chartp2016 = new Highcharts.chart('dv_info_graf_nlogrolyc', {
             credits: {
@@ -1396,7 +1395,6 @@ HaceGraficas.prototype.PieDrilldownPlanea05y06 = function(lyc1_15,lyc2_15,lyc3_1
                 enabled: false
             },
             subtitle: {
-                //text: 'PLANEA 2015 y PLANEA 2016 ('+cadena_nivel+')'
             },
             xAxis: {
                 categories: [
@@ -1542,7 +1540,6 @@ HaceGraficas.prototype.PieDrilldownPlanea05y06y07 = function(lyc1_15,lyc2_15,lyc
                   enabled: false
               },
               subtitle: {
-                  //text: 'PLANEA 2015 y PLANEA 2016 ('+cadena_nivel+')'
               },
               xAxis: {
                   categories: [
@@ -2353,16 +2350,10 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           // Codigo para graficar la seccion estadistica de la escuela
           var estadPreescolar = new Highcharts.chart('dv_info_graf_contlyc', {
               lang: {
-                  //drillUpText: '◁ Regresar a {series.name}'
               },
               credits: {
                   enabled: false
               },
-              /*
-              chart: {
-                  type: 'bar'
-              },
-              */
               chart: {
                   type: 'bar',
                   backgroundColor: {
@@ -2388,7 +2379,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               yAxis: {
                   title: {
                       text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos que contestó correctamente</div>'
-                      // text: '<div>Porcentaje de alumnos con respuestas correctas</div>'
                   },
               },
               plotOptions: {
@@ -2498,14 +2488,12 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           var defaultSubtitle = "Total de alumnos evaluados: "+parseFloat(arr_mate[0]['alumnos_evaluados'])
           var estadPreescolar = new Highcharts.chart('dv_info_graf_contmat', {
               lang: {
-                  //drillUpText: '◁ Regresar a {series.name}'
               },
               credits: {
                   enabled: false
               },
               chart: {
                   type: 'bar'
-                  // width: 1000
               },
               title: {
                   text: '<b style="font-size: 2.3vh;">PLANEA 2019</b>'
@@ -2528,7 +2516,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   series: {
                     events: {
                       click: function (event) {
-                        // nada...
+
                       }
               },
                       borderWidth: 0,
@@ -2603,7 +2591,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           // Codigo para graficar la seccion estadistica de la escuela
           var estadPreescolar = new Highcharts.chart('dv_info_graf_contlyc', {
               lang: {
-                  //drillUpText: '◁ Regresar a {series.name}'
               },
               credits: {
                   enabled: false
@@ -2633,7 +2620,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               yAxis: {
                   title: {
                       text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos que contestó correctamente</div>'
-                      // text: '<div>Porcentaje de alumnos con respuestas correctas</div>'
                   },
               },
               plotOptions: {
@@ -2805,10 +2791,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
 
       HaceGraficas.prototype.get_reactivos_xunidad_de_analisis = function(nombre,id_cont,cct,turno,nivel,periodo,idcampodis, callback){
-          // console.log(nombre);
-
-          // alert(periodo);
-          // console.log(nombre);
           var ruta = base_url+"info/info_xcont_xcct";
           $.ajax({
             url: ruta,
@@ -2821,12 +2803,10 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
             }
           })
           .done(function( data ) {
-            // obj_loader.hide();
               swal.close();
 
               var html = "<div style='text-align:left !important;'>";
               if (data.longitud==0) {
-                // html += "<div class='alert alert-success' role='alert'>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</div>";
               }
               else {  
             
@@ -2862,8 +2842,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
         Utiles.showPDF("modal_visor_pdfc2", url_argumento);
         $("#modal_visor_pdfc2").modal("show");
 
-         // window.open("http://www.sarape.gob.mx/assets/docs/info/arg_r1_lyc_17_sec.pdf", "_blank");
-
       }
       HaceGraficas.prototype.especificacion_reactivo = function(url_especificacion){
           // alert("entro1");
@@ -2885,7 +2863,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
           Utiles.showPDF("modal_visor_pdfc3", url_especificacion);
           $("#modal_visor_pdfc3").modal("show");
-          // window.open("http://www.sarape.gob.mx/assets/docs/info/esp_r1_lyc_17_sec.pdf", "_blank");
       }
 
       HaceGraficas.prototype.apoyosacadem = function(id_reactivo){
@@ -2897,14 +2874,14 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
             data: { 'id_reactivo':id_reactivo
                   },
             beforeSend: function( xhr ) {
-              // obj_loader.show();
+
             }
           })
           .done(function( data ) {
-            // obj_loader.hide();
+
               swal.close();
               var result = data.arr_apoyosacade_xidreact;
-              // console.table(result);
+
               var html = "<div style='text-align:left !important;'><ul>";
                 html += "<table class='table table-condensed'>";
                 html += "<tbody>";
@@ -2966,7 +2943,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
       }
 
       HaceGraficas.prototype.envia_url_pub =function(){
-        // alert($("#idreactivoform_pub").val());
         obj_graficas.ocultamesaje_link();
         if (!obj_graficas.valida_url($("#inputcampourl").val())) {
           $("#mensaje_alertaur2").show();
@@ -2996,7 +2972,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                       $("#tipodematerial").val('0');
                 	    $(".formulario")[0].reset();
                       obj_graficas.getn_prop();
-              // alert(result.response);
             swal(
                 'Listo!',
                 result.response,
@@ -3021,12 +2996,11 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           dataType: 'JSON',
           data: {id_reactivo: $("#idreactivoform_pub").val()},
           beforeSend: function(xhr) {
-                // Notification.loading("");
+
             },
         })
         .done(function(result) {
-          // swal.close();
-          // alert(result.n_prop)
+
           if (result.n_prop>4) {
             $("#btn_prop").hide();
           }
@@ -3106,11 +3080,10 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
       }
 
       HaceGraficas.prototype.subir_recurso = function(){
-          //información del formulario
-          // alert('sadasd');
+
           var formData = new FormData($(".formulario")[0]);
           var message = "";
-          //hacemos la petición ajax
+
 
           $.ajax({
               url: base_url+'info/set_file',
@@ -3183,7 +3156,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
         var expression = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/ ;
       var regex = new RegExp(expression);
       if (url.match(regex)) {
-        // alert("entro1");
+
         var expression_adul = /porn|xxx|gay|redtube|porin|lesbian|culo|pinga|verga|pelos|teta|titi|chichi/;
         var regex_a = new RegExp(expression_adul);
         if (url.match(regex_a)) {
@@ -3207,7 +3180,6 @@ $("#md_close_iframe").click(function(){
 //al enviar el formulario
 $('#btn_subir_pdf_imagen_pub').click(function(){
 
-  // alert('dsfsdf');
   if(fileSize < 5000000){
     obj_graficas.ocultamesaje_file();
     if($("#titulofile").val() == ""){
@@ -3259,7 +3231,7 @@ $(':file').change(function()
     var fileType = file.type;
     //mensaje con la información del archivo
     showMessage("<span class='info'>Archivo para subir: "+fileName+", peso total: "+fileSize+" bytes.</span>");
-    // obj_recursos.validaExisteArchivo(fileName);
+
 });
 
 

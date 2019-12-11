@@ -48,8 +48,7 @@ class Sostenimiento_model extends CI_Model
               WHERE v.status IN ('1','4') AND v.tipo_centro='9'
               {$filtro}
               GROUP BY sostenimiento;";
-      // echo $query;
-      // die();
+
       return $this->db->query($query)->result_array();
 
 

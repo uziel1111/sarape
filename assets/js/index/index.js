@@ -176,7 +176,6 @@ var Index = {
       $("#div_generico").empty();
       $("#div_generico").append(data.strView);
       $("#modal_revistaEscolar").modal("show");
-      // Utiles.showPDF("modal_revistaEscolar", "");
     })
     .fail(function(e) {
       console.error("Error in getCalendarioEscolar()"); console.table(e);
@@ -187,7 +186,6 @@ var Index = {
   },
 
   getinformese : function(num_ed) {
-    // alert(num_ed);
     var ruta = base_url+"Index/getinformese";
     $.ajax({
       url: ruta,
@@ -213,7 +211,6 @@ var Index = {
   }, 
 
   getVideotutoriales : function() { 
-    console.log('getVideotutoriales');
     var ruta = base_url+"Index/getVideotutoriales";
     $.ajax({
       url: ruta,
