@@ -33,10 +33,6 @@ class Info extends CI_Controller {
 			$cct=$cadena;
 			$turno=$cadena2;
 			$turno_single=$cadena3;
-			// echo $cadena."\n";
-			// echo $cadena2."\n";
-			// echo $cadena3."\n";
-			// die();
 		}else{
 			$cct=$cct;
 
@@ -46,12 +42,9 @@ class Info extends CI_Controller {
 		if(isset($cct) && $cct != ""){
 			$data = array();
 			$array = array();
-			// $escuela = $this->Info_model->get_info_escuela($cct,$turno);
-			// $escuela = $this->CentrosE_model->get_info_escuela($cct,$turno);
+
 			$escuela = $this->CentrosE_model->get_info_escuela($cct,$turno);
-			// echo "<pre>";print_r($escuela);die();
-			// echo $turno_e;
-			// die();
+
 			$planea15_escuela = $this->CentrosE_model->get_planea_xidcct($cct,$turno_e,'2015');
 			$planea16_escuela = $this->CentrosE_model->get_planea_xidcct($cct,$turno_e,'2016');
 			$planea17_escuela = $this->CentrosE_model->get_planea_xidcct($cct,$turno_e,'2017');
@@ -86,9 +79,7 @@ class Info extends CI_Controller {
 			else {
 				$data['trae_indicpeso'] = 0;
 			}
-			// echo "<pre>";print_r($arr_peso[0]['bajo']+$arr_peso[0]['Normal']+$arr_peso[0]['Sobrepeso']+$arr_peso[0]['Obesidad']);die();
-			// echo "<pre>";print_r($escuela);die();
-			// $data['id_cct'] = $id_cct;
+
 			$data['planea15_escuela'] = $planea15_escuela;
 			$data['planea16_escuela'] = $planea16_escuela;
 			$data['planea17_escuela'] = $planea17_escuela;
@@ -144,11 +135,6 @@ class Info extends CI_Controller {
 		$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,4,2);
 		$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($id_cct,4,1);
 
-		// $graph_pie_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_pie_xidct($id_cct,1,"2017-2018");
-		// $graph_bar_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_bar_grados_xidct($id_cct,1,"2017-2018");
-		// echo "<pre>";print_r($graph_bar_riesgo);die();
-
-		// echo "<pre>";print_r($graph_cont_tema_lyc);die();
 		$response = array(
 			'id_cct'=>$id_cct,
 			'nivel'=>$nivel,
@@ -182,13 +168,6 @@ class Info extends CI_Controller {
 		$idcampodis = $this->input->post("idcampodis");
 
 		$graph_cont_reactivos_xcctxcont = $this->Planeaxesc_reactivo_model->get_reactivos_xcctxcont($cct,$turno,$nivel,$id_cont,$periodo,$idcampodis,$nombre);
-		// echo "<pre>";print_r($graph_cont_reactivos_xcctxcont);die();
-		/*
-		$response = array(
-			'graph_cont_reactivos_xcctxcont'=>$graph_cont_reactivos_xcctxcont
-		);
-		*/
-
 
 		$data['graph_cont_reactivos_xcctxcont'] = $graph_cont_reactivos_xcctxcont;
 		$data['periodo'] = $periodo;
@@ -219,23 +198,6 @@ class Info extends CI_Controller {
 		exit;
 	}
 
-	// public function propmapoyo(){
-	// 	$id_reactivo = $this->input->post("id_reactivo");
-	//
-	// 	// $arr_apoyosacade_xidreact = $this->Planeaxesc_reactivo_model->get_apoyos_academ_xidreact($id_reactivo);
-	// 	// echo "<pre>";print_r($arr_apoyosacade_xidreact);die();
-	// 	$contenidos = $this->Recursos_model->get_tipo_contenidos();
-	// 	$arr_contenidos = array();
-	// 	$arr_contenidos[0] = "SELECCIONE";
-	// 	foreach ($contenidos as $contenido){
-	// 		 $arr_contenidos[$contenido['idtipo']] = $contenido['tipo'];
-	// 	}
-	//
-	// 	$data['contenidos'] = $arr_contenidos;
-	//
-	// 	Utilerias::pagina_basica_panel($this, "info/modalprop_material", $data);
-	// }
-
 	public function info_riesgo_graf(){
 		$cct = $this->input->post("cct");
 		$turno_e = $this->input->post("turno");
@@ -245,10 +207,7 @@ class Info extends CI_Controller {
 
 		$nivel=$this->getNivel($nivel_e);
 		$turno=$this->getTurno($turno_e);
-		// $nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
-		// echo "<pre>";
-		// print_r($nivel);
-		// die();
+
 
 		if($nivel == 4 || $nivel == 5){
 			$graph_pie_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_pie_xidct($cct,$turno,$id_bim,$ciclo, $nivel);
@@ -288,7 +247,6 @@ class Info extends CI_Controller {
 		$estadis_alumnos_escuela = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xesc($cct,$turno);
 		$estadis_docentes_escuela = $this->Estadistica_e_indicadores_xcct_model->get_ndocentes_xesc($cct,$turno);
 		$estadis_grupos_escuela = $this->Estadistica_e_indicadores_xcct_model->get_ngrupos_xesc($cct,$turno);
-		// $nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
 
 		$response = array(
 			'cct'=>$cct,
@@ -309,7 +267,7 @@ class Info extends CI_Controller {
 		$nivel=$this->getNivel($nivel_e);
 		$turno=$this->getTurno($turno_e);
 		$arr_indi_peso = $this->CentrosE_model->get_indicpeso_xidcct($cct,$turno,4);
-		// echo "<pre>";print_r($arr_indi_peso);die();
+
 	    $data['arr_indi_peso'] = $arr_indi_peso;
 	    $dom = $this->load->view("indice_peso/index",$data,TRUE);
 
@@ -329,7 +287,6 @@ class Info extends CI_Controller {
 		$nivel=$this->getNivel($nivel_e);
 		$turno=$this->getTurno($turno_e);
 		$indica_asisten= array();
-		// $nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
 		if ($nivel == 4) {
 			$indica_asisten = $this->Estadistica_e_indicadores_xcct_model->get_ind_asistenciaxcct($cct,$turno,1,1);
 		}
@@ -394,8 +351,6 @@ class Info extends CI_Controller {
 		$nivel=$this->getNivel($nivel_e);
 		$turno=$this->getTurno($turno_e);
 
-
-		// $nivel = $this->Escuela_model->get_nivel_xidcct($id_cct);
 		if ($nivel == 4) {
 			$indica_efi = $this->Estadistica_e_indicadores_xcct_model->get_ind_efixcct($cct,$turno,2,3);
 			$indica_planea_superai = $this->Planeaxescuela_model->get_planeaarribai_xidcct($cct,$turno,2016);
@@ -517,15 +472,7 @@ class Info extends CI_Controller {
 		$planea17_escuela = $this->CentrosE_model->get_planea_xidcct($cct,$turno,'2017');
 		$planea18_escuela = $this->CentrosE_model->get_planea_xidcct($cct,$turno,'2018');
 		$planea19_escuela = $this->CentrosE_model->get_planea_xidcct($cct,$turno,'2019');
-		// echo "<pre>";
-		// print_r($planea15_escuela);
-		// print_r($planea16_escuela);
-		// print_r($planea17_escuela);
-		// print_r($planea18_escuela);
-		// print_r($planea19_escuela);
-		// die();
-		// echo $nivel;
-		// die();
+
 		$graph_cont_tema_lyc=array();
 		$graph_cont_tema_mate=array();
 		if ($nivel==4) {
@@ -535,7 +482,7 @@ class Info extends CI_Controller {
 		elseif ($nivel==5) {
 			$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($cct,$turno,4,1);
 			$graph_cont_tema_mate = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($cct,$turno,4,2);
-			// echo "<pre>"; print_r($graph_cont_tema_mate); die();
+
 		}
 		elseif ($nivel==6) {
 			$graph_cont_tema_lyc = $this->Planeaxesc_reactivo_model->get_planea_xconttem_reac($cct,$turno,2,1);

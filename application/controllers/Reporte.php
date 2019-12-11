@@ -81,8 +81,6 @@ class Reporte extends CI_Controller {
 
 	public function Reporte_PEMC_Supervisor(){
 		if(Utilerias::haySesionAbiertacct($this)){
-			// $cvecct = $_GET['cct'];
-			// $turno_single = $_GET['turno'];
 
 				$cvecct = $this->input->post('cct_tmp');
 				$turno_single = $this->input->post('turno_tmp');
@@ -192,19 +190,7 @@ class Reporte extends CI_Controller {
 					$pdf->Row1(array(
 						utf8_decode($obj1)
 					));
-					// $pdf->Ln(9);
-				// $obj2 = "Objetivo2: {$ruta['objetivo2']}";
-				// $pdf->Ln(6);
-				// $pdf->SetFont('Arial','B',9);
-				// $pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-				// $pdf->SetFillColor(255);
-				// $pdf->SetAligns(array("L"));
-				// // $pdf->SetColors(array(TRUE));
-				// $pdf->SetLineW(array(0.2));
-				// $pdf->SetTextColor(0,0,0);
-				// 	$pdf->Row2(array(
-				// 		utf8_decode($obj2)
-				// 	));
+
 				$ambito = "Ámbito(s): {$ambitoA}";
 				$pdf->Ln(2);
 				$pdf->SetFont('Arial','B',9);
@@ -273,18 +259,9 @@ class Reporte extends CI_Controller {
 				$pdf->SetWidths(array(10,81,45,46,46,20,80)); // ancho de primer columna, segunda, tercera y cuarta
 
 				$result = $this->Reportepdf_model->get_acciones($id_tprioritario, $tipo);
-				// echo "<pre>";
-				// print_r($result);
-				// die();
-				// $ids_responsables = $result[0]['ids_responsables'];
+
 
 				$cct = Utilerias::get_cct_sesion($this);
-				// echo "<pre>";
-				// print_r($cct);
-				// die();
-
-
-				// echo $responsablesc; die();
 
 				$pdf->SetFillColor(255,255,255);
 				// $pdf->SetDrawColor(0, 0, 0);
@@ -333,35 +310,7 @@ class Reporte extends CI_Controller {
 						utf8_decode(substr($responsablesc, 0, -2))
 					));
 				}
-
-				// echo $responsablesc; die();
-
-				// $responsables = "Responsables: {$responsablesc}";
-				// $pdf->Ln(12);
-				// $pdf->SetFont('Arial','B',9);
-				// $pdf->SetWidths(array(350)); // ancho de primer columna, segunda, tercera
-				// $pdf->SetFillColor(255);
-				// $pdf->SetAligns(array("L"));
-				// // $pdf->SetColors(array(TRUE));
-				// $pdf->SetLineW(array(0.2));
-				// $pdf->SetTextColor(0,0,0);
-				// 	$pdf->Row2(array(
-				// 		utf8_decode($responsablesc)
-				// 	));
-
-				// $resp = "RESPONSABLES: {$responsablesc}";
-				// $pdf->Ln();
-				// $pdf->SetFont('Arial','B',9);
-				// $pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-				// $pdf->SetFillColor(255);
-				// $pdf->SetAligns(array("L"));
-				// // $pdf->SetColors(array(TRUE));
-				// $pdf->SetLineW(array(0.2));
-				// $pdf->SetTextColor(93,155,155);
-				// $pdf->SetTextColor(87,166,57);
-					// $pdf->Row2(array(
-					// 	utf8_decode($resp)
-					// ));
+				
 				$pdf->Ln();
 
 		}else{
@@ -398,21 +347,15 @@ class Reporte extends CI_Controller {
 	    curl_close($curl);
 	    $response = json_decode($result);
 
-	    // echo "<pre>";
-	    // print_r($response->Personal);
-	    // die();
 			if ($response->status==0) {
 				$personal = array();
 			}
 			else {
 				$personal = $response->Personal;
 			}
-	    // $personal = $response->Personal;
+
 	    $listap = "";
 	    foreach ($personal as $persona) {
-	    	// echo "<pre>";
-		    // print_r($persona);
-		    // die();
 		    for($i = 0; $i < count($ids_responsables); $i++){
 		    	if($persona->rfc == $ids_responsables[$i]){
 		    		$listap .= trim($persona->nombre_completo).", ";

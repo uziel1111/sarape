@@ -810,36 +810,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- End Modal -->
-					<!-- Modal Reactivos -->
-					<!--
-					<div class="modal fade" id="modal_visor_reactivos" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: scroll;">
-						<div class="modal-dialog modal-lg" role="document">
-							<div class="modal-content modal-style-1">
-								<div class="modal-header bgcolor-2">
-									<h5 class="modal-title text-white" id="exampleModalLabel">Consulta por reactivos</h5>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-								</div>
-								<div class="modal-body">
-									<span class="fz-18 fw800" id="modal_reactivos_title"></span>
-									<hr>
 
-									<div id="div_reactivos"></div>
-									<div id="div_reactivos_graf"></div>
-									 <div class="table-responsive" id="div_tabla_reactivos"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					-->
-					<!-- End Modal -->
-					<!-- Modal Apoyos -->
-
-					<!-- End Modal -->
-					<!-- Modal Apoyos -->
-					<!-- End Modal -->
 					<!-- Modal react -->
 					<div class="modal fade" id="modal_visor_reactivos_zom" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" style="overflow-y: scroll;">
 						<div class="modal-dialog modal-lg" role="document">
@@ -856,13 +827,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- End Modal -->
-
-
-					<!-- End Modal -->
-					<!-- Modal Apoyos -->
-
-					<!-- End Modal -->
 
 				</div>
 			</div>
