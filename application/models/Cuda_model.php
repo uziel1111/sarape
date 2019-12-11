@@ -92,16 +92,16 @@ class Cuda_model extends CI_Model
 		inner join ({$querymes}) as mes on nivel.idaplicar = mes.idaplicar";
 
 		if ($nivel != 'No' && $mes == 'No') {
-			// print_r($mes);
+			
 			return $this->ci_db->query($querynivel)->result_array();	
 		}else {
 			if ($nivel == 'No' && $mes != 'No') {
-				// print_r($mes);
+				
 				return $this->ci_db->query($querymes)->result_array();	
 			} else {
 
 				if ($nivel != 'No' && $mes != 'No') {
-					// print_r($mes);
+					
 					return $this->ci_db->query($querynivelmes)->result_array();	
 				}
 			}
@@ -121,7 +121,7 @@ class Cuda_model extends CI_Model
 		$str_query = "SELECT * from aplicar a
 		inner join respuesta r on r.idaplicar = a.idaplicar
 		where a.tema = {$tema} and r.complemento = '{$nivel}'  and a.estatus = 1;";
-		// echo "<pre>"; print_r($str_query); die();
+		
 		return $this->ci_db->query($str_query)->result_array();
 
 	}

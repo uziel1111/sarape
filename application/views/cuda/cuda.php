@@ -6,33 +6,11 @@
 		height: 100%;
 		overflow-y: scroll;
 		padding-right: 17px;
-		/* Increase/decrease this value for cross-browser compatibility */
 		box-sizing: content-box;
-		/* So the width will be 100% + 17px */
 	}
 </style>
 
 <script type="text/javascript">
-	// google.charts.load('current', {'packages':['corechart']});
- //      google.charts.setOnLoadCallback(drawChart);
-
- //      function drawChart() {
- //        var data = google.visualization.arrayToDataTable([
- //          ['Periodos', 'Subsecretaría de Educación Básica', 'Subsecretaría de Administración y Recursos Humanos', 'Subsecretaría de Planeación Educativa'],
-	// 		['1°',     57,0,0],
-	// 		['2°',      62,16,8],
-	// 		['3°',  43,2,1]
- //        ]);
-
- //        var options = {
- //          title: 'Simplificación por Subsecretaría',
- //          hAxis: {title: 'Periodo',  titleTextStyle: {color: '#333'}},
- //          vAxis: {minValue: 0}
- //        };
-
- //        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
- //        chart.draw(data, options);
- //      }
 </script>
 
 <!-- Start Main Area -->

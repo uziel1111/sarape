@@ -1,9 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-/**
- * 
- */
+	
 class Cuda extends CI_Controller
 {
 	
@@ -135,7 +132,6 @@ class Cuda extends CI_Controller
 		$respuestaArray = array();
 
 		$idEncuesta = $this->Cuda_model->idEncuestaNivel($nivel, $mes);
-		// echo '<pre>'; print_r($idEncuesta); die();
 		foreach ($idEncuesta as $key => $value) {
 			switch ($value['tema']) {
 				case '1':
@@ -238,7 +234,6 @@ class Cuda extends CI_Controller
 		$encuestas = array();
 		$formatosMesArray = array();
 		$formatos = $this->Cuda_model->getFormatoTema($tema,$nivel);
-// echo "<pre>"; print_r($formatos); die();
 		foreach ($formatos as $key => $value) {
 			$formatosMes = $this->Cuda_model->getFormatoTemaMes($value['idaplicar'], $mes);
 			if (!empty($formatosMes)) {

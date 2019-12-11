@@ -8,7 +8,6 @@
 	
 	<div class="row">
 		<div class="col-sm text-right">
-			<!-- <a>El archivo está cargando</a> -->
 			<a class="btn btn-success mb-2" target="blank_" href="http://qual-edu.org/levantamiento_de_requerimientos/<?= $value['url_comple']?>" role="button"><i class="fas fa-file-download"></i> Descargar</a>   
 		</div>
 	</div>
