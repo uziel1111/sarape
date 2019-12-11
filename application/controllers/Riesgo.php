@@ -22,9 +22,6 @@ class Riesgo extends CI_Controller {
 			$arr_sostenimientos = array();
 			$arr_federales = array();
 
-			// echo "<pre>";
-			// print_r($options);
-			// die();
 			$municipios = $this->Municipio_model->all();
 			$arr_municipios['0'] = 'TODOS';
 			foreach ($municipios as $municipio){

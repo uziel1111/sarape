@@ -18,8 +18,6 @@ class Reporte extends CI_Controller {
 	public function Reporte_PEMC(){
 		if(Utilerias::haySesionAbiertacct($this)){
 			$cct = Utilerias::get_cct_sesion($this);
-			// echo "<pre>";print_r($cct);die();
-			//$id_cct = $cct[0]['id_cct'];
 			$cve_centro = $cct[0]['cve_centro'];
 			$turno = $cct[0]['id_turno_single'];
 			$str_cct = "CCT: {$cct[0]['cve_centro']}";
@@ -43,7 +41,7 @@ class Reporte extends CI_Controller {
 			$rutas = $this->Reportepdf_model->get_rutasxcct($cve_centro,$turno);
 			$aux_ruta = '';
 			$loque_imprime= '' ;
-			// echo "<pre>";print_r($rutas);die();
+
 			foreach ($rutas as $ruta) {
 				if ($aux_ruta == $ruta['tema']) {
 					$ruta['tema']= '' ;
@@ -56,7 +54,7 @@ class Reporte extends CI_Controller {
 				$id_tprioritario_cap= $ruta['id_tprioritario'];
 				//DATOS
 				if ($id_tprioritario!='') {
-					// $this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cct[0]['cve_centro']);
+
 					$cap = $this->Rutamejora_model->get_problematica_ambito($id_tprioritario_cap);
 							$ambitoA = '';
 							$problematicaA = '';
@@ -67,7 +65,7 @@ class Reporte extends CI_Controller {
 									$ambitoA .= $value['descripcion'];
 								}
 							}
-						// echo "<pre>"; print_r($cap);
+
 							$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cct[0]['cve_centro'], $problematicaA, $ambitoA, 'E');
 				}
 
@@ -84,11 +82,11 @@ class Reporte extends CI_Controller {
 
 				$cvecct = $this->input->post('cct_tmp');
 				$turno_single = $this->input->post('turno_tmp');
-			// echo "<pre>";print_r($turno_single);die();
+
 			$arr_cct = $this->Escuela_model->get_xcvecentro_turnosingle($cvecct, $turno_single);
-			// echo "<pre>";print_r(count($arr_cct));die(); 
+
 			if (count($arr_cct)==1) {
-				// $id_cct = $arr_cct[0]['id_cct'];
+
 				$str_cct = "CCT: {$arr_cct[0]['cve_centro']}";
 				$str_nombre = "ESCUELA: {$arr_cct[0]['nombre_centro']}";
 
@@ -118,7 +116,7 @@ class Reporte extends CI_Controller {
 				$dia_i = $arr_aux[2];
 				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
 				$ciclo =$this->Reportepdf_model->get_ciclo($arr_cct[0]['cve_centro'], $turno_case);
-				// echo "<pre>";print_r(count($ciclo));die();
+
 				if (count($ciclo)==1) {
 					$ciclo = "CICLO:".$ciclo[0]->ciclo.$fecha;
 					$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
@@ -288,17 +286,12 @@ class Reporte extends CI_Controller {
 				$ids = "";
 				$responsablesc = "";
 				foreach($result as $item){
-					// echo "<pre>";
-					// print_r($item["ids_responsables"]);
-					// die();
+
 					$ids_responsables = $item["ids_responsables"];
 					$auxpersonal = ($item["otro_responsable"].$ids_responsables=='')?"":strtoupper($item["otro_responsable"]).", ";
 					$auxapoyopersonal = ($item["main_resp"]=='')?"":strtoupper($item["main_resp"]).", ";
 
 					$responsablesc = $this->get_perosonal_mostrar($cvecct, $auxapoyopersonal);
-					// echo "<pre>";
-					// print_r($responsablesc);
-					// die();
 					$cont++;
 					$pdf->Row(array(
 						$cont,
@@ -321,7 +314,7 @@ class Reporte extends CI_Controller {
 	public function get_perosonal_mostrar($cct, $ids_responsables){
 
 		$ids_responsables = explode(",", $ids_responsables);
-		// echo"<pre>"; print_r($ids_responsables); die();
+
 		$curl = curl_init();
 		$method = "POST";
 		$url = "http://servicios.seducoahuila.gob.mx/wservice/personal/w_service_personal_by_cct.php";
