@@ -95,9 +95,6 @@ class Report extends CI_Controller {
 				$cve_nivel = $this->input->post('slc_busquedalista_nivel_reporte');
 				$cve_sostenimiento = $this->input->post('slc_busquedalista_sostenimiento_reporte');
 				$nombre_escuela = $this->input->post('itxt_busquedalista_nombreescuela_reporte');
-
-				// $result_escuelas = $this->Escuela_model->get_xparams($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
-				// echo "<pre>"; print_r($result_escuelas); die();
 				$municipio = $this->input->get('hidden_municipio');
 				$nivel = $this->input->get('hidden_nivel');
 				$sostenimiento = $this->input->get('hidden_sostenimiento');
@@ -233,7 +230,7 @@ class Report extends CI_Controller {
 
 				$result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, '2015');
 				$result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, '2015');
-				// echo "<pre>";print_r($result_analfinegi); die();
+
 				$obj_excel = new PHPExcel();
 				$obj_excel->getActiveSheet()->SetCellValue('A1', 'Estadística e indicadores educativos generales');
 				$obj_excel->getActiveSheet()->SetCellValue('A2', 'Municipio: '.$this->Municipio_model->get_muncipio($id_municipio).', Nivel: '.$this->Nivel_model->get_nivel($id_nivel).', Sostenimiento: '.$this->Sostenimiento_model->get_sostenimiento($id_sostenimiento).', Modalidad: '.$this->Modalidad_model->get_modalidad($id_modalidad,$nivel).', Ciclo escolar: '.$this->Ciclo_model->get_ciclo($id_ciclo).'');

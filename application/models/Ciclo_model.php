@@ -84,12 +84,6 @@ class Ciclo_model extends CI_Model
       if($id_zona!=''){
           $filtro_zona .= " AND supervisiones.cct = '{$id_zona}'";
       }
-      // $this->db->where('ci.id_ciclo', 4);
-      // $this->db->group_by(" ci.id_ciclo");
-
-      // $this->db->get();
-      // $str = $this->db->last_query();
-      // echo $str; die();
       
       $query = "SELECT ci.id_ciclo, ci.ciclo 
                 FROM ciclo ci 

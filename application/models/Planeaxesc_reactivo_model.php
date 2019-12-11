@@ -52,8 +52,7 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
     }// get_planea_xconttem_reac()
 
     function get_reactivos_xcctxcont($cct,$turno,$nivel,$id_cont,$periodo,$idcampodis){
-      // echo $turno; die();
-
+ 
       $this->db->select('t1.id_reactivo,t2.n_reactivo,
       CONCAT(
       IF(t4.id_nivel=4,"primaria",IF(t4.id_nivel=5,"secundaria",IF(t4.id_nivel=6,"ms","nada"))),
@@ -136,7 +135,6 @@ ROUND((((SUM(t1.n_aciertos))*100)/((COUNT(t3.id_contenido))*t1.n_almn_eval)),1)a
     }// get_reactivos_xcctxcont_apoyo()
 
     function estadisticas_x_estadomunicipio($municipio, $nivel, $periodo, $idcampodis){
-      // echo $nivel;
       $where = "";
       if($municipio != 0 ){
         $where = " AND e.municipio = {$municipio}";
