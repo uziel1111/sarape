@@ -95,7 +95,7 @@
                                           <a class="dropdown-item hcolor-2" href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank">Servicio Profesional Docente</a>
                                           <a class="dropdown-item hcolor-2" id="btn_index_reconocimientosEstatales" href="javascript:void(0)">Reconocimientos estatales</a>
                                           <a class="dropdown-item hcolor-2" href="http://www.inee.edu.mx/" target="_blank">Instituto Nacional para la Evaluación de la Educación</a>
-                                          <!-- <a class="dropdown-item hcolor-2" href="https://www.gob.mx/nuevomodeloeducativo/" target="_blank">Nuevo Modelo Educativo</a> -->
+
                                           <a class="dropdown-item hcolor-2" href="<?= base_url('index.php/Supervisor/supervision'); ?>">Supervisión escolar</a>
                                           <a class="dropdown-item hcolor-2" onclick="Index.getRevistaEscolar()" href="javascript:void(0)">Infórme<b>SE</b></a>
                                         </div>
@@ -108,7 +108,6 @@
                                           <a class="dropdown-item hcolor-3" id="btn_index_guiaspadres" href="javascript:void(0)">Guía para padres de familia</a>
                                           <a class="dropdown-item hcolor-3" href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank">Libros de texto gratuito SEP</a>
                                           <a class="dropdown-item hcolor-3" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a>
-                                          <!-- <a class="dropdown-item hcolor-3" href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank">Biblioteca Digital Coahuila</a> -->
                                           <a class="dropdown-item hcolor-3" href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank">Consulta de calificaciones</a>
                                           <a class="dropdown-item hcolor-3" href="http://www.seducoahuila.gob.mx/yabasta/" target="_blank">Alto al acoso escolar <i>(bullying)</i></a>
                                           <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank">Juegos y aplicaciones educativas</a>
@@ -124,20 +123,10 @@
                                           <a class="dropdown-item hcolor-4" id="btn_index_modeloeducativo" href="javascript:void(0)">Modelo Coahuilense</a>
                                           <a class="dropdown-item hcolor-4" id="btn_index_calendarioEscolar" href="javascript:void(0)">Calendario escolar</a>
                                           <a class="dropdown-item hcolor-4" href="http://www.becascoahuila.gob.mx/becas2.html" target="_blank">Becas escolares</a>
-                                          <!-- <a class="dropdown-item hcolor-4" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a> -->
                                           <a class="dropdown-item hcolor-4" href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank">Biblioteca Digital Coahuila</a>
-                                          <!-- <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/lista_utiles_2017-2018.pdf" target="_blank">Lista de materiales y útiles autorizados</a> -->
                                           <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/ESCUELAS_ALTA_DEMANDA.pdf" target="_blank">Escuelas de alta demanda</a>
                                         </div>
                                     </li>
-                                     <!--  <li class="nav-item dropdown">
-                                       <a class="nav-link hcolor-4" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                         Ayuda
-                                       </a>
-                                       <div class="dropdown-menu dropdown-menu-right ddm-color-4" aria-labelledby="navbarDropdownMenuLink">
-                                         <a class="dropdown-item hcolor-4" onclick="Index.getVideotutoriales()" href="javascript:void(0)">Videotutoriales</a>
-                                       </div>
-                                                                         </li> -->
                                 </ul>
                                 <a href="#" class="mobile-btn"><span class="lnr lnr-menu"></span></a>
                             </nav>

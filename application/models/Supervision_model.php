@@ -8,11 +8,6 @@ class Supervision_model extends CI_Model
     }
 
     function allzonas(){
-      // $this->db->select('su.id_supervision, su.zona_escolar');
-      // $this->db->from('supervision as su');
-      // $this->db->join('escuela as es','su.id_supervision = es.id_supervision');
-      // $this->db->group_by(" su.id_supervision");
-
       $query="SELECT cct,zona_escolar FROM vista_cct 
               WHERE tipo_centro=1 AND (status != 2 AND status != 3) 
               AND zona_escolar IS NOT NULL 
@@ -23,23 +18,6 @@ class Supervision_model extends CI_Model
 
     function getzona_idnivel_xsost($nivel,$sostenimiento){
 
-      // $this->db->select('su.id_supervision, su.zona_escolar');
-      // $this->db->from('escuela as es');
-      // $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
-      // $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
-      // $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
-      // $this->db->join('supervision as su', 'es.id_supervision = su.id_supervision');
-      // if ($id_nivel>0) {
-      //   $this->db->where('ni.id_nivel', $id_nivel);
-      // }
-      // $this->db->where('sso.id_subsostenimiento', $id_subsostenimiento);
-
-      // $this->db->group_by("su.id_supervision");
-      // $this->db->order_by("su.zona_escolar");
-      // // $this->db->get();
-      // // $str = $this->db->last_query();
-      // // echo $str; die();
-      // return  $this->db->get()->result_array();
       $filtro="";
       $filtro_nivel_sos="";
       if(trim($sostenimiento)=="PUBLICO"){
@@ -91,15 +69,6 @@ class Supervision_model extends CI_Model
         return "TODOS";
       }
       else {
-        // $this->db->select('su.id_supervision, su.zona_escolar');
-        // $this->db->from('escuela as es');
-        // $this->db->join('estadistica_e_indicadores_xcct as est', 'es.id_cct = est.id_cct');
-        // $this->db->join('nivel as ni', 'es.id_nivel = ni.id_nivel');
-        // $this->db->join('subsostenimiento as sso', 'es.id_subsostenimiento = sso.id_subsostenimiento');
-        // $this->db->join('supervision as su', 'es.id_supervision = su.id_supervision');
-        // $this->db->where('su.id_supervision', $id_zona_z);
-        // $this->db->where('ni.id_nivel', $id_nivel_z);
-        // $this->db->where('sso.id_subsostenimiento', $id_sostenimiento_z);
         $query = "SELECT zona_escolar from vista_cct 
                   WHERE (status = 1 OR status = 4) AND tipo_centro = 1
                   AND cct='{$id_zona_z}' ";

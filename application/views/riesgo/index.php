@@ -25,7 +25,6 @@
       <div class="table-responsive" id="dv_tabla_riesgo_mun_zona"></div>
       <div id="dv_tab_riesgo_mun_zona" class="table-responsive"></div>
       <div class="table-responsive" id="dv_tablam_riesgo_mun_zona"></div>
-     <!--  <div class='alert alert-success' role='alert'><h4 class="h4">Alumnos que posiblemente han abandonado la escuela: <span class="h3 text-white badge badge-secondary" id="total_bajas_muni">...</span></h4></div> -->
             </div><!-- card-body -->
         </div>
 

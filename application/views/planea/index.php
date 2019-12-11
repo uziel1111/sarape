@@ -111,7 +111,6 @@
                     <div class="row">
                     <div class="col-12">
                         <div id="div_graficas_masivo"></div>
-                        <!-- <div id="div_graficas_masivo_matematicas"></div> -->
                     </div>
                 </div>
             </div><!-- card-body -->
