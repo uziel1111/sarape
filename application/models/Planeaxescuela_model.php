@@ -7,7 +7,6 @@ class Planeaxescuela_model extends CI_Model
 
 
     function get_planea_xidcct($id_cct,$periodo){
-      // echo "id_cct= ". $id_cct;
 
       $this->db->select('lyc_i, lyc_ii, lyc_iii, lyc_iv, mat_i, mat_ii, mat_iii, mat_iv');
       $this->db->from('planeaxescuela');

@@ -583,9 +583,14 @@ function inserta_mensaje_super($idtema, $mensaje_super){
 }
 
 function getdatossupervicion($cct){
-  $str_query = "SELECT s.id_supervision, s.zona_escolar, s.nombre_supervision, '{$cct}' AS cve_centro
-  FROM supervision s
-  WHERE s.id_supervision = '{$cct}'";
+  // $str_query = "SELECT s.id_supervision, s.zona_escolar, s.nombre_supervision, '{$cct}' AS cve_centro
+  // FROM supervision s
+  // WHERE s.id_supervision = '{$cct}'";
+  $str_query = "SELECT cct AS cve_centro,zona_escolar,nombre AS nombre_supervision 
+                  FROM centros_educativos.vista_cct 
+                  WHERE tipo_centro=1
+                  AND  cct = '{$cct}'";
+                  // echo $str_query; die();
   return $this->db->query($str_query)->result_array();
 }
 

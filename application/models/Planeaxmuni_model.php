@@ -28,7 +28,6 @@ class Planeaxmuni_model extends CI_Model
     function allperiodos(){
       $this->db->select('id_periodo, periodo');
       $this->db->from('periodoplanea');
-      // $this->db->order_by("id_periodo", "desc");
       return  $this->db->get()->result_array();
     }// all()
 
