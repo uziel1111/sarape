@@ -2798,7 +2798,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
             data: { 'id_cont':id_cont,'cct':cct,'turno':turno,'nivel':nivel,'periodo':periodo,'idcampodis':idcampodis,'nombre':nombre
                   },
             beforeSend: function( xhr ) {
-              // alert("cargando");
               Notification.loading("");
             }
           })
@@ -2822,7 +2821,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
       }// get_reactivos_xunidad_de_analisis()
 
       HaceGraficas.prototype.argumento_reactivo = function(url_argumento){
-        // alert("entro");
         var html = "<div style='text-align:left !important;'><ul>";
           html += "<table class='table table-condensed'>";
           html += "<tbody> <center>";
@@ -2844,7 +2842,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
       }
       HaceGraficas.prototype.especificacion_reactivo = function(url_especificacion){
-          // alert("entro1");
+
           var html = "<div style='text-align:left !important;'><ul>";
             html += "<table class='table table-condensed'>";
             html += "<tbody> <center>";

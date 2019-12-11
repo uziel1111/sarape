@@ -13,7 +13,7 @@ function Info_esc(){
 }
 
 $("#slt_ciclo_ries").change(function(){
-  // console.log($("#slt_ciclo_ries").val());
+
   if($("#slt_ciclo_ries").val()=='2018-2019'){
     $("#slt_bimestre_ries").empty();
     $('#slt_bimestre_ries').append('<option value="1">1er Periodo</option>');

@@ -53,7 +53,6 @@ $("#btn_crear_nuevo_recurso").click(function(){
 });
 
 $("#btn_guarda_link").click(function(){
-	// alert("entramos");
 	obj_recursos.envia_url();
 });
 

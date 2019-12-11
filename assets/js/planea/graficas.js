@@ -117,7 +117,6 @@ function Graficasm(){
                        point:{
                            events:{
                                click:function(){
-                                  // alert("funciona");
                                   obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_filtro,3,1, va_por);
                                }
                            }
@@ -243,10 +242,8 @@ function Graficasm(){
                        point:{
                            events:{
                                click:function(){
-                                // alert("mate");
                                  console.info(this);
                                   obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_filtro,3,2, va_por);
-                                  // obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_filtro,1,2, va_por);
                                }
                            }
                        }
@@ -803,7 +800,6 @@ function Graficasm(){
 
               var html = "<div style='text-align:left !important;'>";
               if (result.length==0) {
-                // html += "<div class='alert alert-success' role='alert'>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</div>";
               }
               else {
                 html += "    <div class='container'>";
@@ -870,10 +866,8 @@ function Graficasm(){
                   html += "    </div>";
                 }
                 html += "    </div>";
-                // html += "</tbody>";
-                // html += "</table>";
               }
-              // html += "</div>";
+
 
               $('#modal_visor_reactivos .modal-body #div_reactivos').empty();
               $('#modal_visor_reactivos .modal-body #div_reactivos').html(html);
@@ -1160,7 +1154,7 @@ function Graficasm(){
 
 
          Graficasm.prototype.argumento_reactivo = function(url_argumento){
-           // alert("entro");
+
            var html = "<div style='text-align:left !important;'><ul>";
              html += "<table class='table table-condensed'>";
              html += "<tbody> <center>";
@@ -1184,7 +1178,7 @@ function Graficasm(){
 
          }
          Graficasm.prototype.especificacion_reactivo = function(url_especificacion){
-             // alert("entro1");
+
              var html = "<div style='text-align:left !important;'><ul>";
                html += "<table class='table table-condensed'>";
                html += "<tbody> <center>";
@@ -1282,7 +1276,7 @@ function Graficasm(){
          }
 
          Graficasm.prototype.envia_url_pub =function(){
-           // alert($("#idreactivoform_pub").val());
+
            obj_graficas.ocultamesaje_link();
            if (!obj_graficas.valida_url($("#inputcampourl").val())) {
              $("#mensaje_alertaur2").show();
@@ -1312,7 +1306,7 @@ function Graficasm(){
                          $("#tipodematerial").val('0');
                         $(".formulario")[0].reset();
                          obj_graficas.getn_prop();
-                 // alert(result.response);
+              
                swal(
                    'Listo!',
                    result.response,
@@ -1337,12 +1331,10 @@ function Graficasm(){
              dataType: 'JSON',
              data: {id_reactivo: $("#idreactivoform_pub").val()},
              beforeSend: function(xhr) {
-                   // Notification.loading("");
+
                },
            })
            .done(function(result) {
-             // swal.close();
-             // alert(result.n_prop)
              if (result.n_prop>4) {
                $("#btn_prop").hide();
              }
@@ -1426,8 +1418,7 @@ function Graficasm(){
          });
 
          Graficasm.prototype.subir_recurso = function(){
-             //información del formulario
-             // alert('sadasd');
+
              var formData = new FormData($(".formulario")[0]);
              var message = "";
              //hacemos la petición ajax
@@ -1503,7 +1494,7 @@ function Graficasm(){
            var expression = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/ ;
          var regex = new RegExp(expression);
          if (url.match(regex)) {
-           // alert("entro1");
+
            var expression_adul = /porn|xxx|gay|redtube|porin|lesbian|culo|pinga|verga|pelos|teta|titi|chichi/;
            var regex_a = new RegExp(expression_adul);
            if (url.match(regex_a)) {
@@ -1521,7 +1512,6 @@ function Graficasm(){
    //al enviar el formulario
    $('#btn_subir_pdf_imagen_pub').click(function(){
 
-     // alert('dsfsdf');
      if(fileSize < 5000000){
        obj_graficas.ocultamesaje_file();
        if($("#titulofile").val() == ""){
