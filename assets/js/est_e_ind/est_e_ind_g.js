@@ -85,33 +85,6 @@ $("#slc_xest_muni_sostenimiento").change(function(){
 
 });
 
-// $("#slc_xest_muni_modalidad").change(function(){
-//   var id_municipio = $( "#slc_xest_muni_estmunicipio" ).val();
-//   var id_nivel = $( "#slc_xest_muni_nivel" ).val();
-//   var id_sostenimiento = $( "#slc_xest_muni_sostenimiento" ).val();
-//   var id_modalidad = $( "#slc_xest_muni_modalidad" ).val();
-//   $.ajax({
-//     url:base_url+"Estadistica/estad_indi_generales_getciclo",
-//     method:"POST",
-//     data:{"id_municipio":id_municipio,"id_nivel":id_nivel,"id_sostenimiento":id_sostenimiento,"id_modalidad":id_modalidad},
-//     beforeSend: function(xhr) {
-//       // $("#wait").modal("show");
-//     },
-//     success:function(data){
-//       // $("#wait").modal("hide");
-//       $("#slc_xest_muni_cicloe").empty();
-//       $.each(data, function (index, item) {
-//           $("#slc_xest_muni_cicloe").append('<option value="2">2017-2018</option><option value="4">2018-2019</option>');
-//            // $("#slc_xest_muni_cicloe").append('<option value="4">2018-2019</option>');
-//         });
-//       // console.log(data);
-//     },
-//     error: function(error){
-//       console.log(error);
-//     }
-//   });
-
-// });
 
 $("#slc_xest_nivel_zona").change(function(){
   var id_nivel = $( "#slc_xest_nivel_zona" ).val();
@@ -280,13 +253,6 @@ $("#slc_xest_zona").prop('disabled', 'disabled');
 $('#slc_xest_sostenimiento_zona').css( 'cursor', 'no-drop' );
 $('#slc_xest_zona').css( 'cursor', 'no-drop' );
 
-// $("#slc_xest_muni_nivel").prop('disabled', 'disabled');
-// $('#slc_xest_muni_nivel').css( 'cursor', 'no-drop' );
-// $("#slc_xest_muni_sostenimiento").prop('disabled', 'disabled');
-// $('#slc_xest_muni_sostenimiento').css( 'cursor', 'no-drop' );
-// $("#slc_xest_muni_modalidad").prop('disabled', 'disabled');
-// $('#slc_xest_muni_modalidad').css( 'cursor', 'no-drop' );
-
 
 $("#btn_buscar_mun_est").click(function(){
   let id_municipio = $("#slc_xest_muni_estmunicipio").val();
@@ -326,14 +292,12 @@ $("#btn_buscar_mun_est").click(function(){
 $("#xest_muni-tab").click(function(){
   $(".dv_tablas_estzona").empty();
   $(".dv_tablas_estmuni").empty();
-  // $(".dv_filtro").empty();
   $("#resultado_filtros").empty();
 });
 
 $("#xzona-tab").click(function(){
   $(".dv_tablas_estmuni").empty();
   $(".dv_tablas_estzona").empty();
-  // $(".dv_filtro").empty();
   $("#resultado_filtros").empty();
 
 });

@@ -1,6 +1,4 @@
-     
-          <!-- <div class="row"> -->
-            
+
               <?php if ($tipo_busqueda=="municipal"): ?>
               <div class="row">
                 <div id="dv_flot_est" class="pt-5 col-12 col-sm-12 col-lg-12">
@@ -149,8 +147,6 @@
                     </div>
               </div>
                   <?php endif; ?>
-          <!-- </div> -->
-        <!-- </div> -->
        
 <script>
   $(function () {

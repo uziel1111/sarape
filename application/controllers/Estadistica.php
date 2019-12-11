@@ -41,15 +41,8 @@ class Estadistica extends CI_Controller {
 				}
 			}
 
-			// $result_niveles = $this->Nivel_model->getall_est_ind();
-			// if(count($result_niveles)==0){
-			// 	$data['arr_niveles'] = array(	'0' => 'Error recuperando los niveles' );
-			// }else{
 				$arr_niveles['0'] = 'TODOS';
-			// 	foreach ($result_niveles as $row){
-			// 		$arr_niveles[$row['id_nivel']] = $row['nivel'];
-			// 	}
-			// }
+
 
 			$result_nivelesz = $this->Nivel_model->getall_est_indz();
 			if(count($result_nivelesz)==0){
@@ -61,60 +54,16 @@ class Estadistica extends CI_Controller {
 				}
 			}
 
-			// $result_sostenimientos = $this->Sostenimiento_model->getsost_xidmun_idnivel(0,'TODOS');
-			// if(count($result_sostenimientos)==0){
-			// 	$data['arr_sostenimientos'] = array(	'0' => 'Error recuperando los sostenimientos' );
-			// }else{
+
 				$arr_sostenimientos['0'] = 'TODOS';
-			// 	foreach ($result_sostenimientos as $row){
-			// 		 $arr_sostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
-			// 	}
-			// }
-
-
-			// $result_modalidad = $this->Modalidad_model->getmodali_xidmun_idnivel_idsost(0,'TODOS','TODOS');
-			// if(count($result_modalidad)==0){
-			// 	$data['arr_modalidad'] = array(	'0' => 'Error recuperando los modalidad' );
-			// }else{
 				$arr_modalidad['0'] = 'TODOS';
-			// 	foreach ($result_modalidad as $row){
-			// 		 $arr_modalidad[$row['id_modalidad']] = $row['modalidad'];
-			// 	}
-			// }
-
-			// $result_subsostenimientos = $result_sostenimientos;
-			// if(count($result_subsostenimientos)==0){
-			// 	$data['arr_subsostenimientos'] = array(	'0' => 'Error recuperando los subsostenimientos' );
-			// }else{
 				$arr_subsostenimientos['0'] = 'SELECCIONE SOSTENIMIENTO';
-			// 	foreach ($result_subsostenimientos as $row){
-			// 		 $arr_subsostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
-			// 	}
-			// }
 
 			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
-			//$arr_ciclo['2'] = '2017-2018';
-			// $arr_ciclo['2'] = '2018-2019';
 			$arr_ciclo = array('2018-2019' => '2018-2019','2017-2018' => '2017-2018');
 
-			// if(count($result_ciclo)==0){
-			// 	$data['arr_ciclo'] = array(	'0' => 'Error recuperando los sostenimientos' );
-			// }else{
-			// 	// $arr_ciclo['0'] = 'ELIGE UN CLICO ESCOLAR';
-			// 	foreach ($result_ciclo as $row){
-			// 		 $arr_ciclo[$row['id_ciclo']] = $row['ciclo'];
-			// 	}
-			// }
+			$arr_nzonae['0'] = 'SELECCIONE UNA ZONA ESCOLAR';
 
-			// $result_nzonae = $this->Supervision_model->allzonas();
-			// if(count($result_nzonae)==0){
-			// 	$data['arr_nzonae'] = array(	'0' => 'Error recuperando los sostenimientos' );
-			// }else{
-				$arr_nzonae['0'] = 'SELECCIONE UNA ZONA ESCOLAR';
-			// 	foreach ($result_nzonae as $row){
-			// 		 $arr_nzonae[$row['cct']] = $row['zona_escolar'];
-			// 	}
-			// }
 
 			$data['arr_municipios'] = $arr_municipios;
 			$data['arr_niveles'] = $arr_niveles;
@@ -135,32 +84,6 @@ class Estadistica extends CI_Controller {
 				$data['tzona'] = 'nav-link nav-link-style-1';
 			}
 
-
-			// $string = $this->load->view('estadistica/estadi_e_indi_gen', $data, TRUE);
-
-			// $data2["tipo_busqueda"] = "";
-			// $data2["id_municipio"] = "";
-			// $data2["id_nivel"] = "";
-			// $data2["id_sostenimiento"] = "";
-			// $data2["id_modalidad"] = "";
-			// $data2["id_ciclo"] = "";
-			// $data2["municipio"] = "";
-			// $data2["nivel"] = "";
-			// $data2["sostenimiento"] = "";
-			// $data2["modalidad"] = "";
-			// $data2["ciclo"] = "";
-
-			// $data2["srt_tab_alumnos"] = "";
-			// $data2["srt_tab_pdocentes"] = "";
-			// $data2["srt_tab_infraestructura"] = "";
-			// $data2["srt_tab_in_asis"] = "";
-			// $data2["srt_tab_in_perm"] = "";
-			// $data2["srt_tab_planea"] = "";
-			// $data2["srt_tab_rezag_inegi"] = "";
-			// $data2["srt_tab_analf_inegi"] = "";
-
-			// $data2['buscador'] = $string;
-			// Utilerias::pagina_basica($this,"estadistica/estadi_e_indi_gen_tab", $data2);
 			Utilerias::pagina_basica($this,"estadistica/estadi_e_indi_gen2", $data);
 		}//estad_indi_generales()
 
@@ -330,20 +253,12 @@ class Estadistica extends CI_Controller {
 			$modalidad = $this->input->post('modalidad');
 			$ciclo = $this->input->post('ciclo');
 
-			// echo $id_municipio."\n";
-			// echo $id_nivel."\n";
-			// echo $id_sostenimiento."\n";
-			// echo $id_modalidad."\n";
-			// echo $id_ciclo."\n";
-			// die();
-			// $id_ciclo = 4;
-			// echo "<pre>";print_r('alex');die();
 			if ($id_ciclo == '2017-2018') {
 				$id_ciclo = 2;
 			} else {
 				$id_ciclo = 4;
 			}
-			// echo "<pre>";print_r($id_ciclo.'id');die();
+
 			$data["tipo_busqueda"] = "municipal";
 			$data["id_municipio"] = $id_municipio;
 			$data["id_nivel"] = $id_nivel;
@@ -365,110 +280,6 @@ class Estadistica extends CI_Controller {
 			$data["srt_tab_rezag_inegi"] = $this->tabla_rezinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
 			$data["srt_tab_analf_inegi"] = $this->tabla_analfinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo);
 
-			////
-			// $result_municipios = $this->Municipio_model->getall_xest_ind($tipo);
-			// $arr_municipios = array();
-			// $arr_sostenimientos = array();
-			// $arr_modalidad = array();
-			// $arr_niveles = array();
-			// $arr_nivelesz = array();
-			// $arr_ciclo = array();
-
-			// if(count($result_municipios)==0){
-			// 	$data2['arr_municipios'] = array(	'0' => 'Error recuperando los municipios' );
-			// }else{
-			// 	$arr_municipios['0'] = 'TODOS';
-			// 	foreach ($result_municipios as $row){
-			// 		 $arr_municipios[$row['id_municipio']] = $row['municipio'];
-			// 	}
-			// }
-
-			// $result_niveles = $this->Nivel_model->getall_est_ind();
-			// if(count($result_niveles)==0){
-			// 	$data2['arr_niveles'] = array(	'0' => 'Error recuperando los niveles' );
-			// }else{
-			// 	$arr_niveles['0'] = 'TODOS';
-			// 	foreach ($result_niveles as $row){
-			// 		 $arr_niveles[$row['id_nivel']] = $row['nivel'];
-			// 	}
-			// }
-
-			// $result_nivelesz = $this->Nivel_model->getall_est_indz();
-			// if(count($result_nivelesz)==0){
-			// 	$data2['arr_nivelesz'] = array(	'0' => 'Error recuperando los niveles' );
-			// }else{
-			// 	$arr_nivelesz['0'] = 'SELECCIONE UN NIVEL EDUCATIVO';
-			// 	foreach ($result_nivelesz as $row){
-			// 		 $arr_nivelesz[$row['id_nivel']] = $row['nivel'];
-			// 	}
-			// }
-
-			// $result_sostenimientos = $this->Sostenimiento_model->getsost_xidmun_idnivel(0,'TODOS');
-			// if(count($result_sostenimientos)==0){
-			// 	$data2['arr_sostenimientos'] = array(	'0' => 'Error recuperando los sostenimientos' );
-			// }else{
-			// 	$arr_sostenimientos['0'] = 'TODOS';
-			// 	foreach ($result_sostenimientos as $row){
-			// 		 $arr_sostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
-			// 	}
-			// }
-
-			// $result_modalidad = $this->Modalidad_model->getmodali_xidmun_idnivel_idsost(0,'TODOS','TODOS');
-			// if(count($result_modalidad)==0){
-			// 	$data2['arr_modalidad'] = array(	'0' => 'Error recuperando los modalidad' );
-			// }else{
-			// 	$arr_modalidad['0'] = 'TODOS';
-			// 	foreach ($result_modalidad as $row){
-			// 		 $arr_modalidad[$row['modalidad']] = $row['modalidad'];
-			// 	}
-			// }
-
-			// $result_subsostenimientos = $result_sostenimientos;
-			// if(count($result_subsostenimientos)==0){
-			// 	$data2['arr_subsostenimientos'] = array(	'0' => 'Error recuperando los subsostenimientos' );
-			// }else{
-			// 	$arr_subsostenimientos['0'] = 'SELECCIONE SOSTENIMIENTO';
-			// 	foreach ($result_subsostenimientos as $row){
-			// 		 $arr_subsostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
-			// 	}
-			// }
-
-			// $result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
-			// $arr_ciclo = array( '2018-2019' => '2018-2019','2017-2018' => '2017-2018');
-
-			// $result_nzonae = $this->Supervision_model->allzonas();
-			// if(count($result_nzonae)==0){
-			// 	$data2['arr_nzonae'] = array(	'0' => 'Error recuperando los sostenimientos' );
-			// }else{
-			// 	$arr_nzonae['0'] = 'SELECCIONE UNA ZONA ESCOLAR';
-			// 	foreach ($result_nzonae as $row){
-			// 		 $arr_nzonae[$row['cct']] = $row['zona_escolar'];
-			// 	}
-			// }
-
-			// $data2['arr_municipios'] = $arr_municipios;
-			// $data2['arr_niveles'] = $arr_niveles;
-			// $data2['arr_nivelesz'] = $arr_nivelesz;
-			// $data2['arr_sostenimientos'] =$arr_sostenimientos;
-			// $data2['arr_modalidad'] =$arr_modalidad;
-			// $data2['arr_subsostenimientos'] =$arr_subsostenimientos;
-			// $data2['arr_nzonae'] =$arr_nzonae;
-			// $data2['arr_ciclos'] =$arr_ciclo;
-
-			// if ($tipo=="zona") {
-			// 	$data2['tzona'] = 'nav-link nav-link-style-1 active';
-			// 	$data2['tmuni'] = 'nav-link nav-link-style-1';
-			// }
-			// else {
-			// 	$data2['tmuni'] = 'nav-link nav-link-style-1 active';
-			// 	$data2['tzona'] = 'nav-link nav-link-style-1';
-			// }
-
-			// $string = $this->load->view('estadistica/estadi_e_indi_gen', $data2, TRUE);
-			// $data['buscador'] = $string;
-			///
-
-			// Utilerias::pagina_basica($this,"estadistica/estadi_e_indi_gen_tab", $data);
 			$dom = $this->load->view("estadistica/estadi_e_indi_gen_tab2",$data,TRUE);
 
     		$response = array(
@@ -543,17 +354,6 @@ class Estadistica extends CI_Controller {
 				($row['alumn_t_4']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_4']).'</td>';
 				($row['alumn_t_5']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_5']).'</td>';
 				($row['alumn_t_6']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_6']).'</td>';
-				// $str_html_alumn.='
-				// <td>'.number_format($row['alumn_m_t']).'</td>
-				// <td>'.number_format($row['alumn_h_t']).'</td>
-				// <td>'.number_format($row['alumn_t_t']).'</td>
-				// <td>'.number_format($row['alumn_t_1']).'</td>
-				// <td>'.number_format($row['alumn_t_2']).'</td>
-				// <td>'.number_format($row['alumn_t_3']).'</td>
-				// <td>'.number_format($row['alumn_t_4']).'</td>
-				// <td>'.number_format($row['alumn_t_5']).'</td>
-				// <td>'.number_format($row['alumn_t_6']).'</td>
-				// </tr>';
 			}
 			$str_html_alumn.='</tbody>
           			</table>
@@ -629,10 +429,6 @@ class Estadistica extends CI_Controller {
 				($row['alumn_t_4']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_4']).'</td>';
 				($row['alumn_t_5']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_5']).'</td>';
 				($row['alumn_t_6']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['alumn_t_6']).'</td>';
-				// $str_html_alumn.='<td>'.number_format($row['alumn_m_t']).'</td><td>'.number_format($row['alumn_h_t']).'</td><td>'.number_format($row['alumn_t_t']).'</td>
-				// <td>'.number_format($row['alumn_t_1']).'</td><td>'.number_format($row['alumn_t_2']).'</td><td>'.number_format($row['alumn_t_3']).'</td>
-				// <td>'.number_format($row['alumn_t_4']).'</td><td>'.number_format($row['alumn_t_5']).'</td><td>'.number_format($row['alumn_t_6']).'</td>
-				// </tr>';
 			}
 			$str_html_alumn.='</tbody>
           			</table>
@@ -711,11 +507,6 @@ class Estadistica extends CI_Controller {
 				($row['directivo_h_singrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_h_singrup']).'</td>';
 				($row['directivo_t_singrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_t_singrup']).'</td>';
 
-				// $str_html_alumn.='
-				// <td>'.number_format($row['docente_m']).'</td><td>'.number_format($row['docente_h']).'</td><td>'.number_format($row['docentes_t_g']).'</td>
-				// <td>'.number_format($row['directivo_m_congrup']).'</td><td>'.number_format($row['directivo_h_congrup']).'</td><td>'.number_format($row['directivo_t_congrup']).'</td>
-				// <td>'.number_format($row['directivo_m_singrup']).'</td><td>'.number_format($row['directivo_h_singrup']).'</td><td>'.number_format($row['directivo_t_singrup']).'</td>
-				// </tr>';
 			}
 			$str_html_alumn.='</tbody>
 								</table>
@@ -793,12 +584,6 @@ class Estadistica extends CI_Controller {
 				($row['directivo_m_singrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_m_singrup']).'</td>';
 				($row['directivo_h_singrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_h_singrup']).'</td>';
 				($row['directivo_t_singrup']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['directivo_t_singrup']).'</td>';
-
-				// $str_html_alumn.='
-				// <td>'.number_format($row['docente_m']).'</td><td>'.number_format($row['docente_h']).'</td><td>'.number_format($row['docentes_t_g']).'</td>
-				// <td>'.number_format($row['directivo_m_congrup']).'</td><td>'.number_format($row['directivo_h_congrup']).'</td><td>'.number_format($row['directivo_t_congrup']).'</td>
-				// <td>'.number_format($row['directivo_m_singrup']).'</td><td>'.number_format($row['directivo_h_singrup']).'</td><td>'.number_format($row['directivo_t_singrup']).'</td>
-				// </tr>';
 			}
 			$str_html_alumn.='</tbody>
 								</table>
@@ -878,11 +663,6 @@ class Estadistica extends CI_Controller {
 				($row['grupos_multi']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_multi']).'</td>';
 				($row['grupos_t']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_t']).'</td>';
 
-				// $str_html_alumn.='
-				// <td class="text-center">'.number_format($row['nescuelas']).'</td><td>'.number_format($row['grupos_1']).'</td><td>'.number_format($row['grupos_2']).'</td>
-				// <td>'.number_format($row['grupos_3']).'</td><td>'.number_format($row['grupos_4']).'</td><td>'.number_format($row['grupos_5']).'</td>
-				// <td>'.number_format($row['grupos_6']).'</td><td class="text-center">'.number_format($row['grupos_multi']).'</td><td class="text-center">'.number_format($row['grupos_t']).'</td>
-				// </tr>';
 			}
 			$str_html_alumn.='</tbody>
 								</table>
@@ -960,11 +740,6 @@ class Estadistica extends CI_Controller {
 				($row['grupos_multi']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_multi']).'</td>';
 				($row['grupos_t']==0)?$str_html_alumn.='<td>-</td>':$str_html_alumn.='<td>'.number_format($row['grupos_t']).'</td>';
 
-				// $str_html_alumn.='
-				// <td class="text-center">'.number_format($row['nescuelas']).'</td><td>'.number_format($row['grupos_1']).'</td><td>'.number_format($row['grupos_2']).'</td>
-				// <td>'.number_format($row['grupos_3']).'</td><td>'.number_format($row['grupos_4']).'</td><td>'.number_format($row['grupos_5']).'</td>
-				// <td>'.number_format($row['grupos_6']).'</td><td class="text-center">'.number_format($row['grupos_multi']).'</td><td class="text-center">'.number_format($row['grupos_t']).'</td>
-				// </tr>';
 			}
 			$str_html_alumn.='</tbody>
 								</table>
@@ -1183,7 +958,6 @@ class Estadistica extends CI_Controller {
 
 		function tabla_analfinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			 $result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, '2015');
-			 // echo "<pre>";print_r($result_analfinegi); die();
 			$str_html_analfinegi='<table class="table table-style-1 table-striped table-hover">
 			<thead class="bg-info">
 			<tr>
@@ -1226,12 +1000,6 @@ class Estadistica extends CI_Controller {
 			$id_zona_z = $this->input->post('id_zona');
 			$id_ciclo_z = $this->input->post('ciclo');
 
-			// echo "<pre>";print_r($id_ciclo_z);die();
-			// if ($id_nivel_z=='0' || $id_sostenimiento_z=='0' || $id_zona_z=='0') {
-			// 	$this->estad_indi_generales("zona");
-
-			// }
-			// else {
 				$data["tipo_busqueda"] = "zona";
 				$data["id_nivel_z"] = $id_nivel_z;
 				$data["id_sostenimiento_z"] = $id_sostenimiento_z;
@@ -1249,114 +1017,10 @@ class Estadistica extends CI_Controller {
 				$data["srt_tab_rezag_inegi"] = "";
 				$data["srt_tab_analf_inegi"] = "";
 
-				////
-				// $result_municipios = $this->Municipio_model->getall_xest_ind();
-				// $arr_municipios = array();
-				// $arr_sostenimientos = array();
-				// $arr_modalidad = array();
-				// $arr_niveles = array();
-				// $arr_nivelesz = array();
-				// $arr_ciclo = array();
-
-				// if(count($result_municipios)==0){
-				// 	$data2['arr_municipios'] = array(	'0' => 'Error recuperando los municipios' );
-				// }else{
-				// 	$arr_municipios['0'] = 'TODOS';
-				// 	foreach ($result_municipios as $row){
-				// 		 $arr_municipios[$row['id_municipio']] = $row['municipio'];
-				// 	}
-				// }
-
-				// $result_niveles = $this->Nivel_model->getall_est_ind();
-				// if(count($result_niveles)==0){
-				// 	$data2['arr_niveles'] = array(	'0' => 'Error recuperando los niveles' );
-				// }else{
-				// 	$arr_niveles['0'] = 'TODOS';
-				// 	foreach ($result_niveles as $row){
-				// 		 $arr_niveles[$row['id_nivel']] = $row['nivel'];
-				// 	}
-				// }
-
-				// $result_nivelesz = $this->Nivel_model->getall_est_indz();
-				// if(count($result_nivelesz)==0){
-				// 	$data2['arr_nivelesz'] = array(	'0' => 'Error recuperando los niveles' );
-				// }else{
-				// 	$arr_nivelesz['0'] = 'SELECCIONE UN NIVEL EDUCATIVO';
-				// 	foreach ($result_nivelesz as $row){
-				// 		 $arr_nivelesz[$row['id_nivel']] = $row['nivel'];
-				// 	}
-				// }
-
-				// $result_sostenimientos = $this->Sostenimiento_model->all();
-				// if(count($result_sostenimientos)==0){
-				// 	$data2['arr_sostenimientos'] = array(	'0' => 'Error recuperando los sostenimientos' );
-				// }else{
-				// 	$arr_sostenimientos['0'] = 'TODOS';
-				// 	foreach ($result_sostenimientos as $row){
-				// 		 $arr_sostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
-				// 	}
-				// }
-
-				// $result_modalidad = $this->Modalidad_model->allest();
-				// if(count($result_modalidad)==0){
-				// 	$data2['arr_modalidad'] = array(	'0' => 'Error recuperando los modalidad' );
-				// }else{
-				// 	$arr_modalidad['0'] = 'TODOS';
-				// 	foreach ($result_modalidad as $row){
-				// 		 $arr_modalidad[$row['id_modalidad']] = $row['modalidad'];
-				// 	}
-				// }
-
-				// $result_subsostenimientos = $this->Subsostenimiento_model->all();
-				// if(count($result_subsostenimientos)==0){
-				// 	$data2['arr_subsostenimientos'] = array(	'0' => 'Error recuperando los subsostenimientos' );
-				// }else{
-				// 	$arr_subsostenimientos['0'] = 'SELECCIONE SOSTENIMIENTO';
-				// 	foreach ($result_subsostenimientos as $row){
-				// 		 $arr_subsostenimientos[$row['id_subsostenimiento']] = $row['subsostenimiento'];
-				// 	}
-				// }
-
 				$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
-				//$arr_ciclo['2'] = '2017-2018';
-				//$arr_ciclo['2'] = '2018-2019';
+
 				$arr_ciclo = array('2018-2019' => '2018-2019','2017-2018' => '2017-2018');
 
-				// $result_nzonae = $this->Supervision_model->allzonas();
-				// if(count($result_nzonae)==0){
-				// 	$data2['arr_nzonae'] = array(	'0' => 'Error recuperando los sostenimientos' );
-				// }else{
-				// 	$arr_nzonae['0'] = 'SELECCIONE UNA ZONA ESCOLAR';
-				// 	foreach ($result_nzonae as $row){
-				// 		 $arr_nzonae[$row['cct']] = $row['zona_escolar'];
-				// 	}
-				// }
-
-				// $data2['arr_municipios'] = $arr_municipios;
-				// $data2['arr_niveles'] = $arr_niveles;
-				// $data2['arr_nivelesz'] = $arr_nivelesz;
-				// $data2['arr_sostenimientos'] =$arr_sostenimientos;
-				// $data2['arr_modalidad'] =$arr_modalidad;
-				// $data2['arr_subsostenimientos'] =$arr_sostenimientos;
-				// $data2['arr_nzonae'] =$arr_nzonae;
-				// $data2['arr_ciclos'] =$arr_ciclo;
-
-				// if ($tipo=="zona") {
-				// 	$data2['tzona'] = 'nav-link nav-link-style-1 active';
-				// 	$data2['tmuni'] = 'nav-link nav-link-style-1';
-				// }
-				// else {
-				// 	$data2['tmuni'] = 'nav-link nav-link-style-1 active';
-				// 	$data2['tzona'] = 'nav-link nav-link-style-1';
-				// }
-
-				// echo "<pre>";
-				// print_r($data2);
-				// print_r($data);
-				// die();
-				// $string = $this->load->view('estadistica/estadi_e_indi_gen', $data2, TRUE);
-				// $data['buscador'] = $string;
-				// Utilerias::pagina_basica($this,"estadistica/estadi_e_indi_gen_tab", $data);
 				$dom = $this->load->view("estadistica/estadi_e_indi_gen_tab2",$data,TRUE);
 	    		$response = array(
 					'vista'=>$dom
@@ -1364,7 +1028,6 @@ class Estadistica extends CI_Controller {
 
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
-			// }
 
 
 		}//xest_zona_x

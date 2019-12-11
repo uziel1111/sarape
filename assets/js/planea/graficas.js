@@ -140,20 +140,7 @@ function Graficasm(){
           });
 
           $(".highcharts-background").css("fill","#FFF");
-          // if (screen.width<600){
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       500,
-          //      false
-          //   );
-          // }
-          // else {
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*7,
-          //       1000,
-          //      false
-          //   );
-          // }
+
       }// graficoplanea_ud_prim_lyc()
 
       Graficasm.prototype.graficoplanea_ud_prim_mate = function(arr_mate,id_filtro, va_por){
@@ -296,31 +283,7 @@ function Graficasm(){
 
 
                   '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
-                  /*
-                chart: {
-                    backgroundColor: {
-                        linearGradient: [0, 0, 0, 0],
-                        stops: [
-                            [0, 'rgb(255, 255, 255)'],
-                            [1, 'rgb(255, 255, 255)']
-                        ]graficoplanea_ud_prim_lyc
-                    },
-                },
-                */
-                // title: {
-                //     style: {
-                //         color: '#000',
-                //         font: 'bold 18px'
-                //     },
-                //     text: '<b style="font-size: 2.3vh;">PLANEA 2016</b>'
-                // },
-                // subtitle: {
-                //     style: {
-                //         color: 'blue',
-                //         font: 'bold 20px'
-                //     },
-                //     text: '<b style="font-size: 1.5vh;"> Total de alumnos evaluadoos: '+parseInt(arr_lyc[0]['alumnos_evaluados'])+'</b>'
-                // },
+
                 legend: {
                     itemStyle: {
                         font: '9pt',
@@ -350,11 +313,6 @@ function Graficasm(){
               credits: {
                   enabled: false
               },
-              /*
-              chart: {
-                  type: 'bar'
-              },
-              */
               chart: {
                   type: 'bar',
                   backgroundColor: {
@@ -382,17 +340,8 @@ function Graficasm(){
                       text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos con respuestas correctas</div>'
                       // text: '<div>Porcentaje de alumnos con respuestas correctas</div>'
                   },
-                  /*
-                  labels: {
-                      overflow: 'justify'
-                  }
-                  */
               },
-              /*
-              legend: {
-                  enabled: false
-              },
-              */
+
               plotOptions: {
                   series: {
                     events: {
@@ -438,22 +387,7 @@ function Graficasm(){
 
 
           $(".highcharts-background").css("fill","#FFF");
-          /*
-          if (screen.width<600){
-            estadPreescolar.setSize(
-                ($(document).width()/10)*5,
-                500,
-               false
-            );
-          }
-          else {
-            estadPreescolar.setSize(
-                ($(document).width()/10)*7,
-                900,
-               false
-            );
-          }
-          */
+
       }// graficoplanea_ud_secu_lyc()
 
       Graficasm.prototype.graficoplanea_ud_secu_mate = function(arr_mate,id_cct, va_por){
@@ -578,21 +512,6 @@ function Graficasm(){
           });
 
           $(".highcharts-background").css("fill","#FFF");
-          // $("#container_chartFreqAtaTailNum").highcharts().setSize(200, 200, false);
-          // if (screen.width<600){
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       500,
-          //      false
-          //   );
-          // }
-          // else {
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*7,
-          //       1000,
-          //      false
-          //   );
-          // }
 
       }// graficoplanea_ud_secu_mate()
 
@@ -645,11 +564,7 @@ function Graficasm(){
               credits: {
                   enabled: false
               },
-              /*
-              chart: {
-                  type: 'bar'
-              },
-              */
+
               chart: {
                   type: 'bar',
                   backgroundColor: {
@@ -1019,11 +934,7 @@ function Graficasm(){
               credits: {
                   enabled: false
               },
-              /*
-              chart: {
-                  type: 'bar'
-              },
-              */
+
               chart: {
                   type: 'bar',
                   backgroundColor: {
@@ -1051,17 +962,7 @@ function Graficasm(){
                       text: '<div style="font-size: 1.1vh;">Porcentaje de alumnos que contestó correctamente</div>'
                       // text: '<div>Porcentaje de alumnos con respuestas correctas</div>'
                   },
-                  /*
-                  labels: {
-                      overflow: 'justify'
-                  }
-                  */
               },
-              /*
-              legend: {
-                  enabled: false
-              },
-              */
               plotOptions: {
                   series: {
                     events: {
@@ -1104,9 +1005,6 @@ function Graficasm(){
               }],
 
           });
-
-
-          // $(".highcharts-background").css("fill","#FFF");
 
           if (screen.width<600){
             estadPreescolar.setSize(
@@ -1618,9 +1516,6 @@ function Graficasm(){
            return false;
          }
          }
-
-
-
 
 
    //al enviar el formulario

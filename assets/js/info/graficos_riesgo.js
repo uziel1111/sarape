@@ -7,7 +7,6 @@ function GraficasRiesgo(){
 GraficasRiesgo.prototype.TablaPieGraficaPie = function(q1,q2,q3,q4){
 
         Highcharts.theme = {
-            //colors: ['#50B432', '#07A4B5', '#ED561B', '#006080', '#24CBE5', '#64E572',
             colors: ['#FF0000', '#FF9900', '#FFFF00', '#3CB371', '#24CBE5', '#64E572',
                      '#FF9655', '#FFF263', '#058DC7'],
             chart: {

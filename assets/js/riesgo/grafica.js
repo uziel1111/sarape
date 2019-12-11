@@ -1,27 +1,10 @@
-// $(function() {
-//     obj_grafica = new Grafica();
-// });
 
 function Grafica(){
   _this = this;
 }
 
-// $("#btn_buscar_ries_muni").click(function() {
-//   var id_minicipio = $("#slt_municipio_ries").val();
-//   var id_nivel = $("#slt_nivel_ries").val();
-//   var id_bimestre = $("#slt_bimestre_ries").val();
-//   var id_ciclo = $("#slt_ciclo_ries").val();
-//
-//   // alert(id_minicipio);
-//   // obj_riesgo.get_Niveles();
-// });
-
 
 Grafica.prototype.TablaPieGraficaPie = function(q1,q2,q3,q4){
-  // var q1 = parseInt(10);
-  // var q2 = parseInt(5);
-  // var q3 = parseInt(3);
-  // var q4 = parseInt(2);
 
       Highcharts.theme = {
           //colors: ['#50B432', '#07A4B5', '#ED561B', '#006080', '#24CBE5', '#64E572',
@@ -134,13 +117,6 @@ Grafica.prototype.TablaPieGraficaPie = function(q1,q2,q3,q4){
 
     Grafica.prototype.TablaPieGraficaBarPrimaria= function(t1,t2,t3,t4,t5,t6){
 
-      // var t1 = parseInt(10);
-      // var t2 = parseInt(5);
-      // var t3 = parseInt(6);
-      // var t4 = parseInt(8);
-      // var t5 = parseInt(5);
-      // var t6 = parseInt(3);
-
             Highcharts.theme = {
                 colors: ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000','#FF0000',
                          '#FF0000', '#FF0000', '#FF0000'],
@@ -251,13 +227,7 @@ Grafica.prototype.TablaPieGraficaPie = function(q1,q2,q3,q4){
 
           }
 
-
-
     Grafica.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
-      // var t1 = parseInt(10);
-      // var t2 = parseInt(5);
-      // var t3 = parseInt(6);
-
             Highcharts.theme = {
                 colors: ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000','#FF0000',
                          '#FF0000', '#FF0000', '#FF0000'],

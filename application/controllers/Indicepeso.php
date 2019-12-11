@@ -26,21 +26,9 @@ class Indicepeso extends CI_Controller {
 				}
 			}
 
-			// $result_niveles = $this->Nivel_model->getall_est_ind();
-			// if(count($result_niveles)==0){
-			// 	$data['arr_niveles'] = array(	'0' => 'Error recuperando los niveles' );
-			// }else{
-				// $arr_niveles['0'] = 'TODOS';
-				// $arr_niveles['1'] = 'ESPECIAL';
-				// $arr_niveles['3'] = 'PREESCOLAR';
 				$arr_niveles['4'] = 'PRIMARIA';
 				$arr_niveles['5'] = 'SECUNDARIA';
 				$arr_niveles['6'] = 'MEDIA SUPERIOR';
-
-			// 	foreach ($result_niveles as $row){
-			// 		 $arr_niveles[$row['id_nivel']] = $row['nivel'];
-			// 	}
-			// }
 
 			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
 			$arr_ciclo['2'] = '2017-2018';

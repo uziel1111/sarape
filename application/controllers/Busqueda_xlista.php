@@ -76,26 +76,16 @@ class Busqueda_xlista extends CI_Controller {
 					$cve_sostenimiento = $this->input->post('slc_busquedalista_sostenimiento');
 					$nombre_escuela = $this->input->post('itxt_busquedalista_nombreescuela');
 				}
-				// echo  $cve_municipio."ww\n";
-				// echo  $cve_nivel."\n";
-				// echo  $cve_sostenimiento."\n";
-				// echo  $nombre_escuela."\n";
-				// die();
+
 				$data['cve_municipio'] = $cve_municipio;
 				$data['cve_nivel'] = $cve_nivel;
 				$data['cve_sostenimiento'] = $cve_sostenimiento;
 				$data['nombre_escuela'] = $nombre_escuela;
 
-				//hidden
 				$municipio = $this->input->get('hidden_municipio');
 				$nivel = $this->input->get('hidden_nivel');
 				$sostenimiento = $this->input->get('hidden_sostenimiento');
-				// echo $municipio."\n";
-				// echo $nivel."\n";
-				// echo $sostenimiento."\n";
-				// die();
-				// $result_escuelas = $this->Escuela_model->get_xparams($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
-				// echo "<pre>"; print_r($result_escuelas); die();
+
 
 				$array=array();
 				$result_escuelas = $this->CentrosE_model->filtro_escuela($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
@@ -149,9 +139,6 @@ class Busqueda_xlista extends CI_Controller {
 						array_push($array,$result_escuelas[$i]);
 					}
 				}
-
-
-
 
 				$data['municipio'] = $municipio;
 				$data['nivel'] = $nivel;

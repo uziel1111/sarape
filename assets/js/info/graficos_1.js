@@ -859,8 +859,6 @@ function HaceGraficas(){
 
 HaceGraficas.prototype.GraficoEstadisticaOtros = function(t_alumnos,t_grupos,t_docentes){
       Highcharts.theme = {
-            //colors: ['#50B432', '#07A4B5', '#ED561B', '#006080', '#24CBE5', '#64E572',
-            //colors: ['#50B432', '#ED561B', '#8B4513', '#006080', '#24CBE5', '#64E572',
             colors: ['#3C5AA2','#ECC462','#D5831C','#ECC462','#25383C','#A52A2A','#3CB371','#64E572', '#24CBE5', '#006080',
                      '#FF9655', '#FFF263', '#058DC7'],
             chart: {
@@ -2186,20 +2184,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           });
 
           $(".highcharts-background").css("fill","#FFF");
-          // if (screen.width<600){
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       500,
-          //      false
-          //   );
-          // }
-          // else {
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       1000,
-          //      false
-          //   );
-          // }
+
       }// graficoplanea_ud_prim_lyc()
 
       HaceGraficas.prototype.graficoplanea_ud_prim_mate = function(arr_mate,cct,turno,nivel){
@@ -2324,20 +2309,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           });
 
           $(".highcharts-background").css("fill","#FFF");
-          // if (screen.width<600){
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       500,
-          //      false
-          //   );
-          // }
-          // else {
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       1000,
-          //      false
-          //   );
-          // }
 
       }// graficoplanea_ud_prim_mate()
 
@@ -2464,20 +2435,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
           $(".highcharts-background").css("fill","#FFF");
 
-          // if (screen.width<600){
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       500,
-          //      false
-          //   );
-          // }
-          // else {
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       900,
-          //      false
-          //   );
-          // }
       }// graficoplanea_ud_secu_lyc()
 
       HaceGraficas.prototype.graficoplanea_ud_secu_mate = function(arr_mate,cct,turno,nivel){
@@ -2604,21 +2561,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           });
 
           $(".highcharts-background").css("fill","#FFF");
-          // $("#container_chartFreqAtaTailNum").highcharts().setSize(200, 200, false);
-          // if (screen.width<600){
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       500,
-          //      false
-          //   );
-          // }
-          // else {
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       1000,
-          //      false
-          //   );
-          // }
 
       }// graficoplanea_ud_secu_mate()
 
@@ -2738,20 +2680,6 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
           $(".highcharts-background").css("fill","#FFF");
 
-          // if (screen.width<600){
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       500,
-          //      false
-          //   );
-          // }
-          // else {
-          //   estadPreescolar.setSize(
-          //       ($(document).width()/10)*5,
-          //       900,
-          //      false
-          //   );
-          // }
       }// graficoplanea_ud_ms_lyc()
 
       HaceGraficas.prototype.graficoplanea_ud_ms_mate = function(arr_mate,cct,turno,nivel){
@@ -2895,125 +2823,17 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           .done(function( data ) {
             // obj_loader.hide();
               swal.close();
-              // var result = data.graph_cont_reactivos_xcctxcont;
-              // var result_apoyoxreact = data.graph_cont_reactivos_xcctxcont_apoyo;
 
               var html = "<div style='text-align:left !important;'>";
               if (data.longitud==0) {
                 // html += "<div class='alert alert-success' role='alert'>En este contenido temático más del 50% los alumnos contestaron en forma correcta las preguntas.</div>";
               }
-              else {
-                // html += "<div class='alert alert-warning' role='alert'>Reactivo donde al menos el 50% de los alumnos de esta escuela no contestó o contestó incorrectamente.</div>";
-                // html += "<table class='table-responsive table table-condensed'>";
-                // html += "<tbody>";
+              else {  
             
               $("#div_generico_reactivos").empty();
               $("#div_generico_reactivos").append(data.str_view);
               $("#modal_visor_reactivos").modal("show");
             }
-
-                /* ***********************************
-                var html_reactivos='';
-
-                html += "    <div class='container'> ";
-                for (var i = 0; i < result.length; i++) {
-                  html += "    <div class='row'>";
-                  html += "      <div class='col-2'>";
-                  html += "      <h5><span class='h3 badge badge-secondary text-white'>"+result[i]['n_reactivo']+"</span></h5>";
-                  html += "      </div>";
-                  html += "      <div class='col-10'>";
-                  if (result[i]['path_apoyo']!=null) {
-                    html += "      <center><a style='color:blue;' href='#' onclick=obj_graficas.apoyo_reactivo('"+result[i]['path_apoyo']+"')>Texto/imagen (apoyo)</a></center>";
-                  }
-                  html += "      </div>";
-                  html += "    </div>";
-                  html += "    <div class='row'>";
-                  html += "      <div class='col-12'>";
-                  html += "<img style='cursor: zoom-in;' onclick=obj_graficas.modal_reactivo('"+result[i]['path_react']+"') class='img-fluid' src='http://www.sarape.gob.mx/assets/docs/planea_reactivos/"+result[i]['path_react']+"' class='img-responsive center-block' />";
-                  html += "      </div>";
-                  html += "    </div><br>";
-                  html+='<p>Análisis Descriptivo del Resultado del Reactivo</p><div class="progress">';
-                  html+='<div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>';
-                  html+='</div><br>';
-                  html+='<div class="progress"><div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>';
-                  html+='</div><br><div class="progress"><div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>';
-                  html+='</div><br><div class="progress"><div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div></div>';
-                  html+='<br></br>';    
-                  html += "    <div class='row'>";
-                  html += "      <div class='col-md-3 col-sm-12'>";
-                  html += "      </div>";
-                  html += "      <div class='col-md-3 col-sm-12'>";
-                  html += "      </div>";
-                  html += "      <div class='col-md-3 col-sm-12'>";
-                  html += "      </div>";
-                  html += "      <div class='col-md-3 col-sm-12'>";
-                  html += "      <center><a style='color:black;' >Numero de propuestas: <b id='n_propcont'>"+result[i]['n_prop']+"</b></a></center>";
-                  html += "      </div>";
-                  html += "    </div>";
-
-                  html += "    <div class='row'>";
-                  html += "      <div class='col-md-3 col-sm-12'>";
-                  html += "      <center>";
-                  if (periodo!='1') {
-                    html += "      <button data-toggle='tooltip' title='Explicación de respuesta correcta' type='button' class='btn btn-style-1 color-6 bgcolor-2 mb-2' onclick=obj_graficas.argumento_reactivo('"+result[i]['url_argumento']+"')>Argumento</button>";
-                  }
-                  html += "      </center>";
-                  html += "      </div>";
-                  html += "      <div class='col-md-3 col-sm-12'>";
-                  html += "      <center>";
-                  if (periodo!='1') {
-                  html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-3 mb-2' onclick=obj_graficas.especificacion_reactivo('"+result[i]['url_especificacion']+"')>Especificación</button>";
-                  }
-                  html += "      </center>";
-                  html += "      </div>";
-                  html += "      <div class='col-md-3 col-sm-12'>";
-                  html += "      <center>";
-                  if (result[i]['n_material']!="0") {
-                    html += "      <button type='button' class='btn btn-style-1 color-6 bgcolor-4 mb-2' onclick=obj_graficas.apoyosacadem('"+result[i]['id_reactivo']+"')>Apoyos académicos</button>";
-                  }
-                  html += "      </center>";
-                  html += "      </div>";
-
-                  html += "      <div class='col-md-3 col-sm-12'>";
-                  html += "      <center>";
-
-                  if (result[i]['n_prop']<"5") {
-                    html += "      <button id='btn_prop' type='button' class='btn btn-style-1 color-6 bgcolor-1 mb-2' onclick=obj_graficas.propmapoyo('"+result[i]['id_reactivo']+"')>Proponer material</button>";
-                  }
-                  html += "      </center>";
-                  html += "      </div>";
-
-                  html += "      </div>";
-                  html += "    </div>";
-                }
-                html += "    </div>";
-                // html += "</tbody>";
-                // html += "</table>";
-              }
-              // html += "</div>";
-              
-              // $("#div_reactivos_graf").empty();
-
-              $('#modal_visor_reactivos .modal-body #div_reactivos').empty();
-              // $('#modal_visor_reactivos .modal-body #div_reactivos_graf').html(html_reactivos);
-              $('#modal_visor_reactivos .modal-body #div_reactivos').html(html);
-              
-              
-              //en esta parte vamos a agregar la grafica
-              
-
-            
-              // obj_grafica.TablaPieGraficaBarPrimaria_R(t1,t2,t3,t4,t5,t6);
-             
-
-
-              $("#modal_reactivos_title").empty();
-              $("#modal_reactivos_title").html("Contenido temático: "+nombre);
-
-              $("#modal_visor_reactivos").modal("show");
-
-              //   obj_grafica.TablaPieGraficaPie_R(result[0]['a'],result[0]['b'],result[0]['c'],result[0]['d']);
-              *************** */
 
           })
           .fail(function(e) {

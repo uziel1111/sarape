@@ -228,26 +228,7 @@ var lazyload = {
 
       var title = element.minNight + ' ';
 
-      // var eventBlock = $$1('<a>', {
-      //   class: this.format('gantt-event-block {0}', tourType),
-      //   width: tourWidth + 'px'
-      // }).css('line-height', this.config.cellHeight - 28 + 'px').data('tooltip', this.tooltipView(tooltipData));
       var eventBlock='';
-      // var eventBlock = $$1('<a class="gantt-event-block tourFly"> width="'+tourWidth2+'px"></a><a class="gantt-event-block tourFly"> width="'+tourWidth+'px"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-      // console.log(element.tooltipData);
-      // var tourWidth2='';
-      // if(tourWidth2==0){
-
-      //   // eventBlock2 = $$1('<a>', {
-      //   //   class: this.format('gantt-event-block tourFly2'),
-      //   //   width: tourWidth2 + 'px'
-      //   // }).css('line-height', this.config.cellHeight - 28 + 'px').data('tooltip', this.tooltipView(tooltipData));
-      //   eventBlock = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-      // }else{
-      //   // eventBlock = $$1('<div class="progress-bar" aria-valuemax="100" aria-valuemin="0"  style="width:'+tourWidth2+'px; background:green !important;" role="progressbar"></div><a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-      //   eventBlock = $$1('<div class="progress-bar" aria-valuemax="100" aria-valuemin="0"  style="width:'+tourWidth2+'px; background:green !important;" role="progressbar" data-toggle="tooltip"  data-content="'+el.tooltipData.desc[1]+el.tooltipData.desc[2]+el.tooltipData.desc[3]+'"></div>').css('line-height', this.config.cellHeight - 10 + 'px');
-      //   var eventBlock2 = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-      // }
 
       eventBlock=$$1('<progress  class="progress" value="'+element.minNight2+'" max="100" min="0"  style="width:'+tourWidth+'px; background:green !important;"   title="'+element.tooltipData.desc[0]+'&#10; '+element.tooltipData.desc[1]+'&#10; '+element.tooltipData.desc[2]+'&#10; '+element.tooltipData.desc[3]+'&#10;'+element.tooltipData.desc[4]+'"></progress>').css('line-height', this.config.cellHeight - 10 + 'px');
       var left = remDay * this.config.cellWidth + this.gridDefaults.eventsWidth;
@@ -670,31 +651,11 @@ var Gantt = function () {
         var tourType = 'tourFly';
       
         var title = el.minNight + ' ';
-
-        // var eventBlock = $$1('<a>', {
-        //   class: 'gantt-event-block ' + tourType,
-        //   width: tourWidth + 'px'
-        // }).css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-        // var eventBlock = $$1('<a class="gantt-event-block tourFly"> width="'+tourWidth2+'px"></a><a class="gantt-event-block tourFly"> width="'+tourWidth+'px"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-        
         
         var eventBlock='';
-        // if(tourWidth2>0){
-        //   eventBlock = $$1('<div class="progress-bar" aria-valuemax="100" aria-valuemin="0"  style="width:'+tourWidth2+'px; background:green !important;" role="progressbar" data-toggle="tooltip"  data-content="'+el.tooltipData.desc[1]+el.tooltipData.desc[2]+el.tooltipData.desc[3]+'"></div>').css('line-height', this.config.cellHeight - 10 + 'px');            
-        //   var eventBlock2 = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-        // }else{
-        //   eventBlock = $$1('<a class="gantt-event-block tourFly" style="width:'+tourWidth+'px;"></a>').css('line-height', this.config.cellHeight - 10 + 'px').data('tooltip', this.tooltipView(tooltipData));
-        // }
+
         eventBlock=$$1('<progress  class="progress" value="'+el.minNight2+'" max="100" min="0"  style="width:'+tourWidth+'px;"   title="'+el.tooltipData.desc[0]+'&#10; '+el.tooltipData.desc[1]+'&#10; '+el.tooltipData.desc[2]+'&#10; '+el.tooltipData.desc[3]+'&#10;'+el.tooltipData.desc[4]+'"></progress>').css('line-height', this.config.cellHeight - 10 + 'px');            
           
-          //<progress value="80" max="100" style="width: 380px;" title="Accion: Elaborar una lista de faltantes y presupuesto
-            // Duracion: 2 meses y 2 dias
-            // Fecha de Inicio: 20 de mayo
-            // Fecha Fin: 30 de julio" class="gantt-event-block tourFly2"></progress>
-        //<progress value="100" max="100" style="width: 380px;" min="20" class="gantt-event-block tourFly2" title="Accion: Elaborar una lista de faltantes y presupuesto
-// Duracion: 2 meses y 2 dias
-// Fecha de Inicio: 20 de mayo
-// Fecha Fin: 30 de julio"></progress>
         var left = remDay * this.config.cellWidth;
 
         templateEventRow.append(templateEvent.css('left', left).append(eventBlock)).css('height', this.config.cellHeight);

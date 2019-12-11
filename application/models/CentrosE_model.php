@@ -92,12 +92,6 @@ class CentrosE_model extends CI_Model
     }
 
     function filtro_escuela($municipio,$nivel,$sostenimiento,$nombre_escuela){
-      // echo $municipio."\n";
-      // echo $nivel."\n";
-      // echo $sostenimiento."\n";
-      // echo $nombre_escuela."\n";
-      // die();
-
       $auxiliar="";
       if($municipio!=-1 && $municipio!=0){
         // $auxiliar.= " AND v.nombre_de_municipio LIKE'%".$municipio."%'";
@@ -247,19 +241,13 @@ class CentrosE_model extends CI_Model
     }
 
     function get_planea_xidcct($cct,$turno,$periodo){
-      // echo $cct."\n";
-      // echo $turno."\n";
-      // echo $periodo."\n";
-      // die();
-      // echo "id_cct= ". $id_cct;
       $this->db->select('lyc_i, lyc_ii, lyc_iii, lyc_iv, mat_i, mat_ii, mat_iii, mat_iv');
       $this->db->from('planeaxescuela');
       $this->db->where('cct', $cct);
       $this->db->where('id_turno', $turno);
       $this->db->where('periodo', $periodo);
-      $this->db->limit(1);//MODIFICACION LS para corregir error reportado LV comentar con ALEX
-        // $str = $this->db->last_query();
-    // echo $str; die();
+      $this->db->limit(1);
+
       return  $this->db->get()->result_array();
 
     }// get_planea_xidcct()
@@ -280,9 +268,6 @@ class CentrosE_model extends CI_Model
         $this->db->where('cve_centro', $cct);
         $this->db->where('id_turno_single', $id_turno_single);
         $this->db->where('id_ciclo', $id_ciclo);
-        //  $this->db->get();
-        // $str = $this->db->last_query();
-        // echo $str; die();
         return  $this->db->get()->result_array();
     }// get_indicpeso_xidcct()
 

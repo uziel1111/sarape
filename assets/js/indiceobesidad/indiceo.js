@@ -24,8 +24,6 @@ IndiceO.prototype.get_escuelas_prom = function(idreactivo){
 	    },
 	})
 	.done(function(result) {
-
-		console.log(result.dom_view_indice_peso);
 		$("#contenedor_de_vista_g").empty();
 		$("#contenedor_de_vista_g").append(result.dom_view_indice_peso);
 	})

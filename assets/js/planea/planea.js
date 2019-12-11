@@ -167,7 +167,7 @@ const Planea = {
 					}
 			        break;
 			    case "5":
-			    console.log($("#slt_periodo_planeaxz").val());
+
 			       	if($("#slt_campod_planeaxz").val() == 1){
 			       		if ($("#slt_periodo_planeaxz").val() == 4) {
 							graficar.graficoplanea_ud_secu_lyc19(result.datos, $("#slt_zona_planea").val(), "zona",  $("#slt_periodo_planeaxz").val());
