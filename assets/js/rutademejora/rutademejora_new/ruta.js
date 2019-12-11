@@ -228,13 +228,15 @@ Prioridad.prototype.getObjetivos = function(id_tprioritario){
 //grid objetivos
 Prioridad.prototype.funcionalidadselect = function(){
 	$("#id_tabla_objetivos tr").click(function(){
-		$(this).addClass('selected').siblings().removeClass('selected');
 		var value = $(this).find('td:first').text();
      	var t_prioritario = $(this).find('td:first').next().text();
+	 if (value != '') {	
+		$(this).addClass('selected').siblings().removeClass('selected');
 		obj.id_objetivo = value;
 		obj.id_tprioritario = t_prioritario;
 		
 		id_objetivo = 0;
+	}
 	});
 }
 

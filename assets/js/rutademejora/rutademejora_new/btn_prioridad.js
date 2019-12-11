@@ -323,8 +323,8 @@ $('#grabar_prioridad').click(function(){
 		dataType: 'JSON',
 		data:{ id_tprioritario: id_tprioritario,
 					 problematica: problematica,
-					 evidencias: $('#evidencias').val(),
-					 txt_rm_obs_direc: $('#txt_rm_obs_direc').val(),
+					 evidencias: $('#evidencias').val().trim(),
+					 txt_rm_obs_direc: $('#txt_rm_obs_direc').val().trim(),
 					 ambito: selected
 				 },
 	 	beforeSend: function(xhr) {
@@ -380,6 +380,14 @@ $('#grabar_objetivo').click(function(){
 	else {
 
 		if (flag == 0) {
+			if ($('#CAPoutput').val().trim() == '') {
+				swal(
+					'¡Error!',
+					'El objetivo no puede capturarse en blanco',
+					"error"
+					);
+			}
+			else{
 			$.ajax({
 				url: base_url+'Rutademejora/agregarObjetivo',
 				type: 'POST',
@@ -388,7 +396,7 @@ $('#grabar_objetivo').click(function(){
 								id_tprioritario : idtemap,
 								id_subprioridad : obj.id_subprioridad,
 								id_prioridad: obj.id_prioridad,
-								objetivo: $('#CAPoutput').val(),
+								objetivo: $('#CAPoutput').val().trim(),
 							},
 				beforeSend: function(xhr) {
 			        Notification.loading("");
@@ -422,13 +430,14 @@ $('#grabar_objetivo').click(function(){
 			.always(function() {
 		    swal.close();
 			});
+		}
 		} else {
 			$.ajax({
 				url: base_url+'Rutademejora/actualizarObjetivo',
 				type: 'POST',
 				dataType: 'JSON',
 				data: { id_objetivo: flag,
-								objetivo: $('#CAPoutput').val()
+								objetivo: $('#CAPoutput').val().trim()
 							},
 				beforeSend: function(xhr) {
 			        Notification.loading("");
@@ -616,12 +625,13 @@ Prioridad.prototype.getObjetivos = function(){
 
 Prioridad.prototype.funcionalidadselect = function(){
 	$("#id_tabla_objetivos tr").click(function(){
-		 $(this).addClass('selected').siblings().removeClass('selected');
 		 var value = $(this).find('td:first').text();
      var t_prioritario = $(this).find('td:first').next().text();
-
+   if (value != '') {
+		 $(this).addClass('selected').siblings().removeClass('selected');
 		 obj.id_objetivo = value;
 		 obj.id_tprioritario = t_prioritario;
      	 id_objetivo = 0;
+    }
 	});
 }

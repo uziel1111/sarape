@@ -39,13 +39,13 @@ function Tabla(){
 
   Tabla.prototype.funcionalidadselect = function(){
     $("#id_tabla_rutas tr").click(function(){
-       $(this).addClass('selected').siblings().removeClass('selected');
        var value = $(this).find('td:first').text();
        var val2 = $(this).find('td:first').next().text();
        var val3 = $(this).find('td:first').next().next().text();
        var val4 = $(this).find('td:first').next().next().next().next().text();
        var textotp = $(this).find('td:first').next().next().next().text();
-
+ if (value != '') {
+       $(this).addClass('selected').siblings().removeClass('selected');
        obj.id_tprioritario = value;
        obj.id_prioridad = val2;
        obj.id_subprioridad = val3;
@@ -53,6 +53,7 @@ function Tabla(){
        obj.txttp = textotp;
 
        id_tprioritario = 0;
+  }
     });
   }
 
