@@ -166,11 +166,18 @@ $("#btn_cargar_mensaje_super").click(function(){
 
 
 $("#btn_guarda_msg_super").click(function(){
+  if ($("#mensajesupervisor").val().trim() == '') {
+       swal(
+        'Error!',
+        'El mensaje no puede guardarse vacío',
+        "error"
+      );
+  }else {
   $.ajax({
     url: base_url+'rutademejora/get_mensaje_super',
     type: 'POST',
     dataType: 'JSON',
-    data: {"idruta":id_tprioritario_sup, "mensaje":$("#mensajesupervisor").val()},
+    data: {"idruta":id_tprioritario_sup, "mensaje":$("#mensajesupervisor").val().trim()},
     beforeSend: function(xhr) {
           Notification.loading("");
       },
@@ -193,6 +200,7 @@ $("#btn_guarda_msg_super").click(function(){
   })
   .always(function() {
   });
+}
 });
 
 $("#btn_ver_ruta_super").click(function(){
@@ -238,9 +246,11 @@ Supervision.prototype.get_rutasxcct = function(cct, turno){
 
  Supervision.prototype.funcionalidadselect = function(){
     $("#id_tabla_rutas_super tr").click(function(){
-       $(this).addClass('selected').siblings().removeClass('selected');
        var value=$(this).find('td:first').text();
+        if (value != '') {
+       $(this).addClass('selected').siblings().removeClass('selected');
        id_tprioritario_sup = value;
+     }
     });
   }
 
