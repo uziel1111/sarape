@@ -9,7 +9,6 @@ if (sizeof($array_encuestas) > 0 ) {
 			<th scope='row'><?=$i?></th>
 			<td><?=strtoupper($encuestas['respuesta'])?></td>
 			<td><?=$encuestas['sostenimiento']?></td>
-			<!-- <td><?php//$encuestas['fcreacion']?></td> -->
 			<td width="130px">
 				<span data-toggle='modal' data-target='#verDocumento'>
 					<button type='button' data-toggle='tooltip' title='Ver documento' onclick='documento(<?=$encuestas['idaplicar']?>)' class='btn btn-sm btn-secondary'><i class='fas fa-file-alt mx-1'></i></button>
@@ -45,7 +44,6 @@ if (sizeof($array_encuestas) > 0 ) {
 
 					<ul class="fa-ul">
 						<li class="text-muted"><span class="fa-li"><i class="far fa-building"></i></span><?= $dato['area_departamento']?></li>
-						<!-- <li><span class="fa-li text-danger"><i class="fas fa-map-marker-alt"></i></span>Coordinación General de Educación Normal y Actualización Docente</li> -->
 						<li><span class="fa-li text-danger"><i class="fas fa-phone"></i></span><?=$dato['ntelefono']?></li>
 						<li><span class="fa-li text-danger"><i class="fas fa-envelope"></i></span><a href="#" target="_blank"><?= $dato['email']?></a>
 						</li>
