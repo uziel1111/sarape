@@ -2,12 +2,10 @@ $(function() {
   Rm_acciones_tp.id_accion_select = undefined;
   obj_rm_acciones_tp = new Rm_acciones_tp();
   $("#div_otro_responsable").hide();
-    // $('#otro_responsable').hide();
     $('#btn_editando_accion').hide();
     sel_encargado = false;
     $('#main_resp_2').attr('hidden', true)
 
-    // obj = new Tabla();
     obj.get_view();
 
   });
@@ -50,7 +48,6 @@ $("#btn_agregar_accion").click(function(){
 });
 
 $("#id_btn_elimina_accion").click(function(){
-  // alert(Rm_acciones_tp.id_accion_select);
   if(Rm_acciones_tp.id_accion_select === undefined){
     swal(
       '¡Error!',
@@ -90,10 +87,7 @@ $("#id_btn_edita_accion").click(function() {
 $("#btn_editando_accion").click(function(){
  if (obj_rm_acciones_tp.validaform(0)) {
     obj_rm_acciones_tp.editar_accion()
-} else{
-
-// console.log(obj_rm_acciones_tp.validaform(0) + "else");
-}
+} 
 
 });
 
@@ -106,13 +100,13 @@ $("#slc_responsables").change(function(){
   encargados = texto.split(",");
   var i = encargados.indexOf("Otros");
   encargados.splice( i, 1 );
-   // alert(encargados);
+   
    if( texto.indexOf("0,") > -1){
     $("#div_otro_responsable").show();
-     // $('#otro_responsable').show();
+     
    }else{
     $("#div_otro_responsable").hide();
-      // $('#otro_responsable').hide();
+      
     }
   });
 
@@ -141,11 +135,6 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
    data:{ "id_tprioritario":id_tprioritario },
    success:function(data){
      var vista = data.tabla;
-             // console.log(data.datos);
-             // $("#div_generico").empty();
-             // $("#div_generico").append(data.strView);
-             // $("#contenedor_acciones_id").empty();
-             // $("#contenedor_acciones_id").append(vista);
              if (data.datos['prioridad'] == 'EQUIPAMIENTO E INFRAESTRUCTURA DE ALTA CALIDAD') {
               lae = 'LAE-1 ' + data.datos['prioridad'];
             }
@@ -170,8 +159,7 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
             $("#label_evidencia").text(data.datos['evidencias']);
             $("#id_objetivos").empty();
             $("#id_objetivos").append(data.stroption);
-            getAccxObj()
-             // obj_rm_acciones_tp.get_view_acciones()
+            getAccxObj();
              obj_rm_acciones_tp.iniciatabla();
            },
            error: function(error){
@@ -179,7 +167,6 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
            }
          });
 
-       // $("#myModal").modal("show");
        $("#exampleModalacciones").modal('show');
      };
 
@@ -206,12 +193,6 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
        obj_rm_acciones_tp.iniciatabla();
        obj_rm_acciones_tp.limpia_camposform();
 
-
-       setTimeout(function(){
-                //getTablaAccxObj(id_objetivo)
-               // getTablaAccxObj(objetivo)
-             }, 500)
-             // $('#id_objetivos').val('0');
              $('#id_objetivos').val(objetivo);
              getAccxObj();
 
@@ -231,9 +212,7 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
       $("#otro_responsable").val("");
       $("#otro_resp").val("");
       $("#txt_rm_indimed").val("");
-  // $("#otro_responsable").hide();
   $("#div_otro_responsable").hide();
-  //$("#main_resp_2").hide();
   $("#slc_rm_ambito").val("");
   $("#slc_rm_ambito").selectpicker("refresh");
   $("#slc_responsables").selectpicker('deselectAll');
@@ -242,7 +221,6 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
 }
 
 Rm_acciones_tp.prototype.editar_accion = function(){
-   // alert("entro");
    var id_ambito = $("#slc_rm_ambito").val();
    var accion = $("#txt_rm_meta").val();
    var materiales = $("#txt_rm_obs").val();
@@ -251,11 +229,8 @@ Rm_acciones_tp.prototype.editar_accion = function(){
    var ffin = $("#datepicker2").val();
    var medicion = $("#txt_rm_indimed").val();
    var id_objetivo = $("#id_objetivos").val();
-  // var responsable = $('#main_responsable').val()
    var id_accion = $('#idaccion').val();
 
-  // alert( $('#idaccion').val());
-  // return false
 
   $.ajax({
    url:base_url+"rutademejora/save_accion",
@@ -273,13 +248,11 @@ Rm_acciones_tp.prototype.editar_accion = function(){
      var vista = data.tabla;
      $("#contenedor_acciones_id").empty();
      $("#contenedor_acciones_id").append(vista);
-             // getTablaAccxObj(id_objetivo)
              obj_rm_acciones_tp.iniciatabla();
              obj_rm_acciones_tp.limpia_camposform();
              $('#btn_editando_accion').hide();
              $('#btn_agregar_accion').show();
              $('#id_objetivos').val(id_objetivo);
-             // $('#id_objetivos').removeAttr('disabled');
 
              $('#id_objetivos').attr('disabled', false);
              $('#idaccion').val('');
@@ -296,11 +269,9 @@ Rm_acciones_tp.prototype.iniciatabla = function(){
    $(this).addClass('selected').siblings().removeClass('selected');
    var value=$(this).find('td:first').text();
    var value1=$(this).find('td:nth-child(2)').text();
-     // alert(value1);
      Rm_acciones_tp.id_accion_select = value;
      Rm_acciones_tp.id_accion_select1 = value1;
      $('#idaccion').val(value);
-     // alert(Rm_acciones_tp.id_accion_select);
    });
 }
 
@@ -317,14 +288,8 @@ Rm_acciones_tp.prototype.delete_accion = function(idaccion, idtprioriario){
         "La acción se elimino correctamente",
         "success"
         );
-               //$("#id_objetivos").val('0');
                var vista = data.tabla;
-              //$("#id_objetivos").val(id_objetivos);
-              //console.log(id_objetivo);
-               //$("#contenedor_acciones_id").empty();
                getAccxObj();
-               //$("#contenedor_acciones_id").append(vista);
-               //obj_rm_acciones_tp.iniciatabla();
              }else{
               swal(
                 '¡Error!',
@@ -353,26 +318,19 @@ Rm_acciones_tp.prototype.edit_accion = function(idaccion, id_tprioritario){
    data:{"idaccion":idaccion, 'id_tprioritario': id_tprioritario},
    success:function(data){
     var editado = data.editado;
-            // alert(editado['id_ambito']);
-            // $("#slc_rm_ambito").val(editado['id_ambito']);
-            // $("#slc_rm_ambito").selectpicker("refresh");
             $("#txt_rm_meta").val(editado['accion']);
             $("#txt_rm_obs").val(editado['mat_insumos']);
             $("#slc_rm_presp").val(editado['ids_responsables']);
             $("#slc_responsables").selectpicker('val', editado['ids_responsables'].split(','));
             $("#id_objetivos").val(id_objetivo);
-            // $("#id_objetivos").prop('disabled', true);
             $('#id_objetivos').attr('disabled', true);
-             //console.log(editado);
              $('#main_responsable').val(editado['main_resp']);
              $("#main_responsable").selectpicker('val', editado['main_resp']);
              var ids = editado['ids_responsables'].split(',');
-            // console.log(ids);
             for(var i = 0; i < ids.length; i++){
               if(ids[i] == 0){
                 $('#otro_responsable').val(editado['otro_responsable']);
                 $("#div_otro_responsable").show();
-                    // $('#otro_responsable').show();
                   }
                 }
 
@@ -383,7 +341,6 @@ Rm_acciones_tp.prototype.edit_accion = function(idaccion, id_tprioritario){
                 $("#datepicker2").val(fin[1]+"/"+fin[2]+"/"+fin[0]);
                 $('#btn_editando_accion').show();
                 $('#btn_agregar_accion').hide();
-            // console.log(editado);
           },
           error: function(error){
            console.log(error);
@@ -394,7 +351,6 @@ Rm_acciones_tp.prototype.edit_accion = function(idaccion, id_tprioritario){
 
 Rm_acciones_tp.prototype.validaform = function(llamado){
  if ($("#id_objetivos").val() > 0) {
-  //console.log($("#id_objetivos").val());
   if($("#txt_rm_meta").val() != ""){
     if($("#txt_rm_obs").val() != ""){
       if($("#slc_rm_ambito").val() != ""){
@@ -405,9 +361,7 @@ Rm_acciones_tp.prototype.validaform = function(llamado){
                 if(date_diff_indays() >= 0){
                   if (llamado != 0) {
                     obj_rm_acciones_tp.save_accion();
-                   // console.log(llamado + " por qué entró aquí? 2");
                   }else{
-                   // console.log(llamado + " clik, clik");
                     return true;
                   }
                 }else{
@@ -427,7 +381,6 @@ Rm_acciones_tp.prototype.validaform = function(llamado){
                     'danger'
                     );
                 }else{
-                    // if($("#txt_rm_indimed").val() != ""){
                       if(date_diff_indays() >= 0){
                         if (llamado != 0) {
                           obj_rm_acciones_tp.save_accion();
@@ -441,13 +394,6 @@ Rm_acciones_tp.prototype.validaform = function(llamado){
                           'danger'
                           );
                       }
-                    // }else{
-                    //   swal(
-                    //     '¡Error!',
-                    //     "Introduzca indicador de medición",
-                    //     'danger'
-                    //   );
-                    // }
                     return false;
                   }
                 }
@@ -519,60 +465,6 @@ var date_diff_indays = function() {
   return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
 }
 
-
-//Guardar acciones por Objetivos
-// $('#btn_agregar_accion').click(function(){
-//   let id_tprioritario = obj.id_tprioritario
-//   let id_objetivo = $('#id_objetivos').val()
-//   // console.log('tema prioritario: '+id_tprioritario);
-//   // console.log('objetivo: '+id_objetivo);
-//   let accion = $("#txt_rm_meta").val();
-//   let materiales = $("#txt_rm_obs").val();
-//   let id_responsable = $("#slc_rm_presp").val();
-//   let finicio = $("#datepicker1").val();
-//   let ffin = $("#datepicker2").val();
-//   let medicion = $("#txt_rm_indimed").val();
-//   let responsable = $('#main_responsable').val()
-//   let encargados = $('#slc_responsables').val()
-
-//   // console.log(responsable);
-//   // return false
-//   $.ajax({
-//     url:base_url+"rutademejora/save_accion",
-//     method:"POST",
-//     data:{  "accion":accion,
-//             "materiales":materiales,
-//             "ids_responsables":encargados,
-//             "finicio":finicio,
-//             "ffin":ffin,
-//             "medicion":medicion,
-//             'id_tprioritario': obj.id_tprioritario,
-//             'id_objetivo':id_objetivo,
-//             'otroresp': $("#otro_responsable").val(),
-//             'responsable': responsable,
-//             'new_resp': $("#new_resp").val(),
-//    },
-//     success:function(data){
-//       var vista = data.tabla;
-//       // $("#contenedor_acciones_id").empty();
-//       // $("#contenedor_acciones_id").append(vista);
-//       //Aqui se van a cargar las acciones en base a los objetivos
-//       obj_rm_acciones_tp.iniciatabla();
-//       obj_rm_acciones_tp.limpia_camposform();
-//       // obj.get_view();
-
-//       setTimeout(function(){
-//         getTablaAccxObj(id_objetivo)
-//       }, 500)
-//       $('#id_objetivos').val('0');
-//     },
-//     error: function(error){
-//       console.log(error);
-//     }
-//   })
-// })
-
-
 //Nuevas funciones grid objetivo
 $('#id_objetivos').change(function(){
   getAccxObj();
@@ -599,30 +491,6 @@ function getAccxObj(){
 
   $("#exampleModalacciones").modal('show');
 }
-
-
-/*function getAccxObj(){
-  $('#id_objetivos').change(function(){
-
-    let id_objetivo = $('#id_objetivos').val()
-
-    if ( id_objetivo != undefined ) {
-      $.ajax({
-        url: base_url+"rutademejora/getAccxObj",
-        type: 'POST',
-    		dataType: 'JSON',
-    		data: { id_objetivo: id_objetivo },
-        success:function(data){
-          var vista = data.tabla;
-          $("#contenedor_acciones_id").empty();
-          $("#contenedor_acciones_id").append(vista);
-          obj_rm_acciones_tp.iniciatabla();
-        },
-      })
-    }
-  })
-  $("#exampleModalacciones").modal('show');
-}*/
 
 function getTablaAccxObj(id_objetivo){
   $.ajax({

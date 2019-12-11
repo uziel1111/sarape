@@ -191,25 +191,15 @@ span{
 						</div>
 						<br>
 						
-						<!-- <input type="text" name="id_cct_rm" id="id_cct_rm" value="<?=$id_cct_rm?>" hidden> -->
 					</div>
 					<div id="chart_div">
 						<div class="card-header text-center" style="background-color: #FFCC80; "><h1 class="panel-title">Avances de acciones </h1></div>
 						<br>
 						<div id="gantt_p"></div>
 						<div id="mensaje_res_acciones"></div>
-						<!-- <div id="tabla_avances"></div> -->
+						
 					</div>
 					<br>
-				<!-- 	<h1 align="center">Porcentaje de avance de Acciones</h1>
-					<div id="div_acc_graf"></div>
-					<br>
-					<h1 align="center">Porcentaje de avance de Objetivos</h1>
-					<div id="div_obj_graf"></div>
-					<br>
-					<h1 align="center">Porcentaje de avance  LAE</h1>
-					<div id="div_lae_graf"></div>
-					<br>	 -->
 				</div>
 			</div> <!-- Resultados -->
 
@@ -221,7 +211,7 @@ span{
 		<input type="text" name="tipou_pemc" id="tipou_pemc"  value='<?=$tipo_usuario_pemc?>' hidden>
 	<?php else: ?>
 		<br><br><br>
-	<!-- <b><a id='cteActual'></a></b> -->
+	
 	<button class="botonF1 ">
 	   	<span><i class="fas fa-wrench fa-xs"></i></span>
 	</button>
@@ -268,7 +258,7 @@ span{
 				<div class="alert alert-info" role="alert">
 					Escuela: <span class="fw800"><label id="label_escuela"></label></span><br>
 
-					<!-- Línea de acción: <span class="fw800"><label id="label_prioridad"></label></span><br> -->
+					
 					Ámbito: <span class="fw800"><label id="label_ambito"></label></span><br>
 
 					Problemática(s): <span class="fw800"><label id="label_problematica"></label></span><br>
@@ -365,7 +355,7 @@ span{
 									</div>
 								</div>
 								<input type="hidden" id="idaccion">
-								<!-- <div class="row mt-15"> -->
+								
 								<div class="row mt-15">
 									<div class="col-md-12">
 										<label style="color:red;">*</label>Datos obligatorios

@@ -10,7 +10,6 @@ function btn_observar(id) {
   var ajustes = $("#txt_obs_ajustes_"+id).val();
   var accion = $("#slc_observaciones"+id+" option:selected").val();
 
-//console.log(accion);
   $.ajax({
     url: base_url+'rutademejora/set_observacion',
     type: 'POST',
@@ -34,9 +33,7 @@ function Rm_avances_acciones(){
 
 
 Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
-  // var val_slc = $("#".concat(cad_str_ids)).val();
   var val_slc = $("#".concat(cad_str_ids)).val();
-  // console.log(val_slc);
   var arr_res = cad_str_ids.split("_");
   var var_id_cte = arr_res[0];
   var var_id_cct = arr_res[1];
@@ -60,7 +57,6 @@ Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
   })
   .done(function(result) {
     swal.close();
-  // console.log(result.estatus);
   if (result.estatus) {
     swal(
       '¡Correcto!',
@@ -71,9 +67,6 @@ Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
     var icono = obj_rm_avances_acciones.get_icono(val_slc, dias_restantes, dias_restantes_hoy,var_id_idacc);
     var ruta = base2[0]+"/assets/img/rm_estatus/"+icono;
     $("#"+var_id_idacc+"icoima").attr("src",ruta);
-    // if (icono == 'G4.png') {
-    //   $("#"+var_id_idacc+"icoima").attr("onclick",obsercaciones_modal(var_id_idacc));  
-    // }
   }
   else {
     swal(
@@ -88,7 +81,6 @@ Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
     console.error("Error in actualizar tema prioritario()"); console.table(e);
   })
   .always(function() {
-      // swal.close();
     })
 
 };

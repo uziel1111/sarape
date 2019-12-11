@@ -48,7 +48,6 @@ Rm_delete_tp.prototype.delete_tp = function(id_tprioritario){
   })
   .done(function(result) {
   swal.close();
-  // console.log(result.datos);
   if (result.estatus) {
     obj_rm_tp.limpia_campos_tp();
     swal(
@@ -74,7 +73,6 @@ Rm_delete_tp.prototype.delete_tp = function(id_tprioritario){
   console.error("Error in get_datos_edith_tp()"); console.table(e);
   })
   .always(function() {
-      // swal.close();
   })
 
 };

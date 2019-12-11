@@ -77,7 +77,8 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right ddm-color-1" aria-labelledby="navbarDropdownMenuLink"><a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Indicepeso/index'); ?>">Índice de peso</a>
                                           <!-- index.php/Estadistica/estad_indi_generales -->
-                                          <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Server_ocupado/index'); ?>">Por estado, municipio y zona</a>
+                                          <!-- index.php/Server_ocupado/index -->
+                                          <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Estadistica/estad_indi_generales'); ?>">Por estado, municipio y zona</a>
                                           <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Busqueda_xlista/index'); ?>">Por escuela</a>
                                           <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>">Localiza tu escuela</a>
                                           <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Riesgo/riesgo_x_muni_zona'); ?>">Riesgo de abandono</a>

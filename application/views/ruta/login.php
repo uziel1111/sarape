@@ -146,14 +146,6 @@ background-color: rgba(0,0,0,1.0);
     <a class="btn float-btn" href="#" role="button" data-toggle="modal" data-target="#T1_SARAPE"><i class="far fa-play-circle"></i> Iniciar Sesión</a>
     </div>
         
-        <!-- <li class="li">
-           <a class="link" data-toggle="modal" data-target="#T1_SARAPE">
-             <i></i>
-             <img src="<?= base_url('assets/vid/T1.png')?>" class="vt" alt=""></a>
-           </a>
-         </li> -->
-       
-     
     </div>
   </div><!-- /container -->
   <div class="modal fade bd-example-modal-lg" id="T1_SARAPE" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">

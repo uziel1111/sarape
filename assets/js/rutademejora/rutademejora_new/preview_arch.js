@@ -1,7 +1,6 @@
 // Funcion para el preview de las evidencias
 function readURL(id_objetivo,input) {
     if (input.files && input.files[0]) {
-      // alert('Archivo guardado')
         var reader = new FileReader();
 
         reader.onload = function (e) {
@@ -14,7 +13,6 @@ function readURL(id_objetivo,input) {
 
 function readURL_Fin(id_objetivo,input) {
     if (input.files && input.files[0]) {
-      // alert('Archivo guardado')
         var reader = new FileReader();
 
         reader.onload = function (e) {
@@ -28,7 +26,6 @@ function readURL_Fin(id_objetivo,input) {
 
 //Funciones para eliminar evidencias
 function eliminaEvidencia(id_objetivo, elemento){
-  // alert(id_objetivo)
   swal({
     title: '¿Esta seguro de eliminar la evidencia?',
     type: 'warning',
@@ -69,12 +66,9 @@ function eliminaEvidencia(id_objetivo, elemento){
       });
     }
   })
-
-  // $('#preview'+id_objetivo).attr('src', '#');
 }
 
 function eliminaEvidenciaFin(id_objetivo, elemento){
-  // alert(id_objetivo)
   swal({
     title: '¿Esta seguro de eliminar la evidencia?',
     type: 'warning',
@@ -122,8 +116,6 @@ function eliminaEvidenciaFin(id_objetivo, elemento){
 //Funciones para guardar evidencias inicio
 
 function cargarEvidencia(id_objetivo, id_tprioritario, elemento){
- //console.log("metódo de adjuntar imagen del modal objetivos");
- //console.log(elemento);
  readURL(id_objetivo,elemento);
  let formData = new FormData($('#form_evidencia_'+id_objetivo)[0])
 
@@ -161,8 +153,7 @@ function cargarEvidencia(id_objetivo, id_tprioritario, elemento){
 
 //FIN
 function cargarEvidenciaFin(id_objetivo, id_tprioritario, elemento){
- // console.log(elemento);
- readURL_Fin(id_objetivo,elemento);
+  readURL_Fin(id_objetivo,elemento);
  let formData = new FormData($('#form_evidencia_fin_'+id_objetivo)[0])
 
  $.ajax({
@@ -218,24 +209,7 @@ function imgPreviewFin(id_objetivo){
   $('#exampleModal_ver_evidencia').modal('toggle');
 }
 
-function subirImagen() {
- // console.log('subiendo imagen desde funcion');
-}
 
 $("#cerrar_modal_ver_evidencia").click(function(){
   $('#exampleModal_ver_evidencia').modal('toggle');
 });
-
-//
-// function modal_cerrar(){
-//   $('.modal_cerrar').modal('hide');
-// }
-//
-//
-// function imgPreviewFin(id_objetivo){
-//   let src = $('#preview'+id_objetivo).attr('src')
-//   $('#imagen_pre').attr('src', '');
-//   $('#preview_img').modal('show');
-//   $('#imagen_pre').attr('src', src);
-//
-// }

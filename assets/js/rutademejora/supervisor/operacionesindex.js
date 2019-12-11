@@ -15,7 +15,7 @@ function Supervision(){
 }
 
 
-/*101019 I*/
+
 $(document).ready(function() {
   cteActual();
 });
@@ -72,7 +72,7 @@ $("#btn_seguimiento_modal").click(function(){
   }).fail(function(e) {
     console.error("Error in get avance()"); console.table(e);
   }).always(function() {
-    // swal.close();
+    
   })              
 });
 
@@ -110,17 +110,6 @@ $('#btn_ver_objetivos_super').click(function() {
       $("#objetivos_modal").append(result.table);
        $('#modal_visor_objetivos_id').modal('show');
         swal.close();
-      // $('#tema_prioritario').val(result.id_tprioritario);
-      // $('#id_objetivo').val(result.id_objetivo);
-      // if (result.id_objetivo == 0) {
-      //   $('.problematicaTxt').empty();
-      //   $('#evidencias').empty();
-      //   $('#txt_rm_obs_direc').empty();
-      // }
-      // console.log(result.id_objetivo);
-      //obj_prioridad.funcionalidadselect();
-      // obj_prioridad.btnEditar();
-      // btnEditar();
     })
     .fail(function(e) {
       console.error("Error in getObjetivos()");
@@ -131,13 +120,13 @@ $('#btn_ver_objetivos_super').click(function() {
    
   }
 $('#modal_visor_objetivos_id').modal('show');
-// $('#objetivos_modal').
+
 });
 
 $('#cerrar_modal_objetivos_super').click(function() {
   $('#modal_visor_objetivos_id').modal('toggle');
 });
-/*101019 F*/
+
 
 
 $("#cerrar_modal_ver_evidencia_super").click(function(){
@@ -145,7 +134,6 @@ $("#cerrar_modal_ver_evidencia_super").click(function(){
 });
 
 $("#slt_cct_excuelasxsuper").change(function(){
-  // alert("canallita");
   var cct = $("#slt_cct_excuelasxsuper").val();
   var selected = $("#slt_cct_excuelasxsuper").find('option:selected');
   var turno = selected.data('turno');
@@ -158,7 +146,6 @@ $("#btn_get_rutamejoraxcct").click(function(){
   var cct = $("#slt_cct_excuelasxsuper").val();
   var selected = $("#slt_cct_excuelasxsuper").find('option:selected');
   var turno = selected.data('turno');
-  // alert(turno);
   obj_supervisor.get_rutasxcct(cct, turno);
 });
 
@@ -199,14 +186,12 @@ $("#btn_guarda_msg_super").click(function(){
      var cct = $("#slt_cct_excuelasxsuper").val();
   var selected = $("#slt_cct_excuelasxsuper").find('option:selected');
   var turno = selected.data('turno');
-  // alert(turno);
   obj_supervisor.get_rutasxcct(cct, turno);
   })
   .fail(function(e) {
     console.error("Al bajar la informacion"); console.table(e);
   })
   .always(function() {
-        // swal.close();
   });
 });
 
@@ -246,7 +231,6 @@ Supervision.prototype.get_rutasxcct = function(cct, turno){
     console.error("Al bajar la informacion"); console.table(e);
   })
   .always(function() {
-        // swal.close();
   })
 
  };
@@ -256,9 +240,7 @@ Supervision.prototype.get_rutasxcct = function(cct, turno){
     $("#id_tabla_rutas_super tr").click(function(){
        $(this).addClass('selected').siblings().removeClass('selected');
        var value=$(this).find('td:first').text();
-       // var value2=$(this).find('td:second').text();
        id_tprioritario_sup = value;
-       // alert(obj_supervisor.id_tprioritario_sup);
     });
   }
 
@@ -283,7 +265,7 @@ Supervision.prototype.get_vista_acciones = function(){
     console.error("Al bajar la informacion"); console.table(e);
   })
   .always(function() {
-        // swal.close();
+        
   })
 }
 
@@ -306,11 +288,11 @@ Supervision.prototype.get_comentario_super = function(){
     console.error("Al bajar la informacion"); console.table(e);
   })
   .always(function() {
-        // swal.close();
+        
   })
 }
 
-/* Funciones de Gráficas I*/
+
 function graficaBarObj(objetivos) {
     if (objetivos != undefined){
 
@@ -372,7 +354,7 @@ function graficaBarAcc(acciones) {
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
      } 
-/* Funciones de Gráficas F*/
+
 
 function cteActual() {
     ruta = base_url + '/Rutademejora/momentoActual';
@@ -398,5 +380,4 @@ Supervision.prototype.ver_archivo_evidencia= function(path_evidencia){
   $('#dv_ver_evidencia_super').empty();
   $('#dv_ver_evidencia_super').html('<iframe src="'+Protocol+"//"+URLactual+"/pruebas_qualedu/sarape/"+path_evidencia+'" width="100%" height="500" style="border: none;"></iframe>');
   $('#exampleModal_ver_evidencia_super').modal('toggle');
-  console.log(Protocol+"//"+URLactual+"/"+path_evidencia);
 }

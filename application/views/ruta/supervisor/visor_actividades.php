@@ -38,14 +38,6 @@
             <div class="card-block">
               <div class="form-group form-group-style-1">
                 <div class="row">
-                      <!-- <div class="col-md-6">
-                        <label><label style="color:red;">*</label>Ambitos:</label>
-                        <select class="form-control" id="slc_rm_ambito" title="SELECCIONA UN AMBITO" disabled>
-                     
-                                  <option value="</option>
-                          <?php// ?>
-                        </select>
-                      </div> -->
                     </div>
                     <div class="row mt-15">
                       <div class="col-12">
@@ -103,12 +95,6 @@
                         <input type="text" name="otro_responsable" id="otro_responsable" class="form-control" disabled>
                       </div>
                     </div>
-                    <!-- <div class="row mt-15">
-                      <div class="col-md-12">
-                        <label><label style="color:red;">*</label>Indicadores de medición:</label>
-                        <textarea id="txt_rm_indimed" class="form-control" rows="3" maxlength="150" disabled></textarea>
-                      </div>
-                    </div> -->
                     <div class="row mt-15">
                       <div class="col-md-12">
                         <label style="color:red;">*</label>Datos obligatorios

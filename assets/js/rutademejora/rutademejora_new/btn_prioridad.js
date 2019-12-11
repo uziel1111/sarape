@@ -1,12 +1,6 @@
 $(document).ready(function(){
 	obj.id_objetivo = undefined;
 	obj_prioridad = new Prioridad();
-	// $('#normalidad').attr('hidden', true);
-	// boxes()
-	// $('#tooltip-demo').tooltip()
-	// $('#writeText').tooltip()
-	// $('#grabar_objetivo').tooltip()
-	// $('#limpiar').tooltip()
 	$('#otra_fecha').attr('hidden', true)
 	$('[data-toggle="tooltip"]').tooltip({
     trigger : 'hover'
@@ -33,7 +27,6 @@ $('.problematica').change(function() {
 	valor = $('.problematica option:selected').text();
 	if (valor.match(/Otros.*/)) {
 		$('#problematicaTxt').attr('disabled',false);
-		// $('#problematicaTxt').empty();
 
 	}else{
 		$('#problematicaTxt').attr('disabled',true);
@@ -56,7 +49,7 @@ $('#slt_indicador').change(function(){
 })
 
 $('#limpiar').click(function(){
-	// console.log('Funciona!');
+	
 	$('#slt_verbo').val('0');
 	$('#slt_indicador').val('0');
 	$('#slt_metrica').val('0');
@@ -109,8 +102,6 @@ $('#salir').click(function(){
 	  $('body').removeClass('modal-open');
 	  $('.modal-backdrop').remove();
 	};
-	// $('.modal-backdrop').remove();
-	// $("#Mymodal").addClass("modal-backdrop");
 	obj.get_view();
 })
 
@@ -145,7 +136,7 @@ function publicar(id) {
         Notification.loading("");
     	},})
 		.done(function(data){
-			//console.log(data.estado);
+			
 						if (data.estado == 1) {	
 			$('#aPublicar_'+id).data('estado', 1);
 			$('#publicar_'+id).removeClass('fa-user-secret');
@@ -172,7 +163,7 @@ function publicar(id) {
 		swal.close();
 	})
 	.always(function() {
-    // swal.close();
+    
 	});
 		
 	
@@ -214,7 +205,7 @@ Prioridad.prototype.llenaMetrica = function(){
 		dataType: 'JSON',
 		data: {id_indicador: $("#slt_indicador").val()},
 		beforeSend: function(xhr) {
-				 // $("#slt_metrica").empty();
+				 
 	        Notification.loading("");
     },
 	})
@@ -258,9 +249,9 @@ Prioridad.prototype.getsubEspecial = function(){
 
 //Aqui disparamos todas las funciones del modal
 function show(select_id){
-	// alert(select_id)
+	
 	let opt = $('#opt_prioridad').val();
-	// console.log(opt);
+	
 	let tipou_pemc="";
 	if($('#tipou_pemc').length) {
 		tipou_pemc=$('#tipou_pemc').val();
@@ -325,7 +316,7 @@ $('#grabar_prioridad').click(function(){
  $('.problematica :selected').each(function(){
      selected[$(this).data('id')]=$(this).data('id');
     });
-// console.log(selected);
+
 	$.ajax({
 		url: base_url+'Rutademejora/grabarTema',
 		type: 'POST',
@@ -339,22 +330,9 @@ $('#grabar_prioridad').click(function(){
 	 	beforeSend: function(xhr) {
 	        Notification.loading("");
    	}
-  //  	,
-		// success: function(data){
-		// 	setTimeout(function () {
-		// 		swal(
-		// 				'¡Correcto!',
-		// 				"El tema prioritario se insertó correctamente",
-		// 				'success'
-		// 			)
-		// 	//}, 1000);
-		// 	// obj_prioridad.getObjetivos();
-		// 	//console.log('grabar prioridad ' + obj.id_tprioritario);
-		// })
 	})
 	.done(function(result) {
 
-		// $('#id_tema_prioritario').val(obj.id_tprioritario);
 		valor = $('.problematica option:selected').text();
 		$('.problematicaTxt').val(problematica.toString().replace(/\./g,', '));
 		obj.get_view();
@@ -377,12 +355,9 @@ $('#grabar_prioridad').click(function(){
 //Grabar objetivo
 $('#grabar_objetivo').click(function(){
 	let idtemap = $('#id_tema_prioritario').val();
-//console.log('grabar_objetivo ' + idtemap);
+
 	let flag = $('#update_flag').val();
 	let contenido = $('#CAPoutput').val();
-	//console.log(idtemap,);
-	//console.log(obj.id_prioridad,);
-	//console.log(obj.id_subprioridad);
 	let tipou_pemc="";
 	if($('#tipou_pemc').length) {
 		tipou_pemc=$('#tipou_pemc').val();
@@ -419,7 +394,7 @@ $('#grabar_objetivo').click(function(){
 			        Notification.loading("");
 		    },
 				success: function(data){
-					// obj_prioridad.getObjetivos();
+					
 
 					obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val(),tipou_pemc);
 				}
@@ -431,11 +406,11 @@ $('#grabar_objetivo').click(function(){
 							"El objetivo se insertó correctamente",
 							'success'
 						);
-						// obj_prioridad.getObjetivos();
+						
 						obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val(),tipou_pemc);
 				}, 1000);
 
-				// $("#id_tema_prioritario").val(result.idtemaprioritario);
+				
 				$("#opt_prioridad").attr('disabled', true);
 				$("#opt_prioridad_especial").attr('disabled', true);
 				$('#otra_fecha').attr('hidden', true);
@@ -466,16 +441,13 @@ $('#grabar_objetivo').click(function(){
 								'success'
 							);
 					}, 1000);
-					// obj_prioridad.getObjetivos()
 					obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val(),tipou_pemc);
 				}
 			})
 			.done(function(result) {
-				// obj_prioridad.getObjetivos();
 				obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val(),tipou_pemc);
 				$('#update_flag').val('')
 
-				//$("#id_tema_prioritario").val(result.idtemaprioritario);
 				$("#opt_prioridad").attr('disabled', true);
 				$("#opt_prioridad_especial").attr('disabled', true);
 			})
@@ -498,9 +470,6 @@ $('#grabar_objetivo').click(function(){
 
 // Grid
 function btnEditar(){
-	// console.log(idobjetivo);
-	// console.log(idtprioritario);
-
 	if (obj.id_objetivo == undefined) {
 		swal(
       '¡Error!',
@@ -509,7 +478,6 @@ function btnEditar(){
     );
 		return false
 	}else {
-		//console.log(obj.id_objetivo);
 		$('#btn_eliminar').addClass("d-none");
 		$('#btn_guardar').removeClass("fa-save");
 		$('#btn_guardar').addClass("fa-edit")
@@ -523,13 +491,9 @@ function btnEditar(){
 	   },
 	 })
 	 .done(function(result) {
-	 	// console.info(result.idobj);
 	 		$("#CAPoutput").empty();
 	 		$("#CAPoutput").val(result.datos['objetivo']);
 	 		$('#update_flag').val(result.idobj);
-	 		//obj.id_objetivo = undefined;
-	 		// $("#CAPoutput").append(result.datos);
-	 		// $('#normalidad').attr('hidden', false);
 	 	})
 		.fail(function(e) {
 			console.error("Error in btnEditar()");
@@ -543,7 +507,7 @@ function btnEditar(){
 }
 
 function btnEliminar(){
-	console.log('idobj ' + obj.id_objetivo);
+	
 	objetivo = obj.id_objetivo;
 	if (obj.id_objetivo == undefined) {
 		swal(
@@ -565,7 +529,6 @@ function btnEliminar(){
 			cancelButtonText: 'Cancelar'
 		})
 		.then((result) => {
-			// console.log('idobj2 ' + objetivo);
 			if (result.value) {
 
 				$.ajax({
@@ -581,7 +544,6 @@ function btnEliminar(){
 					}
 				}) //Ajax
 				.done(function(result) {
-					//Recargamos el grid
 					setTimeout(function(){
 						swal(
 			        '¡Correcto!',
@@ -605,15 +567,10 @@ function btnEliminar(){
 }
 
 Prioridad.prototype.getObjetivos = function(){
-	// console.log('js btn_prioridad.js');
 	var idtemaprioritario = obj.id_tprioritario ;
 	let idtemap = $('#id_tema_prioritario').val();
 	idtprio = $('#id_tema_prioritario').val();
-	// alert();
-	//console.log('aquí estamos {');
-//console.log( idtemap);	
-//console.log( idtemaprioritario);	
- //console.log('} hasta aquí');
+
  	let tipou_pemc="";
 	if($('#tipou_pemc').length) {
 		tipou_pemc=$('#tipou_pemc').val();
@@ -638,12 +595,8 @@ Prioridad.prototype.getObjetivos = function(){
     
 			$("#objetivo_meta").empty();
 			$("#objetivo_meta").append(result.table);
-			// $('#tema_prioritario').val(result.id_tprioritario);
 			$('#id_objetivo').val(result.id_objetivo);
 			obj_prioridad.funcionalidadselect()
-			// obj_prioridad.getObjetivos()
-			// obj_prioridad.btnEditar();
-			// btnEditar();
 			
 			if (result.id_objetivo == 0) {
 				$('.problematicaTxt').empty();
@@ -669,12 +622,6 @@ Prioridad.prototype.funcionalidadselect = function(){
 
 		 obj.id_objetivo = value;
 		 obj.id_tprioritario = t_prioritario;
-		 // $('#id_objetivo').text(obj.id_objetivo);
-
-     console.log(obj.id_objetivo);
-     // console.log(val2);
-     // console.log(val3);
-
-		 id_objetivo = 0;
+     	 id_objetivo = 0;
 	});
 }

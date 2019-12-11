@@ -51,180 +51,142 @@
 </style>
 <div class="tab-pane fade active show" id="nav-ayuda" role="tabpanel" aria-labelledby="nav-ayuda-tab">
 	<div class="card bg-light mb-3 center">
-	<div class="row mb-3">	
-			<div class="col-12">
-			<img src="<?= base_url('assets/img/mapa/flujo-sarape-2.png')?>" class="img-fluid" width="100%" alt="">
-			<!-- <img src="<?= base_url('assets/img/mapa/objetivos.png')?>" width="200" height="200" alt="">
-			<img src="<?= base_url('assets/img/mapa/actividades.png')?>" width="200" height="200" alt="">
-			<img src="<?= base_url('assets/img/mapa/avances.png')?>" width="200" height="200" alt="">
-			<img src="<?= base_url('assets/img/mapa/fin.png')?>" width="100" height="200" alt=""> -->
-			<br>
-			<!-- <u><a style="padding-left: 7em; cursor: hand; cursor: pointer; color: blue;" id="img_mision">Ir a misión</a></u>
-			<a style="padding-left: 7em; cursor: hand; cursor: pointer;" >Ir a objetivos</a>
-			<a style="padding-left: 7em; cursor: hand; cursor: pointer;" >Ir a acciones</a>
-			<u><a style="padding-left: 7em; cursor: hand; cursor: pointer; color: blue;" id="img_avances">Ir a avances</a></p></u>
-			<br> -->
+		<div class="row mb-3">	
 			
-			</div>
-</div>	
+		</div>	
 
-			<div class="row justify-content-md-center m-5">	
+		<div class="row justify-content-md-center m-5">	
 			<div class="col-12">	
-			<div class="alert alert-light shadow" role="alert">
+				<div class="alert alert-light shadow" role="alert">
 
-<h3><i class="fas fa-play-circle text-black-50"></i></a> Video tutoriales</h3>
-			<table class="table table-hover table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Título del video</th>
-      <th scope="col">Ver video</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td class="font-weight-bold">Inicio de sesión</td>
-      <td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T1_SARAPE"><i class="fas fa-play-circle"></i></a></td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td class="font-weight-bold">Conociendo la aplicación del Programa Escolar de Mejora Continua</td>
-      <td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T2_SARAPE"><i class="fas fa-play-circle"></i></a></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td class="font-weight-bold">Ingresando objetivos y metas</td>
-      <td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T3_SARAPE"><i class="fas fa-play-circle"></i></a></td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td class="font-weight-bold">Registrando acciones y avances</td>
-      <td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T4_SARAPE"><i class="fas fa-play-circle"></i></a></td>
-    </tr>	
-  </tbody>
-</table>
+					<h3><i class="fas fa-play-circle text-black-50"></i></a> Video tutoriales</h3>
+					<table class="table table-hover table-striped">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Título del video</th>
+								<th scope="col">Ver video</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td class="font-weight-bold">Inicio de sesión</td>
+								<td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T1_SARAPE"><i class="fas fa-play-circle"></i></a></td>
+							</tr>
+							<tr>
+								<th scope="row">2</th>
+								<td class="font-weight-bold">Conociendo la aplicación del Programa Escolar de Mejora Continua</td>
+								<td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T2_SARAPE"><i class="fas fa-play-circle"></i></a></td>
+							</tr>
+							<tr>
+								<th scope="row">3</th>
+								<td class="font-weight-bold">Ingresando objetivos y metas</td>
+								<td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T3_SARAPE"><i class="fas fa-play-circle"></i></a></td>
+							</tr>
+							<tr>
+								<th scope="row">4</th>
+								<td class="font-weight-bold">Registrando acciones y avances</td>
+								<td><a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#T4_SARAPE"><i class="fas fa-play-circle"></i></a></td>
+							</tr>	
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
+<div class="modal fade bd-example-modal-lg" id="T1_SARAPE" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog modal-lg" role="document" style="height: 1200px !important;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel">Tutorial 1</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-12" id="VT1">
+						<iframe width="100%" height="415" src="https://www.youtube.com/embed/S5HT3mqxs3w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-				<!-- <li class="li">
-					<a class="link" data-toggle="modal" data-target="#T1_SARAPE">
-						<i></i>
-						<img src="<?= base_url('assets/vid/T1.png')?>" class="vt" alt=""></a>
-					</a>
-				</li>
-				<li class="li">
-					<a class="link" data-toggle="modal" data-target="#T2_SARAPE">
-						<i></i>
-						<img src="<?= base_url('assets/vid/T2.png')?>" class="vt" alt=""></a>
-					</a>
-				</li>
-				<li class="li">
-					<a class="link" data-toggle="modal" data-target="#T3_SARAPE">
-						<i></i>
-						<img src="<?= base_url('assets/vid/T3.png')?>" class="vt" alt=""></a>
-					</a>
-				</li>
-				<li class="li">
-					<a class="link" data-toggle="modal" data-target="#T4_SARAPE">
-						<i></i>
-						<img src="<?= base_url('assets/vid/T4.png')?>" class="vt" alt=""></a>
-					</a>
-				</li> -->
-	
-			</div>
-		</div>
-	</div>
 
-	<div class="modal fade bd-example-modal-lg" id="T1_SARAPE" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-		<div class="modal-dialog modal-lg" role="document" style="height: 1200px !important;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="exampleModalLabel">Tutorial 1</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-12" id="VT1">
-							<iframe width="100%" height="415" src="https://www.youtube.com/embed/S5HT3mqxs3w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						</div>
+<div class="modal fade bd-example-modal-lg" id="T2_SARAPE" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog modal-lg" role="document" style="height: 1200px !important;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel">Tutorial 2</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-12" id="VT2">
+						<iframe width="100%" height="415"  src="https://www.youtube.com/embed/d3yfq2hiuiI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<div class="modal fade bd-example-modal-lg" id="T2_SARAPE" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-		<div class="modal-dialog modal-lg" role="document" style="height: 1200px !important;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="exampleModalLabel">Tutorial 2</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-12" id="VT2">
-							<iframe width="100%" height="415"  src="https://www.youtube.com/embed/d3yfq2hiuiI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						</div>
+<div class="modal fade bd-example-modal-lg" id="T3_SARAPE" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog modal-lg" role="document" style="height: 1200px !important;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel">Tutorial 3</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-12" id="VT3">
+						<iframe width="100%" height="415"  src="https://www.youtube.com/embed/xYSsgzHoCpA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<div class="modal fade bd-example-modal-lg" id="T3_SARAPE" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-		<div class="modal-dialog modal-lg" role="document" style="height: 1200px !important;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="exampleModalLabel">Tutorial 3</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-12" id="VT3">
-							<iframe width="100%" height="415"  src="https://www.youtube.com/embed/xYSsgzHoCpA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						</div>
+<div class="modal fade bd-example-modal-lg" id="T4_SARAPE" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog modal-lg" role="document" style="height: 1200px !important;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel">Tutorial 4</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-12" id="VT4">
+						<iframe width="100%" height="415"  src="https://www.youtube.com/embed/ysTVJgO31MM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<div class="modal fade bd-example-modal-lg" id="T4_SARAPE" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-		<div class="modal-dialog modal-lg" role="document" style="height: 1200px !important;">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="exampleModalLabel">Tutorial 4</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-12" id="VT4">
-							<iframe width="100%" height="415"  src="https://www.youtube.com/embed/ysTVJgO31MM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script>
-		$('.close').click(function(event) {
-			$('#VT1').empty();
-			$('#VT1').html('<iframe width="100%" height="415" src="https://www.youtube.com/embed/S5HT3mqxs3w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			$('#VT2').empty();
-			$('#VT2').html('<iframe width="100%" height="415"  src="https://www.youtube.com/embed/d3yfq2hiuiI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			$('#VT3').empty();
-			$('#VT3').html('<iframe width="100%" height="415"  src="https://www.youtube.com/embed/xYSsgzHoCpA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-			$('#VT4').empty();
-			$('#VT4').html('<iframe width="100%" height="415"  src="https://www.youtube.com/embed/ysTVJgO31MM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-		});
-	</script>
-	<script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
-	<link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
+</div>
+<script>
+	$('.close').click(function(event) {
+		$('#VT1').empty();
+		$('#VT1').html('<iframe width="100%" height="415" src="https://www.youtube.com/embed/S5HT3mqxs3w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+		$('#VT2').empty();
+		$('#VT2').html('<iframe width="100%" height="415"  src="https://www.youtube.com/embed/d3yfq2hiuiI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+		$('#VT3').empty();
+		$('#VT3').html('<iframe width="100%" height="415"  src="https://www.youtube.com/embed/xYSsgzHoCpA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+		$('#VT4').empty();
+		$('#VT4').html('<iframe width="100%" height="415"  src="https://www.youtube.com/embed/ysTVJgO31MM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+	});
+</script>
+<script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css"/>

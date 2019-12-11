@@ -18,7 +18,6 @@ $("#btn_rutamejora_editar").click(function(){
 
 $("#btn_actualizar_tp").click(function(){
 tmp_id_tprioritario = $("#inp_tmp_id_tprioritario").val();
-// console.log(tmp_id_tprioritario);
 obj_rm_tp.insert_update_mision_cct();
 
 obj_rm_edith_tp.update_datos_edith_tp(tmp_id_tprioritario);
@@ -46,15 +45,6 @@ Rm_edith_tp.prototype.get_datos_edith_tp = function(id_tprioritario){
   })
   .done(function(data) {
   swal.close();
-  // // console.log(result.datos);
-  // obj_rm_edith_tp.set_tags_edith(result.datos);
-
-  // document.getElementById('btn_actualizar_tp').removeAttribute("hidden");
-  // document.getElementById('btn_grabar_tp').setAttribute("hidden", true);
-  // // document.getElementById('btn_get_reporte').setAttribute("hidden", true);
-  // document.getElementById('btn_rutamejora_editar').setAttribute("hidden", true);
-  // document.getElementById('btn_rutamejora_eliminareg').setAttribute("hidden", true);
-  // document.getElementById('btn_rutamejora_acciones').setAttribute("hidden", true);
   $("#div_generico").empty();
       $("#div_generico").append(data.strView);
       $('h5').empty();
@@ -72,16 +62,11 @@ Rm_edith_tp.prototype.get_datos_edith_tp = function(id_tprioritario){
   console.error("Error in get_datos_edith_tp()"); console.table(e);
   })
   .always(function() {
-      // swal.close();
   })
 
 };
 
 Rm_edith_tp.prototype.set_tags_edith = function(datos){
-// console.log(datos[0]['como_ayudan_pa']);
-
-      // console.log(datos);
-      // $(".problematica").val(4);
 $("#inp_tmp_id_tprioritario").val(datos[0]['id_tprioritario']);
 $("#slc_rm_prioridad").val(datos[0]['id_prioridad']);
 $("#slc_rm_prioridad").selectpicker("refresh");
@@ -102,7 +87,7 @@ $("#slc_apoyoreq").selectpicker('val', datos[0]['ids_apoyo_req_se'].split(','));
 $("#slc_apoyoreq").selectpicker("refresh");
 $("#txt_rm_otroapoyreq").val(datos[0]['otro_apoyo_req_se']);
 $("#txt_rm_especifiqueapyreq").val(datos[0]['especifique_apoyo_req']);
-// alert(live_url);
+
 if (datos[0]['path_evidencia'] !='' && datos[0]['path_evidencia'] !== null) {
   $("#img_evid").prop("src", live_url+datos[0]['path_evidencia']);
 
@@ -116,7 +101,7 @@ if (datos[0]['path_evidencia'] !='' && datos[0]['path_evidencia'] !== null) {
 };
 
 Rm_edith_tp.prototype.update_datos_edith_tp = function(tmp_id_tprioritario){
-// console.log(datos[0]['como_ayudan_pa']);
+
 var validacion = obj_rm_tp.valida_campos_tp();
 
 if (validacion == true) {
@@ -167,9 +152,6 @@ if (validacion == true) {
   type: 'POST',
   dataType: 'JSON',
   data: formData,
-  // {id_tprioritario:tmp_id_tprioritario,id_prioridad:id_prioridad,objetivo1:objetivo1,meta1:meta1,objetivo2:objetivo2,meta2:meta2,problematica:problematica,
-  // evidencia:evidencia,ids_progapoy:ids_progapoy,otro_pa:otro_pa,como_prog_ayuda:como_prog_ayuda,obs_direct:obs_direct,
-  // ids_apoyreq:ids_apoyreq,otroapoyreq:otroapoyreq,especifiqueapyreq:especifiqueapyreq},
   cache: false,
   contentType: false,
   processData: false,
@@ -179,7 +161,6 @@ if (validacion == true) {
 })
 .done(function(result) {
   swal.close();
-  //console.log(result.estatus);
   if (result.estatus) {
     obj_rm_tp.limpia_campos_tp();
     swal(
@@ -189,7 +170,6 @@ if (validacion == true) {
       );
       obj.get_view();
       document.getElementById('btn_grabar_tp').removeAttribute("hidden");
-      // document.getElementById('btn_get_reporte').removeAttribute("hidden");
       document.getElementById('btn_rutamejora_editar').removeAttribute("hidden");
       document.getElementById('btn_rutamejora_eliminareg').removeAttribute("hidden");
       document.getElementById('btn_rutamejora_acciones').removeAttribute("hidden");
@@ -210,7 +190,6 @@ if (validacion == true) {
   console.error("Error in actualizar tema prioritario()"); console.table(e);
 })
 .always(function() {
-      // swal.close();
 })
 
 }
