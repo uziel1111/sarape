@@ -13,14 +13,15 @@ function Tabla(){
 
   Tabla.prototype.get_view = function(){
     $.ajax({
-      url: base_url+"Rutademejora/bajarutamejora",
+   url: base_url+"Rutademejora/bajarutamejora",
       data : "",
       type : 'POST',
       beforeSend: function(xhr) {
-        $("#wait").modal("show");
+        Notification.loading("");
       },
-      success: function(data){
-        $("#wait").modal("hide");
+})
+.done(function(data) {
+    swal.close();
         var view = data.tabla;
         $("#contenedor_tabla").empty();
         $("#contenedor_tabla").append(view);
@@ -31,9 +32,16 @@ function Tabla(){
         }else{
           $("#btn_get_reporte").show();
         }
-      },
-      error: function(error){console.log("Falló:: "+JSON.stringify(error)); }
-    });
+})
+.fail(function(error) {
+   swal.close();
+   console.log("Falló:: "+JSON.stringify(error)); 
+})
+.always(function() {
+   swal.close();
+  console.log("complete");
+});
+
     obj.id_tprioritario = undefined
   }
 

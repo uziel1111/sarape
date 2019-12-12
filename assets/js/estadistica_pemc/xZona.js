@@ -28,6 +28,7 @@ function getTablaZona() {
         },
     })
     .done(function(data) {
+        swal.close();
         $('#xZona').html(data.str_view);
         $('#zona_zona').removeAttr('disabled');
 
@@ -40,6 +41,7 @@ function getTablaZona() {
       }
   })
     .fail(function() {
+        swal.close();
         console.info('Error');
     })
     .always(function() {

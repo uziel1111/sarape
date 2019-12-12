@@ -59,6 +59,7 @@ function eliminaEvidencia(id_objetivo, elemento){
        $('#preview'+id_objetivo).attr('src', '#');
       })
       .fail(function(e) {
+       swal.close();
        console.error("Error in eliminaEvidencia()");
       })
       .always(function() {
@@ -102,6 +103,7 @@ function eliminaEvidenciaFin(id_objetivo, elemento){
        $('#preview'+id_objetivo).attr('src', '#');
       })
       .fail(function(e) {
+       swal.close();    
        console.error("Error in eliminaEvidencia()");
       })
       .always(function() {
@@ -143,6 +145,7 @@ function cargarEvidencia(id_objetivo, id_tprioritario, elemento){
 	 }, 1000)
  })
  .fail(function(e) {
+   swal.close();
 	 console.error("Error in cargarEvidencia()");
  })
  .always(function() {
@@ -180,6 +183,7 @@ function cargarEvidenciaFin(id_objetivo, id_tprioritario, elemento){
 	 }, 1000)
  })
  .fail(function(e) {
+   swal.close();
 	 console.error("Error in cargarEvidenciaFin()");
  })
  .always(function() {
