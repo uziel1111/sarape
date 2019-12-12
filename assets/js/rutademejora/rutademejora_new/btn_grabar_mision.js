@@ -10,20 +10,21 @@ $('#btn_grabar').click(function(e){
 		type:'post',
 		data: { 'misioncct': mision },
 		beforeSend: function(xhr) {
-				Notification.loading("");
+			Notification.loading("");
 		}
 	})
 	.done(function( data ) {
 		setTimeout(function(){
 			Swal.fire(
-			  '¡Correcto!',
-			  'La misión se actualizó correctamente',
-			  'success'
-			)
+				'¡Correcto!',
+				'La misión se actualizó correctamente',
+				'success'
+				)
 		}, 300);
 
 	})
 	.fail(function(e) {
+		swal.close();
 		console.error("Error in ()"); console.table(e);
 	})
 	.always(function() {

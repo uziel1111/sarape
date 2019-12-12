@@ -11,6 +11,7 @@
 			},
 		})
 		.done(function(data) {
+			swal.close();
 			$('#seleccionaNivelIndex').modal('hide');
 			$('#total_documentos').text('Documentos Autorizados para '+nivel+' / ' + data.total);
 			$('#divDocumentos').removeAttr('Hidden');
@@ -22,6 +23,7 @@
 			
 		})
 		.fail(function() {
+			swal.close();
 			console.log("error");
 		})
 		.always(function() {
@@ -46,6 +48,7 @@
 			},
 		})
 		.done(function(data) {
+			swal.close();
 			$('#selectinput').val(nivel);
 			$('#total_documentos').text('Documentos Autorizados para '+nivel+' / ' + data.total);
 			$('#divDocumentos').removeAttr('Hidden');
@@ -53,6 +56,7 @@
 
 		})
 		.fail(function() {
+			swal.close();
 			console.log("error");
 		})
 		.always(function() {
@@ -80,11 +84,13 @@
 			},
 		})
 		.done(function(data) {
+			swal.close();
 			$('#total_documentos').text('Documentos Autorizados para '+nivel+' / ' + data.total);
 			$('#divDocumentos').removeAttr('Hidden');
 			$('#array').html(data.str_view);
 		})
 		.fail(function() {
+			swal.close();
 			console.log("error");
 		})
 		.always(function() {
@@ -108,6 +114,7 @@
 			},
 		})
 		.done(function(data) {
+			swal.close();
 			$('#selectinput').val(nivel);
 			$('#total_documentos').text('Documentos Autorizados para '+nivel+' / ' + data.total);
 			$('#divDocumentos').removeAttr('Hidden');
@@ -115,6 +122,7 @@
 
 		})
 		.fail(function() {
+			swal.close();
 			console.log("error");
 		})
 		.always(function() {
@@ -152,10 +160,12 @@
 			},
 		})
 		.done(function(data) {
+			swal.close();
 			$('#divDocumentos').removeAttr('Hidden');
 			$('#array').html(data.str_view);
 		})
 		.fail(function() {
+			swal.close();
 			console.log("error");
 		})
 		.always(function() {
@@ -174,10 +184,12 @@
 			},
 		})
 		.done(function(data) {
+			swal.close();
 			$('#tabla_documentos'+idusuario).html(data.str_view);
 			swal.close();
 		})
 		.fail(function() {
+			swal.close();
 			console.log("error");
 		})
 		.always(function() {
@@ -196,11 +208,12 @@
 			},
 		})
 		.done(function(data) {
-			
+			swal.close();			
 			$('#documentoModal').html(data.str_view);
 			
 		})
 		.fail(function() {
+			swal.close();
 			console.log("error");
 		})
 		.always(function() {
@@ -219,10 +232,12 @@
 			},
 		})
 		.done(function(data) {
+			swal.close();
 			$('#detallesModal').html(data.str_view);
 			$('#verDetalle').modal('show');
 		})
 		.fail(function() {
+			swal.close();
 			console.log("error");
 		})
 		.always(function() {
@@ -242,15 +257,17 @@
 			},
 		})
 		.done(function(data) {
+			swal.close();
 			if (tipo_busqueda == 1) {
 
-			$('#contacto'+idusuario).html(data.str_view);
+				$('#contacto'+idusuario).html(data.str_view);
 			}else{
-			$('#contactoModal').html(data.str_view);
+				$('#contactoModal').html(data.str_view);
 			}
 			
 		})
 		.fail(function() {
+			swal.close();
 			console.log("error");
 		})
 		.always(function() {
@@ -270,10 +287,12 @@
 			},
 		})
 		.done(function(data) {
+			swal.close();
 			$('#estadisticas'+idusuario).html(data.str_view);
 			
 		})
 		.fail(function() {
+			swal.close();
 			console.log("error");
 		})
 		.always(function() {
@@ -309,9 +328,11 @@
 			},
 		})
 		.done(function(data) {
+			swal.close();
 			$('#tabla_documentos_tema'+tema).html(data.str_view);
 		})
 		.fail(function() {
+			swal.close();
 			console.log("error");
 		})
 		.always(function() {
@@ -321,5 +342,3 @@
 
 
 	}
-
-	

@@ -11,7 +11,8 @@ $(function() {
   });
 });
 
-$('#salir_mision').click(function() {
+$('#salir_mision').click(function(e) {
+  e.preventDefault();
   console.info('cerraste el modal de la misión_rutademejora.js');
 });
 
@@ -49,7 +50,8 @@ $("#slc_apoyoreq").change(function(){
   }
 });
 
-$("#nav-avances-tab").click(function(){
+$("#nav-avances-tab").click(function(e){
+  e.preventDefault();
   $("#nav-avances").empty();
   let tipou_pemc_avances=0;
   if($("#tipou_pemc2").length){
@@ -73,7 +75,8 @@ $("#nav-avances-tab").click(function(){
   })              
 });
 
-$("#btn_get_reporte").click(function(){
+$("#btn_get_reporte").click(function(e){
+  e.preventDefault();
   obj_rm.get_reporte(obj.id_tprioritario);
 });
 
@@ -109,12 +112,14 @@ $("#btn_rutamejora_obs_super").click(function(){
   }
 });
 
-$("#cerrar_modal_obs_super").click(function(){
+$("#cerrar_modal_obs_super").click(function(e){
+  e.preventDefault();
   $('#exampleModal_obs_super').modal('toggle');
 });
 
 
-$("#btn_clr_img").click(function(){
+$("#btn_clr_img").click(function(e){
+  e.preventDefault();
   $("#img_evid").prop("src", "");
   $("#glosaArchivos").html("Ningun archivo seleccionado");
   document.getElementById('btn_clr_img').setAttribute("hidden", true);

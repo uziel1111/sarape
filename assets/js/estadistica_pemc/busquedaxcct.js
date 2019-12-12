@@ -14,21 +14,25 @@ $("#busqueda_cct_pemc").click(function(e){
     dataType : 'json',
     method : 'POST',
     data : {"cve_municipio":cve_municipio,"cve_nivel":cve_nivel,"cve_sostenimiento":cve_sostenimiento,
-            "nombre_escuela":nombre_escuela,"municipio":municipio,"nivel":nivel,"sostenimiento":sostenimiento},
+    "nombre_escuela":nombre_escuela,"municipio":municipio,"nivel":nivel,"sostenimiento":sostenimiento},
     beforeSend: function(xhr) {
       Notification.loading("");
     },
-    success: function(data){
-      swal.close();
-      $("#div_busxcct").empty();
-      $("#div_busxcct").append(data.vista);
-      $("#div_busxcct_pemc").empty();  
-    },
-    error: function(error){
-      swal.close();
-      console.log(error);
-    }
+  })
+  .done(function(data) {
+    swal.close();
+    $("#div_busxcct").empty();
+    $("#div_busxcct").append(data.vista);
+    $("#div_busxcct_pemc").empty();  
+  })
+  .fail(function(error) {
+    swal.close();
+    console.log(error);
+  })
+  .always(function() {
+    swal.close();
   });
+
 });
 
 
