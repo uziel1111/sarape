@@ -6,7 +6,8 @@ $(function() {
     obj_recursos.ocultamesaje_file();
 });
 
-$("#md_close_operacion_recursos").click(function(){
+$("#md_close_operacion_recursos").click(function(e){
+	e.preventDefault();
 	$("#modal_operacion_recursos").modal('hide');
 })
 
@@ -35,7 +36,8 @@ $("#tipodematerial").change(function(){
 	}
 });
 
-$("#btn_crear_nuevo_recurso").click(function(){
+$("#btn_crear_nuevo_recurso").click(function(e){
+	e.preventDefault();
 	if(parseInt($("#total_reactivos").val()) < 10){
 		$("#tipodematerial").val('0')
 		obj_recursos.genera_fila();
@@ -52,7 +54,8 @@ $("#btn_crear_nuevo_recurso").click(function(){
 	}
 });
 
-$("#btn_guarda_link").click(function(){
+$("#btn_guarda_link").click(function(e){
+	e.preventDefault();
 	obj_recursos.envia_url();
 });
 
@@ -113,6 +116,7 @@ Recursos.prototype.envia_url =function(){
 		    },
 		})
 		.done(function(result) {
+			swal.close();
 			$("#modal_operacion_recursos").modal('hide');
 			swal(
 		      'Listo!',
@@ -122,6 +126,7 @@ Recursos.prototype.envia_url =function(){
 			obj_recursos.get_tabla();
 		})
 		.fail(function(e) {
+			swal.close();
 			console.error("Error in get_Niveles()"); console.table(e);
 		})
 		.always(function() {
@@ -153,6 +158,7 @@ Recursos.prototype.elimina_recurso = function(idrecurso){
 		    },
 		})
 		.done(function(result) {
+			swal.close();
 			swal(
 		      'Eliminado!',
 		      'Se elimino correctamente!',
@@ -161,6 +167,7 @@ Recursos.prototype.elimina_recurso = function(idrecurso){
 			obj_recursos.get_tabla();
 		})
 		.fail(function(e) {
+			swal.close();
 			console.error("Error in get_Niveles()"); console.table(e);
 		})
 		.always(function() {
@@ -181,10 +188,12 @@ Recursos.prototype.get_tabla = function(){
 	    },
 	})
 	.done(function(result) {
+		swal.close();
 		$("#div_contenedor_de_tablarec").empty();
 		$("#div_contenedor_de_tablarec").append(result.tabla);
 	})
 	.fail(function(e) {
+		swal.close();
 		console.error("Error in get_Niveles()"); console.table(e);
 	})
 	.always(function() {
@@ -203,7 +212,7 @@ Recursos.prototype.validaExisteArchivo = function(nombre){
 	    },
 	})
 	.done(function(result) {
-	
+		swal.close();
 		if(result.respuesta == true){
 			$("#validaexixtente").val("true");
 			swal(
@@ -216,10 +225,12 @@ Recursos.prototype.validaExisteArchivo = function(nombre){
 		}
 	})
 	.fail(function(e) {
-		console.error("Error in get_Niveles()"); console.table(e);
+		swal.close();
+		console.error("Error in get_Niveles()"); 
+		console.table(e);
 	})
 	.always(function() {
-    swal.close();
+    	swal.close();
 	});
 }
 
@@ -243,24 +254,28 @@ Recursos.prototype.subir_recurso = function(){
             message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
             showMessage(message)
         },
-        //una vez finalizado correctamente
-        success: function(data){
-        	swal(
-		      'Listo!',
-		      'Su archivo se subio correctamente',
-		      'success'
-		    );
-        	$("#modal_operacion_recursos").modal('hide');
-        	obj_recursos.get_tabla();
-        	$("#idseleccionadofile").val("false");//regresa false la varible que valida si ya se a seleccionado un archivo
-        	$("#validaexixtente").val("false");//regresa en false la valicacion del archivo exixtente
-        },
-        //si ha ocurrido un error
-        error: function(){
-            message = $("<span class='error'>Ha ocurrido un error.</span>");
-            showMessage(message);
-        }
-    });
+    })      
+    .done(function( data ) {
+        swal.close();
+        swal(
+		    'Listo!',
+		    'Su archivo se subio correctamente',
+		    'success'
+		);
+        $("#modal_operacion_recursos").modal('hide');
+        obj_recursos.get_tabla();
+        $("#idseleccionadofile").val("false");//regresa false la varible que valida si ya se a seleccionado un archivo
+        $("#validaexixtente").val("false");//regresa en false la valicacion del archivo exixtente
+        
+    })
+    .fail(function(e) {
+        swal.close();
+        message = $("<span class='error'>Ha ocurrido un error.</span>");
+        showMessage(message);
+    })
+    .always(function() {
+        swal.close();
+   	});
 }
 
 Recursos.prototype.valida_url = function(url){
@@ -305,7 +320,8 @@ $(".messages").hide();
     });
 
     //al enviar el formulario
-    $('#btn_subir_pdf_imagen').click(function(){
+    $('#btn_subir_pdf_imagen').click(function(e){
+    	e.preventDefault();
     	if(fileSize < 5000000){
     		obj_recursos.ocultamesaje_file();
 	    	if($("#titulofile").val() == ""){

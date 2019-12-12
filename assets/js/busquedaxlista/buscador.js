@@ -62,11 +62,14 @@ Buscador.prototype.get_niveles = function(cve_municipio){
     	    },
       })
       .done(function( data ) {
+        swal.close();
         $("#slc_busquedalista_nivel").empty();
         $("#slc_busquedalista_nivel").append(data.str_select);
       })
       .fail(function(e) {
-        console.error("Error in get_niveles()"); console.table(e);
+        swal.close();
+        console.error("Error in get_niveles()"); 
+        console.table(e);
       })
       .always(function() {
         swal.close();
@@ -85,11 +88,14 @@ Buscador.prototype.get_sostenimientos = function(cve_nivel){
     	  },
       })
       .done(function( data ) {
+        swal.close();
         $("#slc_busquedalista_sostenimiento").empty();
         $("#slc_busquedalista_sostenimiento").append(data.str_select);
       })
       .fail(function(e) {
-        console.error("Error in get_sostenimientos()"); console.table(e);
+        swal.close();
+        console.error("Error in get_sostenimientos()"); 
+        console.table(e);
       })
       .always(function() {
         swal.close();
@@ -107,6 +113,7 @@ Buscador.prototype.get_xcvecentro = function(cve_centro){
     	  },
       })
       .done(function( data ) {
+        swal.close();
         if(data.total_escuelas==0){
           alert('sin resultados');
         }
@@ -120,7 +127,9 @@ Buscador.prototype.get_xcvecentro = function(cve_centro){
         }
       })
       .fail(function(e) {
-        console.error("Error in get_xcvecentro()"); console.table(e);
+        swal.close();
+        console.error("Error in get_xcvecentro()"); 
+        console.table(e);
       })
       .always(function() {
         swal.close();

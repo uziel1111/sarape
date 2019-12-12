@@ -2,11 +2,13 @@ $(function() {
     obj_panel = new Panel();
 });
 
-$("#btn_mostrar_datos_rec").click(function(){
+$("#btn_mostrar_datos_rec").click(function(e){
+	e.preventDefault();
 	obj_panel.get_reactivos();
 })
 
-$("#md_close_visor_recursos").click(function(){
+$("#md_close_visor_recursos").click(function(e){
+	e.preventDefault();
 	$("#modal_visor_recursos").modal('hide');
   obj_panel.get_reactivos();
 })
@@ -26,6 +28,7 @@ Panel.prototype.get_reactivos =function(){
 	    },
 	})
 	.done(function(result) {
+		swal.close();
 		$("#contenedor_tabla").empty();
 
 		var table = "";
@@ -33,10 +36,11 @@ Panel.prototype.get_reactivos =function(){
 
 	})
 	.fail(function(e) {
+		swal.close();
 		console.error("Error in get_Niveles()"); console.table(e);
 	})
 	.always(function() {
-    swal.close();
+    	swal.close();
 	});
 
 }
@@ -53,7 +57,7 @@ Panel.prototype.get_tabla = function(idreactivo){
 	    },
 	})
 	.done(function(result) {
-
+		swal.close();
 		$("#div_contenedor_de_tablarec").empty();
 		$("#div_contenedor_hidden").empty();
 		$("#div_contenedor_de_tablarec").append(result.tabla);
@@ -62,10 +66,11 @@ Panel.prototype.get_tabla = function(idreactivo){
 		$("#modal_visor_recursos").modal('show');
 	})
 	.fail(function(e) {
+		swal.close();
 		console.error("Error in get_Niveles()"); console.table(e);
 	})
 	.always(function() {
-    swal.close();
+    	swal.close();
 	});
 }
 
@@ -123,16 +128,17 @@ Panel.prototype.show_propuestas = function(id_reactivo){
 	    },
 	})
 	.done(function(result) {
-
+		swal.close();
 		$("#div_contenedor_de_propuestas").empty();
 		$("#div_contenedor_de_propuestas").append(result.respuesta);
 		$("#modal_visor_propuestas").modal('show');
 	})
 	.fail(function(e) {
+		swal.close();
 		console.error("Error in show_propuestas()"); console.table(e);
 	})
 	.always(function() {
-    swal.close();
+    	swal.close();
 	})
 }
 
@@ -182,10 +188,11 @@ Panel.prototype.autorizar_propuesta = function(idpropuesta){
 		$('#modal_visor_propuestas').modal('toggle');
 	})
 	.fail(function(e) {
+		swal.close();
 		console.error("Error in autorizar_propuesta()"); console.table(e);
 	})
 	.always(function() {
-
+		swal.close();
 	})
 }
 
@@ -229,10 +236,11 @@ Panel.prototype.elimina_propuesta = function(idpropuesta){
 				$('#modal_visor_propuestas').modal('toggle');
 		})
 		.fail(function(e) {
+			swal.close();
 			console.error("Error in elimina_propuesta()"); console.table(e);
 		})
 		.always(function() {
-			    // swal.close();
+			    swal.close();
 		})
 	  }
 	})

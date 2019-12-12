@@ -7,16 +7,21 @@ $("#slc_xest_muni_estmunicipio").change(function(){
     beforeSend: function(xhr) {
       Notification.loading("");
     },
-    success:function(data){
-      swal.close();
-      $("#slc_xest_muni_nivel").empty();
+  }) 
+  .done(function( data ) {
+    swal.close();
+    $("#slc_xest_muni_nivel").empty();
       $.each(data, function (index, item) {
           $("#slc_xest_muni_nivel").append('<option value="'+index+'">'+item+'</option>');
-        });
-    },
-    error: function(error){
-      console.log(error);
-    }
+      });
+  })
+  .fail(function(e) {
+    swal.close();
+    console.error("Error in estad_indi_generales_getnivel()"); 
+    console.table(e);
+  })
+  .always(function() {
+    swal.close();
   });
 
 });
@@ -33,17 +38,21 @@ $("#slc_xest_muni_nivel").change(function(){
     beforeSend: function(xhr) {
       Notification.loading("");
     },
-    success:function(data){
+  })
+  .done(function( data ) {
       swal.close();
       $("#slc_xest_muni_sostenimiento").empty();
       $.each(data, function (index, item) {
-          $("#slc_xest_muni_sostenimiento").append('<option value="'+index+'">'+item+'</option>');
-        });
-    },
-    error: function(error){
-      $("#wait").modal("hide");
-      console.log(error);
-    }
+        $("#slc_xest_muni_sostenimiento").append('<option value="'+index+'">'+item+'</option>');
+      });
+  })
+  .fail(function(e) {
+    swal.close();
+    console.error("Error in estad_indi_generales_getsost()"); 
+    console.table(e);
+  })
+  .always(function() {
+    swal.close();
   });
 
 });
@@ -62,16 +71,20 @@ $("#slc_xest_muni_sostenimiento").change(function(){
     beforeSend: function(xhr) {
       Notification.loading("");
     },
-    success:function(data){
-      swal.close();
-      $("#slc_xest_muni_modalidad").empty();
-      $.each(data, function (index, item) {
-          $("#slc_xest_muni_modalidad").append('<option value="'+index+'">'+item+'</option>');
-        });
-    },
-    error: function(error){
-      console.log(error);
-    }
+  }).done(function( data ) {
+    swal.close();
+    $("#slc_xest_muni_modalidad").empty();
+    $.each(data, function (index, item) {
+      $("#slc_xest_muni_modalidad").append('<option value="'+index+'">'+item+'</option>');
+    });
+  })
+  .fail(function(e) {
+    swal.close();
+    console.error("Error in get_xcvecentro()"); 
+    console.table(e);
+  })
+  .always(function() {
+    swal.close();
   });
 
 });
@@ -99,16 +112,22 @@ $("#slc_xest_nivel_zona").change(function(){
     beforeSend: function(xhr) {
       Notification.loading("");
     },
-    success:function(data){
-      swal.close();
-      $("#slc_xest_sostenimiento_zona").empty();
-      $.each(data, function (index, item) {
-          $("#slc_xest_sostenimiento_zona").append('<option value="'+index+'">'+item+'</option>');
-        });
-    },
-    error: function(error){
-      console.log(error);
-    }
+  })
+  .done(function( data ) {
+    swal.close();
+    $("#slc_xest_sostenimiento_zona").empty();
+    $.each(data, function (index, item) {
+      $("#slc_xest_sostenimiento_zona").append('<option value="'+index+'">'+item+'</option>');
+    });
+
+  })
+  .fail(function(e) {
+    swal.close();
+    console.error("Error in get_xcvecentro()"); 
+    console.table(e);
+  })
+  .always(function() {
+    swal.close();
   });
 
 });
@@ -133,19 +152,23 @@ $("#slc_xest_sostenimiento_zona").change(function(){
     beforeSend: function(xhr) {
       Notification.loading("");
     },
-    success:function(data){
-      swal.close();
-      $("#slc_xest_zona").empty();
-      $("#slc_xest_zona").append(data.array);
-    },
-    error: function(error){
-      console.log(error);
-      swal.close();
-      alert("No hay zonas escolares para este sostenimiento");
-      $("#slc_xest_zona").empty();
-      $("#slc_xest_zona").html('<option selected>Sin zonas escolares</option>');
-      $("#resultado_filtros").empty();
-    }
+  }) .done(function( data ) {
+    swal.close();
+    $("#slc_xest_zona").empty();
+    $("#slc_xest_zona").append(data.array);
+        
+  })
+  .fail(function(e) {
+    swal.close();
+    console.error("Error in estad_indi_generales_getzonassubsost_zona()"); 
+    console.table(e);
+    alert("No hay zonas escolares para este sostenimiento");
+    $("#slc_xest_zona").empty();
+    $("#slc_xest_zona").html('<option selected>Sin zonas escolares</option>');
+    $("#resultado_filtros").empty();
+  })
+  .always(function() {
+    swal.close();
   });
 
 });
@@ -163,23 +186,27 @@ $("#slc_xest_zona").change(function(){
     beforeSend: function(xhr) {
           Notification.loading("");
     },
-    success:function(data){
-      swal.close();
-      $("#slc_xest_cicloe_zona").empty();
-         $("#slc_xest_cicloe_zona").append('<option value="2">2017-2018</option><option value="4">2018-2019</option>');
-      $.each(data, function (index, item) {
-        });
-
-    },
-    error: function(error){
-      console.log(error);
-
-
-    }
+  }) 
+  .done(function( data ) {
+    swal.close();
+    $("#slc_xest_cicloe_zona").empty();
+    $("#slc_xest_cicloe_zona").append('<option value="2">2017-2018</option><option value="4">2018-2019</option>');
+    $.each(data, function (index, item) {
+    });
+    
+  })
+  .fail(function(e) {
+    swal.close();
+    console.error("Error in estad_indi_generales_getcicloxnxsubxz_zona()"); 
+    console.table(e);
+  })
+  .always(function() {
+    swal.close();
   });
 
 });
-$("#btn_buscar_zona").click(function(){
+$("#btn_buscar_zona").click(function(e){
+  e.preventDefault();
   var id_nivel = $( "#slc_xest_nivel_zona" ).val();
   var id_subsost = $( "#slc_xest_sostenimiento_zona" ).val();
   var id_zona = $( "#slc_xest_zona" ).val();
@@ -207,18 +234,20 @@ $("#btn_buscar_zona").click(function(){
       beforeSend: function(xhr) {
         Notification.loading("");
       },
-      success:function(data){
-        swal.close();
-        $("#resultado_filtros").empty();
-        $("#resultado_filtros").append(data.vista);
-
-      },
-      error: function(error){
-        console.log(error);
-        swal.close();
-        alert("No se pudieron obtener los datos solicitados");
-        $("#resultado_filtros").empty();
-      }
+    }).done(function( data ) {
+      swal.close();
+      $("#resultado_filtros").empty();
+      $("#resultado_filtros").append(data.vista);
+    })
+    .fail(function(e) {
+      swal.close();
+      console.error("Error in xest_zona_x()"); 
+      console.table(e);
+      alert("No se pudieron obtener los datos solicitados");
+      $("#resultado_filtros").empty();
+    })
+    .always(function() {
+      swal.close();
     });
   }
 
@@ -231,7 +260,8 @@ $('#slc_xest_sostenimiento_zona').css( 'cursor', 'no-drop' );
 $('#slc_xest_zona').css( 'cursor', 'no-drop' );
 
 
-$("#btn_buscar_mun_est").click(function(){
+$("#btn_buscar_mun_est").click(function(e){
+  e.preventDefault();
   let id_municipio = $("#slc_xest_muni_estmunicipio").val();
   let municipio = $("#slc_xest_muni_estmunicipio option:selected").text();
   let id_sostenimiento = $("#slc_xest_muni_sostenimiento").val();
@@ -253,25 +283,32 @@ $("#btn_buscar_mun_est").click(function(){
     beforeSend: function(xhr) {
       Notification.loading("");
     },
-    success:function(data){
-      swal.close();
-      $("#resultado_filtros").empty();
-      $("#resultado_filtros").append(data.vista);
-    },
-    error: function(error){
-      console.log(error);
-    }
+
+  }).done(function( data ) {
+    swal.close();
+    $("#resultado_filtros").empty();
+    $("#resultado_filtros").append(data.vista);
+  })
+  .fail(function(e) {
+    swal.close();
+    console.error("Error in xest_muni_x()"); 
+    console.table(e);
+  })
+  .always(function() {
+    swal.close();
   });
 
 });
 
-$("#xest_muni-tab").click(function(){
+$("#xest_muni-tab").click(function(e){
+  e.preventDefault();
   $(".dv_tablas_estzona").empty();
   $(".dv_tablas_estmuni").empty();
   $("#resultado_filtros").empty();
 });
 
-$("#xzona-tab").click(function(){
+$("#xzona-tab").click(function(e){
+  e.preventDefault();
   $(".dv_tablas_estmuni").empty();
   $(".dv_tablas_estzona").empty();
   $("#resultado_filtros").empty();

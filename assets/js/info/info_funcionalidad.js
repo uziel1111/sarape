@@ -46,15 +46,17 @@ $("#btn_indice_peso").click(function(e){
   					  	  },
   				      })
   				      .done(function( data ) {
+                  swal.close();
                   $("#div_contenedor_indpeso").empty();
                   $("#div_contenedor_indpeso").html(data.dom_view_indice_peso);
                   $("#modal_ind_peso").modal("show");
   				      })
   				      .fail(function(e) {
+                  swal.close();
   				        console.error("Error in "); console.table(e);
   				      })
   				      .always(function() {
-  							swal.close();
+  							 swal.close();
   						});
             });
 
@@ -98,40 +100,38 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
 				        data: {'cct':cct,'turno':turno,'nivel':nivel},
 				        beforeSend: function(xhr) {
 				        	Notification.loading("");
-					  	},
+					  	  },
 				      })
 				      .done(function( data ) {
-							let nivel = data.nivel;
-
-							if (data.estadis_alumnos_escuela.length>0) {
-						    var a_g1 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_1']);//5;
-						    var a_g2 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_2']);//5;
-						    var a_g3 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_3']);//7;
-						    var a_g4 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_4']);//8;
-						    var a_g5 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_5']);//8;
-						    var a_g6 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_6']);//8;
-						    var t_alumnos  =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_t']);//10;
-						    }
-						    if (data.estadis_grupos_escuela.length>0) {
-						    var g_g1 =  parseInt(data.estadis_grupos_escuela[0]['grupos_1']);//3;
-						    var g_g2 =  parseInt(data.estadis_grupos_escuela[0]['grupos_2']);//3;
-						    var g_g3 =  parseInt(data.estadis_grupos_escuela[0]['grupos_3']);//3;
-						    var g_g4 =  parseInt(data.estadis_grupos_escuela[0]['grupos_4']);//3;
-						    var g_g5 =  parseInt(data.estadis_grupos_escuela[0]['grupos_5']);//3;
-						    var g_g6 =  parseInt(data.estadis_grupos_escuela[0]['grupos_6']);//3;
-						    var t_grupos   =  g_g1+g_g2+g_g3+g_g4+g_g5+g_g6;//10;
-						  }
-						    if (data.estadis_docentes_escuela.length>0) {
-						    var d_g1 =  parseInt(data.estadis_docentes_escuela[0]['docentes_1_g']);//3;
-						    var d_g2 =  parseInt(data.estadis_docentes_escuela[0]['docentes_2_g']);//3;
-						    var d_g3 =  parseInt(data.estadis_docentes_escuela[0]['docentes_3_g']);//3;
-						    var d_g4 =  parseInt(data.estadis_docentes_escuela[0]['docentes_4_g']);//3;
-						    var d_g5 =  parseInt(data.estadis_docentes_escuela[0]['docentes_5_g']);//3;
-						    var d_g6 =  parseInt(data.estadis_docentes_escuela[0]['docentes_6_g']);//3;
-						    var t_docentes =  d_g1+d_g2+d_g3+d_g4+d_g5+d_g6;//10;
-						  }
-
-
+                swal.close();
+							  let nivel = data.nivel;
+  							if (data.estadis_alumnos_escuela.length>0) {
+  						    var a_g1 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_1']);//5;
+  						    var a_g2 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_2']);//5;
+  						    var a_g3 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_3']);//7;
+  						    var a_g4 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_4']);//8;
+  						    var a_g5 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_5']);//8;
+  						    var a_g6 =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_6']);//8;
+  						    var t_alumnos  =  parseInt(data.estadis_alumnos_escuela[0]['alumn_t_t']);//10;
+  						    }
+  						    if (data.estadis_grupos_escuela.length>0) {
+  						    var g_g1 =  parseInt(data.estadis_grupos_escuela[0]['grupos_1']);//3;
+  						    var g_g2 =  parseInt(data.estadis_grupos_escuela[0]['grupos_2']);//3;
+  						    var g_g3 =  parseInt(data.estadis_grupos_escuela[0]['grupos_3']);//3;
+  						    var g_g4 =  parseInt(data.estadis_grupos_escuela[0]['grupos_4']);//3;
+  						    var g_g5 =  parseInt(data.estadis_grupos_escuela[0]['grupos_5']);//3;
+  						    var g_g6 =  parseInt(data.estadis_grupos_escuela[0]['grupos_6']);//3;
+  						    var t_grupos   =  g_g1+g_g2+g_g3+g_g4+g_g5+g_g6;//10;
+  						  }
+  						    if (data.estadis_docentes_escuela.length>0) {
+  						    var d_g1 =  parseInt(data.estadis_docentes_escuela[0]['docentes_1_g']);//3;
+  						    var d_g2 =  parseInt(data.estadis_docentes_escuela[0]['docentes_2_g']);//3;
+  						    var d_g3 =  parseInt(data.estadis_docentes_escuela[0]['docentes_3_g']);//3;
+  						    var d_g4 =  parseInt(data.estadis_docentes_escuela[0]['docentes_4_g']);//3;
+  						    var d_g5 =  parseInt(data.estadis_docentes_escuela[0]['docentes_5_g']);//3;
+  						    var d_g6 =  parseInt(data.estadis_docentes_escuela[0]['docentes_6_g']);//3;
+  						    var t_docentes =  d_g1+d_g2+d_g3+d_g4+d_g5+d_g6;//10;
+  						  }
 
 								switch(nivel) {
 									case 3:
@@ -179,6 +179,7 @@ Info_esc.prototype.get_alumn_doc_grup =function(){
 
 				      })
 				      .fail(function(e) {
+                swal.close();
 				        console.error("Error in "); console.table(e);
 				      })
 				      .always(function() {
@@ -202,153 +203,152 @@ Info_esc.prototype.get_indica_asist =function(){
 					  	  },
 				      })
 				      .done(function( data ) {
-							let nivel = data.nivel;
-              if (nivel==4) {
-                $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2017-2019");
-              }
-              else if (nivel==5 || nivel==6) {
-                $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2017-2019");
-              }
-							if (data.indica_asisten.length>0) {
-						    var a_cob =  (data.indica_asisten[0]['cobertura']);//5;
-						    var a_abs =  (data.indica_asisten[0]['absorcion']);//5;
-                graf.DibujarRadialProgressBarcobertura(a_cob);
-                graf.DibujarRadialProgressBarabsorcion(a_abs);
+                swal.close();
+  							let nivel = data.nivel;
+                if (nivel==4) {
+                  $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2017-2019");
                 }
-
-
+                else if (nivel==5 || nivel==6) {
+                  $("#lb_ind_asisten").text("Ciclo escolar: FIN- 2017-2019");
+                }
+  							if (data.indica_asisten.length>0) {
+  						    var a_cob =  (data.indica_asisten[0]['cobertura']);//5;
+  						    var a_abs =  (data.indica_asisten[0]['absorcion']);//5;
+                  graf.DibujarRadialProgressBarcobertura(a_cob);
+                  graf.DibujarRadialProgressBarabsorcion(a_abs);
+                }
 
 				      })
 				      .fail(function(e) {
+                swal.close();
 				        console.error("Error in "); console.table(e);
 				      })
 				      .always(function() {
-							swal.close();
-						});
+							  swal.close();
+						  });
 },
 
 Info_esc.prototype.get_indica_perma =function(){
-            $("#dv_info_graf_Retencion").empty();
-            $("#dv_info_graf_Aprobacion").empty();
-            $("#dv_info_graf_Eficiencia_Terminal").empty();
-            $("#lb_ind_perma").empty();
-						let cct = $("#in_cct").val();
-            let turno = $("#in_turno").val();
-            let nivel = $("#in_nivel").val();
-							$.ajax({
-				        url:  base_url+"info/info_indica_perma",
-				        method: 'POST',
-				        data: {'cct':cct,'turno':turno,'nivel':nivel},
-				        beforeSend: function(xhr) {
-				        	Notification.loading("");
-					  	},
-				      })
-				      .done(function( data ) {
-							let nivel = data.nivel;
-              if (nivel==4) {
-                $("#lb_ind_perma").text("Ciclo escolar: FIN- 2015-2016");
-              }
-              else if (nivel==5 || nivel==6) {
-                $("#lb_ind_perma").text("Ciclo escolar: FIN- 2016-2017");
-              }
-							if (data.indica_perma.length>0) {
-                $("#indiperma").removeAttr('hidden');
-						    var a_ret =  (data.indica_perma[0]['retencion']);//5;
-						    var a_apr =  (data.indica_perma[0]['aprobacion']);//5;
-                var a_efi =  (data.indica_perma[0]['et']);//5;
+  $("#dv_info_graf_Retencion").empty();
+  $("#dv_info_graf_Aprobacion").empty();
+  $("#dv_info_graf_Eficiencia_Terminal").empty();
+  $("#lb_ind_perma").empty();
+	let cct = $("#in_cct").val();
+  let turno = $("#in_turno").val();
+  let nivel = $("#in_nivel").val();
+	$.ajax({
+		url:  base_url+"info/info_indica_perma",
+		method: 'POST',
+		data: {'cct':cct,'turno':turno,'nivel':nivel},
+		beforeSend: function(xhr) {
+			Notification.loading("");
+		},
+	})
+	.done(function( data ) {
+    swal.close();
+  	let nivel = data.nivel;
+    if (nivel==4) {
+      $("#lb_ind_perma").text("Ciclo escolar: FIN- 2015-2016");
+    }
+    else if (nivel==5 || nivel==6) {
+      $("#lb_ind_perma").text("Ciclo escolar: FIN- 2016-2017");
+    }
+  	if (data.indica_perma.length>0) {
+      $("#indiperma").removeAttr('hidden');
+  		var a_ret =  (data.indica_perma[0]['retencion']);//5;
+  		var a_apr =  (data.indica_perma[0]['aprobacion']);//5;
+      var a_efi =  (data.indica_perma[0]['et']);//5;
+      graf.DibujarRadialProgressBarretencion(a_ret);
+      graf.DibujarRadialProgressBaraprobacion(a_apr);
+      graf.DibujarRadialProgressBaraefi(a_efi);
+    }else{
+    	$("#indiperma").attr('hidden',true);
+    }
 
-                graf.DibujarRadialProgressBarretencion(a_ret);
-                graf.DibujarRadialProgressBaraprobacion(a_apr);
-                graf.DibujarRadialProgressBaraefi(a_efi);
-                }
-                else{
-    							$("#indiperma").attr('hidden',true);
-                }
-
-
-
-
-				      })
-				      .fail(function(e) {
-				        console.error("Error in "); console.table(e);
-				      })
-				      .always(function() {
-							swal.close();
-						});
+	})
+	.fail(function(e) {
+    swal.close();
+		console.error("Error in "); 
+    console.table(e);
+	})
+	.always(function() {
+		swal.close();
+	});
 },
 
 Info_esc.prototype.get_prog_apoyo =function(){
-            $("#tab_prog_apoyo").empty();
-						let cct = $("#in_cct").val();
-            let turno = $("#in_turno").val();
-            let nivel = $("#in_nivel").val();
+  $("#tab_prog_apoyo").empty();
+	let cct = $("#in_cct").val();
+  let turno = $("#in_turno").val();
+  let nivel = $("#in_nivel").val();
 
-							$.ajax({
-				        url:  base_url+"info/info_prog_apoyo",
-				        method: 'POST',
-				        data: {'cct':cct,'turno':turno,'nivel':nivel},
-				        beforeSend: function(xhr) {
-				        	Notification.loading("");
-					  	},
-				      })
-				      .done(function( data ) {
-							let programas = data.programs;
-              var str_view_table='';
+	$.ajax({
+		url:  base_url+"info/info_prog_apoyo",
+		method: 'POST',
+		data: {'cct':cct,'turno':turno,'nivel':nivel},
+		beforeSend: function(xhr) {
+			Notification.loading("");
+		},
+	})
+	.done(function( data ) {
+    swal.close();
+		let programas = data.programs;
+    var str_view_table='';
 
-              str_view_table+="<div class='col'>";
-            str_view_table+="<div class='table-responsive'>";
+    str_view_table+="<div class='col'>";
+    str_view_table+="<div class='table-responsive'>";
 
-            str_view_table+="<table id='tabla_planea' class='table table-gray table-hover'>";
-            str_view_table+="<thead>";
-            str_view_table+="<tr>";
-            str_view_table+="<th class='text-center'>";
-            str_view_table+="<br><span style='font-weight:normal'>No.</span></th>";
-            str_view_table+="<th class='text-center'>";
-            str_view_table+="<br><span style='font-weight:normal'>Nombre del programa</span>";
-            str_view_table+="</th>    <th class='text-center'>";
-            str_view_table+="<br><span style='font-weight:normal'>Nombre corto</span></th>";
-            str_view_table+="<th class='text-center'>";
-            str_view_table+="<br><span style='font-weight:normal'>Ciclo escolar</span></th>";
-            str_view_table+="</tr>";
-      		str_view_table+="</thead>";
-      			str_view_table+="<tbody>";
-            programas.forEach(function(value, index) {
-              str_view_table+="<tr>";
-              str_view_table+="<th class='text-center'>";
-              str_view_table+=""+value.rowNumber+"</th>";
-              str_view_table+="<th class='text-center'>";
-              str_view_table+=""+value.descripcion+"";
-              str_view_table+="</th>    <th class='text-center'>";
-              str_view_table+=""+value.programa_apoyo+"</th>";
-              str_view_table+="<th class='text-center'>";
-              str_view_table+=""+value.ciclo+"</th>";
-              str_view_table+="</tr>";
-            });
+    str_view_table+="<table id='tabla_planea' class='table table-gray table-hover'>";
+    str_view_table+="<thead>";
+    str_view_table+="<tr>";
+    str_view_table+="<th class='text-center'>";
+    str_view_table+="<br><span style='font-weight:normal'>No.</span></th>";
+    str_view_table+="<th class='text-center'>";
+    str_view_table+="<br><span style='font-weight:normal'>Nombre del programa</span>";
+    str_view_table+="</th>    <th class='text-center'>";
+    str_view_table+="<br><span style='font-weight:normal'>Nombre corto</span></th>";
+    str_view_table+="<th class='text-center'>";
+    str_view_table+="<br><span style='font-weight:normal'>Ciclo escolar</span></th>";
+    str_view_table+="</tr>";
+    str_view_table+="</thead>";
+    str_view_table+="<tbody>";
+    programas.forEach(function(value, index) {
+      str_view_table+="<tr>";
+      str_view_table+="<th class='text-center'>";
+      str_view_table+=""+value.rowNumber+"</th>";
+      str_view_table+="<th class='text-center'>";
+      str_view_table+=""+value.descripcion+"";
+      str_view_table+="</th>    <th class='text-center'>";
+      str_view_table+=""+value.programa_apoyo+"</th>";
+      str_view_table+="<th class='text-center'>";
+      str_view_table+=""+value.ciclo+"</th>";
+      str_view_table+="</tr>";
+    });
 
+    str_view_table+="</tbody>";
+    str_view_table+="</table>";
+    str_view_table+="</div>";
+    str_view_table+="</div>";
 
-            str_view_table+="</tbody>";
-            str_view_table+="</table>";
-            str_view_table+="</div>";
-      			str_view_table+="</div>";
+    $("#tab_prog_apoyo").empty();
 
-            $("#tab_prog_apoyo").empty();
+    $("#tab_prog_apoyo").append(str_view_table);
+    if (programas.length>0) {
+      $("#prog_apoyo").removeAttr('hidden');
+    }
+    else{
+      $("#prog_apoyo").attr('hidden',true);
+    }
 
-            $("#tab_prog_apoyo").append(str_view_table);
-            if (programas.length>0) {
-              $("#prog_apoyo").removeAttr('hidden');
-              }
-              else{
-                $("#prog_apoyo").attr('hidden',true);
-              }
-
-
-				      })
-				      .fail(function(e) {
-				        console.error("Error in "); console.table(e);
-				      })
-				      .always(function() {
-							swal.close();
-						});
+	})
+	.fail(function(e) {
+    swal.close();
+		console.error("Error in "); 
+    console.table(e);
+	})
+	.always(function() {
+		swal.close();
+	});
 },
 
 Info_esc.prototype.get_riesgo =function(){
@@ -374,7 +374,7 @@ Info_esc.prototype.get_riesgo =function(){
 			}
 		})
 		.done(function( data ) {
-
+      swal.close();
 			var nivel = data.nivel;
       if (data.graph_pie_riesgo.length>0) {
 				var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
@@ -543,6 +543,7 @@ Info_esc.prototype.get_riesgo =function(){
 
 				      })
 				      .fail(function(e) {
+                swal.close();
 				        console.error("Error in "); console.table(e);
 				      })
 				      .always(function() {
@@ -568,6 +569,7 @@ Info_esc.prototype.get_planea =function(){
 							    },
 							})
 							.done(function( data ) {
+                swal.close();
 								let nivel = data.nivel;
 
 								if (data.planea15_escuela.length>0) {
@@ -788,6 +790,7 @@ Info_esc.prototype.get_planea =function(){
 
 							})
 							.fail(function(e) {
+                swal.close();
 								console.error("Error in "); console.table(e);
 							})
 							.always(function() {
@@ -812,6 +815,7 @@ Info_esc.prototype.get_ete =function(){
 							    },
 							})
 							.done(function( data ) {
+                swal.close();
 								let nivel = data.nivel;
                 if (nivel==4) {
                   $("#lb_ind_efi").text("ET_Ciclo escolar: FIN- 2015-2016");
@@ -831,7 +835,9 @@ Info_esc.prototype.get_ete =function(){
 
 							})
 							.fail(function(e) {
-								console.error("Error in "); console.table(e);
+                swal.close();
+								console.error("Error in "); 
+                console.table(e);
 							})
 							.always(function() {
 							swal.close();
@@ -857,7 +863,7 @@ Info_esc.prototype.get_riesgo2 =function(){
 							    },
 				      })
 				      .done(function( data ) {
-
+                swal.close();
 				      	$("#total_bajas").text(data.numero_bajas[0]['total']);
 								let nivel = data.nivel;
                 let q1 = 0;
@@ -1000,7 +1006,9 @@ Info_esc.prototype.get_riesgo2 =function(){
 
 				      })
 				      .fail(function(e) {
-				        console.error("Error in "); console.table(e);
+                swal.close();
+				        console.error("Error in "); 
+                console.table(e);
 				      })
 						.always(function() {
 							swal.close();

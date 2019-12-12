@@ -26,7 +26,8 @@ $("#slt_ciclo_ries").change(function(){
 
 });
 
-$("#btn_buscar_ries_muni").click(function() {
+$("#btn_buscar_ries_muni").click(function(e) {
+  e.preventDefault();
   let id_minicipio = $("#slt_municipio_ries").val();
   let id_nivel = $("#slt_nivel_ries").val();
   let id_bimestre = $("#slt_bimestre_ries").val();
@@ -51,9 +52,9 @@ $("#btn_buscar_ries_muni").click(function() {
       },
     })
     .done(function( data ) {
-
-    $("#total_bajas_muni").text(data.total_bajas[0]['total']);
-  	var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
+      swal.close();
+      $("#total_bajas_muni").text(data.total_bajas[0]['total']);
+  	  var q1 = parseInt(data.graph_pie_riesgo[0]['muy_alto']);
   		var q2 = parseInt(data.graph_pie_riesgo[0]['alto']);
   		var q3 = parseInt(data.graph_pie_riesgo[0]['medio']);
   		var q4 = parseInt(data.graph_pie_riesgo[0]['bajo']);
@@ -177,11 +178,13 @@ $("#btn_buscar_ries_muni").click(function() {
     $("#dv_tabla_riesgo_mun_zona").append(html_tb_riego);
       })
       .fail(function(e) {
-        console.error("Error in "); console.table(e);
+        swal.close();
+        console.error("Error in "); 
+        console.table(e);
       })
       .always(function() {
-      swal.close();
-    });
+        swal.close();
+      });
 
   }
 
@@ -200,14 +203,17 @@ Riesgo.prototype.get_Niveles =function(){
 	    },
 	})
 	.done(function(result) {
+    swal.close();
 		obj_loader.hide();
 		$("#slt_nivel_mapa").empty();
 		$("#slt_nivel_mapa").append(result.options);
 	})
 	.fail(function() {
+    swal.close();
 		console.log("error");
 	})
 	.always(function() {
+    swal.close();
 		console.log("complete");
 	});
 

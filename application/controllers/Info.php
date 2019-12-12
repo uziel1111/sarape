@@ -167,7 +167,8 @@ class Info extends CI_Controller {
 		$idcampodis = $this->input->post("idcampodis");
 
 		$graph_cont_reactivos_xcctxcont = $this->Planeaxesc_reactivo_model->get_reactivos_xcctxcont($cct,$turno,$nivel,$id_cont,$periodo,$idcampodis,$nombre);
-
+		// echo "<pre>";
+		// print_r($graph_cont_reactivos_xcctxcont); die();
 		$data['graph_cont_reactivos_xcctxcont'] = $graph_cont_reactivos_xcctxcont;
 		$data['periodo'] = $periodo;
 		$data['nombre']=$nombre;

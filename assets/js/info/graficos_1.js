@@ -2158,7 +2158,8 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   bar :{
                        point:{
                            events:{
-                               click:function(){
+                               click:function(e){
+                                  e.preventDefault();
                                   obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,cct,turno,nivel,3,1);
                                }
                            }
@@ -2286,7 +2287,8 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   bar :{
                        point:{
                            events:{
-                               click:function(){
+                               click:function(e){
+                                  e.preventDefault();
                                   obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,cct,turno,nivel,3,2);
                                }
                            }
@@ -2400,7 +2402,8 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   bar :{
                        point:{
                            events:{
-                               click:function(){
+                               click:function(e){
+                                  e.preventDefault();
                                   obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,cct,turno,nivel,4,1);
                                 }
                            }
@@ -2529,7 +2532,8 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   bar :{
                        point:{
                            events:{
-                               click:function(){
+                               click:function(e){
+                                  e.preventDefault();
                                   obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,cct,turno,nivel,4,2);
                                 }
                            }
@@ -2641,7 +2645,8 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   bar :{
                        point:{
                            events:{
-                               click:function(){
+                               click:function(e){
+                                  e.preventDefault();
                                   obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,cct,turno,nivel,2,1);
                                }
                            }
@@ -2764,7 +2769,8 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   bar :{
                        point:{
                            events:{
-                               click:function(){
+                               click:function(e){
+                                  e.preventDefault();
                                   obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,cct,turno,nivel,2,2);
                                 }
                            }
@@ -2817,6 +2823,9 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           })
           .fail(function(e) {
               console.error("Error in get_reactivos_xunidad_de_analisis()"); console.table(e);
+          }) 
+          .always(function() {
+            swal.close();
           });
       }// get_reactivos_xunidad_de_analisis()
 
@@ -2925,7 +2934,11 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
           })
           .fail(function(e) {
+            swal.close();
               console.error("Error in get_reactivos_xunidad_de_analisis()"); console.table(e);
+          }) 
+          .always(function() {
+              swal.close();
           });
       }
 
@@ -2962,7 +2975,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               },
           })
           .done(function(result) {
-          swal.close();
+            swal.close();
             $("#modal_operacion_recursos").modal('hide');
 
                     $("#div_contenedor_operaciones").hide();
@@ -2977,10 +2990,11 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               );
           })
           .fail(function(e) {
+            swal.close();
             console.error("Error in envia_url_pub()"); console.table(e);
           })
           .always(function() {
-
+            swal.close();
           });
         }
 
@@ -2998,7 +3012,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
             },
         })
         .done(function(result) {
-
+          swal.close();
           if (result.n_prop>4) {
             $("#btn_prop").hide();
           }
@@ -3006,10 +3020,11 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
         })
         .fail(function(e) {
+          swal.close();
           console.error("Error in getn_prop()"); console.table(e);
         })
         .always(function() {
-
+          swal.close();
         });
 
       }
@@ -3098,27 +3113,30 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                   message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
                   showMessage(message)
               },
-              //una vez finalizado correctamente
-              success: function(data){
-              	swal(
-      		      'Listo!',
-      		      'Su archivo se subio correctamente',
-      		      'success'
-      		    );
-              	$("#modal_operacion_recursos").modal('hide');
-              	$("#idseleccionadofile").val("false");//regresa false la varible que valida si ya se a seleccionado un archivo
-              	$("#validaexixtente").val("false");//regresa en false la valicacion del archivo exixtente
-                $("#div_contenedor_operaciones").hide();
-            	    $("#div_contenedor_operaciones_files").hide();
-                  $("#tipodematerial").val('0');
-            	    $(".formulario")[0].reset();
-                  obj_graficas.getn_prop();
-              },
-              //si ha ocurrido un error
-              error: function(){
-                  message = $("<span class='error'>Ha ocurrido un error.</span>");
-                  showMessage(message);
-              }
+          })
+          .done(function( data ) {
+            swal.close();
+            swal(
+                'Listo!',
+                'Su archivo se subio correctamente',
+                'success'
+            );
+            $("#modal_operacion_recursos").modal('hide');
+            $("#idseleccionadofile").val("false");//regresa false la varible que valida si ya se a seleccionado un archivo
+            $("#validaexixtente").val("false");//regresa en false la valicacion del archivo exixtente
+            $("#div_contenedor_operaciones").hide();
+            $("#div_contenedor_operaciones_files").hide();
+            $("#tipodematerial").val('0');
+            $(".formulario")[0].reset();
+            obj_graficas.getn_prop();
+          })
+          .fail(function(e) {
+            swal.close();
+            message = $("<span class='error'>Ha ocurrido un error.</span>");
+            showMessage(message);
+          })
+          .always(function() {
+            swal.close();
           });
       }
 
@@ -3170,13 +3188,15 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
 
 
 
-$("#md_close_iframe").click(function(){
+$("#md_close_iframe").click(function(e){
+  e.preventDefault();
   $('#modal_visor_material_reactivos .modal-body #div_listalinks').empty();
   $("#modal_visor_material_reactivos").modal("hide");
 });
 
 //al enviar el formulario
-$('#btn_subir_pdf_imagen_pub').click(function(){
+$('#btn_subir_pdf_imagen_pub').click(function(e){
+  e.preventDefault();
 
   if(fileSize < 5000000){
     obj_graficas.ocultamesaje_file();
@@ -3233,7 +3253,8 @@ $(':file').change(function()
 });
 
 
-$("#md_close_operacion_recursos").click(function(){
+$("#md_close_operacion_recursos").click(function(e){
+  e.preventDefault();
 	$("#modal_operacion_recursos").modal('hide');
 })
 $("#tipodematerial").change(function(){
