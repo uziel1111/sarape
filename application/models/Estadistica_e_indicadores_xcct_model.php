@@ -217,126 +217,6 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
         $filtro_ciclo .= " AND est.id_ciclo = {$id_ciclo_z} ";
     }
 
-    $query1=" SELECT
-                CASE  
-                    WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
-                    WHEN escuelas.nivel = 'INICIAL' THEN '2'
-                    WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
-                    WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
-                    WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
-                    WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
-                    WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
-                END AS id_nivel,escuelas.nivel,'0' AS id_sostenimiento,'total' AS sostenimiento,
-                '0' AS id_modalidad, 'total' AS modalidad,
-                SUM(est.alumn_m_t) AS alumn_m_t, SUM(est.alumn_h_t) AS alumn_h_t, 
-                SUM(est.alumn_t_t) AS alumn_t_t,
-                SUM(est.alumn_t_1) AS alumn_t_1, SUM(est.alumn_t_2) AS alumn_t_2, 
-                SUM(est.alumn_t_3) AS alumn_t_3,
-                SUM(est.alumn_t_4) AS alumn_t_4, SUM(est.alumn_t_5) AS alumn_t_5, 
-                SUM(est.alumn_t_6) AS alumn_t_6
-            FROM (SELECT cct, turno, sostenimiento,zona_escolar,desc_nivel_educativo,
-                    desc_servicio, desc_sostenimiento,nivel_educativo,
-                    CASE 
-                      WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
-                      WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
-                      WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
-                      WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
-                      WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
-                      WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
-                      WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
-                    END AS nivel
-                    FROM centros_educativos.vista_cct 
-                    WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9 
-                    {$filtro_nivel_sos}
-                ) AS escuelas
-            INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct 
-                        {$filtro_ciclo} 
-            INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo, 
-                        SUBSTRING(cct, 3, 3) AS tipo
-                        FROM centros_educativos.vista_cct cct
-                        WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 1) AS supervisiones 
-                        ON escuelas.zona_escolar = supervisiones.zona_escolar
-                        AND escuelas.sostenimiento = supervisiones.sostenimiento
-            {$filtro} {$filtro_zona}
-            GROUP BY CASE   
-                WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
-                WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
-                WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
-                WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
-                WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
-                WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
-                WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
-                END ";
-
-    $query2 = " SELECT
-                CASE  
-                    WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
-                    WHEN escuelas.nivel = 'INICIAL' THEN '2'
-                    WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
-                    WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
-                    WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
-                    WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
-                    WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
-                END AS id_nivel,escuelas.nivel
-                ,escuelas.id_sostenimiento, escuelas.sostenimiento2 as sostenimiento, '0' AS id_modalidad, 'total' AS modalidad,
-                SUM(est.alumn_m_t) AS alumn_m_t, 
-                SUM(est.alumn_h_t) AS alumn_h_t, 
-                SUM(est.alumn_t_t) AS alumn_t_t,
-                SUM(est.alumn_t_1) AS alumn_t_1, 
-                SUM(est.alumn_t_2) AS alumn_t_2, 
-                SUM(est.alumn_t_3) AS alumn_t_3,
-                SUM(est.alumn_t_4) AS alumn_t_4, 
-                SUM(est.alumn_t_5) AS alumn_t_5, 
-                SUM(est.alumn_t_6) AS alumn_t_6
-                FROM (SELECT cct, turno, zona_escolar, desc_nivel_educativo, desc_servicio, 
-                        desc_sostenimiento,nivel_educativo,
-                    CASE 
-                       WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
-                       WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
-                       WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
-                       WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
-                       WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
-                       WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
-                       WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
-                    END AS nivel,
-                    (SELECT CASE  
-                        WHEN sostenimiento IN  ('51') THEN '3'
-                        WHEN sostenimiento IN ('61','41','92','96') THEN '2'
-                        ELSE '1'
-                    END) AS id_sostenimiento,
-                    (SELECT CASE  
-                        WHEN sostenimiento IN  ('51') THEN 'AUTONOMO'
-                        WHEN sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
-                        ELSE 'PUBLICO'
-                    END) AS sostenimiento2,sostenimiento
-                    FROM centros_educativos.vista_cct 
-                    WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9  
-                    {$filtro_nivel_sos}
-                ) AS escuelas
-                INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
-                {$filtro_ciclo}
-                INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo, 
-                                SUBSTRING(cct, 3, 3) AS tipo
-                            FROM centros_educativos.vista_cct cct
-                            WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 1
-                            ) AS supervisiones ON escuelas.zona_escolar = supervisiones.zona_escolar
-                            AND escuelas.sostenimiento = supervisiones.sostenimiento
-                {$filtro} {$filtro_zona}
-                GROUP BY (CASE   
-                            WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
-                            WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
-                            WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
-                            WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
-                            WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
-                            WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
-                            WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
-                        END), 
-                        (CASE  
-                            WHEN escuelas.sostenimiento IN  ('51') THEN 'AUTONOMO'
-                            WHEN escuelas.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
-                            ELSE 'PUBLICO'
-                        END) 
-                        ";
 
         $query3 = "SELECT CASE  
                     WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
@@ -406,11 +286,10 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                             WHEN escuelas.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
                             ELSE 'PUBLICO'
                         END), escuelas.desc_servicio
-                ORDER BY FIELD(nivel,'ESPECIAL','INICIAL','PREESCOLAR','PRIMARIA','SECUNDARIA','MEDIA SUPERIOR','SUPERIOR')
-                ,id_sostenimiento,id_modalidad ";
+                ";
 
-
-    return $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
+                // echo $query3; die();
+    return $this->db->query($query3)->result_array();
 
   }// get_nalumnos_xzona()
 
@@ -694,140 +573,6 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
         $filtro_ciclo .= " AND est.id_ciclo = {$id_ciclo_z} ";
     }
 
-    $query1 = "SELECT CASE  
-                    WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
-                    WHEN escuelas.nivel = 'INICIAL' THEN '2'
-                    WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
-                    WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
-                    WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
-                    WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
-                    WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
-                END AS id_nivel,escuelas.nivel,'0' AS id_sostenimiento, 'total' AS sostenimiento, '0' AS id_modalidad, 'total' AS modalidad,
-                IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docente_m)+SUM(est.docente_m_ef)+SUM(est.docente_m_artis)+SUM(est.docente_m_tecnolo)+SUM(est.docente_m_idiomas)) ,
-                    SUM(est.docente_m)) AS docente_m,
-                IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docente_h)+SUM(est.docente_h_ef)+SUM(est.docente_h_artis)+SUM(est.docente_h_tecnolo)+SUM(est.docente_h_idiomas)) ,
-                    SUM(est.docente_h)) AS docente_h,
-                IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docentes_t_g)+SUM(est.docente_h_ef)+SUM(est.docente_m_ef)
-                    +SUM(est.docente_h_artis)
-                    +SUM(est.docente_m_artis)
-                    +SUM(est.docente_h_tecnolo)
-                    +SUM(est.docente_m_tecnolo)
-                    +SUM(est.docente_h_idiomas)
-                    +SUM(est.docente_m_idiomas)),SUM(est.docentes_t_g)) AS docentes_t_g,
-                    SUM(est.directivo_m_congrup) AS directivo_m_congrup, 
-                    SUM(est.directivo_h_congrup) AS directivo_h_congrup, 
-                    SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) AS directivo_t_congrup,
-                    SUM(est.directivo_m_singrup) AS directivo_m_singrup, 
-                    SUM(est.directivo_h_singrup) AS directivo_h_singrup, 
-                    SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) AS directivo_t_singrup
-            FROM (SELECT cct, turno, sostenimiento, zona_escolar, desc_nivel_educativo,
-                    desc_servicio,desc_sostenimiento,nivel_educativo,
-                    CASE 
-                        WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
-                        WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
-                        WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
-                        WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
-                        WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
-                        WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
-                        WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
-                    END AS nivel
-                FROM centros_educativos.vista_cct 
-                WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9 
-                {$filtro_nivel_sos}
-            ) AS escuelas
-            INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
-            {$filtro_ciclo}
-            INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo, 
-                            SUBSTRING(cct, 3, 3) AS tipo
-                        FROM centros_educativos.vista_cct cct
-                        WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 1
-            ) AS supervisiones ON escuelas.zona_escolar = supervisiones.zona_escolar
-            AND escuelas.sostenimiento = supervisiones.sostenimiento
-            {$filtro} {$filtro_zona}   
-            GROUP BY CASE   
-                WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
-                WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
-                WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
-                WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
-                WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
-                WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
-                WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
-            END ";
-
-
-    $query2 = "SELECT CASE  
-                        WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
-                        WHEN escuelas.nivel = 'INICIAL' THEN '2'
-                        WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
-                        WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
-                        WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
-                        WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
-                        WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
-                    END AS id_nivel,escuelas.nivel,
-                    (SELECT CASE  
-                        WHEN escuelas.sostenimiento IN  ('51') THEN '3'
-                        WHEN escuelas.sostenimiento IN ('61','41','92','96') THEN '2'
-                        ELSE '1'
-                    END) AS id_sostenimiento,
-                    (SELECT CASE  
-                        WHEN escuelas.sostenimiento IN  ('51') THEN 'AUTONOMO'
-                        WHEN escuelas.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
-                        ELSE 'PUBLICO'
-                    END)  as sostenimiento
-                    , '0' AS id_modalidad, 'total' AS modalidad,
-                    IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docente_m)+SUM(est.docente_m_ef)+SUM(est.docente_m_artis)+SUM(est.docente_m_tecnolo)+SUM(est.docente_m_idiomas)) ,
-                        SUM(est.docente_m)) AS docente_m,
-                    IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docente_h)+SUM(est.docente_h_ef)+SUM(est.docente_h_artis)+SUM(est.docente_h_tecnolo)+SUM(est.docente_h_idiomas)) ,
-                        SUM(est.docente_h)) AS docente_h,
-                    IF(escuelas.nivel = 'SECUNDARIA', (SUM(est.docentes_t_g)+SUM(est.docente_h_ef)+SUM(est.docente_m_ef)+SUM(est.docente_h_artis)+SUM(est.docente_m_artis)+SUM(est.docente_h_tecnolo)
-                        +SUM(est.docente_m_tecnolo)
-                        +SUM(est.docente_h_idiomas)
-                        +SUM(est.docente_m_idiomas)),SUM(est.docentes_t_g)) AS docentes_t_g,
-                    SUM(est.directivo_m_congrup) AS directivo_m_congrup, 
-                    SUM(est.directivo_h_congrup) AS directivo_h_congrup, 
-                    SUM(est.directivo_m_congrup)+SUM(est.directivo_h_congrup) AS directivo_t_congrup,
-                    SUM(est.directivo_m_singrup) AS directivo_m_singrup, 
-                    SUM(est.directivo_h_singrup) AS directivo_h_singrup, 
-                    SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) AS directivo_t_singrup
-            FROM (SELECT cct, turno, sostenimiento, zona_escolar, desc_nivel_educativo,
-                    desc_servicio, desc_sostenimiento,nivel_educativo,
-                    CASE 
-                        WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
-                        WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
-                        WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
-                        WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
-                        WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
-                        WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
-                        WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
-                    END AS nivel
-                FROM centros_educativos.vista_cct 
-                WHERE (status = 1 OR status = 4) AND tipo_centro = 9  
-                {$filtro_nivel_sos}
-            ) AS escuelas
-            INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
-            {$filtro_ciclo}
-            INNER JOIN (SELECT cct, zona_escolar,sostenimiento,desc_nivel_educativo,
-                            SUBSTRING(cct, 3, 3) AS tipo
-                        FROM centros_educativos.vista_cct cct
-                        WHERE (status = 1 OR status = 4) AND tipo_centro = 1
-            ) AS supervisiones 
-                        ON escuelas.zona_escolar = supervisiones.zona_escolar
-                        AND escuelas.sostenimiento = supervisiones.sostenimiento
-            {$filtro} {$filtro_zona}
-            GROUP BY (CASE   
-                        WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
-                        WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
-                        WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
-                        WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
-                        WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
-                        WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
-                        WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
-                    END),
-                    (CASE  
-                        WHEN escuelas.sostenimiento IN  ('51') THEN 'AUTONOMO'
-                        WHEN escuelas.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
-                        ELSE 'PUBLICO'
-                    END)";
 
     $query3 = "SELECT CASE  
                     WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
@@ -901,11 +646,10 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                             WHEN escuelas.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
                             ELSE 'PUBLICO'
                         END),escuelas.desc_servicio
-                ORDER BY FIELD(nivel,'ESPECIAL','INICIAL','PREESCOLAR','PRIMARIA','SECUNDARIA','MEDIA SUPERIOR','SUPERIOR')
-                ,id_sostenimiento,id_modalidad ";
+               ";
 
 
-    return $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
+    return $this->db->query($query3)->result_array();
 
   }// get_pdocente_xzona()
 
@@ -1141,124 +885,6 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
         $filtro_ciclo .= " AND est.id_ciclo = {$id_ciclo_z} ";
     }
 
-    $query1 = "SELECT CASE  
-                    WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
-                    WHEN escuelas.nivel = 'INICIAL' THEN '2'
-                    WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
-                    WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
-                    WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
-                    WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
-                    WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
-                END AS id_nivel,escuelas.nivel,'0' as id_sostenimiento, 'total' as sostenimiento, '0' as id_modalidad, 'total' as modalidad,
-                COUNT(escuelas.cct) as nescuelas,
-                SUM(est.grupos_1) AS grupos_1,
-                SUM(est.grupos_2) grupos_2,
-                SUM(est.grupos_3) AS grupos_3,
-                SUM(est.grupos_4) AS grupos_4,
-                SUM(est.grupos_5) AS grupos_5,
-                SUM(est.grupos_6) AS grupos_6,
-                SUM(est.grupos_multi) AS grupos_multi,
-                SUM(est.grupos_t) AS grupos_t
-            FROM (SELECT cct, turno, sostenimiento, zona_escolar, desc_nivel_educativo,
-                    desc_servicio,desc_sostenimiento,nivel_educativo,
-                    CASE 
-                        WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
-                        WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
-                        WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
-                        WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
-                        WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
-                        WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
-                        WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
-                    END AS nivel
-                FROM centros_educativos.vista_cct 
-                WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9 
-                {$filtro_nivel_sos}
-            ) AS escuelas
-            INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
-            {$filtro_ciclo}
-            INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo, 
-                            SUBSTRING(cct, 3, 3) AS tipo
-                        FROM centros_educativos.vista_cct cct
-                        WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 1
-            ) AS supervisiones ON escuelas.zona_escolar = supervisiones.zona_escolar
-            AND escuelas.sostenimiento = supervisiones.sostenimiento
-            {$filtro} {$filtro_zona}   
-            GROUP BY CASE   
-                WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
-                WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
-                WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
-                WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
-                WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
-                WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
-                WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
-            END ";
-
-    $query2 = "SELECT CASE  
-                        WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
-                        WHEN escuelas.nivel = 'INICIAL' THEN '2'
-                        WHEN escuelas.nivel = 'PREESCOLAR' THEN '3'
-                        WHEN escuelas.nivel = 'PRIMARIA' THEN '4'
-                        WHEN escuelas.nivel = 'SECUNDARIA' THEN '5'
-                        WHEN escuelas.nivel = 'MEDIA SUPERIOR' THEN '6'
-                        WHEN escuelas.nivel = 'SUPERIOR' THEN '7'
-                    END AS id_nivel,escuelas.nivel,
-                    (SELECT CASE  
-                        WHEN escuelas.sostenimiento IN  ('51') THEN '3'
-                        WHEN escuelas.sostenimiento IN ('61','41','92','96') THEN '2'
-                        ELSE '1'
-                    END) AS id_sostenimiento,
-                    (SELECT CASE  
-                        WHEN escuelas.sostenimiento IN  ('51') THEN 'AUTONOMO'
-                        WHEN escuelas.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
-                        ELSE 'PUBLICO'
-                    END)  as sostenimiento
-                    , '0' AS id_modalidad, 'total' AS modalidad,
-                    COUNT(escuelas.cct) as nescuelas,
-                    SUM(est.grupos_1) AS grupos_1,
-                    SUM(est.grupos_2) grupos_2,
-                    SUM(est.grupos_3) AS grupos_3,
-                    SUM(est.grupos_4) AS grupos_4,
-                    SUM(est.grupos_5) AS grupos_5,
-                    SUM(est.grupos_6) AS grupos_6,
-                    SUM(est.grupos_multi) AS grupos_multi,
-                    SUM(est.grupos_t) AS grupos_t
-            FROM (SELECT cct, turno, sostenimiento, zona_escolar, desc_nivel_educativo,
-                    desc_servicio, desc_sostenimiento,nivel_educativo,
-                    CASE 
-                        WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
-                        WHEN desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
-                        WHEN desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
-                        WHEN desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
-                        WHEN desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
-                        WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
-                        WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
-                    END AS nivel
-                FROM centros_educativos.vista_cct 
-                WHERE (status = 1 OR status = 4) AND tipo_centro = 9  
-                {$filtro_nivel_sos}
-            ) AS escuelas
-            INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
-            {$filtro_ciclo}
-            INNER JOIN (SELECT cct, zona_escolar,sostenimiento,desc_nivel_educativo,SUBSTRING(cct, 3, 3) AS tipo
-                        FROM centros_educativos.vista_cct cct
-                        WHERE (status = 1 OR status = 4) AND tipo_centro = 1) AS supervisiones 
-                        ON escuelas.zona_escolar = supervisiones.zona_escolar
-                        AND escuelas.sostenimiento = supervisiones.sostenimiento
-            {$filtro} {$filtro_zona}
-            GROUP BY (CASE   
-                        WHEN escuelas.desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
-                        WHEN escuelas.desc_nivel_educativo = 'INICIAL' THEN 'INICIAL'
-                        WHEN escuelas.desc_nivel_educativo = 'PREESCOLAR' THEN 'PREESCOLAR'
-                        WHEN escuelas.desc_nivel_educativo = 'PRIMARIA' THEN 'PRIMARIA'
-                        WHEN escuelas.desc_nivel_educativo = 'SECUNDARIA' THEN 'SECUNDARIA'
-                        WHEN escuelas.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
-                        WHEN escuelas.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
-                    END),
-                    (CASE  
-                        WHEN escuelas.sostenimiento IN  ('51') THEN 'AUTONOMO'
-                        WHEN escuelas.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
-                        ELSE 'PUBLICO'
-                    END)";
   
     $query3 = "SELECT CASE  
                         WHEN escuelas.nivel = 'ESPECIAL' THEN '1'
@@ -1327,7 +953,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         ELSE 'PUBLICO'
                     END),escuelas.desc_servicio";
 
-    return $this->db->query($query1 . ' UNION ALL ' . $query2. ' UNION ALL ' . $query3)->result_array();
+    return $this->db->query($query3)->result_array();
 
   }// get_infraest_xzona
 

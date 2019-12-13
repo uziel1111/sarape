@@ -361,6 +361,46 @@ class Estadistica extends CI_Controller {
 
 		function tabla_alumnos_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xzona($nivel,$sostenimiento,$id_zona_z,$id_ciclo_z);
+			$array=array();
+			for($i=0; $i<count($result_alumnos); $i++){
+				 array_push($array,array("id_nivel" => $result_alumnos[$i]['id_nivel']
+	            ,"nivel" => $result_alumnos[$i]['nivel']
+	            ,"id_sostenimiento" => 0
+	            ,"sostenimiento" => 'total'
+	            ,"id_modalidad" => 0
+	            ,"modalidad" => 'total'
+	            ,"alumn_m_t" => $result_alumnos[$i]['alumn_m_t']
+	            ,"alumn_h_t" => $result_alumnos[$i]['alumn_h_t']
+	            ,"alumn_t_t" => $result_alumnos[$i]['alumn_t_t']
+	            ,"alumn_t_1" => $result_alumnos[$i]['alumn_t_1']
+	            ,"alumn_t_2" => $result_alumnos[$i]['alumn_t_2']
+	            ,"alumn_t_3" => $result_alumnos[$i]['alumn_t_3']
+	            ,"alumn_t_4" => $result_alumnos[$i]['alumn_t_4']
+	            ,"alumn_t_5" => $result_alumnos[$i]['alumn_t_5']
+	            ,"alumn_t_6" => $result_alumnos[$i]['alumn_t_6']));
+
+	            array_push($array,array("id_nivel" => $result_alumnos[$i]['id_nivel']
+	            ,"nivel" => $result_alumnos[$i]['nivel']
+	            ,"id_sostenimiento" => $result_alumnos[$i]['id_sostenimiento']
+	            ,"sostenimiento" => $result_alumnos[$i]['sostenimiento']
+	            ,"id_modalidad" => 0
+	            ,"modalidad" => 'total'
+	             ,"alumn_m_t" => $result_alumnos[$i]['alumn_m_t']
+	            ,"alumn_h_t" => $result_alumnos[$i]['alumn_h_t']
+	            ,"alumn_t_t" => $result_alumnos[$i]['alumn_t_t']
+	            ,"alumn_t_1" => $result_alumnos[$i]['alumn_t_1']
+	            ,"alumn_t_2" => $result_alumnos[$i]['alumn_t_2']
+	            ,"alumn_t_3" => $result_alumnos[$i]['alumn_t_3']
+	            ,"alumn_t_4" => $result_alumnos[$i]['alumn_t_4']
+	            ,"alumn_t_5" => $result_alumnos[$i]['alumn_t_5']
+	            ,"alumn_t_6" => $result_alumnos[$i]['alumn_t_6']));
+				
+				array_push($array,$result_alumnos[$i]);
+					
+			}
+			// echo "<pre>";
+			// print_r($array);
+			// die();
 
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
           	<thead class="bg-info">
@@ -382,7 +422,7 @@ class Estadistica extends CI_Controller {
           	</thead>
 						<tbody>';
 
-			foreach ($result_alumnos as $row){
+			foreach ($array as $row){
 				if ($row['sostenimiento']=='total' && $row['modalidad']=='total') {
 					if ($row['id_nivel']==$id_nivel_z) {
 						$str_html_alumn.='<tr style="background-color:#FF8000" class="parent" id="'.str_replace(' ', '', $row['nivel']).'">';
@@ -514,6 +554,46 @@ class Estadistica extends CI_Controller {
 
 		function tabla_pdocentes_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_pdocente_xzona($nivel,$sostenimiento,$id_zona_z,$id_ciclo_z);
+			// echo "<pre>"; print_r($result_alumnos); die();
+			$array=array();
+			for($i=0; $i<count($result_alumnos); $i++){
+				array_push($array,array("id_nivel" => $result_alumnos[$i]['id_nivel']
+	            ,"nivel" => $result_alumnos[$i]['nivel']
+	            ,"id_sostenimiento" => 0
+	            ,"sostenimiento" => 'total'
+	            ,"id_modalidad" => 0
+	            ,"modalidad" => 'total'
+	            ,"docente_m" => $result_alumnos[$i]['docente_m']
+	            ,"docente_h" => $result_alumnos[$i]['docente_h']
+	            ,"docentes_t_g" => $result_alumnos[$i]['docentes_t_g']
+	            ,"directivo_m_congrup" => $result_alumnos[$i]['directivo_m_congrup']
+	            ,"directivo_h_congrup" => $result_alumnos[$i]['directivo_h_congrup']
+	            ,"directivo_t_congrup" => $result_alumnos[$i]['directivo_t_congrup']
+	            ,"directivo_m_singrup" => $result_alumnos[$i]['directivo_m_singrup']
+	            ,"directivo_h_singrup" => $result_alumnos[$i]['directivo_h_singrup']
+	            ,"directivo_t_singrup" => $result_alumnos[$i]['directivo_t_singrup']));
+
+	            array_push($array,array("id_nivel" => $result_alumnos[$i]['id_nivel']
+	            ,"nivel" => $result_alumnos[$i]['nivel']
+	            ,"id_sostenimiento" => $result_alumnos[$i]['id_sostenimiento']
+	            ,"sostenimiento" => $result_alumnos[$i]['sostenimiento']
+	            ,"id_modalidad" => 0
+	            ,"modalidad" => 'total'
+	            ,"docente_m" => $result_alumnos[$i]['docente_m']
+	            ,"docente_h" => $result_alumnos[$i]['docente_h']
+	            ,"docentes_t_g" => $result_alumnos[$i]['docentes_t_g']
+	            ,"directivo_m_congrup" => $result_alumnos[$i]['directivo_m_congrup']
+	            ,"directivo_h_congrup" => $result_alumnos[$i]['directivo_h_congrup']
+	            ,"directivo_t_congrup" => $result_alumnos[$i]['directivo_t_congrup']
+	            ,"directivo_m_singrup" => $result_alumnos[$i]['directivo_m_singrup']
+	            ,"directivo_h_singrup" => $result_alumnos[$i]['directivo_h_singrup']
+	            ,"directivo_t_singrup" => $result_alumnos[$i]['directivo_t_singrup']));
+				
+				array_push($array,$result_alumnos[$i]);
+					
+			}
+			// echo "<pre>";
+			// print_r($array); die();
 
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
 						<thead class="bg-info">
@@ -537,7 +617,7 @@ class Estadistica extends CI_Controller {
 						</thead>
 						<tbody>';
 
-			foreach ($result_alumnos as $row){
+			foreach ($array as $row){
 				if ($row['sostenimiento']=='total' && $row['modalidad']=='total') {
 					if ($row['id_nivel']==$id_nivel_z) {
 						$str_html_alumn.='<tr style="background-color:#FF8000" class="parent" id="'.str_replace(' ', '', $row['nivel']).'">';
@@ -667,6 +747,45 @@ class Estadistica extends CI_Controller {
 
 		function tabla_infraestructura_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_infraest_xzona($nivel,$sostenimiento,$id_zona_z,$id_ciclo_z);
+
+			$array=array();
+			for($i=0; $i<count($result_alumnos); $i++){
+				array_push($array,array("id_nivel" => $result_alumnos[$i]['id_nivel']
+	            ,"nivel" => $result_alumnos[$i]['nivel']
+	            ,"id_sostenimiento" => 0
+	            ,"sostenimiento" => 'total'
+	            ,"id_modalidad" => 0
+	            ,"modalidad" => 'total'
+	            ,"nescuelas" => $result_alumnos[$i]['nescuelas']
+	            ,"grupos_1" => $result_alumnos[$i]['grupos_1']
+	            ,"grupos_2" => $result_alumnos[$i]['grupos_2']
+	            ,"grupos_3" => $result_alumnos[$i]['grupos_3']
+	            ,"grupos_4" => $result_alumnos[$i]['grupos_4']
+	            ,"grupos_5" => $result_alumnos[$i]['grupos_5']
+	            ,"grupos_6" => $result_alumnos[$i]['grupos_6']
+	            ,"grupos_multi" => $result_alumnos[$i]['grupos_multi']
+	            ,"grupos_t" => $result_alumnos[$i]['grupos_t']));
+
+	            array_push($array,array("id_nivel" => $result_alumnos[$i]['id_nivel']
+	            ,"nivel" => $result_alumnos[$i]['nivel']
+	            ,"id_sostenimiento" => $result_alumnos[$i]['id_sostenimiento']
+	            ,"sostenimiento" => $result_alumnos[$i]['sostenimiento']
+	            ,"id_modalidad" => 0
+	            ,"modalidad" => 'total'
+	            ,"nescuelas" => $result_alumnos[$i]['nescuelas']
+	            ,"grupos_1" => $result_alumnos[$i]['grupos_1']
+	            ,"grupos_2" => $result_alumnos[$i]['grupos_2']
+	            ,"grupos_3" => $result_alumnos[$i]['grupos_3']
+	            ,"grupos_4" => $result_alumnos[$i]['grupos_4']
+	            ,"grupos_5" => $result_alumnos[$i]['grupos_5']
+	            ,"grupos_6" => $result_alumnos[$i]['grupos_6']
+	            ,"grupos_multi" => $result_alumnos[$i]['grupos_multi']
+	            ,"grupos_t" => $result_alumnos[$i]['grupos_t']));
+				
+				array_push($array,$result_alumnos[$i]);
+					
+			}
+
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
 						<thead class="bg-info">
 						<tr>
@@ -687,7 +806,7 @@ class Estadistica extends CI_Controller {
 						</thead>
 						<tbody>';
 
-			foreach ($result_alumnos as $row){
+			foreach ($array as $row){
 				if ($row['sostenimiento']=='total' && $row['modalidad']=='total') {
 					if ($row['id_nivel']==$id_nivel_z) {
 						$str_html_alumn.='<tr style="background-color:#FF8000" class="parent" id="'.str_replace(' ', '', $row['nivel']).'">';
