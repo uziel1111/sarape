@@ -119,7 +119,7 @@ class CentrosE_model extends CI_Model
         }else if($nivel==10 || $nivel=='10'){
           $nivel_des="NO APLICA";
         }
-        $auxiliar.= " AND v.desc_nivel_educativo LIKE'%".trim($nivel_des)."%'";
+        $auxiliar.= " AND v.desc_nivel_educativo='".$nivel_des."'";
         // echo $auxiliar;
         // die();
       }

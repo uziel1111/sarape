@@ -49,11 +49,11 @@ class Supervision_model extends CI_Model
       $query="SELECT supervisiones.cct AS id_supervision,escuelas.zona_escolar
             FROM (SELECT
               cct, turno, sostenimiento, zona_escolar, desc_nivel_educativo, desc_servicio, desc_sostenimiento
-              FROM vista_cct cct
+              FROM centros_educativos.vista_cct cct
               WHERE (status = 1 OR status = 4) AND tipo_centro = 9 {$filtro_nivel_sos} ) AS escuelas
               INNER JOIN (SELECT
                 cct, zona_escolar, sostenimiento, desc_nivel_educativo, SUBSTRING(cct, 3, 3) AS tipo
-                FROM vista_cct cct
+                FROM centros_educativos.vista_cct cct
                 WHERE (status = 1 OR status = 4) AND tipo_centro = 1
                 ) AS supervisiones ON escuelas.zona_escolar = supervisiones.zona_escolar
               AND escuelas.sostenimiento = supervisiones.sostenimiento
