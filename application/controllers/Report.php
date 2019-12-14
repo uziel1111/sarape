@@ -587,14 +587,145 @@ class Report extends CI_Controller {
 				$id_sostenimiento_z = $this->input->post('id_sostenimiento_z');
 				$id_zona_z = $this->input->post('id_zona_z');
 				$id_ciclo_z = $this->input->post('id_ciclo_z');
+				$sostenimiento="";
+				$nivel="";
+				if($id_sostenimiento_z==1){
+					$sostenimiento="PUBLICO";
+				}else if($id_sostenimiento_z==2){
+					$sostenimiento="PRIVADO";
+				}else {
+					$sostenimiento="AUTONOMO";
+				}
 
-				$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xzona($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
-				$result_docentes = $this->Estadistica_e_indicadores_xcct_model->get_pdocente_xzona($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
-				$result_infraest = $this->Estadistica_e_indicadores_xcct_model->get_infraest_xzona($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z);
+				if($id_nivel_z==3){
+					$nivel="PREESCOLAR";
+				}else if($id_nivel_z==2){
+					$nivel="PRIMARIA";
+				}else {
+					$nivel="SECUNDARIA";
+				}
+
+				$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xzona($nivel,$sostenimiento,$id_zona_z,$id_ciclo_z);
+				$result_docentes = $this->Estadistica_e_indicadores_xcct_model->get_pdocente_xzona($nivel,$sostenimiento,$id_zona_z,$id_ciclo_z);
+				$result_infraest = $this->Estadistica_e_indicadores_xcct_model->get_infraest_xzona($nivel,$sostenimiento,$id_zona_z,$id_ciclo_z);
+				$array_alumnos=array();
+				$array_docentes=array();
+				$array_infraestructura=array();
+				for($i=0; $i<count($result_alumnos); $i++){
+				 array_push($array_alumnos,array("id_nivel" => $result_alumnos[$i]['id_nivel']
+	            ,"nivel" => $result_alumnos[$i]['nivel']
+	            ,"id_sostenimiento" => 0
+	            ,"sostenimiento" => 'total'
+	            ,"id_modalidad" => 0
+	            ,"modalidad" => 'total'
+	            ,"alumn_m_t" => $result_alumnos[$i]['alumn_m_t']
+	            ,"alumn_h_t" => $result_alumnos[$i]['alumn_h_t']
+	            ,"alumn_t_t" => $result_alumnos[$i]['alumn_t_t']
+	            ,"alumn_t_1" => $result_alumnos[$i]['alumn_t_1']
+	            ,"alumn_t_2" => $result_alumnos[$i]['alumn_t_2']
+	            ,"alumn_t_3" => $result_alumnos[$i]['alumn_t_3']
+	            ,"alumn_t_4" => $result_alumnos[$i]['alumn_t_4']
+	            ,"alumn_t_5" => $result_alumnos[$i]['alumn_t_5']
+	            ,"alumn_t_6" => $result_alumnos[$i]['alumn_t_6']));
+
+	            array_push($array_alumnos,array("id_nivel" => $result_alumnos[$i]['id_nivel']
+	            ,"nivel" => $result_alumnos[$i]['nivel']
+	            ,"id_sostenimiento" => $result_alumnos[$i]['id_sostenimiento']
+	            ,"sostenimiento" => $result_alumnos[$i]['sostenimiento']
+	            ,"id_modalidad" => 0
+	            ,"modalidad" => 'total'
+	             ,"alumn_m_t" => $result_alumnos[$i]['alumn_m_t']
+	            ,"alumn_h_t" => $result_alumnos[$i]['alumn_h_t']
+	            ,"alumn_t_t" => $result_alumnos[$i]['alumn_t_t']
+	            ,"alumn_t_1" => $result_alumnos[$i]['alumn_t_1']
+	            ,"alumn_t_2" => $result_alumnos[$i]['alumn_t_2']
+	            ,"alumn_t_3" => $result_alumnos[$i]['alumn_t_3']
+	            ,"alumn_t_4" => $result_alumnos[$i]['alumn_t_4']
+	            ,"alumn_t_5" => $result_alumnos[$i]['alumn_t_5']
+	            ,"alumn_t_6" => $result_alumnos[$i]['alumn_t_6']));
+				
+				array_push($array_alumnos,$result_alumnos[$i]);
+					
+			}
+
+
+			for($i=0; $i<count($result_infraest); $i++){
+				array_push($array_infraestructura,array("id_nivel" => $result_infraest[$i]['id_nivel']
+	            ,"nivel" => $result_infraest[$i]['nivel']
+	            ,"id_sostenimiento" => 0
+	            ,"sostenimiento" => 'total'
+	            ,"id_modalidad" => 0
+	            ,"modalidad" => 'total'
+	            ,"nescuelas" => $result_infraest[$i]['nescuelas']
+	            ,"grupos_1" => $result_infraest[$i]['grupos_1']
+	            ,"grupos_2" => $result_infraest[$i]['grupos_2']
+	            ,"grupos_3" => $result_infraest[$i]['grupos_3']
+	            ,"grupos_4" => $result_infraest[$i]['grupos_4']
+	            ,"grupos_5" => $result_infraest[$i]['grupos_5']
+	            ,"grupos_6" => $result_infraest[$i]['grupos_6']
+	            ,"grupos_multi" => $result_infraest[$i]['grupos_multi']
+	            ,"grupos_t" => $result_infraest[$i]['grupos_t']));
+
+	            array_push($array_infraestructura,array("id_nivel" => $result_infraest[$i]['id_nivel']
+	            ,"nivel" => $result_infraest[$i]['nivel']
+	            ,"id_sostenimiento" => $result_infraest[$i]['id_sostenimiento']
+	            ,"sostenimiento" => $result_infraest[$i]['sostenimiento']
+	            ,"id_modalidad" => 0
+	            ,"modalidad" => 'total'
+	            ,"nescuelas" => $result_infraest[$i]['nescuelas']
+	            ,"grupos_1" => $result_infraest[$i]['grupos_1']
+	            ,"grupos_2" => $result_infraest[$i]['grupos_2']
+	            ,"grupos_3" => $result_infraest[$i]['grupos_3']
+	            ,"grupos_4" => $result_infraest[$i]['grupos_4']
+	            ,"grupos_5" => $result_infraest[$i]['grupos_5']
+	            ,"grupos_6" => $result_infraest[$i]['grupos_6']
+	            ,"grupos_multi" => $result_infraest[$i]['grupos_multi']
+	            ,"grupos_t" => $result_infraest[$i]['grupos_t']));
+				
+				array_push($array_infraestructura,$result_infraest[$i]);
+					
+			}
+
+			for($i=0; $i<count($result_docentes); $i++){
+				array_push($array_docentes,array("id_nivel" => $result_docentes[$i]['id_nivel']
+	            ,"nivel" => $result_docentes[$i]['nivel']
+	            ,"id_sostenimiento" => 0
+	            ,"sostenimiento" => 'total'
+	            ,"id_modalidad" => 0
+	            ,"modalidad" => 'total'
+	            ,"docente_m" => $result_docentes[$i]['docente_m']
+	            ,"docente_h" => $result_docentes[$i]['docente_h']
+	            ,"docentes_t_g" => $result_docentes[$i]['docentes_t_g']
+	            ,"directivo_m_congrup" => $result_docentes[$i]['directivo_m_congrup']
+	            ,"directivo_h_congrup" => $result_docentes[$i]['directivo_h_congrup']
+	            ,"directivo_t_congrup" => $result_docentes[$i]['directivo_t_congrup']
+	            ,"directivo_m_singrup" => $result_docentes[$i]['directivo_m_singrup']
+	            ,"directivo_h_singrup" => $result_docentes[$i]['directivo_h_singrup']
+	            ,"directivo_t_singrup" => $result_docentes[$i]['directivo_t_singrup']));
+
+	            array_push($array_docentes,array("id_nivel" => $result_docentes[$i]['id_nivel']
+	            ,"nivel" => $result_docentes[$i]['nivel']
+	            ,"id_sostenimiento" => $result_docentes[$i]['id_sostenimiento']
+	            ,"sostenimiento" => $result_docentes[$i]['sostenimiento']
+	            ,"id_modalidad" => 0
+	            ,"modalidad" => 'total'
+	            ,"docente_m" => $result_docentes[$i]['docente_m']
+	            ,"docente_h" => $result_docentes[$i]['docente_h']
+	            ,"docentes_t_g" => $result_docentes[$i]['docentes_t_g']
+	            ,"directivo_m_congrup" => $result_docentes[$i]['directivo_m_congrup']
+	            ,"directivo_h_congrup" => $result_docentes[$i]['directivo_h_congrup']
+	            ,"directivo_t_congrup" => $result_docentes[$i]['directivo_t_congrup']
+	            ,"directivo_m_singrup" => $result_docentes[$i]['directivo_m_singrup']
+	            ,"directivo_h_singrup" => $result_docentes[$i]['directivo_h_singrup']
+	            ,"directivo_t_singrup" => $result_docentes[$i]['directivo_t_singrup']));
+				
+				array_push($array_docentes,$result_docentes[$i]);
+					
+			}
 
 				$obj_excel = new PHPExcel();
 				$obj_excel->getActiveSheet()->SetCellValue('A1', 'Estadística e indicadores educativos generales');
-				$obj_excel->getActiveSheet()->SetCellValue('A2', 'Nivel: '.$this->Nivel_model->get_nivel($id_nivel_z).', Sostenimiento: '.$this->Subsostenimiento_model->get_subsostenimiento($id_sostenimiento_z).', Zona escolar: '.$this->Supervision_model->get_zona($id_nivel_z, $id_sostenimiento_z,$id_zona_z).', Ciclo escolar: '.$this->Ciclo_model->get_ciclo($id_ciclo_z).'');
+				$obj_excel->getActiveSheet()->SetCellValue('A2', 'Nivel: '.$nivel.', Sostenimiento: '.$sostenimiento.', Zona escolar: '.$this->Supervision_model->get_zona($id_nivel_z, $id_sostenimiento_z,$id_zona_z).', Ciclo escolar: '.$this->Ciclo_model->get_ciclo($id_ciclo_z).'');
 				$obj_excel->getActiveSheet()->SetCellValue('A3', 'Alumnos');
 				$obj_excel->getActiveSheet()->SetCellValue('A4', 'Nivel educativo');
 				$obj_excel->getActiveSheet()->SetCellValue('B4', 'Sostenimiento');
@@ -630,9 +761,9 @@ class Report extends CI_Controller {
 				$obj_excel->getActiveSheet()->getStyle('A4:L5')->applyFromArray($this->style_encabezado);
 
 				$aux = 6;
-				foreach ($result_alumnos as $row) {
+				foreach ($array_alumnos as $row) {
 					$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, utf8_encode($row['nivel']) );
-					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, utf8_encode($row['subsostenimiento']) );
+					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, utf8_encode($row['sostenimiento']) );
 					$obj_excel->getActiveSheet()->SetCellValue('C'.$aux, utf8_encode($row['modalidad']) );
 					$obj_excel->getActiveSheet()->SetCellValue('D'.$aux, number_format($row['alumn_m_t']) );
 					$obj_excel->getActiveSheet()->SetCellValue('E'.$aux, number_format($row['alumn_h_t']) );
@@ -675,9 +806,9 @@ class Report extends CI_Controller {
 				$obj_excel->getActiveSheet()->SetCellValue('L'.$aux, 'Total');
 				$obj_excel->getActiveSheet()->getStyle('A'.($aux-1).':L'.$aux)->applyFromArray($this->style_encabezado);
 				$aux++;
-				foreach ($result_docentes as $row) {
+				foreach ($array_docentes as $row) {
 					$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, utf8_encode($row['nivel']) );
-					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, utf8_encode($row['subsostenimiento']) );
+					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, utf8_encode($row['sostenimiento']) );
 					$obj_excel->getActiveSheet()->SetCellValue('C'.$aux, utf8_encode($row['modalidad']) );
 					$obj_excel->getActiveSheet()->SetCellValue('D'.$aux, number_format($row['docente_m']) );
 					$obj_excel->getActiveSheet()->SetCellValue('E'.$aux, number_format($row['docente_h']) );
@@ -718,9 +849,9 @@ class Report extends CI_Controller {
 				$obj_excel->getActiveSheet()->SetCellValue('L'.$aux, 'Total');
 				$obj_excel->getActiveSheet()->getStyle('A'.($aux-1).':L'.$aux)->applyFromArray($this->style_encabezado);
 				$aux++;
-				foreach ($result_infraest as $row) {
+				foreach ($array_infraestructura as $row) {
 					$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, utf8_encode($row['nivel']) );
-					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, utf8_encode($row['subsostenimiento']) );
+					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, utf8_encode($row['sostenimiento']) );
 					$obj_excel->getActiveSheet()->SetCellValue('C'.$aux, utf8_encode($row['modalidad']) );
 					$obj_excel->getActiveSheet()->SetCellValue('D'.$aux, number_format($row['nescuelas']) );
 					$obj_excel->getActiveSheet()->SetCellValue('E'.$aux, number_format($row['grupos_1']) );

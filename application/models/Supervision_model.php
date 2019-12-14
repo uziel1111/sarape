@@ -69,7 +69,7 @@ class Supervision_model extends CI_Model
         return "TODOS";
       }
       else {
-        $query = "SELECT zona_escolar from vista_cct 
+        $query = "SELECT zona_escolar from centros_educativos.vista_cct 
                   WHERE (status = 1 OR status = 4) AND tipo_centro = 1
                   AND cct='{$id_zona_z}' ";
         return  $this->db->query($query)->row('zona_escolar');
