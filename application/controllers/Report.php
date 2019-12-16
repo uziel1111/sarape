@@ -599,7 +599,7 @@ class Report extends CI_Controller {
 
 				if($id_nivel_z==3){
 					$nivel="PREESCOLAR";
-				}else if($id_nivel_z==2){
+				}else if($id_nivel_z==4){
 					$nivel="PRIMARIA";
 				}else {
 					$nivel="SECUNDARIA";
