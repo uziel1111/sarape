@@ -11,7 +11,13 @@
       <div class="modal-body">
         <div class="container">
           <div class="row">
-            <div class="col-sm-3">
+             <div class="col-sm-3">
+             
+             <a href="https://issuu.com/ginaorozcoo/docs/revista_diciembre_2019"  target="_blank" title="Edición #16 Diciembre">
+               <img src="<?= base_url('assets/img/revista-diciembre.png'); ?>" class="img-fluid" alt="Responsive image">
+             </a>
+           </div>
+             <div class="col-sm-3">
              
              <a href="https://issuu.com/ginaorozcoo/docs/revista_noviembre_2019"  target="_blank" title="Edición #15 Noviembre">
                <img src="<?= base_url('assets/img/revista-noviembre.png'); ?>" class="img-fluid" alt="Responsive image">
