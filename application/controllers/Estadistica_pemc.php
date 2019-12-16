@@ -50,7 +50,10 @@ class Estadistica_pemc extends CI_Controller
                 }
             }
 
-$result_niveles = array();
+            $arr_niveles = array();
+            $result_niveles = $this->Nivel_model->all();
+            // echo "<pre>";
+            // print_r($result_niveles); die();
             if(count($result_niveles)==0){
                 $data['arr_niveles'] = array(   '0' => 'Error recuperando los niveles' );
             }else{
@@ -60,6 +63,7 @@ $result_niveles = array();
                     $arr_niveles[$row['id_nivel']] = $row['nivel'];
 
                 }
+                $data['arr_niveles'] =$arr_niveles;
             }
 
             $result_sostenimientos = $this->Sostenimiento_model->all();
