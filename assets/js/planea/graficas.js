@@ -611,18 +611,19 @@ function Graficasm(){
                            events:{
                                click:function(){
                                 var periodo = $('#slt_periodo_planeaxm option:selected').val();
-                                // console.log($('#slt_tipo').val());
-                                if ($('#slt_tipo').val()!=undefined) {
+                                 // console.log($('#slt_tipo').val());
+                                /*if ($('#slt_tipo').val()!=undefined) {
                                   var tipo = 'zona';
                                   console.log(tipo);
                                 }
                                 else {
+                                    console.log(tipo);
                                   var tipo = 'municipio';
-                                }
+                                }*/
 
 
                                 // console.log(periodo);
-                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,periodo,1,tipo, va_por);
+                                  obj_graficas.get_reactivos_xunidad_de_analisis(this.name,this.id_cont,id_cct,periodo,1, va_por);
                                }
                            }
                        }
@@ -649,7 +650,7 @@ function Graficasm(){
       }// graficoplanea_ud_secu_lyc()
 
       Graficasm.prototype.graficoplanea_ud_secu_mate19 = function(arr_mate,id_cct, va_por){
-        console.info(arr_mate);
+        // console.info(arr_mate);
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
