@@ -165,6 +165,25 @@ class Info extends CI_Controller {
 		$periodo = $this->input->post("periodo");
 		$nombre = $this->input->post("nombre");
 		$idcampodis = $this->input->post("idcampodis");
+		// echo $turno; die();
+
+		if($turno=='MATUTINO' || $turno==100 || $turno==1){
+	        $turno=100;
+	    }else if($turno=='VESPERTINO' || $turno==200 || $turno==2){
+	        $turno=200;
+	    }else if($turno=='NOCTURNO' || $turno==300 || $turno==3){
+	        $turno=300;
+	    }else if($turno=='DISCONTINUO' || $turno==400 ||  $turno==4){
+	        $turno=400;
+	    }else if($turno=="CONTINUO" || $turno==500 || $turno==5){
+	        $turno=500;
+	    }else if($turno=="COMPLEMENTARIO" || $turno==600 || $turno==6){
+	        $turno=600;
+	    }else if($turno=="CONTINUO (JORNADA AMPLIADA)" || $turno==700 || $turno==7){
+	        $turno=700;
+	    }else if($turno=="CONTINUO (DE 7:00 A 22:00 HRS)" || $turno==800 || $turno==8){
+	        $turno=800;
+	    }
 
 		$graph_cont_reactivos_xcctxcont = $this->Planeaxesc_reactivo_model->get_reactivos_xcctxcont($cct,$turno,$nivel,$id_cont,$periodo,$idcampodis,$nombre);
 		// echo "<pre>";
