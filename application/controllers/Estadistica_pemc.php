@@ -21,6 +21,7 @@ class Estadistica_pemc extends CI_Controller
         $this->load->model('Ambito_model');
         $this->load->model('Nivel_model');
         $this->load->model('Sostenimiento_model');
+        $this->load->model('CentrosE_model');
         $this->datos = array();
     }
 
@@ -136,7 +137,7 @@ public function busquedaxct(){
 
     $data['responsables'] = $options;
 
-    $mision = $this->Rutamejora_model->get_misionxcct($this->datos[0]['id_cct'],'4');
+    $mision = $this->Rutamejora_model->get_misionxcct($usuario,$turno_single,'4');
     $data['mision'] = $mision;
     $result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->datos[0]['nivel']);
 
@@ -233,7 +234,90 @@ public function busquedaxct(){
         return $response = json_decode($result);
     }
 
-   
+    public function escuelas_xmunicipio(){
+        if(Utilerias::haySesionAbierta($this)){
+            $cve_municipio = $this->input->post('cve_municipio');
+            $cve_nivel = $this->input->post('cve_nivel');
+            $cve_sostenimiento = $this->input->post('cve_sostenimiento');
+            $nombre_escuela = $this->input->post('nombre_escuela');
+            $this->datos = Utilerias::get_cct_sesion($this);
+            
+            $data['tipou_pemc']="upemc";
+
+            $data['cve_municipio'] = $cve_municipio;
+            $data['cve_nivel'] = $cve_nivel;
+            $data['cve_sostenimiento'] = $cve_sostenimiento;
+            $data['nombre_escuela'] = $nombre_escuela;
+
+            $municipio = $this->input->post('municipio_pemc');
+            $nivel = $this->input->post('nivel_pemc');
+            $sostenimiento = $this->input->post('sostenimiento_pemc');
+            $result_escuelas = $this->CentrosE_model->filtro_escuela($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
+            
+            $array=array();
+            for($i=0; $i<count($result_escuelas); $i++){
+                if($result_escuelas[$i]['turno']==120){
+                    $result_escuelas[$i]['turno_n']=100;
+                    $result_escuelas[$i]['turno_single']='MATUTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=200;
+                    $result_escuelas[$i]['turno_single']='VESPERTINO';
+                    array_push($array,$result_escuelas[$i]);
+                }else if($result_escuelas[$i]['turno']==123){
+                    $result_escuelas[$i]['turno_n']=100;
+                    $result_escuelas[$i]['turno_single']='MATUTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=200;
+                    $result_escuelas[$i]['turno_single']='VESPERTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=300;
+                    $result_escuelas[$i]['turno_single']='NOCTURNO';
+                    array_push($array,$result_escuelas[$i]);
+                }else if($result_escuelas[$i]['turno']==124){
+                    $result_escuelas[$i]['turno_n']=100;
+                    $result_escuelas[$i]['turno_single']='MATUTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=200;
+                    $result_escuelas[$i]['turno_single']='VESPERTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=400;
+                    $result_escuelas[$i]['turno_single']='DISCONTINUO';
+                    array_push($array,$result_escuelas[$i]);
+                }else if($result_escuelas[$i]['turno']==130){
+                    $result_escuelas[$i]['turno_n']=100;
+                    $result_escuelas[$i]['turno_single']='MATUTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=300;
+                    $result_escuelas[$i]['turno_single']='NOCTURNO';
+                    array_push($array,$result_escuelas[$i]);
+                }else if($result_escuelas[$i]['turno']==230){
+                    $result_escuelas[$i]['turno_n']=200;
+                    $result_escuelas[$i]['turno_single']='VESPERTINO';
+                    array_push($array,$result_escuelas[$i]);
+                    $result_escuelas[$i]['turno_n']=300;
+                    $result_escuelas[$i]['turno_single']='NOCTURNO';
+                    array_push($array,$result_escuelas[$i]);
+                }else{
+                    $result_escuelas[$i]['turno_n']=$result_escuelas[$i]['turno'];
+                    $result_escuelas[$i]['turno_single']=$result_escuelas[$i]['desc_turno'];
+                    array_push($array,$result_escuelas[$i]);
+                }
+            }
+
+            $data['municipio'] = $municipio;
+            $data['nivel'] = $nivel;
+            $data['sostenimiento'] = $sostenimiento;
+            $data['escuela'] = $nombre_escuela;
+            $data['arr_escuelas'] = $array;
+            $data['total_escuelas'] = count($array);
+            $str_view = $this->load->view("busqueda_xlista/escuelas", $data, TRUE);
+            $response = array('vista' => $str_view);
+            Utilerias::enviaDataJson(200, $response, $this);
+            exit;
+        }
+    }// escuelas_xmunicipio()
+
+
 function truncar($numero, $digitos) {
     $truncar = pow(10, $digitos);
     return intval($numero * $truncar) / $truncar;
