@@ -58,6 +58,7 @@
  		},
  		height: 400,
  		width: 700,
+      legend: {position: 'labeled'},
  	}
  	var chart = new google.visualization.PieChart($('#piechart')[0]);
 
