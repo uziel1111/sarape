@@ -52,7 +52,10 @@
 <div class="tab-pane fade active show" id="nav-ayuda" role="tabpanel" aria-labelledby="nav-ayuda-tab">
 	<div class="card bg-light mb-3 center">
 		<div class="row mb-3">	
-			
+				<div class="col-12">
+			<img src="<?= base_url('assets/img/mapa/flujo-sarape-2.png')?>" class="img-fluid" width="100%" alt="">
+				<br>
+		</div>
 		</div>	
 
 		<div class="row justify-content-md-center m-5">	

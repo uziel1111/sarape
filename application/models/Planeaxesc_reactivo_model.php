@@ -85,7 +85,7 @@ class Planeaxesc_reactivo_model extends CI_Model
       $this->db->join('planea_camposdisciplinares t5', 't4.id_campodisiplinario=t5.id_campodisiplinario');
       $this->db->join('recursos_apoyo t6', 't2.id_reactivo=t6.id_reactivo','left');
       $this->db->join('prop_mapoyo t7', 't2.id_reactivo = t7.id_reactivo','left');
-      $this->db->join('paneaxescxinciso pr', 'pr.id_cct = t1.id_ct and t2.id_reactivo=pr.id_reactivo','left');
+      $this->db->join('planea_result pr', 'pr.id_cct = t1.id_ct and t2.id_reactivo=pr.id_reactivo','left');
       $this->db->where('t1.cct', $cct);
       $this->db->where('t1.turno_single', $turno);
       $this->db->where('t3.id_contenido', $id_cont);
