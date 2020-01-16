@@ -815,7 +815,7 @@ class Rutademejora extends CI_Controller {
 					$id_cct_sup = $this->input->post('x');
 					$cve_centro = $this->input->post('cve_centro');
 					$turno = $this->input->post('turno');
-					
+					// print_r($turno);
 					$data2 = array();
 					if (isset($_POST['cve_centro'])) {	
 					
@@ -986,6 +986,7 @@ class Rutademejora extends CI_Controller {
 				public function get_rutas_xcctsuper(){
 					$cct = $this->input->post("cct");
 					$turno = $this->input->post("turno");
+					// print_r($turno); die();
 					$idturno = 0;
 					if($turno == "MATUTINO"){
 						$idturno = 1;
@@ -995,14 +996,10 @@ class Rutademejora extends CI_Controller {
 						$idturno = 3;
 					}else if($turno == "DISCONTINUO"){
 						$idturno = 4;
-					}else if($turno == "CONTINUO"){
+					}else if(stristr($turno, 'CONTINUO')){
 						$idturno = 5;
 					}else if($turno == "COMPLEMENTARIO"){
 						$idturno = 6;
-					}else if($turno == "CONTINUO (JORNADA AMPLIA)"){
-						$idturno = 7;
-					}else if($turno == "CONTINUO (DE 7:00 A 22:00 HRS)"){
-						$idturno = 8;
 					}
 					$datos_cct = $this->Rutamejora_model->getdatoscct($cct, $idturno);
 					$tabla_rutas = $this->get_table_rutas($datos_cct[0]['cve_centro'],$idturno);

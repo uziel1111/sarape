@@ -19,7 +19,7 @@
        <label for="exampleSelect1">Escuelas:</label>
        <select class="form-control" name="slt_cct_excuelasxsuper" id="slt_cct_excuelasxsuper">
         <?php foreach ($escuelas as $escuela): ?>
-          <option value="<?= $escuela->b_cct ?>" data-turno="<?= $escuela->b_desc_turno ?>"><?= $escuela->b_nombre ?> [<?=$escuela->b_cct?> - <?=$escuela->b_desc_turno?>]</option>
+          <option value="<?= $escuela->b_cct ?>" data-turno="<?= $escuela->b_desc_turno ?>" data-turno-id="<?= $escuela->b_turno ?>"><?= $escuela->b_nombre ?> [<?=$escuela->b_cct?> - <?=$escuela->b_desc_turno?>]</option>
         <?php endforeach; ?>
       </select>
 
@@ -37,8 +37,8 @@
 
    <!-- <a class="btn btn-primary"   href="<?= base_url()?>index.php/Reporte/get_reporte_desde_sup/?cct=<?= $escuelas[0]->b_cct ?>&turno=<?= $escuelas[0]->b_desc_turno ?>" >Imprimir ruta de mejora</a> -->
    <input type="text" name="cct_tmp" id="cct_tmp" value="<?= $escuelas[0]->b_cct ?>" hidden>
-   <input type="text" name="turno_tmp" id="turno_tmp" value="<?= $escuelas[0]->b_desc_turno ?>" hidden>
-   <input type="text" name="turno_tmp_id" id="turno_tmp_id" value="<?= $escuelas[0]->b_turno ?>" hidden>
+   <input type="text" name="turno_tmp" id="turno_tmp" value="<?= $escuelas[0]->b_desc_turno ?>" hidden >
+   <input type="text" name="turno_tmp_id" id="turno_tmp_id" value="<?= $escuelas[0]->b_turno ?>" hidden >
  </div>
 
  

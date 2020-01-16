@@ -146,6 +146,9 @@ $("#btn_get_rutamejoraxcct").click(function(){
   var cct = $("#slt_cct_excuelasxsuper").val();
   var selected = $("#slt_cct_excuelasxsuper").find('option:selected');
   var turno = selected.data('turno');
+  var turnoid = selected.data('turno-id');
+  $('#turno_tmp').val(turno);
+  $('#turno_tmp_id').val(turnoid);
   obj_supervisor.get_rutasxcct(cct, turno);
 });
 

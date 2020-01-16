@@ -82,7 +82,9 @@ class Reporte extends CI_Controller {
 
 				$cvecct = $this->input->post('cct_tmp');
 				$turno_single = $this->input->post('turno_tmp');
-
+				 if(stristr($turno_single, 'CONTINUO')){
+				 	$turno_single = 'CONTINUO';
+				 }
 			$arr_cct = $this->Escuela_model->get_xcvecentro_turnosingle($cvecct, $turno_single);
 
 			if (count($arr_cct)==1) {
@@ -97,13 +99,13 @@ class Reporte extends CI_Controller {
 					case 'VESPERTINO':
 						$turno_case = 2;
 						break;
-					case 'CONTINUO':
-						$turno_case = 3;
+					case stristr($turno_single, 'CONTINUO'):
+						$turno_case = 5;
 						break;
 					case 'DISCONTINUO':
 						$turno_case = 4;
 						break;
-					case 'MIXTO':
+					case 'NOCTURNO':
 						$turno_case = 5;
 						break;
 				}

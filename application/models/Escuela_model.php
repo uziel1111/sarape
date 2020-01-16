@@ -173,7 +173,7 @@ class Escuela_model extends CI_Model
       if (strlen($turno_single)>4) {
         $where_turno = "AND es.desc_turno LIKE '%{$turno_single}%'";
       }else{
-        $where_tunro = "AND es.turno LIKE '%{$turno_single}%'";
+        $where_turno = "AND es.turno LIKE '%{$turno_single}%'";
       }
 
       $str_query = "SELECT 
