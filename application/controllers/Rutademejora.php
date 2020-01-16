@@ -1029,8 +1029,11 @@ class Rutademejora extends CI_Controller {
 					</tr>
 					</thead>
 					<tbody id='id_tbody_demo'>";
-
-
+					if (	count($rutas) < 1) {
+						$tabla .= "<tr>
+										<td colspan='8'>Esta escuela no ha accedido al sistema PEMC</td>
+										</tr>";
+					}else{
 					foreach ($rutas as $ruta) {
 						$tabla .= "<tr>
 						<td id='id_tprioritario' hidden><center>{$ruta['id_tprioritario']}</center></td>
@@ -1045,7 +1048,7 @@ class Rutademejora extends CI_Controller {
 						
 						</tr>";
 					}
-
+					}
 					$tabla .= "</tbody>
 					</table>
 					</div>  ";

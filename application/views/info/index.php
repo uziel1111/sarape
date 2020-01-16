@@ -92,6 +92,11 @@
 						</label>
 					</div>
 				</div>
+					<div class="row">
+						<div class="col-md-12 offset-md-5">
+							<a class="btn btn-lg btn-success btn-style-1" target="_blank" style="color:white;" href="http://siecec.seducoahuila.gob.mx/centros/reportes/ficha_tecnica.php?cct=<?=$cve_centro?>">Ficha Técnica</a>
+							</div>
+					</div>
 			</div>
 		</div>
 		<div class="card mb-3 card-style-1">

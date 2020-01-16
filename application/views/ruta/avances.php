@@ -78,7 +78,7 @@
   <thead>
     <tr  class="text-center">
       <th colspan="10"><label><b>Objetivo:</b> <span><?= $avance['objetivo'] ?>
-      <button type="button" onclick="obsercaciones_modal(<?= $avance['id_objetivo'] ?>)" class="btn btn-success btn-sm d-none">Observaciones</button>
+     <!--  <button type="button" onclick="obsercaciones_modal(<?= $avance['id_objetivo'] ?>)" class="btn btn-success btn-sm d-none">Observaciones</button> -->
 <!-- <div class="modal" id="myModal<?= $avance['id_objetivo'] ?>">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -165,14 +165,19 @@
     <td style="vertical-align: middle;"><?php echo $avance['accion'] ?><br><span id="spanRestante<?=$avance['id_accion']?>"></span></td>
     <?php for ($x = 1; $x <= 8; $x++) {
       $valor='';
+      $instruccion = '';
       if($arr_avances_fechas[0]["cte{$x}_var"]=="TRUE" && isset($tipou_pemc_avances)){
         $valor='disabled';
+        $instruccion = 'No es posible capturar avance ya que este CTE no se encuentra vigente.';
       }else if($arr_avances_fechas[0]["cte{$x}_var"]=="TRUE" && !isset($tipou_pemc_avances)){
         $valor='';
+        $instruccion = 'El porcentaje capturado al actual del CTE no es acumulable.';
       }else if($arr_avances_fechas[0]["cte{$x}_var"]=="FALSE" && isset($tipou_pemc_avances)){
         $valor='disabled';
+         $instruccion = 'No es posible capturar avance ya que este CTE no se encuentra vigente.';
       }else if($arr_avances_fechas[0]["cte{$x}_var"]=="FALSE" && !isset($tipou_pemc_avances)){
         $valor='disabled';
+         $instruccion = 'No es posible capturar avance ya que este CTE no se encuentra vigente.';
       }
      $total_horas = $avance['periodo'] * 24;
      $horasRestantes = $total_horas / 3;
@@ -180,7 +185,7 @@
      ?>
      <td style="vertical-align: middle;">
       <?php if ($horasRestantesHoy < 0) { ?>              
-        <select <?= $valor ?>  onchange="obj_rm_avances_acciones.set_avance('<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>')" id="<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>" >
+        <select <?= $valor ?>  onchange="obj_rm_avances_acciones.set_avance('<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>')" id="<?=$x?>_<?=$avance['id_cct']?>_<?=$avance['id_tprioritario']?>_<?=$avance['id_accion']?>_<?=$horasRestantes?>_<?=$horasRestantesHoy?>" title="<?=$instruccion?>">
           <option value="0" <?=($avance["cte{$x}"] == '0')? 'selected':'' ?> >0%</option>
           <option value="10" <?=($avance["cte{$x}"] == '10')? 'selected':'' ?> >10%</option>
           <option value="20" <?=($avance["cte{$x}"] == '20')? 'selected':'' ?> >20%</option>
