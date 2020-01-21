@@ -18,6 +18,8 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
+							<li class="list-group-item"><a class="fw800 fz-16" href="#" target="_blank"><span class="color-1 mr-5"><i class="fas fa-star"></i></span><font SIZE=3> Aprovechamiento <a style="color:grey; padding-left: 10%;" href="#" target="_blank"><b>escolar</b> </font>  <span class="h4 text-white badge badge-secondary bgcolor-1">Proximamente</span></a>
+							</li>
 							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Indicepeso/index'); ?>"><span class="color-1 mr-5"><i class="material-icons">report</i></span> Índice de peso</a></li>
 							<!-- index.php/Estadistica/estad_indi_generales -->
 							<!-- index.php/Server_ocupado/index -->
