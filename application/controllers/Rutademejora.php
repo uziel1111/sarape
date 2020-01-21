@@ -1584,6 +1584,9 @@ class Rutademejora extends CI_Controller {
 		$id_subprioridad = $this->input->post('id_subprioridad');
 
 		switch ($id_nivel) {
+			case 'CAM':
+			$id_nivel = 1;
+			break;
 			case 'ESPECIAL':
 			$id_nivel = 1;
 			break;
@@ -1716,6 +1719,9 @@ class Rutademejora extends CI_Controller {
 			$id_nivel = $this->cct[0]['nivel'];
 
 			switch ($id_nivel) {
+				case 'CAM':
+				$id_nivel = 1;
+				break;
 				case 'ESPECIAL':
 				$id_nivel = 1;
 				break;
