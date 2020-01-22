@@ -143,12 +143,13 @@ span{
 				<a class="nav-item nav-link nav-link-style-1 active" id="nav-ruta-tab" data-toggle="tab" href="#nav-ruta" role="tab" aria-controls="nav-ruta" aria-selected="true">PEMC</a>
 				<a class="nav-item nav-link nav-link-style-1" id="nav-avances-tab" data-toggle="tab" href="#nav-avances" role="tab" aria-controls="nav-avances" aria-selected="false">Seguimiento</a>
 				<a class="nav-item nav-link nav-link-style-1 d-none" id="nav-resultados-tab" data-toggle="tab" href="#nav-resultados" role="tab" aria-controls="nav-resultados" aria-selected="false">Resultados por escuela</a>
+					<a class="nav-item nav-link nav-link-style-1" id="nav-aprovechamiento-tab" data-toggle="tab" href="#nav-aprovechamiento" role="tab" aria-controls="nav-aprovechamiento" aria-selected="false">Aprovechamiento escolar</a>
 				<?php if(isset($tipo_usuario_pemc)){ ?>
 
 				<?php }else{?>
 					<a class="nav-item nav-link nav-link-style-1" id="nav-ayuda-tab" data-toggle="tab" href="#nav-ayuda" role="tab" aria-controls="nav-ayuda" aria-selected="false">Ayuda</a>
 				<?php }?>
-				
+
 			</div>
 		</nav>
 		<div class="tab-content tab-content-style-1" id="nav-tabContent">
@@ -178,6 +179,9 @@ span{
 			<div class="tab-pane fade" id="nav-ayuda" role="tabpanel" aria-labelledby="nav-ayuda-tab">
 				<?= $vista_ayuda ?>
 			</div> <!-- Ayuda -->
+			<div class="tab-pane fade" id="nav-aprovechamiento" role="tabpanel" aria-labelledby="nav-aprovechamiento-tab">
+				<?= $vista_aprovechamiento ?>
+			</div> 
 			<div class="fade" id="nav-resultados" role="tabpanel" aria-labelledby="nav-resultados-tab">
 				<div id="div_resultados_gral" >
 					

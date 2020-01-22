@@ -1255,6 +1255,7 @@ class Rutademejora extends CI_Controller {
 		$data['turno'] = $this->cct[0]['turno_single'];
 		$data['cct'] = $this->cct[0]['cve_centro'];
 		$data['director'] = $this->cct[0]['nombre_director'];
+		$data['vista_aprovechamiento'] = $this->load->view("index/aprovechamiento_escolar", $data, TRUE);
 		$data['vista_avance'] = $this->load->view("ruta/rutademejora/avances", $data, TRUE);
 		$data['vista_indicadores'] = $this->load->view("ruta/rutademejora/indicadores", $data, TRUE);
 		$data['vista_ayuda'] = $this->load->view("ruta/rutademejora/ayuda", $data, TRUE);

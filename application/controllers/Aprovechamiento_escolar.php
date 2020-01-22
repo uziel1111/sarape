@@ -13,7 +13,7 @@ class Aprovechamiento_escolar extends CI_Controller {
 
     public function index()
     {
-       $data = array();
+       $data['espacio'] ="<br><br><br><br><br><br>" ;
         Utilerias::pagina_basica($this, "index/aprovechamiento_escolar", $data);
     }
 }
