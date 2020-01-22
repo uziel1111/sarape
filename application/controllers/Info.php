@@ -21,9 +21,18 @@ class Info extends CI_Controller {
 		}
 
 	public function index(){
+		if (	isset($_POST['id_cct'])) {
 		$turno = $this->input->post("turno");
 		$turno_single = $this->input->post("turno_single");
 		$cct= $this->input->post("id_cct");
+		}
+
+		if (	isset($_GET['id_cct'])) {
+		$turno = $this->input->get("turno");
+		$turno_single = $this->input->get("turno_single");
+		$cct= $this->input->get("id_cct");
+		}
+
 
 		if(strlen($cct)>10){
 			$cadena=substr ($cct ,0 , 10);
