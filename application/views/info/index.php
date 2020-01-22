@@ -3,6 +3,7 @@
 		<a href="javascript:" id="return-to-top"><span class="color-4"><i class="material-icons">keyboard_arrow_up</i></span></a>
 		<div class="card mb-3 card-style-1">
 			<div class="card-header card-1-header bg-light">
+				<?php if (isset($cve_centro)) { ?>
 				Datos generales
 				<button class="btn btn-warning btn-style-1 color-6 mb-3" onclick="goBack()">Regresar</button>
 				<input hidden type="text" id="in_cct" value="<?=$cve_centro?>">
@@ -834,6 +835,14 @@
 					</div>
 
 				</div>
+			<?php } else { ?>
+				<h3>La CCT: <b style="color:green"><?=$cct_incorrecto?></b>  no pertenece a una Escuela</h3>
+				<div class="row">
+						<div class="col-md-12 offset-md-5">
+							<a class="btn btn-lg btn-success btn-style-1" target="_blank" style="color:white;" href="http://siecec.seducoahuila.gob.mx/centros/reportes/ficha_tecnica.php?cct=<?=$cct_incorrecto?>">Ficha Técnica</a>
+							</div>
+					</div>
+			<?php } ?>
 			</div>
 		</div>
 	</div>

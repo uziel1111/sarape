@@ -52,7 +52,7 @@ class Info extends CI_Controller {
 			$array = array();
 
 			$escuela = $this->CentrosE_model->get_info_escuela($cct,$turno);
-
+			if ($escuela != null) {
 			$planea15_escuela = $this->CentrosE_model->get_planea_xidcct($cct,$turno_e,'2015');
 			$planea16_escuela = $this->CentrosE_model->get_planea_xidcct($cct,$turno_e,'2016');
 			$planea17_escuela = $this->CentrosE_model->get_planea_xidcct($cct,$turno_e,'2017');
@@ -122,6 +122,9 @@ class Info extends CI_Controller {
 			$data['municipio'] = $escuela[0]['municipio'];
 			$data['nombre_director'] = $escuela[0]['nombre_director'];
 			$data['estatus'] = $escuela[0]['estatus'];
+			} else{
+				$data['cct_incorrecto'] = $cct;
+			}
 			Utilerias::pagina_basica($this, "info/index", $data);
 		}
 
