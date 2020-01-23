@@ -186,7 +186,7 @@ Rm_acciones_tp.prototype.get_view_acciones = function(id_tprioritario){
 Rm_acciones_tp.prototype.save_accion = function(){
       var accion = $("#txt_rm_meta").val();
       var materiales = $("#txt_rm_obs").val();
-      var id_responsable = $("#slc_rm_presp").val();
+      var id_responsable = $("#slc_responsables").val();
       var finicio = $("#datepicker1").val();
       var ffin = $("#datepicker2").val();
       var medicion = $("#txt_rm_indimed").val();
@@ -195,8 +195,8 @@ Rm_acciones_tp.prototype.save_accion = function(){
       $.ajax({
         url:base_url+"rutademejora/save_accion",
         method:"POST",
-        data:{"accion":accion, "materiales":materiales, "ids_responsables":encargados,
-        "finicio":finicio, "ffin":ffin, "medicion":medicion, 'id_tprioritario': obj.id_tprioritario, 'otroresp': $("#otro_responsable").val(), 'id_objetivo':objetivo, 'responsable':responsable},
+        data:{"accion":accion, "materiales":materiales, "ids_responsables":id_responsable,
+        "finicio":finicio, "ffin":ffin, "medicion":medicion, 'id_tprioritario': obj.id_tprioritario, 'otroresp': $("#otro_responsable").val(), 'id_objetivo':objetivo, 'responsable':responsable, 'new_resp':$("#otro_resp").val()},
       })
       .done(function(data) {
        var vista = data.tabla;
@@ -239,7 +239,7 @@ Rm_acciones_tp.prototype.editar_accion = function(){
    var id_ambito = $("#slc_rm_ambito").val();
    var accion = $("#txt_rm_meta").val();
    var materiales = $("#txt_rm_obs").val();
-   var id_responsable = $("#slc_rm_presp").val();
+   var id_responsable = $("#slc_responsables").val();
    var finicio = $("#datepicker1").val();
    var ffin = $("#datepicker2").val();
    var medicion = $("#txt_rm_indimed").val();
@@ -251,12 +251,13 @@ Rm_acciones_tp.prototype.editar_accion = function(){
       method:"POST",
       data:{
        "id_accion": id_accion, "accion":accion, "materiales":materiales,
-       "ids_responsables":encargados, "finicio":finicio, "ffin":ffin, "medicion":medicion,
+       "ids_responsables":id_responsable, "finicio":finicio, "ffin":ffin, "medicion":medicion,
        'id_tprioritario': obj.id_tprioritario,
        'otroresp': $("#otro_responsable").val(),
        'id_objetivo': id_objetivo,
        'responsable': $('#main_responsable').val(),
-       'new_resp': $('#new_resp').val()
+       'new_resp': $('#otro_resp').val(),
+
      },
    })
      .done(function(data) {
@@ -345,7 +346,7 @@ Rm_acciones_tp.prototype.edit_accion = function(idaccion, id_tprioritario){
       var editado = data.editado;
       $("#txt_rm_meta").val(editado['accion']);
       $("#txt_rm_obs").val(editado['mat_insumos']);
-      $("#slc_rm_presp").val(editado['ids_responsables']);
+      $("#slc_responsables").val(editado['ids_responsables']);
       $("#slc_responsables").selectpicker('val', editado['ids_responsables'].split(','));
       $("#id_objetivos").val(id_objetivo);
       $('#id_objetivos').attr('disabled', true);
@@ -357,6 +358,12 @@ Rm_acciones_tp.prototype.edit_accion = function(idaccion, id_tprioritario){
           $('#otro_responsable').val(editado['otro_responsable']);
           $("#div_otro_responsable").show();
         }
+      }
+      if (editado['[otro_resp_main]'] != '') {
+         $('#otro_resp').val(editado['otro_resp_main']);
+        $('#main_resp_2').show();
+      }else{
+        $('#main_resp_2').hide();
       }
 
       $("#txt_rm_indimed").val(editado['indcrs_medicion']);
@@ -380,13 +387,13 @@ Rm_acciones_tp.prototype.edit_accion = function(idaccion, id_tprioritario){
 
 Rm_acciones_tp.prototype.validaform = function(llamado){
  if ($("#id_objetivos").val() > 0) {
-  if($("#txt_rm_meta").val() != ""){
-    if($("#txt_rm_obs").val() != ""){
+  if($("#txt_rm_meta").val().trim() != ""){
+    if($("#txt_rm_obs").val().trim() != ""){
       if($("#slc_rm_ambito").val() != ""){
         if(sel_encargado == true){
           if($("#datepicker1").val() != ""){
             if($("#datepicker2").val() != ""){
-              if($('#otro_responsable').is(':visible')  && $("#otro_responsable").val() != ""){
+              if($('#otro_responsable').is(':visible')  && $("#otro_responsable").val().trim() != ""){
                 if(date_diff_indays() >= 0){
                   if (llamado != 0) {
                     obj_rm_acciones_tp.save_accion();

@@ -65,7 +65,7 @@ class Rutamejora_model extends CI_Model
 			'indcrs_medicion' => $medicion,
       'id_objetivos' => $id_objetivo,
       'main_resp' => $responsable,
-      'resp_apoyo' => $otro_resp
+      'otro_resp_main' => $otro_resp
     );
     
       return $this->db->insert('rm_accionxtproritario', $data2);

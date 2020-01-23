@@ -538,7 +538,7 @@ class Rutademejora extends CI_Controller {
 					$strids_resp = substr($strids_resp, 0, -1);
 
 					if(isset($_POST['id_accion'])){
-						$update = $this->Rutamejora_model->update_accion($_POST['id_accion'], $id_tprioritario, $accion, $materiales, $strids_resp, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp, $id_objetivo, $main_resp, $otro_resp);
+						$update = $this->Rutamejora_model->update_accion($_POST['id_accion'], $id_tprioritario, trim($accion), trim($materiales), $strids_resp, $finicio, $ffin, $medicion, trim($otroresponsable), $existotroresp, $id_objetivo, $main_resp, trim($otro_resp));
 
 						if($update){
 							$acciones = $this->Rutamejora_model->getacciones($id_objetivo);
@@ -584,7 +584,7 @@ class Rutademejora extends CI_Controller {
 							$response = array('tabla' => '');
 						}
 					}else{
-						$insert = $this->Rutamejora_model->insert_accion($id_tprioritario, $accion, $materiales, $strids_resp, $finicio, $ffin, $medicion, $otroresponsable, $existotroresp, $id_objetivo, $main_resp, $otro_resp);
+						$insert = $this->Rutamejora_model->insert_accion($id_tprioritario, trim($accion), trim($materiales), $strids_resp, $finicio, $ffin, $medicion, trim($otroresponsable), $existotroresp, $id_objetivo, $main_resp, trim($otro_resp));
 						if($insert){
 							$acciones = $this->Rutamejora_model->getacciones($id_tprioritario);
 
@@ -800,7 +800,7 @@ class Rutademejora extends CI_Controller {
 					$id_tprioritario = $this->input->post('id_tprioritario');
 					$idaccion = $this->input->post('idaccion');
 					$editada = $this->Rutamejora_model->edit_accion($idaccion, $id_tprioritario);
-			
+				// echo "<pre>"; print_r($editada); die();
 					$response = array("editado" => $editada[0]);
 					Utilerias::enviaDataJson(200, $response, $this);
 					exit;
