@@ -1079,101 +1079,106 @@ public function getTablasGraficas($ccts)
   l5.total_objetivos AS obj5,
   l5.total_acciones AS acc5
   FROM
-  (SELECT 
+(SELECT 
   COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
   COUNT(DISTINCT acc.id_accion) AS total_acciones,
   tp.id_prioridad AS LAE,
-  e.cve_centro,
-  e.nombre_centro
+   e.cct as cve_centro,
+  e.nombre as nombre_centro
   FROM
-  escuela e
-  LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+  centros_educativos.vista_cct e
+  LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
   LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
   LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
   WHERE
-  (e.id_estatus = 1 OR e.id_estatus = 4)
-  AND e.id_nivel < 6
-  AND e.id_nivel <> 2
-  AND e.cve_centro NOT LIKE '05FUA%'
-  AND e.cve_centro IN ('{$ccts}')
+  (e.status = 1 OR e.status = 4)
+  AND e.nivel_educativo < 6
+  AND e.desc_nivel_educativo <> 'INICIAL'
+  AND e.cct NOT LIKE '05FUA%'
+  AND e.cct IN ('{$ccts}')
   AND tp.id_prioridad = 1
-  GROUP BY e.id_cct , tp.id_prioridad) AS l1
-  INNER JOIN
+  GROUP BY e.cct , tp.id_prioridad) AS l1
+  inner join
   (SELECT 
   COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
   COUNT(DISTINCT acc.id_accion) AS total_acciones,
   tp.id_prioridad AS LAE,
-  e.cve_centro
+   e.cct as cve_centro,
+  e.nombre as nombre_centro
   FROM
-  escuela e
-  LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+  centros_educativos.vista_cct e
+  LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
   LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
   LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
   WHERE
-  (e.id_estatus = 1 OR e.id_estatus = 4)
-  AND e.id_nivel < 6
-  AND e.id_nivel <> 2
-  AND e.cve_centro NOT LIKE '05FUA%'
-  AND e.cve_centro IN ('{$ccts}')
+  (e.status = 1 OR e.status = 4)
+  AND e.nivel_educativo < 6
+  AND e.desc_nivel_educativo <> 'INICIAL'
+  AND e.cct NOT LIKE '05FUA%'
+  AND e.cct IN ('{$ccts}')
   AND tp.id_prioridad = 2
-  GROUP BY e.id_cct , tp.id_prioridad) AS l2 ON l1.cve_centro = l2.cve_centro
+  GROUP BY e.cct , tp.id_prioridad) AS l2 ON l1.cve_centro = l2.cve_centro
   INNER JOIN
   (SELECT 
   COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
   COUNT(DISTINCT acc.id_accion) AS total_acciones,
   tp.id_prioridad AS LAE,
-  e.cve_centro
+   e.cct as cve_centro,
+  e.nombre as nombre_centro
   FROM
-  escuela e
-  LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+  centros_educativos.vista_cct e
+  LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
   LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
   LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
   WHERE
-  (e.id_estatus = 1 OR e.id_estatus = 4)
-  AND e.id_nivel < 6
-  AND e.id_nivel <> 2
-  AND e.cve_centro NOT LIKE '05FUA%'
-  AND e.cve_centro IN ('{$ccts}')
+  (e.status = 1 OR e.status = 4)
+  AND e.nivel_educativo < 6
+  AND e.desc_nivel_educativo <> 'INICIAL'
+  AND e.cct NOT LIKE '05FUA%'
+  AND e.cct IN ('{$ccts}')
   AND tp.id_prioridad = 3
-  GROUP BY e.id_cct , tp.id_prioridad) AS l3 ON l1.cve_centro = l3.cve_centro
+  GROUP BY e.cct , tp.id_prioridad) AS l3 ON l1.cve_centro = l3.cve_centro
   INNER JOIN
   (SELECT 
   COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
   COUNT(DISTINCT acc.id_accion) AS total_acciones,
   tp.id_prioridad AS LAE,
-  e.cve_centro
+   e.cct as cve_centro,
+  e.nombre as nombre_centro
   FROM
-  escuela e
-  LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+  centros_educativos.vista_cct e
+  LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
   LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
   LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
   WHERE
-  (e.id_estatus = 1 OR e.id_estatus = 4)
-  AND e.id_nivel < 6
-  AND e.id_nivel <> 2
-  AND e.cve_centro NOT LIKE '05FUA%'
-  AND e.cve_centro IN ('{$ccts}')
+  (e.status = 1 OR e.status = 4)
+  AND e.nivel_educativo < 6
+  AND e.desc_nivel_educativo <> 'INICIAL'
+  AND e.cct NOT LIKE '05FUA%'
+  AND e.cct IN ('{$ccts}')
   AND tp.id_prioridad = 4
-  GROUP BY e.id_cct , tp.id_prioridad) AS l4 ON l1.cve_centro = l4.cve_centro
+  GROUP BY e.cct , tp.id_prioridad) AS l4 ON l1.cve_centro = l4.cve_centro
   INNER JOIN
   (SELECT 
   COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
   COUNT(DISTINCT acc.id_accion) AS total_acciones,
   tp.id_prioridad AS LAE,
-  e.cve_centro
+  e.cct as cve_centro,
+  e.nombre as nombre_centro
   FROM
-  escuela e
-  LEFT JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+  centros_educativos.vista_cct e
+  LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
   LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
   LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
   WHERE
-  (e.id_estatus = 1 OR e.id_estatus = 4)
-  AND e.id_nivel < 6
-  AND e.id_nivel <> 2
-  AND e.cve_centro NOT LIKE '05FUA%'
-  AND e.cve_centro IN ('{$ccts}')
+  (e.status = 1 OR e.status = 4)
+  AND e.nivel_educativo < 6
+  AND e.desc_nivel_educativo <> 'INICIAL'
+  AND e.cct NOT LIKE '05FUA%'
+  AND e.cct IN ('{$ccts}')
   AND tp.id_prioridad = 5
-  GROUP BY e.id_cct , tp.id_prioridad) AS l5 ON l1.cve_centro = l5.cve_centro";
+  GROUP BY e.cct , tp.id_prioridad) AS l5 ON l1.cve_centro = l5.cve_centro
+";
 
   return $this->db->query($str_query)->result_array();
 }
@@ -1189,20 +1194,22 @@ public function getGraficas($ccts)
   COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
   COUNT(DISTINCT acc.id_accion) AS total_acciones,
   tp.id_prioridad AS LAE,
-  e.cve_centro
+  e.cct
   FROM
-  escuela e
-  INNER JOIN rm_tema_prioritarioxcct tp ON e.id_cct = tp.id_cct
+  centros_educativos.vista_cct e
+  INNER JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct 
   LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
   LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
   WHERE
-  (e.id_estatus = 1 OR e.id_estatus = 4)
-  AND e.id_nivel < 6
-  AND e.id_nivel <> 2
-  AND e.cve_centro NOT LIKE '05FUA%'
-  AND e.cve_centro IN ('{$ccts}')
-  GROUP BY e.id_municipio , tp.id_prioridad) AS tl1
-  GROUP BY tl1.LAE";
+  (e.status = 1 OR e.status = 4)
+    AND e.nivel_educativo < 6
+  AND e.desc_nivel_educativo <> 'INICIAL'
+  AND e.cct NOT LIKE '05FUA%'
+  AND e.cct IN ('{$ccts}')
+  GROUP BY tp.id_prioridad) AS tl1
+  GROUP BY tl1.LAE
+";
+  
   return $this->db->query($str_query)->result_array();
 
 }

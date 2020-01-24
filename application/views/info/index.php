@@ -836,12 +836,7 @@
 
 				</div>
 			<?php } else { ?>
-				<h3>La CCT: <b style="color:green"><?=$cct_incorrecto?></b>  no pertenece a una Escuela</h3>
-				<div class="row">
-						<div class="col-md-12 offset-md-5">
-							<a class="btn btn-lg btn-success btn-style-1" target="_blank" style="color:white;" href="http://siecec.seducoahuila.gob.mx/centros/reportes/ficha_tecnica.php?cct=<?=$cct_incorrecto?>">Ficha Técnica</a>
-							</div>
-					</div>
+				<h3>No se encontró información para la CCT: <b style="color:green"><?=$cct_incorrecto?> </b> y el turno: <b style="color:green"><?=$turno_incorrecto?> </b></h3>
 			<?php } ?>
 			</div>
 		</div>

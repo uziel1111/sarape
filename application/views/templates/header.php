@@ -76,7 +76,7 @@
                                       Estadística e indicadores
                                   </a>
                                   <div class="dropdown-menu dropdown-menu-right ddm-color-1" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item hcolor-1" href="#">Aprovechamiento escolar</a>
+                                    <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/aprovechamiento_escolar/');?>">Aprovechamiento escolar</a>
                                     <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Indicepeso/index'); ?>">Índice de peso</a>
                                     <!-- index.php/Estadistica/estad_indi_generales -->
                                     <!-- index.php/Server_ocupado/index -->

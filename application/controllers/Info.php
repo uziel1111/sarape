@@ -23,13 +23,13 @@ class Info extends CI_Controller {
 	public function index(){
 		if (	isset($_POST['id_cct'])) {
 		$turno = $this->input->post("turno");
-		$turno_single = $this->input->post("turno_single");
+		// $turno_single = $this->input->post("turno_single");
 		$cct= $this->input->post("id_cct");
 		}
 
 		if (	isset($_GET['id_cct'])) {
 		$turno = $this->input->get("turno");
-		$turno_single = $this->input->get("turno_single");
+		// $turno_single = $this->input->get("turno_single");
 		$cct= $this->input->get("id_cct");
 		}
 
@@ -37,16 +37,14 @@ class Info extends CI_Controller {
 		if(strlen($cct)>10){
 			$cadena=substr ($cct ,0 , 10);
 			$cadena2=substr ($cct ,10 ,3);
-			$cadena3=substr ($cct ,13);
 			$cct=$cadena;
 			$turno=$cadena2;
-			$turno_single=$cadena3;
 		}else{
 			$cct=$cct;
 
 		}
 
-		$turno_e=$this->getTurno($turno_single);
+		$turno_e=$this->getTurno($turno);
 		if(isset($cct) && $cct != ""){
 			$data = array();
 			$array = array();
@@ -105,14 +103,15 @@ class Info extends CI_Controller {
 			$data['planea19_nacional'] = $planea19_nacional;
 			$data['nombre_centro'] = $escuela[0]['nombre_centro'];
 			$data['cve_centro'] = $escuela[0]['cve_centro'];
-			if($turno==120 || $turno==123 || $turno==124 || $turno==130 || $turno==230){
-				$data['turno'] = $turno_single;
-				$data['desc_turno'] = $turno_single;
-			}else{
-				$data['turno'] = $escuela[0]['turno'];
-				$data['desc_turno'] = $this->getTurnoDes($escuela[0]['turno']);
-			}
-
+			// if($turno==120 || $turno==123 || $turno==124 || $turno==130 || $turno==230){
+			// 	$data['turno'] = $turno_single;
+			// 	$data['desc_turno'] = $turno;
+			// }else{
+			// 	$data['turno'] = $escuela[0]['turno'];
+			// 	$data['desc_turno'] = $this->getTurnoDes($escuela[0]['turno']);
+			// }
+			$data['turno'] = $turno_e;
+			$data['desc_turno'] = $turno;
 			$data['nivel'] = $escuela[0]['nivel'];
 			$data['modalidad'] = $escuela[0]['modalidad'];
 			$data['sostenimiento'] = $escuela[0]['desc_sostenimiento'];
@@ -123,7 +122,8 @@ class Info extends CI_Controller {
 			$data['nombre_director'] = $escuela[0]['nombre_director'];
 			$data['estatus'] = $escuela[0]['estatus'];
 			} else{
-				$data['cct_incorrecto'] = $cct;
+				$data['cct_incorrecto'] = strtoupper($cct);
+				$data['turno_incorrecto'] = strtoupper($turno);
 			}
 			Utilerias::pagina_basica($this, "info/index", $data);
 		}
@@ -238,12 +238,30 @@ class Info extends CI_Controller {
 
 		$nivel=$this->getNivel($nivel_e);
 		$turno=$this->getTurno($turno_e);
+// print_r($turno_e); die();
+		switch ($turno) {
+			case '1':
+				$turno_str = 'MATUTINO';
+				break;
+			case '2':
+				$turno_str = 'VESPERTINO';
+				break;
+			case '3':
+				$turno_str = 'NOCTURNO';
+				break;
+			case '4':
+				$turno_str = 'DISCONTINUO';
+				break;
+			case '5':
+				$turno_str = 'CONTINUO';
+				break;
+		}
 
 
 		if($nivel == 4 || $nivel == 5){
 			$graph_pie_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_pie_xidct($cct,$turno,$id_bim,$ciclo, $nivel);
 			$graph_bar_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_bar_grados_xidct($cct,$turno,$id_bim,$ciclo, $nivel);
-			$numero_bajas = $this->Riesgo_alumn_esc_bim_model->get_numero_bajas($cct,$turno, $nivel, $id_bim);
+			$numero_bajas = $this->Riesgo_alumn_esc_bim_model->get_numero_bajas($cct,$turno_str, $nivel, $id_bim);
 
 			$response = array(
 				'cct'=>$cct,
@@ -445,21 +463,21 @@ class Info extends CI_Controller {
 
 	public function getTurno($turno){
 		$id_turno_single=0;
-		if($turno=='MATUTINO' || $turno==100){
+		if($turno=='MATUTINO' || $turno==100 || $turno==1){
 	        $id_turno_single=1;
-	    }else if($turno=='VESPERTINO' || $turno==200){
+	    }else if($turno=='VESPERTINO' || $turno==200 || $turno==2){
 	        $id_turno_single=2;
-	    }else if($turno=='NOCTURNO' || $turno==300){
+	    }else if($turno=='NOCTURNO' || $turno==300 || $turno==3){
 	        $id_turno_single=3;
-	    }else if($turno=='DISCONTINUO' || $turno==400){
+	    }else if($turno=='DISCONTINUO' || $turno==400 || $turno==4){
 	        $id_turno_single=4;
-	    }else if($turno=="CONTINUO" || $turno==500){
+	    }else if($turno=="CONTINUO" || $turno==500 || $turno==5){
 	        $id_turno_single=5;
-	    }else if($turno=="COMPLEMENTARIO" || $turno==600){
+	    }else if($turno=="COMPLEMENTARIO" || $turno==600 || $turno==6){
 	        $id_turno_single=6;
-	    }else if($turno=="CONTINUO (JORNADA AMPLIADA)" || $turno==700){
+	    }else if($turno=="CONTINUO (JORNADA AMPLIADA)" || $turno==700 || $turno==7){
 	        $id_turno_single=7;
-	    }else if($turno=="CONTINUO (DE 7:00 A 22:00 HRS)" || $turno==800){
+	    }else if($turno=="CONTINUO (DE 7:00 A 22:00 HRS)" || $turno==800 || $turno==8){
 	        $id_turno_single=8;
 	    }
 
