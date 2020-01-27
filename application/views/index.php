@@ -90,7 +90,7 @@
 							</li>
 							<li class="list-group-item"><a href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Consulta de calificaciones</a>
 							</li>
-							<li class="list-group-item"><a href="https://www.seducoahuila.gob.mx/sebuscanvalientes/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Alto al acoso escolar <i>(bullying)</i></a>
+							<li class="list-group-item"><a href="https://www.seducoahuila.gob.mx/sebuscanvalientes/" target="_blank"><span class="color-2"><i class="fas fa-star"></i></span>  Alto al acoso escolar <i>(bullying)</i></a>
 							</li>
 							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Juegos y aplicaciones educativas</a></li> -->
 							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/correo.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Ingresa a tu correo electronico</a></li> -->
@@ -110,6 +110,8 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
+							<li class="list-group-item"><a href="http://inscripciones.org" target="_blank"><span class="color-4"><i class="fas fa-star"></i></span> <b>Pre-inscripciones 2020-2021</b></a>
+							</li>
 							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Talis/index'); ?>"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> TALIS </a></li>
 							<!-- <li class="list-group-item"><a onclick="Index.getmodeloeducativo()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Modelo Coahuilense</a>
 							</li> -->
@@ -120,6 +122,7 @@
 
 							<li class="list-group-item"><a href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank"><span class="color-4"><i class="material-icons">chevron_right</i></span> Biblioteca Digital Coahuila</a>
 							</li>
+
 							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/ESCUELAS_ALTA_DEMANDA.pdf" target="_blank"><span class="color-4"><i class="material-icons">face</i></span> Escuelas de alta demanda</a></li> -->
 						</ul>
 					</div>

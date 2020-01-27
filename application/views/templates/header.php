@@ -124,6 +124,7 @@
                       </a>
                       <div class="dropdown-menu dropdown-menu-right ddm-color-4" aria-labelledby="navbarDropdownMenuLink">
                           <!-- <a class="dropdown-item hcolor-4" id="btn_index_modeloeducativo" href="javascript:void(0)">Modelo Coahuilense</a> -->
+                           <a class="dropdown-item hcolor-4" target="_blank" href="http://inscripciones.org">Pre-inscripciones 2020-2021</a>
                           <a class="dropdown-item hcolor-4" id="btn_index_calendarioEscolar" href="javascript:void(0)">Calendario escolar</a>
                           <a class="dropdown-item hcolor-4" href="http://www.becascoahuila.gob.mx/becas2.html" target="_blank">Becas escolares</a>
                           <a class="dropdown-item hcolor-4" href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank">Biblioteca Digital Coahuila</a>
