@@ -400,10 +400,12 @@
 											<div style="display:inline-block; width:20px; height:20px; background-color:#D5831C; border: 1px solid black;"></div>
 											<p style="display:inline-block; font-size:1.5em; margin-left:10px;">2017</p>
 										</div>
+											<?php if ($nivel == "SECUNDARIA"): ?>
 										<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 											<div style="display:inline-block; width:20px; height:20px; background-color:#94460C; border: 1px solid black;"></div>
 											<p style="display:inline-block; font-size:1.5em; margin-left:10px;">2019</p>
 										</div>
+										<?php endif; ?>
 										<?php endif; ?>
 										<div class="row">
 											<div class="col">
@@ -681,6 +683,7 @@
 																</th>
 																<?php endforeach; ?>
 															</tr>
+															<?php if ($nivel == "SECUNDARIA"): ?>
 															<tr>
 																<td colspan='9' style='background-color:silver;'>PLANEA 2019</td>
 															</tr>
@@ -755,6 +758,7 @@
 																</th>
 																<?php endforeach; ?>
 															</tr>
+															<?php endif; ?>
 															<?php endif; ?>
 														</tbody>
 													</table>

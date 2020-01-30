@@ -77,6 +77,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
           FROM alumnos_riesgo_{$nivel} rie 
           INNER JOIN (SELECT  CASE
+                    WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -93,6 +94,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
         FROM alumnos_riesgo_{$nivel} rie 
         INNER JOIN (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -109,6 +111,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
         FROM alumnos_riesgo_{$nivel} rie 
         INNER JOIN (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -125,6 +128,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
         FROM alumnos_riesgo_{$nivel} rie
         INNER JOIN (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -141,6 +145,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
         FROM alumnos_riesgo_{$nivel} rie 
         INNER JOIN  (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -157,6 +162,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
         FROM alumnos_riesgo_{$nivel} rie 
         INNER JOIN (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -173,6 +179,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
         FROM alumnos_riesgo_{$nivel} rie
         INNER JOIN (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -188,6 +195,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         WHERE esc.id_municipio={$id_municipio} AND esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=6) as muyalto_6
         FROM sarape.alumnos_riesgo_{$nivel} rie
         INNER JOIN (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -213,6 +221,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
         FROM alumnos_riesgo_{$nivel} rie 
         INNER JOIN (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -229,6 +238,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
         FROM alumnos_riesgo_{$nivel} rie 
         INNER JOIN (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -245,6 +255,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
         FROM alumnos_riesgo_{$nivel} rie 
         INNER JOIN (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -261,6 +272,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
         FROM alumnos_riesgo_{$nivel} rie 
         INNER JOIN (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -277,6 +289,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
         FROM alumnos_riesgo_{$nivel} rie 
         INNER JOIN (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -293,6 +306,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
         FROM alumnos_riesgo_{$nivel} rie 
         INNER JOIN  (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -309,6 +323,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto 
         FROM alumnos_riesgo_{$nivel} rie 
         INNER JOIN  (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -324,6 +339,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
         WHERE esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=6) as muyalto_6
         FROM alumnos_riesgo_{$nivel} rie
         INNER JOIN (SELECT  CASE
+                  WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'
@@ -362,6 +378,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
       }
       $str_query = "SELECT COUNT(ab.id_cct) AS total FROM alumnos_bajas_{$nivel} ab
                     INNER JOIN (SELECT  CASE
+                              WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
                   WHEN desc_nivel_educativo = 'INICIAL' THEN '2'
                   WHEN desc_nivel_educativo = 'PREESCOLAR' THEN '3'

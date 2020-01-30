@@ -38,8 +38,9 @@ class Riesgo extends CI_Controller {
 			$arr_bimestres['3'] = '3er Periodo';
 
 			
-			$arr_ciclos['1'] = '2018-2019';
-			$arr_ciclos['2'] = '2017-2018';
+			$arr_ciclos['1'] = '2019-2020';
+			$arr_ciclos['2'] = '2018-2019';
+			$arr_ciclos['3'] = '2017-2018';
 
 			$data2['municipios'] = $arr_municipios;
 			$data2['niveles'] = $arr_niveles;

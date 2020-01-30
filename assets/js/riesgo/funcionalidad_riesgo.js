@@ -9,7 +9,7 @@ function Riesgo(){
       
 $("#slt_ciclo_ries").change(function(){
  
-  if($("#slt_ciclo_ries option:selected").text()=='2018-2019'){
+  if($("#slt_ciclo_ries option:selected").text()=='2018-2019' || $("#slt_ciclo_ries option:selected").text()=='2019-2020'){
     $("#slt_bimestre_ries").empty();
     $('#slt_bimestre_ries').append('<option value="1">1er Periodo</option>');
     $('#slt_bimestre_ries').append('<option value="2">2do Periodo</option>');
@@ -40,7 +40,7 @@ $("#btn_buscar_ries_muni").click(function(e) {
   let t5 = 0;
   let t6 = 0;
 
-  if(id_ciclo=='2018-2019' && id_bimestre==3){
+  if((id_ciclo=='2018-2019' && id_bimestre==3 && id_nivel==4) || (id_ciclo=='2019-2020' && (id_bimestre==2 || id_bimestre==3))){
     alert("Periodo no disponible");
   }else{
   	$.ajax({
