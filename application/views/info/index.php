@@ -29,7 +29,7 @@
 					<div class="col">
 						Turno:
 						<label class="fw800">
-							<?=$desc_turno?>
+							<?=strtoupper($desc_turno)?>
 						</label>
 					</div>
 					<div class="col">

@@ -110,8 +110,11 @@ class Info extends CI_Controller {
 			// 	$data['turno'] = $escuela[0]['turno'];
 			// 	$data['desc_turno'] = $this->getTurnoDes($escuela[0]['turno']);
 			// }
+			
+			$desc_turno = $this->turno_desc($turno);
+
 			$data['turno'] = $turno_e;
-			$data['desc_turno'] = $turno;
+			$data['desc_turno'] = $desc_turno;
 			$data['nivel'] = $escuela[0]['nivel'];
 			$data['modalidad'] = $escuela[0]['modalidad'];
 			$data['sostenimiento'] = $escuela[0]['desc_sostenimiento'];
@@ -129,6 +132,30 @@ class Info extends CI_Controller {
 		}
 
 	}
+
+	public function turno_desc($turno)
+	{
+		if($turno=='MATUTINO' || $turno==100 || $turno==1){
+	        $turno='MATUTINO';
+	    }else if($turno=='VESPERTINO' || $turno==200 || $turno==2){
+	        $turno='VESPERTINO';
+	    }else if($turno=='NOCTURNO' || $turno==300 || $turno==3){
+	        $turno='NOCTURNO';
+	    }else if($turno=='DISCONTINUO' || $turno==400 ||  $turno==4){
+	        $turno='DISCONTINUO';
+	    }else if($turno=="CONTINUO" || $turno==500 || $turno==5){
+	        $turno='CONTINUO';
+	    }else if($turno=="COMPLEMENTARIO" || $turno==600 || $turno==6){
+	        $turno='COMPLEMENTARIO';
+	    }else if($turno=="CONTINUO (JORNADA AMPLIADA)" || $turno==700 || $turno==7){
+	        $turno='CONTINUO (JORNADA AMPLIADA)';
+	    }else if($turno=="CONTINUO (DE 7:00 A 22:00 HRS)" || $turno==800 || $turno==8){
+	        $turno='CONTINUO (DE 7:00 A 22:00 HRS)';
+	    }
+
+	    return $turno;
+	}
+
 	public function info_graficas(){
 		$id_cct = $this->input->post("id_cct");
 
