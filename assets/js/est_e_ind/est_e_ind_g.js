@@ -162,7 +162,12 @@ $("#slc_xest_sostenimiento_zona").change(function(){
     swal.close();
     console.error("Error in estad_indi_generales_getzonassubsost_zona()"); 
     console.table(e);
-    alert("No hay zonas escolares para este sostenimiento");
+//    alert("No hay zonas escolares para este sostenimiento");
+    swal(
+            '',
+            "No hay zonas escolares para este sosteniemiento",
+             'error'
+          );
     $("#slc_xest_zona").empty();
     $("#slc_xest_zona").html('<option selected>Sin zonas escolares</option>');
     $("#resultado_filtros").empty();
@@ -215,13 +220,28 @@ $("#btn_buscar_zona").click(function(e){
   var ciclo = $("#slc_xest_cicloe_zona").val();
 
   if (id_nivel=='0') {
-    alert("Seleccione nivel");
+    //alert("Seleccione nivel");
+    swal(
+            '',
+            "Seleccione nivel",
+             'error'
+          );
   }
   else if (id_subsost=='0') {
-    alert("Seleccione sostenimiento");
+    // alert("Seleccione sostenimiento");
+    swal(
+            '',
+            "Seleccione sosteniemiento",
+             'error'
+          );
   }
   else if (id_zona=='0') {
-    alert("Seleccione número de zona escolar");
+    //alert("Seleccione número de zona escolar");
+    swal(
+            '',
+            "Seleccione número de zona escolar",
+             'error'
+          );
   }
 
   if(id_nivel!="0" && id_subsost!="0" && id_zona!="0"){
@@ -243,7 +263,12 @@ $("#btn_buscar_zona").click(function(e){
       swal.close();
       console.error("Error in xest_zona_x()"); 
       console.table(e);
-      alert("No se pudieron obtener los datos solicitados");
+      //alert("No se pudieron obtener los datos solicitados");
+      swal(
+            '',
+            "No se pudieron obtener los datos solicitados",
+             'error'
+          );
       $("#resultado_filtros").empty();
     })
     .always(function() {

@@ -43,7 +43,12 @@ $("#itxt_busquedalista_cct").keyup(function() {
       }
   }
   else if ($(this).val().length>8) {
-    alert('longitud incorrecta');
+    // alert('longitud incorrecta');
+    swal(
+            '',
+            "Longitud incorrecta",
+             'error'
+          );
     this.value = this.value.substring(0, this.value.length - 1);
   }
 });
@@ -115,7 +120,12 @@ Buscador.prototype.get_xcvecentro = function(cve_centro){
       .done(function( data ) {
         swal.close();
         if(data.total_escuelas==0){
-          alert('sin resultados');
+          //alert('sin resultados');
+          swal(
+            '',
+            "Sin resultados",
+             'error'
+          );
         }
         if(data.total_escuelas==1){
           this_buscador.form(data.cct,data.turno,data.turno_single);

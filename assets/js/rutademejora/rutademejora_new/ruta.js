@@ -334,7 +334,13 @@ function datos_accion(){
 		});
 
 	}else{
-		alert("Ocurrio un error al cargar los datos de avances de acciones");
+		// alert("Ocurrio un error al cargar los datos de avances de acciones");
+		swal(
+            '',
+            "Ocurrio un error al cargar los datos de avances de acciones.",
+             'error'
+          );
+
 	}
 
 }
@@ -368,7 +374,12 @@ function datos_accionpie(){
 		});
 
 	}else{
-		alert("Ocurrio un error al cargar los datos");
+		// alert("Ocurrio un error al cargar los datos");
+		swal(
+            '',
+            "Ocurrio un error al cargar los datos.",
+             'error'
+          );
 	}
 
 }
@@ -398,7 +409,12 @@ function datos_objetivopie(){
 			swal.close();
 		});
 	}else{
-		alert("Ocurrio un error al cargar los datos");
+		//alert("Ocurrio un error al cargar los datos");
+		swal(
+            '',
+            "Ocurrio un error al cargar los datos.",
+             'error'
+          );
 	}
 
 }
@@ -428,7 +444,12 @@ function datos_laepie(){
 		});
 
 	}else{
-		alert("Ocurrio un error al cargar los datos");
+		//alert("Ocurrio un error al cargar los datos");
+		swal(
+            '',
+            "Ocurrio un error al cargar los datos.",
+             'error'
+          );
 	}
 }
 
@@ -639,7 +660,12 @@ function accionesRezagadas(){
 });
 
 }else{
-	alert("Ocurrio un error al cargar los datos");
+	//alert("Ocurrio un error al cargar los datos");
+	swal(
+            '',
+            "Ocurrio un error al cargar los datos.",
+             'error'
+          );
 }
 }
 

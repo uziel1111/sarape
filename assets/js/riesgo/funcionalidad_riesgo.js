@@ -41,7 +41,12 @@ $("#btn_buscar_ries_muni").click(function(e) {
   let t6 = 0;
 
   if((id_ciclo=='2018-2019' && id_bimestre==3 && id_nivel==4) || (id_ciclo=='2019-2020' && (id_bimestre==2 || id_bimestre==3))){
-    alert("Periodo no disponible");
+    // alert("Periodo no disponible");
+    swal(
+            '',
+            "Periodo no disponible",
+             'error'
+          );
   }else{
   	$.ajax({
       url:  base_url+"riesgo/riesgoxmuni_graf",

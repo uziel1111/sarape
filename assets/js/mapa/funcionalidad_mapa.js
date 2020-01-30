@@ -149,7 +149,12 @@ Mapa.prototype.cct_mismo_nivel = function(idcct){
 	.fail(function(error) {
 		console.log("error");
 		swal.close();
-		alert('Tiempo de conexión excedido.');
+		//alert('Tiempo de conexión excedido.');
+		swal(
+            '',
+            "Tiempo de conexión excedido.",
+             'error'
+          );
 	})
 	.always(function(complete) {
 		swal.close();
@@ -175,7 +180,12 @@ Mapa.prototype.cct_siguiente_nivel = function(idcct){
 	.fail(function(error) {
 		console.log("error");
 		swal.close();
-		alert('Tiempo de conexión excedido.');
+		//alert('Tiempo de conexión excedido.');
+		swal(
+            '',
+            "Tiempo de conexión excedido.",
+             'error'
+          );
 	})
 	.always(function(complete) {
 		console.log("complete");
@@ -258,9 +268,14 @@ Mapa.prototype.pinta_en_mapa = function(marcadores){
 	           
 	       }
 	   }else {
-	   	alert('No se encontraron escuelas');
+	   	//alert('No se encontraron escuelas');
 	   	swal.close();
 	   	initMap();
+	   	swal(
+            '',
+            "No se encontraron escuelas.",
+             'error'
+          );
 	   }
 	}
 
