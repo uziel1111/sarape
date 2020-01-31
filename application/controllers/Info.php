@@ -23,13 +23,11 @@ class Info extends CI_Controller {
 	public function index(){
 		if (	isset($_POST['id_cct'])) {
 		$turno = $this->input->post("turno");
-		// $turno_single = $this->input->post("turno_single");
 		$cct= $this->input->post("id_cct");
 		}
 
 		if (	isset($_GET['id_cct'])) {
 		$turno = $this->input->get("turno");
-		// $turno_single = $this->input->get("turno_single");
 		$cct= $this->input->get("id_cct");
 		}
 
@@ -103,13 +101,6 @@ class Info extends CI_Controller {
 			$data['planea19_nacional'] = $planea19_nacional;
 			$data['nombre_centro'] = $escuela[0]['nombre_centro'];
 			$data['cve_centro'] = $escuela[0]['cve_centro'];
-			// if($turno==120 || $turno==123 || $turno==124 || $turno==130 || $turno==230){
-			// 	$data['turno'] = $turno_single;
-			// 	$data['desc_turno'] = $turno;
-			// }else{
-			// 	$data['turno'] = $escuela[0]['turno'];
-			// 	$data['desc_turno'] = $this->getTurnoDes($escuela[0]['turno']);
-			// }
 			
 			$desc_turno = $this->turno_desc($turno);
 
@@ -204,7 +195,7 @@ class Info extends CI_Controller {
 		$periodo = $this->input->post("periodo");
 		$nombre = $this->input->post("nombre");
 		$idcampodis = $this->input->post("idcampodis");
-		// echo $turno; die();
+
 
 		if($turno=='MATUTINO' || $turno==100 || $turno==1){
 	        $turno=100;
@@ -225,8 +216,7 @@ class Info extends CI_Controller {
 	    }
 
 		$graph_cont_reactivos_xcctxcont = $this->Planeaxesc_reactivo_model->get_reactivos_xcctxcont($cct,$turno,$nivel,$id_cont,$periodo,$idcampodis,$nombre);
-		// echo "<pre>";
-		// print_r($graph_cont_reactivos_xcctxcont); die();
+
 		$data['graph_cont_reactivos_xcctxcont'] = $graph_cont_reactivos_xcctxcont;
 		$data['periodo'] = $periodo;
 		$data['nombre']=$nombre;
@@ -265,7 +255,7 @@ class Info extends CI_Controller {
 
 		$nivel=$this->getNivel($nivel_e);
 		$turno=$this->getTurno($turno_e);
-// print_r($turno_e); die();
+
 		switch ($turno) {
 			case '1':
 				$turno_str = 'MATUTINO';

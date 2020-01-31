@@ -94,7 +94,6 @@ class CentrosE_model extends CI_Model
     function filtro_escuela($municipio,$nivel,$sostenimiento,$nombre_escuela){
       $auxiliar="";
       if($municipio!=-1 && $municipio!=0){
-        // $auxiliar.= " AND v.nombre_de_municipio LIKE'%".$municipio."%'";
         $auxiliar.= " AND v.municipio= {$municipio} ";
       }
       if($nivel!=-1 && $nivel!=0){
@@ -120,11 +119,8 @@ class CentrosE_model extends CI_Model
           $nivel_des="NO APLICA";
         }
         $auxiliar.= " AND v.desc_nivel_educativo='".$nivel_des."'";
-        // echo $auxiliar;
-        // die();
       }
       if($sostenimiento!=-1 && $sostenimiento!=0){
-        // echo $sostenimiento; die();
         if($sostenimiento==11){
           $auxiliar.=" AND (
                       (v.desc_sostenimiento LIKE '%FEDERAL%')

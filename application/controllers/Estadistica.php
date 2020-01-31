@@ -398,9 +398,6 @@ class Estadistica extends CI_Controller {
 				array_push($array,$result_alumnos[$i]);
 					
 			}
-			// echo "<pre>";
-			// print_r($array);
-			// die();
 
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
           	<thead class="bg-info">
@@ -554,7 +551,7 @@ class Estadistica extends CI_Controller {
 
 		function tabla_pdocentes_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_pdocente_xzona($nivel,$sostenimiento,$id_zona_z,$id_ciclo_z);
-			// echo "<pre>"; print_r($result_alumnos); die();
+			
 			$array=array();
 			for($i=0; $i<count($result_alumnos); $i++){
 				array_push($array,array("id_nivel" => $result_alumnos[$i]['id_nivel']
@@ -592,8 +589,6 @@ class Estadistica extends CI_Controller {
 				array_push($array,$result_alumnos[$i]);
 					
 			}
-			// echo "<pre>";
-			// print_r($array); die();
 
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
 						<thead class="bg-info">
