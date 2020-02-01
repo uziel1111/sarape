@@ -274,11 +274,10 @@ class Info extends CI_Controller {
 				break;
 		}
 
-
 		if($nivel == 4 || $nivel == 5){
 			$graph_pie_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_pie_xidct($cct,$turno,$id_bim,$ciclo, $nivel);
 			$graph_bar_riesgo = $this->Riesgo_alumn_esc_bim_model->get_riesgo_bar_grados_xidct($cct,$turno,$id_bim,$ciclo, $nivel);
-			$numero_bajas = $this->Riesgo_alumn_esc_bim_model->get_numero_bajas($cct,$turno_str, $nivel, $id_bim);
+			$numero_bajas = $this->Riesgo_alumn_esc_bim_model->get_numero_bajas($cct,$turno, $nivel, $id_bim);
 
 			$response = array(
 				'cct'=>$cct,

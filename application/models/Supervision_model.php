@@ -8,7 +8,7 @@ class Supervision_model extends CI_Model
     }
 
     function allzonas(){
-      $query="SELECT cct,zona_escolar FROM vista_cct 
+      $query="SELECT cct,zona_escolar FROM centros_educativos.vista_cct 
               WHERE tipo_centro=1 AND (status != 2 AND status != 3) 
               AND zona_escolar IS NOT NULL 
               AND zona_escolar!=''";

@@ -319,7 +319,7 @@ function get_reactivos_xcctxcont_municipio($id_municipio,$id_cont,$periodo,$idca
       }
 
       $query="SELECT cct as id_supervision,zona_escolar
-      FROM vista_cct
+      FROM centros_educativos.vista_cct
       WHERE (`status`= 1 OR `status` = 4) 
       AND tipo_centro=1 
 
@@ -344,7 +344,7 @@ function get_reactivos_xcctxcont_municipio($id_municipio,$id_cont,$periodo,$idca
       WHEN v.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
       ELSE 'PUBLICO'
       END) AS sostenimiento2
-      FROM vista_cct v 
+      FROM centros_educativos.vista_cct v 
       WHERE v.status IN ('1','4') AND v.tipo_centro='9'
       {$filtro}
       GROUP BY id_sostenimiento";

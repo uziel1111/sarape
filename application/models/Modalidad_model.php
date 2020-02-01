@@ -41,7 +41,7 @@ class Modalidad_model extends CI_Model
 
       $query="SELECT cct,nivel_educativo AS nivel,desc_nivel_educativo,
               servicio AS id_modalidad,desc_servicio AS modalidad 
-              FROM vista_cct WHERE status IN ('1','4') 
+              FROM centros_educativos.vista_cct WHERE status IN ('1','4') 
               AND tipo_centro='9' 
                {$filtro}
               GROUP BY desc_servicio";
@@ -56,7 +56,7 @@ class Modalidad_model extends CI_Model
       }
       else {
 
-        $query = "SELECT desc_servicio as modalidad FROM vista_cct 
+        $query = "SELECT desc_servicio as modalidad FROM centros_educativos.vista_cct 
                   WHERE  servicio={$id_modalidad} 
                   AND desc_nivel_educativo = '{$nivel}'";
 
