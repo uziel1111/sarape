@@ -30,7 +30,7 @@ class Reporte extends CI_Controller {
 			$mes_i = $arr_aux[1];
 			$dia_i = $arr_aux[2];
 			$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
-			$ciclo =$this->Reportepdf_model->get_ciclo($cve_centro,$turno);
+			$ciclo =$this->Reportepdf_model->get_ciclo();
 			$ciclo = "CICLO:".$ciclo[0]->ciclo.$fecha;
 			$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
 			//incializamos variables de header
@@ -117,7 +117,7 @@ class Reporte extends CI_Controller {
 				$mes_i = $arr_aux[1];
 				$dia_i = $arr_aux[2];
 				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
-				$ciclo =$this->Reportepdf_model->get_ciclo($arr_cct[0]['cve_centro'], $turno_case);
+				$ciclo =$this->Reportepdf_model->get_ciclo();
 
 				if (count($ciclo)==1) {
 					$ciclo = "CICLO:".$ciclo[0]->ciclo.$fecha;

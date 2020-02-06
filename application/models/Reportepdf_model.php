@@ -95,10 +95,8 @@ WHERE
         return $this->db->query($str_query)->result_array();
     }
 
-    function get_ciclo($cct, $turno){
-      $str_query = "SELECT c.ciclo FROM rm_misionxcct mxcct
-                    INNER JOIN ciclo c ON c.id_ciclo = mxcct.id_ciclo
-                    WHERE cct = '{$cct}' AND turno = {$turno}";
+    function get_ciclo(){
+      $str_query = "SELECT ciclo FROM ciclo WHERE estatus = 1";
 
       return $this->db->query($str_query)->result();
     }
