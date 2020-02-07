@@ -250,7 +250,7 @@ Panel.prototype.modal_propuestarec = function(path_react, tipo){
 	var Protocol = location.protocol;
 	var URLactual = window.location.host;
 	var pathname = window.location.pathname;
-  alert(URLactual);
+  //alert(URLactual);
 	if(tipo == 1){
 		tipo = "<iframe style='width:100%; height:500px;' frameborder='0' src='"+Protocol+"//"+URLactual+"/"+path_react+"'></iframe>";
 	}else{
