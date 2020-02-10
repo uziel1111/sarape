@@ -14,13 +14,19 @@ function Graficasm(){
 
       //////////////////////////////////////////////////////////// Por Unidades de Análisis
       //////////////////////////////////////////////////////////// Por Unidades de Análisis
-      Graficasm.prototype.graficoplanea_ud_prim_lyc = function(arr_lyc,id_filtro, va_por){
-
-        arr_lyc.sort(function (a, b) {
-            return (a.porcen_alum_respok - b.porcen_alum_respok)
-        });
-          Highcharts.theme = {
-                colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
+      Graficasm.prototype.graficoplanea_ud_prim_lyc = function(arr_lyc,id_filtro, va_por, periodo){
+        if (periodo == 1) {
+            colores = ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900', '#FF9900','#FF9900','#FF9900','#FF9900',
+                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'];
+        }else{
+            colores = ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
@@ -28,7 +34,13 @@ function Graficasm(){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900',
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
+                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'];
+        }
+        arr_lyc.sort(function (a, b) {
+            return (a.porcen_alum_respok - b.porcen_alum_respok)
+        });
+          Highcharts.theme = {
+                colors: colores,
                 chart: {
                     backgroundColor: {
                         linearGradient: [0, 0, 0, 0],
@@ -142,20 +154,33 @@ function Graficasm(){
 
       }// graficoplanea_ud_prim_lyc()
 
-      Graficasm.prototype.graficoplanea_ud_prim_mate = function(arr_mate,id_filtro, va_por){
-        // console.info(arr_mate);
+      Graficasm.prototype.graficoplanea_ud_prim_mate = function(arr_mate,id_filtro, va_por, periodo){
+        if (periodo == 1) {
+            colores = ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'];
+        }else{
+            colores = ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
+                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'];
+        }
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
           Highcharts.theme = {
-                colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
+                colors: colores,
                 chart: {
                     backgroundColor: {
                         linearGradient: [0, 0, 0, 0],

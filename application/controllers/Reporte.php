@@ -275,7 +275,7 @@ class Reporte extends CI_Controller {
 					utf8_decode("Fecha inicio"),
 					utf8_decode("Fecha fin"),
 					utf8_decode("Recursos"),
-					utf8_decode("Avance"),
+					utf8_decode("Avance (CTE Actual)"),
 					utf8_decode("Responsable"),
 				));
 
@@ -301,7 +301,7 @@ class Reporte extends CI_Controller {
 						utf8_decode($item["accion_f_inicio"]),
 						utf8_decode($item["accion_f_termino"]),
 						utf8_decode($item["mat_insumos"]),
-						utf8_decode($item["avance"]),
+						utf8_decode($item["avance1"]),
 						utf8_decode(substr($responsablesc, 0, -2))
 					));
 				}

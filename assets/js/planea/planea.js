@@ -101,9 +101,9 @@ const Planea = {
 			switch(nivelxmuni) {
 			    case "4":
 			        if($("#slt_campod_planeaxm").val() == 1){
-						graficar.graficoplanea_ud_prim_lyc(result.datos, result.id_municipio, "municipio");
+						graficar.graficoplanea_ud_prim_lyc(result.datos, result.id_municipio, "municipio", $("#slt_periodo_planeaxm").val());
 					}else{
-						graficar.graficoplanea_ud_prim_mate(result.datos, result.id_municipio, "municipio");
+						graficar.graficoplanea_ud_prim_mate(result.datos, result.id_municipio, "municipio", $("#slt_periodo_planeaxm").val());
 					}
 			        break;
 			    case "5":
@@ -161,9 +161,9 @@ const Planea = {
 			switch(nivelxzona) {
 			    case "4":
 			        if($("#slt_campod_planeaxz").val() == 1){
-						graficar.graficoplanea_ud_prim_lyc(result.datos, result.id_region, "zona");
+						graficar.graficoplanea_ud_prim_lyc(result.datos, result.id_region, "zona", $("#slt_periodo_planeaxz").val());
 					}else{
-						graficar.graficoplanea_ud_prim_mate(result.datos, result.id_region, "zona");
+						graficar.graficoplanea_ud_prim_mate(result.datos, result.id_region, "zona", $("#slt_periodo_planeaxz").val());
 					}
 			        break;
 			    case "5":
