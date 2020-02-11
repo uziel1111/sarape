@@ -306,40 +306,9 @@ class Escuela_model extends CI_Model
       return  $this->db->get()->row('id_nivel');
     }// get_nivel()
 
-    function get_indicpeso_xidcct($cct,$turno,$id_ciclo){
-      $this->db->select('
-        ROUND(`Bajo-peso`*100,1) as `bajo`,
-        ROUND(`Normal`*100,1) as Normal,
-        ROUND(`Sobrepeso`*100,1) as Sobrepeso,
-        ROUND(`Obesidad`*100,1) as Obesidad,
-        ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1) as predom,
-        IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Bajo-peso`*100,1),1,0) as t_bajo,
-        IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Normal`*100,1),1,0) as t_normal,
-        IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Sobrepeso`*100,1),1,0) as t_sobrepeso,
-        IF(ROUND(GREATEST(`Bajo-peso`,Normal,Sobrepeso,Obesidad)*100,1)=ROUND(`Obesidad`*100,1),1,0) as t_obesidad
-        ');
-      $this->db->from('pesoxcct');
-      $this->db->where('id_cct', $id_cct);
-      $this->db->where('id_ciclo', $id_ciclo);
-      return  $this->db->get()->result_array();
-    }// get_indicpeso_xidcct()
+ 
 
-    function get_idicpeso_inccts($ids){
-      $str_query = "SELECT
-      (ROUND(SUM(ROUND(`Bajo-peso`*100,1))/COUNT(id_cct),1)) AS `bajo`,
-      (ROUND(SUM(ROUND(`Normal`*100,1))/COUNT(id_cct),1)) AS Normal,
-      (ROUND(SUM(ROUND(`Sobrepeso`*100,1))/COUNT(id_cct),1)) AS Sobrepeso,
-      (ROUND(SUM(ROUND(`Obesidad`*100,1))/COUNT(id_cct),1)) AS Obesidad,
-      (ROUND(GREATEST(SUM(`Bajo-peso`)/ COUNT(id_cct),SUM(Normal)/ COUNT(id_cct),SUM(Sobrepeso)/ COUNT(id_cct),SUM(Obesidad)/ COUNT(id_cct)) * 100,1)) AS predom,
-      (IF (GREATEST(SUM(`Bajo-peso`),SUM(Normal),SUM(Sobrepeso),SUM(Obesidad)) = (SUM(`Bajo-peso`)),1,0)) AS t_bajo,
-      (IF (GREATEST(SUM(`Bajo-peso`),SUM(Normal),SUM(Sobrepeso),SUM(Obesidad)) = (SUM(Normal)),1,0)) AS t_normal,
-      (IF (GREATEST(SUM(`Bajo-peso`),SUM(Normal),SUM(Sobrepeso),SUM(Obesidad)) = (SUM(Sobrepeso)),1,0)) AS t_sobrepeso,
-      (IF (GREATEST(SUM(`Bajo-peso`),SUM(Normal),SUM(Sobrepeso),SUM(Obesidad)) = (SUM(Obesidad)),1,0)) AS t_obesidad
-      FROM pesoxcct
-      where id_cct in ({$ids}) and id_ciclo = 4";
-      return $this->db->query($str_query)->result_array();
-      // echo
-    }
+
 
     function get_indicpeso_xmuni($id_municipio, $idnivel, $id_ciclo){
       $this->db->select('
