@@ -181,14 +181,6 @@ public function busquedaxct(){
         $data['arr_ambitos'] = $result_ambitos;
     }
 
-    $data3 = array();
-    $arr_indicadoresxct = $this->Rutamejora_model->get_indicadoresxcct($this->datos[0]['id_cct'],$this->datos[0]['nivel'],'1', '2018');//id_cct,nombre_nivel,bimestre,año
-    $data3['arr_indicadores'] = $arr_indicadoresxct;
-    $string_view_indicadores = $this->load->view('ruta/indicadores', $data3, TRUE);
-    $data['tab_indicadores'] = $string_view_indicadores;
-    $data4 = array();
-    $string_view_instructivo = $this->load->view('ruta/instructivo', $data4, TRUE);
-    $data['tab_instructivo'] = $string_view_instructivo;
     $data['nivel'] = $this->datos[0]['nivel'];
     $data['nombreuser'] = $this->datos[0]['nombre_centro'];
     $data['turno'] = $this->datos[0]['turno_single'];
