@@ -6,7 +6,6 @@ class Info extends CI_Controller {
 		function __construct() {
 			parent::__construct();
 			$this->load->library('Utilerias');
-			$this->load->model('Info_model');
 			$this->load->model('Estadistica_e_indicadores_xcct_model');
 			$this->load->model('Escuela_model');
 			$this->load->model('Planeaxescuela_model');
@@ -101,7 +100,7 @@ class Info extends CI_Controller {
 			$data['planea19_nacional'] = $planea19_nacional;
 			$data['nombre_centro'] = $escuela[0]['nombre_centro'];
 			$data['cve_centro'] = $escuela[0]['cve_centro'];
-			
+
 			$desc_turno = $this->turno_desc($turno);
 
 			$data['turno'] = $turno_e;
