@@ -284,7 +284,7 @@ ORDER BY l1.id_region;";
 }
 
   function grafica_obj_acc_lae($nivel, $region, $municipio)
-  { 
+  {
     if ($nivel != 0) {
       $where_nivel = " AND e.id_nivel = {$nivel}";
     }else{
@@ -572,8 +572,6 @@ function get_zonas($sostenimiento, $nivel){
   function getall_xest_ind(){
     $this->db->select('mu.id_municipio, mu.municipio');
     $this->db->from('municipio mu');
-    $this->db->join('escuela as es', 'mu.id_municipio = es.id_municipio');
-    $this->db->join('estadistica_e_indicadores_xcct as  est', 'es.id_cct = est.id_cct');
     $this->db->group_by('mu.id_municipio');
     return  $this->db->get()->result_array();
   }// getall_xest_ind()
