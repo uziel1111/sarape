@@ -145,28 +145,6 @@ class Estadistica extends CI_Controller {
 			exit;
 		}//estad_indi_generales_getmodali()
 
-		public function estad_indi_generales_getciclo()
-		{
-			$id_municipio = $this->input->post('id_municipio');
-			$id_nivel = $this->input->post('id_nivel');
-			$id_sostenimiento = $this->input->post('id_sostenimiento');
-			$id_modalidad = $this->input->post('id_modalidad');
-
-			$arr_cicloe = array();
-			$result_cicloe = $this->Ciclo_model->getciclo_xidmun_idnivel_xsost_idmod($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad);
-			if(count($result_cicloe)==0){
-				$data['arr_cicloe'] = array(	'0' => 'Error recuperando los niveles' );
-			}else{
-
-				foreach ($result_cicloe as $row){
-					 $arr_cicloe[$row['id_ciclo']] = $row['ciclo'];
-				}
-			}
-			 $arr_cicloe = array('2017-2018' => '2018-2019');
-			Utilerias::enviaDataJson(200, $arr_cicloe, $this);
-			exit;
-		}//estad_indi_generales_getciclo()
-
 		public function estad_indi_generales_getsubsost_zona()
 		{
 			$id_nivel = $this->input->post('id_nivel');
@@ -394,9 +372,9 @@ class Estadistica extends CI_Controller {
 	            ,"alumn_t_4" => $result_alumnos[$i]['alumn_t_4']
 	            ,"alumn_t_5" => $result_alumnos[$i]['alumn_t_5']
 	            ,"alumn_t_6" => $result_alumnos[$i]['alumn_t_6']));
-				
+
 				array_push($array,$result_alumnos[$i]);
-					
+
 			}
 
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
@@ -551,7 +529,7 @@ class Estadistica extends CI_Controller {
 
 		function tabla_pdocentes_z($id_nivel_z,$id_sostenimiento_z,$id_zona_z,$id_ciclo_z,$nivel,$sostenimiento){
 			$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_pdocente_xzona($nivel,$sostenimiento,$id_zona_z,$id_ciclo_z);
-			
+
 			$array=array();
 			for($i=0; $i<count($result_alumnos); $i++){
 				array_push($array,array("id_nivel" => $result_alumnos[$i]['id_nivel']
@@ -585,9 +563,9 @@ class Estadistica extends CI_Controller {
 	            ,"directivo_m_singrup" => $result_alumnos[$i]['directivo_m_singrup']
 	            ,"directivo_h_singrup" => $result_alumnos[$i]['directivo_h_singrup']
 	            ,"directivo_t_singrup" => $result_alumnos[$i]['directivo_t_singrup']));
-				
+
 				array_push($array,$result_alumnos[$i]);
-					
+
 			}
 
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
@@ -776,9 +754,9 @@ class Estadistica extends CI_Controller {
 	            ,"grupos_6" => $result_alumnos[$i]['grupos_6']
 	            ,"grupos_multi" => $result_alumnos[$i]['grupos_multi']
 	            ,"grupos_t" => $result_alumnos[$i]['grupos_t']));
-				
+
 				array_push($array,$result_alumnos[$i]);
-					
+
 			}
 
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
