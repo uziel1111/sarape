@@ -103,12 +103,6 @@ class Cuda_model extends CI_Model
 		
 	}
 
-	/*public function EncuestaNivel($idaplicar)
-	{
-		$str_query = "SELECT * from respuesta where idaplicar = {$idaplicar};";
-		return $this->ci_db->query($str_query)->result_array();
-	}*/
-
 	public function getFormatoTema($tema, $nivel)
 	{
 		$str_query = "SELECT * from cuda
