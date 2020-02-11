@@ -867,16 +867,16 @@ class Estadistica extends CI_Controller {
 							</tr>
 				</thead>
 				<tbody>';
-
+				// echo "<pre>"; print_r($result_planea); die();
 			foreach ($result_planea as $row){
 
 				$str_html_alumn.='
 				<tr>
 				<td>'.$row['nivel'].'</td>
 				<td style="text-align: center;">'.($row['lyc_i']).'%</td><td style="text-align: center;">'.($row['lyc_ii']).'%</td><td  style="text-align: center;">'.($row['lyc_iii']).'%</td><td style="text-align: center;">'.($row['lyc_iv']).'%</td>
-				<td style="text-align: center;">'.($row['lyc_ii']+$row['lyc_iii']+$row['lyc_iv']).'%</td>
+				<td style="text-align: center;">'.(intval($row['lyc_ii'])+intval($row['lyc_iii'])+intval($row['lyc_iv'])).'%</td>
 				<td style="text-align: center;">'.($row['mat_i']).'%</td><td style="text-align: center;">'.($row['mat_ii']).'%</td><td style="text-align: center;">'.($row['mat_iii']).'%</td><td style="text-align: center;">'.($row['mat_iv']).'%</td>
-				<td style="text-align: center;">'.($row['mat_ii']+$row['mat_iii']+$row['mat_iv']).'%</td>
+				<td style="text-align: center;">'.(intval($row['mat_ii'])+intval($row['mat_iii'])+intval($row['mat_iv'])).'%</td>
 				</tr>';
 			}
 			$str_html_alumn.='</tbody>
