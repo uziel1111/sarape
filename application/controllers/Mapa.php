@@ -21,7 +21,7 @@ class Mapa extends CI_Controller {
 			$arr_sostenimientos = array();
 			$arr_federales = array();
 
-			
+
 			$municipios = $this->Municipio_model->all();
 			$arr_municipios['0'] = 'TODOS';
 			foreach ($municipios as $municipio){
@@ -60,7 +60,7 @@ class Mapa extends CI_Controller {
 			$str_select = '<option value=-1>TODOS</option>';
 			foreach ($niveles as $key => $value) {
 				if ($value['nivel'] == 'CAM') {
-				$str_select .= "<option value={$value['id_nivel']}> ESPECIAL </option>";	
+				$str_select .= "<option value={$value['id_nivel']}> ESPECIAL </option>";
 				}else{
 				$str_select .= "<option value={$value['id_nivel']}> {$value['nivel']} </option>";
 				}
@@ -73,8 +73,7 @@ class Mapa extends CI_Controller {
 
 		public function get_sostenimientos(){
 			$idnivel = $this->input->post('idnivel');
-
-			$sostenimientos = $this->Sostenimiento_model->get_xidnivel($idnivel);
+			$sostenimientos = $this->Nivel_model->get_xidnivel_vista_cct($idnivel);
 			$str_select = '<option value=-1>TODOS</option>';
 			foreach ($sostenimientos as $key => $value) {
 				$str_select .= "<option value={$value['id_sostenimiento']}> {$value['sostenimiento']} </option>";
@@ -98,7 +97,7 @@ class Mapa extends CI_Controller {
 				$escuelas = $this->Escuela_model->get_xcvecentro("05".$cct);
 			}else{
 				$escuelas = $this->Escuela_model->get_xparams($idmunicipio,$idnivel,$id_sostenimiento,$nombre_centro);
-				
+
 			}
 
 			foreach ($escuelas as $marcador) {
