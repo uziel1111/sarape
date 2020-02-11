@@ -15,9 +15,6 @@ class Estadistica_pemc extends CI_Controller
         $this->load->model('Rutamejora_model');
         $this->load->model('Prioridad_model');
         $this->load->model('Problematica_model');
-        $this->load->model('Evidencia_model');
-        $this->load->model('Prog_apoyo_xcct_model');
-        $this->load->model('Apoyo_req_model');
         $this->load->model('Ambito_model');
         $this->load->model('Nivel_model');
         $this->load->model('Sostenimiento_model');
@@ -151,34 +148,6 @@ public function busquedaxct(){
         $data['arr_problematicas'] = array( '-1' => 'Error recuperando los problematicas' );
     }else{
         $data['arr_problematicas'] = $result_problematicas;
-    }
-
-    $result_evidencias = $this->Evidencia_model->get_evidencias();
-    if(count($result_evidencias)==0){
-        $data['arr_evidencias'] = array(    '-1' => 'Error recuperando los evidencias' );
-    }else{
-        $data['arr_evidencias'] = $result_evidencias;
-    }
-
-    $result_progsapoyo = $this->Prog_apoyo_xcct_model->get_prog_apoyo_xcctxciclo($this->datos[0]['id_cct'],4);//id_cct, id_ciclo
-    if(count($result_progsapoyo)==0){
-        $data['arr_progsapoyo'] = '';
-    }else{
-        $data['arr_progsapoyo'] = $result_progsapoyo;
-    }
-    $result_apoyosreq = $this->Apoyo_req_model->get_apoyo_req();
-
-    if(count($result_apoyosreq)==0){
-        $data['arr_apoyosreq'] = array( '-1' => 'Error recuperando los apoyosreq' );
-    }else{
-        $data['arr_apoyosreq'] = $result_apoyosreq;
-    }
-
-    $result_ambitos = $this->Ambito_model->get_ambitos();
-    if(count($result_ambitos)==0){
-        $data['arr_ambitos'] = array(   '-1' => 'Error recuperando los ambitos' );
-    }else{
-        $data['arr_ambitos'] = $result_ambitos;
     }
 
     $data['nivel'] = $this->datos[0]['nivel'];

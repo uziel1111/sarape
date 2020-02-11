@@ -62,7 +62,6 @@ class Rutamejora_model extends CI_Model
 			'f_mod' => date("Y-m-d"),
 			'accion_f_inicio' => $finicio,
 			'accion_f_termino' => $ffin,
-			'indcrs_medicion' => $medicion,
       'id_objetivos' => $id_objetivo,
       'main_resp' => $responsable,
       'otro_resp_main' => $otro_resp
@@ -481,7 +480,6 @@ function update_accion($id_accion, $id_tprioritario, $accion, $materiales, $ids_
 			'f_mod' => date("Y-m-d"),
 			'accion_f_inicio' => $finicio,
 			'accion_f_termino' => $ffin,
-			'indcrs_medicion' => $medicion,
       'id_objetivos' => $id_objetivo,
       'main_resp' => $main_resp,
       'resp_apoyo' => $otro_resp
@@ -662,13 +660,6 @@ function actualizaObjetivo($id_objetivo, $objetivo){
 
   $this->db->where('id_objetivo', $id_objetivo);
   $this->db->update('rm_objetivo', $datos);
-}
-
-
-
-function getSubprioridad($idprioridad){
-  $str_query ="select id_subprioridad, subprioridad from rm_c_subprioridad where id_prioridad = {$idprioridad}";
-  return $this->db->query($str_query)->result_array();
 }
 
 function getIndicadorEspecial($id_prioridad, $id_nivel, $id_subprioridad){

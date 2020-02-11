@@ -35,7 +35,7 @@ class Cuda_model extends CI_Model
 	public function getDocumentoDescarga($idaplicar)
 	{
 		$str_query = "SELECT url_comple from cuda
-		where idaplicar = {$idaplicar} and url_comple is not null; ";
+		where idaplicar = {$idaplicar} and url_comple is not null limit 1; ";
 
 		return $this->db->query($str_query)->result_array();
 	}
@@ -58,7 +58,7 @@ class Cuda_model extends CI_Model
 	public function getEstadisticaGeneral($idsubsecretaria)
 	{
 		$str_query = "SELECT count(idaplicar) as total from cuda
-		where u.idsubsecretaria = {$idsubsecretaria} and estatus = 1 and idpregunta = 1;";
+		where idsubsecretaria = {$idsubsecretaria} and estatus = 1 and idpregunta = 1;";
 
 		return $this->db->query($str_query)->result_array();
 	}
@@ -106,7 +106,7 @@ class Cuda_model extends CI_Model
 	public function getFormatoTema($tema, $nivel)
 	{
 		$str_query = "SELECT * from cuda
-		where tema = {$tema} and complemento = '{$nivel}'  and estatus = 1 ";
+		where tema = {$tema} and complemento = '{$nivel}'  and estatus = 1";
 		
 		return $this->db->query($str_query)->result_array();
 
@@ -115,7 +115,7 @@ class Cuda_model extends CI_Model
 	public function getFormatoTemaMes($idaplicar, $mes)
 	{
 		$str_query= "SELECT idaplicar from cuda 
-		where idaplicar = {$idaplicar} and complemento = '{$mes}' ;";
+		where idaplicar = {$idaplicar} and complemento = '{$mes}' and estatus = 1 ;";
 
 		return $this->db->query($str_query)->result_array();
 	}

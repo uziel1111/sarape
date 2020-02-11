@@ -40,7 +40,6 @@ class Cuda extends CI_Controller
 		
 		$array_detalles = $this->Cuda_model->getDetalles($idaplicar);
 		$data['array_detalles'] = $array_detalles;
-
 		$str_view = $this->load->view("cuda/modal_detalles", $data, TRUE);
 		$response = array('str_view' => $str_view);
 		Utilerias::enviaDataJson(200, $response, $this);
@@ -249,7 +248,6 @@ class Cuda extends CI_Controller
 		}
 
 		$data['formato'] = $encuestas;
-
 		$str_view = $this->load->view('cuda/tabla_encuestas_tema', $data, TRUE);
 		$response = array('str_view' => $str_view);
 		Utilerias::enviaDataJson(200,$response,$this);

@@ -228,34 +228,6 @@ Prioridad.prototype.llenaMetrica = function(){
 	});
 }
 
-
-Prioridad.prototype.getsubEspecial = function(){
-	$.ajax({
-		url: base_url+'Rutademejora/getsubEspecial',
-		type: 'POST',
-		dataType: 'JSON',
-		data: {idprioridad: $("#opt_prioridad").val()},
-		beforeSend: function(xhr) {
-			Notification.loading("");
-		},
-	})
-	.done(function(result) {
-		swal.close();
-		$("#opt_prioridad_especial").empty();
-		$("#opt_prioridad_especial").append(result.stroption);
-		$('#normalidad').attr('hidden', false);
-	})
-	.fail(function(e) {
-		swal.close();
-		console.error("Error in getsubEspecial()");
-	})
-	.always(function() {
-		swal.close();
-	});
-};
-
-
-
 //Aqui disparamos todas las funciones del modal
 function show(select_id){
 	
@@ -266,7 +238,6 @@ function show(select_id){
 		tipou_pemc=$('#tipou_pemc').val();
 	} 
 	if (opt == 1) {
-		obj_prioridad.getsubEspecial();
 		obj_prioridad.llenaIndicador();
 		$('#opt_prioridad').attr('disabled', true)
 

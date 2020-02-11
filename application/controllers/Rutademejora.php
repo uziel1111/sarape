@@ -10,9 +10,6 @@ class Rutademejora extends CI_Controller {
 		$this->load->library('Utilerias');
 		$this->load->model('Prioridad_model');
 		$this->load->model('Problematica_model');
-		$this->load->model('Evidencia_model');
-		$this->load->model('Prog_apoyo_xcct_model');
-		$this->load->model('Apoyo_req_model');
 		$this->load->model('Ambito_model');
 		$this->load->model('Rutamejora_model');
 		$this->cct = array();
@@ -159,12 +156,6 @@ class Rutademejora extends CI_Controller {
 				$data['arr_problematicas'] = array(	'-1' => 'Error recuperando los problematicas' );
 			}else{
 				$data['arr_problematicas'] = $result_problematicas;
-			}
-			$result_evidencias = $this->Evidencia_model->get_evidencias();
-			if(count($result_evidencias)==0){
-				$data['arr_evidencias'] = array(	'-1' => 'Error recuperando los evidencias' );
-			}else{
-				$data['arr_evidencias'] = $result_evidencias;
 			}
 				
 			$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
@@ -335,7 +326,6 @@ class Rutademejora extends CI_Controller {
 					<tr class=info style='vertical-align:middle'>
 					<th id='id_tprioritario' hidden><center>id_tprioritario</center></th>
 					<th id='id_prioridad' hidden><center>id_prioridad</center></th>
-					<th id='id_subprioridad' hidden><center>id_subprioridad</center></th>
 					<th id='orden' style='width:7%; vertical-align:middle;'><center>#</center></th>
 					<th id='tema' style='width:30%; vertical-align:middle;'><center>Plan de Mejora Continua</center></th>
 					<th id='objetivos' style='width:10%; vertical-align:middle;'><center>Objetivos y metas</center></th>
@@ -348,7 +338,6 @@ class Rutademejora extends CI_Controller {
 						$tabla .= "<tr>
 						<td id='id_tprioritario' hidden><center>{$tp['id_tprioritario']}</center></td>
 						<td id='id_prioridad' hidden>{$tp['id_prioridad']}</td>
-						<td id='id_prioridad' hidden>{$tp['id_subprioridad']}</td>
 						<td id='orden' style='vertical-align:middle;'>LAE-{$tp['orden']}</td>
 						<td id='prioridad' style='vertical-align:middle;'>{$tp['prioridad']}</td>
 						<td id='num_objetivos' style='vertical-align:middle;' >{$tp['num_objetivos']}</td>
@@ -1125,8 +1114,7 @@ class Rutademejora extends CI_Controller {
 						$data['ambito'] = $ambito;
 						$data['evidencias'] = $get_datos[0]['otro_evidencia'];
 						$data['tacciones'] = $tabla;
-						$data['arr_ambitos'] = $this->Ambito_model->get_ambitos();
-
+						
 						$dom = $this->load->view("ruta/supervisor/visor_actividades",$data,TRUE);
 						$response = array('vista' => $dom);
 						Utilerias::enviaDataJson(200, $response, $this);
@@ -1243,12 +1231,6 @@ class Rutademejora extends CI_Controller {
 						$data['arr_problematicas'] = array(	'-1' => 'Error recuperando los problematicas' );
 					}else{
 						$data['arr_problematicas'] = $result_problematicas;
-					}
-					$result_evidencias = $this->Evidencia_model->get_evidencias();
-					if(count($result_evidencias)==0){
-						$data['arr_evidencias'] = array(	'-1' => 'Error recuperando los evidencias' );
-					}else{
-						$data['arr_evidencias'] = $result_evidencias;
 					}
 		$data['nivel'] = $this->cct[0]['nivel'];//$nivel;
 		$data['nombreuser'] = $this->cct[0]['nombre_centro'];
@@ -1563,21 +1545,6 @@ class Rutademejora extends CI_Controller {
 		exit;
 	}
 
-	public function getsubEspecial(){
-		$id_prioridad = $this->input->post('idprioridad');
-		$datos = $this->Rutamejora_model->getSubprioridad($id_prioridad);
-		$option = "<option value='0'>SELECCIONE</option>";
-		foreach ($datos as $dato) {
-			$option .="<option value='{$dato['id_subprioridad']}'>{$dato['subprioridad']}</option>";
-		}
-
-		$response = array('stroption' => $option);
-
-		Utilerias::enviaDataJson(200, $response, $this);
-		exit;
-
-	}
-
 	public function llenaIndicador(){
 		$this->cct = Utilerias::get_cct_sesion($this);
 		$id_nivel = $this->cct[0]['nivel'];
@@ -1774,9 +1741,6 @@ class Rutademejora extends CI_Controller {
 			$data['nivel_escolar'] = $id_nivel;
 			$indicadores = $this->Rutamejora_model->getIndicadorEspecial($data['prioridad'], $id_nivel, $data['subprioridad']);
 			$data['indicadores'] = $indicadores;
-
-			$datos = $this->Rutamejora_model->getSubprioridad($datos[0]['id_prioridad']);
-			$data['subprioridades'] = $datos;
 
 			$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
 

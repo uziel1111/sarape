@@ -1,7 +1,7 @@
 <?php $i = 0; foreach ($formato as $key => $encuestas) { $i++; ?>
         <tr>
             <th scope='row' width="15px"><?=$i?></th>
-            <td width="390px"><?=strtoupper($encuestas[0]['respuesta'])?></td>
+            <td width="390px"><?=strtoupper($encuestas[1]['respuesta'])?></td>
             <td width="145px"><?= $encuestas[0]['sostenimiento']?></td>
             <td width="130px">
                 <span data-toggle='modal' data-target='#verDocumento'>
