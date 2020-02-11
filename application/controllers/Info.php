@@ -41,7 +41,7 @@ class Info extends CI_Controller {
 
 		}
 
-		$turno_e=$this->getTurno($turno);
+		$turno_e=$this->getTurno($this->input->post("turno_single"));
 		if(isset($cct) && $cct != ""){
 			$data = array();
 			$array = array();
@@ -101,7 +101,7 @@ class Info extends CI_Controller {
 			$data['nombre_centro'] = $escuela[0]['nombre_centro'];
 			$data['cve_centro'] = $escuela[0]['cve_centro'];
 
-			$desc_turno = $this->turno_desc($turno);
+			$desc_turno = $this->turno_desc($this->input->post("turno_single"));
 
 			$data['turno'] = $turno_e;
 			$data['desc_turno'] = $desc_turno;
@@ -194,7 +194,7 @@ class Info extends CI_Controller {
 		$periodo = $this->input->post("periodo");
 		$nombre = $this->input->post("nombre");
 		$idcampodis = $this->input->post("idcampodis");
-
+		// echo $turno; die();
 
 		if($turno=='MATUTINO' || $turno==100 || $turno==1){
 	        $turno=100;
@@ -477,6 +477,7 @@ class Info extends CI_Controller {
 	}
 
 	public function getTurno($turno){
+		// echo $turno; die();
 		$id_turno_single=0;
 		if($turno=='MATUTINO' || $turno==100 || $turno==1){
 	        $id_turno_single=1;
@@ -496,6 +497,7 @@ class Info extends CI_Controller {
 	        $id_turno_single=8;
 	    }
 
+	    // echo $id_turno_single; die();
 	    return $id_turno_single;
 	}
 
@@ -553,7 +555,7 @@ class Info extends CI_Controller {
 		}
 
 
-
+		
 		$response = array(
 			'cct'=>$cct,
 			'turno'=>$turno_e,
