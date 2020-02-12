@@ -219,7 +219,7 @@ class Busqueda_xlista extends CI_Controller {
 					$cct = $value['cct'];
 					$turno_single = $value['turno_single'];
 					$turno = $value['turno_n'];
-					$str_select .= "<option value={$value['cct']}{$value['turno']}{$value['turno_single']}>{$value['cct']}-{$value['turno_n']} - {$value['turno_single']}</option>";
+					$str_select .= "<option value={$value['cct']}{$value['turno']}{$value['turno_n']}{$value['turno_single']}>{$value['cct']}-{$value['turno_n']} - {$value['turno_single']}</option>";
 				}
 			}
 			$response = array(

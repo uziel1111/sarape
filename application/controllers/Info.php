@@ -20,28 +20,45 @@ class Info extends CI_Controller {
 		}
 
 	public function index(){
-		if (	isset($_POST['id_cct'])) {
-		$turno = $this->input->post("turno");
-		$cct= $this->input->post("id_cct");
+
+		if (isset($_POST['id_cct'])) {
+			$turno = $this->input->post("turno");
+			$cct= $this->input->post("id_cct");
 		}
 
-		if (	isset($_GET['id_cct'])) {
-		$turno = $this->input->get("turno");
-		$cct= $this->input->get("id_cct");
+		if (isset($_GET['id_cct'])) {
+			$turno = $this->input->get("turno");
+			$cct= $this->input->get("id_cct");
 		}
 
+		if(isset($_POST['cct'])){
 
+			$cct= $this->input->post("cct");
+		}
+		
 		if(strlen($cct)>10){
+			// echo $cct; die();
 			$cadena=substr ($cct ,0 , 10);
 			$cadena2=substr ($cct ,10 ,3);
+			$cadena3=substr ($cct ,13 ,3);
 			$cct=$cadena;
 			$turno=$cadena2;
+			
+			// echo $turno; die();
 		}else{
 			$cct=$cct;
 
 		}
 
-		$turno_e=$this->getTurno($this->input->post("turno_single"));
+		if(isset($_POST['turno_single'])){
+			$turno_e=$this->getTurno($this->input->post("turno_single"));
+		}else if(isset($cadena3)){
+			$turno_e=$this->getTurno($cadena3);
+		}else{
+			$turno_e=$this->getTurno($turno);
+		}
+		// echo $cadena3; die();
+		
 		if(isset($cct) && $cct != ""){
 			$data = array();
 			$array = array();
@@ -101,7 +118,14 @@ class Info extends CI_Controller {
 			$data['nombre_centro'] = $escuela[0]['nombre_centro'];
 			$data['cve_centro'] = $escuela[0]['cve_centro'];
 
-			$desc_turno = $this->turno_desc($this->input->post("turno_single"));
+			if(isset($_POST['turno_single'])){
+				$desc_turno = $this->turno_desc($this->input->post("turno_single"));
+			}else if(isset($cadena3)){
+				$desc_turno = $this->turno_desc($cadena3);
+			}else{
+				$desc_turno = $this->turno_desc($turno);
+			}
+			
 
 			$data['turno'] = $turno_e;
 			$data['desc_turno'] = $desc_turno;
