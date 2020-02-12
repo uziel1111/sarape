@@ -15,76 +15,100 @@ class Estadistica_pemc_model extends CI_Model
       return  $this->db->get()->result_array();
     }// get_datos_sesion()
 
+    //revisar
     function getdatoscct_pemc($cct, $turno){
-      $this->db->select('e.id_cct, e.cve_centro, e.nombre_centro, e.id_turno_single, ts.turno_single, n.nivel, e.nombre_director,"upemc" as tipo_usuario_pemc');
-      $this->db->from('escuela e');
-      $this->db->join('turno_single AS ts ',' e.id_turno_single = ts.id_turno_single');
-      $this->db->join('nivel AS n ', 'n.id_nivel = e.id_nivel');
-      $this->db->where("e.cve_centro = '{$cct}'");
-      $this->db->where("ts.id_turno_single = {$turno}");
+      $this->db->select('e.cct, e.nombre_centro, e.turno, e.desc_turno, e.desc_nivel_educativo, e.nombre_director,"upemc" as tipo_usuario_pemc');
+      $this->db->from('centros_educativos.vista_cct e');
+      $this->db->where("e.cct = '{$cct}'");
+      $this->db->where("e.turno like %{$turno}%");
 
       return  $this->db->get()->result_array();
     }
 
     /*BK201 S*/
-    function get_cantidad_datos($nivel, $municipio){
-        $query = "select count(obj.num_objetivos) total_obj, obj.municipio, obj.num_objetivos  from (SELECT COUNT(DISTINCT o.id_objetivo) as num_objetivos, m.municipio
-        FROM rm_tema_prioritarioxcct tp
-        INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
-        LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
-        LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
-        INNER JOIN escuela e on e.id_cct = tp.id_cct
-        INNER JOIN municipio m on e.id_municipio = m.id_municipio
-        where  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 and e.id_municipio = {$municipio}";
-        if ($nivel != 0) {
-        $query .=" and e.id_nivel = {$nivel}";
-        }
-        $query .= " GROUP BY tp.id_tprioritario  ORDER by tp.orden) as obj group by obj.num_objetivos;";
-
-
-      return $this->db->query($query)->result_array();
-
-
-
- }
-
+    
  function municipios()
  {
-  $this->db->select('id_municipio, municipio');
+  $this->db->select('id_vista_muni as id_municipio, municipio');
   $this->db->from('municipio');
 
   return  $this->db->get()->result_array();
 }
-
+//listo
  function get_total($nivel, $municipio){
-    $query = "select sum(total.cct) as total from  (select count(obj.num_objetivos), obj.municipio, obj.num_objetivos, count(obj.id_cct) as cct ,obj.id_cct  from (SELECT COUNT(DISTINCT o.id_objetivo) as num_objetivos, m.municipio, e.id_cct
+
+        switch ($nivel) {
+            case '1':
+                $nivel_desc = 'Especial'
+                break;
+            case '3':
+                $nivel_desc = 'Preescolar'
+                break;
+            case '4':
+                $nivel_desc = 'Primaria'
+                break;
+            case '5':
+                $nivel_desc = 'Secundaria'
+                break;
+            default:
+            $nivel_desc = 0;
+                break;
+        }
+
+    $query = "SELECT sum(total.cct) as total from  (select count(obj.num_objetivos), obj.municipio, obj.num_objetivos, count(obj.cct) as cct ,obj.cct as id_cct  
+        from (SELECT COUNT(DISTINCT o.id_objetivo) as num_objetivos, e.nombre_de_municipio as municipio, e.cct
         FROM rm_tema_prioritarioxcct tp
         INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
         LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
         LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
-        INNER JOIN escuela e on e.id_cct = tp.id_cct
-        INNER JOIN municipio m on e.id_municipio = m.id_municipio
-        where  (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 and e.id_municipio = {$municipio}";
-        if ($nivel != 0) {
-          $query .=" and e.id_nivel = {$nivel}";
+        INNER JOIN vista_cct e ON e.cct = tp.cct #AND e.turno like '%tp.turno%'
+        where  (e.status = 1 OR e.status = 4)
+            AND e.desc_nivel_educativo <> 'INICIAL'
+            AND e.cct NOT LIKE '05FUA%'
+            AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+            AND e.municipio = {$municipio}";
+        if ($nivel_desc != 0) {
+          $query .=" and e.desc_nivel_educativo = '{$nivel_desc}'";
         }
-        $query .= " GROUP BY tp.id_cct  ORDER by tp.orden) as obj group by obj.num_objetivos, obj.id_cct) as total;";
+        $query .= " GROUP BY tp.cct
+        ORDER BY tp.orden) AS obj
+        GROUP BY obj.num_objetivos , obj.cct) AS total;";
 
         return $this->db->query($query)->result_array();
 }
 
+//LISTO
   function get_escuelasMun($nivel, $id_municipio)
  {
-  $query = 'SELECT count(*) as total from escuela WHERE (id_estatus=1 OR id_estatus=4) AND id_nivel<6';
+    switch ($nivel) {
+        case '1':
+            $nivel_desc = 'Especial'
+            break;
+        case '3':
+            $nivel_desc = 'Preescolar'
+            break;
+        case '4':
+            $nivel_desc = 'Primaria'
+            break;
+        case '5':
+            $nivel_desc = 'Secundaria'
+            break;
+        default:
+        $nivel_desc = 0;
+            break;
+    }
+     $id_municipio = ($id_municipio.length == 1) : '00'.$id_municipio ? '0'.$id_municipio;
+  $query = 'SELECT count(*) as total from vista_cct WHERE (status=1 OR status=4) AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')';
   if ($id_municipio != 0) {
-   $query.= ' and id_municipio = '.$id_municipio. '';
+   $query.= ' AND municipio = '.$id_municipio. '';
   }
-  if ($nivel != 0) {
-   $query.= ' and nivel = '.$nivel. '';
+  if ($nivel_desc != 0) {
+   $query.= " AND desc_nivel_educativo = '{$nivel_desc}'";
   }
   return $this->db->query($query)->result_array();
   }
 
+//LISTO
  function get_region(){
    $this->db->select('m.municipio, m.id_municipio, r.region, r.id_region');
   $this->db->from('municipio as m');
@@ -94,8 +118,9 @@ class Estadistica_pemc_model extends CI_Model
   return  $this->db->get()->result_array();
  }
 
+ //LISTO
  function get_municipios($region){
-   $this->db->select('m.municipio, m.id_municipio, r.region, r.id_region');
+   $this->db->select('m.municipio, m.id_vista_muni AS id_municipio, r.region, r.id_region');
   $this->db->from('municipio as m');
   $this->db->join('region as r', 'r.id_region = m.id_region');
 
@@ -107,7 +132,7 @@ class Estadistica_pemc_model extends CI_Model
   return  $this->db->get()->result_array();
  }
 
-
+//Revisando
  function get_obj_acc_lae($nivel,$region,$municipio) {
   if ($nivel != 0) {
       $where_nivel= " and e.id_nivel={$nivel}";
