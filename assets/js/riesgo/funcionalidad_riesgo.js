@@ -40,8 +40,7 @@ $("#btn_buscar_ries_muni").click(function(e) {
   let t5 = 0;
   let t6 = 0;
 
-  if((id_ciclo=='2018-2019' && id_bimestre==3 && id_nivel==4) || (id_ciclo=='2019-2020' && (id_bimestre==2 || id_bimestre==3))){
-    // alert("Periodo no disponible");
+  if( (id_ciclo=='2019-2020' && (id_bimestre==2 || id_bimestre==3))){
     swal(
             '',
             "Periodo no disponible",

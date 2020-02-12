@@ -360,7 +360,7 @@ Info_esc.prototype.get_riesgo =function(){
   let nivel = $("#in_nivel").val();
   let ciclo=$("#slt_ciclo_ries").val();
   let id_bim = $("#slt_bimestre_ries").val();
- if((ciclo=='2018-2019' && id_bim==3 && nivel==4) || (ciclo=='2019-2020' && (id_bim==2 || id_bim==3))){
+ if( (ciclo=='2019-2020' && (id_bim==2 || id_bim==3))){
     swal(
             '',
             "Periodo no disponible",
@@ -853,7 +853,7 @@ Info_esc.prototype.get_riesgo2 =function(){
   let turno = $("#in_turno").val();
   let nivel = $("#in_nivel").val();
 
-if((ciclo=='2018-2019' && id_bim==3 && nivel==4) || (ciclo=='2019-2020' && (id_bim==2 || id_bim==3))){
+if( (ciclo=='2019-2020' && (id_bim==2 || id_bim==3))){
     swal(
             '',
             "Periodo no disponible",
