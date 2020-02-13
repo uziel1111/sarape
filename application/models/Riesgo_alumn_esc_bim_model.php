@@ -363,19 +363,19 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
 
 
     function get_numero_bajas($cct,$turno, $id_nivel, $bimestre){
-      $nivel = ($id_nivel == 4)? "primaria":"secundaria";
-      $str_query = "SELECT COUNT(cct) total FROM alumnos_bajas_{$nivel} WHERE cct = '{$cct}' AND id_turno_single={$turno} AND bimestre = {$bimestre}" ;
+      $nivel = ($id_nivel == 4)? "prima":"secu";
+      $str_query = "SELECT COUNT(cct) total FROM sarape_bajas_y_motivos_{$nivel} WHERE cct = '{$cct}' AND id_turno_single={$turno} AND periodo_evaluacion = {$bimestre}" ;
       $query = $this->db->query($str_query);
       return $query->result_array();
     }
 
     function get_riesgo_totalb_xidmuni($id_municipio,$id_nivel, $id_bim){
-      $nivel = ($id_nivel == 4)? "primaria":"secundaria";
+      $nivel = ($id_nivel == 4)? "prima":"secu";
       $where = "";
       if($id_municipio != 0 ){
         $where = " AND e.id_municipio = {$id_municipio}";
       }
-      $str_query = "SELECT COUNT(ab.cct) AS total FROM alumnos_bajas_{$nivel} ab
+      $str_query = "SELECT COUNT(ab.cct) AS total FROM sarape_bajas_y_motivos_{$nivel} ab
                     INNER JOIN (SELECT  CASE
                               WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
@@ -390,7 +390,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
                   FROM centros_educativos.vista_cct) e ON ab.cct = e.cct
-                    WHERE e.id_nivel = {$id_nivel} AND ab.bimestre = {$id_bim} {$where}";
+                    WHERE e.id_nivel = {$id_nivel} AND ab.periodo_evaluacion = {$id_bim} {$where}";
 
       $query = $this->db->query($str_query);
 

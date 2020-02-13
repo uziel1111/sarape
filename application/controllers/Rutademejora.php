@@ -1549,7 +1549,6 @@ class Rutademejora extends CI_Controller {
 		$this->cct = Utilerias::get_cct_sesion($this);
 		$id_nivel = $this->cct[0]['nivel'];
 		$id_prioridad = $this->input->post('id_prioridad');
-		$id_subprioridad = $this->input->post('id_subprioridad');
 
 		switch ($id_nivel) {
 			case 'CAM':
@@ -1729,7 +1728,6 @@ class Rutademejora extends CI_Controller {
 			$data['cat_select'] = $cat_prom_amb;
 			$data['prioridad'] = $datos[0]['id_prioridad'];
 			$data['ambito'] = $datos[0]['ambito'];
-			$data['subprioridad'] = $datos[0]['id_subprioridad'];
 			$data['problematica'] = $datos[0]['otro_problematica'];
 			$data['evidencia'] = $datos[0]['otro_evidencia'];
 			$data['director'] = $datos[0]['obs_direc'];
@@ -1739,8 +1737,7 @@ class Rutademejora extends CI_Controller {
 			$data['prioridades'] = $result_prioridades;
 			$data['idtemaprioritario'] = $id_tprioritario;
 			$data['nivel_escolar'] = $id_nivel;
-			$indicadores = $this->Rutamejora_model->getIndicadorEspecial($data['prioridad'], $id_nivel, $data['subprioridad']);
-			$data['indicadores'] = $indicadores;
+			//$data['indicadores'] = $indicadores;
 
 			$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);
 
