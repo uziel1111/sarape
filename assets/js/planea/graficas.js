@@ -1463,9 +1463,9 @@ function Graficasm(){
                  beforeSend: function(){
                      message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
                      showMessage(message)
-                 },
+                 })
                  //una vez finalizado correctamente
-                 success: function(data){
+                 .done(function(data){
                  	swal(
          		      'Listo!',
          		      'Su archivo se subio correctamente',
@@ -1479,13 +1479,15 @@ function Graficasm(){
                      $("#tipodematerial").val('0');
                	    $(".formulario")[0].reset();
                      obj_graficas.getn_prop();
-                 },
+                 })
                  //si ha ocurrido un error
-                 error: function(){
+                 .fail(function(){
                      message = $("<span class='error'>Ha ocurrido un error.</span>");
                      showMessage(message);
-                 }
-             });
+                 })
+                 .always(function() {
+                    swal.close();
+                });
          }
 
          Graficasm.prototype.ocultamesaje_link = function(){

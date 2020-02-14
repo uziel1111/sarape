@@ -678,7 +678,8 @@ function getMetricas($id_indicador){
 function getObjetivos($cct, $turno, $id_tprioritario, $idprioridad){
   $str_query = "SELECT * FROM rm_tema_prioritarioxcct tprio
   LEFT JOIN rm_objetivo obj ON obj.id_tprioritario = tprio.id_tprioritario
-  WHERE tprio.cct = '{$cct}' AND tprio.turno = {$turno} AND tprio.id_tprioritario = {$id_tprioritario} AND tprio.id_prioridad = {$idprioridad} ORDER BY obj.id_objetivo DESC";
+  INNER JOIN ciclo c on obj.id_ciclo = c.id_ciclo
+  WHERE tprio.cct = '{$cct}' AND tprio.turno = {$turno} AND tprio.id_tprioritario = {$id_tprioritario} AND tprio.id_prioridad = {$idprioridad} AND c.estatus = 1 ORDER BY obj.id_objetivo DESC";
 
   return $this->db->query($str_query)->result_array();
 }
@@ -686,8 +687,8 @@ function getObjetivos($cct, $turno, $id_tprioritario, $idprioridad){
 function getObjetivosSuper($id_cct, $turno ,$id_tprioritario){
   $str_query = "SELECT * FROM rm_tema_prioritarioxcct tprio
   LEFT JOIN rm_objetivo obj ON obj.id_tprioritario = tprio.id_tprioritario
-
-  WHERE tprio.cct = '{$id_cct}' AND  tprio.turno = {$turno} AND tprio.id_tprioritario = {$id_tprioritario} ORDER BY obj.id_objetivo DESC";
+  INNER JOIN ciclo c on obj.id_ciclo = c.id_ciclo
+  WHERE tprio.cct = '{$id_cct}' AND  tprio.turno = {$turno} AND tprio.id_tprioritario = {$id_tprioritario} AND c.estatus = 1 ORDER BY obj.id_objetivo DESC";
 
   return $this->db->query($str_query)->result_array();
 }
@@ -729,7 +730,7 @@ function edith_tp($id_tprioritario){
 
 
 function getObjetivo($id_objetivo){
-  $str_query = "SELECT objetivo FROM rm_objetivo WHERE id_objetivo = {$id_objetivo}";
+  $str_query = "SELECT objetivo FROM rm_objetivo o INNER JOIN ciclo c on c.id_ciclo = o.id_ciclo WHERE o.d_objetivo = {$id_objetivo} AND c.estatus = 1";
 
 
   return $this->db->query($str_query)->result_array();
@@ -739,7 +740,7 @@ function borrarObjetivo($id_objetivo){
 
       //Este query hay que arreglarlo, debe recibir el id_tpriotario
 
-  $str_query = "SELECT id_accion FROM rm_accionxtproritario WHERE id_objetivos = {$id_objetivo}";
+  $str_query = "SELECT id_accion FROM rm_accionxtproritario a INNER JOIN ciclo c on c.id_ciclo = a.id_ciclo WHERE a.id_objetivos = {$id_objetivo} AND c.estatus = 1";
   $idsacciones = $this->db->query($str_query)->result_array();
 
   $cadena = "";
@@ -799,8 +800,10 @@ function getPrioridades($cct, $turno){
   INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
   LEFT JOIN rm_objetivo o ON tp.id_tprioritario=o.id_tprioritario
   LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
+  INNER JOIN ciclo c on c.id_ciclo = o.id_ciclo
   WHERE tp.cct = '{$cct}'
   AND tp.turno = {$turno}
+  AND c.estatus = 1
   GROUP BY tp.id_tprioritario
   ORDER by tp.orden";
 
@@ -884,12 +887,13 @@ function getEvidenciaFin($id_objetivo){
 function getActxObj($id_tprioritario){
   $str_query = "SELECT ob.id_objetivo, ob.id_tprioritario, ob.objetivo FROM rm_objetivo ob
   INNER JOIN rm_accionxtproritario acp ON ob.id_tprioritario = acp.id_tprioritario
-  WHERE ob.id_tprioritario = {$id_tprioritario}";
+  INNER JOIN ciclo c on acp.id_ciclo = c.id_ciclo
+  WHERE ob.id_tprioritario = {$id_tprioritario} AND  c.estatus = 1";
   return $this->db->query($str_query)->result_array();
 }
 
 function getObjxTp($id_tprioritario){
-  $str_query = "SELECT id_objetivo, objetivo, id_tprioritario FROM rm_objetivo WHERE id_tprioritario = {$id_tprioritario} ";
+  $str_query = "SELECT id_objetivo, objetivo, id_tprioritario FROM rm_objetivo o INNER JOIN ciclo c on o.id_ciclo = c.id_ciclo WHERE id_tprioritario = {$id_tprioritario} AND  c.estatus = 1 ";
   return $this->db->query($str_query)->result_array();
 }
 
@@ -915,7 +919,8 @@ function getAccxObj($id_objetivo){
   $str_query = "SELECT acc.id_accion, acc.accion, acc.mat_insumos, acc.accion_f_inicio, acc.accion_f_termino, acc.id_tprioritario
   FROM rm_accionxtproritario acc
   INNER JOIN rm_objetivo obj ON acc.id_objetivos = obj.id_objetivo
-  WHERE acc.id_objetivos = {$id_objetivo}";
+  INNER JOIN ciclo c on acc.id_ciclo = c.id_ciclo
+  WHERE acc.id_objetivos = {$id_objetivo} AND  c.estatus = 1 ";
 
   return $this->db->query($str_query)->result_array();
 }
@@ -923,7 +928,8 @@ function getAccxObj($id_objetivo){
 function getObjetivosxTp($id_cct){
   $str_query = "SELECT tp.id_tprioritario, ob.id_objetivo, ob.objetivo FROM rm_tema_prioritarioxcct tp
   INNER JOIN rm_objetivo ob ON ob.id_tprioritario = tp.id_tprioritario
-  WHERE tp.cct = {$id_cct}
+  WHERE tp.cct = {$id_cct} AND  c.estatus = 1 
+  INNER JOIN ciclo c on ob.id_ciclo = c.id_ciclo
   ORDER BY tp.id_tprioritario";
   return $this->db->query($str_query)->result_array();
 }
@@ -951,8 +957,9 @@ public function avancesxcctxaccion($id_cct,$turno,$cte_vigente){
                 DATEDIFF(ac.accion_f_termino, ac.accion_f_inicio) AS 'periodo'
               FROM rm_tema_prioritarioxcct w
               INNER JOIN rm_accionxtproritario ac ON ac.id_tprioritario= w.id_tprioritario
+              INNER JOIN ciclo c on c.id_ciclo = ac.id_ciclo
               LEFT JOIN rm_avance_xcctxtpxaccion av ON  ac.id_tprioritario = av.id_tprioritario and ac.id_accion = av.id_accion
-              WHERE w.cct='{$id_cct}' AND w.turno={$turno} ORDER BY ac.accion_f_inicio asc";
+              WHERE w.cct='{$id_cct}' AND w.turno={$turno} and c.estatus = 1 ORDER BY ac.accion_f_inicio asc";
 
   return $this->db->query($str_query)->result_array();
 }

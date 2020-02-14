@@ -242,7 +242,7 @@ function show(select_id){
 		$('#opt_prioridad').attr('disabled', true)
 
 		setTimeout(function(){
-			alert('Cargando objetivos')
+			//alert('Cargando objetivos')
 		}, 1000)
 	} else {
 		$('#opt_prioridad').attr('disabled', true)
@@ -385,11 +385,11 @@ $('#grabar_objetivo').click(function(e){
 					beforeSend: function(xhr) {
 						Notification.loading("");
 					},
-					success: function(data){
+					/*success: function(data){
 
 
 						obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val(),tipou_pemc);
-					}
+					}*/
 				})
 				.done(function(result) {
 					setTimeout(function () {
@@ -427,7 +427,7 @@ $('#grabar_objetivo').click(function(e){
 				beforeSend: function(xhr) {
 					Notification.loading("");
 				},
-				success: function(data){
+				/*success: function(data){
 					setTimeout(function () {
 						swal(
 							'¡Correcto!',
@@ -436,7 +436,7 @@ $('#grabar_objetivo').click(function(e){
 							);
 					}, 1000);
 					obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val(),tipou_pemc);
-				}
+				}*/
 			})
 			.done(function(result) {
 				obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val(),tipou_pemc);
@@ -533,9 +533,9 @@ function btnEliminar(){
 					beforeSend: function(xhr) {
 						Notification.loading("");
 					},
-					success: function(data){
-						obj_prioridad.getObjetivos();
-					}
+					/*success: function(data){
+						
+					}*/
 				}) //Ajax
 				.done(function(result) {
 					setTimeout(function(){
@@ -544,7 +544,8 @@ function btnEliminar(){
 							"El objetivo se eliminó correctamente",
 							'success'
 							);
-					}, 1000)
+					}, 1000);
+					obj_prioridad.getObjetivos();
 				})
 				.fail(function(e) {
 					console.error("Error in btnEliminar()");

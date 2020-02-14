@@ -542,15 +542,22 @@ function getTablaAccxObj(id_objetivo){
     url: base_url+"rutademejora/getTablaAccxObj/"+id_objetivo,
     type: 'POST',
     dataType: 'JSON',
-    data: { },
-    success:function(data){
+    data: { }
+    })
+    .done(function(data){
       var vista = data.tabla;
 
       $("#contenedor_acciones_id").append(vista);
       $("#contenedor_acciones_id").empty();
       obj_rm_acciones_tp.iniciatabla();
-    }
+    })
+    .fail(function(){
+      message = $("<span class='error'>Ha ocurrido un error.</span>");
+      showMessage(message);
   })
+  .always(function() {
+     swal.close();
+ });
 }
 
 
