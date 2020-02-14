@@ -1737,6 +1737,8 @@ class Rutademejora extends CI_Controller {
 			$data['prioridades'] = $result_prioridades;
 			$data['idtemaprioritario'] = $id_tprioritario;
 			$data['nivel_escolar'] = $id_nivel;
+			$indicadores = $this->Rutamejora_model->getIndicadorEspecial($data['prioridad'], $id_nivel);
+			$data['indicadores'] = $indicadores;
 			//$data['indicadores'] = $indicadores;
 
 			$strView = $this->load->view("ruta/modals_new/modal_prioridad", $data, TRUE);

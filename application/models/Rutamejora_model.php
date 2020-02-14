@@ -662,7 +662,7 @@ function actualizaObjetivo($id_objetivo, $objetivo){
   $this->db->update('rm_objetivo', $datos);
 }
 
-function getIndicadorEspecial($id_prioridad, $id_nivel, $id_subprioridad){
+function getIndicadorEspecial($id_prioridad, $id_nivel){
 
   $str_query = "SELECT ind.id_indicador, ind.indicador FROM rm_c_indicador ind
   WHERE ind.id_c_prioridad = {$id_prioridad} AND ind.nivel = {$id_nivel}";
