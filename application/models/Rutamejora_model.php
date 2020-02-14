@@ -547,7 +547,8 @@ function get_avances_tp_accionxcct_fechas($id_ciclo){
     //FUNCIONAMIENTO Y VALIDACION PARA SUPERVISOR BY LUIS SANCHEZ... all reserved rights
 
 function valida_supervisor($cct){
- $str_query = "SELECT * FROM supervision WHERE cct_supervision = '{$cct}'";
+ //$str_query = "SELECT * FROM supervision WHERE cct_supervision = '{$cct}'";
+ $str_query = "SELECT * FROM vista_cct WHERE cct = '{$cct}' and tipo_centro = 1";
  return $this->db->query($str_query)->result_array();
 }
 

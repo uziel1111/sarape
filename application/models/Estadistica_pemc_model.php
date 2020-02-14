@@ -39,16 +39,16 @@ class Estadistica_pemc_model extends CI_Model
 
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial'
+                $nivel_desc = 'Especial';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar'
+                $nivel_desc = 'Preescolar';
                 break;
             case '4':
-                $nivel_desc = 'Primaria'
+                $nivel_desc = 'Primaria';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria'
+                $nivel_desc = 'Secundaria';
                 break;
             default:
             $nivel_desc = 0;
@@ -82,23 +82,23 @@ class Estadistica_pemc_model extends CI_Model
  {
     switch ($nivel) {
         case '1':
-            $nivel_desc = 'Especial'
+            $nivel_desc = 'Especial';
             break;
         case '3':
-            $nivel_desc = 'Preescolar'
+            $nivel_desc = 'Preescolar';
             break;
         case '4':
-            $nivel_desc = 'Primaria'
+            $nivel_desc = 'Primaria';
             break;
         case '5':
-            $nivel_desc = 'Secundaria'
+            $nivel_desc = 'Secundaria';
             break;
         default:
         $nivel_desc = 0;
             break;
     }
 
-  $query = 'SELECT count(*) as total from vista_cct WHERE (status=1 OR status=4) AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')';
+  $query = "SELECT count(*) as total from vista_cct WHERE (status=1 OR status=4) AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')";
   if ($id_municipio != 0) {
    $query.= ' AND municipio = '.$id_municipio. '';
   }
@@ -137,16 +137,16 @@ class Estadistica_pemc_model extends CI_Model
   if ($nivel != 0) {
     switch ($nivel) {
         case '1':
-            $nivel_desc = 'Especial'
+            $nivel_desc = 'Especial';
             break;
         case '3':
-            $nivel_desc = 'Preescolar'
+            $nivel_desc = 'Preescolar';
             break;
         case '4':
-            $nivel_desc = 'Primaria'
+            $nivel_desc = 'Primaria';
             break;
         case '5':
-            $nivel_desc = 'Secundaria'
+            $nivel_desc = 'Secundaria';
             break;
         default:
         $nivel_desc = 0;
@@ -331,16 +331,16 @@ ORDER BY l1.id_region;";
     if ($nivel != 0) {
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial'
+                $nivel_desc = 'Especial';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar'
+                $nivel_desc = 'Preescolar';
                 break;
             case '4':
-                $nivel_desc = 'Primaria'
+                $nivel_desc = 'Primaria';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria'
+                $nivel_desc = 'Secundaria';
                 break;
             default:
             $nivel_desc = 0;
@@ -408,16 +408,16 @@ return $this->db->query($query)->result_array();
     if ($nivel != 0) {
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial'
+                $nivel_desc = 'Especial';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar'
+                $nivel_desc = 'Preescolar';
                 break;
             case '4':
-                $nivel_desc = 'Primaria'
+                $nivel_desc = 'Primaria';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria'
+                $nivel_desc = 'Secundaria';
                 break;
             default:
             $nivel_desc = 0;
@@ -454,16 +454,16 @@ function get_zonas($sostenimiento, $nivel){
     if ($nivel != 0) {
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial'
+                $nivel_desc = 'Especial';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar'
+                $nivel_desc = 'Preescolar';
                 break;
             case '4':
-                $nivel_desc = 'Primaria'
+                $nivel_desc = 'Primaria';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria'
+                $nivel_desc = 'Secundaria';
                 break;
             default:
             $nivel_desc = 0;
@@ -520,16 +520,16 @@ function get_zonas($sostenimiento, $nivel){
         if ($nivel != 0) {
             switch ($nivel) {
                 case '1':
-                    $nivel_desc = 'Especial'
+                    $nivel_desc = 'Especial';
                     break;
                 case '3':
-                    $nivel_desc = 'Preescolar'
+                    $nivel_desc = 'Preescolar';
                     break;
                 case '4':
-                    $nivel_desc = 'Primaria'
+                    $nivel_desc = 'Primaria';
                     break;
                 case '5':
-                    $nivel_desc = 'Secundaria'
+                    $nivel_desc = 'Secundaria';
                     break;
                 default:
                 $nivel_desc = 0;
@@ -709,16 +709,16 @@ function get_zonas($sostenimiento, $nivel){
      if ($nivel != 0) {
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial'
+                $nivel_desc = 'Especial';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar'
+                $nivel_desc = 'Preescolar';
                 break;
             case '4':
-                $nivel_desc = 'Primaria'
+                $nivel_desc = 'Primaria';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria'
+                $nivel_desc = 'Secundaria';
                 break;
             default:
             $nivel_desc = 0;
@@ -859,16 +859,16 @@ function get_zonas($sostenimiento, $nivel){
      if ($nivel != 0) {
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial'
+                $nivel_desc = 'Especial';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar'
+                $nivel_desc = 'Preescolar';
                 break;
             case '4':
-                $nivel_desc = 'Primaria'
+                $nivel_desc = 'Primaria';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria'
+                $nivel_desc = 'Secundaria';
                 break;
             default:
             $nivel_desc = 0;
@@ -895,16 +895,16 @@ function get_zonas($sostenimiento, $nivel){
     if ($nivel != 0) {
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial'
+                $nivel_desc = 'Especial';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar'
+                $nivel_desc = 'Preescolar';
                 break;
             case '4':
-                $nivel_desc = 'Primaria'
+                $nivel_desc = 'Primaria';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria'
+                $nivel_desc = 'Secundaria';
                 break;
             default:
             $nivel_desc = 0;
