@@ -33,5 +33,10 @@ class Inegixmuni_model extends CI_Model
 
     }// get_analf_xmunciclo
 
+    function get_ciclo_inegi($id_ciclo){
+      $query="SELECT periodo_inegi FROM relacion_ciclo WHERE id_ciclo_est={$id_ciclo}";
+      return $this->db->query($query)->row('periodo_inegi');
+    }// get_ciclo_inegi
+
 
 }// Inegixmuni_model

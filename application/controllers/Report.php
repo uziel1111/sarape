@@ -207,29 +207,35 @@ class Report extends CI_Controller {
 				$id_modalidad = $this->input->post('id_modalidad');
 				$id_ciclo = $this->input->post('id_ciclo');
 				$nivel=$this->Nivel_model->get_nivel($id_nivel);
+				$result_ciclo_ind = $this->Indicadoresxestado_model->get_ciclo_ind($id_ciclo);
+				$result_ciclo_planea_prim = $this->Planeaxmuni_model->get_ciclo_planea_prim($id_ciclo);
+				$result_ciclo_planea_sec = $this->Planeaxmuni_model->get_ciclo_planea_sec($id_ciclo);
+				$result_ciclo_planea_ms = $this->Planeaxmuni_model->get_ciclo_planea_ms($id_ciclo);
+				$result_periodo_inegi = $this->Inegixmuni_model->get_ciclo_inegi($id_ciclo);
+
 				$result_alumnos = $this->Estadistica_e_indicadores_xcct_model->get_nalumnos_xmunciclo($id_municipio, $id_ciclo);
 				$result_docentes = $this->Estadistica_e_indicadores_xcct_model->get_pdocente_xmunciclo($id_municipio, $id_ciclo);
 				$result_infraest = $this->Estadistica_e_indicadores_xcct_model->get_infraest_xmunciclo($id_municipio, $id_ciclo);
 				$result_planea = array();
-				 $result_planea_prim = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2018, 4);
-				 $result_planea_sec = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2019, 5);
-				 $result_planea_msuperior = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2017, 6);
+				 $result_planea_prim = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, $result_ciclo_planea_prim, PRIMARIA);
+				 $result_planea_sec = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, $result_ciclo_planea_sec, SECUNDARIA);
+				 $result_planea_msuperior = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, $result_ciclo_planea_ms, MEDIA_SUPERIOR);
 				 array_push($result_planea, $result_planea_prim[0]);
 				 array_push($result_planea, $result_planea_sec[0]);
 				 array_push($result_planea, $result_planea_msuperior[0]);
 
 				 if ($id_municipio==0) {
-					 $result_asistencia_nv = $this->Indicadoresxestado_model->get_ind_asistenciaxestadoidciclo(1);
-  				 $result_permanencia_nv = $this->Indicadoresxestado_model->get_ind_permanenciaxestadoidciclo(1);
+					 $result_asistencia_nv = $this->Indicadoresxestado_model->get_ind_asistenciaxestadoidciclo($result_ciclo_ind);
+  				 $result_permanencia_nv = $this->Indicadoresxestado_model->get_ind_permanenciaxestadoidciclo($result_ciclo_ind);
 				 }
 				 else {
-					 $result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, 1);
-  				 $result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, 1);
+					 $result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, $result_ciclo_ind);
+  				 $result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, $result_ciclo_ind);
 				 }
 
 
-				$result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, '2015');
-				$result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, '2015');
+				$result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, $result_periodo_inegi);
+				$result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, $result_periodo_inegi);
 
 				$obj_excel = new PHPExcel();
 				$obj_excel->getActiveSheet()->SetCellValue('A1', 'Estadística e indicadores educativos generales');
@@ -643,9 +649,9 @@ class Report extends CI_Controller {
 	            ,"alumn_t_4" => $result_alumnos[$i]['alumn_t_4']
 	            ,"alumn_t_5" => $result_alumnos[$i]['alumn_t_5']
 	            ,"alumn_t_6" => $result_alumnos[$i]['alumn_t_6']));
-				
+
 				array_push($array_alumnos,$result_alumnos[$i]);
-					
+
 			}
 
 
@@ -681,9 +687,9 @@ class Report extends CI_Controller {
 	            ,"grupos_6" => $result_infraest[$i]['grupos_6']
 	            ,"grupos_multi" => $result_infraest[$i]['grupos_multi']
 	            ,"grupos_t" => $result_infraest[$i]['grupos_t']));
-				
+
 				array_push($array_infraestructura,$result_infraest[$i]);
-					
+
 			}
 
 			for($i=0; $i<count($result_docentes); $i++){
@@ -718,9 +724,9 @@ class Report extends CI_Controller {
 	            ,"directivo_m_singrup" => $result_docentes[$i]['directivo_m_singrup']
 	            ,"directivo_h_singrup" => $result_docentes[$i]['directivo_h_singrup']
 	            ,"directivo_t_singrup" => $result_docentes[$i]['directivo_t_singrup']));
-				
+
 				array_push($array_docentes,$result_docentes[$i]);
-					
+
 			}
 
 				$obj_excel = new PHPExcel();

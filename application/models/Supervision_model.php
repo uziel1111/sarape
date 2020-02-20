@@ -8,16 +8,16 @@ class Supervision_model extends CI_Model
     }
 
     function allzonas(){
-      $query="SELECT cct,zona_escolar FROM vista_cct 
-              WHERE tipo_centro=1 AND (status != 2 AND status != 3) 
-              AND zona_escolar IS NOT NULL 
+      $query="SELECT cct,zona_escolar FROM vista_cct
+              WHERE tipo_centro=1 AND (status != 2 AND status != 3)
+              AND zona_escolar IS NOT NULL
               AND zona_escolar!=''";
       return $this->db->query($query)->result_array();
       // return  $this->db->get()->result_array();
     }// all()
 
     function getzona_idnivel_xsost($nivel,$sostenimiento){
-
+      //propuesta David tinoco octubre 2019
       $filtro="";
       $filtro_nivel_sos="";
       if(trim($sostenimiento)=="PUBLICO"){
@@ -69,7 +69,7 @@ class Supervision_model extends CI_Model
         return "TODOS";
       }
       else {
-        $query = "SELECT zona_escolar from vista_cct 
+        $query = "SELECT zona_escolar from vista_cct
                   WHERE (status = 1 OR status = 4) AND tipo_centro = 1
                   AND cct='{$id_zona_z}' ";
         return  $this->db->query($query)->row('zona_escolar');

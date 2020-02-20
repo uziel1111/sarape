@@ -31,4 +31,27 @@ class Planeaxmuni_model extends CI_Model
       return  $this->db->get()->result_array();
     }// all()
 
+
+    function get_ciclo_planea_prim($id_ciclo){
+      $query="SELECT p.periodo
+              FROM relacion_ciclo r
+              INNER JOIN periodoplanea p ON r.id_periodo_planea_prim = p.id_periodo
+              WHERE r.id_ciclo_est={$id_ciclo}";
+      return $this->db->query($query)->row('periodo');
+    }// get_ciclo_planea_prim
+    function get_ciclo_planea_sec($id_ciclo){
+      $query="SELECT p.periodo
+              FROM relacion_ciclo r
+              INNER JOIN periodoplanea p ON r.id_periodo_planea_secundaria = p.id_periodo
+              WHERE r.id_ciclo_est={$id_ciclo}";
+      return $this->db->query($query)->row('periodo');
+    }// get_ciclo_planea_sec
+    function get_ciclo_planea_ms($id_ciclo){
+      $query="SELECT p.periodo
+              FROM relacion_ciclo r
+              INNER JOIN periodoplanea p ON r.id_periodo_planea_mediasuperior = p.id_periodo
+              WHERE r.id_ciclo_est={$id_ciclo}";
+      return $this->db->query($query)->row('periodo');
+    }// get_ciclo_planea_ms
+
 }// Planeaxmuni_model

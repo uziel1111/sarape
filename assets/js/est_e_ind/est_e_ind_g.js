@@ -7,7 +7,7 @@ $("#slc_xest_muni_estmunicipio").change(function(){
     beforeSend: function(xhr) {
       Notification.loading("");
     },
-  }) 
+  })
   .done(function( data ) {
     swal.close();
     $("#slc_xest_muni_nivel").empty();
@@ -17,7 +17,7 @@ $("#slc_xest_muni_estmunicipio").change(function(){
   })
   .fail(function(e) {
     swal.close();
-    console.error("Error in estad_indi_generales_getnivel()"); 
+    console.error("Error in estad_indi_generales_getnivel()");
     console.table(e);
   })
   .always(function() {
@@ -48,7 +48,7 @@ $("#slc_xest_muni_nivel").change(function(){
   })
   .fail(function(e) {
     swal.close();
-    console.error("Error in estad_indi_generales_getsost()"); 
+    console.error("Error in estad_indi_generales_getsost()");
     console.table(e);
   })
   .always(function() {
@@ -80,7 +80,7 @@ $("#slc_xest_muni_sostenimiento").change(function(){
   })
   .fail(function(e) {
     swal.close();
-    console.error("Error in get_xcvecentro()"); 
+    console.error("Error in get_xcvecentro()");
     console.table(e);
   })
   .always(function() {
@@ -92,7 +92,7 @@ $("#slc_xest_muni_sostenimiento").change(function(){
 
 $("#slc_xest_nivel_zona").change(function(){
   var id_nivel = $( "#slc_xest_nivel_zona" ).val();
-  var nivel = $('#slc_xest_nivel_zona option:selected').text(); 
+  var nivel = $('#slc_xest_nivel_zona option:selected').text();
   $("#slc_xest_zona").prop('disabled', 'disabled');
   $('#slc_xest_zona').css( 'cursor', 'no-drop' );
   if (id_nivel!=0) {
@@ -123,7 +123,7 @@ $("#slc_xest_nivel_zona").change(function(){
   })
   .fail(function(e) {
     swal.close();
-    console.error("Error in get_xcvecentro()"); 
+    console.error("Error in get_xcvecentro()");
     console.table(e);
   })
   .always(function() {
@@ -156,11 +156,11 @@ $("#slc_xest_sostenimiento_zona").change(function(){
     swal.close();
     $("#slc_xest_zona").empty();
     $("#slc_xest_zona").append(data.array);
-        
+
   })
   .fail(function(e) {
     swal.close();
-    console.error("Error in estad_indi_generales_getzonassubsost_zona()"); 
+    console.error("Error in estad_indi_generales_getzonassubsost_zona()");
     console.table(e);
 //    alert("No hay zonas escolares para este sostenimiento");
     swal(
@@ -191,18 +191,18 @@ $("#slc_xest_zona").change(function(){
     beforeSend: function(xhr) {
           Notification.loading("");
     },
-  }) 
+  })
   .done(function( data ) {
     swal.close();
     $("#slc_xest_cicloe_zona").empty();
-    $("#slc_xest_cicloe_zona").append('<option value="2">2017-2018</option><option value="4">2018-2019</option>');
+    $("#slc_xest_cicloe_zona").append(data.array);
     $.each(data, function (index, item) {
     });
-    
+
   })
   .fail(function(e) {
     swal.close();
-    console.error("Error in estad_indi_generales_getcicloxnxsubxz_zona()"); 
+    console.error("Error in estad_indi_generales_getcicloxnxsubxz_zona()");
     console.table(e);
   })
   .always(function() {
@@ -261,7 +261,7 @@ $("#btn_buscar_zona").click(function(e){
     })
     .fail(function(e) {
       swal.close();
-      console.error("Error in xest_zona_x()"); 
+      console.error("Error in xest_zona_x()");
       console.table(e);
       //alert("No se pudieron obtener los datos solicitados");
       swal(
@@ -316,7 +316,7 @@ $("#btn_buscar_mun_est").click(function(e){
   })
   .fail(function(e) {
     swal.close();
-    console.error("Error in xest_muni_x()"); 
+    console.error("Error in xest_muni_x()");
     console.table(e);
   })
   .always(function() {

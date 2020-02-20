@@ -66,8 +66,9 @@ class Ciclo_model extends CI_Model
                 ) AS supervisiones ON v.zona_escolar = supervisiones.zona_escolar
                 AND v.sostenimiento = supervisiones.sostenimiento
                 {$filtro} {$filtro_zona}
-                WHERE ci.id_ciclo=4
-                GROUP BY ci.id_ciclo";
+                #WHERE ci.id_ciclo=4
+                GROUP BY ci.id_ciclo
+                ORDER BY ci.id_ciclo DESC";
       return  $this->db->query($query)->result_array();
     }// getciclo_idnivel_xsost_xzona
 

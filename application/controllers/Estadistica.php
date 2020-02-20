@@ -198,7 +198,7 @@ class Estadistica extends CI_Controller {
 			$id_subsost = $this->input->post('id_subsost');
 			$id_zona = $this->input->post('id_zona');
 			$nivel=$this->Nivel_model->get_nivel($id_nivel);
-
+// echo "string";die();
 			$sostenimiento= $this->Sostenimiento_model->get_sostenimiento($id_subsost);
 
 			$arr_cicloe = array();
@@ -206,12 +206,15 @@ class Estadistica extends CI_Controller {
 			if(count($result_cicloe)==0){
 				$data['arr_cicloe'] = array(	'0' => 'Error recuperando nuemro de zona escolar' );
 			}else{
-
+				$select = "";
 				foreach ($result_cicloe as $row){
-					 $arr_cicloe[$row['id_ciclo']] = $row['ciclo'];
+					 	$select .= "<option value = '".$row['id_ciclo']."'>".$row['ciclo']."</option>";
 				}
 			}
-			Utilerias::enviaDataJson(200, $arr_cicloe, $this);
+
+
+			$response= array("array" => $select);
+			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}//estad_indi_generales_getcicloxnxsubxz_zona()
 
@@ -227,12 +230,6 @@ class Estadistica extends CI_Controller {
 			$sostenimiento = $this->input->post('sostenimiento');
 			$modalidad = $this->input->post('modalidad');
 			$ciclo = $this->input->post('ciclo');
-
-			if ($id_ciclo == '2017-2018') {
-				$id_ciclo = 2;
-			} else {
-				$id_ciclo = 4;
-			}
 
 			$data["tipo_busqueda"] = "municipal";
 			$data["id_municipio"] = $id_municipio;
@@ -838,10 +835,13 @@ class Estadistica extends CI_Controller {
 
 		function tabla_planea($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
 			$result_planea = array();
-			$result_planea_prim = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2018, 4);
+			$result_ciclo_planea_prim = $this->Planeaxmuni_model->get_ciclo_planea_prim($id_ciclo);
+			$result_ciclo_planea_sec = $this->Planeaxmuni_model->get_ciclo_planea_sec($id_ciclo);
+			$result_ciclo_planea_ms = $this->Planeaxmuni_model->get_ciclo_planea_ms($id_ciclo);
 
-			$result_planea_sec = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2019, 5);
-			$result_planea_msuperior = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, 2017, 6);
+			$result_planea_prim = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, $result_ciclo_planea_prim, PRIMARIA);
+			$result_planea_sec = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, $result_ciclo_planea_sec,SECUNDARIA);
+			$result_planea_msuperior = $this->Planeaxmuni_model->get_planea_xmunciclo($id_municipio, $result_ciclo_planea_ms, MEDIA_SUPERIOR);
 			array_push($result_planea, $result_planea_prim[0]);
 			array_push($result_planea, $result_planea_sec[0]);
 			array_push($result_planea, $result_planea_msuperior[0]);
@@ -895,11 +895,12 @@ class Estadistica extends CI_Controller {
 
 		function tabla_asistencia($id_municipio, $id_ciclo){
 			$result_asistencia = array();
+			$result_ciclo_ind = $this->Indicadoresxestado_model->get_ciclo_ind($id_ciclo);
 			if ($id_municipio==0) {
-				$result_asistencia_nv = $this->Indicadoresxestado_model->get_ind_asistenciaxestadoidciclo(1);
+				$result_asistencia_nv = $this->Indicadoresxestado_model->get_ind_asistenciaxestadoidciclo($result_ciclo_ind);
 			}
 			else {
-				$result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, 1);
+				$result_asistencia_nv = $this->Indicadoresxmuni_model->get_ind_asistenciaxmuniidciclo($id_municipio, $result_ciclo_ind);
 			}
 
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
@@ -933,11 +934,12 @@ class Estadistica extends CI_Controller {
 
 		function tabla_permanencia($id_municipio, $id_ciclo){
 			$result_planea = array();
+			$result_ciclo_ind = $this->Indicadoresxestado_model->get_ciclo_ind($id_ciclo);
 			if ($id_municipio==0) {
-				$result_permanencia_nv = $this->Indicadoresxestado_model->get_ind_permanenciaxestadoidciclo(1);
+				$result_permanencia_nv = $this->Indicadoresxestado_model->get_ind_permanenciaxestadoidciclo($result_ciclo_ind);
 			}
 			else {
-				$result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, 1);
+				$result_permanencia_nv = $this->Indicadoresxmuni_model->get_ind_permanenciaxmuniidciclo($id_municipio, $result_ciclo_ind);
 			}
 
 			$str_html_alumn='<table class="table table-style-1 table-striped table-hover">
@@ -976,7 +978,8 @@ class Estadistica extends CI_Controller {
 
 
 		function tabla_rezinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
-			 $result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, '2015');
+			$result_periodo_inegi = $this->Inegixmuni_model->get_ciclo_inegi($id_ciclo);
+			 $result_rezinegi = $this->Inegixmuni_model->get_rezago_xmunciclo($id_municipio, $result_periodo_inegi);
 
 			$str_html_rezinegi='<table class="table table-style-1 table-striped table-hover">
 				<thead class="bg-info">
@@ -1031,7 +1034,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: INEGI, 2015</div>
+												<div id="fuentes_pie">Fuente: INEGI, '.$result_periodo_inegi.'</div>
 								</div>';
 
 			return $str_html_rezinegi;
@@ -1039,7 +1042,8 @@ class Estadistica extends CI_Controller {
 
 
 		function tabla_analfinegi($id_municipio,$id_nivel,$id_sostenimiento,$id_modalidad, $id_ciclo){
-			 $result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, '2015');
+			$result_periodo_inegi = $this->Inegixmuni_model->get_ciclo_inegi($id_ciclo);
+			 $result_analfinegi = $this->Inegixmuni_model->get_analf_xmunciclo($id_municipio, $result_periodo_inegi);
 			$str_html_analfinegi='<table class="table table-style-1 table-striped table-hover">
 			<thead class="bg-info">
 			<tr>
@@ -1068,7 +1072,7 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: INEGI, 2015</div>
+												<div id="fuentes_pie">Fuente: INEGI, '.$result_periodo_inegi.'</div>
 								</div>';
 
 			return $str_html_analfinegi;
@@ -1098,10 +1102,6 @@ class Estadistica extends CI_Controller {
 				$data["srt_tab_planea"] = "";
 				$data["srt_tab_rezag_inegi"] = "";
 				$data["srt_tab_analf_inegi"] = "";
-
-				$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
-
-				$arr_ciclo = array('2018-2019' => '2018-2019','2017-2018' => '2017-2018');
 
 				$dom = $this->load->view("estadistica/estadi_e_indi_gen_tab2",$data,TRUE);
 	    		$response = array(
