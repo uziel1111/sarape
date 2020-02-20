@@ -4,7 +4,6 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
     function __construct(){
         parent::__construct();
         $this->load->database();
-        $this->ce_db = $this->load->database('ce_db', TRUE);
     }
 
     function get_riesgo_pie_xidct($cct,$id_turno_single,$bimestre,$ciclo, $id_nivel){

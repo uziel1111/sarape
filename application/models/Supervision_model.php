@@ -4,7 +4,6 @@ class Supervision_model extends CI_Model
     function __construct(){
         parent::__construct();
         $this->load->database();
-        $this->ce_db = $this->load->database('ce_db', TRUE);
     }
 
     function allzonas(){

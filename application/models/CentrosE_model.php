@@ -4,7 +4,6 @@ class CentrosE_model extends CI_Model
     function __construct(){
         parent::__construct();
         $this->load->database();
-        $this->ce_db = $this->load->database('ce_db', TRUE);
     }
 
     function sostenimientos(){
@@ -36,7 +35,7 @@ class CentrosE_model extends CI_Model
                       WHEN desc_sostenimiento LIKE '%AUTONOMO%' THEN 'AUTONOMO'
                     END)
                 ) AS a WHERE a.sostenimiento IS NOT NULL ORDER BY FIELD(a.sostenimiento,'PUBLICO','PRIVADO','AUTONOMO')";
-      return $this->ce_db->query($query)->result_array();
+      return $this->db->query($query)->result_array();
     }// all()
 
     function niveles(){
@@ -81,14 +80,14 @@ class CentrosE_model extends CI_Model
                   END
 
                   ) AS a ORDER BY FIELD(a.nivel,'ESPECIAL','INICIAL','PREESCOLAR','PRIMARIA','SECUNDARIA','MEDIA SUPERIOR','SUPERIOR','FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')";
-      return $this->ce_db->query($query)->result_array();
+      return $this->db->query($query)->result_array();
     }
 
     function municipios(){
       $query="SELECT municipio as id_municipio,nombre_de_municipio as municipio FROM vista_cct
                 WHERE  municipio IS NOT NULL
                 GROUP BY municipio,nombre_de_municipio";
-      return $this->ce_db->query($query)->result_array();
+      return $this->db->query($query)->result_array();
     }
 
     function filtro_escuela($municipio,$nivel,$sostenimiento,$nombre_escuela){
@@ -182,7 +181,7 @@ class CentrosE_model extends CI_Model
               GROUP BY v.cct,v.desc_turno
               ORDER BY v.desc_nivel_educativo";
         // echo $query; die();
-        return $this->ce_db->query($query)->result_array();
+        return $this->db->query($query)->result_array();
     }
 
     function get_info_escuela($cct,$turno){
@@ -233,7 +232,7 @@ class CentrosE_model extends CI_Model
               GROUP BY v.cct,v.desc_turno
               ORDER BY v.desc_nivel_educativo";
         // echo $query; die();
-        return $this->ce_db->query($query)->result_array();
+        return $this->db->query($query)->result_array();
     }
 
     function get_planea_xidcct($cct,$turno,$periodo){
@@ -272,6 +271,6 @@ class CentrosE_model extends CI_Model
       and (status != 2 AND status != 3)  and desc_tipo_centro='ESCUELA' and municipio is not null";
       // echo $query;
       // die();
-      return $this->ce_db->query($query)->result_array();
+      return $this->db->query($query)->result_array();
     }
 }

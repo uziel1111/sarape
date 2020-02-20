@@ -8,7 +8,6 @@ class Municipio_model extends CI_Model
     function all(){
             return  $this->db->get('municipio')->result_array();
             $this->load->database();
-            $this->ce_db = $this->load->database('ce_db', TRUE);
     }// all()
 
     function getall_xest_ind(){

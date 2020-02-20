@@ -4,7 +4,6 @@ class Nivel_model extends CI_Model
     function __construct(){
         parent::__construct();
         $this->load->database();
-        $this->ce_db = $this->load->database('ce_db', TRUE);
     }
 
     function all(){
@@ -36,7 +35,7 @@ class Nivel_model extends CI_Model
         {$where}
         GROUP by id_nivel";
 
-      return $this->ce_db->query($str_query)->result_array();
+      return $this->db->query($str_query)->result_array();
     }// get_xidmunicipio()
 
     function get_xidmunicipio_vista_cct($id_municipio){
@@ -86,7 +85,7 @@ class Nivel_model extends CI_Model
                               WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN 'OTRO NIVEL EDUCATIVO'
                               END)   
                   ) AS a ORDER BY FIELD(a.nivel,'ESPECIAL','INICIAL','PREESCOLAR','PRIMARIA','SECUNDARIA','MEDIA SUPERIOR','SUPERIOR','FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')";
-      return $this->ce_db->query($query)->result_array();
+      return $this->db->query($query)->result_array();
     }
 
     function get_xidnivel_vista_cct($id_nivel){
@@ -146,7 +145,7 @@ class Nivel_model extends CI_Model
                       WHEN desc_sostenimiento LIKE '%AUTONOMO%' THEN 'AUTONOMO'
                     END) 
                 ) AS a WHERE a.sostenimiento IS NOT NULL ORDER BY FIELD(a.sostenimiento,'PUBLICO','PRIVADO','AUTONOMO')";
-      return $this->ce_db->query($query)->result_array();
+      return $this->db->query($query)->result_array();
     }
 
     function getall_est_ind(){
@@ -302,7 +301,7 @@ class Nivel_model extends CI_Model
                     GROUP BY  desc_nivel_educativo   
                   ) AS a ORDER BY FIELD(a.nivel,'PRIMARIA','SECUNDARIA')";
 
-      return $this->ce_db->query($query)->result_array();
+      return $this->db->query($query)->result_array();
     }// get_xidmunicipio()
 
 

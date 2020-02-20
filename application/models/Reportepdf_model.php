@@ -8,7 +8,6 @@ class Reportepdf_model extends CI_Model
     function get_rutasxcct($cct, $turno){
       $charaux='\n';
       $str_query = "SELECT
-      	rtp.id_cct,
       	rtp.id_tprioritario,
       	rtp.orden,
       	rtp.otro_problematica,
@@ -22,7 +21,6 @@ class Reportepdf_model extends CI_Model
       FROM
       	rm_tema_prioritarioxcct rtp
       INNER JOIN rm_c_prioridad p ON p.id_prioridad = rtp.id_prioridad
-      LEFT JOIN rm_c_subprioridad s ON rtp.id_subprioridad=s.id_subprioridad
       LEFT JOIN rm_objetivo o ON rtp.id_tprioritario=o.id_tprioritario
       WHERE rtp.cct = '{$cct}' AND rtp.turno = {$turno}
       ORDER BY orden ASC";

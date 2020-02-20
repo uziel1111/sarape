@@ -4,7 +4,6 @@ class Planeaxesc_reactivo_model extends CI_Model
   function __construct(){
     parent::__construct();
     $this->load->database();
-    $this->ce_db = $this->load->database('ce_db', TRUE);
   }
 
 
@@ -325,7 +324,7 @@ function get_reactivos_xcctxcont_municipio($id_municipio,$id_cont,$periodo,$idca
 
       {$filtro} ";
 
-      return $this->ce_db->query($query)->result_array();
+      return $this->db->query($query)->result_array();
     }
 
     function subsostenimientoxnivel($nivel){
@@ -349,7 +348,7 @@ function get_reactivos_xcctxcont_municipio($id_municipio,$id_cont,$periodo,$idca
       {$filtro}
       GROUP BY id_sostenimiento";
 
-      return $this->ce_db->query($query)->result_array();
+      return $this->db->query($query)->result_array();
     }
 
 }// Planeaxesc_reactivo_model

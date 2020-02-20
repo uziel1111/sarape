@@ -14,7 +14,6 @@ function Rm_avances_acciones(){
 
 
 Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
-  console.log(cad_str_ids);
   var val_slc = $("#".concat(cad_str_ids)).val();
   var arr_res = cad_str_ids.split("_");
   var var_id_cte = arr_res[0];

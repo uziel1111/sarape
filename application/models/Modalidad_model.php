@@ -4,7 +4,6 @@ class Modalidad_model extends CI_Model
     function __construct(){
         parent::__construct();
         $this->load->database();
-        $this->ce_db = $this->load->database('ce_db', TRUE);
     }
 
 
@@ -33,7 +32,7 @@ class Modalidad_model extends CI_Model
               AND tipo_centro='9'
                {$filtro}
               GROUP BY desc_servicio";
-      return $this->ce_db->query($query)->result_array();
+      return $this->db->query($query)->result_array();
 
     }// getmodali_xidmun_idnivel_idsost()
 
@@ -48,7 +47,7 @@ class Modalidad_model extends CI_Model
                   WHERE  servicio={$id_modalidad}
                   AND desc_nivel_educativo = '{$nivel}'";
 
-        return $this->ce_db->query($query)->row('modalidad');
+        return $this->db->query($query)->row('modalidad');
       }
 
     }// get_modalidad()

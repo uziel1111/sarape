@@ -6,7 +6,6 @@ class Escuela_model extends CI_Model
     parent::__construct();
         ini_set('max_execution_time', 300); //300 seconds = 5 minutes
         $this->load->database();
-        $this->ce_db = $this->load->database('ce_db', TRUE);
       }
 
       function get_xparams($id_municipio,$id_nivel,$id_sostenimiento,$nombre_escuela){
@@ -125,7 +124,7 @@ class Escuela_model extends CI_Model
       GROUP BY es.cct
       ORDER BY es.nivel_educativo";
 
-      return $this->ce_db->query($str_query)->result_array();
+      return $this->db->query($str_query)->result_array();
     }// get_xparams()
 
 
@@ -167,7 +166,7 @@ class Escuela_model extends CI_Model
       AND es.latitud != ''
       AND es.latitud != '#VALUE!'
       GROUP BY es.turno";
-      return $this->ce_db->query($str_query)->result_array();
+      return $this->db->query($str_query)->result_array();
     }// get_xcentro()
 
     function get_xcvecentro_turnosingle($cve_centro, $turno_single){
@@ -185,7 +184,7 @@ class Escuela_model extends CI_Model
       es.cct = '{$cve_centro}'
       {$where_turno}";
 
-      return $this->ce_db->query($str_query)->result_array();
+      return $this->db->query($str_query)->result_array();
 
 
     }// get_xcvecentro_turnosingle()
@@ -215,7 +214,7 @@ class Escuela_model extends CI_Model
       from vista_cct as es
       where cct = '{$idcct}';";
       
-      return $this->ce_db->query($str_query)->result_array();
+      return $this->db->query($str_query)->result_array();
 
     }
 
@@ -297,7 +296,7 @@ class Escuela_model extends CI_Model
       ORDER BY distance
       LIMIT 6";
 
-      return $this->ce_db->query($str_query)->result_array();
+      return $this->db->query($str_query)->result_array();
 
     }
     function get_nivel_xidcct($id_cct){

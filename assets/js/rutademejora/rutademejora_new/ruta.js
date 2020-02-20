@@ -97,6 +97,28 @@ $("#id_tabla_rutas tr:gt()").click(function (e) {
 
 });
 
+$('#nav-aprovechamiento-tab').click(function(e) {
+	e.preventDefault();
+	var ruta = base_url + 'Rutademejora/aprovechamiento'
+	$.ajax({
+		url: ruta,
+		type: 'POST',
+		data: {},
+		beforeSend: function(xhr) {
+				Notification.loading("");
+			}
+	})
+	.done(function() {
+		swal.close();
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		swal.close();
+	});
+	
+});
 //Prioridad (incompleto)
 $("#btn_prioridad").click(function(e){
 	e.preventDefault();

@@ -194,61 +194,6 @@ class Rutademejora extends CI_Controller {
 		}
 
 
-		public function insert_tema_prioritario(){
-			if(Utilerias::haySesionAbiertacct($this)){
-				$this->cct = Utilerias::get_cct_sesion($this);
-				
-				$id_prioridad = $this->input->post("id_prioridad");
-				$objetivo1 = $this->input->post("objetivo1");
-				$meta1 = $this->input->post("meta1");
-				$objetivo2 = $this->input->post("objetivo2");
-				$meta2 = $this->input->post("meta2");
-				$problematica = $this->input->post("problematica");
-				$evidencia = $this->input->post("evidencia");
-				$ids_progapoy = $this->input->post("ids_progapoy");
-				$otro_pa = $this->input->post("otro_pa");
-				$como_prog_ayuda = $this->input->post("como_prog_ayuda");
-				$obs_direct = $this->input->post("obs_direct");
-				$ids_apoyreq = $this->input->post("ids_apoyreq");
-				$otroapoyreq = $this->input->post("otroapoyreq");
-				$especifiqueapyreq = $this->input->post("especifiqueapyreq");
-
-				$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
-				$estatus = $this->Rutamejora_model->insert_tema_prioritario($id_cct,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq);
-				if ($estatus != false) {
-					if ($nombre_archivo!='') {
-						$ruta_archivos = "evidencias_rm/{$id_cct}/{$estatus}/";
-						$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$estatus}/$nombre_archivo";
-						$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$estatus,$ruta_archivos_save);
-						if(!is_dir($ruta_archivos)){
-							mkdir($ruta_archivos, 0777, true);}
-							$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
-							$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
-							$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
-							$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
-							$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
-
-							$uploadPath              = $ruta_archivos;
-							$config['upload_path']   = $uploadPath;
-							$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|xlsx|xls|doc|docx|txt|';
-
-							$this->load->library('upload', $config);
-							$this->upload->initialize($config);
-							if ($this->upload->do_upload('userFile')) {
-								$fileData = $this->upload->data();
-								$str_view = true;
-							}
-						}
-						$estatus = true;
-					}
-					$response = array('estatus' => $estatus);
-					Utilerias::enviaDataJson(200, $response, $this);
-					exit;
-				}else{
-					redirect('Rutademejora/index');
-				}
-			}
-
 			public function insert_update_misioncct(){
 				if(Utilerias::haySesionAbiertacct($this)){
 					$this->cct = Utilerias::get_cct_sesion($this);
@@ -357,7 +302,7 @@ class Rutademejora extends CI_Controller {
 			}else{
 				redirect('Rutademejora/index');
 			}
-		}
+		} 
 
 
 		public function get_obs_super(){
@@ -371,116 +316,6 @@ class Rutademejora extends CI_Controller {
 				redirect('Rutademejora/index');
 			}
 		}
-
-		public function update_tema_prioritario(){
-			$this->cct = Utilerias::get_cct_sesion($this);
-			$id_cct = $this->cct[0]['id_cct'];
-			$id_tprioritario = $this->input->post("id_id_tprioritario");
-			$id_prioridad = $this->input->post("id_prioridad");
-			$objetivo1 = $this->input->post("objetivo1");
-			$meta1 = $this->input->post("meta1");
-			$objetivo2 = $this->input->post("objetivo2");
-			$meta2 = $this->input->post("meta2");
-			$problematica = $this->input->post("problematica");
-			$evidencia = $this->input->post("evidencia");
-			$ids_progapoy = $this->input->post("ids_progapoy");
-			$otro_pa = $this->input->post("otro_pa");
-			$como_prog_ayuda = $this->input->post("como_prog_ayuda");
-			$obs_direct = $this->input->post("obs_direct");
-			$ids_apoyreq = $this->input->post("ids_apoyreq");
-			$otroapoyreq = $this->input->post("otroapoyreq");
-			$especifiqueapyreq = $this->input->post("especifiqueapyreq");
-			$edit_img = $this->input->post("edit_img");
-
-			$nombre_archivo = str_replace(" ", "_", $_FILES['archivo']['name']);
-
-			if ($nombre_archivo=='') {
-				if ($edit_img=='true') {
-					$estatus = $this->Rutamejora_model->update_tema_prioritario($id_cct,$id_tprioritario,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq);
-				}
-				else {
-					$url = $this->Rutamejora_model->get_url_evidencia($id_cct,$id_tprioritario);
-					if ($url!='') {
-						unlink($url);
-					}
-					$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$id_tprioritario,'');
-					$estatus = $this->Rutamejora_model->update_tema_prioritario($id_cct,$id_tprioritario,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq);
-				}
-			}
-			else {
-				$url = $this->Rutamejora_model->get_url_evidencia($id_cct,$id_tprioritario);
-				if ($url!='') {
-					unlink($url);
-				}
-
-				$estatus = $this->Rutamejora_model->update_tema_prioritario($id_cct,$id_tprioritario,$id_prioridad,$objetivo1,$meta1,$objetivo2,$meta2,$problematica,$evidencia,$ids_progapoy,$otro_pa,$como_prog_ayuda,$obs_direct,$ids_apoyreq,$otroapoyreq,$especifiqueapyreq);
-				if ($estatus != false) {
-					$ruta_archivos = "evidencias_rm/{$id_cct}/{$id_tprioritario}/";
-					$ruta_archivos_save = "evidencias_rm/{$id_cct}/{$id_tprioritario}/$nombre_archivo";
-					$estatusinst_urlarch = $this->Rutamejora_model->insert_evidencia($id_cct,$id_tprioritario,$ruta_archivos_save);
-					if(!is_dir($ruta_archivos)){
-						mkdir($ruta_archivos, 0777, true);}
-						$_FILES['userFile']['name']     = $_FILES['archivo']['name'];
-						$_FILES['userFile']['type']     = $_FILES['archivo']['type'];
-						$_FILES['userFile']['tmp_name'] = $_FILES['archivo']['tmp_name'];
-						$_FILES['userFile']['error']    = $_FILES['archivo']['error'];
-						$_FILES['userFile']['size']     = $_FILES['archivo']['size'];
-
-						$uploadPath              = $ruta_archivos;
-						$config['upload_path']   = $uploadPath;
-						$config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|xlsx|xls|doc|docx|txt';
-
-						$this->load->library('upload', $config);
-						$this->upload->initialize($config);
-						if ($this->upload->do_upload('userFile')) {
-							$fileData = $this->upload->data();
-							$str_view = true;
-						}
-						$estatus = true;
-					}
-					else {
-						$estatus = false;
-					}
-				}
-				$response = array('estatus' => $estatus);
-				Utilerias::enviaDataJson(200, $response, $this);
-				exit;
-			}
-
-			public function eliminarTP(){
-				if(Utilerias::haySesionAbiertacct($this)){
-					$this->cct = Utilerias::get_cct_sesion($this);
-					$id_cct = $this->cct[0]['id_cct'];
-					$id_tprioritario = $this->input->post("id_tprioritario");
-					$url = $this->Rutamejora_model->get_url_evidencia($id_cct,$id_tprioritario);
-					$estatus = $this->Rutamejora_model->delete_tema_prioritario($id_cct,$id_tprioritario);
-
-					if ($estatus) {
-						$temasp = $this->Rutamejora_model->getTemasxcct($id_cct);
-						$this->actualizaOrden($temasp);
-						$temasp = $this->Rutamejora_model->getTemasxcct($id_cct);
-						$this->actualizaOrden($temasp);
-						if ($url!='') {
-							unlink($url);
-						}
-
-					}
-					$response = array('estatus' => $estatus);
-					Utilerias::enviaDataJson(200, $response, $this);
-					exit;
-				}else{
-					redirect('Rutademejora/index');
-				}
-			}
-
-			public function actualizaOrden($temasp){
-				$orden = 1;
-				foreach ($temasp as $tema) {
-					$actualiza = $this->Rutamejora_model->update_order((int)$orden, (int)$tema['id_tprioritario']);
-					$orden = $orden +1;
-				}
-				$orden = 1;
-			}
 
 			public function get_view_acciones(){
 				if(Utilerias::haySesionAbiertacct($this)){
@@ -788,8 +623,7 @@ class Rutademejora extends CI_Controller {
 				if(Utilerias::haySesionAbiertacct($this)){
 					$id_tprioritario = $this->input->post('id_tprioritario');
 					$idaccion = $this->input->post('idaccion');
-					$editada = $this->Rutamejora_model->edit_accion($idaccion, $id_tprioritario);
-				// echo "<pre>"; print_r($editada); die();
+					$editada = $this->Rutamejora_model->edit_accion($idaccion, $id_tprioritario);	
 					$response = array("editado" => $editada[0]);
 					Utilerias::enviaDataJson(200, $response, $this);
 					exit;
@@ -1238,7 +1072,7 @@ class Rutademejora extends CI_Controller {
 		$data['cct'] = $this->cct[0]['cve_centro'];
 		$data['director'] = $this->cct[0]['nombre_director'];
 		$data['vista_aprovechamiento'] = $this->load->view("index/aprovechamiento_escolar", $data, TRUE);
-		$data['vista_avance'] = $this->load->view("ruta/rutademejora/avances", $data, TRUE);
+		$data['vista_avance'] = $this->load->view("ruta/avances", $data, TRUE);
 		$data['vista_indicadores'] = $this->load->view("ruta/rutademejora/indicadores", $data, TRUE);
 		$data['vista_ayuda'] = $this->load->view("ruta/rutademejora/ayuda", $data, TRUE);
 
@@ -1274,27 +1108,6 @@ class Rutademejora extends CI_Controller {
 		exit;
 	}
 
-	public function tabla_rm(){
-		if(Utilerias::haySesionAbiertacct($this)){
-			$data = array();
-			$this->cct = Utilerias::get_cct_sesion($this);
-			$tam = 0;
-			$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
-
-			$data['rutas'] = $rutas;
-			$data['tam'] = $tam;
-
-
-			$strView = $this->load->view("ruta/rutademejora/tabla_rm", $data, TRUE);
-
-			$response = array('strView' => $strView);
-			Utilerias::enviaDataJson(200, $response, $this);
-			exit;
-		}else{
-			redirect('Rutademejora/index');
-		}
-	}
-
 	public function eliminaEvidencia(){
 		$id_tprioritario = $this->input->post('id_tprioritario');
 		$path_archivo_aux = $this->Rutamejora_model->getEvidencia($id_tprioritario);
@@ -1305,19 +1118,6 @@ class Rutademejora extends CI_Controller {
 		$response = array('status' => $status);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
-	}
-
-	public function tabla_up(){
-		if(Utilerias::haySesionAbiertacct($this)){
-			$this->cct = Utilerias::get_cct_sesion($this);
-			$datos = $this->input->post('orden');
-			for($i = 0; $i < count($datos); $i++){
-				$arr_datos = $this->Rutamejora_model->update_order($datos[$i][1], $datos[$i][0]);
-			}
-			$rutas = $this->Rutamejora_model->getrutasxcct($id_cct);
-		}else{
-			redirect('Rutademejora/index');
-		}
 	}
 
 	public function modal_prioridad(){
@@ -1839,7 +1639,7 @@ class Rutademejora extends CI_Controller {
 	public function eliminaEvObjIn($id_objetivo){
 		$path_archivo_aux = $this->Rutamejora_model->getEvidenciaInicio($id_objetivo);
 		$path_archivo = $path_archivo_aux[0]['path_ev_inicio'];
-
+		$status = "";
 		if ($path_archivo != '' ) {
 			unlink($path_archivo);
 			$status = $this->Rutamejora_model->deleteEvidenciaObjIni($id_objetivo);
@@ -1855,7 +1655,7 @@ class Rutademejora extends CI_Controller {
 	public function eliminaEvObjFin($id_objetivo){
 		$path_archivo_aux = $this->Rutamejora_model->getEvidenciaFin($id_objetivo);
 		$path_archivo = $path_archivo_aux[0]['path_ev_fin'];
-
+		$status = "";
 		if ($path_archivo != '' ) {
 			unlink($path_archivo);
 			$status = $this->Rutamejora_model->deleteEvidenciaObjFin($id_objetivo);
@@ -1967,18 +1767,6 @@ class Rutademejora extends CI_Controller {
 		exit;
 	}
 
-	public function set_observacion(){
-		$objetivo = $this->input->post('idaccion');
-		$resultados = $this->input->post('resultados');
-		$obstaculos = $this->input->post('obstaculos');
-		$ventajas = $this->input->post('ventajas');
-		$ajustes = $this->input->post('ajustes');
-
-		$todo = $resultados .' obstaculos: '.$obstaculos .' ventajas: '.$ventajas. 'ajuste: ' .$ajustes;
-
-		$result = $this->Rutamejora_model->set_observacion($objetivo, $resultados, $obstaculos, $ventajas, $ajustes);
-	}
-
 	public function avancesxcctxaccion(){
 		
 		$this->cct = Utilerias::get_cct_sesion($this);
@@ -2046,18 +1834,6 @@ class Rutademejora extends CI_Controller {
 		exit;
 	}
 
-	public function pieAccion(){
-		if(Utilerias::haySesionAbiertacct($this)){
-			$id_cct = $this->input->post('id_cct');
-			$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
-			$cte_vigente=$this->cteVigente($arr_avances_fechas);
-
-			$datos=$this->Rutamejora_model->pieAccion($id_cct,$cte_vigente);
-			$response = array('datos' => $datos);
-			Utilerias::enviaDataJson(200, $response, $this);
-			exit;
-		}
-	}
 	public function cteVigente($arr_avances_fechas){
 		$cte_vigente="";
 		if($arr_avances_fechas[0]['cte1_var']=='TRUE'){
@@ -2083,30 +1859,6 @@ class Rutademejora extends CI_Controller {
 		}
 
 		return $cte_vigente;
-	}
-
-	public function pieObjetivos(){
-		if(Utilerias::haySesionAbiertacct($this)){
-			$id_cct = $this->input->post('id_cct');
-			$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
-			$cte_vigente=$this->cteVigente($arr_avances_fechas);
-			$datos=$this->Rutamejora_model->pieObjetivos($id_cct,$cte_vigente);
-			$response = array('datos' => $datos);
-			Utilerias::enviaDataJson(200, $response, $this);
-			exit;
-		}
-	}
-
-	public function pieLAE(){
-		if(Utilerias::haySesionAbiertacct($this)){
-			$id_cct = $this->input->post('id_cct');
-			$arr_avances_fechas = $this->Rutamejora_model->get_avances_tp_accionxcct_fechas(5);
-			$cte_vigente=$this->cteVigente($arr_avances_fechas);
-			$datos=$this->Rutamejora_model->pieLAE($id_cct,$cte_vigente);
-			$response = array('datos' => $datos);
-			Utilerias::enviaDataJson(200, $response, $this);
-			exit;
-		}
 	}
 
 	public function accionesRezagadas(){
@@ -2139,5 +1891,4 @@ class Rutademejora extends CI_Controller {
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}
-
 }// Rutamedejora
