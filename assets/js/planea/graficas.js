@@ -15,26 +15,18 @@ function Graficasm(){
       //////////////////////////////////////////////////////////// Por Unidades de Análisis
       //////////////////////////////////////////////////////////// Por Unidades de Análisis
       Graficasm.prototype.graficoplanea_ud_prim_lyc = function(arr_lyc,id_filtro, va_por, periodo){
-        if (periodo == 1) {
-            colores = ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900', '#FF9900','#FF9900','#FF9900','#FF9900',
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'];
-        }else{
-            colores = ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900',
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'];
+        
+        amarillo = (arr_lyc.length - 10);
+        verde = amarillo + 5;
+        var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
+        for (var i = 1; i <= arr_lyc.length; i++) {
+            
+            if (i<=amarillo) {
+                colores.push('#FF9900'); 
+            }
+            if (verde<=i) {
+                colores.push('#3CB371'); 
+            }
         }
         arr_lyc.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
