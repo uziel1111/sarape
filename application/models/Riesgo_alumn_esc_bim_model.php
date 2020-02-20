@@ -364,7 +364,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
 
     function get_numero_bajas($cct,$turno, $id_nivel, $bimestre){
       $nivel = ($id_nivel == 4)? "prima":"secu";
-      $str_query = "SELECT COUNT(cct) total FROM sarape_bajas_y_motivos_{$nivel} WHERE cct = '{$cct}' AND id_turno_single={$turno} AND periodo_evaluacion = {$bimestre} AND motivo_abandono <> 'FALLECIMIENTO'" ;
+      $str_query = "SELECT COUNT(cct) total FROM cebasica.sarape_bajas_y_motivos_{$nivel} WHERE cct = '{$cct}' AND id_turno_single={$turno} AND periodo_evaluacion = {$bimestre} AND motivo_abandono <> 'FALLECIMIENTO'" ;
       $query = $this->db->query($str_query);
       return $query->result_array();
     }
@@ -375,7 +375,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
       if($id_municipio != 0 ){
         $where = " AND e.id_municipio = {$id_municipio}";
       }
-      $str_query = "SELECT COUNT(ab.cct) AS total FROM sarape_bajas_y_motivos_{$nivel} ab
+      $str_query = "SELECT COUNT(ab.cct) AS total FROM cebasica.sarape_bajas_y_motivos_{$nivel} ab
                     INNER JOIN (SELECT  CASE
                               WHEN desc_nivel_educativo = 'CAM' THEN '1'
                   WHEN desc_nivel_educativo = 'ESPECIAL' THEN '1'
@@ -390,7 +390,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
                   FROM vista_cct) e ON ab.cct = e.cct
-                    WHERE e.nivel_educativo = {$id_nivel} AND ab.periodo_evaluacion = {$id_bim} {$where} AND motivo_abandono <> 'FALLECIMIENTO'";
+                    WHERE e.id_nivel = {$id_nivel} AND ab.periodo_evaluacion = {$id_bim} {$where} AND motivo_abandono <> 'FALLECIMIENTO'";
 
       $query = $this->db->query($str_query);
 
