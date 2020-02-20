@@ -142,7 +142,7 @@ class Planeaxesc_reactivo_model extends CI_Model
       $str_query = "SELECT id_contenido, contenidos, reactivos, total_reac_xua, total, alumnos_evaluados, ROUND((total* 100)/(total_reac_xua * alumnos_evaluados), 1)AS porcen_alum_respok FROM (
       SELECT *, SUM(n_aciertos) AS total, SUM(n_almn_eval) AS alumnos_evaluados FROM (SELECT t3.id_contenido, t3.`contenido` AS contenidos,
       GROUP_CONCAT(t2.n_reactivo) AS reactivos, COUNT(t3.id_contenido) AS total_reac_xua, t1.n_aciertos, t1.n_almn_eval
-      FROM centros_educativos.vista_cct e 
+      FROM vista_cct e 
       INNER JOIN sarape.planeaxesc_reactivo t1 ON t1.cct = e.cct
       JOIN sarape.planea_reactivo t2 ON t1.id_reactivo=t2.id_reactivo
       JOIN sarape.planea_contenido t3 ON t2.id_contenido= t3.id_contenido
@@ -189,11 +189,11 @@ class Planeaxesc_reactivo_model extends CI_Model
     SELECT *, SUM(n_aciertos) AS total, SUM(n_almn_eval) AS alumnos_evaluados 
     FROM (
     SELECT t3.id_contenido, t3.`contenido` AS contenidos,GROUP_CONCAT(t2.n_reactivo) AS reactivos, COUNT(t3.id_contenido) AS total_reac_xua, t1.n_aciertos, t1.n_almn_eval                       
-    FROM centros_educativos.vista_cct  escuelas            
+    FROM vista_cct  escuelas            
     INNER JOIN (
     SELECT cct, zona_escolar, sostenimiento,
     SUBSTRING(cct, 3, 3) AS tipo
-    FROM centros_educativos.vista_cct 
+    FROM vista_cct 
     WHERE (status = 1 OR status = 4) AND tipo_centro = 1
     ) AS supervisiones ON escuelas.zona_escolar = supervisiones.zona_escolar
     AND escuelas.sostenimiento = supervisiones.sostenimiento
@@ -232,7 +232,7 @@ function get_reactivos_xcctxcont_municipio($id_municipio,$id_cont,$periodo,$idca
   (
   COUNT(DISTINCT t7.id_propuesta)
   ) AS n_prop
-  FROM centros_educativos.vista_cct e 
+  FROM vista_cct e 
   INNER JOIN sarape.planeaxesc_reactivo t1 ON t1.cct = e.cct
   JOIN sarape.planea_reactivo t2 ON t1.id_reactivo=t2.id_reactivo
   JOIN sarape.planea_contenido t3 ON t2.id_contenido= t3.id_contenido
@@ -274,9 +274,9 @@ function get_reactivos_xcctxcont_municipio($id_municipio,$id_cont,$periodo,$idca
       (
       COUNT(DISTINCT t7.id_propuesta)
       ) AS n_prop
-      FROM centros_educativos.vista_cct AS e
+      FROM vista_cct AS e
       INNER JOIN (SELECT cct, zona_escolar, sostenimiento,SUBSTRING(cct, 3, 3) AS tipo
-      FROM centros_educativos.vista_cct 
+      FROM vista_cct 
       WHERE (STATUS = 1 OR STATUS = 4) AND tipo_centro = 1
       ) AS s ON e.zona_escolar = s.zona_escolar
       AND e.sostenimiento = s.sostenimiento
@@ -319,7 +319,7 @@ function get_reactivos_xcctxcont_municipio($id_municipio,$id_cont,$periodo,$idca
       }
 
       $query="SELECT cct as id_supervision,zona_escolar
-      FROM centros_educativos.vista_cct
+      FROM vista_cct
       WHERE (`status`= 1 OR `status` = 4) 
       AND tipo_centro=1 
 
@@ -344,7 +344,7 @@ function get_reactivos_xcctxcont_municipio($id_municipio,$id_cont,$periodo,$idca
       WHEN v.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
       ELSE 'PUBLICO'
       END) AS sostenimiento2
-      FROM centros_educativos.vista_cct v 
+      FROM vista_cct v 
       WHERE v.status IN ('1','4') AND v.tipo_centro='9'
       {$filtro}
       GROUP BY id_sostenimiento";

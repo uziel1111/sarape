@@ -78,60 +78,6 @@
   <thead>
     <tr  class="text-center">
       <th colspan="10"><label><b>Objetivo:</b> <span><?= $avance['objetivo'] ?>
-     <!--  <button type="button" onclick="obsercaciones_modal(<?= $avance['id_objetivo'] ?>)" class="btn btn-success btn-sm d-none">Observaciones</button> -->
-<!-- <div class="modal" id="myModal<?= $avance['id_objetivo'] ?>">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-         
-      <div class="row d-none div_observaciones<?= $avance['id_objetivo'] ?>" >
-        <div class="col-md-12">
-          <div class="col-md-6">
-            <select name="slc_observaciones" id="slc_observaciones<?= $avance['id_objetivo'] ?>">
-              <option value="0" selected>Selecciona una acción</option>
-              <?php foreach ($arr_avances as $avances){ ?> 
-              <?php if ($avances['accion'] != ''): ?>
-              <option value="<?=$avances['id_accion']?>"><?php echo $avances['accion'] ?></option>
-              <?php endif ?>
-            <?php } ?>
-            </select>
-          </div>
-          <div class="col-md-6">
-            <label for="input">¿Los Resultados fueron los esperados?</label>
-            <input type="text" class="form-control" id="txt_obs_resultados_<?= $avance['id_objetivo'] ?>">
-          </div>
-          <div class="col-md-6">
-            <label for="input">Condiciones que obstaculizan:</label>
-            <input type="text" class="form-control" id="txt_obs_obstaculos_<?= $avance['id_objetivo'] ?>">
-          </div>
-          <div class="col-md-6">
-            <label for="input">Condiciones que favorecen:</label>
-            <input type="text" class="form-control" id="txt_obs_ventajas_<?= $avance['id_objetivo'] ?>">
-          </div>
-          <div class="col-md-6">
-            <label for="input">Ajustes:</label>
-            <input type="text" class="form-control" id="txt_obs_ajustes_<?= $avance['id_objetivo'] ?>">
-          </div>
-          <div class="col-md-12 col-offset-md-6">
-            <button class="btn btn-success btn-sm" onclick="btn_observar(<?= $avance['id_objetivo'] ?>)">Guardar observación</button>
-          </div>
-        </div>
-      </div>
-      
-      </div>
-
-     
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div> -->
     </span></label></th>
   </tr>
   <tr class="text-center">

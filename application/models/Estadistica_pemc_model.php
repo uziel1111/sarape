@@ -55,7 +55,7 @@ class Estadistica_pemc_model extends CI_Model
                 break;
         }
 
-    $query = "SELECT sum(total.cct) as total from  (select count(obj.num_objetivos), obj.municipio, obj.num_objetivos, count(obj.cct) as cct ,obj.cct as id_cct  
+    $query = "SELECT sum(total.cct) as total from  (select count(obj.num_objetivos), obj.municipio, obj.num_objetivos, count(obj.cct) as cct ,obj.cct as cct  
         from (SELECT COUNT(DISTINCT o.id_objetivo) as num_objetivos, e.nombre_de_municipio as municipio, e.cct
         FROM rm_tema_prioritarioxcct tp
         INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
@@ -152,7 +152,7 @@ class Estadistica_pemc_model extends CI_Model
         $nivel_desc = 0;
             break;
     }
-      $where_nivel= " and e.desc_nivel_educativo={$nivel_desc}";
+      $where_nivel= " and e.desc_nivel_educativo='{$nivel_desc}'";
      }
      else {
        $where_nivel= "";
@@ -469,7 +469,7 @@ function get_zonas($sostenimiento, $nivel){
             $nivel_desc = 0;
                 break;
         }
-        $query .= " and e.desc_nivel_educativo = '{$nivel_desc}'";
+        $where_nivel = " and e.desc_nivel_educativo = '{$nivel_desc}'";
     } else {
         $where_nivel = ' ';
     }
@@ -477,14 +477,14 @@ function get_zonas($sostenimiento, $nivel){
     if ($sostenimiento != 0) {
         switch ($sostenimiento) {
             case '1':
-             $query .= " AND e.sostenimiento NOT IN('61','41','92','96','51')";
+             $where_sostenimiento = " AND e.sostenimiento NOT IN('61','41','92','96','51')";
                  break;
              case '2':
-             $query .= " AND e.sostenimiento IN ('61','41','92','96')";
+             $where_sostenimiento = " AND e.sostenimiento IN ('61','41','92','96')";
                   break;
          
             default:
-            $query .= "";
+            $where_sostenimiento= "";
                 break;
         }
     } else {
@@ -535,7 +535,7 @@ function get_zonas($sostenimiento, $nivel){
                 $nivel_desc = 0;
                     break;
             }
-            $where_nivel = " AND e.desc_nivel_educativo = {$nivel_desc}";
+            $where_nivel = " AND e.desc_nivel_educativo = '{$nivel_desc}'";
         } else {
             $where_nivel = ' ';
         }
@@ -543,16 +543,18 @@ function get_zonas($sostenimiento, $nivel){
         if ($sostenimiento != 0) {
             switch ($sostenimiento) {
                 case '1':
-                 $query .= " AND e.sostenimiento NOT IN('61','41','92','96','51')";
+                 $where_sostenimiento = " AND e.sostenimiento NOT IN('61','41','92','96','51')";
                      break;
                  case '2':
-                 $query .= " AND e.sostenimiento IN ('61','41','92','96')";
+                 $where_sostenimiento = " AND e.sostenimiento IN ('61','41','92','96')";
                       break;
              
                 default:
-                $query .= "";
+                $where_sostenimiento = "";
                     break;
             }
+        } else {
+              $where_sostenimiento = "";
         }
 
         if ($sostenimiento != 0 && $zona != 0) {
@@ -739,15 +741,18 @@ function get_zonas($sostenimiento, $nivel){
         SELECT
         m.id_municipio, m.municipio, COUNT(DISTINCT e.cct) n_escxmuni
         FROM municipio m
-        INNER JOIN escuela e ON m.id_municipio = e.id_municipio
-        WHERE (e.id_estatus=1 OR e.id_estatus=4) AND e.id_nivel <> 2 AND e.cve_centro NOT LIKE '05FUA%' AND e.id_nivel<6 {$where}
+         INNER JOIN vista_cct e ON m.id_municipio = e.municipio
+        WHERE (e.status = 1 OR e.status = 4)
+  AND e.desc_nivel_educativo <> 'INICIAL'
+  AND e.cct NOT LIKE '05FUA%'
+        AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
         GROUP BY m.id_municipio
     ) as mastert
     INNER JOIN
     (
         SELECT
-        m.id_municipio, COUNT(DISTINCT IF(ISNULL(o.id_cct),NULL, o.id_cct)) as esc_que_capt,
-        ROUND(IF(COUNT(DISTINCT IF(ISNULL(o.id_cct),NULL, o.id_cct))=0,0,(COUNT( DISTINCT IF(ISNULL(o.id_cct),NULL, o.id_cct))*100)/COUNT(DISTINCT e.cct)),1) as porcentaje
+        m.id_municipio, COUNT(DISTINCT IF(ISNULL(o.cct),NULL, o.cct)) as esc_que_capt,
+        ROUND(IF(COUNT(DISTINCT IF(ISNULL(o.cct),NULL, o.cct))=0,0,(COUNT( DISTINCT IF(ISNULL(o.cct),NULL, o.cct))*100)/COUNT(DISTINCT e.cct)),1) as porcentaje
         FROM municipio m
     INNER JOIN vista_cct e ON m.id_municipio = e.municipio
         LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
@@ -761,7 +766,7 @@ function get_zonas($sostenimiento, $nivel){
     LEFT JOIN
     (
         SELECT
-        xcon0.id_municipio, COUNT(DISTINCT xcon0.id_cct) as esc_que_capt0
+        xcon0.id_municipio, COUNT(DISTINCT xcon0.cct) as esc_que_capt0
         FROM
         (
         SELECT
@@ -784,7 +789,7 @@ function get_zonas($sostenimiento, $nivel){
     LEFT JOIN
     (
         SELECT
-        xcon0.id_municipio, COUNT(DISTINCT xcon0.id_cct) as esc_que_capt1
+        xcon0.id_municipio, COUNT(DISTINCT xcon0.cct) as esc_que_capt1
         FROM
         (
         SELECT
@@ -807,7 +812,7 @@ function get_zonas($sostenimiento, $nivel){
     LEFT JOIN
     (
         SELECT
-        xcon0.id_municipio, COUNT(DISTINCT xcon0.id_cct) as esc_que_capt23
+        xcon0.id_municipio, COUNT(DISTINCT xcon0.cct) as esc_que_capt23
         FROM
         (
         SELECT
@@ -830,7 +835,7 @@ function get_zonas($sostenimiento, $nivel){
     LEFT JOIN
     (
         SELECT
-        xcon0.id_municipio, COUNT(DISTINCT xcon0.id_cct) as esc_que_captmay4
+        xcon0.id_municipio, COUNT(DISTINCT xcon0.cct) as esc_que_captmay4
         FROM
         (
         SELECT
@@ -850,7 +855,6 @@ function get_zonas($sostenimiento, $nivel){
         GROUP BY xcon0.id_municipio
     ) as x3 on mastert.id_municipio = x3.id_municipio
     ";
-
     return $this->db->query($query)->result_array();
   }//get_escuelasMun_gen()
 

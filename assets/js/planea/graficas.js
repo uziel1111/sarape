@@ -1463,6 +1463,7 @@ function Graficasm(){
                  beforeSend: function(){
                      message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
                      showMessage(message)
+                    },
                  })
                  //una vez finalizado correctamente
                  .done(function(data){

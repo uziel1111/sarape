@@ -34,7 +34,7 @@
 </div>
 
 
-<div class="col-md-12 offset-md-2">
+<div class="col-md-12">
 	<table class="table table-striped table-bordered w-auto">
 		<thead class="thead-dark">
 			<tr>

@@ -313,6 +313,7 @@ class Reporte extends CI_Controller {
 		}
 	}
 
+	//función para mapear el RFC del personal y poder imprimirlo en el pdf del reporte
 	public function get_perosonal_mostrar($cct, $ids_responsables){
 
 		$ids_responsables = explode(",", $ids_responsables);

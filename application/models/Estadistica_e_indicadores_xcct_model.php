@@ -44,7 +44,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     SUM(es.alumn_m_t) AS alumn_m_t, SUM(es.alumn_h_t) AS alumn_h_t, SUM(es.alumn_t_t) AS alumn_t_t,
                     SUM(es.alumn_t_1) AS alumn_t_1, SUM(es.alumn_t_2) AS alumn_t_2, SUM(es.alumn_t_3) AS alumn_t_3,
                     SUM(es.alumn_t_4) AS alumn_t_4, SUM(es.alumn_t_5) AS alumn_t_5, SUM(es.alumn_t_6) AS alumn_t_6
-                FROM centros_educativos.vista_cct v
+                FROM vista_cct v
                 INNER JOIN sarape.estadistica_e_indicadores_xcct es ON es.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
@@ -97,7 +97,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 SUM(es.alumn_m_t) AS alumn_m_t, SUM(es.alumn_h_t) AS alumn_h_t, SUM(es.alumn_t_t) AS alumn_t_t,
                 SUM(es.alumn_t_1) AS alumn_t_1, SUM(es.alumn_t_2) AS alumn_t_2, SUM(es.alumn_t_3) AS alumn_t_3,
                 SUM(es.alumn_t_4) AS alumn_t_4, SUM(es.alumn_t_5) AS alumn_t_5, SUM(es.alumn_t_6) AS alumn_t_6
-                FROM centros_educativos.vista_cct v
+                FROM vista_cct v
                 INNER JOIN sarape.estadistica_e_indicadores_xcct es ON es.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
@@ -152,7 +152,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         SUM(es.alumn_m_t) AS alumn_m_t, SUM(es.alumn_h_t) AS alumn_h_t, SUM(es.alumn_t_t) AS alumn_t_t,
                         SUM(es.alumn_t_1) AS alumn_t_1, SUM(es.alumn_t_2) AS alumn_t_2, SUM(es.alumn_t_3) AS alumn_t_3,
                         SUM(es.alumn_t_4) AS alumn_t_4, SUM(es.alumn_t_5) AS alumn_t_5, SUM(es.alumn_t_6) AS alumn_t_6
-                FROM centros_educativos.vista_cct v
+                FROM vista_cct v
                 INNER JOIN sarape.estadistica_e_indicadores_xcct es ON es.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
@@ -259,7 +259,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         WHEN sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
                         ELSE 'PUBLICO'
                     END) AS sostenimiento2,sostenimiento
-                    FROM centros_educativos.vista_cct 
+                    FROM vista_cct 
                     WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9  
                     {$filtro_nivel_sos}
                 ) AS escuelas
@@ -267,7 +267,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 {$filtro_ciclo}
                 INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo, 
                                 SUBSTRING(cct, 3, 3) AS tipo
-                            FROM centros_educativos.vista_cct cct
+                            FROM vista_cct cct
                             WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 1
                             ) AS supervisiones ON escuelas.zona_escolar = supervisiones.zona_escolar
                             AND escuelas.sostenimiento = supervisiones.sostenimiento
@@ -353,7 +353,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     SUM(est.directivo_m_singrup) AS directivo_m_singrup,
                     SUM(est.directivo_h_singrup) AS directivo_h_singrup, 
                     SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) AS directivo_t_singrup
-                FROM centros_educativos.vista_cct v
+                FROM vista_cct v
                 INNER JOIN sarape.estadistica_e_indicadores_xcct est ON est.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
@@ -428,7 +428,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     SUM(est.directivo_m_singrup) AS directivo_m_singrup, 
                     SUM(est.directivo_h_singrup) AS directivo_h_singrup, 
                     SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) AS directivo_t_singrup
-                FROM centros_educativos.vista_cct v
+                FROM vista_cct v
                 INNER JOIN sarape.estadistica_e_indicadores_xcct est ON est.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
@@ -506,7 +506,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     SUM(est.directivo_m_singrup) AS directivo_m_singrup, 
                     SUM(est.directivo_h_singrup) AS directivo_h_singrup, 
                     SUM(est.directivo_m_singrup)+SUM(est.directivo_h_singrup) AS directivo_t_singrup
-                FROM centros_educativos.vista_cct v
+                FROM vista_cct v
                 INNER JOIN sarape.estadistica_e_indicadores_xcct est ON est.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA','MEDIA SUPERIOR','SUPERIOR')
@@ -621,7 +621,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                             WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
                             WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                         END AS nivel
-                    FROM centros_educativos.vista_cct 
+                    FROM vista_cct 
                     WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 9
                     {$filtro_nivel_sos} 
                 ) AS escuelas
@@ -629,7 +629,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                 {$filtro_ciclo}
                 INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo,
                                 SUBSTRING(cct, 3, 3) AS tipo
-                            FROM centros_educativos.vista_cct cct
+                            FROM vista_cct cct
                             WHERE (`status` = 1 OR `status` = 4) AND tipo_centro = 1) AS supervisiones ON escuelas.zona_escolar = supervisiones.zona_escolar
                             AND escuelas.sostenimiento = supervisiones.sostenimiento
                 {$filtro} {$filtro_zona}
@@ -697,7 +697,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                     SUM(est.grupos_6) AS grupos_6,
                     SUM(est.grupos_multi) AS grupos_multi,
                     SUM(est.grupos_t) AS grupos_t  
-                FROM centros_educativos.vista_cct v
+                FROM vista_cct v
                 INNER JOIN sarape.estadistica_e_indicadores_xcct est ON est.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
@@ -756,7 +756,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         SUM(est.grupos_6) AS grupos_6,
                         SUM(est.grupos_multi) AS grupos_multi,
                         SUM(est.grupos_t) AS grupos_t 
-                    FROM centros_educativos.vista_cct v
+                    FROM vista_cct v
                     INNER JOIN sarape.estadistica_e_indicadores_xcct est ON est.cct=v.cct
                     WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                     AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
@@ -819,7 +819,7 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         SUM(est.grupos_6) AS grupos_6,
                         SUM(est.grupos_multi) AS grupos_multi,
                         SUM(est.grupos_t) AS grupos_t 
-                    FROM centros_educativos.vista_cct v
+                    FROM vista_cct v
                     INNER JOIN sarape.estadistica_e_indicadores_xcct est ON est.cct=v.cct
                     WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 
                     AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
@@ -926,14 +926,14 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
                         WHEN desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
                         WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     END AS nivel
-                FROM centros_educativos.vista_cct 
+                FROM vista_cct 
                 WHERE (status = 1 OR status = 4) AND tipo_centro = 9  
                 {$filtro_nivel_sos}
             ) AS escuelas
             INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON est.cct=escuelas.cct
             {$filtro_ciclo}
             INNER JOIN (SELECT cct, zona_escolar,sostenimiento,desc_nivel_educativo,SUBSTRING(cct, 3, 3) AS tipo
-                        FROM centros_educativos.vista_cct cct
+                        FROM vista_cct cct
                         WHERE (status = 1 OR status = 4) AND tipo_centro = 1) AS supervisiones 
                         ON escuelas.zona_escolar = supervisiones.zona_escolar
                         AND escuelas.sostenimiento = supervisiones.sostenimiento

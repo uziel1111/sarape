@@ -32,7 +32,7 @@ class Nivel_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA' THEN '10'
                   END AS id_nivel, desc_nivel_educativo as nivel
-        from centros_educativos.vista_cct 
+        from vista_cct 
         {$where}
         GROUP by id_nivel";
 
@@ -70,7 +70,7 @@ class Nivel_model extends CI_Model
                     WHEN desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                     WHEN desc_nivel_educativo = 'FORMACION PARA EL TRABAJO' THEN 'FORMACION PARA EL TRABAJO'
                     WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN 'OTRO NIVEL EDUCATIVO'
-                    END AS nivel FROM centros_educativos.vista_cct
+                    END AS nivel FROM vista_cct
                   WHERE (`status`= 1 OR `status` = 4) AND tipo_centro=9
                   {$filtro}
                   GROUP BY (CASE   
@@ -130,7 +130,7 @@ class Nivel_model extends CI_Model
                     WHEN desc_sostenimiento LIKE '%PARTICULAR%' THEN 'PRIVADO'
                     WHEN desc_sostenimiento LIKE '%AUTONOMO%' THEN 'AUTONOMO'
                     END AS sostenimiento
-                FROM centros_educativos.vista_cct 
+                FROM vista_cct 
                   WHERE (`status`= 1 OR `status` = 4) AND tipo_centro=9
                   {$filtro}
                     GROUP BY 
@@ -172,7 +172,7 @@ class Nivel_model extends CI_Model
                   WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
                   WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                   END AS nivel
-                FROM centros_educativos.vista_cct v
+                FROM vista_cct v
                 INNER JOIN estadistica_e_indicadores_xcct es ON es.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 GROUP BY CASE  
@@ -207,7 +207,7 @@ class Nivel_model extends CI_Model
                   WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
                   WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                   END AS nivel
-                FROM centros_educativos.vista_cct v
+                FROM vista_cct v
                 INNER JOIN estadistica_e_indicadores_xcct es ON es.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 AND v.desc_nivel_educativo  IN('PREESCOLAR','PRIMARIA','SECUNDARIA')
                 
@@ -252,7 +252,7 @@ class Nivel_model extends CI_Model
                   WHEN v.desc_nivel_educativo = 'MEDIA SUPERIOR' THEN 'MEDIA SUPERIOR'
                   WHEN v.desc_nivel_educativo = 'SUPERIOR' THEN 'SUPERIOR'
                   END AS nivel
-                FROM centros_educativos.vista_cct v
+                FROM vista_cct v
                 INNER JOIN estadistica_e_indicadores_xcct es ON es.cct=v.cct
                 WHERE (v.status= 1 OR v.status = 4) AND v.tipo_centro=9 AND v.desc_nivel_educativo NOT IN('FORMACION PARA EL TRABAJO','OTRO NIVEL EDUCATIVO','NO APLICA')
                 {$concat}
@@ -295,7 +295,7 @@ class Nivel_model extends CI_Model
                   WHEN a.nivel = 'SECUNDARIA' THEN '5'        
                   END AS id_nivel,a.nivel
               FROM (
-                    SELECT  desc_nivel_educativo AS nivel FROM centros_educativos.vista_cct
+                    SELECT  desc_nivel_educativo AS nivel FROM vista_cct
                     WHERE desc_nivel_educativo in('PRIMARIA','SECUNDARIA')
                     AND (status= 1 OR status = 4) AND tipo_centro=9
                      {$auxiliar}

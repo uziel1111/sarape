@@ -56,12 +56,12 @@ class Ciclo_model extends CI_Model
       $query = "SELECT ci.id_ciclo, ci.ciclo
                 FROM ciclo ci
                 INNER JOIN sarape.estadistica_e_indicadores_xcct AS est ON  ci.id_ciclo = est.id_ciclo
-                INNER JOIN centros_educativos.vista_cct AS v ON v.cct = est.cct
+                INNER JOIN vista_cct AS v ON v.cct = est.cct
                 AND (v.status = 1 OR v.status = 4) AND v.tipo_centro= 9
                 {$filtro_nivel_sos}
                 INNER JOIN (SELECT cct, zona_escolar, sostenimiento, desc_nivel_educativo,
                             SUBSTRING(cct, 3, 3) AS tipo
-                        FROM centros_educativos.vista_cct cct
+                        FROM vista_cct cct
                         WHERE (status = 1 OR status = 4) AND tipo_centro = 1
                 ) AS supervisiones ON v.zona_escolar = supervisiones.zona_escolar
                 AND v.sostenimiento = supervisiones.sostenimiento

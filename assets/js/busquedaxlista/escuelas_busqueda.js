@@ -17,6 +17,7 @@ $("#itxt_busquedalista_nombreescuela").keyup(function() {
         data : {"cct":cct,"turno":turno,"turno_single":turno_single},
         beforeSend: function(xhr) {
           Notification.loading("");
+          },
         })
         .done(function(data){
           $("#wait").modal("hide");

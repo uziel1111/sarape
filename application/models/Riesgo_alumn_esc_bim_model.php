@@ -57,7 +57,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
       IFNULL(SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim".$bimestre.">7, 2,IF(rie.falta_bim".$bimestre.">3, 1,0))) + (IF(rie.espanol_b".$bimestre."<6 AND rie.espanol_b".$bimestre.">0,1,0)) + (IF(rie.matematicas_b".$bimestre."<6 and rie.matematicas_b".$bimestre.">0,1,0)))=1,1,0)), 0) as medio,
       IFNULL(SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim".$bimestre.">7, 2,IF(rie.falta_bim".$bimestre.">3, 1,0))) + (IF(rie.espanol_b".$bimestre."<6 AND rie.espanol_b".$bimestre.">0,1,0)) + (IF(rie.matematicas_b".$bimestre."<6 and rie.matematicas_b".$bimestre.">0,1,0)))=0,1,0)), 0) as bajo
       FROM sarape.alumnos_riesgo_{$nivel} rie
-      INNER JOIN centros_educativos.vista_cct esc ON rie.cct = esc.cct AND (esc.status= 1 OR esc.status = 4) AND esc.tipo_centro=9
+      INNER JOIN vista_cct esc ON rie.cct = esc.cct AND (esc.status= 1 OR esc.status = 4) AND esc.tipo_centro=9
       WHERE ".$var_aux." esc.desc_nivel_educativo = '{$nivel}' AND rie.ciclo='".$ciclo."'";
 
 
@@ -89,7 +89,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
           WHERE esc.id_municipio={$id_municipio} AND esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}') as muyalto_t,
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto
         FROM alumnos_riesgo_{$nivel} rie
@@ -106,7 +106,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_municipio={$id_municipio} AND esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=1) as muyalto_1,
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto
         FROM alumnos_riesgo_{$nivel} rie
@@ -123,7 +123,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_municipio={$id_municipio} AND esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=2) as muyalto_2,
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto
         FROM alumnos_riesgo_{$nivel} rie
@@ -140,7 +140,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_municipio={$id_municipio} AND esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=3) as muyalto_3,
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto
         FROM alumnos_riesgo_{$nivel} rie
@@ -157,7 +157,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_municipio={$id_municipio} AND esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=4) as muyalto_4,
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto
         FROM alumnos_riesgo_{$nivel} rie
@@ -174,7 +174,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_municipio={$id_municipio} AND esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=5) as muyalto_5,
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto
         FROM alumnos_riesgo_{$nivel} rie
@@ -191,7 +191,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_municipio={$id_municipio} AND esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=6) as muyalto_6
         FROM sarape.alumnos_riesgo_{$nivel} rie
         INNER JOIN (SELECT  CASE
@@ -207,7 +207,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_municipio={$id_municipio} AND esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' GROUP BY esc.id_municipio
         ";
 
@@ -232,7 +232,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}') as muyalto_t,
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto
         FROM alumnos_riesgo_{$nivel} rie
@@ -249,7 +249,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=1) as muyalto_1,
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto
         FROM alumnos_riesgo_{$nivel} rie
@@ -266,7 +266,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=2) as muyalto_2,
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto
         FROM alumnos_riesgo_{$nivel} rie
@@ -283,7 +283,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=3) as muyalto_3,
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto
         FROM alumnos_riesgo_{$nivel} rie
@@ -300,7 +300,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=4) as muyalto_4,
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto
         FROM alumnos_riesgo_{$nivel} rie
@@ -317,7 +317,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=5) as muyalto_5,
         (SELECT SUM(IF(((IF(rie.extraedad>1,1,0)) + (IF(rie.falta_bim{$bimestre}>7, 2,IF(rie.falta_bim{$bimestre}>3, 1,0))) + (IF(rie.espanol_b{$bimestre}<6 AND rie.espanol_b{$bimestre}>0,1,0)) + (IF(rie.matematicas_b{$bimestre}<6 and rie.matematicas_b{$bimestre}>0,1,0)))>2,1,0)) as muy_alto
         FROM alumnos_riesgo_{$nivel} rie
@@ -334,7 +334,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' AND rie.grado=6) as muyalto_6
         FROM alumnos_riesgo_{$nivel} rie
         INNER JOIN (SELECT  CASE
@@ -350,7 +350,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) esc ON rie.cct = esc.cct
+                  FROM vista_cct) esc ON rie.cct = esc.cct
         WHERE esc.id_nivel={$id_nivel} AND rie.ciclo='{$ciclo}' limit 1
         ";
         // echo $str_query1; die();
@@ -389,7 +389,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN '9'
                   WHEN desc_nivel_educativo = 'NO APLICA'  THEN '10'
                   END AS id_nivel,municipio as id_municipio,cct
-                  FROM centros_educativos.vista_cct) e ON ab.cct = e.cct
+                  FROM vista_cct) e ON ab.cct = e.cct
                     WHERE e.nivel_educativo = {$id_nivel} AND ab.periodo_evaluacion = {$id_bim} {$where} AND motivo_abandono <> 'FALLECIMIENTO'";
 
       $query = $this->db->query($str_query);

@@ -21,7 +21,7 @@ class CentrosE_model extends CI_Model
                     WHEN desc_sostenimiento LIKE '%PARTICULAR%' THEN 'PRIVADO'
                     WHEN desc_sostenimiento LIKE '%AUTONOMO%' THEN 'AUTONOMO'
                     END AS sostenimiento
-                FROM centros_educativos.vista_cct
+                FROM vista_cct
                   WHERE (`status`= 1 OR `status` = 4) AND tipo_centro=9
                     GROUP BY
                     (CASE   WHEN (desc_sostenimiento LIKE '%FEDERAL%')
@@ -66,7 +66,7 @@ class CentrosE_model extends CI_Model
                   WHEN desc_nivel_educativo = 'FORMACION PARA EL TRABAJO' THEN 'FORMACION PARA EL TRABAJO'
                   WHEN desc_nivel_educativo = 'OTRO NIVEL EDUCATIVO' THEN 'OTRO NIVEL EDUCATIVO'
                   END AS nivel
-                FROM centros_educativos.vista_cct
+                FROM vista_cct
                 WHERE (`status`= 1 OR `status` = 4) AND tipo_centro=9
                 GROUP BY CASE   WHEN desc_nivel_educativo = 'NO APLICA' THEN 'NO APLICA'
                   WHEN desc_nivel_educativo = 'CAM' THEN 'ESPECIAL'
@@ -85,7 +85,7 @@ class CentrosE_model extends CI_Model
     }
 
     function municipios(){
-      $query="SELECT municipio as id_municipio,nombre_de_municipio as municipio FROM centros_educativos.vista_cct
+      $query="SELECT municipio as id_municipio,nombre_de_municipio as municipio FROM vista_cct
                 WHERE  municipio IS NOT NULL
                 GROUP BY municipio,nombre_de_municipio";
       return $this->ce_db->query($query)->result_array();
@@ -172,7 +172,7 @@ class CentrosE_model extends CI_Model
               END AS desc_sostenimiento,
               v.sostenimiento,v.status,v.municipio as id_municipio, v.nombre_de_municipio as municipio,v.localidad as id_localidad,v.nombre_de_localidad as localidad,
               v.latitud, v.longitud,v.nombre_vialidad_principal as domicilio,v.zona_escolar,'' as turno_n,'' AS turno_single
-              FROM centros_educativos.vista_cct AS v
+              FROM vista_cct AS v
 
               WHERE (v.status != 2 AND v.status != 3)
               /*AND v.latitud != 0
@@ -223,7 +223,7 @@ class CentrosE_model extends CI_Model
               v.nombre_de_localidad as localidad,
               v.latitud, v.longitud,v.nombre_vialidad_principal as domicilio,v.zona_escolar,'' as turno_n,'' AS turno_single,
              v.desc_servicio AS modalidad
-              FROM centros_educativos.vista_cct AS v
+              FROM vista_cct AS v
 
               WHERE (v.status != 2 AND v.status != 3)
               /*AND v.latitud != 0
@@ -268,7 +268,7 @@ class CentrosE_model extends CI_Model
     }// get_indicpeso_xidcct()
 
     function get_xcvecentro($cve_centro){
-      $query="SELECT cct,nivel_educativo,turno,desc_turno,'' as turno_n,'' AS turno_single FROM centros_educativos.vista_cct WHERE cct='{$cve_centro}'
+      $query="SELECT cct,nivel_educativo,turno,desc_turno,'' as turno_n,'' AS turno_single FROM vista_cct WHERE cct='{$cve_centro}'
       and (status != 2 AND status != 3)  and desc_tipo_centro='ESCUELA' and municipio is not null";
       // echo $query;
       // die();

@@ -111,7 +111,7 @@ class Escuela_model extends CI_Model
       es.zona_escolar,
       es.sostenimiento
       FROM
-      centros_educativos.vista_cct AS es
+      vista_cct AS es
       WHERE
       (es.status != 2
       AND es.status != 3)
@@ -136,7 +136,8 @@ class Escuela_model extends CI_Model
       es.cct as cve_centro,
       es.nombre as nombre_centro,
       es.desc_nivel_educativo as nivel,
-      es.turno as turno_single,
+       es.turno as turno,
+      es.desc_turno as turno_single,
       es.latitud,
       es.longitud,
       CASE  WHEN desc_nivel_educativo ='NO APLICA'  THEN '0'
@@ -157,7 +158,7 @@ class Escuela_model extends CI_Model
       es.sostenimiento,
       es.desc_sostenimiento as subsostenimiento
       FROM
-      centros_educativos.vista_cct AS es
+      vista_cct AS es
       WHERE
       es.cct = '{$cve_centro}'
       AND (es.status != 2
@@ -211,7 +212,7 @@ class Escuela_model extends CI_Model
       WHEN desc_nivel_educativo ='OTRO NIVEL EDUCATIVO' THEN '9'
       WHEN nivel_educativo = null  THEN '0'
       END AS id_nivel
-      from centros_educativos.vista_cct as es
+      from vista_cct as es
       where cct = '{$idcct}';";
       
       return $this->ce_db->query($str_query)->result_array();
@@ -284,7 +285,7 @@ class Escuela_model extends CI_Model
       es.sostenimiento,
       (6371 * ACOS(COS(RADIANS(27.239658)) * COS(RADIANS(latitud)) * COS(RADIANS(longitud) - RADIANS(- 101.225968)) + SIN(RADIANS(27.239658)) * SIN(RADIANS(latitud)))) AS distance
       FROM
-      centros_educativos.vista_cct as es
+      vista_cct as es
       WHERE
       (es.status != 2
       AND es.status != 3)

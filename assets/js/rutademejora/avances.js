@@ -3,32 +3,6 @@ function obsercaciones_modal(id) {
  $('.div_observaciones'+id).removeClass('d-none');
 }
 
-function btn_observar(id) {
-  var resultados = $("#txt_obs_resultados_"+id).val();
-  var obstaculos = $("#txt_obs_obstaculos_"+id).val();
-  var ventajas = $("#txt_obs_ventajas_"+id).val();
-  var ajustes = $("#txt_obs_ajustes_"+id).val();
-  var accion = $("#slc_observaciones"+id+" option:selected").val();
-
-  $.ajax({
-    url: base_url+'rutademejora/set_observacion',
-    type: 'POST',
-    data: {'idaccion':accion, 'resultados': resultados, 'obstaculos':obstaculos, 'ventajas':ventajas, 'ajustes': ajustes},
-  })
-  .done(function() {
-    $('#myModal'+id).hide();
-  })
-  .fail(function() {
-    console.log("error");
-  })
-  .always(function() {
-    console.log("complete");
-  });
-
-  
-  $('.div_observaciones'+id).addClass('d-none');
-}
-
 $(function() {
   obj_rm_avances_acciones = new Rm_avances_acciones();
 });

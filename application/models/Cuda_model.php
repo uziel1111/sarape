@@ -4,7 +4,6 @@ class Cuda_model extends CI_Model
 	function __construct(){
 		parent::__construct();
 		$this->load->database();
-		$this->ci_db = $this->load->database('ci_db', TRUE);
 	}	
 
 	public function getEncuesta($idusuario)
@@ -73,29 +72,27 @@ class Cuda_model extends CI_Model
 	public function idEncuestaNivel($nivel,$mes)
 	{
 		
-		$querynivel = "SELECT a.tema, r.idaplicar from respuesta r
-		inner join aplicar a on a.idaplicar = r.idaplicar
-		where a.estatus = 1 and r.complemento ='{$nivel}'";
+		$querynivel = "SELECT tema, idaplicar from cuda
+		where estatus = 1 and complemento ='{$nivel}'";
 
-		$querymes = "SELECT a.tema, r.idaplicar from respuesta r
-		inner join aplicar a on a.idaplicar = r.idaplicar
-		where r.complemento ='{$mes}'  and a.estatus = 1";
+		$querymes = "SELECT tema, idaplicar from cuda
+		where complemento ='{$mes}'  and estatus = 1";
 
 		$querynivelmes = "SELECT * from ({$querynivel}) as nivel
 		inner join ({$querymes}) as mes on nivel.idaplicar = mes.idaplicar";
 
 		if ($nivel != 'No' && $mes == 'No') {
 			
-			return $this->ci_db->query($querynivel)->result_array();	
+			return $this->db->query($querynivel)->result_array();	
 		}else {
 			if ($nivel == 'No' && $mes != 'No') {
 				
-				return $this->ci_db->query($querymes)->result_array();	
+				return $this->db->query($querymes)->result_array();	
 			} else {
 
 				if ($nivel != 'No' && $mes != 'No') {
 					
-					return $this->ci_db->query($querynivelmes)->result_array();	
+					return $this->db->query($querynivelmes)->result_array();	
 				}
 			}
 		}
