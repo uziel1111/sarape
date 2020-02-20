@@ -157,7 +157,7 @@ public function busquedaxct(){
     $data['id_cct_rm'] =$this->datos[0]['id_cct'];
     $data['director'] = $this->datos[0]['nombre_director'];
     $data['tipo_usuario_pemc']=$this->datos[0]['tipo_usuario_pemc'];
-    $data['vista_avance'] = $this->load->view("ruta/rutademejora/avances", $data, TRUE);
+    $data['vista_avance'] = $this->load->view("ruta/avances", $data, TRUE);
     $data['vista_indicadores'] = $this->load->view("ruta/rutademejora/indicadores", $data, TRUE);
     $data['vista_ayuda'] = $this->load->view("ruta/rutademejora/ayuda", $data, TRUE);
 

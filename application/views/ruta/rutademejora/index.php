@@ -401,11 +401,8 @@ span{
 </div>
 <!-- fin modal -->
 <!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
-<script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/btn_delete_tp.js') ?>"></script>
 <script src="<?= base_url('assets/js/rutademejora/rm_table_operation.js'); ?>"></script>
 <script src="<?= base_url('assets/js/rutademejora/rutademejora.js'); ?>"></script>
-<script src="<?= base_url('assets/js/rutademejora/rm_tp.js'); ?>"></script>
-<script src="<?= base_url('assets/js/rutademejora/rm_edith_tp.js'); ?>"></script>
 <script src="<?= base_url('assets/js/rutademejora/acciones.js'); ?>"></script>
 <script src="<?= base_url('assets/js/rutademejora/avances.js'); ?>"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

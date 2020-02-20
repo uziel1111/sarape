@@ -297,6 +297,7 @@ Rm_acciones_tp.prototype.iniciatabla = function(){
 
 Rm_acciones_tp.prototype.delete_accion = function(idaccion, idtprioriario){
   id_objetivo = $("#id_objetivos").val();
+  console.log(id_objetivo);
     $.ajax({
       url:base_url+"rutademejora/delete_accion",
       method:"POST",
