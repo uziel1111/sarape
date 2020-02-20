@@ -29,7 +29,7 @@ class Sostenimiento_model extends CI_Model
               WHEN v.sostenimiento IN ('61','41','92','96') THEN 'PRIVADO'
               ELSE 'PUBLICO'
               END) AS sostenimiento
-              FROM centros_educativos.vista_cct v
+              FROM vista_cct v
               INNER JOIN  sarape.estadistica_e_indicadores_xcct est ON est.cct=v.cct
               WHERE v.status IN ('1','4') AND v.tipo_centro='9'
               {$filtro}
