@@ -5,7 +5,6 @@ class Estadistica extends CI_Controller {
 
 		function __construct() {
 			parent::__construct();
-			$this->load->helper('form');
 			$this->load->library('Utilerias');
 			$this->load->model('Municipio_model');
 			$this->load->model('Nivel_model');
