@@ -13,8 +13,8 @@ class Municipio_model extends CI_Model
 
     function getall_xest_ind(){
 
-      $query="SELECT mu.id_municipio,mu.municipio 
-                from municipio mu 
+      $query="SELECT mu.id_municipio,mu.municipio
+                from municipio mu
               INNER JOIN vista_cct v on v.municipio=mu.id_municipio
               INNER JOIN sarape.estadistica_e_indicadores_xcct es on es.cct=v.cct
               group by mu.id_municipio";

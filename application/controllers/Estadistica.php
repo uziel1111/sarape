@@ -24,14 +24,15 @@ class Estadistica extends CI_Controller {
 
 		public function estad_indi_generales($tipo='muni')
 		{
-			$result_municipios = $this->Municipio_model->getall_xest_ind();
 			$arr_municipios = array();
 			$arr_sostenimientos = array();
+			$arr_subsostenimientos = array();
 			$arr_modalidad = array();
 			$arr_niveles = array();
 			$arr_nivelesz = array();
 			$arr_ciclo = array();
-
+			//Para estadistica por municipio
+			$result_municipios = $this->Municipio_model->getall_xest_ind();
 			if(count($result_municipios)==0){
 				$data['arr_municipios'] = array(	'0' => 'Error recuperando los municipios' );
 			}else{
@@ -40,10 +41,11 @@ class Estadistica extends CI_Controller {
 					$arr_municipios[$row['id_municipio']] = $row['municipio'];
 				}
 			}
+			$arr_sostenimientos['0'] = 'TODOS';
+			$arr_modalidad['0'] = 'TODOS';
+			$arr_niveles['0'] = 'TODOS';
 
-				$arr_niveles['0'] = 'TODOS';
-
-
+			//Para estadistica por zona
 			$result_nivelesz = $this->Nivel_model->getall_est_indz();
 			if(count($result_nivelesz)==0){
 				$data['arr_nivelesz'] = array(	'0' => 'Error recuperando los niveles' );
@@ -53,17 +55,19 @@ class Estadistica extends CI_Controller {
 					$arr_nivelesz[$row['id_nivel']] = $row['nivel'];
 				}
 			}
-
-
-				$arr_sostenimientos['0'] = 'TODOS';
-				$arr_modalidad['0'] = 'TODOS';
-				$arr_subsostenimientos['0'] = 'SELECCIONE SOSTENIMIENTO';
-
-			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
-			$arr_ciclo = array('2018-2019' => '2018-2019','2017-2018' => '2017-2018');
-
+			$arr_subsostenimientos['0'] = 'SELECCIONE SOSTENIMIENTO';
 			$arr_nzonae['0'] = 'SELECCIONE UNA ZONA ESCOLAR';
 
+			//Para ambas estasdisticas
+			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind_dispo();
+			if(count($result_ciclo)==0){
+				$data['$arr_ciclo'] = array(	'0' => 'Error recuperando los ciclo' );
+			}else{
+				foreach ($result_ciclo as $row){
+					$arr_ciclo[$row['id_ciclo']] = $row['ciclo'];
+				}
+			}
+			// $arr_ciclo = array('2018-2019' => '2018-2019','2017-2018' => '2017-2018');
 
 			$data['arr_municipios'] = $arr_municipios;
 			$data['arr_niveles'] = $arr_niveles;
@@ -74,6 +78,7 @@ class Estadistica extends CI_Controller {
 			$data['arr_nzonae'] =$arr_nzonae;
 			$data['arr_ciclos'] =$arr_ciclo;
 
+			//para estilo del tab seleccionado
 			if ($tipo=="zona") {
 				$data['tzona'] = 'nav-link nav-link-style-1 active';
 				$data['tmuni'] = 'nav-link nav-link-style-1';
@@ -82,7 +87,6 @@ class Estadistica extends CI_Controller {
 				$data['tmuni'] = 'nav-link nav-link-style-1 active';
 				$data['tzona'] = 'nav-link nav-link-style-1';
 			}
-
 			Utilerias::pagina_basica($this,"estadistica/estadi_e_indi_gen2", $data);
 		}//estad_indi_generales()
 

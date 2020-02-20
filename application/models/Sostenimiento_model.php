@@ -18,11 +18,11 @@ class Sostenimiento_model extends CI_Model
       if($nivel!="TODOS"){
         $filtro.=" and v.desc_nivel_educativo = '{$nivel}' ";
       }
-
+      //propuesta de tinoco 29 de octubre del 2019
       $query="SELECT (SELECT CASE
-              WHEN v.sostenimiento IN  ('51') THEN '3'
-              WHEN v.sostenimiento IN ('61','41','92','96') THEN '2'
-              ELSE '1'
+              WHEN v.sostenimiento IN  ('51') THEN '3'#es autonomo
+              WHEN v.sostenimiento IN ('61','41','92','96') THEN '2'#es privado
+              ELSE '1'# sino cae en ningon caso anterior es publico
               END) as id_sostenimiento,
               (SELECT CASE
               WHEN v.sostenimiento IN  ('51') THEN 'AUTONOMO'
@@ -34,10 +34,7 @@ class Sostenimiento_model extends CI_Model
               WHERE v.status IN ('1','4') AND v.tipo_centro='9'
               {$filtro}
               GROUP BY sostenimiento;";
-
       return $this->db->query($query)->result_array();
-
-
     }// get_xcvenivel()
 
     function get_sostenimiento($id_sostenimiento){

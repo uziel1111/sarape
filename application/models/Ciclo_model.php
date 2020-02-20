@@ -85,4 +85,13 @@ class Ciclo_model extends CI_Model
 
     }// get_ciclo()
 
+    function ciclo_est_e_ind_dispo(){
+      $query="SELECT est.id_ciclo , c.ciclo
+              FROM	estadistica_e_indicadores_xcct est
+              INNER JOIN ciclo c ON est.id_ciclo= c.id_ciclo
+              GROUP BY est.id_ciclo
+              ORDER BY est.id_ciclo desc";
+      return  $this->db->query($query)->result_array();
+    }// ciclo_est_e_ind_dispo()
+
 }// Municipio_model
