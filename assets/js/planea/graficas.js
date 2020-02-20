@@ -147,26 +147,17 @@ function Graficasm(){
       }// graficoplanea_ud_prim_lyc()
 
       Graficasm.prototype.graficoplanea_ud_prim_mate = function(arr_mate,id_filtro, va_por, periodo){
-        if (periodo == 1) {
-            colores = ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'];
-        }else{
-            colores = ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'];
+        amarillo = (arr_mate.length - 10);
+        verde = amarillo + 5;
+        var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
+        for (var i = 1; i <= arr_mate.length; i++) {
+            
+            if (i<=amarillo) {
+                colores.push('#FF9900'); 
+            }
+            if (verde<=i) {
+                colores.push('#3CB371'); 
+            }
         }
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
@@ -283,20 +274,23 @@ function Graficasm(){
       }// graficoplanea_ud_prim_mate()
 
       Graficasm.prototype.graficoplanea_ud_secu_lyc = function(arr_lyc,id_cct, va_por){
-        // console.info(arr_lyc);
+        amarillo = (arr_lyc.length - 10);
+        verde = amarillo + 5;
+        var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
+        for (var i = 1; i <= arr_lyc.length; i++) {
+            
+            if (i<=amarillo) {
+                colores.push('#FF9900'); 
+            }
+            if (verde<=i) {
+                colores.push('#3CB371'); 
+            }
+        }
         arr_lyc.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
           Highcharts.theme = {
-                colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-
-
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
+                colors: colores,
 
                 legend: {
                     itemStyle: {
@@ -406,18 +400,23 @@ function Graficasm(){
 
       Graficasm.prototype.graficoplanea_ud_secu_mate = function(arr_mate,id_cct, va_por){
         // console.info(arr_mate);
+        amarillo = (arr_mate.length - 10);
+        verde = amarillo + 5;
+        var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
+        for (var i = 1; i <= arr_mate.length; i++) {
+            
+            if (i<=amarillo) {
+                colores.push('#FF9900'); 
+            }
+            if (verde<=i) {
+                colores.push('#3CB371'); 
+            }
+        }
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
           Highcharts.theme = {
-                colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900',
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
+                colors: colores,
                 chart: {
                     backgroundColor: {
                         linearGradient: [0, 0, 0, 0],
@@ -531,23 +530,23 @@ function Graficasm(){
 
       // Planea 2019 I
         Graficasm.prototype.graficoplanea_ud_secu_lyc19 = function(arr_lyc,id_cct, va_por){
-
+        amarillo = (arr_lyc.length - 10);
+        verde = amarillo + 5;
+        var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
+        for (var i = 1; i <= arr_lyc.length; i++) {
+            
+            if (i<=amarillo) {
+                colores.push('#FF9900'); 
+            }
+            if (verde<=i) {
+                colores.push('#3CB371'); 
+            }
+        }
         arr_lyc.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
           Highcharts.theme = {
-                colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-
-
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
+                colors: colores,
 
                 legend: {
                     itemStyle: {
@@ -668,19 +667,23 @@ function Graficasm(){
 
       Graficasm.prototype.graficoplanea_ud_secu_mate19 = function(arr_mate,id_cct, va_por){
         // console.info(arr_mate);
+        amarillo = (arr_mate.length - 10);
+        verde = amarillo + 5;
+        var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
+        for (var i = 1; i <= arr_mate.length; i++) {
+            
+            if (i<=amarillo) {
+                colores.push('#FF9900'); 
+            }
+            if (verde<=i) {
+                colores.push('#3CB371'); 
+            }
+        }
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
           Highcharts.theme = {
-                colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900',
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
+                colors: colores,
                 chart: {
                     backgroundColor: {
                         linearGradient: [0, 0, 0, 0],
@@ -904,18 +907,23 @@ function Graficasm(){
 
 
       Graficasm.prototype.graficoplanea_ud_ms_lyc = function(arr_lyc,id_cct, va_por){
+        amarillo = (arr_lyc.length - 10);
+        verde = amarillo + 5;
+        var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
+        for (var i = 1; i <= arr_lyc.length; i++) {
+            
+            if (i<=amarillo) {
+                colores.push('#FF9900'); 
+            }
+            if (verde<=i) {
+                colores.push('#3CB371'); 
+            }
+        }
         arr_lyc.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
           Highcharts.theme = {
-                colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900',
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
+                colors: colores,
 
                 legend: {
                     itemStyle: {
@@ -1035,14 +1043,23 @@ function Graficasm(){
       }// graficoplanea_ud_ms_lyc()
 
       Graficasm.prototype.graficoplanea_ud_ms_mate = function(arr_mate,id_cct, va_por){
+        amarillo = (arr_mate.length - 10);
+        verde = amarillo + 5;
+        var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
+        for (var i = 1; i <= arr_mate.length; i++) {
+            
+            if (i<=amarillo) {
+                colores.push('#FF9900'); 
+            }
+            if (verde<=i) {
+                colores.push('#3CB371'); 
+            }
+        }
         arr_mate.sort(function (a, b) {
             return (a.porcen_alum_respok - b.porcen_alum_respok)
         });
           Highcharts.theme = {
-                colors: ['#FF0000','#FF0000', '#FF0000', '#FF0000','#FF0000',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                 '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
-                  '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
+                colors: colores,
                 chart: {
                     backgroundColor: {
                         linearGradient: [0, 0, 0, 0],
