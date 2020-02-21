@@ -12,6 +12,21 @@ class Cuda extends CI_Controller
 
 	}
 
+	function index()
+	{	
+		$data = '';
+		
+		if (isset($_GET['idcuda'])) {
+		$idaplicar = $this->input->get('idcuda');
+		$array_detalles = $this->Cuda_model->getDetalles($idaplicar);
+		$data['array_detalles'] = $array_detalles;
+		Utilerias::pagina_basica($this,"cuda/detalles_get", $data);
+		}else{
+			Utilerias::pagina_basica($this, "cuda/cuda", $data);
+		}
+		
+	}
+
 	public function getEncuestas()
 	{
 		$idusuario = $this->input->post('idusuario');
@@ -254,10 +269,4 @@ class Cuda extends CI_Controller
 		exit;
 	}
 
-
-	function index()
-	{	
-		$data = 0;
-		Utilerias::pagina_basica($this, "cuda/cuda", $data);
-	}
 }
