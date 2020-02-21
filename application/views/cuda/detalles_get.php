@@ -34,7 +34,10 @@
 						</div>
 				</div>
 
-
+				<div class="col-md-12">
+					<a class="card-text text-justify" href="<?=base_url('cuda')?>"><button type="button" class="btn btn-secondary btn-lg btn-block">Consultar requerimientos</button>
+						<br>
+				</div>	
 
 					
 				</div>

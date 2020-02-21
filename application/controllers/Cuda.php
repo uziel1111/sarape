@@ -14,8 +14,8 @@ class Cuda extends CI_Controller
 
 	function index()
 	{	
-		$data = '';
-		
+		$data = array();
+		$array_detalles = array();
 		if (isset($_GET['idcuda'])) {
 		$idaplicar = $this->input->get('idcuda');
 		$array_detalles = $this->Cuda_model->getDetalles($idaplicar);
