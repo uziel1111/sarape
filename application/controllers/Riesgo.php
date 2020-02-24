@@ -6,11 +6,8 @@ class Riesgo extends CI_Controller {
 		function __construct() {
 			parent::__construct();
 			$this->load->library('Utilerias');
-			$this->load->model('Escuela_model');
 			$this->load->model('Municipio_model');
 			$this->load->model('Nivel_model');
-			$this->load->model('Sostenimiento_model');
-			$this->load->model('Riesgo_alumn_esc_bim_model');
 			$this->load->helper('form');
 		}
 
@@ -29,8 +26,8 @@ class Riesgo extends CI_Controller {
 			}
 
 			$niveles = $this->Nivel_model->get_xidmunicipio_riesgo(0);
-			foreach ($niveles as $nivel){
-				 $arr_niveles[$nivel['id_nivel']] = $nivel['nivel'];
+			// foreach ($niveles as $nivel){
+				//  $arr_niveles[$nivel['id_nivel']] = $nivel['nivel'];
 			}
 
 			$arr_bimestres['1'] = '1er Periodo';

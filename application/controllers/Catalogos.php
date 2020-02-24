@@ -6,8 +6,7 @@ class Catalogos extends CI_Controller {
 		function __construct() {
 			parent::__construct();
 			$this->load->library('Utilerias');
-			$this->load->model('Nivel_model');
-			$this->load->model('Sostenimiento_model');
+			$this->load->model('Nivel_model');¿
 		}
 
 		public function getniveles_xcvemunicipio(){

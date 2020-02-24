@@ -6,7 +6,6 @@ class Report extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->library('ExcelPHP');
-		$this->load->model('Escuela_model');
 		$this->load->model('CentrosE_model');
 		$this->load->model('Estadistica_e_indicadores_xcct_model');
 		$this->load->model('Municipio_model');
@@ -17,7 +16,6 @@ class Report extends CI_Controller {
 		$this->load->model('Planeaxmuni_model');
 		$this->load->model('Inegixmuni_model');
 		$this->load->model('Supervision_model');
-		$this->load->model('Subsostenimiento_model');
 		$this->load->model('Indicadoresxmuni_model');
 		$this->load->model('Indicadoresxestado_model');
 

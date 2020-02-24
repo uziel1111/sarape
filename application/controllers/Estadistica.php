@@ -15,7 +15,6 @@ class Estadistica extends CI_Controller {
 			$this->load->model('Planeaxmuni_model');
 			$this->load->model('Inegixmuni_model');
 			$this->load->model('Supervision_model');
-			$this->load->model('Subsostenimiento_model');
 			$this->load->model('Indicadoresxmuni_model');
 			$this->load->model('Indicadoresxestado_model');
 

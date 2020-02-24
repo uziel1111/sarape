@@ -8,7 +8,6 @@ class Panel extends CI_Controller {
 			$this->data = array( );
 			$this->logged_in = FALSE;
 			$this->load->library('Utilerias');
-			$this->load->model('Usuario_model');
 			$this->load->model('Planeaxmuni_model');
 			$this->load->model('Recursos_model');
 		}

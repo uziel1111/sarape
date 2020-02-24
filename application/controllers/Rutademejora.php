@@ -10,7 +10,6 @@ class Rutademejora extends CI_Controller {
 		$this->load->library('Utilerias');
 		$this->load->model('Prioridad_model');
 		$this->load->model('Problematica_model');
-		$this->load->model('Ambito_model');
 		$this->load->model('Rutamejora_model');
 		$this->cct = array();
 	}

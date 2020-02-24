@@ -15,9 +15,7 @@ class Estadistica_pemc extends CI_Controller
         $this->load->model('Rutamejora_model');
         $this->load->model('Prioridad_model');
         $this->load->model('Problematica_model');
-        $this->load->model('Ambito_model');
         $this->load->model('Nivel_model');
-        $this->load->model('Sostenimiento_model');
         $this->load->model('CentrosE_model');
         $this->datos = array();
     }

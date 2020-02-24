@@ -7,15 +7,11 @@ class Planea extends CI_Controller {
 			parent::__construct();
 			$this->load->library('Utilerias');
 			$this->load->model('CentrosE_model');
-			$this->load->model('Municipio_model');
-			$this->load->model('Nivel_model');
 			$this->load->model('Supervision_model');
 			$this->load->model('Planeaxmuni_model');
 			$this->load->model('Planeaxesc_reactivo_model');
 			$this->load->helper('form');
-
 			$this->load->model('Recursos_model');
-			$this->load->model('Propuestas_model');
 		}
 
 		public function index(){

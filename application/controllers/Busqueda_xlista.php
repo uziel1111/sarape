@@ -6,11 +6,7 @@ class Busqueda_xlista extends CI_Controller {
 		function __construct() {
 			parent::__construct();
 			$this->load->library('Utilerias');
-			$this->load->model('Municipio_model');
-			$this->load->model('Nivel_model');
 			$this->load->model('CentrosE_model');
-			$this->load->model('Sostenimiento_model');
-			$this->load->model('Escuela_model');
 		}
 
 		public function index(){
