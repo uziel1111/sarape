@@ -45,8 +45,7 @@ class Recursos_model extends CI_Model
     }
 
     function get_tipo_contenidos(){
-    	$str_query = "SELECT * FROM tipo_recursos_apoyo
-						WHERE 1 = 1";
+    	$str_query = "SELECT * FROM tipo_recursos_apoyo";
 		return $this->db->query($str_query)->result_array();
     }
 

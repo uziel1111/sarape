@@ -95,4 +95,9 @@ class Ciclo_model extends CI_Model
       return  $this->db->query($query)->result_array();
     }// ciclo_est_e_ind_dispo()
 
-}// Municipio_model
+    function get_ciclos_riesgo()
+    {
+       $query ="SELECT ciclo from ciclo where id_ciclo not in (1,3);";
+       return  $this->db->query($query)->result_array();
+    }
+}// Ciclo model
