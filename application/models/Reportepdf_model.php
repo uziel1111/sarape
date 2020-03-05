@@ -35,56 +35,37 @@ class Reportepdf_model extends CI_Model
          $where = "acc.id_objetivos = {$id_tprioritario}";
       }
       $str_query = "SELECT
-	acc.id_accion,
-	acc.accion,
-	acc.accion_f_inicio,
-	acc.accion_f_termino,
-	acc.mat_insumos,
-	CONCAT(IFNULL(av.cte1, '0'), '%') AS avance1,
-	CONCAT(
-		(
+acc.id_accion,
+acc.accion,
+acc.accion_f_inicio,
+acc.accion_f_termino,
+acc.mat_insumos,
+-- CONCAT(IFNULL(av.cte5, '0'), '%') AS avance1,
 
-			IF (ISNULL(av.cte1), 0, av.cte1)
-		) + (
-
-			IF (ISNULL(av.cte2), 0, av.cte2)
-		) + (
-
-			IF (ISNULL(av.cte3), 0, av.cte3)
-		) + (
-
-			IF (ISNULL(av.cte4), 0, av.cte4)
-		) + (
-
-			IF (ISNULL(av.cte5), 0, av.cte5)
-		) + (
-
-			IF (ISNULL(av.cte6), 0, av.cte6)
-		) + (
-
-			IF (ISNULL(av.cte7), 0, av.cte7)
-		) + (
-
-			IF (ISNULL(av.cte8), 0, av.cte8)
-		) + (
-
-			IF (ISNULL(av.cte9), 0, av.cte9)
-		) + (
-
-			IF (
-				ISNULL(av.cte10),
-				0,
-				av.cte10
-			)
-		),
-		'%'
-	) AS avance,
-	acc.ids_responsables,
-	acc.otro_responsable,
-  acc.main_resp,
-	acc.id_objetivos
+CONCAT(
+IF (ISNULL(av.cte8) OR (av.cte8=0),
+IF (ISNULL(av.cte7) OR (av.cte7=0),
+IF (ISNULL(av.cte6) OR (av.cte6=0),
+IF (ISNULL(av.cte5) OR (av.cte5=0),
+IF (ISNULL(av.cte4) OR (av.cte4=0),
+IF (ISNULL(av.cte3) OR (av.cte3=0),
+IF (ISNULL(av.cte2) OR (av.cte2=0),
+IF (ISNULL(av.cte1) OR (av.cte1=0),'0',av.cte1)
+,av.cte2)
+,av.cte3)
+,av.cte4)
+,av.cte5)
+,av.cte6)
+,av.cte7)
+,av.cte8)
+,'%'
+) AS avance,
+acc.ids_responsables,
+acc.otro_responsable,
+acc.main_resp,
+acc.id_objetivos
 FROM
-	rm_accionxtproritario acc
+rm_accionxtproritario acc
 LEFT JOIN rm_avance_xcctxtpxaccion av ON av.id_accion = acc.id_accion
 AND acc.id_tprioritario = av.id_tprioritario
 WHERE
