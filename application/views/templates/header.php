@@ -76,6 +76,22 @@
                     <div class="right-bar d-flex align-items-center">
                         <nav class="d-flex align-items-center">
                             <ul class="main-menu">
+                              <li class="nav-item dropdown">
+                                <a class="nav-link hcolor-3" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Familia y estudiantes
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right ddm-color-3" aria-labelledby="navbarDropdownMenuLink">
+                                  <a class="dropdown-item hcolor-3" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank">Educación en casa / Protégete del Coronavirus</a>
+                                  <a class="dropdown-item hcolor-3" id="btn_index_guiaspadres" href="javascript:void(0)">Guía para padres de familia</a>
+                                  <a class="dropdown-item hcolor-3" href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank">Libros de texto gratuito SEP</a>
+                                  <a class="dropdown-item hcolor-3" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a>
+                                  <a class="dropdown-item hcolor-3" href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank">Consulta de calificaciones</a>
+                                  <a class="dropdown-item hcolor-3" href="http://www.seducoahuila.gob.mx/yabasta/" target="_blank">Alto al acoso escolar <i>(bullying)</i></a>
+                                  <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank">Juegos y aplicaciones educativas</a>
+                                  <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/correo.php" target="_blank">Ingresa a tu correo electrónico</a>
+                                  <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/concursos.php" target="_blank">Cursos y convocatorias</a>
+                              </div>
+                          </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link hcolor-1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       Estadística e indicadores
@@ -108,22 +124,7 @@
                                   <a class="dropdown-item hcolor-2" onclick="Index.getRevistaEscolar()" href="javascript:void(0)">Infórme<b>SE</b></a>
                               </div>
                           </li>
-                          <li class="nav-item dropdown">
-                            <a class="nav-link hcolor-3" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Familia y estudiantes
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-right ddm-color-3" aria-labelledby="navbarDropdownMenuLink">
-                              <a class="dropdown-item hcolor-3" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank">Educación en casa / Protégete del Coronavirus</a>
-                              <a class="dropdown-item hcolor-3" id="btn_index_guiaspadres" href="javascript:void(0)">Guía para padres de familia</a>
-                              <a class="dropdown-item hcolor-3" href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank">Libros de texto gratuito SEP</a>
-                              <a class="dropdown-item hcolor-3" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a>
-                              <a class="dropdown-item hcolor-3" href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank">Consulta de calificaciones</a>
-                              <a class="dropdown-item hcolor-3" href="http://www.seducoahuila.gob.mx/yabasta/" target="_blank">Alto al acoso escolar <i>(bullying)</i></a>
-                              <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank">Juegos y aplicaciones educativas</a>
-                              <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/correo.php" target="_blank">Ingresa a tu correo electrónico</a>
-                              <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/concursos.php" target="_blank">Cursos y convocatorias</a>
-                          </div>
-                      </li>
+
                       <li class="nav-item dropdown">
                         <a class="nav-link hcolor-4" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Otros
