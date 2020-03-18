@@ -7,6 +7,36 @@
 			</div>
 		</div>
 		<div class="row">
+		<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+				<div class="card main-boxes">
+					<div class="card-header bgcolor-3">
+						<div class="icon color-6">
+							<span class="lnr lnr-bubble"></span>
+						</div>
+						<h3 class="card-title color-6">Familia y estudiantes</h3>
+					</div>
+					<div class="card-body">
+						<!-- List group -->
+						<ul class="list-group">
+						<li class="list-group-item"><a class="fw800 fz-16" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Educación en casa <span  class="h4 text-white badge badge-secondary bgcolor-3">Nuevo</span>
+								<a style="color:grey; padding-left: 10%;" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><b>Protégete del Coronavirus</b> </a></li>						
+							<li class="list-group-item"><a onclick="Index.getguiaparapadres()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Guía para padres de familia</a>
+							</li>
+							<li class="list-group-item"><a href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Libros de texto gratuito SEP</a>
+							</li>
+							<li class="list-group-item"><a onclick="Index.getMaterialesUtiles()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Lista de materiales y útiles</a>
+							</li>
+							<li class="list-group-item"><a href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Consulta de calificaciones</a>
+							</li>
+							<li class="list-group-item"><a href="https://www.seducoahuila.gob.mx/sebuscanvalientes/" target="_blank"><span class="color-2"><i class="fas fa-star"></i></span>  Alto al acoso escolar <i>(bullying)</i></a>
+							</li>
+							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Juegos y aplicaciones educativas</a></li> -->
+							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/correo.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Ingresa a tu correo electronico</a></li> -->
+							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/concursos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Cursos y convocatorias</a></li> -->
+						</ul>
+					</div>
+				</div>
+			</div>		
 			<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
 				<div class="card main-boxes">
 					<div class="card-header bgcolor-1">
@@ -63,34 +93,6 @@
 			</div>
 			<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
 				<div class="card main-boxes">
-					<div class="card-header bgcolor-3">
-						<div class="icon color-6">
-							<span class="lnr lnr-bubble"></span>
-						</div>
-						<h3 class="card-title color-6">Familia y estudiantes</h3>
-					</div>
-					<div class="card-body">
-						<!-- List group -->
-						<ul class="list-group">
-							<li class="list-group-item"><a onclick="Index.getguiaparapadres()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Guía para padres de familia</a>
-							</li>
-							<li class="list-group-item"><a href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Libros de texto gratuito SEP</a>
-							</li>
-							<li class="list-group-item"><a onclick="Index.getMaterialesUtiles()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Lista de materiales y útiles</a>
-							</li>
-							<li class="list-group-item"><a href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Consulta de calificaciones</a>
-							</li>
-							<li class="list-group-item"><a href="https://www.seducoahuila.gob.mx/sebuscanvalientes/" target="_blank"><span class="color-2"><i class="fas fa-star"></i></span>  Alto al acoso escolar <i>(bullying)</i></a>
-							</li>
-							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Juegos y aplicaciones educativas</a></li> -->
-							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/correo.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Ingresa a tu correo electronico</a></li> -->
-							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/concursos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Cursos y convocatorias</a></li> -->
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-				<div class="card main-boxes">
 					<div class="card-header bgcolor-4">
 						<div class="icon color-6">
 							<span class="lnr lnr-layers"></span>
@@ -136,4 +138,24 @@
 		</div>
 	</div>
 </section>
+<!-- modal COVID19-->
+<div id='modalCOVID19' class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bgcolor-3">
+        <h5 class="modal-title  color-6">Información Importante</h5>
+        <button type="button" class="close  color-6" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	  <a type="button" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank" class="btn btn-lg bgcolor-4 color-6 btn-block">Visitar sitio</a>
+	  <a href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><img src="<?=base_url('/assets/img/home/covid19/modalEducacionencasa.jpg')?>" class="img-fluid" alt="..."></a>
+	  
+
+      </div>
+    </div>
+  </div>
+</div><!-- modal -->
+
 <!-- End Coa Box Txt -->

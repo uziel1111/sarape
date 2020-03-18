@@ -56,6 +56,11 @@
       base_url = base_url + "index.php/";
   });
 </script>
+<script>
+    $(document).ready(function(){
+        $("#modalCOVID19").modal('show');
+    });
+</script>
 </head>
 <body>
     <div id="top"></div>
@@ -108,6 +113,7 @@
                               Familia y estudiantes
                           </a>
                           <div class="dropdown-menu dropdown-menu-right ddm-color-3" aria-labelledby="navbarDropdownMenuLink">
+                              <a class="dropdown-item hcolor-3" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank">Educación en casa / Protégete del Coronavirus</a>
                               <a class="dropdown-item hcolor-3" id="btn_index_guiaspadres" href="javascript:void(0)">Guía para padres de familia</a>
                               <a class="dropdown-item hcolor-3" href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank">Libros de texto gratuito SEP</a>
                               <a class="dropdown-item hcolor-3" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a>
