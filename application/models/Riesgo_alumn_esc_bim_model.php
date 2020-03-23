@@ -363,7 +363,7 @@ class Riesgo_alumn_esc_bim_model extends CI_Model
 
     function get_numero_bajas($cct,$turno, $id_nivel, $bimestre){
       $nivel = ($id_nivel == 4)? "prima":"secu";
-      $str_query = "SELECT COUNT(cct) total FROM cebasica.sarape_bajas_y_motivos_{$nivel} WHERE cct = '{$cct}' AND id_turno_single={$turno} AND periodo_evaluacion = {$bimestre} AND motivo_abandono <> 'FALLECIMIENTO'" ;
+      $str_query = "SELECT COUNT(cct) total FROM cebasica.sarape_bajas_y_motivos_{$nivel} WHERE cct = '{$cct}' AND periodo_evaluacion = {$bimestre} AND motivo_abandono <> 'FALLECIMIENTO'" ;
       $query = $this->db->query($str_query);
       return $query->result_array();
     }
