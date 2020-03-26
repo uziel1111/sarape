@@ -5,7 +5,7 @@
 				<div class="alert alert-light" role="alert">
 					<div class="row">
 						<div class="col align-self-center">
-							<a href="<?=base_url('cuda')?>"><h5 class="text-muted " id="titulo_h5">Catálogo Único de Documentos Autorizados </h5></a>
+							<a href="<?=base_url('index.php/cuda')?>"><h5 class="text-muted " id="titulo_h5">Catálogo Único de Documentos Autorizados </h5></a>
 						</div>
 
 					</div>
@@ -34,10 +34,16 @@
 						</div>
 				</div>
 
-				<div class="col-md-12">
-					<a class="card-text text-justify" href="<?=base_url('cuda')?>"><button type="button" class="btn btn-secondary btn-lg btn-block">Consultar requerimientos</button>
-						<br>
-				</div>	
+				<div class="row">
+					<div class="col-md-6">
+						<a class="card-text text-justify" href="<?=base_url('index.php/cuda')?>"><button type="button" class="btn btn-secondary btn-lg btn-block">Consultar requerimientos</button>
+							<br>
+					</div>
+					<div class="col-md-6">
+						<a class="card-text text-justify" target="_blank" href="https://sarape.gob.mx/<?=$array_detalles[0]['url_comple']?>"><button type="button" class="btn btn-secondary btn-lg btn-block">Ver PDF</button>
+							<br>
+					</div>	
+				</div>
 
 					
 				</div>
