@@ -4,11 +4,11 @@
     <div class="card-header card-1-header bg-light">TALIS</div>
     <div class="card-body">
 <p>El Estudio Internacional sobre la Enseñanza y Aprendizaje de la OCDE (TALIS, por sus siglas en inglés) es
-una encuenta internacional sobre docentes, directores y el entorno del aprendizaje en los centros educativos.
+una encuesta internacional sobre docentes, directores y el entorno del aprendizaje en los centros educativos.
 Esta nota presenta las respuestas de los docentes de secundaria obligatorial y sus directores en los centros educativos públicos y privados convencionales.
 </p>
 <p>Ponemos a tu disposición documentación de consulta la cual esta disponible para descargar.
-</p>		
+</p>
 <p>
 <table class="table table-striped table-hover">
   <thead>
@@ -25,7 +25,7 @@ Esta nota presenta las respuestas de los docentes de secundaria obligatorial y s
       <td>Guía del profesorado TALIS 2018</td>
       <td>PDF</td>
       <td><a href="<?php echo base_url('assets/docs/talis/TALIS2018-GuíaDelProfesorado.pdf');?>" class="btn btn-success btn-sm" role="button" aria-pressed="true" download><i class="fa fa-download" aria-hidden="true"></i></a>
-<a href="<?php echo base_url('assets/docs/talis/TALIS2018-GuíaDelProfesorado.pdf');?>" class="btn btn-secondary btn-sm" role="button" aria-pressed="true" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>		
+<a href="<?php echo base_url('assets/docs/talis/TALIS2018-GuíaDelProfesorado.pdf');?>" class="btn btn-secondary btn-sm" role="button" aria-pressed="true" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
 		</td>
     </tr>
     <tr>
@@ -33,12 +33,12 @@ Esta nota presenta las respuestas de los docentes de secundaria obligatorial y s
       <td>Resultados de TALIS 2018</td>
       <td>PDF</td>
       <td><a href="<?php echo base_url('assets/docs/talis/TALIS2018-NotaPaísMéxico.pdf');?>" class="btn btn-success btn-sm" role="button" aria-pressed="true" download><i class="fa fa-download" aria-hidden="true"></i></a>
-<a href="<?php echo base_url('assets/docs/talis/TALIS2018-NotaPaísMéxico.pdf');?>" class="btn btn-secondary btn-sm" role="button" aria-pressed="true" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>	
+<a href="<?php echo base_url('assets/docs/talis/TALIS2018-NotaPaísMéxico.pdf');?>" class="btn btn-secondary btn-sm" role="button" aria-pressed="true" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
 		</td>
-    </tr> 
+    </tr>
   </tbody>
-</table>		
-		
+</table>
+
 </p>
 		</div>
   </div><!-- card -->
