@@ -11,6 +11,18 @@
       <div class="modal-body">
         <div class="container">
           <div class="row">
+             <div class="col-sm-3">
+             
+             <a href="https://issuu.com/ginaorozcoo/docs/revista_abril_2020"  target="_blank" title="Edición #20 Abril">
+               <img src="<?= base_url('assets/img/revista-abril.png'); ?>" class="img-fluid" alt="Responsive image">
+             </a>
+           </div>
+             <div class="col-sm-3">
+             
+             <a href="https://issuu.com/ginaorozcoo/docs/revista_marzo_2020"  target="_blank" title="Edición #19 Marzo">
+               <img src="<?= base_url('assets/img/revista-marzo.png'); ?>" class="img-fluid" alt="Responsive image">
+             </a>
+           </div>
           <div class="col-sm-3">
              
              <a href="https://issuu.com/ginaorozcoo/docs/revista_febrero_2020"  target="_blank" title="Edición #18 Febrero">
