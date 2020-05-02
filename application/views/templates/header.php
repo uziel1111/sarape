@@ -84,7 +84,7 @@
                                   <a class="dropdown-item hcolor-3" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank">Educación en casa / Protégete del Coronavirus</a>
                                   <a class="dropdown-item hcolor-3" id="btn_index_guiaspadres" href="javascript:void(0)">Guía para padres de familia</a>
                                   <a class="dropdown-item hcolor-3" href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank">Libros de texto gratuito SEP</a>
-                                  <a class="dropdown-item hcolor-3" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a>
+                                  <!-- <a class="dropdown-item hcolor-3" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a> -->
                                   <a class="dropdown-item hcolor-3" href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank">Consulta de calificaciones</a>
                                   <a class="dropdown-item hcolor-3" href="http://www.seducoahuila.gob.mx/yabasta/" target="_blank">Alto al acoso escolar <i>(bullying)</i></a>
                                   <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank">Juegos y aplicaciones educativas</a>
@@ -103,8 +103,8 @@
                                     <!-- index.php/Server_ocupado/index -->
                                     <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Estadistica/estad_indi_generales'); ?>">Por estado, municipio y zona</a>
                                     <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Busqueda_xlista/index'); ?>">Por escuela</a>
-                                    <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>">Localiza tu escuela</a>
-                                    <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Riesgo/riesgo_x_muni_zona'); ?>">Riesgo de abandono</a>
+                                    <!-- <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>">Localiza tu escuela</a> -->
+                                    <!-- <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Riesgo/riesgo_x_muni_zona'); ?>">Riesgo de abandono</a> -->
                                     <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Planea/index'); ?>">Resultados estatales de PLANEA</a>
                                 </div>
                             </li>

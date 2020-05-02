@@ -19,16 +19,19 @@
 						<!-- List group -->
 						<ul class="list-group">
 						<li class="list-group-item"><a class="fw800 fz-16" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Educación en casa <span  class="h4 text-white badge badge-secondary bgcolor-3">Nuevo</span>
-								<a style="color:grey; padding-left: 10%;" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><b>Protégete del Coronavirus</b> </a></li>						
+								<a style="color:grey; padding-left: 10%;" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><b>Protégete del Coronavirus</b> </a></li>
 							<li class="list-group-item"><a onclick="Index.getguiaparapadres()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Guía para padres de familia</a>
 							</li>
 							<li class="list-group-item"><a href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Libros de texto gratuito SEP</a>
 							</li>
-							<li class="list-group-item"><a onclick="Index.getMaterialesUtiles()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Lista de materiales y útiles</a>
-							</li>
+							<!-- <li class="list-group-item"><a onclick="Index.getMaterialesUtiles()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Lista de materiales y útiles</a>
+							</li> -->
 							<li class="list-group-item"><a href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Consulta de calificaciones</a>
 							</li>
 							<li class="list-group-item"><a href="https://www.seducoahuila.gob.mx/sebuscanvalientes/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span>  Alto al acoso escolar <i>(bullying)</i></a>
+							</li>
+							<li  class="list-group-item">
+								<a href="https://proyectoeducativo.org" target="_blank" style=" font-size:13px"><span class="color-3"><i class="fas fa-star"></i></span>Recursos de apoyo para el aprendizaje</a>
 							</li>
 							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Juegos y aplicaciones educativas</a></li> -->
 							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/correo.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Ingresa a tu correo electronico</a></li> -->
@@ -36,7 +39,7 @@
 						</ul>
 					</div>
 				</div>
-			</div>		
+			</div>
 			<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
 				<div class="card main-boxes">
 					<div class="card-header bgcolor-1">
@@ -55,9 +58,9 @@
 							<!-- index.php/Server_ocupado/index -->
 							<li class="list-group-item"><a href="<?= base_url('index.php/Estadistica/estad_indi_generales'); ?>"><span class="color-1"><i class="material-icons">public</i></span> Por estado, municipio y zona</a></li>
 							<li class="list-group-item"><a href="<?= base_url('index.php/Busqueda_xlista/index'); ?>"><span class="color-1"><i class="material-icons">location_city</i></span> Por escuela</a></li>
-							<li class="list-group-item"><a href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">my_location</i></span> Localiza tu escuela</a></li>
-							<li class="list-group-item"><a href="<?= base_url('index.php/Riesgo/riesgo_x_muni_zona'); ?>"><span class="color-1"><i class="material-icons">report</i></span> Riesgo de abandono</a></li>
-							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Planea/index'); ?>" target="_blank"><span class="color-1"><i class="material-icons">insert_chart</i></span> Resultados estatales de 
+							<!-- <li class="list-group-item"><a href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">my_location</i></span> Localiza tu escuela</a></li> -->
+							<!-- <li class="list-group-item"><a href="<?= base_url('index.php/Riesgo/riesgo_x_muni_zona'); ?>"><span class="color-1"><i class="material-icons">report</i></span> Riesgo de abandono</a></li> -->
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Planea/index'); ?>" target="_blank"><span class="color-1"><i class="material-icons">insert_chart</i></span> Resultados estatales de
 								<a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/Planea/index'); ?>" target="_blank"><b>PLANEA</b> <span  class="h4 text-white badge badge-secondary bgcolor-1">Nuevo</span></a></li>
 						</ul>
 					</div>
@@ -151,7 +154,7 @@
       <div class="modal-body">
 	  <a type="button" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank" class="btn btn-lg bgcolor-4 color-6 btn-block">Visitar sitio</a>
 	  <a href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><img src="<?=base_url('/assets/img/home/covid19/modalEducacionencasa.jpg')?>" class="img-fluid" alt="..."></a>
-	  
+
 
       </div>
     </div>
