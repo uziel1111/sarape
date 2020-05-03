@@ -23,7 +23,7 @@
 									</a>
 							</li>
 							<li class="list-group-item"><a class="fw800 fz-16" href="https://sarape-conectados.mx/Escolar/login" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Conectados para aprender
-									<a style="color:grey; padding-left: 10%;" href="https://sarape-conectados.mx/Escolar/login" target="_blank"><span class="h6 text-white badge badge-secondary bgcolor-3"><i class="fas fa-user-tie"></i></span> <b>Ingreso para Estudiantes</b>
+									<a style="color:grey; padding-left: 10%;" href="https://sarape-conectados.mx/Escolar/login" target="_blank"><span class="h6 text-white badge badge-secondary bgcolor-3"><i class="fas fa-user-tie"></i></span> <b>Ingreso para Docentes</b>
 									</a>
 							</li>
 							<li class="list-group-item"><a class="fw800 fz-16" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Educación en casa <span class="h4 text-white badge badge-secondary bgcolor-3">Nuevo</span>
