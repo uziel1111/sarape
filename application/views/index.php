@@ -7,7 +7,7 @@
 			</div>
 		</div>
 		<div class="row">
-		<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+			<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
 				<div class="card main-boxes">
 					<div class="card-header bgcolor-3">
 						<div class="icon color-6">
@@ -18,19 +18,29 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
-						<li class="list-group-item"><a class="fw800 fz-16" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Educación en casa <span  class="h4 text-white badge badge-secondary bgcolor-3">Nuevo</span>
-								<a style="color:grey; padding-left: 10%;" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><b>Protégete del Coronavirus</b> </a></li>
-							<li class="list-group-item"><a onclick="Index.getguiaparapadres()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Guía para padres de familia</a>
+							<li class="list-group-item"><a class="fw800 fz-16" href="https://sarape-conectados.mx/Alumno/login" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Conectados para aprender
+									<a style="color:grey; padding-left: 10%;" href="https://sarape-conectados.mx/Alumno/login" target="_blank"><span class="h6 text-white badge badge-secondary bgcolor-3"><i class="fas fa-user"></i></span> <b>Ingreso para Estudiantes</b>
+									</a>
 							</li>
-							<li class="list-group-item"><a href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Libros de texto gratuito SEP</a>
+							<li class="list-group-item"><a class="fw800 fz-16" href="https://sarape-conectados.mx/Escolar/login" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Conectados para aprender
+									<a style="color:grey; padding-left: 10%;" href="https://sarape-conectados.mx/Escolar/login" target="_blank"><span class="h6 text-white badge badge-secondary bgcolor-3"><i class="fas fa-user-tie"></i></span> <b>Ingreso para Estudiantes</b>
+									</a>
+							</li>
+							<li class="list-group-item"><a class="fw800 fz-16" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Educación en casa <span class="h4 text-white badge badge-secondary bgcolor-3">Nuevo</span>
+									<a style="color:grey; padding-left: 10%;" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><b>Protégete del Coronavirus</b>
+									</a>
+							</li>
+							<li class="list-group-item"><a onclick="Index.getguiaparapadres()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span> Guía para padres de familia</a>
+							</li>
+							<li class="list-group-item"><a href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span> Libros de texto gratuito SEP</a>
 							</li>
 							<!-- <li class="list-group-item"><a onclick="Index.getMaterialesUtiles()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Lista de materiales y útiles</a>
 							</li> -->
-							<li class="list-group-item"><a href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Consulta de calificaciones</a>
+							<li class="list-group-item"><a href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span> Consulta de calificaciones</a>
 							</li>
-							<li class="list-group-item"><a href="https://www.seducoahuila.gob.mx/sebuscanvalientes/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span>  Alto al acoso escolar <i>(bullying)</i></a>
+							<li class="list-group-item"><a href="https://www.seducoahuila.gob.mx/sebuscanvalientes/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Alto al acoso escolar <i>(bullying)</i></a>
 							</li>
-							<li  class="list-group-item">
+							<li class="list-group-item">
 								<a href="https://proyectoeducativo.org" target="_blank" style=" font-size:13px"><span class="color-3"><i class="fas fa-star"></i></span>Recursos de apoyo para el aprendizaje</a>
 							</li>
 							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Juegos y aplicaciones educativas</a></li> -->
@@ -51,7 +61,9 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
-							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/aprovechamiento_escolar/');?>"><span class="color-1 mr-5"><i class="fas fa-star"></i></span><font SIZE=3> Aprovechamiento <a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/aprovechamiento_escolar/');?>"><b>escolar</b> </font>  <span class="h4 text-white badge badge-secondary bgcolor-1">Nuevo</span></a>
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/aprovechamiento_escolar/'); ?>"><span class="color-1 mr-5"><i class="fas fa-star"></i></span>
+									<font SIZE=3> Aprovechamiento <a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/aprovechamiento_escolar/'); ?>"><b>escolar</b> </font> <span class="h4 text-white badge badge-secondary bgcolor-1">Nuevo</span>
+								</a>
 							</li>
 							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Indicepeso/index'); ?>"><span class="color-1 mr-5"><i class="material-icons">report</i></span> Índice de peso</a></li>
 							<!-- index.php/Estadistica/estad_indi_generales -->
@@ -61,7 +73,7 @@
 							<!-- <li class="list-group-item"><a href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">my_location</i></span> Localiza tu escuela</a></li> -->
 							<!-- <li class="list-group-item"><a href="<?= base_url('index.php/Riesgo/riesgo_x_muni_zona'); ?>"><span class="color-1"><i class="material-icons">report</i></span> Riesgo de abandono</a></li> -->
 							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Planea/index'); ?>" target="_blank"><span class="color-1"><i class="material-icons">insert_chart</i></span> Resultados estatales de
-								<a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/Planea/index'); ?>" target="_blank"><b>PLANEA</b> <span  class="h4 text-white badge badge-secondary bgcolor-1">Nuevo</span></a></li>
+									<a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/Planea/index'); ?>" target="_blank"><b>PLANEA</b> <span class="h4 text-white badge badge-secondary bgcolor-1">Nuevo</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -77,11 +89,15 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
-							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Indicadores_Certe/');?>"><span class="color-2 mr-5"><i class="fas fa-star"></i></span><font SIZE=3> Indicadores CERTE </font>  <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a>
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Indicadores_Certe/'); ?>"><span class="color-2 mr-5"><i class="fas fa-star"></i></span>
+									<font SIZE=3> Indicadores CERTE </font> <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span>
+								</a>
 							</li>
 							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/cuda');  ?>" target="_blank"><span class="color-2"><i class="fas fa-star"></i></span> Catálogo Único de Documentos
-								<a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/cuda'); ?>" target="_blank"><b>Autorizados (CUDA)</b> <span  class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a></li>
-							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span><font SIZE=3> Programa Escolar de Mejora <a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank">Continua </font></a>
+									<a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/cuda'); ?>" target="_blank"><b>Autorizados (CUDA)</b> <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a></li>
+							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank"><span class="color-2"><i class="material-icons">chevron_right</i></span>
+									<font SIZE=3> Programa Escolar de Mejora <a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank">Continua </font>
+								</a>
 							</li>
 							<li class="list-group-item"><a onclick="Index.getRevistaEscolar()" href="javascript:void(0)"><span class="color-2 mr-5"><i class="material-icons">chevron_right</i></span>Revista InfórmeSE</a>
 							</li>
@@ -143,22 +159,37 @@
 </section>
 <!-- modal COVID19-->
 <div id='modalCOVID19' class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header bgcolor-3">
-        <h5 class="modal-title  color-6">Información Importante</h5>
-        <button type="button" class="close  color-6" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-	  <a type="button" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank" class="btn btn-lg bgcolor-4 color-6 btn-block">Visitar sitio</a>
-	  <a href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><img src="<?=base_url('/assets/img/home/covid19/modalEducacionencasa.jpg')?>" class="img-fluid" alt="..."></a>
-
-
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header bgcolor-3">
+				<h5 class="modal-title  color-6">Información Importante</h5>
+				<button type="button" class="close  color-6" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row no-gutters">
+					<div class="col-sm-12 col-lg-6 modal-eclase">
+						<div class="eclase-info">
+							<p>La Secretaría de Educación del Estado Coahuila pone a disposición de estudiantes y docentes de Media Superior una herramienta de apoyo para la educación a distancia.</p>
+							<div class="alert alert-light" role="alert">
+								<i class="fas fa-info-circle color-2"></i> Disponible para CECYTEC y EMSAD.
+							</div>
+							<a href="https://sarape-conectados.mx/Alumno/login" target="_blank" class="primary-btn btn-block border-color-1 btn-color-2 text-white d-inline-flex align-items-center mb-10">Ingreso para Estudiantes<span class="lnr lnr-arrow-right"></span></a>
+							<a href="https://sarape-conectados.mx/Escolar/login" target="_blank" class="primary-btn btn-block border-color-1 btn-color-3 text-white d-inline-flex align-items-center">Ingreso para Docentes<span class="lnr lnr-arrow-right"></span></a>
+							<p class="text-center mt-2">
+								<img src="<?= base_url('/assets/img/home/logo-main-white.png') ?>" class="img-fluid" alt="...">
+							</p>
+						</div>
+					</div>
+					<div class="col-sm-12 col-lg-6">
+						<a type="button" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank" class="btn btn-lg bgcolor-4 color-6 btn-block">Visitar sitio</a>
+						<a href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><img src="<?= base_url('/assets/img/home/covid19/modalEducacionencasa.jpg') ?>" class="img-fluid" alt="..."></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div><!-- modal -->
 
 <!-- End Coa Box Txt -->
