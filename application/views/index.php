@@ -176,10 +176,41 @@
 								<i class="fas fa-info-circle color-2"></i> Disponible para CECYTEC y EMSAD.
 							</div>
 							<a href="https://sarape-conectados.mx/Alumno/login" target="_blank" class="primary-btn btn-block border-color-1 btn-color-2 text-white d-inline-flex align-items-center mb-10">Ingreso para Estudiantes<span class="lnr lnr-arrow-right"></span></a>
-							<a href="https://sarape-conectados.mx/Escolar/login" target="_blank" class="primary-btn btn-block border-color-1 btn-color-3 text-white d-inline-flex align-items-center">Ingreso para Docentes<span class="lnr lnr-arrow-right"></span></a>
+							<a href="https://sarape-conectados.mx/Escolar/login" target="_blank" class="primary-btn btn-block border-color-1 btn-color-3 text-white d-inline-flex align-items-center">Ingreso para Docentes / Directores<span class="lnr lnr-arrow-right"></span></a>
 							<p class="text-center mt-2">
-								<img src="<?= base_url('/assets/img/home/logo-main-white.png') ?>" class="img-fluid" alt="...">
+								<img src="<?= base_url('/assets/img/home/logo-main-white.png') ?>" class="img-fluid" height="" alt="...">
 							</p>
+							<div class="auxslider-wrapper" id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:335px;margin:0px auto 40px;">
+		        		<div class="amazingslider" id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
+									<ul class="amazingslider-slides" style="display:none;">
+		                <li>
+
+											<a href="https://www.youtube.com/embed/BXzSkZB6Jf4?v=BXzSkZB6Jf4" class="html5lightbox">
+												<img src="<?= base_url('assets/img/sliderengine/BXzSkZB6Jf4.jpg') ?>" title="Tutorial Docentes 1. Acceso"/>
+											</a>
+		                <video preload="none" src="https://www.youtube.com/embed/BXzSkZB6Jf4?v=BXzSkZB6Jf4" ></video>
+		                </li>
+		                <li>
+											<a href="https://www.youtube.com/embed/BfS9K8mv5Vw?v=BfS9K8mv5Vw" class="html5lightbox">
+												<img src="<?= base_url('assets/img/sliderengine/BfS9K8mv5Vw.jpg') ?>" title="SARAPE Tutorial Docentes 2. Seguimiento y revisión de tareas" />
+											</a>
+		                <video preload="none" src="https://www.youtube.com/embed/BfS9K8mv5Vw?v=BfS9K8mv5Vw" ></video>
+		                </li>
+		                <li>
+											<a href="https://www.youtube.com/embed/dPcBv7003zg?v=dPcBv7003zg" class="html5lightbox">
+												<img src="<?= base_url('assets/img/sliderengine/dPcBv7003zg.jpg') ?>" title="SARAPE Tutorial Alumnos 2. Envío y Revisión de Actividades" />
+											</a>
+		                </li>
+		                <li>
+											<a href="https://www.youtube.com/embed/UwoxSb8QgGg?v=UwoxSb8QgGg&t=1s" class="html5lightbox">
+												<img src="<?= base_url('assets/img/sliderengine/UwoxSb8QgGg.jpg') ?>" title="SARAPE Tutorial Alumnos 1. Acceso" />
+											</a>
+		                <video preload="none" src="https://www.youtube.com/embed/UwoxSb8QgGg?v=UwoxSb8QgGg&t=1s" ></video>
+		                </li>
+		            </ul>
+
+							</div>
+						</div>
 						</div>
 					</div>
 					<div class="col-sm-12 col-lg-6">

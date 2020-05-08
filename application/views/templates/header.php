@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es" class="no-js">
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-38208772-9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-38208772-9');
+</script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Mobile Specific Meta -->
@@ -61,6 +70,9 @@
         $("#modalCOVID19").modal('show');
     });
 </script>
+<script src="<?= base_url('assets/js/sliderengine/amazingslider.js') ?>"></script>
+<link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/sliderengine/amazingslider-1.css') ?>">
+<script src="<?= base_url('assets/js/sliderengine/initslider-1.js') ?>"></script>
 </head>
 <body>
     <div id="top"></div>
