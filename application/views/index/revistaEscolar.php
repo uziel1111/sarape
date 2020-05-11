@@ -11,92 +11,98 @@
       <div class="modal-body">
         <div class="container">
           <div class="row">
+            <div class="col-sm-3">
+
+              <a href="https://issuu.com/ginaorozcoo/docs/revista_mayo_2020"  target="_blank" title="Edición #21 Mayo">
+                <img src="<?= base_url('assets/img/revista-mayo.png'); ?>" class="img-fluid" alt="Responsive image">
+              </a>
+            </div>
              <div class="col-sm-3">
-             
+
              <a href="https://issuu.com/ginaorozcoo/docs/revista_abril_2020"  target="_blank" title="Edición #20 Abril">
                <img src="<?= base_url('assets/img/revista-abril.png'); ?>" class="img-fluid" alt="Responsive image">
              </a>
            </div>
              <div class="col-sm-3">
-             
+
              <a href="https://issuu.com/ginaorozcoo/docs/revista_marzo_2020"  target="_blank" title="Edición #19 Marzo">
                <img src="<?= base_url('assets/img/revista-marzo.png'); ?>" class="img-fluid" alt="Responsive image">
              </a>
            </div>
           <div class="col-sm-3">
-             
+
              <a href="https://issuu.com/ginaorozcoo/docs/revista_febrero_2020"  target="_blank" title="Edición #18 Febrero">
                <img src="<?= base_url('assets/img/revista-febrero.png'); ?>" class="img-fluid" alt="Responsive image">
              </a>
            </div>
             <div class="col-sm-3">
-             
+
              <a href="https://issuu.com/ginaorozcoo/docs/revista_enero_2020"  target="_blank" title="Edición #17 Enero">
                <img src="<?= base_url('assets/img/revista-enero.png'); ?>" class="img-fluid" alt="Responsive image">
              </a>
            </div>
              <div class="col-sm-3">
-             
+
              <a href="https://issuu.com/ginaorozcoo/docs/revista_diciembre_2019"  target="_blank" title="Edición #16 Diciembre">
                <img src="<?= base_url('assets/img/revista-diciembre.png'); ?>" class="img-fluid" alt="Responsive image">
              </a>
            </div>
              <div class="col-sm-3">
-             
+
              <a href="https://issuu.com/ginaorozcoo/docs/revista_noviembre_2019"  target="_blank" title="Edición #15 Noviembre">
                <img src="<?= base_url('assets/img/revista-noviembre.png'); ?>" class="img-fluid" alt="Responsive image">
              </a>
            </div>
              <div class="col-sm-3">
-              
+
               <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_octubre_2019"  target="_blank" title="Edición #14 Octubre">
                 <img src="<?= base_url('assets/img/revista-octubre.png'); ?>" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              
+
               <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_septiembre_2019"  target="_blank" title="Edición #13 septiembre">
                 <img src="<?= base_url('assets/img/revista-septiembre.png'); ?>" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              
+
               <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_agosto_2019"  target="_blank" title="Edición #12 agosto">
                 <img src="https://www.seducoahuila.gob.mx/images/cffe25d9-eae1-48be-80ee-0bdf7cd25502.jpg?crc=3966614498" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              
+
               <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_julio_2019"  target="_blank" title="Edición #11 julio">
                 <img src="https://image.isu.pub/190710205914-3e31dd795f81da2da7fc6b14a6d76f01/jpg/page_1_thumb_large.jpg" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              
+
               <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_junio_2019"  target="_blank" title="Edición #10 junio">
                 <img src="https://image.isu.pub/190612211632-3075950a75fae0850cbc92d6cfcb8cdb/jpg/page_1_thumb_large.jpg" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              
+
               <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_mayo_2019"  target="_blank" title="Edición #9 mayo">
                 <img src="https://image.isu.pub/190530175237-8f034b1c570052be59e6287d5916fe13/jpg/page_1_thumb_large.jpg" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              
+
               <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_abril_2019"  target="_blank" title="Edición #8 abril">
                 <img src="https://www.seducoahuila.gob.mx/images/revse221x287.jpg?crc=245631602" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              
+
               <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_marzo_2019"  target="_blank" title="Edición #7 marzo">
                 <img src="https://www.seducoahuila.gob.mx/images/revi2.jpg?crc=3963119943" class="img-fluid" alt="Responsive image">
               </a>
             </div>
             <div class="col-sm-3">
-              
+
               <a href="https://issuu.com/ginaorozcoo/docs/informese_coahuila_febrero_2019"  target="_blank" title="Edición #6 febrero">
                 <img src="<?= base_url('assets/docs/index/revistaEscolar/6ed.jpg'); ?>" class="img-fluid" alt="Responsive image">
               </a>
