@@ -132,7 +132,7 @@ span{
     <div class="alert alert-success text-center" role="alert" style="margin-bottom: 30px;">
         <h3>Programa Escolar de Mejora Continua (PEMC)</h3><br>
         <?php if(isset($tipo_usuario_pemc)){ ?>
-        	<b>CCT:</b>  <label><?= $cct ?></label> <b> Nombre:</b> <label><?=$nombreuser ?></label><b> Turno:</b> <label><?= $turno ?></label>
+        	<b>CCT:</b>  <label><?= $cct ?></label> <b> Nombre:</b> <label><?=$nombreuser ?></label><b> Turno:</b> <label><?= $desc_turno ?></label>
         	<br>
     	<?php }?>
         <b><a id='cteActual'></a></b>

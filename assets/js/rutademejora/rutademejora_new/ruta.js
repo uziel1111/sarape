@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-	obj_prioridad = new Prioridad();
+	var obj_prioridad = new Prioridad();
 	$("#div_resultados_gral").hide();
 	$('[data-toggle="tooltip"]').tooltip({
 		trigger : 'hover'
@@ -160,6 +160,7 @@ $("#btn_prioridad").click(function(e){
 				$('.problematica').selectpicker('hide');
 				tipou_pemc=$('#tipou_pemc').val();
 			}  
+			var obj_prioridad = new Prioridad();
 			obj_prioridad.getObjetivos(obj.id_tprioritario);
 
 		}).fail(function(e) {

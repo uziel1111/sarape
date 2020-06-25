@@ -152,6 +152,7 @@ public function busquedaxct(){
     $data['nivel'] = $this->datos[0]['desc_nivel_educativo'];
     $data['nombreuser'] = $this->datos[0]['nombre'];
     $data['turno'] = $this->datos[0]['turno'];
+    $data['desc_turno'] = $this->datos[0]['desc_turno'];
     $data['cct'] = $this->datos[0]['cct'];
     // $data['id_cct_rm'] =$this->datos[0]['id_cct'];
     $data['director'] = $this->datos[0]['nombre_director'];
