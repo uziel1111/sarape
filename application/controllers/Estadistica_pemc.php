@@ -61,18 +61,18 @@ class Estadistica_pemc extends CI_Controller
                 $data['arr_niveles'] =$arr_niveles;
             }
 
-            $result_sostenimientos = $this->Sostenimiento_model->all();
-            if(count($result_sostenimientos)==0){
-                $data['arr_sostenimientos'] = array(    '0' => 'Error recuperando los sostenimientos' );
-            }else{
-                $arr_sostenimientos['0'] = 'TODOS';
-                foreach ($result_sostenimientos as $row){
-                        $arr_sostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
-                }
-            }
+            // $result_sostenimientos = $this->Sostenimiento_model->all();
+            // if(count($result_sostenimientos)==0){
+            //     $data['arr_sostenimientos'] = array(    '0' => 'Error recuperando los sostenimientos' );
+            // }else{
+            //     $arr_sostenimientos['0'] = 'TODOS';
+            //     foreach ($result_sostenimientos as $row){
+            //             $arr_sostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
+            //     }
+            // }
 
             $data['arr_municipios'] = $arr_municipios;
-            $data['arr_sostenimientos'] =$arr_sostenimientos;
+            // $data['arr_sostenimientos'] =$arr_sostenimientos;
 
             if(Utilerias::haySesionAbierta($this)){
                  Utilerias::pagina_basica_pemc($this, 'estadistica_pemc/index',$data);
@@ -106,8 +106,8 @@ public function busquedaxct(){
 
     $this->datos = Utilerias::get_cct_sesion($this);
 
-    $usuario = $this->datos[0]['cve_centro'];
-    $id_cct = $this->datos[0]['id_cct'];
+    $usuario = $this->datos[0]['cct'];
+    // $id_cct = $this->datos[0]['id_cct'];
     $responsables = $this->getPersonal($usuario);
     $nomenclatura = substr($usuario,0,5);
 
@@ -133,7 +133,7 @@ public function busquedaxct(){
 
     $mision = $this->Rutamejora_model->get_misionxcct($usuario,$turno_single,'4');
     $data['mision'] = $mision;
-    $result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->datos[0]['nivel']);
+    $result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->datos[0]['desc_nivel_educativo']);
 
     if(count($result_prioridades)==0){
         $data['arr_prioridades'] = array(   '-1' => 'Error recuperando los prioridades' );
@@ -148,11 +148,11 @@ public function busquedaxct(){
         $data['arr_problematicas'] = $result_problematicas;
     }
 
-    $data['nivel'] = $this->datos[0]['nivel'];
-    $data['nombreuser'] = $this->datos[0]['nombre_centro'];
-    $data['turno'] = $this->datos[0]['turno_single'];
-    $data['cct'] = $this->datos[0]['cve_centro'];
-    $data['id_cct_rm'] =$this->datos[0]['id_cct'];
+    $data['nivel'] = $this->datos[0]['desc_nivel_educativo'];
+    $data['nombreuser'] = $this->datos[0]['nombre'];
+    $data['turno'] = $this->datos[0]['turno'];
+    $data['cct'] = $this->datos[0]['cct'];
+    // $data['id_cct_rm'] =$this->datos[0]['id_cct'];
     $data['director'] = $this->datos[0]['nombre_director'];
     $data['tipo_usuario_pemc']=$this->datos[0]['tipo_usuario_pemc'];
     $data['vista_avance'] = $this->load->view("ruta/avances", $data, TRUE);

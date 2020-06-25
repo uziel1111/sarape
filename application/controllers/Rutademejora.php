@@ -11,6 +11,7 @@ class Rutademejora extends CI_Controller {
 		$this->load->model('Prioridad_model');
 		$this->load->model('Problematica_model');
 		$this->load->model('Rutamejora_model');
+		$this->load->database();
 		$this->cct = array();
 	}
 
@@ -219,7 +220,7 @@ class Rutademejora extends CI_Controller {
 			public function bajarutamejora(){
 				if(Utilerias::haySesionAbiertacct($this)){
 					$this->cct = Utilerias::get_cct_sesion($this);
-					
+					// print_r($this->cct ); die();
 					$cct = $this->cct[0]['cve_centro'];
 					$turno = $this->cct[0]['id_turno_single'];
 					

@@ -393,8 +393,7 @@ function get_avances_tp_accionxcct_fechas($id_ciclo){
     //FUNCIONAMIENTO Y VALIDACION PARA SUPERVISOR BY LUIS SANCHEZ... all reserved rights
 
 function valida_supervisor($cct){
- //$str_query = "SELECT * FROM supervision WHERE cct_supervision = '{$cct}'";
- $str_query = "SELECT * FROM vista_cct WHERE cct = '{$cct}' and tipo_centro = 1";
+ $str_query = "SELECT * FROM centros_educativos.vista_cct WHERE cct = '{$cct}' and tipo_centro = 1";
  return $this->db->query($str_query)->result_array();
 }
 
@@ -409,7 +408,7 @@ function inserta_mensaje_super($idtema, $mensaje_super){
 
 function getdatossupervicion($cct){
   $str_query = "SELECT cct AS cve_centro,zona_escolar,nombre AS nombre_supervision
-                  FROM vista_cct
+                  FROM centros_educativos.vista_cct
                   WHERE tipo_centro=1
                   AND  cct = '{$cct}'";
                   // echo $str_query; die();
@@ -897,7 +896,7 @@ public function getTablasGraficas($ccts)
    e.cct as cve_centro,
   e.nombre as nombre_centro
   FROM
-  vista_cct e
+  centros_educativos.vista_cct e
   LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
   LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
   LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
@@ -917,7 +916,7 @@ public function getTablasGraficas($ccts)
    e.cct as cve_centro,
   e.nombre as nombre_centro
   FROM
-  vista_cct e
+  centros_educativos.vista_cct e
   LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
   LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
   LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
@@ -937,7 +936,7 @@ public function getTablasGraficas($ccts)
    e.cct as cve_centro,
   e.nombre as nombre_centro
   FROM
-  vista_cct e
+  centros_educativos.vista_cct e
   LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
   LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
   LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
@@ -957,7 +956,7 @@ public function getTablasGraficas($ccts)
    e.cct as cve_centro,
   e.nombre as nombre_centro
   FROM
-  vista_cct e
+ centros_educativos.vista_cct e
   LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
   LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
   LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
@@ -977,7 +976,7 @@ public function getTablasGraficas($ccts)
   e.cct as cve_centro,
   e.nombre as nombre_centro
   FROM
-  vista_cct e
+  centros_educativos.vista_cct e
   LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
   LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
   LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
@@ -1007,7 +1006,7 @@ public function getGraficas($ccts)
   tp.id_prioridad AS LAE,
   e.cct
   FROM
-  vista_cct e
+  centros_educativos.vista_cct e
   INNER JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
   LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
   LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
