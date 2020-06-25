@@ -17,7 +17,7 @@ class Estadistica_pemc_model extends CI_Model
 
     //revisar
     function getdatoscct_pemc($cct, $turno){
-      $this->db->select('e.cct, e.nombre, e.turno, e.desc_turno, e.desc_nivel_educativo, e.nombre_director,"upemc" as tipo_usuario_pemc,e.cct as cve_centro, e.turno as id_turno_single');
+      $this->db->select('e.cct, e.nombre, e.turno, e.desc_turno, e.desc_nivel_educativo, e.nombre_director,"upemc" as tipo_usuario_pemc,e.cct as cve_centro, "'.$turno.'" as id_turno_single, e.desc_nivel_educativo as nivel,e.nombre as nombre_centro');
       $this->db->from('vista_cct e');
       $this->db->where("e.cct = '{$cct}'");
       $this->db->where("e.turno like '%{$turno}%'");

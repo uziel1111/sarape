@@ -15,6 +15,7 @@ class Estadistica_pemc extends CI_Controller
         $this->load->model('Rutamejora_model');
         $this->load->model('Prioridad_model');
         $this->load->model('Problematica_model');
+        $this->load->model('Sostenimiento_model');
         $this->load->model('Nivel_model');
         $this->load->model('CentrosE_model');
         $this->datos = array();
@@ -61,18 +62,18 @@ class Estadistica_pemc extends CI_Controller
                 $data['arr_niveles'] =$arr_niveles;
             }
 
-            // $result_sostenimientos = $this->Sostenimiento_model->all();
-            // if(count($result_sostenimientos)==0){
-            //     $data['arr_sostenimientos'] = array(    '0' => 'Error recuperando los sostenimientos' );
-            // }else{
-            //     $arr_sostenimientos['0'] = 'TODOS';
-            //     foreach ($result_sostenimientos as $row){
-            //             $arr_sostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
-            //     }
-            // }
+            $result_sostenimientos = $this->Sostenimiento_model->all();
+            if(count($result_sostenimientos)==0){
+                $data['arr_sostenimientos'] = array(    '0' => 'Error recuperando los sostenimientos' );
+            }else{
+                $arr_sostenimientos['0'] = 'TODOS';
+                foreach ($result_sostenimientos as $row){
+                        $arr_sostenimientos[$row['id_sostenimiento']] = $row['sostenimiento'];
+                }
+            }
 
             $data['arr_municipios'] = $arr_municipios;
-            // $data['arr_sostenimientos'] =$arr_sostenimientos;
+            $data['arr_sostenimientos'] =$arr_sostenimientos;
 
             if(Utilerias::haySesionAbierta($this)){
                  Utilerias::pagina_basica_pemc($this, 'estadistica_pemc/index',$data);
