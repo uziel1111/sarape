@@ -1,7 +1,7 @@
 <?php if (isset($espacio)) {
     echo $espacio;
 } ?>
-<div class="container">   
+<div class="container">
     <div class="card card-style-1">
         <div class="row-mb-2">
             <br>
