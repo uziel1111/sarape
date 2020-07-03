@@ -53,6 +53,11 @@ define('ERRORMESSAGE', '2');
 				$contexto->load->view('templaterm/footer');
 		}
 
+		public static function pagina_basica_pemcv2($contexto, $vista = '', $data) {
+			$contexto->load->view('pemc/template/header', $data);
+			$contexto->load->view($vista, $data);
+			$contexto->load->view('pemc/template/footer');
+		}
 			/*
 	    Funcion para retornar datos a peticiones ajax
 	     */

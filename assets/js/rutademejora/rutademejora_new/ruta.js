@@ -14,10 +14,10 @@ $("#nav-tab").click(function (e) {
 	if(id =="nav-resultados-tab"){
 		$("#nombreescuela_pemc").val("");
 		$("#div_resultados_gral").show();
-		accionesRezagadas(); 
-		datos_accion();	
+		accionesRezagadas();
+		datos_accion();
 	}else if(id!="nav-resultados-tab"){
-		$("#div_resultados_gral").hide();  
+		$("#div_resultados_gral").hide();
 	}
 });
 
@@ -117,12 +117,12 @@ $('#nav-aprovechamiento-tab').click(function(e) {
 	.always(function() {
 		swal.close();
 	});
-	
+
 });
 //Prioridad (incompleto)
 $("#btn_prioridad").click(function(e){
 	e.preventDefault();
-	
+
 	if(obj.id_tprioritario == undefined || obj.id_tprioritario == ''){
 		swal(
 			'¡Error!',
@@ -135,7 +135,7 @@ $("#btn_prioridad").click(function(e){
 		$.ajax({
 			url:ruta,
 			type:'post',
-			data: { 
+			data: {
 				"id_tprioritario": obj.id_tprioritario,
 				"id_prioridad": obj.id_prioridad,
 				"id_subprioridad": obj.id_subprioridad,
@@ -159,7 +159,7 @@ $("#btn_prioridad").click(function(e){
 				$("#btn_eliminar").hide();
 				$('.problematica').selectpicker('hide');
 				tipou_pemc=$('#tipou_pemc').val();
-			}  
+			}
 			var obj_prioridad = new Prioridad();
 			obj_prioridad.getObjetivos(obj.id_tprioritario);
 
@@ -260,7 +260,7 @@ Prioridad.prototype.funcionalidadselect = function(){
 	$("#id_tabla_objetivos tr").click(function(){
 		var value = $(this).find('td:first').text();
 		var t_prioritario = $(this).find('td:first').next().text();
-		if (value != '') {	
+		if (value != '') {
 			$(this).addClass('selected').siblings().removeClass('selected');
 			obj.id_objetivo = value;
 			obj.id_tprioritario = t_prioritario;
@@ -617,12 +617,12 @@ function accionesRezagadas(){
 									}
 								}else{
 									acciones1.push(data.datos[i]);
-								} 
+								}
 							}
 						}
 					}else{
 						acciones.push(data.datos[i]);
-					}  	
+					}
 				}
 			}
 
@@ -671,7 +671,7 @@ function accionesRezagadas(){
 				$("#div_acc_rez").append(tabla);
 				$("#div_rezagadas").show();
 			}else{
-				$("#mensaje_res_rezagadas").append('<br><h3 align="center" class="panel-title">Esta escuela no cuenta con acciones rezagadas</h1><br>');         				
+				$("#mensaje_res_rezagadas").append('<br><h3 align="center" class="panel-title">Esta escuela no cuenta con acciones rezagadas</h1><br>');
 			}
 		})
 .fail(function() {
@@ -691,5 +691,3 @@ function accionesRezagadas(){
           );
 }
 }
-
-

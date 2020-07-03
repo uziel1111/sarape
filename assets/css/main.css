@@ -2511,3 +2511,130 @@ footer .footer-nav li a:hover {
     height: 50px;
     width: auto;
 }
+
+/* alex para nuevo pemc */
+/*=== MAIN TABS ===*/
+
+.nav-tabs .nav-link i {
+    position: inherit;
+    background: rgba(0, 0, 0, 0.08);
+    padding: 18px;
+    transition: all 0.5s ease;
+}
+
+/* .nav-tabs .nav-link:hover i {
+    padding: 18px 25px;
+    margin-right: 5px;
+} */
+
+.tab-content {
+    background-color: #ffffff;
+    padding: 19px 10px 40px 10px;
+    border-radius: 0px 0px 15px 15px;
+    -moz-border-radius: 0px 0px 15px 15px;
+    -webkit-border-radius: 0px 0px 15px 15px;
+    border: 0px solid #000000;
+}
+
+.nav-tabs .tab-primary {
+    background-color: #902D39;
+    color: rgba(255, 255, 255, 0.80);
+    transition: all 0.5s ease;
+}
+
+.nav-tabs .tab-primary:hover {
+    background-color: rgb(126, 38, 48);
+    color: rgba(255, 255, 255, 1.0);
+}
+
+.nav-tabs .tab-primary.active,
+.nav-tabs .tab-primary.active:hover {
+    background-color: rgb(255, 255, 255);
+    color: #902D39;
+}
+
+.nav-tabs .tab-secondary {
+    background-color: #632740;
+    color: rgba(255, 255, 255, 0.80);
+    transition: all 0.5s ease;
+}
+
+.nav-tabs .tab-secondary:hover {
+    background-color: #572238;
+    color: rgba(255, 255, 255, 1.0);
+}
+
+.nav-tabs .tab-secondary.active,
+.nav-tabs .tab-secondary.active:hover {
+    background-color: rgb(255, 255, 255);
+    color: #632740;
+}
+
+.nav-tabs .tab-info {
+    background-color: #037F8C;
+    color: rgba(255, 255, 255, 0.80);
+    transition: all 0.5s ease;
+}
+
+.nav-tabs .tab-info:hover {
+    background-color: rgb(4, 106, 117);
+    color: rgba(255, 255, 255, 1.0);
+}
+
+.nav-tabs .tab-info.active,
+.nav-tabs .tab-info.active:hover {
+    background-color: rgb(255, 255, 255);
+    color: #037F8C;
+}
+
+.nav-tabs .tab-warning {
+    background-color: #BF8415;
+    color: rgba(255, 255, 255, 0.80);
+    transition: all 0.5s ease;
+}
+
+.nav-tabs .tab-warning:hover {
+    background-color: rgb(165, 113, 17);
+    color: rgba(255, 255, 255, 1.0);
+}
+
+.nav-tabs .tab-warning.active,
+.nav-tabs .tab-warning.active:hover {
+    background-color: rgb(255, 255, 255);
+    color: #BF8415;
+}
+
+.nav-tabs .tab-danger {
+    background-color: #9F453B;
+    color: rgba(255, 255, 255, 0.80);
+    transition: all 0.5s ease;
+}
+
+.nav-tabs .tab-danger:hover {
+    background-color: rgb(138, 58, 49);
+    color: rgba(255, 255, 255, 1.0);
+}
+
+.nav-tabs .tab-danger.active,
+.nav-tabs .tab-danger.active:hover {
+    background-color: rgb(255, 255, 255);
+    color: #9F453B;
+}
+
+.two-tab {
+    width: 49.6%;
+    margin-right: .5%;
+}
+
+.three-tab {
+    width: 25%;
+    /* margin-right: .5%; */
+}
+
+.two-tab:last-child,
+.three-tab:last-child {
+    margin-right: 0;
+}
+
+
+/*=== FOOTER ===*/
