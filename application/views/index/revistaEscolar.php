@@ -13,6 +13,18 @@
           <div class="row">
             <div class="col-sm-3">
 
+              <a href="https://issuu.com/ginaorozcoo/docs/revista_julio_2020"  target="_blank" title="Edición #23 Julio">
+                <img src="<?= base_url('assets/img/revista-julio.png'); ?>" class="img-fluid" alt="Responsive image">
+              </a>
+            </div>
+            <div class="col-sm-3">
+
+              <a href="https://issuu.com/ginaorozcoo/docs/revista_junio_2020"  target="_blank" title="Edición #22 Junio">
+                <img src="<?= base_url('assets/img/revista-junio.PNG'); ?>" class="img-fluid" alt="Responsive image">
+              </a>
+            </div>
+            <div class="col-sm-3">
+
               <a href="https://issuu.com/ginaorozcoo/docs/revista_mayo_2020"  target="_blank" title="Edición #21 Mayo">
                 <img src="<?= base_url('assets/img/revista-mayo.png'); ?>" class="img-fluid" alt="Responsive image">
               </a>
