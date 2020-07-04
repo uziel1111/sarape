@@ -57,5 +57,27 @@ function obtener_diagnostico_xidpemc($idpemc){
  return $this->pemc_db->query($str_query)->row('diagnostico');
 }
 
+function guarda_diagnostico($diagnostico, $idpemc){
+  $status=false;
+  $str_query = "SELECT idpemc FROM r_pemc_diagnostico WHERE idpemc = {$idpemc}";
+  $idpemc_rtn = $this->pemc_db->query($str_query)->row('idpemc');
+  if ($idpemc_rtn=='') {
+    date_default_timezone_set('America/Monterrey');
+		setlocale(LC_TIME, 'es_MX.UTF-8');
+		$fecha = date("Y-m-d H:i:s");
+		$data_req = array(
+			'idpemc' =>$idpemc,
+			'diagnostico' =>$diagnostico,
+			'fcreacion' =>$fecha
+		);
+      $status = $this->pemc_db->insert('r_pemc_diagnostico', $data_req);
+  }
+  else {
+    $this->pemc_db->set('diagnostico', $diagnostico);
+    $this->pemc_db->where('idpemc', $idpemc);
+    $status = $this->pemc_db->update('r_pemc_diagnostico');
+  }
+  return $status;
+}
 
 }// Rutamejora_model
