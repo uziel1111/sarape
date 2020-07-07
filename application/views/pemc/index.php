@@ -15,7 +15,6 @@
     </div>
     <div class="tab-pane fade" id="objetivos_metas_acciones_doc" role="tabpanel" aria-labelledby="objetivos_metas_acciones_doc_tab">
       <div id="vista_objetivos_metas_acciones">
-        aqui va diagnostico
       </div>
     </div>
     <div class="tab-pane fade" id="seguimiento_doc" role="tabpanel" aria-labelledby="seguimiento_doc_tab">

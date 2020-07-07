@@ -17,7 +17,7 @@ $("#fr_diagnostico").validate({
          },
       },
       submitHandler: function(form) {
-         Principal_pemc.guarda_formulario_diagnostico();
+         Diagnostico_pemc.guarda_formulario_diagnostico();
       }
     });
 });
@@ -27,28 +27,7 @@ $("#btn_guardar_diagnostico_pemc").click(function(e){
  $("#fr_diagnostico").submit();
 });
 
-var Principal_pemc = {
-  	obtiene_vista_diagnostico: (idpemc) => {
-    	ruta = base_url + "Pemc/obtiene_vista_diagnostico";
-			$.ajax({
-				url:ruta,
-				data: {idpemc:idpemc},
-				beforeSend: function(xhr) {
-					Notification.loading("");
-				}
-			})
-			.done(function(data){
-				$("#vista_diagnostico").empty();
-				$("#vista_diagnostico").append(data.str_vista);
-			})
-			.fail(function(e) {
-				console.error("Error in ()"); console.table(e);
-			})
-			.always(function() {
-				swal.close();
-			});
-  	},//niveles
-
+var Diagnostico_pemc = {
 		guarda_formulario_diagnostico: () => {
 	   var form = document.getElementById("fr_diagnostico");
 	   fd = new FormData(form);
@@ -63,7 +42,7 @@ var Principal_pemc = {
 	     dataType: "json",
 	     beforeSend: function(xhr) {
 	         Notification.loading("");
-	     },
+	     }
 	   })
 	   .done(function( data ) {
 			 swal.close();
@@ -83,7 +62,7 @@ var Principal_pemc = {
 			 }
 	   })
 	   .fail(function(jqXHR, textStatus, errorThrown) {
-			 console.error("Error in actualizar tema prioritario()"); console.table(jqXHR);
+			 console.error("Error in guardar()"); console.table(jqXHR);
 	   })
 	   .always(function() {});
 	 },
