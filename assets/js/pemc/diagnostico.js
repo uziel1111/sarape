@@ -52,8 +52,9 @@ var Principal_pemc = {
 		guarda_formulario_diagnostico: () => {
 	   var form = document.getElementById("fr_diagnostico");
 	   fd = new FormData(form);
+		 ruta = base_url+"Pemc/guarda_diagnostico";
 	   $.ajax({
-	     url:base_url+"Pemc/guarda_diagnostico",
+	     url: ruta,
 	     method:"POST",
 	     data: fd,
 	     contentType: false,
