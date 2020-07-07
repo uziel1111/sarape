@@ -62,7 +62,7 @@ Rm_avances_acciones.prototype.set_avance = function(cad_str_ids){
     console.error("Error in actualizar tema prioritario()"); console.table(e);
   })
   .always(function() {
-  })
+  });
 
 };
 
@@ -80,7 +80,7 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
         return "R1.png";
       }else{
         if (porcentaje >= 67 && porcentaje <= 89) {
-          return "Y2.png";  
+          return "Y2.png";
         }else{
           if (porcentaje >= 90 && porcentaje <= 99) {
             return "G3.png";
@@ -138,14 +138,14 @@ Rm_avances_acciones.prototype.get_icono = function(porcentaje, dias_restantes, d
         }else{
          $('#spanRestante'+var_id_idacc+'').addClass('text-info');
          $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
-         
+
          return 'G0.png';
-       } 
+       }
      }
    }
  }else{
   $('#spanRestante'+var_id_idacc+'').addClass('text-info');
   $('#spanRestante'+var_id_idacc+'').text('Quedan: '+ (dias_restantes_hoy/24) +' días restantes');
   return 'R0.png';
-}  
+}
 };

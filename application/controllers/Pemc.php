@@ -184,6 +184,8 @@ class Pemc extends CI_Controller {
 			$datos_sesion = Utilerias::get_cct_sesion($this);
 			$diagnostico = $this->input->post('in_diag');
 			$estatus = $this->Pemc_model->guarda_diagnostico(strip_tags($diagnostico),$datos_sesion['idpemc']);
-			redirect('Pemc/vistas_pemc');
+			$response = array('estatus' => $estatus);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
 		}
 }

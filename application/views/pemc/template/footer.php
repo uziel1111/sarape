@@ -58,5 +58,6 @@ Teléfonos: (844) 411-8500, 411-8588, 411-8634 Fax. 414-7946</p>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="<?= base_url('assets/bootstrap-411/js/bootstrap.min.js'); ?>"></script>
     <script src="<?= base_url('assets/multiselect/js/bootstrap-select.js'); ?>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js" type="text/javascript"></script>
   </body>
 </html>

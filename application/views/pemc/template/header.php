@@ -19,6 +19,9 @@
 <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 <style type="text/css">
+	label.error{
+	  color:red;
+	}
 	textarea{
 	resize: none;
 	}
