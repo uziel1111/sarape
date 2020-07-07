@@ -191,4 +191,15 @@ class Pemc extends CI_Controller {
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
+
+		public function obtiene_vista_seguimiento(){
+			$datos_sesion = Utilerias::get_cct_sesion($this);
+			// $diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
+			$seguimiento = [];
+			$data = array('seguimiento' => $seguimiento);
+			$str_vista = $this->load->view("pemc/seguimiento", $data, TRUE);
+			$response = array('str_vista' => $str_vista);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}
 }

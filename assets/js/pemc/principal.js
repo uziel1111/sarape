@@ -8,6 +8,11 @@ $("#nv_diagnostico").click(function (e) {
  Principal_pemc.obtiene_vista_diagnostico($("#idpemc").val());
 });
 
+$("#nv_seguimiento").click(function (e) {
+	e.preventDefault();
+ Principal_pemc.obtiene_vista_seguimiento($("#idpemc").val());
+});
+
 var Principal_pemc = {
   	obtiene_vista_diagnostico: (idpemc) => {
     	ruta = base_url + "Pemc/obtiene_vista_diagnostico";
@@ -28,5 +33,27 @@ var Principal_pemc = {
 			.always(function() {
 				swal.close();
 			});
-  	},//niveles
+  	},//obtiene_vista_diagnostico
+
+		obtiene_vista_seguimiento: (idpemc) => {
+    	ruta = base_url + "Pemc/obtiene_vista_seguimiento";
+			$.ajax({
+				url:ruta,
+				data: {idpemc:idpemc},
+				beforeSend: function(xhr) {
+					Notification.loading("");
+				}
+			})
+			.done(function(data){
+				$("#vista_seguimiento").empty();
+				$("#vista_seguimiento").append(data.str_vista);
+			})
+			.fail(function(e) {
+				console.error("Error in ()"); console.table(e);
+			})
+			.always(function() {
+				swal.close();
+			});
+  	},
+
 };
