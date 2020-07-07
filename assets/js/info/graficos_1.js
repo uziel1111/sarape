@@ -2444,7 +2444,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900','#FF9900','#FF9900','#FF9900','#FF9900',
                  '#FF9900',
-               
+
 
                  '#3CB371', '#3CB371','#3CB371','#3CB371','#3CB371','#3CB371'],
                 chart: {
@@ -2813,8 +2813,8 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
               var html = "<div style='text-align:left !important;'>";
               if (data.longitud==0) {
               }
-              else {  
-            
+              else {
+
               $("#div_generico_reactivos").empty();
               $("#div_generico_reactivos").append(data.str_view);
               $("#modal_visor_reactivos").modal("show");
@@ -2823,7 +2823,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           })
           .fail(function(e) {
               console.error("Error in get_reactivos_xunidad_de_analisis()"); console.table(e);
-          }) 
+          })
           .always(function() {
             swal.close();
           });
@@ -2936,7 +2936,7 @@ HaceGraficas.prototype.TablaPieGraficaBarSecundaria= function(t1,t2,t3){
           .fail(function(e) {
             swal.close();
               console.error("Error in get_reactivos_xunidad_de_analisis()"); console.table(e);
-          }) 
+          })
           .always(function() {
               swal.close();
           });
@@ -3281,4 +3281,3 @@ $("#tipodematerial").change(function(){
 		break;
 	}
 });
-
