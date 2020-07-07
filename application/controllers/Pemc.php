@@ -57,7 +57,10 @@ class Pemc extends CI_Controller {
 				$turno = $this->input->post('turno_id');
 
 				if($this->verifica_supervisor($usuario) == TRUE){
-
+					$mensaje = "Acceso Restringido.";
+					$tipo    = ERRORMESSAGE;
+					$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
+					$this->load->view('pemc/login',$data);
 				}else{
 
 					$curl = curl_init();
