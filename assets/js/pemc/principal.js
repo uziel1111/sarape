@@ -10,7 +10,7 @@ $("#nv_diagnostico").click(function (e) {
 
 $("#nv_objetivos_metas_acciones").click(function (e) {
 	e.preventDefault();
- Principal_pemc.obtiene_vista_diagnostico($("#idpemc").val());
+ Principal_pemc.obtiene_vista_obetivos();
 });
 
 var Principal_pemc = {
@@ -33,12 +33,13 @@ var Principal_pemc = {
 			.always(function() {
 				swal.close();
 			});
-  	},//niveles
-  	obtiene_vista_objetivosymetas: (idpemc) => {
-    	ruta = base_url + "Pemc/obtiene_vista_objetivosymetas";
+  	},//obtiene_vista_diagnostico
+
+  	obtiene_vista_obetivos: () => {
+  		ruta = base_url + "Pemc/obtiene_vista_objetivosymetas";
 			$.ajax({
 				url:ruta,
-				data: {idpemc:idpemc},
+				data:{},
 				beforeSend: function(xhr) {
 					Notification.loading("");
 				}
@@ -53,5 +54,5 @@ var Principal_pemc = {
 			.always(function() {
 				swal.close();
 			});
-  	},//niveles
+  	},//obtiene_vista_obetivos
 };

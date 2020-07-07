@@ -191,4 +191,14 @@ class Pemc extends CI_Controller {
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}
+
+	public function obtiene_vista_objetivosymetas(){
+		$datos_sesion = Utilerias::get_cct_sesion($this);
+		// $diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
+		// $data = array('diagnostico' => $diagnostico);
+		$str_vista = $this->load->view("pemc/objetivos_metas_acciones", $data, TRUE);
+		$response = array('str_vista' => $str_vista);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}
 }
