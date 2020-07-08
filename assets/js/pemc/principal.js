@@ -70,8 +70,8 @@ var Principal_pemc = {
 				}
 			})
 			.done(function(data){
-				$("#vista_diagnostico").empty();
-				$("#vista_diagnostico").append(data.str_vista);
+				$("#vista_seguimiento").empty();
+				$("#vista_seguimiento").append(data.str_vista);
 			})
 			.fail(function(e) {
 				console.error("Error in ()"); console.table(e);
