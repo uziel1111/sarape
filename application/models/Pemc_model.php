@@ -79,5 +79,28 @@ function guarda_diagnostico($diagnostico, $idpemc){
   }
   return $status;
 }
+function obtener_seguimiento_xidpemc($idpemc){
+ $str_query = "SELECT
+              obj.idobjetivo, obj.orden as orden_objetivo, obj.objetivo, obj.meta, obj.comentario_general,
+              acc.idaccion, acc.orden as orden_accion, acc.accion, acc.idambitos, acc.finicio,  acc.ffin,
+              seguimineto.avance
+              FROM r_pemc_objetivo obj
+              LEFT JOIN r_pemc_objetivo_accion acc ON obj.idobjetivo = acc.idobjetivo
+              LEFT JOIN (SELECT
+              					seg.idaccion, seg.avance
+              					FROM r_pemc_accion_seguimiento seg
+              					INNER JOIN (SELECT idaccion, MAX(fcreacion) AS fcreacion FROM r_pemc_accion_seguimiento GROUP BY idaccion) as aux ON seg.idaccion = aux.idaccion AND seg.fcreacion = aux.fcreacion
+              					GROUP BY seg.idaccion
+              					) as seguimineto ON acc.idaccion = seguimineto.idaccion
+              WHERE obj.idpemc= {$idpemc}
+              GROUP BY obj.idobjetivo, acc.idaccion
+              ORDER BY obj.orden, acc.orden";
+ return $this->pemc_db->query($str_query)->result_array();
+}
+
+function obtener_ambitos_xidambitos($idambitos){
+ $str_query = "SELECT ambitos.a as ambitos FROM(SELECT 1, GROUP_CONCAT(ambito) as a FROM c_pemc_ambito WHERE idambito in({$idambitos}) GROUP BY 1) as ambitos";
+ return $this->pemc_db->query($str_query)->row('ambitos');
+}
 
 }// Rutamejora_model
