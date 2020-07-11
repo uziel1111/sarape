@@ -62,7 +62,7 @@
               </div>
               <div class="col-3 text-center">
                 <br><br>
-                <button type="button" class="btn btn-info">Ver historial de avances</button>
+                <button type="button" onclick="Seguimiento_pemc.ver_avance(<?=$value['idaccion']?>)" class="btn btn-info">Ver historial de avances</button>
               </div>
             </div>
           <?php endforeach; ?>
@@ -71,6 +71,23 @@
     <?php endif; ?>
     <?php $idobjetivo = $value['idobjetivo'];?>
   <?php endforeach; ?>
-
 </div>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="modal_generico_avance" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-header">
+	        <h5 class="modal-title">Avances</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	    </div>
+	    <div class="modal-body">
+	        <div id="contenedor_modal_avance"></div>
+	     </div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript" src="<?= base_url('assets/js/pemc/seguimiento.js') ?>"></script>

@@ -227,4 +227,20 @@ class Pemc extends CI_Controller {
 			Utilerias::enviaDataJson(200, $data, $this);
 			exit;
 		}
+
+		public function ver_avance(){
+			$idaccion = $this->input->post('idaccion');
+			$arr_datos_accion = $this->Pemc_model->ver_datos_accion($idaccion);
+			foreach ($arr_datos_accion as $key => $value) {
+				$arr_datos_accion[$key]['ambitos']= $this->Pemc_model->obtener_ambitos_xidambitos($value['idambitos']);
+			}
+			$arr_avances = $this->Pemc_model->ver_avance($idaccion);
+			// $arr_avances = [];
+			$data = array('arr_datos_accion' => $arr_datos_accion,'arr_avances' => $arr_avances);
+			$str_avances = $this->load->view("pemc/seguimiento_modal_avances", $data, TRUE);
+			$response = array('str_avances' => $str_avances);
+			// echo "<pre>";print_r($idaccion);die();
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}
 }

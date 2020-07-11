@@ -13,7 +13,7 @@ var Seguimiento_pemc = {
 			}).then(function(result){
 				if (result.value) {
 
-					Seguimiento_pemc.ir_a_guardar_avance(elemento, val_ant, idaccion, avance);
+					Seguimiento_pemc.ir_a_guardar_avance(elemento, val_ant, idaccion, avance, ageOutputId);
 				}
 				else {
 					$(ageOutputId).text(val_ant);
@@ -21,7 +21,7 @@ var Seguimiento_pemc = {
 				}
 			})
 	 },
-	 ir_a_guardar_avance: (elemento, val_ant, idaccion, avance) => {
+	 ir_a_guardar_avance: (elemento, val_ant, idaccion, avance, ageOutputId) => {
 		 ruta = base_url + "Pemc/ir_a_guardar_avance";
 		 $.ajax({
 			 url:ruta,
@@ -46,8 +46,33 @@ var Seguimiento_pemc = {
 				 "No se guardo correctamente, favor de intentarlo más tarde.",
 				 "error"
 				 );
+				 $(ageOutputId).text(val_ant);
 				 $(elemento).val(val_ant);
 			 }
+		 })
+		 .fail(function(e) {
+			 console.error("Error in ()"); console.table(e);
+		 })
+		 .always(function() {
+
+		 });
+	 },//ir_a_guardar_avance
+	 ver_avance: (idaccion) => {
+		 ruta = base_url + "Pemc/ver_avance";
+		 $.ajax({
+			 url:ruta,
+			 type:'post',
+			 data: {idaccion:idaccion},
+			 beforeSend: function(xhr) {
+				 Notification.loading("");
+			 }
+		 })
+		 .done(function(data){
+			 swal.close();
+			 console.log(data.arr_avances);
+				$("#contenedor_modal_avance").empty();
+ 				$("#contenedor_modal_avance").append(data.str_avances);
+ 				$("#modal_generico_avance").modal('show');
 		 })
 		 .fail(function(e) {
 			 console.error("Error in ()"); console.table(e);

@@ -115,5 +115,18 @@ function ir_a_guardar_avance($idaccion, $avance){
   );
   return $this->pemc_db->insert('r_pemc_accion_seguimiento', $data_req);
 }
+function ver_avance($idaccion){
+ $str_query = "SELECT avance, fcreacion FROM r_pemc_accion_seguimiento WHERE idaccion ={$idaccion}";
+ return $this->pemc_db->query($str_query)->result_array();
+}
+
+function ver_datos_accion($idaccion){
+ $str_query = "SELECT
+obj.objetivo, obj.meta, obj.comentario_general, acc.idambitos, acc.accion
+FROM r_pemc_objetivo obj
+INNER JOIN r_pemc_objetivo_accion acc ON obj.idobjetivo = acc.idobjetivo
+WHERE acc.idaccion={$idaccion}";
+ return $this->pemc_db->query($str_query)->result_array();
+}
 
 }// Rutamejora_model
