@@ -23,6 +23,7 @@ var Principal_pemc = {
     	ruta = base_url + "Pemc/obtiene_vista_diagnostico";
 			$.ajax({
 				url:ruta,
+				type:'post',
 				data: {idpemc:idpemc},
 				beforeSend: function(xhr) {
 					Notification.loading("");
@@ -44,6 +45,7 @@ var Principal_pemc = {
   		ruta = base_url + "Pemc/obtiene_vista_objetivosymetas";
 		$.ajax({
 			url:ruta,
+			type:'post',
 			data:{},
 			beforeSend: function(xhr) {
 				Notification.loading("");
@@ -64,6 +66,7 @@ var Principal_pemc = {
     	ruta = base_url + "Pemc/obtiene_vista_seguimiento";
 			$.ajax({
 				url:ruta,
+				type:'post',
 				data: {idpemc:idpemc},
 				beforeSend: function(xhr) {
 					Notification.loading("");

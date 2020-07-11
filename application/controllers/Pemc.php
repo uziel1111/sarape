@@ -217,4 +217,14 @@ class Pemc extends CI_Controller {
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
+
+		public function ir_a_guardar_avance(){
+			$idaccion = $this->input->post('idaccion');
+			$avance = $this->input->post('avance');
+			$estatus = $this->Pemc_model->ir_a_guardar_avance($idaccion, $avance);
+			$data = array('estatus' => $estatus);
+			// echo "<pre>";print_r($idaccion);die();
+			Utilerias::enviaDataJson(200, $data, $this);
+			exit;
+		}
 }

@@ -103,4 +103,17 @@ function obtener_ambitos_xidambitos($idambitos){
  return $this->pemc_db->query($str_query)->row('ambitos');
 }
 
+
+function ir_a_guardar_avance($idaccion, $avance){
+  date_default_timezone_set('America/Monterrey');
+  setlocale(LC_TIME, 'es_MX.UTF-8');
+  $fecha = date("Y-m-d H:i:s");
+  $data_req = array(
+    'idaccion' =>$idaccion,
+    'avance' =>$avance,
+    'fcreacion' =>$fecha
+  );
+  return $this->pemc_db->insert('r_pemc_accion_seguimiento', $data_req);
+}
+
 }// Rutamejora_model

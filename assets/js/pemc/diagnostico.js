@@ -56,7 +56,7 @@ var Diagnostico_pemc = {
 			 else {
 				 swal(
 	 	      '¡Error!',
-	 	      "No se guardo correctamente, favor de intentarlo mas tarde.",
+	 	      "No se guardo correctamente, favor de intentarlo más tarde.",
 	 	      "error"
 	 	      );
 			 }
