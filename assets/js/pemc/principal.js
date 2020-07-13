@@ -18,6 +18,11 @@ $("#nv_seguimiento").click(function (e) {
  Principal_pemc.obtiene_vista_seguimiento($("#idpemc").val());
 });
 
+$("#nv_evaluacion").click(function (e) {
+	e.preventDefault();
+ Principal_pemc.obtiene_vista_evaluacion($("#idpemc").val());
+});
+
 var Principal_pemc = {
   	obtiene_vista_diagnostico: (idpemc) => {
     	ruta = base_url + "Pemc/obtiene_vista_diagnostico";
@@ -82,5 +87,26 @@ var Principal_pemc = {
 			.always(function() {
 				swal.close();
 			});
-		}
+		},
+			obtiene_vista_evaluacion: (idpemc) => {
+	    	ruta = base_url + "Pemc/obtiene_vista_evaluacion";
+				$.ajax({
+					url:ruta,
+					type:'post',
+					data: {idpemc:idpemc},
+					beforeSend: function(xhr) {
+						Notification.loading("");
+					}
+				})
+				.done(function(data){
+					$("#vista_evaluacion").empty();
+					$("#vista_evaluacion").append(data.str_vista);
+				})
+				.fail(function(e) {
+					console.error("Error in ()"); console.table(e);
+				})
+				.always(function() {
+					swal.close();
+				});
+			}
 };

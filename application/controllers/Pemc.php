@@ -243,4 +243,21 @@ class Pemc extends CI_Controller {
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
+
+		public function obtiene_vista_evaluacion(){
+			$datos_sesion = Utilerias::get_cct_sesion($this);
+			$idpemc = $datos_sesion['idpemc'];
+			// $seguimiento = $this->Pemc_model->obtener_seguimiento_xidpemc($datos_sesion['idpemc']);
+			// foreach ($seguimiento as $key => $value) {
+			// 	$seguimiento[$key]['ambitos']= $this->Pemc_model->obtener_ambitos_xidambitos($value['idambitos']);
+			// }
+			$evaluacion = [];
+			// echo "<pre>";print_r($evaluacion);die();
+			$data = array('evaluacion' => $evaluacion, "idpemc" => $idpemc);
+			// echo "<pre>";print_r($data);die();
+			$str_vista = $this->load->view("pemc/evaluacion", $data, TRUE);
+			$response = array('str_vista' => $str_vista);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}
 }
