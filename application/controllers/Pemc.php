@@ -266,4 +266,8 @@ class Pemc extends CI_Controller {
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
+
+		public function ver_reporte_xidpemc($idpemc){
+			echo "<pre>";print_r($idpemc);die();
+		}
 }
