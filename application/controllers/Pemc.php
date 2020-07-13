@@ -206,8 +206,14 @@ class Pemc extends CI_Controller {
 		public function obtiene_vista_seguimiento(){
 			$datos_sesion = Utilerias::get_cct_sesion($this);
 			$seguimiento = $this->Pemc_model->obtener_seguimiento_xidpemc($datos_sesion['idpemc']);
+			// echo "<pre>";print_r($seguimiento);die();
 			foreach ($seguimiento as $key => $value) {
-				$seguimiento[$key]['ambitos']= $this->Pemc_model->obtener_ambitos_xidambitos($value['idambitos']);
+				if ($value['idambitos'] != '') {
+					$seguimiento[$key]['ambitos'] = $this->Pemc_model->obtener_ambitos_xidambitos($value['idambitos']);
+				}
+				else {
+					$seguimiento[$key]['ambitos'] = '';
+				}
 			}
 			// echo "<pre>";print_r($seguimiento);die();
 			$data = array('seguimiento' => $seguimiento);

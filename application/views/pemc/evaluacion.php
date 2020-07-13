@@ -12,3 +12,30 @@
     </div>
   </div>
 </div>
+<div class="card">
+  <div class="card-header">
+    <h3>Historial de evaluaciones PEMC</h3>
+  </div>
+  <div class="card-body">
+    <div class="container">
+      <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th class="text-center">Evaluaciones</th>
+              <th class="text-center">Fechas</th>
+              <th class="text-center">Reportes PDF</th>
+              <th class="text-center">Ciclo escolar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+              <td class="text-center"></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
