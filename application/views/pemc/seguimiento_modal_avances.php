@@ -1,6 +1,6 @@
 <?php foreach ($arr_datos_accion as $key => $value): ?>
-  <div class="row">
-    <div class="card-header" style="background-color: #FFCC80; ">
+  <div class="row" style="background-color: #FFCC80; ">
+    <div class="card-header">
       <b>Objetivo:</b> <?=$value['objetivo'];?>
     </div>
   </div>
