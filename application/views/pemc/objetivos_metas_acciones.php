@@ -24,15 +24,8 @@
 				      <th scope="col" >Despues</th>
 				    </tr>
 				  </thead>
-				  <tbody>
-				    <tr>
-				      <th scope="row">1</th>
-				      <td>Mark</td>
-				      <td>Otto</td>
-				      <td>@mdo</td>
-				      <td>@mdo</td>
-				      <td>@mdo</td>
-				    </tr>
+				  <tbody id="contenedor_tabla_objetivos">
+				    
 				  </tbody>
 				</table>
 		    </div><!-- .col-xs-12 col-sm-12 col-md-2 -->
@@ -41,7 +34,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="modal_generico_obj" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="modal_generico_obj" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
     	<div class="modal-header">

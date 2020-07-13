@@ -20,4 +20,4 @@
 	</form>
 	
 </div>
-<script type="text/javascript" src="<?= base_url('assets/js/pemc/objetivos/crud.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/pemc/objetivos/crud_objetivos.js') ?>"></script>
