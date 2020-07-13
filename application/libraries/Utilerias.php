@@ -153,5 +153,17 @@ define('ERRORMESSAGE', '2');
 			return true;
 		}
 
+    public static function trae_ciclo_actual() {
+        $anio_actual = date( 'Y' );
+        $mes_actual = date( 'm' );
+        $dia_actual = date( 'd' );
+        if ( $mes_actual>8 && $dia_actual >25 ) {
+            $ciclo_escolar = $anio_actual.' - '.( $anio_actual+1 );
+        } else {
+            $ciclo_escolar = ( $anio_actual-1 ).' - '.$anio_actual;
+        }
+        return $ciclo_escolar;
+    }
+
 	}
 ?>

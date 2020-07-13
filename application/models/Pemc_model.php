@@ -83,7 +83,7 @@ function obtener_seguimiento_xidpemc($idpemc){
  $str_query = "SELECT
               obj.idobjetivo, obj.orden as orden_objetivo, obj.objetivo, obj.meta, obj.comentario_general,
               acc.idaccion, acc.orden as orden_accion, acc.accion, acc.idambitos, acc.finicio,  acc.ffin,
-              seguimineto.avance
+              seguimineto.avance, acc.responsables, acc.otros_responsables
               FROM r_pemc_objetivo obj
               INNER JOIN r_pemc_objetivo_accion acc ON obj.idobjetivo = acc.idobjetivo
               LEFT JOIN (SELECT

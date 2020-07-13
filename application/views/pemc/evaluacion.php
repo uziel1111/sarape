@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <a  href="<?= base_url('Pemc/ver_reporte_xidpemc/').$idpemc ?>"><button type="button" class="btn btn-info">Generar reporte</button></a>
+    <a  href="<?= base_url('Pemc/ver_reporte_xidpemc/').$idpemc ?>" target="_blank"><button type="button" class="btn btn-info">Generar reporte</button></a>
   </div>
   <div class="card-body">
     <div class="container">
