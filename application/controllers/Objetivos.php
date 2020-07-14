@@ -22,7 +22,7 @@ class Objetivos extends CI_Controller
 			$tabla .="<tr><th scope='row'>{$objetivo['orden']}</th>
 				      <td>{$objetivo['objetivo']}</td>
 				      <td>{$objetivo['fcreacion']}</td>
-				      <td>2</td>
+				      <td><button class='btn btn-primary' onclick='Objetivos.agreg_acciones({$objetivo['idobjetivo']})'>2</button></td>
 				      <td>imagen1</td>
 				      <td>imagen2</td>
 				    </tr>";
@@ -55,6 +55,15 @@ class Objetivos extends CI_Controller
 		$orden = $this->Objetivo_model->get_objetivos_x_idpemc($datos_sesion['idpemc']);
 		$estatus = $this->Objetivo_model->save_objetivo($datos_sesion['idpemc'], $text_objetivo_c, $text_meta_c, $text_comentariosG_c, count($orden));
 		$response = array('estatus' => $estatus);
+		Utilerias::enviaDataJson(200,$response, $this);
+		exit;
+	}
+
+	public function get_view_acciones(){
+		$data = array();
+		$data['ambitos']  = $this->Objetivo_model->get_ambitos();
+		$str_view = $this->load->view('pemc/objetivos_metas_acciones/crearacciones',$data, TRUE);
+		$response = array('str_view' => $str_view);
 		Utilerias::enviaDataJson(200,$response, $this);
 		exit;
 	}

@@ -12,6 +12,11 @@ class Objetivo_model extends CI_Model
     	return $this->pemc_db->query($str_query, array($idpemc))->result_array();
     }
 
+    function get_ambitos(){
+    	$str_query = "SELECT * FROM c_pemc_ambito";
+    	return $this->pemc_db->query($str_query)->result_array();
+    }
+
     function save_objetivo($idpemc, $objetivo, $meta, $comentarios, $orden){
     	$norden = (int)$orden + 1;
     	$data = array(

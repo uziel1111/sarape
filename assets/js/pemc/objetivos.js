@@ -47,4 +47,25 @@ var Objetivos = {
 		swal.close();
 	});
   },
+
+  agreg_acciones: () =>{
+  	$.ajax({
+		url:base_url+"Objetivos/get_view_acciones",
+		data:{},
+		beforeSend: function(xhr) {
+			Notification.loading("Cargando vista");
+		}
+	})
+	.done(function(data){
+		$("#contenedor_obj_gen").empty();
+		$("#contenedor_obj_gen").append(data.str_view);
+		$("#modal_generico_obj").modal('show');
+	})
+	.fail(function(e) {
+		console.error("Error in ()"); console.table(e);
+	})
+	.always(function() {
+		swal.close();
+	});
+  }
 }

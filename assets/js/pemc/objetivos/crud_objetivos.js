@@ -53,5 +53,5 @@ var Crud_objetivos = {
 	.always(function() {
 		swal.close();
 	});
-  },
+  }
 }
