@@ -305,7 +305,7 @@ class Reporte extends CI_Controller {
 						utf8_decode(substr($responsablesc, 0, -2))
 					));
 				}
-				
+
 				$pdf->Ln();
 
 		}else{
