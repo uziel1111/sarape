@@ -29,6 +29,7 @@
 				  </tbody>
 				</table>
 		    </div><!-- .col-xs-12 col-sm-12 col-md-2 -->
+		    
 		</div>
 	<!-- </form> -->
 </div>
