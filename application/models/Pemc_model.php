@@ -129,4 +129,27 @@ WHERE acc.idaccion={$idaccion}";
  return $this->pemc_db->query($str_query)->result_array();
 }
 
+function guarda_evaluacion($evaluacion, $idpemc,$path_eval){
+  $status=false;
+    date_default_timezone_set('America/Monterrey');
+		setlocale(LC_TIME, 'es_MX.UTF-8');
+		$fecha = date("Y-m-d H:i:s");
+		$data_req = array(
+			'idpemc' =>$idpemc,
+			'evaluacion' =>$evaluacion,
+      'url_reporte' =>$path_eval,
+      'ciclo_escolar' =>Utilerias::trae_ciclo_actual(),
+			'fcreacion' =>$fecha
+		);
+      $status = $this->pemc_db->insert('r_pemc_evaluacion', $data_req);
+  return $status;
+}
+
+function obtener_evaluaciones_xidpemc($idpemc){
+ $str_query = "SELECT
+idpemc, evaluacion, url_reporte, ciclo_escolar, fcreacion
+FROM r_pemc_evaluacion WHERE idpemc={$idpemc}";
+ return $this->pemc_db->query($str_query)->result_array();
+}
+
 }// Rutamejora_model
