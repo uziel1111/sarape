@@ -61,11 +61,47 @@ class Objetivos extends CI_Controller
 
 	public function get_view_acciones(){
 		$data = array();
+		$datos_sesion = Utilerias::get_cct_sesion($this);
+		$idobjetivo = 1;
 		$data['ambitos']  = $this->Objetivo_model->get_ambitos();
+		$personal = $this->getPersonal($datos_sesion['cve_centro']);
+		$data['responsables']  = $personal->Personal;
+		$data['acciones']  = $this->Objetivo_model->get_acciones_x_idobjetivo($idobjetivo);
+		// echo"<pre>";
+		// print_r($data);
+		// die();
 		$str_view = $this->load->view('pemc/objetivos_metas_acciones/crearacciones',$data, TRUE);
 		$response = array('str_view' => $str_view);
 		Utilerias::enviaDataJson(200,$response, $this);
 		exit;
+	}
+
+	private function getPersonal($cct){
+		
+		$curl = curl_init();
+		$method = "POST";
+		$url = "http://servicios.seducoahuila.gob.mx/wservice/personal/w_service_personal_by_cct.php";
+		$data = array("cct" => $cct);
+
+		switch ($method)
+		{
+			case "POST":
+			curl_setopt($curl, CURLOPT_POST, 1);
+			if ($data)
+				curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+			break;
+			default:
+			if ($data)
+				$url = sprintf("%s?%s", $url, http_build_query($data));
+		}
+
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+		$result = curl_exec($curl);
+
+		curl_close($curl);
+		return $response = json_decode($result);
 	}
 
 
