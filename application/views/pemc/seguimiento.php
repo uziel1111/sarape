@@ -1,6 +1,7 @@
 <div class="container">
   <?php $idobjetivo = 0;?>
   <?php foreach ($seguimiento as $key => $value): ?>
+
     <?php if ($idobjetivo != $value['idobjetivo']): ?>
       <div class="card bg-light mb-3">
         <div class="card-header" style="background-color: #FFCC80; ">
@@ -18,7 +19,8 @@
             </div>
           </div>
           <br>
-          <?php foreach ($seguimiento as $key => $value): ?>
+
+        <?php endif; ?>
             <div class="row">
               <div class="col-9">
                 <div class="table-responsive">
@@ -65,10 +67,9 @@
                 <button type="button" onclick="Seguimiento_pemc.ver_avance(<?=$value['idaccion']?>)" class="btn btn-info">Ver historial de avances</button>
               </div>
             </div>
-          <?php endforeach; ?>
+            
         </div>
       </div>
-    <?php endif; ?>
     <?php $idobjetivo = $value['idobjetivo'];?>
   <?php endforeach; ?>
 </div>
