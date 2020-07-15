@@ -22,9 +22,9 @@ class Objetivos extends CI_Controller
 			$tabla .="<tr><th scope='row'>{$objetivo['orden']}</th>
 				      <td>{$objetivo['objetivo']}</td>
 				      <td>{$objetivo['fcreacion']}</td>
-				      <td><button class='btn btn-primary' onclick='Objetivos.agreg_acciones({$objetivo['idobjetivo']})'>2</button></td>
-				      <td>imagen1</td>
-				      <td>imagen2</td>
+				      <td><button class='btn btn-primary btn-block' onclick='Objetivos.agreg_acciones({$objetivo['idobjetivo']})'>{$objetivo['num_acciones']}</button></td>
+				      <td><input type='file' name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, {$objetivo['idobjetivo']})'></td>
+				      <td><input type='file' name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, {$objetivo['idobjetivo']})'></td>
 				    </tr>";
 		}
 		$response = array('contenido_tabla' => $tabla);
@@ -167,6 +167,27 @@ class Objetivos extends CI_Controller
     	$estatus = $this->Objetivo_model->insert_accion($idobjetivo, count($orden), $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio, $ffin);
 
     	$response = array('estatus' => $estatus);
+		Utilerias::enviaDataJson(200,$response, $this);
+		exit;
+	}
+
+	public function insert_evidencias(){
+		$idobjetivo = $this->input->post('idobjetivo');
+		$tipo_evidencia = $this->input->post('tipo_evidencia');
+		$ruta_imagenes = "pemc";
+		if ($_FILES["file"]['name'] != "") {
+			$config['upload_path']   = $ruta_imagenes;
+			$config['allowed_types'] = 'gif|jpg|png';
+
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+			if ($this->upload->do_upload("file")) {
+				$fileData = $this->upload->data();
+				$estatus = $this->Objetivo_model->inserta_ruta($idobjetivo, $ruta_imagenes . "/" . $fileData['file_name'], $tipo_evidencia);
+			}
+		}
+
+		$response = array('estatus' => $estatus);
 		Utilerias::enviaDataJson(200,$response, $this);
 		exit;
 	}

@@ -153,5 +153,44 @@ var Objetivos = {
 	.always(function() {
 		// swal.close();
 	});
+  },
+
+  carga_archivos:(archivo, tipo, idobjetivo) =>{
+  	var formData = new FormData();
+    var files = $(archivo)[0].files[0];
+    formData.append('file',files);
+    formData.append('tipo_evidencia',tipo);
+    formData.append('idobjetivo',idobjetivo);
+  	$.ajax({
+  		type: 'POST',
+		url:base_url+"Objetivos/insert_evidencias",
+        data: formData,
+        contentType: false,
+        processData: false,
+		beforeSend: function(xhr) {
+			Notification.loading("Cargando vista");
+		}
+	})
+	.done(function(data){
+		if(data.estatus){
+			swal(
+			'¡Bien!',
+			"La evidencia se inserto correctamente",
+			"success"
+			);
+		}else{
+			swal(
+			'¡Error!',
+			"Fallo al insertar",
+			"error"
+			);
+		}
+	})
+	.fail(function(e) {
+		console.error("Error in ()"); console.table(e);
+	})
+	.always(function() {
+		swal.close();
+	});
   }
 }

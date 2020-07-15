@@ -8,7 +8,10 @@ class Objetivo_model extends CI_Model
     }
 
     function get_objetivos_x_idpemc($idpemc){
-    	$str_query = "SELECT * FROM r_pemc_objetivo WHERE idpemc = ?";
+    	$str_query = "SELECT obj.*, COUNT(acc.idaccion) AS num_acciones FROM r_pemc_objetivo obj
+LEFT JOIN r_pemc_objetivo_accion acc ON acc.idobjetivo = obj.idobjetivo
+WHERE idpemc = ?
+GROUP BY obj.idobjetivo";
     	return $this->pemc_db->query($str_query, array($idpemc))->result_array();
     }
 
@@ -64,6 +67,25 @@ class Objetivo_model extends CI_Model
 		    'fcreacion' => date('Y-m-d')
 		);
 		return $this->pemc_db->insert('r_pemc_objetivo_accion', $data);
+    }
+
+    function inserta_ruta($idobjetivo, $ruta, $tipo_evidencia){
+    	switch ($tipo_evidencia) {
+    		case '1':
+    			$campo = "url_evidencia_antes";
+    			break;
+    		
+    		case '1':
+    			$campo = "url_evidencia_antes";
+    			break;
+    	}
+    	$data = array(
+		        $campo => $ruta,
+		        'fmodificacion' => date('Y-m-d')
+		);
+
+		$this->pemc_db->where('idobjetivo', $idobjetivo);
+		return $this->pemc_db->update('r_pemc_objetivo', $data);
     }
 
 }// Objetivo_model
