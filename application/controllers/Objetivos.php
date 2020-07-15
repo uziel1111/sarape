@@ -42,16 +42,11 @@ class Objetivos extends CI_Controller
 	}
 
 	public function save_conf_objetivo(){
-		// echo"<pre>";
-		// print_r($_POST);
-		// die();
 		$text_objetivo_c = $this->input->post('text_objetivo_c');
 		$text_meta_c = $this->input->post('text_meta_c');
 		$text_comentariosG_c = $this->input->post('text_comentariosG_c');
 		$datos_sesion = Utilerias::get_cct_sesion($this);
-		// echo"<pre>";
-		// print_r($datos_sesion['idpemc']);
-		// die();
+
 		$orden = $this->Objetivo_model->get_objetivos_x_idpemc($datos_sesion['idpemc']);
 		$estatus = $this->Objetivo_model->save_objetivo($datos_sesion['idpemc'], $text_objetivo_c, $text_meta_c, $text_comentariosG_c, count($orden));
 		$response = array('estatus' => $estatus);
@@ -62,7 +57,12 @@ class Objetivos extends CI_Controller
 	public function get_view_acciones(){
 		$data = array();
 		$datos_sesion = Utilerias::get_cct_sesion($this);
-		$idobjetivo = 1;
+		$idobjetivo = $this->input->post('idobjetivo');
+		// echo"<pre>";
+		// print_r($_POST);
+		// die();
+		$data['objetivo'] = $this->Objetivo_model->get_objetivo_x_idobjetivo($idobjetivo);
+		$data['idobjetivo']  = $idobjetivo;
 		$data['ambitos']  = $this->Objetivo_model->get_ambitos();
 		$personal = $this->getPersonal($datos_sesion['cve_centro']);
 		$data['responsables']  = $personal->Personal;
@@ -102,6 +102,73 @@ class Objetivos extends CI_Controller
 
 		curl_close($curl);
 		return $response = json_decode($result);
+	}
+
+	public function update_acciones(){
+		$idaccion = $this->input->post('idaccion');
+		$idobjetivo = $this->input->post('idobjetivo');
+    	$accion = $this->input->post('accion');
+    	$recurso = $this->input->post('recurso');
+    	$ambitos = $this->input->post('ambitos');
+        $responsables = $this->input->post('responsables');
+    	$otro_responsable = $this->input->post('otro_responsable');
+    	$finicio = $this->input->post('finicio');
+    	$ffin = $this->input->post('ffin');
+    	$cad_ambitos = "";
+    	$cad_responsables = "";
+    	if(count($ambitos) > 0){
+    		foreach ($ambitos as $ambito) {
+    			$cad_ambitos .= $ambito.",";
+    		}
+    		$cad_ambitos = substr($cad_ambitos, 0, -1);
+    	}
+
+    	if(count($responsables) > 0){
+    		foreach ($responsables as $responsable) {
+    			$cad_responsables .= "'". $responsable."',";
+    		}
+    	$cad_responsables = substr($cad_responsables, 0, -1);
+    	}
+
+    	$estatus = $this->Objetivo_model->update_accion($idaccion, $idobjetivo, $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio, $ffin);
+
+    	$response = array('estatus' => $estatus);
+		Utilerias::enviaDataJson(200,$response, $this);
+		exit;
+	}
+
+	public function insert_acciones(){
+		$idobjetivo = $this->input->post('idobjetivo');
+    	$accion = $this->input->post('accion');
+    	$recurso = $this->input->post('recurso');
+    	$ambitos = $this->input->post('ambitos');
+        $responsables = $this->input->post('responsables');
+    	$otro_responsable = $this->input->post('otro_responsable');
+    	$finicio = $this->input->post('finicio');
+    	$ffin = $this->input->post('ffin');
+    	$cad_ambitos = "";
+    	$cad_responsables = "";
+    	if(count($ambitos) > 0){
+    		foreach ($ambitos as $ambito) {
+    			$cad_ambitos .= $ambito.",";
+    		}
+    		$cad_ambitos = substr($cad_ambitos, 0, -1);
+    	}
+
+    	if(count($responsables) > 0){
+    		foreach ($responsables as $responsable) {
+    			$cad_responsables .= "'". $responsable."',";
+    		}
+    	$cad_responsables = substr($cad_responsables, 0, -1);
+    	}
+
+    	$orden = $this->Objetivo_model->get_acciones_x_idobjetivo($idobjetivo);
+
+    	$estatus = $this->Objetivo_model->insert_accion($idobjetivo, count($orden), $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio, $ffin);
+
+    	$response = array('estatus' => $estatus);
+		Utilerias::enviaDataJson(200,$response, $this);
+		exit;
 	}
 
 
