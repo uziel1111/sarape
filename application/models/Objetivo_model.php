@@ -75,8 +75,8 @@ GROUP BY obj.idobjetivo";
     			$campo = "url_evidencia_antes";
     			break;
     		
-    		case '1':
-    			$campo = "url_evidencia_antes";
+    		case '2':
+    			$campo = "url_evidencia_despues";
     			break;
     	}
     	$data = array(

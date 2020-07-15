@@ -190,7 +190,7 @@ var Objetivos = {
 		console.error("Error in ()"); console.table(e);
 	})
 	.always(function() {
-		swal.close();
+		// swal.close();
 	});
   }
 }
