@@ -4,9 +4,9 @@
   </div>
   <div class="card-body">
     <div class="container">
-      <form class="form-group" name="fr_diagnostico" id="fr_evaluacion">
-      <label class="my-1 mr-2" for="in_diag">Redacte su evaluación:</label>
-       <textarea class="form-control" name="in_diag" id="in_diag" rows="3" required></textarea>
+      <form class="form-group" name="fr_evaluacion" id="fr_evaluacion">
+      <label class="my-1 mr-2" for="in_eval">Redacte su evaluación:</label>
+       <textarea class="form-control" name="in_eval" id="in_eval" rows="3" required></textarea>
     <button class="btn btn-primary my-1  float-right" id="btn_guardar_evaluacion_pemc">Grabar</button>
     </form>
     </div>
@@ -28,14 +28,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="text-center"></td>
-              <td class="text-center"></td>
-              <td class="text-center"></td>
-              <td class="text-center"></td>
-            </tr>
+
+              <?php foreach ($evaluacion as $key => $value): ?>
+                <tr>
+                <td class="text-center"><?=$value['evaluacion'];?></td>
+                <td class="text-center"><?=$value['fcreacion'];?></td>
+                <td class="text-center"><a  href="<?= base_url($value['url_reporte']) ?>" target="_blank"><button type="button" class="btn btn-info">Ver reporte</button></a></td>
+                <td class="text-center"><?=$value['ciclo_escolar'];?></td>
+                </tr>
+              <?php endforeach; ?>
+
           </tbody>
         </table>
     </div>
   </div>
 </div>
+<script type="text/javascript" src="<?= base_url('assets/js/pemc/evaluacion.js') ?>"></script>

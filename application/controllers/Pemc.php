@@ -259,7 +259,7 @@ class Pemc extends CI_Controller {
 			// foreach ($seguimiento as $key => $value) {
 			// 	$seguimiento[$key]['ambitos']= $this->Pemc_model->obtener_ambitos_xidambitos($value['idambitos']);
 			// }
-			$evaluacion = [];
+			$evaluacion = $this->Pemc_model->obtener_evaluaciones_xidpemc($datos_sesion['idpemc']);
 			// echo "<pre>";print_r($evaluacion);die();
 			$data = array('evaluacion' => $evaluacion, "idpemc" => $idpemc);
 			// echo "<pre>";print_r($data);die();
@@ -269,7 +269,7 @@ class Pemc extends CI_Controller {
 			exit;
 		}
 
-		public function ver_reporte_xidpemc($idpemc){
+		public function ver_reporte_xidpemc($idpemc, $url_save=null){
 			if(Utilerias::haySesionAbiertacct($this)){
 				$datos_sesion = Utilerias::get_cct_sesion($this);
 				$cve_centro = $datos_sesion['cve_centro'];
@@ -426,40 +426,27 @@ class Pemc extends CI_Controller {
 						// echo "<pre>";print_r($arr_avances);die();
 						$aux_idobjetivo=$value['idobjetivo'];
 				}
-				// echo "<pre>";print_r($seguimiento);die();
-				// $rutas = $this->Reportepdf_model->get_rutasxcct($cve_centro,$turno);
-				// $aux_ruta = '';
-				// $loque_imprime= '' ;
-				//
-				// foreach ($rutas as $ruta) {
-				// 	if ($aux_ruta == $ruta['tema']) {
-				// 		$ruta['tema']= '' ;
-				// 		$id_tprioritario_cap= $ruta['id_tprioritario'];
-				// 	}
-				// 	else {
-				// 	}
-				// 	$aux_ruta = $ruta['tema'];
-				// 	$id_tprioritario = $ruta['id_objetivo'];
-				// 	$id_tprioritario_cap= $ruta['id_tprioritario'];
-				// 	//DATOS
-				// 	if ($id_tprioritario!='') {
-				//
-				// 		$cap = $this->Rutamejora_model->get_problematica_ambito($id_tprioritario_cap);
-				// 				$ambitoA = '';
-				// 				$problematicaA = '';
-				// 				foreach ($cap as $key => $value) {
-				// 					if ($value['tipo'] == 1) {
-				// 						$problematicaA .= $value['descripcion'];
-				// 					}else{
-				// 						$ambitoA .= $value['descripcion'];
-				// 					}
-				// 				}
-				//
-				// 				$this->pinta_ruta($pdf, $ruta, $pdf->GetY()+5, $id_tprioritario,$cct[0]['cve_centro'], $problematicaA, $ambitoA, 'E');
-				// 	}
-				// }
+				if ($url_save==null) {
+					$pdf->Output();
+				}
+				else {
+					$pdf->Output($url_save,'F');
+				}
 
-				$pdf->Output();
 			}
+		}
+
+		public function guarda_evaluacion(){
+			$datos_sesion = Utilerias::get_cct_sesion($this);
+			$evaluacion = $this->input->post('in_eval');
+			date_default_timezone_set('America/Mexico_City');
+			$hoy = date("Y-m-d_H_i_s");
+			$path_eval = "assets/pdf/pemc_eval/".$datos_sesion['idpemc']."_".$hoy.".pdf";
+			$this->ver_reporte_xidpemc($datos_sesion['idpemc'],$path_eval);
+			// echo "<pre>";print_r($evaluacion);die();
+			$estatus = $this->Pemc_model->guarda_evaluacion(strip_tags($evaluacion),$datos_sesion['idpemc'],$path_eval);
+			$response = array('estatus' => $estatus);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
 		}
 }
