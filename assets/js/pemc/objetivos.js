@@ -3,9 +3,30 @@ $("#btn_crear_obj").click(function(){
 	Objetivos.get_view_creareditar_obj();
 });
 
+$("#btn_edita_obj").click(function(){
+	if(Objetivos.idseleccionado != null){
+		alert("Valor seleccionado: "+Objetivos.idseleccionado);
+	}else{
+		alert("no se a seleccionado");
+	}
+	
+});
+
+$("#id_tabla_objetivos_pemc tr").click(function(){
+       var value = $(this).find('td:first').text();
+       var val2 = $(this).find('td:first').next().text();
+       var val3 = $(this).find('td:first').next().next().text();
+       var val4 = $(this).find('td:first').next().next().next().next().text();
+       var textotp = $(this).find('td:first').next().next().next().text();
+     if (value != '') {
+           $(this).addClass('selected').siblings().removeClass('selected');
+           Objetivos.idseleccionado = value;
+      }
+});
 
 
 var Objetivos = {
+	idseleccionado : null,
 	get_objetivos_x_idpemc: () => {
 	    $.ajax({
 			url:base_url+"Objetivos/get_objetivos_x_idpemc",

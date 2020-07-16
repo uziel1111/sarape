@@ -59,7 +59,7 @@ var Principal_pemc = {
 		.done(function(data){
 			$("#vista_objetivos_metas_acciones").empty();
 			$("#vista_objetivos_metas_acciones").append(data.str_vista);
-			Principal_pemc.get_objetivos_x_idpemc();
+			// Principal_pemc.get_objetivos_x_idpemc();
 		})
 		.fail(function(e) {
 			console.error("Error in ()"); console.table(e);
@@ -90,25 +90,25 @@ var Principal_pemc = {
 		});
 	},
 
-	get_objetivos_x_idpemc: () => {
-	    $.ajax({
-			url:base_url+"Objetivos/get_objetivos_x_idpemc_tabla",
-			data:{},
-			beforeSend: function(xhr) {
-				Notification.loading("Cargando vista");
-			}
-		})
-		.done(function(data){
-			$("#contenedor_tabla_objetivos").empty();
-			$("#contenedor_tabla_objetivos").append(data.contenido_tabla);
-		})
-		.fail(function(e) {
-			console.error("Error in ()"); console.table(e);
-		})
-		.always(function() {
-			swal.close();
-		});
-	},
+	// get_objetivos_x_idpemc: () => {
+	//     $.ajax({
+	// 		url:base_url+"Objetivos/get_objetivos_x_idpemc_tabla",
+	// 		data:{},
+	// 		beforeSend: function(xhr) {
+	// 			Notification.loading("Cargando vista");
+	// 		}
+	// 	})
+	// 	.done(function(data){
+	// 		$("#contenedor_tabla_objetivos").empty();
+	// 		$("#contenedor_tabla_objetivos").append(data.contenido_tabla);
+	// 	})
+	// 	.fail(function(e) {
+	// 		console.error("Error in ()"); console.table(e);
+	// 	})
+	// 	.always(function() {
+	// 		swal.close();
+	// 	});
+	// },
 
 	obtiene_vista_seguimiento: (idpemc) => {
 	ruta = base_url + "Pemc/obtiene_vista_seguimiento";
