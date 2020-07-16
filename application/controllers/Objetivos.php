@@ -12,25 +12,25 @@ class Objetivos extends CI_Controller
 	}
 
 
-	public function get_objetivos_x_idpemc_tabla(){
-		$datos_sesion = Utilerias::get_cct_sesion($this);
+	// public function get_objetivos_x_idpemc_tabla(){
+	// 	$datos_sesion = Utilerias::get_cct_sesion($this);
 
-		$objetivos = $this->Objetivo_model->get_objetivos_x_idpemc($datos_sesion['idpemc']);
+	// 	$objetivos = $this->Objetivo_model->get_objetivos_x_idpemc($datos_sesion['idpemc']);
 
-		$tabla = "";
-		foreach ($objetivos as $objetivo) {
-			$tabla .="<tr><th scope='row'>{$objetivo['orden']}</th>
-				      <td>{$objetivo['objetivo']}</td>
-				      <td>{$objetivo['fcreacion']}</td>
-				      <td><button class='btn btn-primary btn-block' onclick='Objetivos.agreg_acciones({$objetivo['idobjetivo']})'>{$objetivo['num_acciones']}</button></td>
-				      <td><input type='file' name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, {$objetivo['idobjetivo']})'></td>
-				      <td><input type='file' name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, {$objetivo['idobjetivo']})'></td>
-				    </tr>";
-		}
-		$response = array('contenido_tabla' => $tabla);
-		Utilerias::enviaDataJson(200,$response, $this);
-		exit;
-	}
+	// 	$tabla = "";
+	// 	foreach ($objetivos as $objetivo) {
+	// 		$tabla .="<tr><th scope='row'>{$objetivo['orden']}</th>
+	// 			      <td>{$objetivo['objetivo']}</td>
+	// 			      <td>{$objetivo['fcreacion']}</td>
+	// 			      <td><button class='btn btn-primary btn-block' onclick='Objetivos.agreg_acciones({$objetivo['idobjetivo']})'>{$objetivo['num_acciones']}</button></td>
+	// 			      <td><input type='file' name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, {$objetivo['idobjetivo']})'></td>
+	// 			      <td><input type='file' name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, {$objetivo['idobjetivo']})'></td>
+	// 			    </tr>";
+	// 	}
+	// 	$response = array('contenido_tabla' => $tabla);
+	// 	Utilerias::enviaDataJson(200,$response, $this);
+	// 	exit;
+	// }
 	public function get_view_obj()
 	{
 		$data = array();
