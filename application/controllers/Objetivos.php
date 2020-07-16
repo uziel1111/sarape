@@ -33,7 +33,14 @@ class Objetivos extends CI_Controller
 	// }
 	public function get_view_obj()
 	{
+		$idobjetivo = $this->input->post('idobjetivo');
 		$data = array();
+		if($idobjetivo != 0){
+			$data['info_objetivo'] = $this->Objetivo_model->get_objetivo_x_idobjetivo($idobjetivo);
+		}
+		// echo"<pre>";
+		// print_r($data);
+		// die();
 		$str_view = $this->load->view('pemc/objetivos_metas_acciones/crearobjetivo',$data, TRUE);
 		$response = array('str_view' => $str_view);
 		Utilerias::enviaDataJson(200,$response, $this);
@@ -42,16 +49,30 @@ class Objetivos extends CI_Controller
 	}
 
 	public function save_conf_objetivo(){
+		// echo"<pre>";
+		// print_r($_POST);
+		// die();
+		$idobjetivo = (int)$this->input->post('idobjetivoupdate');
 		$text_objetivo_c = $this->input->post('text_objetivo_c');
 		$text_meta_c = $this->input->post('text_meta_c');
 		$text_comentariosG_c = $this->input->post('text_comentariosG_c');
 		$datos_sesion = Utilerias::get_cct_sesion($this);
-
-		$orden = $this->Objetivo_model->get_objetivos_x_idpemc($datos_sesion['idpemc']);
-		$estatus = $this->Objetivo_model->save_objetivo($datos_sesion['idpemc'], $text_objetivo_c, $text_meta_c, $text_comentariosG_c, count($orden));
+		if($idobjetivo != 0){
+			$estatus = $this->Objetivo_model->update_objetivo($datos_sesion['idpemc'], $text_objetivo_c, $text_meta_c, $text_comentariosG_c, $idobjetivo);
+		}else{
+			$orden = $this->Objetivo_model->get_objetivos_x_idpemc($datos_sesion['idpemc']);
+			$estatus = $this->Objetivo_model->save_objetivo($datos_sesion['idpemc'], $text_objetivo_c, $text_meta_c, $text_comentariosG_c, count($orden));
+		}
+		
 		$response = array('estatus' => $estatus);
 		Utilerias::enviaDataJson(200,$response, $this);
 		exit;
+	}
+
+	public function delete_objetivo(){
+		echo"<pre>";
+		print_r($_POST);
+		die();
 	}
 
 	public function get_view_acciones(){

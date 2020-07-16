@@ -5,11 +5,39 @@ $("#btn_crear_obj").click(function(){
 
 $("#btn_edita_obj").click(function(){
 	if(Objetivos.idseleccionado != null){
-		alert("Valor seleccionado: "+Objetivos.idseleccionado);
+		Objetivos.get_view_creareditar_obj(Objetivos.idseleccionado);
 	}else{
-		alert("no se a seleccionado");
+		swal(
+			'Alerta!',
+			"Seleccione un objetivo para editar",
+			"warning"
+			);
 	}
-	
+});
+
+$("#btn_elimina_obj").click(function(){
+	if(Objetivos.idseleccionado != null){
+		swal({
+	      title: '¿Estás seguro de eliminar este objetivo?',
+	      text: "Se eliminara las acciones y evaluaciones asignadas a el mismo, una vez eliminado no se podrá recuperar",
+	      type: 'warning',
+	      showCancelButton: true,
+	      confirmButtonColor: '#3085d6',
+	      cancelButtonColor: '#d33',
+	      confirmButtonText: 'Eliminar',
+	      cancelButtonText: 'Cancelar'
+	    }).then((result) => {
+	      if (result.value) {
+	        Objetivos.delete_objetivo(Objetivos.idseleccionado);
+	      }
+	    })
+	}else{
+		swal(
+			'Alerta!',
+			"Seleccione un objetivo para eliminar",
+			"warning"
+			);
+	}
 });
 
 $("#id_tabla_objetivos_pemc tr").click(function(){
@@ -48,10 +76,13 @@ var Objetivos = {
 		});
 	},
 
-	get_view_creareditar_obj: () => {
+	get_view_creareditar_obj: (idobjetivo = 0) => {
     $.ajax({
+    	type: 'POST',
 		url:base_url+"Objetivos/get_view_obj",
-		data:{},
+		data:{
+			'idobjetivo': idobjetivo
+		},
 		beforeSend: function(xhr) {
 			Notification.loading("Cargando vista");
 		}
@@ -206,6 +237,41 @@ var Objetivos = {
 			"error"
 			);
 		}
+	})
+	.fail(function(e) {
+		console.error("Error in ()"); console.table(e);
+	})
+	.always(function() {
+		// swal.close();
+	});
+  },
+
+  delete_objetivo: (idobjetivo) => {
+  	$.ajax({
+  		type: 'POST',
+		url:base_url+"Objetivos/delete_objetivo",
+		data:{
+			'idobjetivo': idobjetivo,
+		},
+		beforeSend: function(xhr) {
+			Notification.loading("Cargando vista");
+		}
+	})
+	.done(function(data){
+		if(data.estatus){
+			swal(
+			'¡Bien!',
+			"EL objetivo se elimino correctamente",
+			"success"
+			);
+		}else{
+			swal(
+			'¡Error!',
+			"Fallo al eliminar",
+			"error"
+			);
+		}
+		// $("#modal_generico_obj").modal('hide');
 	})
 	.fail(function(e) {
 		console.error("Error in ()"); console.table(e);

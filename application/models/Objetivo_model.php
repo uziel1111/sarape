@@ -38,6 +38,21 @@ GROUP BY obj.idobjetivo";
 		return $this->pemc_db->insert('r_pemc_objetivo', $data);
     }// get_prioridades()
 
+    function update_objetivo($idpemc, $text_objetivo_c, $text_meta_c, $text_comentariosG_c, $idobjetivo){
+    	$data = array(
+		    'objetivo' => $text_objetivo_c,
+		    'meta' => $text_meta_c,
+		    'comentario_general' => $text_comentariosG_c,
+		    'fmodificacion' => date('Y-m-d')
+		);
+		$where = array(
+		    'idobjetivo'=> $idobjetivo,
+		    'idpemc'=> $idpemc
+		);
+		$this->pemc_db->where($where);
+		return $this->pemc_db->update('r_pemc_objetivo', $data);
+    }
+
     function get_acciones_x_idobjetivo($idobjetivo){
     	$str_query = "SELECT * FROM r_pemc_objetivo_accion WHERE idobjetivo = ?";
     	return $this->pemc_db->query($str_query, array($idobjetivo))->result_array();
