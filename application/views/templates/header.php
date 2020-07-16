@@ -95,7 +95,7 @@
                               <div class="dropdown-menu dropdown-menu-right ddm-color-3" aria-labelledby="navbarDropdownMenuLink">
                                   <a class="dropdown-item hcolor-3" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank">Educación en casa / Protégete del Coronavirus</a>
                                   <a class="dropdown-item hcolor-3" id="btn_index_guiaspadres" href="javascript:void(0)">Guía para padres de familia</a>
-                                  <a class="dropdown-item hcolor-3" href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank">Libros de texto gratuito SEP</a>
+                                  <!-- <a class="dropdown-item hcolor-3" href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank">Libros de texto gratuito SEP</a> -->
                                   <!-- <a class="dropdown-item hcolor-3" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a> -->
                                   <a class="dropdown-item hcolor-3" href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank">Consulta de calificaciones</a>
                                   <a class="dropdown-item hcolor-3" href="http://www.seducoahuila.gob.mx/yabasta/" target="_blank">Alto al acoso escolar <i>(bullying)</i></a>
@@ -142,12 +142,17 @@
                           Otros
                       </a>
                       <div class="dropdown-menu dropdown-menu-right ddm-color-4" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item hcolor-4" href="<?= base_url('index.php/Talis/index'); ?>" >TALIS</a>
+                        <a class="dropdown-item hcolor-4" href="https://www.saludcoahuila.gob.mx/COVID19/index.php" target="_blank">Secretaría de Salud Coahuila (COVID-19)</a>
+                        <a class="dropdown-item hcolor-4" href="https://coronavirus.gob.mx/" target="_blank">Secretaría de Salud Federal (COVID-19)</a>
+                        <a class="dropdown-item hcolor-4" href="https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/advice-for-public" target="_blank">Organización Mundial de la Salud (COVID-19)</a>
+                        <a class="dropdown-item hcolor-4" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">Centro para el Control y la Prevención de Enfermedades (COVID-19)</a>
                           <!-- <a class="dropdown-item hcolor-4" id="btn_index_modeloeducativo" href="javascript:void(0)">Modelo Coahuilense</a> -->
-                           <a class="dropdown-item hcolor-4" target="_blank" href="http://inscripciones.org">Pre-inscripciones 2020-2021</a>
-                          <a class="dropdown-item hcolor-4" id="btn_index_calendarioEscolar" href="javascript:void(0)">Calendario escolar</a>
-                          <a class="dropdown-item hcolor-4" href="http://www.becascoahuila.gob.mx/becas2.html" target="_blank">Becas escolares</a>
+                           <!-- <a class="dropdown-item hcolor-4" target="_blank" href="http://inscripciones.org">Pre-inscripciones 2020-2021</a> -->
+                          <!-- <a class="dropdown-item hcolor-4" id="btn_index_calendarioEscolar" href="javascript:void(0)">Calendario escolar</a>
+                          <a class="dropdown-item hcolor-4" href="http://www.becascoahuila.gob.mx/becas2.html" target="_blank">Becas escolares</a> -->
                           <a class="dropdown-item hcolor-4" href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank">Biblioteca Digital Coahuila</a>
-                          <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/ESCUELAS_ALTA_DEMANDA.pdf" target="_blank">Escuelas de alta demanda</a>
+                          <!-- <a class="dropdown-item hcolor-4" href="http://www.escuelatransparente.gob.mx/transparencia/2017-2018/ESCUELAS_ALTA_DEMANDA.pdf" target="_blank">Escuelas de alta demanda</a> -->
                       </div>
                   </li>
               </ul>
