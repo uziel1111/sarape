@@ -32,8 +32,8 @@
 							</li>
 							<li class="list-group-item"><a onclick="Index.getguiaparapadres()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span> Guía para padres de familia</a>
 							</li>
-							<li class="list-group-item"><a href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span> Libros de texto gratuito SEP</a>
-							</li>
+							<!-- <li class="list-group-item"><a href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span> Libros de texto gratuito SEP</a>
+							</li> -->
 							<!-- <li class="list-group-item"><a onclick="Index.getMaterialesUtiles()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span>  Lista de materiales y útiles</a>
 							</li> -->
 							<li class="list-group-item"><a href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span> Consulta de calificaciones</a>
@@ -124,12 +124,21 @@
 							<!-- <li class="list-group-item"><a href="http://inscripciones.org" target="_blank"><span class="color-4"><i class="fas fa-star"></i></span> <b>Pre-inscripciones 2020-2021</b></a> -->
 							<!-- </li> -->
 							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Talis/index'); ?>"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> TALIS </a></li>
+							<li class="list-group-item"><a class="" href="https://www.saludcoahuila.gob.mx/COVID19/index.php" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> Secretaría de Salud Coahuila
+							<a style="color:grey; padding-left: 14%;" href="https://www.saludcoahuila.gob.mx/COVID19/index.php" target="_blank">(COVID-19)</a></a></li></li>
+							<li class="list-group-item"><a class="" href="https://coronavirus.gob.mx/" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> Secretaría de Salud Federal
+								<a style="color:grey; padding-left: 14%;" href="https://coronavirus.gob.mx/" target="_blank">(COVID-19)</a></a></li></li>
+							<li class="list-group-item"><a class="" href="https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/advice-for-public" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> Organización Mundial de la
+							<a style="color:grey; padding-left: 14%;" href="https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/advice-for-public" target="_blank">salud (COVID-19)</a></a></li>
+							<li class="list-group-item"><a class="" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> Centro para el Control y
+								<a style="color:grey; padding-left: 14%;" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">la Prevención de</a>
+							<a style="color:grey; padding-left: 14%;" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">Enfermedades (COVID-19)</a></a></li></li>
 							<!-- <li class="list-group-item"><a onclick="Index.getmodeloeducativo()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Modelo Coahuilense</a>
 							</li> -->
-							<li class="list-group-item"><a onclick="Index.getCalendarioEscolar()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Calendario escolar</a>
+							<!-- <li class="list-group-item"><a onclick="Index.getCalendarioEscolar()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Calendario escolar</a>
 							</li>
 							<li class="list-group-item"><a href="http://www.becascoahuila.gob.mx/becas2.html" target="_blank"><span class="color-4"><i class="material-icons">chevron_right</i></span> Becas escolares</a>
-							</li>
+							</li> -->
 
 							<li class="list-group-item"><a href="http://bibliotecadigitalcoahuila.gob.mx/" target="_blank"><span class="color-4"><i class="material-icons">chevron_right</i></span> Biblioteca Digital Coahuila</a>
 							</li>
