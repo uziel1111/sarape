@@ -208,6 +208,80 @@ var Objetivos = {
 	});
   },
 
+  valida_campos_accion: (idaccion = 0, idobjetivo = 0) => {
+  	if(idaccion != 0){
+  		if($("#txt_accion_"+idaccion).val().trim() == ''){
+  			swal('¡Error!',"Inserte acción valida, verifique espacios","error");
+  		}else{
+  			if($("#txt_recurso_"+idaccion).val().trim() == ''){
+  			swal('¡Error!',"Inserte recurso valido, verifique espacios","error");
+	  		}else{
+	  			if($("#select_ambito_"+idaccion).val() == ''){
+	  			swal('¡Error!',"Seleccione ámbito","error");
+		  		}else{
+		  			if($("#slc_responsables_"+idaccion).val() == ''){
+		  			swal('¡Error!',"Seleccione responsable","error");
+			  		}else{
+			  			if($("#txt_finicio_"+idaccion).val() == ''){
+			  			swal('¡Error!',"Seleccione fecha de inicio","error");
+				  		}else{
+				  			if($("#txt_ffin_"+idaccion).val() == ''){
+				  			swal('¡Error!',"Seleccione fecha de fin","error");
+					  		}else{
+					  			if(Objetivos.valida_fecha($("#txt_finicio_"+idaccion).val(), $("#txt_ffin_"+idaccion).val())){
+					  			swal('¡Error!',"La fecha de inicio no puede ser mayo a la de fin","error");
+						  		}else{
+						  			Objetivos.agreg_editarA(idaccion, idobjetivo);
+						  		}
+					  		}
+				  		}
+			  		}
+		  		}
+	  		}
+  		}
+  	}else{
+  		if($("#txt_accion_new").val().trim() == ''){
+  			swal('¡Error!',"Inserte acción valida, verifique espacios","error");
+  		}else{
+  			if($("#txt_recurso_new").val().trim() == ''){
+  			swal('¡Error!',"Inserte recurso valido, verifique espacios","error");
+	  		}else{
+	  			if($("#select_ambito_new").val() == ''){
+	  			swal('¡Error!',"Seleccione ámbito","error");
+		  		}else{
+		  			if($("#slc_responsables_new").val() == ''){
+		  			swal('¡Error!',"Seleccione responsable","error");
+			  		}else{
+			  			if($("#txt_finicio_new").val() == ''){
+			  			swal('¡Error!',"Seleccione fecha de inicio","error");
+				  		}else{
+				  			if($("#txt_ffin_new").val() == ''){
+				  			swal('¡Error!',"Seleccione fecha de fin","error");
+					  		}else{
+					  			if(Objetivos.valida_fecha($("#txt_finicio_new").val(), $("#txt_ffin_new").val())){
+					  			swal('¡Error!',"La fecha de inicio no puede ser mayo a la de fin","error");
+						  		}else{
+						  			Objetivos.guardar_naccion(idobjetivo);
+						  		}
+					  		}
+				  		}
+			  		}
+		  		}
+	  		}
+  		}
+  	}
+  },
+
+  valida_fecha: (inicio, fin) =>{
+  	let finicio = new Date(inicio);
+  	let ffin = new Date(fin);
+    if( finicio <= ffin){
+        return false;
+    }else{
+        return true;
+    }
+  },
+
   carga_archivos:(archivo, tipo, idobjetivo) =>{
   	var idvisor = "";
   	switch(tipo) {

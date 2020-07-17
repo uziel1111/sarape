@@ -58,7 +58,7 @@
 				</td>
 			    <td><input type="date" id="txt_finicio_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['finicio']?>"></td>
 			    <td><input type="date" id="txt_ffin_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['ffin']?>"></td>
-			    <td><button class="btn btn-info" onclick="Objetivos.agreg_editarA(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )">Editar</button></td>
+			    <td><button class="btn btn-info" onclick="Objetivos.valida_campos_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )">Editar</button></td>
 			    </tr>
 		    	<?php endforeach ?>
 		    	<?php endif ?>
@@ -84,7 +84,7 @@
 				</td>
 			    <td><input type="date" class="form-control" id="txt_finicio_new" name="" value=""></td>
 			    <td><input type="date" class="form-control" id="txt_ffin_new" name="" value=""></td>
-			    <td><button class="btn btn-primary "onclick="Objetivos.guardar_naccion(<?= $idobjetivo ?> )" >Guardar</button></td>
+			    <td><button class="btn btn-primary "onclick="Objetivos.valida_campos_accion(0,<?= $idobjetivo ?>)" >Guardar</button></td>
 			    </tr>
 			  </tbody>
 			</table>
