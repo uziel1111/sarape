@@ -9,10 +9,23 @@ class Objetivo_model extends CI_Model
 
     function get_objetivos_x_idpemc($idpemc){
     	$str_query = "SELECT obj.*, COUNT(acc.idaccion) AS num_acciones FROM r_pemc_objetivo obj
-LEFT JOIN r_pemc_objetivo_accion acc ON acc.idobjetivo = obj.idobjetivo
-WHERE idpemc = ?
-GROUP BY obj.idobjetivo";
+        LEFT JOIN r_pemc_objetivo_accion acc ON acc.idobjetivo = obj.idobjetivo
+        WHERE idpemc = ?
+        GROUP BY obj.idobjetivo
+        ORDER BY obj.idobjetivo ASC";
     	return $this->pemc_db->query($str_query, array($idpemc))->result_array();
+    }
+
+    function update_orden_objetivos($idobjetivo, $idpemc, $orden){
+        $data = array(
+            'orden' => $orden,
+        );
+        $where = array(
+            'idobjetivo'=> $idobjetivo,
+            'idpemc'=> $idpemc
+        );
+        $this->pemc_db->where($where);
+        return $this->pemc_db->update('r_pemc_objetivo', $data);
     }
 
     function get_ambitos(){

@@ -1,12 +1,21 @@
 $(function(){
+	jQuery.validator.addMethod("noSpace", function(value, element) {
+		return value.indexOf("  ") < 0 && value != " ";
+	}, "No se permite exceder el uso de espacios");
+
 $("#form_crear_editar_obj").validate({
       onclick:false, onfocusout: false, onkeypress:false, onkeydown:false, onkeyup:false,
       rules: {
          text_objetivo_c: {
            required: true,
+           noSpace: true
          },
          text_meta_c: {
            required: true,
+           noSpace: true
+         },
+         text_comentariosG_c:{
+         	noSpace: true
          }
       },
       messages: {

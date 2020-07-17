@@ -53,9 +53,9 @@ class Objetivos extends CI_Controller
 		// print_r($_POST);
 		// die();
 		$idobjetivo = (int)$this->input->post('idobjetivoupdate');
-		$text_objetivo_c = $this->input->post('text_objetivo_c');
-		$text_meta_c = $this->input->post('text_meta_c');
-		$text_comentariosG_c = $this->input->post('text_comentariosG_c');
+		$text_objetivo_c = strip_tags($this->input->post('text_objetivo_c'));
+		$text_meta_c = strip_tags($this->input->post('text_meta_c'));
+		$text_comentariosG_c = strip_tags($this->input->post('text_comentariosG_c'));
 		$datos_sesion = Utilerias::get_cct_sesion($this);
 		if($idobjetivo != 0){
 			$estatus = $this->Objetivo_model->update_objetivo($datos_sesion['idpemc'], $text_objetivo_c, $text_meta_c, $text_comentariosG_c, $idobjetivo);
@@ -80,6 +80,13 @@ class Objetivos extends CI_Controller
 		$cad_acciones = substr($cad_acciones, 0, -1);
 		// die($cad_acciones);
 		$delete_seg = $this->Objetivo_model->delete_linea_objetivo($cad_acciones, $idobjetivo, $datos_sesion['idpemc']);
+
+		$objetivos = $this->Objetivo_model->get_objetivos_x_idpemc($datos_sesion['idpemc']);
+		$orden = 1;
+		foreach ($objetivos as $objetivo) {
+			$estatus = $this->Objetivo_model->update_orden_objetivos($objetivo['idobjetivo'], $datos_sesion['idpemc'], $orden);
+			$orden = $orden + 1;
+		}
 
 		$response = array('estatus' => $delete_seg);
 		Utilerias::enviaDataJson(200,$response, $this);
@@ -170,10 +177,13 @@ class Objetivos extends CI_Controller
 	}
 
 	public function update_acciones(){
+		// echo"<pre>";
+		// print_r($_POST);
+		// die();
 		$idaccion = $this->input->post('idaccion');
 		$idobjetivo = $this->input->post('idobjetivo');
-    	$accion = $this->input->post('accion');
-    	$recurso = $this->input->post('recurso');
+    	$accion = strip_tags($this->input->post('accion'));
+    	$recurso = strip_tags($this->input->post('recurso'));
     	$ambitos = $this->input->post('ambitos');
         $responsables = $this->input->post('responsables');
     	$otro_responsable = $this->input->post('otro_responsable');
@@ -204,8 +214,8 @@ class Objetivos extends CI_Controller
 
 	public function insert_acciones(){
 		$idobjetivo = $this->input->post('idobjetivo');
-    	$accion = $this->input->post('accion');
-    	$recurso = $this->input->post('recurso');
+    	$accion = strip_tags($this->input->post('accion'));
+    	$recurso = strip_tags($this->input->post('recurso'));
     	$ambitos = $this->input->post('ambitos');
         $responsables = $this->input->post('responsables');
     	$otro_responsable = $this->input->post('otro_responsable');
@@ -239,7 +249,11 @@ class Objetivos extends CI_Controller
 	public function insert_evidencias(){
 		$idobjetivo = $this->input->post('idobjetivo');
 		$tipo_evidencia = $this->input->post('tipo_evidencia');
-		$ruta_imagenes = "pemc";
+		$ruta_imagenes = "pemc/".$idobjetivo;
+		
+		if (!file_exists($ruta_imagenes)) {
+		    mkdir($ruta_imagenes, 0777, true);
+		}
 		if ($_FILES["file"]['name'] != "") {
 			$config['upload_path']   = $ruta_imagenes;
 			$config['allowed_types'] = 'gif|jpg|png';
