@@ -70,9 +70,20 @@ class Objetivos extends CI_Controller
 	}
 
 	public function delete_objetivo(){
-		echo"<pre>";
-		print_r($_POST);
-		die();
+		$datos_sesion = Utilerias::get_cct_sesion($this);
+		$idobjetivo = $this->input->post('idobjetivo');
+		$acciones = $this->Objetivo_model->get_acciones_x_idobjetivo($idobjetivo);
+		$cad_acciones = "";
+		foreach ($acciones as $accion) {
+    		$cad_acciones .= $accion['idaccion'].",";
+		}
+		$cad_acciones = substr($cad_acciones, 0, -1);
+		// die($cad_acciones);
+		$delete_seg = $this->Objetivo_model->delete_linea_objetivo($cad_acciones, $idobjetivo, $datos_sesion['idpemc']);
+
+		$response = array('estatus' => $delete_seg);
+		Utilerias::enviaDataJson(200,$response, $this);
+		exit;
 	}
 
 	public function get_view_acciones(){

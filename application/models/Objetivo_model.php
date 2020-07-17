@@ -53,6 +53,24 @@ GROUP BY obj.idobjetivo";
 		return $this->pemc_db->update('r_pemc_objetivo', $data);
     }
 
+    function delete_linea_objetivo($idsacciones, $idobjetivo, $idpemc){
+    	$this->pemc_db->trans_start();
+    	// echo"Acciones: ". $idsacciones; die();
+    	if($idsacciones != ''){
+    		$delete_seguimiento = "DELETE FROM r_pemc_accion_seguimiento WHERE idaccion IN({$idsacciones})";
+		$this->pemc_db->query($delete_seguimiento);
+		$delete_acciones = "DELETE FROM r_pemc_objetivo_accion WHERE idaccion IN({$idsacciones}) AND idobjetivo = {$idobjetivo}";
+		$this->pemc_db->query($delete_acciones);
+    	}
+    	
+		$delete_objetivo = "DELETE FROM r_pemc_objetivo WHERE idobjetivo = {$idobjetivo} AND idpemc = {$idpemc}";
+		$this->pemc_db->query($delete_objetivo);
+
+
+		return $this->pemc_db->trans_complete();
+
+    }
+
     function get_acciones_x_idobjetivo($idobjetivo){
     	$str_query = "SELECT * FROM r_pemc_objetivo_accion WHERE idobjetivo = ?";
     	return $this->pemc_db->query($str_query, array($idobjetivo))->result_array();
