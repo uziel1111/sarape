@@ -1,6 +1,15 @@
 
 $("#btn_crear_obj").click(function(){
-	Objetivos.get_view_creareditar_obj();
+	// if($("#txt_numero_objetivos_creados").val() < 3){
+		Objetivos.get_view_creareditar_obj();
+	// }else{
+	// 	swal(
+	// 		'Alerta!',
+	// 		"Solo se pueden crear 3 objetivos",
+	// 		"warning"
+	// 		);
+	// }
+	
 });
 
 $("#btn_edita_obj").click(function(){
@@ -143,11 +152,7 @@ var Objetivos = {
 	})
 	.done(function(data){
 		if(data.estatus){
-			swal(
-			'¡Bien!',
-			"La accion se actualizó correctamente",
-			"success"
-			);
+			Principal_pemc.obtiene_vista_obetivos();
 		}else{
 			swal(
 			'¡Error!',
@@ -185,11 +190,7 @@ var Objetivos = {
 	})
 	.done(function(data){
 		if(data.estatus){
-			swal(
-			'¡Bien!',
-			"La accion se inserto correctamente",
-			"success"
-			);
+			Principal_pemc.obtiene_vista_obetivos();
 		}else{
 			swal(
 			'¡Error!',
@@ -208,6 +209,25 @@ var Objetivos = {
   },
 
   carga_archivos:(archivo, tipo, idobjetivo) =>{
+  	var idvisor = "";
+  	switch(tipo) {
+	  case 1:
+	    idvisor = "img_preview_ini"+idobjetivo;
+	    break;
+	  case 2:
+	    idvisor = "img_preview_fin"+idobjetivo;
+	    break;
+	}
+  	if (archivo.files && archivo.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	            image = document.getElementById(idvisor);
+    			image.src = reader.result;
+    			preview.innerHTML = '';
+    			preview.append(image);
+	        }
+	        reader.readAsDataURL(archivo.files[0]);
+	}
   	var formData = new FormData();
     var files = $(archivo)[0].files[0];
     formData.append('file',files);
@@ -225,11 +245,7 @@ var Objetivos = {
 	})
 	.done(function(data){
 		if(data.estatus){
-			swal(
-			'¡Bien!',
-			"La evidencia se inserto correctamente",
-			"success"
-			);
+			Principal_pemc.obtiene_vista_obetivos();
 		}else{
 			swal(
 			'¡Error!',
@@ -237,6 +253,54 @@ var Objetivos = {
 			"error"
 			);
 		}
+	})
+	.fail(function(e) {
+		console.error("Error in ()"); console.table(e);
+	})
+	.always(function() {
+		// swal.close();
+	});
+  },
+
+  elimina_imagen: (idobjetivo, tipo) =>{
+  	swal({
+	      title: '¿Estás seguro de eliminar esta imagen?',
+	      text: "Una vez eliminada no se podrá recuperar",
+	      type: 'warning',
+	      showCancelButton: true,
+	      confirmButtonColor: '#3085d6',
+	      cancelButtonColor: '#d33',
+	      confirmButtonText: 'Eliminar',
+	      cancelButtonText: 'Cancelar'
+	    }).then((result) => {
+	      if (result.value) {
+	        Objetivos.delete_imagen(idobjetivo, tipo);
+	      }
+	    })
+  },
+
+  delete_imagen: (idobjetivo, tipo) => {
+  	$.ajax({
+  		type: 'POST',
+		url:base_url+"Objetivos/delete_imagen",
+		data:{
+			'idobjetivo': idobjetivo, 'tipo_img': tipo
+		},
+		beforeSend: function(xhr) {
+			Notification.loading("Eliminando, espere porfavor...");
+		}
+	})
+	.done(function(data){
+		if(data.estatus){
+			Principal_pemc.obtiene_vista_obetivos();
+		}else{
+			swal(
+			'¡Error!',
+			"Fallo al eliminar",
+			"error"
+			);
+		}
+		// $("#modal_generico_obj").modal('hide');
 	})
 	.fail(function(e) {
 		console.error("Error in ()"); console.table(e);
@@ -259,11 +323,7 @@ var Objetivos = {
 	})
 	.done(function(data){
 		if(data.estatus){
-			swal(
-			'¡Bien!',
-			"EL objetivo se elimino correctamente",
-			"success"
-			);
+			Principal_pemc.obtiene_vista_obetivos();
 		}else{
 			swal(
 			'¡Error!',
@@ -278,6 +338,29 @@ var Objetivos = {
 	})
 	.always(function() {
 		// swal.close();
+	});
+  },
+  bigImg: (idobjetivo, tipo_evidencia) =>{
+  	$.ajax({
+  		type: 'POST',
+		url:base_url+"Objetivos/get_evidencia",
+		data:{
+			'idobjetivo': idobjetivo, 'tipo_evidencia': tipo_evidencia
+		},
+		beforeSend: function(xhr) {
+			Notification.loading("Cargando vista");
+		}
+	})
+	.done(function(data){
+		$("#contenedor_obj_evidencia").empty();
+		$("#contenedor_obj_evidencia").append(data.str_view);
+		$("#modal_generico_archivos").modal('show');
+	})
+	.fail(function(e) {
+		console.error("Error in ()"); console.table(e);
+	})
+	.always(function() {
+		swal.close();
 	});
   }
 }

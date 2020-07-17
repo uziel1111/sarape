@@ -86,6 +86,39 @@ class Objetivos extends CI_Controller
 		exit;
 	}
 
+	public function delete_imagen(){
+		$idobjetivo = $this->input->post('idobjetivo');
+		$tipo_evidencia = $this->input->post('tipo_img');
+
+		$delete_img = $this->Objetivo_model->inserta_ruta($idobjetivo, '', $tipo_evidencia);
+
+		$response = array('estatus' => $delete_img);
+		Utilerias::enviaDataJson(200,$response, $this);
+		exit;
+	}
+
+	public function get_evidencia(){
+		$idobjetivo = $this->input->post('idobjetivo');
+		$tipo_evidencia = $this->input->post('tipo_evidencia');
+		$evidencia = '';
+		switch ($tipo_evidencia) {
+			case 1:
+				$evidencia = 'url_evidencia_antes';
+				break;
+			
+			case 2:
+				$evidencia = 'url_evidencia_despues';
+				break;
+		}
+		$info_objetivo = $this->Objetivo_model->get_objetivo_x_idobjetivo($idobjetivo);
+		$data['ruta_evidencia'] = $info_objetivo->$evidencia;
+
+		$str_view = $this->load->view('pemc/frame_evidencia',$data, TRUE);
+		$response = array('str_view' => $str_view);
+		Utilerias::enviaDataJson(200,$response, $this);
+		exit;
+	}
+
 	public function get_view_acciones(){
 		$data = array();
 		$datos_sesion = Utilerias::get_cct_sesion($this);
