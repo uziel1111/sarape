@@ -9,96 +9,102 @@
 		</nav>
 		<div class="tab-content tab-content-style-1" id="nav-tabContent">
 			<div class="tab-pane fade show active" id="nav-ruta" role="tabpanel" aria-labelledby="nav-ruta-tab">
-				<div class="row">
-					<div class="col-sm-12">
-						<h4>Peso general</h4>
-						<div class="row">
-							<div class="col-sm">
-								<div class="imc_box">
-									<div class="imc_box_head">
-										Peso Predominante
-									</div>
-									<div class="imc_box_num">
-										<?= $arr_indi_peso[0]['predom']?>
-									</div>
-									<div class="imc_box_label">
-										<?php if ($arr_indi_peso[0]['t_bajo']==1): ?> Bajo-peso
-										<?php endif; ?>
-										<?php if ($arr_indi_peso[0]['t_normal']==1): ?> Normal
-										<?php endif; ?>
-										<?php if ($arr_indi_peso[0]['t_sobrepeso']==1): ?> Sobrepeso
-										<?php endif; ?>
-										<?php if ($arr_indi_peso[0]['t_obesidad']==1): ?> Obesidad
-										<?php endif; ?>
+				<?php if (count($arr_indi_peso)>0): ?>
+					<div class="row">
+						<div class="col-sm-12">
+							<h4>Peso general</h4>
+							<div class="row">
+								<div class="col-sm">
+									<div class="imc_box">
+										<div class="imc_box_head">
+											Peso Predominante
+										</div>
+										<div class="imc_box_num">
+											<?= $arr_indi_peso[0]['predom']?>
+										</div>
+										<div class="imc_box_label">
+											<?php if ($arr_indi_peso[0]['t_bajo']==1): ?> Bajo-peso
+											<?php endif; ?>
+											<?php if ($arr_indi_peso[0]['t_normal']==1): ?> Normal
+											<?php endif; ?>
+											<?php if ($arr_indi_peso[0]['t_sobrepeso']==1): ?> Sobrepeso
+											<?php endif; ?>
+											<?php if ($arr_indi_peso[0]['t_obesidad']==1): ?> Obesidad
+											<?php endif; ?>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-sm">
-								<ul class="list-group imc_list">
-									<li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['t_bajo']==1)?'list-group-item-info':'' ?>">
-										Bajo peso
-										<span class="badge <?=($arr_indi_peso[0]['t_bajo']==1)?'badge-primary':'badge-secondary' ?> badge-pill">
-											<?=$arr_indi_peso[0]['bajo'] ?>%</span>
-									</li>
-									<li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['t_normal']==1)?'list-group-item-info':'' ?>">
-										Normal
-										<span class="badge <?=($arr_indi_peso[0]['t_normal']==1)?'badge-primary':'badge-secondary' ?> badge-pill">
-											<?=$arr_indi_peso[0]['Normal'] ?>%</span>
-									</li>
-									<li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['t_sobrepeso']==1)?'list-group-item-info':'' ?>">
-										Sobrepeso
-										<span class="badge <?=($arr_indi_peso[0]['t_sobrepeso']==1)?'badge-primary':'badge-secondary' ?> badge-pill">
-											<?=$arr_indi_peso[0]['Sobrepeso'] ?>%</span>
-									</li>
-									<li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['t_obesidad']==1)?'list-group-item-info':'' ?>">
-										Obesidad
-										<span class="badge <?=($arr_indi_peso[0]['t_obesidad']==1)?'badge-primary':'badge-secondary' ?> badge-pill">
-											<?=$arr_indi_peso[0]['Obesidad'] ?>%</span>
-									</li>
-									<li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['Sobrepeso']+$arr_indi_peso[0]['Obesidad']>20)?'list-group-item-danger':'' ?>">
-										Obesidad+Sobrepeso
-										<span class="badge <?=($arr_indi_peso[0]['Sobrepeso']+$arr_indi_peso[0]['Obesidad']>20)?'badge-danger':'badge-secondary' ?> badge-pill">
-											<?=$arr_indi_peso[0]['Sobrepeso']+$arr_indi_peso[0]['Obesidad'] ?>%</span>
-									</li>
-								</ul>
+								<div class="col-sm">
+									<ul class="list-group imc_list">
+										<li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['t_bajo']==1)?'list-group-item-info':'' ?>">
+											Bajo peso
+											<span class="badge <?=($arr_indi_peso[0]['t_bajo']==1)?'badge-primary':'badge-secondary' ?> badge-pill">
+												<?=$arr_indi_peso[0]['bajo'] ?>%</span>
+										</li>
+										<li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['t_normal']==1)?'list-group-item-info':'' ?>">
+											Normal
+											<span class="badge <?=($arr_indi_peso[0]['t_normal']==1)?'badge-primary':'badge-secondary' ?> badge-pill">
+												<?=$arr_indi_peso[0]['Normal'] ?>%</span>
+										</li>
+										<li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['t_sobrepeso']==1)?'list-group-item-info':'' ?>">
+											Sobrepeso
+											<span class="badge <?=($arr_indi_peso[0]['t_sobrepeso']==1)?'badge-primary':'badge-secondary' ?> badge-pill">
+												<?=$arr_indi_peso[0]['Sobrepeso'] ?>%</span>
+										</li>
+										<li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['t_obesidad']==1)?'list-group-item-info':'' ?>">
+											Obesidad
+											<span class="badge <?=($arr_indi_peso[0]['t_obesidad']==1)?'badge-primary':'badge-secondary' ?> badge-pill">
+												<?=$arr_indi_peso[0]['Obesidad'] ?>%</span>
+										</li>
+										<li class="list-group-item d-flex justify-content-between align-items-center <?=($arr_indi_peso[0]['Sobrepeso']+$arr_indi_peso[0]['Obesidad']>20)?'list-group-item-danger':'' ?>">
+											Obesidad+Sobrepeso
+											<span class="badge <?=($arr_indi_peso[0]['Sobrepeso']+$arr_indi_peso[0]['Obesidad']>20)?'badge-danger':'badge-secondary' ?> badge-pill">
+												<?=$arr_indi_peso[0]['Sobrepeso']+$arr_indi_peso[0]['Obesidad'] ?>%</span>
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-sm">
-						<h4>Gráfica</h4>
-						<?php if ($arr_indi_peso[0]['t_bajo']==1): ?>
-						<img src="<?= base_url('assets/img/graficaIMCdemo_1.jpg'); ?>" class="img-fluid" alt="Responsive image">
-						<?php endif; ?>
-						<?php if ($arr_indi_peso[0]['t_normal']==1): ?>
-						<img src="<?= base_url('assets/img/graficaIMCdemo_2.jpg'); ?>" class="img-fluid" alt="Responsive image">
-						<?php endif; ?>
-						<?php if ($arr_indi_peso[0]['t_sobrepeso']==1): ?>
-						<img src="<?= base_url('assets/img/graficaIMCdemo_3.jpg'); ?>" class="img-fluid" alt="Responsive image">
-						<?php endif; ?>
-						<?php if ($arr_indi_peso[0]['t_obesidad']==1): ?>
-						<img src="<?= base_url('assets/img/graficaIMCdemo_4.jpg'); ?>" class="img-fluid" alt="Responsive image">
-						<?php endif; ?>
-					</div>
-				</div>
-				<div class="row mt-10">
-					<div class="col-sm">
-						<div class="alert alert-warning" role="alert">
+						<div class="col-sm">
+							<h4>Gráfica</h4>
 							<?php if ($arr_indi_peso[0]['t_bajo']==1): ?>
-							Se recomienda aumentar la densidad calórica de la dieta incorporando o aumentando las grasas vegetales, frutas y productos lácteos; es recomendable ejercicios de fuerza de 2 a 3 veces por semana.
+							<img src="<?= base_url('assets/img/graficaIMCdemo_1.jpg'); ?>" class="img-fluid" alt="Responsive image">
 							<?php endif; ?>
 							<?php if ($arr_indi_peso[0]['t_normal']==1): ?>
-							Se recomienda fomentar la activación física, así como una dieta saludable que incluya el consumo de frutas y verduras en la población infantil y adolescente.
+							<img src="<?= base_url('assets/img/graficaIMCdemo_2.jpg'); ?>" class="img-fluid" alt="Responsive image">
 							<?php endif; ?>
 							<?php if ($arr_indi_peso[0]['t_sobrepeso']==1): ?>
-							Se recomienda incluir programas educativos orientados a la mejora de la dieta, la actividad física y la disminución del sedentarismo, que incluyan a la familia y al personal académico
+							<img src="<?= base_url('assets/img/graficaIMCdemo_3.jpg'); ?>" class="img-fluid" alt="Responsive image">
 							<?php endif; ?>
 							<?php if ($arr_indi_peso[0]['t_obesidad']==1): ?>
-							Se recomienda incluir programas educativos orientados a la mejora de la dieta, la actividad física y la disminución del sedentarismo, que incluyan a la familia y al personal académico
+							<img src="<?= base_url('assets/img/graficaIMCdemo_4.jpg'); ?>" class="img-fluid" alt="Responsive image">
 							<?php endif; ?>
-							<a href="http://checatemidetemuevete.gob.mx/" target="_blank"></a>
 						</div>
 					</div>
-				</div>
+					<div class="row mt-10">
+						<div class="col-sm">
+							<div class="alert alert-warning" role="alert">
+								<?php if ($arr_indi_peso[0]['t_bajo']==1): ?>
+								Se recomienda aumentar la densidad calórica de la dieta incorporando o aumentando las grasas vegetales, frutas y productos lácteos; es recomendable ejercicios de fuerza de 2 a 3 veces por semana.
+								<?php endif; ?>
+								<?php if ($arr_indi_peso[0]['t_normal']==1): ?>
+								Se recomienda fomentar la activación física, así como una dieta saludable que incluya el consumo de frutas y verduras en la población infantil y adolescente.
+								<?php endif; ?>
+								<?php if ($arr_indi_peso[0]['t_sobrepeso']==1): ?>
+								Se recomienda incluir programas educativos orientados a la mejora de la dieta, la actividad física y la disminución del sedentarismo, que incluyan a la familia y al personal académico
+								<?php endif; ?>
+								<?php if ($arr_indi_peso[0]['t_obesidad']==1): ?>
+								Se recomienda incluir programas educativos orientados a la mejora de la dieta, la actividad física y la disminución del sedentarismo, que incluyan a la familia y al personal académico
+								<?php endif; ?>
+								<a href="http://checatemidetemuevete.gob.mx/" target="_blank"></a>
+							</div>
+						</div>
+					</div>
+				<?php endif; ?>
+				<?php if (count($arr_indi_peso)==0): ?>
+					<b>Información no disponible por el momento.</b>
+				<?php endif; ?>
+
 			</div>
 			<div class="tab-pane fade" id="nav-indicadores" role="tabpanel" aria-labelledby="nav-indicadores-tab">
 				<div class="row mt-10">
