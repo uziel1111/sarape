@@ -1,4 +1,8 @@
 <style type="text/css">
+.modal-mediano{
+	max-width: 60%;
+	max-height: 60%;
+}
 .selected {
     background-color: #9ccc65;
     color: #FFF;
@@ -129,7 +133,7 @@
 
 <!-- Modal -->
 <div class="modal fade bd-example-modal-lg" id="modal_generico_obj" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
     	<div class="modal-header">
 	        <h5 class="modal-title">Objetivo</h5>
@@ -145,8 +149,8 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="modal_generico_archivos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade" id="modal_generico_archivos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-mediano modal-dialog-centered">
     <div class="modal-content">
     	<div class="modal-header">
 	        <h5 class="modal-title">Evidencia</h5>
@@ -155,7 +159,7 @@
 	        </button>
 	    </div>
 	    <div class="modal-body">
-	        <div id="contenedor_obj_evidencia">
+	        <div id="contenedor_obj_evidencia" width="100%" height="100%">
 
 	        </div>
 	     </div>
@@ -164,7 +168,7 @@
 </div>
 <script type="text/javascript">
 $(function() {
-      $('[data-toggle="popover"]').popover();
-    });
+  $('[data-toggle="popover"]').popover();
+});
 </script>
 <script type="text/javascript" src="<?= base_url('assets/js/pemc/objetivos.js') ?>"></script>
