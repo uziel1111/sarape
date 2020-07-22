@@ -14,7 +14,7 @@
         <div class="card-body">
           <div class="row" style="background-color: #bee5eb; ">
             <div class="col-12">
-              <b>Meta:</b> <?=$value['meta'];?>
+              <b>Meta(s):</b> <?=$value['meta'];?>
             </div>
           </div>
           <div class="row" style="background-color: #c3e6cb; ">

@@ -28,7 +28,7 @@ $("#btn_elimina_obj").click(function(){
 	if(Objetivos.idseleccionado != null){
 		swal({
 	      title: '¿Estás seguro de eliminar este objetivo?',
-	      text: "Se eliminara las acciones y evaluaciones asignadas a el mismo, una vez eliminado no se podrá recuperar",
+	      text: "Se eliminará las metas, comentarios, evidencias, seguimientos y evaluaciones asignadas a el mismo, una vez eliminado no se podrá recuperar",
 	      type: 'warning',
 	      showCancelButton: true,
 	      confirmButtonColor: '#3085d6',

@@ -53,9 +53,9 @@ class Objetivos extends CI_Controller
 		// print_r($_POST);
 		// die();
 		$idobjetivo = (int)$this->input->post('idobjetivoupdate');
-		$text_objetivo_c = strip_tags($this->input->post('text_objetivo_c'));
-		$text_meta_c = strip_tags($this->input->post('text_meta_c'));
-		$text_comentariosG_c = strip_tags($this->input->post('text_comentariosG_c'));
+		$text_objetivo_c = mb_strtoupper(strip_tags($this->input->post('text_objetivo_c')));
+		$text_meta_c = mb_strtoupper(strip_tags($this->input->post('text_meta_c')));
+		$text_comentariosG_c = mb_strtoupper(strip_tags($this->input->post('text_comentariosG_c')));
 		$datos_sesion = Utilerias::get_cct_sesion($this);
 		if($idobjetivo != 0){
 			$estatus = $this->Objetivo_model->update_objetivo($datos_sesion['idpemc'], $text_objetivo_c, $text_meta_c, $text_comentariosG_c, $idobjetivo);
@@ -182,11 +182,11 @@ class Objetivos extends CI_Controller
 		// die();
 		$idaccion = $this->input->post('idaccion');
 		$idobjetivo = $this->input->post('idobjetivo');
-    	$accion = strip_tags($this->input->post('accion'));
-    	$recurso = strip_tags($this->input->post('recurso'));
+    	$accion = mb_strtoupper(strip_tags($this->input->post('accion')));
+    	$recurso = mb_strtoupper(strip_tags($this->input->post('recurso')));
     	$ambitos = $this->input->post('ambitos');
         $responsables = $this->input->post('responsables');
-    	$otro_responsable = $this->input->post('otro_responsable');
+    	$otro_responsable = mb_strtoupper(strip_tags($this->input->post('otro_responsable')));
     	$finicio = $this->input->post('finicio');
     	$ffin = $this->input->post('ffin');
     	$cad_ambitos = "";
@@ -214,11 +214,11 @@ class Objetivos extends CI_Controller
 
 	public function insert_acciones(){
 		$idobjetivo = $this->input->post('idobjetivo');
-    	$accion = strip_tags($this->input->post('accion'));
-    	$recurso = strip_tags($this->input->post('recurso'));
+    	$accion = mb_strtoupper(strip_tags($this->input->post('accion')));
+    	$recurso = mb_strtoupper(strip_tags($this->input->post('recurso')));
     	$ambitos = $this->input->post('ambitos');
         $responsables = $this->input->post('responsables');
-    	$otro_responsable = $this->input->post('otro_responsable');
+    	$otro_responsable = mb_strtoupper(strip_tags($this->input->post('otro_responsable')));
     	$finicio = $this->input->post('finicio');
     	$ffin = $this->input->post('ffin');
     	$cad_ambitos = "";

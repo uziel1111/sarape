@@ -188,7 +188,7 @@ class Pemc extends CI_Controller {
 
 	public function guarda_diagnostico(){
 		$datos_sesion = Utilerias::get_cct_sesion($this);
-		$diagnostico = $this->input->post('in_diag');
+		$diagnostico = mb_strtoupper($this->input->post('in_diag'));
 		$estatus = $this->Pemc_model->guarda_diagnostico(strip_tags($diagnostico),$datos_sesion['idpemc']);
 		$response = array('estatus' => $estatus);
 		Utilerias::enviaDataJson(200, $response, $this);
@@ -332,7 +332,7 @@ class Pemc extends CI_Controller {
 						$pdf->SetLineW(array(0.2));
 						$pdf->SetTextColor(0,0,0);
 							$pdf->Row1(array(
-								utf8_decode("meta: ".$value['meta'])
+								utf8_decode("meta(s): ".$value['meta'])
 							));
 						$pdf->Ln(2);
 						$pdf->SetFont('Arial','',9);
@@ -440,7 +440,7 @@ class Pemc extends CI_Controller {
 
 		public function guarda_evaluacion(){
 			$datos_sesion = Utilerias::get_cct_sesion($this);
-			$evaluacion = $this->input->post('in_eval');
+			$evaluacion = mb_strtoupper($this->input->post('in_eval'));
 			date_default_timezone_set('America/Mexico_City');
 			$hoy = date("Y-m-d_H_i_s");
 			$path_eval = "assets/pdf/pemc_eval/".$datos_sesion['idpemc']."_".$hoy.".pdf";
