@@ -19,7 +19,7 @@
 }
 
 .custom-file-input:lang(en)~.custom-file-label::after {
-    content: "Archivo";
+    content: "Seleccione";
 }
 </style>
 <div class="container">
@@ -85,10 +85,14 @@
 				     		</div>
 					     </div>
 					     </center>
-      					<div class="custom-file">
-						    <input type="file" class="custom-file-input" name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, <?= $objetivo['idobjetivo']?>)'>
-						    <label class="custom-file-label" for="customFile">Seleccione evicencia</label>
-						</div>
+					     <div class="row">
+					     	<div class="col-3"></div>
+	      					<div class="custom-file col-7">
+							    <input type="file" class="custom-file-input" name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, <?= $objetivo['idobjetivo']?>)'>
+							    <label class="custom-file-label" for="customFile">Sin archivo</label>
+							</div>
+					     </div>
+					     
       				</td>
 				     <td>
 				     	<center>
@@ -105,10 +109,13 @@
 				     		</div>
 					     </div>
 					     </center>
-				     	<div class="custom-file">
-						    <input type="file" class="custom-file-input" name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, <?= $objetivo['idobjetivo']?>)'>
-						    <label class="custom-file-label" for="customFile">Seleccione evicencia</label>
-						</div>
+					     <div class="row">
+					     	<div class="col-3"></div>
+					     	<div class="custom-file col-7">
+							    <input type="file" class="custom-file-input" name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, <?= $objetivo['idobjetivo']?>)'>
+							    <label class="custom-file-label" for="customFile">Sin archivo</label>
+							</div>
+					     </div>
 				     </td>
 				    </tr>
 				  <?php endforeach ?>
