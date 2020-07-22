@@ -56,14 +56,14 @@
 				  	<tr>
 				  	  <th hidden></th>
 				  	  <th scope="col" rowspan="2">#</th>
-				  	  <th scope="col" rowspan="2">Objetivos</th>
-				      <th scope="col" rowspan="2">Fecha de creación</th>
+				  	  <th scope="col" rowspan="2" width="20%">Objetivos</th>
+				      <th scope="col" rowspan="2" width="20%">Fecha de creación</th>
 				      <th scope="col" rowspan="2">Acciones</th>
 				      <th scope="col" colspan="2"><center>Evidencias</center></th>
 				  	</tr>
 				    <tr>
-				      <th scope="col" >Antes</th>
-				      <th scope="col" >Déspues</th>
+				      <th scope="col" ><center>Antes</center></th>
+				      <th scope="col" ><center>Déspues</center></th>
 				    </tr>
 				  </thead>
 				  <tbody id="contenedor_tabla_objetivos">
@@ -90,10 +90,10 @@
 					     </div>
 					     </center>
 					     <div class="row">
-					     	<div class="col-3"></div>
+					     	<div class="col-1"></div>
 	      					<div class="custom-file col-7">
 							    <input type="file" class="custom-file-input" name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, <?= $objetivo['idobjetivo']?>)'>
-							    <label class="custom-file-label" for="customFile">Sin archivo</label>
+							    <label class="custom-file-label" for="customFile"></label>
 							</div>
 					     </div>
 					     
@@ -114,10 +114,10 @@
 					     </div>
 					     </center>
 					     <div class="row">
-					     	<div class="col-3"></div>
+					     	<div class="col-1"></div>
 					     	<div class="custom-file col-7">
 							    <input type="file" class="custom-file-input" name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, <?= $objetivo['idobjetivo']?>)'>
-							    <label class="custom-file-label" for="customFile">Sin archivo</label>
+							    <label class="custom-file-label" for="customFile"></label>
 							</div>
 					     </div>
 				     </td>
