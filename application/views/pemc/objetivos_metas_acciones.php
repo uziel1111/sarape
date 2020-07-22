@@ -17,6 +17,10 @@
     /*height: 100%;*/
     display: block;
 }
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+    content: "Archivo";
+}
 </style>
 <div class="container">
 	<!-- <form class="form-group" name="form_objetivos_metas_acciones" id="form_objetivos_metas_acciones"> -->
