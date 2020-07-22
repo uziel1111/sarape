@@ -33,15 +33,15 @@
 
         <?php endif; ?>
             <div class="row">
-              <div class="col-9">
-                <div class="table-responsive">
+              <div class="col-12">
+                <div class="table">
                   <table class="table table-bordered">
                     <thead>
                       <tr>
                         <th style="width: 31%;">Acción</th>
-                        <th style="width: 17%;">Ámbito</th>
-                        <th style="width: 13%;">Fecha inicio</th>
-                        <th style="width: 13%;">Fecha fin</th>
+                        <th style="width: 22%;">Ámbito</th>
+                        <th style="width: 11%;">Fecha inicio</th>
+                        <th style="width: 10%;">Fecha fin</th>
                         <th style="width: 26%;">Marque el avance</th>
                       </tr>
                     </thead>
@@ -59,7 +59,7 @@
                           </div>
                           <div class="row">
                             <div class="col-12">
-                              <input type="range" onchange="Seguimiento_pemc.guarda_avance(this, this.value,<?=$value['idaccion']?>,<?=($value['avance']=='')?0:$value['avance']?>, ageOutputId<?=$value['idaccion']?>)" class="form-control-range" name="ageInputName<?=$value['idaccion']?>" id="ageInputId<?=$value['idaccion']?>" max="100" min="0" step="10" value="<?=($value['avance']=='')?0:$value['avance'] ?>" oninput="ageOutputId<?=$value['idaccion']?>.value = ageInputId<?=$value['idaccion']?>.value">
+                              <input type="range" onchange="Seguimiento_pemc.guarda_avance(this, this.value,<?=$value['idaccion']?>,<?=($value['avance']=='')?0:$value['avance']?>, ageOutputId<?=$value['idaccion']?>)" class="form-control-range" name="ageInputName<?=$value['idaccion']?>" id="ageInputId<?=$value['idaccion']?>" max="100" min="0" step="5" value="<?=($value['avance']=='')?0:$value['avance'] ?>" oninput="ageOutputId<?=$value['idaccion']?>.value = ageInputId<?=$value['idaccion']?>.value">
                             </div>
                           </div>
                           <div class="row">
@@ -67,15 +67,17 @@
                             <div class="col-4 text-center">50%</div>
                             <div class="col-4 text-right">100%</div>
                           </div>
+                          <br>
+                          <div class="row">
+                            <div class="col  text-center">
+                              <button type="button" onclick="Seguimiento_pemc.ver_avance(<?=$value['idaccion']?>)" class="btn btn-info">Ver historial</button>
+                            </div>
+                          </div>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-              </div>
-              <div class="col-3 text-center">
-                <br><br>
-                <button type="button" onclick="Seguimiento_pemc.ver_avance(<?=$value['idaccion']?>)" class="btn btn-info">Ver historial de avances</button>
               </div>
             </div>
 
