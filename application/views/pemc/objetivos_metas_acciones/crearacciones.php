@@ -9,7 +9,7 @@
 	<div class="alert alert-primary" role="alert">
 	  Objetivo
 	  <h3><?= $objetivo->objetivo?></h3>
-	  Meta:
+	  Meta(s):
 	  <h3><?= $objetivo->meta?></h3>
 	</div>
 	<div class="row">
@@ -58,7 +58,7 @@
 				</td>
 			    <td><input type="date" id="txt_finicio_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['finicio']?>"></td>
 			    <td><input type="date" id="txt_ffin_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['ffin']?>"></td>
-			    <td><button class="btn btn-info" onclick="Objetivos.valida_campos_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )">Editar</button></td>
+			    <td><button class="btn btn-info" onclick="Objetivos.valida_campos_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )">Guardar</button></td>
 			    </tr>
 		    	<?php endforeach ?>
 		    	<?php endif ?>

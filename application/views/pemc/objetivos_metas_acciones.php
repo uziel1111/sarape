@@ -55,7 +55,7 @@
 				  	</tr>
 				    <tr>
 				      <th scope="col" >Antes</th>
-				      <th scope="col" >Despues</th>
+				      <th scope="col" >Déspues</th>
 				    </tr>
 				  </thead>
 				  <tbody id="contenedor_tabla_objetivos">
@@ -81,7 +81,11 @@
 				     		</div>
 					     </div>
 					     </center>
-      					<input type='file' name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, <?= $objetivo['idobjetivo']?>)'></td>
+      					<div class="custom-file">
+						    <input type="file" class="custom-file-input" name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, <?= $objetivo['idobjetivo']?>)'>
+						    <label class="custom-file-label" for="customFile">Seleccione evicencia</label>
+						</div>
+      				</td>
 				     <td>
 				     	<center>
 				     	<div class="preview">
@@ -97,7 +101,11 @@
 				     		</div>
 					     </div>
 					     </center>
-				     	<input type='file' name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, <?= $objetivo['idobjetivo']?>)'></td>
+				     	<div class="custom-file">
+						    <input type="file" class="custom-file-input" name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, <?= $objetivo['idobjetivo']?>)'>
+						    <label class="custom-file-label" for="customFile">Seleccione evicencia</label>
+						</div>
+				     </td>
 				    </tr>
 				  <?php endforeach ?>
 				  </tbody>

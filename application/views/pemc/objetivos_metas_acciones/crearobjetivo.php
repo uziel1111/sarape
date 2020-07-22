@@ -6,7 +6,7 @@
 		    <textarea class="form-control" id="text_objetivo_c" name="text_objetivo_c" rows="3"><?= (isset($info_objetivo))? $info_objetivo->objetivo : ''?></textarea>
 		 </div>
 		 <div class="form-group">
-		    <label for="text_meta_c">* Meta</label>
+		    <label for="text_meta_c">* Meta(s)</label>
 		    <textarea class="form-control" id="text_meta_c" name="text_meta_c" rows="3"><?= (isset($info_objetivo))? $info_objetivo->meta : ''?></textarea>
 		 </div>
 		 <div class="form-group">
