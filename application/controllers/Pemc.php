@@ -290,17 +290,17 @@ class Pemc extends CI_Controller {
 				$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo);
 				$pdf->AliasNbPages();
 				$pdf->AddPage('L','Legal');
-				$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
-				$pdf->Ln(5);
-				$pdf->SetFont('Arial','B',12);
-				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-				$pdf->SetFillColor(255);
-				$pdf->SetAligns(array("L"));
-				$pdf->SetLineW(array(0.2));
-				$pdf->SetTextColor(0,0,0);
-					$pdf->Row1(array(
-						utf8_decode("Diagnóstico: ".$diagnostico)
-					));
+				// $diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
+				// $pdf->Ln(5);
+				// $pdf->SetFont('Arial','B',12);
+				// $pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
+				// $pdf->SetFillColor(255);
+				// $pdf->SetAligns(array("L"));
+				// $pdf->SetLineW(array(0.2));
+				// $pdf->SetTextColor(0,0,0);
+				// 	$pdf->Row1(array(
+				// 		utf8_decode("Diagnóstico: ".$diagnostico)
+				// 	));
 				$seguimiento = $this->Pemc_model->obtener_seguimiento_xidpemc($datos_sesion['idpemc']);
 					// echo "<pre>";print_r($seguimiento);die();
 					foreach ($seguimiento as $key => $value) {
