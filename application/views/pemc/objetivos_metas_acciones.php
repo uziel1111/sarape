@@ -4,7 +4,7 @@
     color: #FFF;
   }
   .preview {
-    border: 1px solid #ddd;
+    border: 0px solid #ddd;
     padding: 5px;
     border-radius: 2px;
     background: #fff;
