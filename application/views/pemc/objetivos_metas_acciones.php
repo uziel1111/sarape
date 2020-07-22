@@ -4,7 +4,7 @@
     color: #FFF;
   }
   .preview {
-    border: 1px solid #ddd;
+    border: 0px solid #ddd;
     padding: 5px;
     border-radius: 2px;
     background: #fff;
@@ -16,6 +16,10 @@
     width: 100%;
     /*height: 100%;*/
     display: block;
+}
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+    content: "Archivo";
 }
 </style>
 <div class="container">
