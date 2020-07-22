@@ -392,8 +392,9 @@ class Pemc extends CI_Controller {
 					$pdf->SetAligns(array("L"));
 					$pdf->SetLineW(array(0.2));
 					$pdf->SetTextColor(0,0,0);
+					// echo "<pre>";print_r($this->get_perosonal_mostrar($datos_sesion['cve_centro'],$value['responsables']));die();
 						$pdf->Row1(array(
-							utf8_decode("Responsable(s): ".(($value['responsables']=='')?'':$value['responsables'].',').$value['otros_responsables'])
+							utf8_decode("Responsable(s): ".(($value['otros_responsables']=='')?'':$value['otros_responsables'].', ').(($this->get_perosonal_mostrar($datos_sesion['cve_centro'],$value['responsables'])=='')?'': substr($this->get_perosonal_mostrar($datos_sesion['cve_centro'],$value['responsables']), 0, -2)))
 						));
 						$arr_avances = $this->Pemc_model->	ver_avance($value['idaccion']);
 						$pdf->Ln(6);
@@ -450,5 +451,54 @@ class Pemc extends CI_Controller {
 			$response = array('estatus' => $estatus);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
+		}
+
+
+		public function get_perosonal_mostrar($cct, $ids_responsables){
+
+			$ids_responsables = explode(",", $ids_responsables);
+
+			$curl = curl_init();
+			$method = "POST";
+			$url = "http://servicios.seducoahuila.gob.mx/wservice/personal/w_service_personal_by_cct.php";
+			$data = array("cct" => $cct);
+
+		    switch ($method)
+		    {
+		        case "POST":
+		            curl_setopt($curl, CURLOPT_POST, 1);
+		            if ($data)
+		                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+		            break;
+		        default:
+		            if ($data)
+		                $url = sprintf("%s?%s", $url, http_build_query($data));
+		    }
+
+		    curl_setopt($curl, CURLOPT_URL, $url);
+		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+		    $result = curl_exec($curl);
+
+		    curl_close($curl);
+		    $response = json_decode($result);
+
+				if ($response->status==0) {
+					$personal = array();
+				}
+				else {
+					$personal = $response->Personal;
+				}
+
+		    $listap = "";
+		    foreach ($personal as $persona) {
+			    for($i = 0; $i < count($ids_responsables); $i++){
+			    	if("'".$persona->rfc."'" == $ids_responsables[$i]){
+			    		$listap .= trim($persona->nombre_completo).", ";
+			    	}
+			    }
+		    }
+				// echo "<pre>";print_r($listap);die();
+		    return $listap;
 		}
 }
