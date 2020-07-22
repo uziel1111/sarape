@@ -7,6 +7,13 @@
       </div>
     </div>
       <?php endif; ?>
+      <div class="row">
+        <div class="col-10">
+        </div>
+        <div class="col-2 text-light text-right">
+  				<a tabindex="0" class="btn btn-lg btn-dark" role="button" data-toggle="popover" data-trigger="focus" title="Seguimiento:" data-content="Es pieza clave en el desarrollo del PEMC, ya que la información que ofrece permite establecer si mediante la implementación del conjunto de acciones se favorece la incorporación de prácticas educativas y de gestión para el logro de los aprendizajes y reconocer la brecha entre lo planeado y lo que realmente se implementa."><i class="fa fa-info-circle"></i></a>
+  			</div>
+      </div>
       <div class="card bg-light mb-3">
         <div class="card-header" style="background-color: #FFCC80; ">
           <b>Objetivo:</b> <?=$value['objetivo'];?>
@@ -100,5 +107,9 @@
     </div>
   </div>
 </div>
-
+<script type="text/javascript">
+$(function() {
+      $('[data-toggle="popover"]').popover();
+    });
+</script>
 <script type="text/javascript" src="<?= base_url('assets/js/pemc/seguimiento.js') ?>"></script>

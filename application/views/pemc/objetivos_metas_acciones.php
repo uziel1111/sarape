@@ -21,7 +21,7 @@
 <div class="container">
 	<!-- <form class="form-group" name="form_objetivos_metas_acciones" id="form_objetivos_metas_acciones"> -->
 		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-9">
+			<div class="col-xs-12 col-sm-12 col-md-8">
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-1">
 				<?php if (count($objetivos) < 3): ?>
@@ -33,6 +33,10 @@
 		    </div><!-- .col-xs-12 col-sm-12 col-md-2 -->
 		    <div class="col-xs-12 col-sm-12 col-md-1">
 		      <button class="btn btn-md btn-warning" id="btn_elimina_obj">Eliminar</button>
+		    </div><!-- .col-xs-12 col-sm-12 col-md-2 -->
+        <div class="col-xs-12 col-sm-12 col-md-1 text-light text-right ">
+		      <a tabindex="0" class="btn btn-lg btn-dark" role="button" data-toggle="popover" data-trigger="focus" title="Objetivos y metas:" data-content="Objetivos (máximo 3): son los que especifican lo que se pretende alcanzar y para qué lograrlo. Deben ser alcanzables y comunicables; son la guía de las acciones a realizar. Es recomendable establecer uno o dos objetivos que planteen lo que se pretende lograr al término de la vigencia del PEMC.
+         Metas: es la definición específica del punto de llegada. Se expresan en términos de tiempo y resultados concretos que implican establecer un indicador que permita evaluar lo alcanzado. Cada objetivo tiene su meta. Acciones: Son las que hacen realidad el cumplimiento de los objetivos y las metas. Se recomienda plantear al menos dos acciones por ámbito."><i class="fa fa-info-circle"></i></a>
 		    </div><!-- .col-xs-12 col-sm-12 col-md-2 -->
 		</div>
 		<br>
@@ -99,7 +103,7 @@
 				  </tbody>
 				</table>
 		    </div><!-- .col-xs-12 col-sm-12 col-md-2 -->
-		    
+
 		</div>
 	<!-- </form> -->
 </div>
@@ -133,10 +137,15 @@
 	    </div>
 	    <div class="modal-body">
 	        <div id="contenedor_obj_evidencia">
-	        	
+
 	        </div>
 	     </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+$(function() {
+      $('[data-toggle="popover"]').popover();
+    });
+</script>
 <script type="text/javascript" src="<?= base_url('assets/js/pemc/objetivos.js') ?>"></script>
