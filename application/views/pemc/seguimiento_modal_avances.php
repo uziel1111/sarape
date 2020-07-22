@@ -3,16 +3,22 @@
   <div class="card-header">
     <div class="row" style="background-color: #FFCC80; ">
       <div class="card-header">
-        <b>Objetivo:</b> <?=$value['objetivo'];?>
+        <div class="row">
+          <b>Objetivo:</b> <?=$value['objetivo'];?>
+        </div>
+        <div class="row">
+          <b>Meta(s):</b> <?=$value['meta'];?>
+        </div>
+
       </div>
     </div>
   </div>
   <div class="card-body">
-    <div class="row" style="background-color: #bee5eb; ">
+    <!-- <div class="row" style="background-color: #bee5eb; ">
       <div class="col-12">
         <b>Meta(s):</b> <?=$value['meta'];?>
       </div>
-    </div>
+    </div> -->
     <div class="row" style="background-color: #bee5eb; ">
       <div class="col-12">
         <b>Comentarios generales:</b> <?=$value['comentario_general'];?>

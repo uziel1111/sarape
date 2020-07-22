@@ -16,15 +16,20 @@
       </div>
       <div class="card bg-light mb-3">
         <div class="card-header" style="background-color: #FFCC80; ">
-          <b>Objetivo:</b> <?=$value['objetivo'];?>
+          <div class="row">
+            <b>Objetivo:</b> <?=$value['objetivo'];?>
+          </div>
+          <div class="row">
+            <b>Meta(s):</b> <?=$value['meta'];?>
+          </div>
         </div>
         <div class="card-body">
-          <div class="row" style="background-color: #bee5eb; ">
+          <!-- <div class="row" style="background-color: #c3e6cb; ">
             <div class="col-12">
               <b>Meta(s):</b> <?=$value['meta'];?>
             </div>
-          </div>
-          <div class="row" style="background-color: #c3e6cb; ">
+          </div> -->
+          <div class="row" style="background-color: #bee5eb; ">
             <div class="col-12">
               <b>Comentarios generales:</b> <?=$value['comentario_general'];?>
             </div>
