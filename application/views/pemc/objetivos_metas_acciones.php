@@ -135,7 +135,7 @@
 <div class="modal fade bd-example-modal-lg" id="modal_generico_obj" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
-    	<div class="modal-header">
+    	<div class="modal-header bgcolor-2">
 	        <h5 class="modal-title">Objetivo</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
@@ -152,7 +152,7 @@
 <div class="modal fade" id="modal_generico_archivos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-mediano modal-dialog-centered">
     <div class="modal-content">
-    	<div class="modal-header">
+    	<div class="modal-header bgcolor-2">
 	        <h5 class="modal-title">Evidencia</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
