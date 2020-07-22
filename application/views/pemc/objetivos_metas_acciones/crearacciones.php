@@ -1,7 +1,8 @@
 <style type="text/css">
-	.modal-lg { 
+.modal-lg { 
     max-width: 95%; 
 } 
+
 </style>
 
 <div class="container-fluid">

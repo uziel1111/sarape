@@ -256,7 +256,7 @@ class Objetivos extends CI_Controller
 		}
 		if ($_FILES["file"]['name'] != "") {
 			$config['upload_path']   = $ruta_imagenes;
-			$config['allowed_types'] = 'gif|jpg|png';
+			$config['allowed_types'] = 'gif|jpg|png|pdf|jpeg';
 
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);

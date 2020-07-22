@@ -1,4 +1,8 @@
 <style type="text/css">
+.modal-mediano{
+	max-width: 60%;
+	max-height: 60%;
+}
 .selected {
     background-color: #9ccc65;
     color: #FFF;
@@ -19,7 +23,7 @@
 }
 
 .custom-file-input:lang(en)~.custom-file-label::after {
-    content: "Archivo";
+    content: "Seleccione";
 }
 </style>
 <div class="container">
@@ -52,14 +56,14 @@
 				  	<tr>
 				  	  <th hidden></th>
 				  	  <th scope="col" rowspan="2">#</th>
-				  	  <th scope="col" rowspan="2">Objetivos</th>
-				      <th scope="col" rowspan="2">Fecha de creación</th>
+				  	  <th scope="col" rowspan="2" width="20%">Objetivos</th>
+				      <th scope="col" rowspan="2" width="20%">Fecha de creación</th>
 				      <th scope="col" rowspan="2">Acciones</th>
 				      <th scope="col" colspan="2"><center>Evidencias</center></th>
 				  	</tr>
 				    <tr>
-				      <th scope="col" >Antes</th>
-				      <th scope="col" >Déspues</th>
+				      <th scope="col" ><center>Antes</center></th>
+				      <th scope="col" ><center>Déspues</center></th>
 				    </tr>
 				  </thead>
 				  <tbody id="contenedor_tabla_objetivos">
@@ -85,10 +89,14 @@
 				     		</div>
 					     </div>
 					     </center>
-      					<div class="custom-file">
-						    <input type="file" class="custom-file-input" name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, <?= $objetivo['idobjetivo']?>)'>
-						    <label class="custom-file-label" for="customFile">Seleccione evicencia</label>
-						</div>
+					     <div class="row">
+					     	<div class="col-1"></div>
+	      					<div class="custom-file col-7">
+							    <input type="file" class="custom-file-input" name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, <?= $objetivo['idobjetivo']?>)'>
+							    <label class="custom-file-label" for="customFile"></label>
+							</div>
+					     </div>
+					     
       				</td>
 				     <td>
 				     	<center>
@@ -105,10 +113,13 @@
 				     		</div>
 					     </div>
 					     </center>
-				     	<div class="custom-file">
-						    <input type="file" class="custom-file-input" name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, <?= $objetivo['idobjetivo']?>)'>
-						    <label class="custom-file-label" for="customFile">Seleccione evicencia</label>
-						</div>
+					     <div class="row">
+					     	<div class="col-1"></div>
+					     	<div class="custom-file col-7">
+							    <input type="file" class="custom-file-input" name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, <?= $objetivo['idobjetivo']?>)'>
+							    <label class="custom-file-label" for="customFile"></label>
+							</div>
+					     </div>
 				     </td>
 				    </tr>
 				  <?php endforeach ?>
@@ -122,9 +133,9 @@
 
 <!-- Modal -->
 <div class="modal fade bd-example-modal-lg" id="modal_generico_obj" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
-    	<div class="modal-header">
+    	<div class="modal-header bgcolor-2">
 	        <h5 class="modal-title">Objetivo</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
@@ -138,17 +149,17 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="modal_generico_archivos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade" id="modal_generico_archivos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-mediano modal-dialog-centered">
     <div class="modal-content">
-    	<div class="modal-header">
+    	<div class="modal-header bgcolor-2">
 	        <h5 class="modal-title">Evidencia</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	    </div>
 	    <div class="modal-body">
-	        <div id="contenedor_obj_evidencia">
+	        <div id="contenedor_obj_evidencia" width="100%" height="100%">
 
 	        </div>
 	     </div>
@@ -157,7 +168,7 @@
 </div>
 <script type="text/javascript">
 $(function() {
-      $('[data-toggle="popover"]').popover();
-    });
+  $('[data-toggle="popover"]').popover();
+});
 </script>
 <script type="text/javascript" src="<?= base_url('assets/js/pemc/objetivos.js') ?>"></script>
