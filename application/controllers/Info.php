@@ -35,7 +35,7 @@ class Info extends CI_Controller {
 
 			$cct= $this->input->post("cct");
 		}
-		
+
 		if(strlen($cct)>10){
 			// echo $cct; die();
 			$cadena=substr ($cct ,0 , 10);
@@ -43,7 +43,7 @@ class Info extends CI_Controller {
 			$cadena3=substr ($cct ,13 ,3);
 			$cct=$cadena;
 			$turno=$cadena2;
-			
+
 			// echo $turno; die();
 		}else{
 			$cct=$cct;
@@ -58,7 +58,7 @@ class Info extends CI_Controller {
 			$turno_e=$this->getTurno($turno);
 		}
 		// echo $cadena3; die();
-		
+
 		if(isset($cct) && $cct != ""){
 			$data = array();
 			$array = array();
@@ -92,7 +92,7 @@ class Info extends CI_Controller {
 
 			$data['contenidos'] = $arr_contenidos;
 
-			$arr_peso = $this->CentrosE_model->get_indicpeso_xidcct($cct,$turno_e,4);
+			$arr_peso = $this->CentrosE_model->get_indicpeso_xidcct($cct,$turno_e,5);
 			if (COUNT($arr_peso)==1) {
 				$data['trae_indicpeso'] = $arr_peso[0]['bajo']+$arr_peso[0]['Normal']+$arr_peso[0]['Sobrepeso']+$arr_peso[0]['Obesidad'];
 			}
@@ -125,7 +125,7 @@ class Info extends CI_Controller {
 			}else{
 				$desc_turno = $this->turno_desc($turno);
 			}
-			
+
 
 			$data['turno'] = $turno_e;
 			$data['desc_turno'] = $desc_turno;
@@ -579,7 +579,7 @@ class Info extends CI_Controller {
 		}
 
 
-		
+
 		$response = array(
 			'cct'=>$cct,
 			'turno'=>$turno_e,

@@ -1,6 +1,13 @@
 <div class="card">
   <div class="card-header">
-    <a  href="<?= base_url('Pemc/ver_reporte_xidpemc/').$idpemc ?>" target="_blank"><button type="button" class="btn btn-info">Generar reporte</button></a>
+    <div class="row">
+      <div class="col-10">
+        <a  href="<?= base_url('Pemc/ver_reporte_xidpemc/').$idpemc ?>" target="_blank"><button type="button" class="btn btn-info">Generar reporte</button></a>
+      </div>
+      <div class="col-2 text-light text-right">
+        <a tabindex="0" class="btn btn-lg btn-dark" role="button" data-toggle="popover" data-trigger="focus" title="Evaluación:" data-content="Implica realizar una revisión crítica, al final del ciclo escolar, sobre el impacto de las acciones implementadas por ámbito."><i class="fa fa-info-circle"></i></a>
+      </div>
+    </div>
   </div>
   <div class="card-body">
     <div class="container">
@@ -43,4 +50,9 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+$(function() {
+      $('[data-toggle="popover"]').popover();
+    });
+</script>
 <script type="text/javascript" src="<?= base_url('assets/js/pemc/evaluacion.js') ?>"></script>

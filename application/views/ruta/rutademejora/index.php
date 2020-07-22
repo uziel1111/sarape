@@ -22,7 +22,7 @@
   z-index: 50px;
   z-index: 100;
 }
-.botonF1{	
+.botonF1{
   width:60px;
   height:60px;
   border-radius:100%;
@@ -89,7 +89,7 @@ span{
 
 .ir-arriba{
   display:none;
-  background-repeat:no-repeat;	
+  background-repeat:no-repeat;
   font-size:20px;
   color:black;
   cursor:pointer;
@@ -101,7 +101,7 @@ span{
 
 .ir-abajo{
   display:none;
-  background-repeat:no-repeat;	
+  background-repeat:no-repeat;
   font-size:20px;
   color:black;
   cursor:pointer;
@@ -158,7 +158,7 @@ span{
 						<span class="text-danger">*Antes de agregar objetivos o acciones, seleccione la línea de acción estratégica (LAE) o ámbito. </span>
 						<span  data-target="#prioridad">
 						<button type="" id="btn_prioridad" style="margin-left: 175px" data-toggle="tooltip" title="Agregar Objetivos" class="btn btn-lg btn-primary" data-target="#myModal" data-dismiss="modal"><i class="fas fa-plus-square" ></i></button>
-						</span>		
+						</span>
 						<span  data-target="#actividades">
 						<button type="button" style="margin-left: 120px" id="btn_rutamejora_acciones" title="Agregar Acciones" data-toggle="tooltip" title="Agregar Acciones" class="btn btn-lg btn-primary" ><i class="fas fa-tasks"></i></button>
 						</span>
@@ -172,7 +172,7 @@ span{
 			</div> <!-- Ruta mejora -->
 
 			<div class="tab-pane fade" id="nav-avances" role="tabpanel" aria-labelledby="nav-avances-tab">
-				
+
 				<?= $vista_avance ?>
 			</div> <!-- Avances -->
 			<div class="tab-pane fade" id="nav-ayuda" role="tabpanel" aria-labelledby="nav-ayuda-tab">
@@ -180,7 +180,7 @@ span{
 			</div> <!-- Ayuda -->
 			<div class="fade" id="nav-resultados" role="tabpanel" aria-labelledby="nav-resultados-tab">
 				<div id="div_resultados_gral" >
-					
+
 					<div id="div_rezagadas">
 						<br>
 						<div class="card-header text-center" style="background-color: #FFCC80; "><h1 class="panel-title">Lista de acciones rezagadas</h1></div>
@@ -190,14 +190,14 @@ span{
 						<div id="div_acc_rez">
 						</div>
 						<br>
-						
+
 					</div>
 					<div id="chart_div">
 						<div class="card-header text-center" style="background-color: #FFCC80; "><h1 class="panel-title">Avances de acciones </h1></div>
 						<br>
 						<div id="gantt_p"></div>
 						<div id="mensaje_res_acciones"></div>
-						
+
 					</div>
 					<br>
 				</div>
@@ -209,13 +209,13 @@ span{
 <div class="contenedorbtn">
 	<?php if (isset($tipo_usuario_pemc)): ?>
 		<input type="text" name="tipou_pemc" id="tipou_pemc"  value='<?=$tipo_usuario_pemc?>' hidden>
-	<?php else: ?>
+	<?php endif; ?>
 		<br><br><br>
-	
+
 	<button class="botonF1 ">
 	   	<span><i class="fas fa-wrench fa-xs"></i></span>
 	</button>
-	<?php endif; ?>
+
 	<button class="btnespe botonF2" id="btn_mision" data-toggle="tooltip" title="Misión">
 	  	<span><i class="fas fa-flag fa-xs"></i></span>
 	</button>
@@ -258,7 +258,7 @@ span{
 				<div class="alert alert-info" role="alert">
 					Escuela: <span class="fw800"><label id="label_escuela"></label></span><br>
 
-					
+
 					Ámbito: <span class="fw800"><label id="label_ambito"></label></span><br>
 
 					Problemática(s): <span class="fw800"><label id="label_problematica"></label></span><br>
@@ -278,7 +278,7 @@ span{
 					                    </select>
 									</div>
 				                </div>
-                	
+
 								<div class="row mt-15">
 									<div class="col-md-6">
 										<label><label style="color:red;">*</label>Agregar acción:</label>
@@ -329,7 +329,7 @@ span{
 										<label><label style="color:red;">*</label>Fecha de inicio</label>
 										<input id="datepicker1" disabled data-date-format="dd/mm/yyyy"/>
 										<?php if (isset($tipo_usuario_pemc)): ?>
-		
+
 										<?php else: ?>
 											<script>
 												$('#datepicker1').datepicker({
@@ -344,7 +344,7 @@ span{
 										<label><label style="color:red;">*</label>Fecha de término</label>
 										<input id="datepicker2" data-date-format="mm/dd/yyyy" disabled/>
 										<?php if (isset($tipo_usuario_pemc)): ?>
-		
+
 										<?php else: ?>
 											<script>
 												$('#datepicker2').datepicker({
@@ -355,7 +355,7 @@ span{
 									</div>
 								</div>
 								<input type="hidden" id="idaccion">
-								
+
 								<div class="row mt-15">
 									<div class="col-md-12">
 										<label style="color:red;">*</label>Datos obligatorios
@@ -403,7 +403,7 @@ span{
 <script src="<?= base_url('assets/js/rutademejora/avances.js'); ?>"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/rutademejora/rutademejora_new/ruta.js') ?>"></script>
- 
+
 
 
 
@@ -433,10 +433,10 @@ span{
 	function irAbajo(){
 	  	$('.ir-abajo').click(function(){ $('body,html').animate({ scrollTop:'0px' },1000); });
 	  	$(window).scroll(function(){
-	    	if($(this).scrollTop() > 0){ 
-	    		$('.ir-arriba').slideDown(600); 
-	    	}else{ 
-	    		$('.ir-abajo').slideUp(600); 
+	    	if($(this).scrollTop() > 0){
+	    		$('.ir-arriba').slideDown(600);
+	    	}else{
+	    		$('.ir-abajo').slideUp(600);
 	    	}
 	  	});
 	  $('.ir-abajo').click(function(){ $('body,html').animate({ scrollTop:'1000px' },1000); });
@@ -456,9 +456,9 @@ span{
 		.then((result) => {
 			if (result.value) {
 				if (imagen == 1) {
-					$('#imgIni').trigger("click");			
+					$('#imgIni').trigger("click");
 				}else{
-					$('#imgFin').trigger("click");	
+					$('#imgFin').trigger("click");
 				}
 			}
 		});
@@ -480,7 +480,6 @@ span{
 		})
 		.always(function() {
 		});
-		
+
 	}
 </script>
-

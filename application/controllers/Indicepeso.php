@@ -22,13 +22,15 @@ class Indicepeso extends CI_Controller {
 					 $arr_municipios[$row['id_municipio']] = $row['municipio'];
 				}
 			}
-
+				$arr_niveles['3'] = 'PREESCOLAR';
 				$arr_niveles['4'] = 'PRIMARIA';
 				$arr_niveles['5'] = 'SECUNDARIA';
 				$arr_niveles['6'] = 'MEDIA SUPERIOR';
 
 			$result_ciclo = $this->Ciclo_model->ciclo_est_e_ind();
+			$arr_ciclo['5'] = '2019-2020';
 			$arr_ciclo['2'] = '2017-2018';
+
 
 			$data['arr_niveles'] = $arr_niveles;
 			$data['arr_municipios'] = $arr_municipios;
@@ -45,8 +47,9 @@ class Indicepeso extends CI_Controller {
 			}else{
 				$final = $this->Escuela_model->get_indicpeso_xmuni($idmunicipio, $idnivel, $id_ciclo);
 			}
-			
+
 			$data['arr_indi_peso'] = $final;
+			// echo "<pre>";print_r($data);die();
     		$dom = $this->load->view("indice_peso/index",$data,TRUE);
 
     		$response = array(
