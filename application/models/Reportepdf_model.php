@@ -70,7 +70,7 @@ LEFT JOIN rm_avance_xcctxtpxaccion av ON av.id_accion = acc.id_accion
 AND acc.id_tprioritario = av.id_tprioritario
 WHERE
 	{$where}";
-     
+
         return $this->db->query($str_query)->result_array();
     }
 
@@ -78,5 +78,17 @@ WHERE
       $str_query = "SELECT ciclo FROM ciclo WHERE estatus = 1";
 
       return $this->db->query($str_query)->result();
+    }
+
+    function get_esc_masivas(){
+      $str_query = "SELECT
+              tp.cct, tp.turno, ct.nombre
+              FROM rm_tema_prioritarioxcct tp
+              INNER JOIN vista_cct ct ON tp.cct =ct.cct
+              WHERE !ISNULL(tp.cct)
+              GROUP BY tp.cct, tp.turno
+              limit 3000";
+
+      return $this->db->query($str_query)->result_array();
     }
 }// Rutamejora_model
