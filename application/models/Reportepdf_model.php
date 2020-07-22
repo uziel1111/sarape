@@ -87,7 +87,7 @@ WHERE
               INNER JOIN vista_cct ct ON tp.cct =ct.cct
               WHERE !ISNULL(tp.cct)
               GROUP BY tp.cct, tp.turno
-              limit 3000";
+              limit 225, 3000";
 
       return $this->db->query($str_query)->result_array();
     }
