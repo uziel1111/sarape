@@ -63,7 +63,7 @@
 				  	</tr>
 				    <tr>
 				      <th scope="col" ><center>Antes</center></th>
-				      <th scope="col" ><center>Déspues</center></th>
+				      <th scope="col" ><center>Después</center></th>
 				    </tr>
 				  </thead>
 				  <tbody id="contenedor_tabla_objetivos">
