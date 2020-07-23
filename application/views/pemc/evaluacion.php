@@ -11,10 +11,13 @@
   </div>
   <div class="card-body">
     <div class="container">
-      <form class="form-group" name="fr_evaluacion" id="fr_evaluacion">
+      <form class="form-group" name="<?=(($es_fin)?'fr_evaluacion':'')?>" id="<?=(($es_fin)?'fr_evaluacion':'')?>">
       <label class="my-1 mr-2" for="in_eval">Redacte su evaluación:</label>
-       <textarea class="form-control" name="in_eval" id="in_eval" rows="10" required><?=$evaluacion?></textarea>
-    <button class="btn btn-primary my-1  float-right" id="btn_guardar_evaluacion_pemc">Grabar</button>
+       <textarea class="form-control" name="in_eval" id="in_eval" rows="10" required <?=(($es_fin)?'':'disabled')?>><?=$evaluacion?></textarea>
+
+    <?php if ($es_fin): ?>
+      <button class="btn btn-primary my-1  float-right" id="btn_guardar_evaluacion_pemc">Grabar</button>
+    <?php endif; ?>
     </form>
     </div>
   </div>
@@ -26,7 +29,9 @@
         <h3>Historial de PEMC</h3>
       </div>
       <div class="col-2">
-        <button class="btn btn-primary my-1  float-right" id="btn_guardar_cierre_pemc">Cierre ciclo escolar</button>
+        <?php if ($es_fin): ?>
+          <button class="btn btn-primary my-1  float-right" id="btn_guardar_cierre_pemc">Cierre ciclo escolar</button>
+        <?php endif; ?>
       </div>
     </div>
   </div>
