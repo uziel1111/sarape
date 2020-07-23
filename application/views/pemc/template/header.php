@@ -18,6 +18,11 @@
 <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
 <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
+<!-- USO DE LIBRERIA PARA EDITOR DE TEXTO -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.15.0/ui/trumbowyg.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.15.0/trumbowyg.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.20.0/langs/es.min.js"></script>
+
 <style type="text/css">
 	label.error{
 	  color:red;

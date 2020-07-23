@@ -17,6 +17,7 @@
 <script type="text/javascript">
 $(function() {
       $('[data-toggle="popover"]').popover();
-    });
+});
+
 </script>
 <script type="text/javascript" src="<?= base_url('assets/js/pemc/diagnostico.js') ?>"></script>
