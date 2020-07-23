@@ -1,7 +1,8 @@
 $(function(){
+
 	jQuery.validator.addMethod("noSpace", function(value, element) {
-return value.indexOf("  ") < 0 && value != " ";
-}, "No se permite exceder el uso de espacios");
+	return value.indexOf("  ") < 0 && value != " ";
+	}, "No se permite exceder el uso de espacios");
 
 $("#fr_diagnostico").validate({
 	onclick:false, onfocusout: false, onkeypress:false, onkeydown:false, onkeyup:false,
@@ -20,6 +21,16 @@ $("#fr_diagnostico").validate({
          Diagnostico_pemc.guarda_formulario_diagnostico();
       }
     });
+
+	$('#in_diag').trumbowyg({
+	   lang: 'es',
+	   btns: Utiles.get_botones_trumbowyg(),
+	   plugins: {
+	     colors: Utiles.get_colores_trumbowyg(),
+	   },
+	   removeformatPasted: true,
+	   autogrow: true
+	 });
 	
 });
 

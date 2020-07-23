@@ -10,6 +10,7 @@
     </div>
 
    <textarea class="form-control" name="in_diag" id="in_diag" rows="18" required <?=(($es_inicio)?'':'disabled')?>><?=$diagnostico?></textarea>
+
    <?php if ($es_inicio): ?>
      <button class="btn btn-primary my-1  float-right" id="btn_guardar_diagnostico_pemc">Grabar</button>
    <?php endif; ?>

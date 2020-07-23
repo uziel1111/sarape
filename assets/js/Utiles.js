@@ -14,17 +14,6 @@ var Utiles = {
 
   get_colores_trumbowyg : () => {
 
-    /*var colorLabels = {
-    '#000': 'Negro',
-    '#555': 'Gris',
-    '#008F39': 'Verde',
-    '#FF0000': 'Rojo',
-    '#FFFF00': 'Amarillo',
-    '#FF8000': 'Naranja',
-    '#0000FF': 'Azul',
-    '#ff1493': 'Rosado',
-  }; */
-
     let colorLabels = {
     '#000': ' ',
     '#555': ' ',
@@ -38,9 +27,8 @@ var Utiles = {
 
     $.each(colorLabels, function(colorHexCode, colorLabel) {
         $.trumbowyg.langs.en[colorHexCode] = colorLabel;
-    })
-
-
+    });
+    
     return {
         foreColorList: [
           '000',

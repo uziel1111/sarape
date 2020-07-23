@@ -189,12 +189,12 @@ class Pemc extends CI_Controller {
 	}
 
 	public function guarda_diagnostico(){
-		echo"<pre>";
-		print_r($_POST);
-		die();
+		// echo"<pre>";
+		// print_r($_POST);
+		// die();
 		$datos_sesion = Utilerias::get_cct_sesion($this);
 		$diagnostico = mb_strtoupper($this->input->post('in_diag'));
-		$estatus = $this->Pemc_model->guarda_diagnostico(strip_tags($diagnostico),$datos_sesion['idpemc']);
+		$estatus = $this->Pemc_model->guarda_diagnostico($diagnostico,$datos_sesion['idpemc']);
 		$response = array('estatus' => $estatus);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
