@@ -96,9 +96,9 @@ class Objetivos extends CI_Controller
 	public function delete_imagen(){
 		$idobjetivo = $this->input->post('idobjetivo');
 		$tipo_evidencia = $this->input->post('tipo_img');
-
+		$url = $this->Objetivo_model->get_url($idobjetivo, $tipo_evidencia);
 		$delete_img = $this->Objetivo_model->inserta_ruta($idobjetivo, '', $tipo_evidencia);
-
+		unlink($url->url);
 		$response = array('estatus' => $delete_img);
 		Utilerias::enviaDataJson(200,$response, $this);
 		exit;
@@ -246,10 +246,32 @@ class Objetivos extends CI_Controller
 		exit;
 	}
 
+	public function delete_accion(){
+		$idobjetivo = $this->input->post('idobjetivo');
+		$idaccion = $this->input->post('idaccion');
+		$estatus_delete = $this->Objetivo_model->delete_accion($idaccion, $idobjetivo);
+		if($estatus_delete){
+			// echo"vamos a ordenar";
+			$acciones = $this->Objetivo_model->get_acciones_x_idobjetivo($idobjetivo);
+			$orden = 1;
+			foreach ($acciones  as $accion) {
+				$estatus = $this->Objetivo_model->update_orden_accion($accion['idaccion'], $idobjetivo, $orden);
+				$orden = $orden + 1;
+			}
+		}
+
+		$response = array('estatus' => $estatus);
+		Utilerias::enviaDataJson(200,$response, $this);
+		exit;
+	}
+
 	public function insert_evidencias(){
 		$idobjetivo = $this->input->post('idobjetivo');
 		$tipo_evidencia = $this->input->post('tipo_evidencia');
-		$ruta_imagenes = "pemc/".$idobjetivo;
+		$datos_sesion = Utilerias::get_cct_sesion($this);
+		$cct = $datos_sesion['cve_centro'];
+		$turno = $datos_sesion['turno_single'];
+		$ruta_imagenes = "pemc/".$cct."/".$turno."/".$idobjetivo;
 		
 		if (!file_exists($ruta_imagenes)) {
 		    mkdir($ruta_imagenes, 0777, true);
@@ -262,7 +284,12 @@ class Objetivos extends CI_Controller
 			$this->upload->initialize($config);
 			if ($this->upload->do_upload("file")) {
 				$fileData = $this->upload->data();
+				$url = $this->Objetivo_model->get_url($idobjetivo, $tipo_evidencia);
+				if($url->url != ''){
+					unlink($url->url);
+				}
 				$estatus = $this->Objetivo_model->inserta_ruta($idobjetivo, $ruta_imagenes . "/" . $fileData['file_name'], $tipo_evidencia);
+
 			}
 		}
 

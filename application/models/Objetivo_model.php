@@ -28,6 +28,15 @@ class Objetivo_model extends CI_Model
         return $this->pemc_db->update('r_pemc_objetivo', $data);
     }
 
+    function delete_accion($idaccion, $idobjetivo){
+        $this->pemc_db->trans_start();
+            $delete_seguimiento = "DELETE FROM r_pemc_accion_seguimiento WHERE idaccion ={$idaccion}";
+        $this->pemc_db->query($delete_seguimiento);
+        $delete_acciones = "DELETE FROM r_pemc_objetivo_accion WHERE idaccion = {$idaccion} AND idobjetivo = {$idobjetivo}";
+        $this->pemc_db->query($delete_acciones);
+        return $this->pemc_db->trans_complete();
+    }
+
     function get_ambitos(){
     	$str_query = "SELECT * FROM c_pemc_ambito";
     	return $this->pemc_db->query($str_query)->result_array();
@@ -85,7 +94,7 @@ class Objetivo_model extends CI_Model
     }
 
     function get_acciones_x_idobjetivo($idobjetivo){
-    	$str_query = "SELECT * FROM r_pemc_objetivo_accion WHERE idobjetivo = ?";
+    	$str_query = "SELECT * FROM r_pemc_objetivo_accion WHERE idobjetivo = ? ORDER BY idaccion ASC";
     	return $this->pemc_db->query($str_query, array($idobjetivo))->result_array();
     }
 
@@ -96,6 +105,13 @@ class Objetivo_model extends CI_Model
 					SET accion = ?, recurso = ?, idambitos = ?, responsables= ?, otros_responsables = ?, finicio = ?, ffin = ?, fmodificacion = NOW()
 					WHERE idaccion = ? AND idobjetivo = ?";
 		return $this->pemc_db->query($str_query, array($accion, $recurso, $ambitos, $responsables, $otro_responsable, $finicio, $ffin, $idaccion, $idobjetivo));
+    }
+
+    function update_orden_accion($idaccion, $idobjetivo, $orden){
+        $str_query = "UPDATE r_pemc_objetivo_accion 
+                    SET orden = ?
+                    WHERE idaccion = ? AND idobjetivo = ?";
+        return $this->pemc_db->query($str_query, array($orden, $idaccion, $idobjetivo));
     }
 
     function insert_accion($idobjetivo, $orden, $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio, $ffin){
@@ -132,6 +148,20 @@ class Objetivo_model extends CI_Model
 
 		$this->pemc_db->where('idobjetivo', $idobjetivo);
 		return $this->pemc_db->update('r_pemc_objetivo', $data);
+    }
+
+    function get_url($idobjetivo, $tipo_evidencia){
+        switch ($tipo_evidencia) {
+            case '1':
+                $campo = "url_evidencia_antes";
+                break;
+            
+            case '2':
+                $campo = "url_evidencia_despues";
+                break;
+        }
+        $str_query = "SELECT {$campo} AS url FROM r_pemc_objetivo WHERE idobjetivo = ?";
+        return $this->pemc_db->query($str_query, array($idobjetivo))->row();
     }
 
 }// Objetivo_model
