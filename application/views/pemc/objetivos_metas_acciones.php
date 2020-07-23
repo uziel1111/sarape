@@ -75,7 +75,7 @@
 				     <td><?= $objetivo['objetivo']?></td>
 				     <td><?= $objetivo['fcreacion']?></td>
 				     <td class="text-center"><?= $objetivo['num_acciones']?></td>
-						 <td><button class='btn btn-primary btn-block' onclick='Objetivos.agreg_acciones(<?= $objetivo['idobjetivo']?>)'><i class="fa fa-upload" aria-hidden="true"></i></button></td>
+						 <td><button title="Agregar acciones" class='btn btn-primary btn-block btn-sm' onclick='Objetivos.agreg_acciones(<?= $objetivo['idobjetivo']?>)'><i class="fa fa-plus" aria-hidden="true"></i></button></td>
 				     <td>
 				     	<center>
 				     	<div class="preview">

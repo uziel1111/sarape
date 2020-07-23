@@ -272,6 +272,60 @@ var Objetivos = {
   	}
   },
 
+  elimina_accion: (idaccion, idobjetivo) =>{
+  	swal({
+      title: '¿Estás seguro de eliminar esta acción?',
+      text: "Una vez eliminada no se podrá recuperar",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        Objetivos.delete_accion(idaccion, idobjetivo);
+      }
+    })
+  },
+
+  delete_accion: (idaccion, idobjetivo) =>{
+  	$.ajax({
+  		type: 'POST',
+		url:base_url+"Objetivos/delete_accion",
+		data:{
+			'idobjetivo': idobjetivo,
+			'idaccion': idaccion,
+		},
+		beforeSend: function(xhr) {
+			Notification.loading("Cargando vista");
+		}
+	})
+	.done(function(data){
+		if(data.estatus){
+			swal(
+			'¡Correcto!',
+			"La accion se elimino correctamente",
+			"success"
+			);
+			Principal_pemc.obtiene_vista_obetivos();
+		}else{
+			swal(
+			'¡Error!',
+			"Fallo al insertar",
+			"error"
+			);
+		}
+		$("#modal_generico_obj").modal('hide');
+	})
+	.fail(function(e) {
+		console.error("Error in ()"); console.table(e);
+	})
+	.always(function() {
+		// swal.close();
+	});
+  },
+
   valida_fecha: (inicio, fin) =>{
   	let finicio = new Date(inicio);
   	let ffin = new Date(fin);
