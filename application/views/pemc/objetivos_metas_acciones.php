@@ -59,6 +59,7 @@
 				  	  <th scope="col" rowspan="2" width="20%">Objetivos</th>
 				      <th scope="col" rowspan="2" width="20%">Fecha de creación</th>
 				      <th scope="col" rowspan="2">Acciones</th>
+							<th scope="col" rowspan="2">Agregar acciones</th>
 				      <th scope="col" colspan="2"><center>Evidencias</center></th>
 				  	</tr>
 				    <tr>
@@ -73,7 +74,8 @@
 				  	<td scope='row'><?= $objetivo['orden'] ?></td>
 				     <td><?= $objetivo['objetivo']?></td>
 				     <td><?= $objetivo['fcreacion']?></td>
-				     <td><button class='btn btn-primary btn-block' onclick='Objetivos.agreg_acciones(<?= $objetivo['idobjetivo']?>)'><?= $objetivo['num_acciones']?></button></td>
+				     <td class="text-center"><?= $objetivo['num_acciones']?></td>
+						 <td><button class='btn btn-primary btn-block' onclick='Objetivos.agreg_acciones(<?= $objetivo['idobjetivo']?>)'><i class="fa fa-upload" aria-hidden="true"></i></button></td>
 				     <td>
 				     	<center>
 				     	<div class="preview">
@@ -96,7 +98,7 @@
 							    <label class="custom-file-label" for="customFile"></label>
 							</div>
 					     </div>
-					     
+
       				</td>
 				     <td>
 				     	<center>

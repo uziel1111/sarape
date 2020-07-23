@@ -261,9 +261,10 @@ class Pemc extends CI_Controller {
 			// foreach ($seguimiento as $key => $value) {
 			// 	$seguimiento[$key]['ambitos']= $this->Pemc_model->obtener_ambitos_xidambitos($value['idambitos']);
 			// }
-			$evaluacion = $this->Pemc_model->obtener_evaluaciones_xidpemc($datos_sesion['idpemc']);
+			$evaluacion = $this->Pemc_model->obtener_evaluacion_xidpemc($datos_sesion['idpemc']);
+			$evaluaciones = $this->Pemc_model->obtener_evaluaciones_xidpemc($datos_sesion['idpemc']);
 			// echo "<pre>";print_r($evaluacion);die();
-			$data = array('evaluacion' => $evaluacion, "idpemc" => $idpemc);
+			$data = array('evaluaciones' => $evaluaciones,'evaluacion' => $evaluacion, "idpemc" => $idpemc);
 			// echo "<pre>";print_r($data);die();
 			$str_vista = $this->load->view("pemc/evaluacion", $data, TRUE);
 			$response = array('str_vista' => $str_vista);
@@ -433,6 +434,31 @@ class Pemc extends CI_Controller {
 					$pdf->Output();
 				}
 				else {
+					$pdf->AddPage('L','Legal');
+					$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
+					$pdf->Ln(5);
+					$pdf->SetFont('Arial','B',12);
+					$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
+					$pdf->SetFillColor(255);
+					$pdf->SetAligns(array("L"));
+					$pdf->SetLineW(array(0.2));
+					$pdf->SetTextColor(0,0,0);
+						$pdf->Row1(array(
+							utf8_decode("Diagnóstico: ".$diagnostico)
+						));
+
+						$evaluacion = $this->Pemc_model->obtener_evaluacion_xidpemc($datos_sesion['idpemc']);
+						$pdf->Ln(5);
+						$pdf->SetFont('Arial','B',12);
+						$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
+						$pdf->SetFillColor(255);
+						$pdf->SetAligns(array("L"));
+						$pdf->SetLineW(array(0.2));
+						$pdf->SetTextColor(0,0,0);
+							$pdf->Row1(array(
+								utf8_decode("Evaluación: ".$evaluacion)
+							));
+
 					$pdf->Output($url_save,'F');
 				}
 
@@ -442,16 +468,44 @@ class Pemc extends CI_Controller {
 		public function guarda_evaluacion(){
 			$datos_sesion = Utilerias::get_cct_sesion($this);
 			$evaluacion = mb_strtoupper($this->input->post('in_eval'));
-			date_default_timezone_set('America/Mexico_City');
-			$hoy = date("Y-m-d_H_i_s");
-			$path_eval = "assets/pdf/pemc_eval/".$datos_sesion['idpemc']."_".$hoy.".pdf";
-			$this->ver_reporte_xidpemc($datos_sesion['idpemc'],$path_eval);
+			// date_default_timezone_set('America/Mexico_City');
+			// $hoy = date("Y-m-d_H_i_s");
+			// $path_eval = "assets/pdf/pemc_eval/".$datos_sesion['idpemc']."_".$hoy.".pdf";
+			// $this->ver_reporte_xidpemc($datos_sesion['idpemc'],$path_eval);
 			// echo "<pre>";print_r($evaluacion);die();
-			$estatus = $this->Pemc_model->guarda_evaluacion(strip_tags($evaluacion),$datos_sesion['idpemc'],$path_eval);
+			$estatus = $this->Pemc_model->guarda_evaluacion(strip_tags($evaluacion),$datos_sesion['idpemc']);
 			$response = array('estatus' => $estatus);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
+		public function guarda_cierre(){
+			$datos_sesion = Utilerias::get_cct_sesion($this);
+			date_default_timezone_set('America/Mexico_City');
+			$hoy = date("Y-m-d_H_i_s");
+			if(file_exists("assets/pdf/pemc_eval/".$datos_sesion['idpemc'])) {
+				$files = glob("assets/pdf/pemc_eval/".$datos_sesion['idpemc']."/*"); //obtenemos todos los nombres de los ficheros
+				foreach($files as $file){
+				    if(is_file($file))
+				    unlink($file); //elimino el fichero
+				}
+					// unlink("assets/pdf/pemc_eval/".$datos_sesion['idpemc'], 7777);
+			    // mkdir("assets/pdf/pemc_eval/".$datos_sesion['idpemc'], 7777);
+			}
+			else {
+				mkdir("assets/pdf/pemc_eval/".$datos_sesion['idpemc'], 7777);
+			}
+
+			$path_eval = "assets/pdf/pemc_eval/".$datos_sesion['idpemc']."/_".$hoy.".pdf";
+
+			$this->ver_reporte_xidpemc($datos_sesion['idpemc'],$path_eval);
+			// echo "<pre>";print_r($evaluacion);die();
+			$estatus = $this->Pemc_model->guarda_cierre($datos_sesion['idpemc'],$path_eval);
+			$response = array('estatus' => $estatus);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+		}
+
+
 
 
 		public function get_perosonal_mostrar($cct, $ids_responsables){
