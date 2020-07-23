@@ -179,7 +179,7 @@ class Pemc extends CI_Controller {
 	public function obtiene_vista_diagnostico(){
 		$datos_sesion = Utilerias::get_cct_sesion($this);
 		$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
-		$data = array('diagnostico' => $diagnostico);
+		$data = array('diagnostico' => $diagnostico, 'idpemc' => $datos_sesion['idpemc']);
 		$str_vista = $this->load->view("pemc/diagnostico", $data, TRUE);
 		$response = array('str_vista' => $str_vista);
 		Utilerias::enviaDataJson(200, $response, $this);
@@ -554,5 +554,43 @@ class Pemc extends CI_Controller {
 		    }
 				// echo "<pre>";print_r($listap);die();
 		    return $listap;
+		}
+
+		public function ver_reporte_diagnostico_xidpemc($idpemc){
+			if(Utilerias::haySesionAbiertacct($this)){
+				$datos_sesion = Utilerias::get_cct_sesion($this);
+				$cve_centro = $datos_sesion['cve_centro'];
+				$turno = $datos_sesion['id_turno_single'];
+				$str_cct = "CCT: {$datos_sesion['cve_centro']}";
+				$str_nombre = "ESCUELA: {$datos_sesion['nombre_centro']}";
+				$fecha = date("Y-m-d");
+				$arr_aux = explode("-",$fecha);
+				$anio_i = $arr_aux[0];
+				$mes_i = $arr_aux[1];
+				$dia_i = $arr_aux[2];
+				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
+				$ciclo =  Utilerias::trae_ciclo_actual();
+				$ciclo = "CICLO: ".$ciclo;
+				$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
+				$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo);
+				$pdf->AliasNbPages();
+
+					$pdf->AddPage('L','Legal');
+					$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
+					$pdf->Ln(5);
+					$pdf->SetFont('Arial','B',12);
+					$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
+					$pdf->SetFillColor(255);
+					$pdf->SetAligns(array("L"));
+					$pdf->SetLineW(array(0.2));
+					$pdf->SetTextColor(0,0,0);
+						$pdf->Row1(array(
+							utf8_decode("Diagnóstico: ".$diagnostico)
+						));
+
+					$pdf->Output();
+
+
+			}
 		}
 }

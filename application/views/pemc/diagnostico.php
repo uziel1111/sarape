@@ -10,8 +10,9 @@
     </div>
 
    <textarea class="form-control" name="in_diag" id="in_diag" rows="18" required><?=$diagnostico?></textarea>
-<button class="btn btn-primary my-1  float-right" id="btn_guardar_diagnostico_pemc">Grabar</button>
-</form>
+   <button class="btn btn-primary my-1  float-right" id="btn_guardar_diagnostico_pemc">Grabar</button>
+  </form>
+  <a href="<?= base_url('Pemc/ver_reporte_diagnostico_xidpemc/').$idpemc ?>" target="_blank"><button class="btn btn-primary">Imprime Diagnóstico</button></a>
 </div>
 <script type="text/javascript">
 $(function() {
