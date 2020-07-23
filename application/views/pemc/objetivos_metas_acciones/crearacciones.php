@@ -59,7 +59,11 @@
 				</td>
 			    <td><input type="date" id="txt_finicio_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['finicio']?>"></td>
 			    <td><input type="date" id="txt_ffin_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['ffin']?>"></td>
-			    <td><button class="btn btn-info" onclick="Objetivos.valida_campos_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )">Guardar</button></td>
+			    <td>
+			    	<button class="btn btn-info" onclick="Objetivos.valida_campos_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )">Guardar</button>
+			    	<br>
+			    	<button class="btn btn-danger" onclick="Objetivos.elimina_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )">Eliminar</button>
+			    </td>
 			    </tr>
 		    	<?php endforeach ?>
 		    	<?php endif ?>

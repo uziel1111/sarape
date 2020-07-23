@@ -272,6 +272,27 @@ var Objetivos = {
   	}
   },
 
+  elimina_accion: (idaccion, idobjetivo) =>{
+  	swal({
+      title: '¿Estás seguro de eliminar este objetivo?',
+      text: "Se eliminará las metas, comentarios, evidencias, seguimientos y evaluaciones asignadas a el mismo, una vez eliminado no se podrá recuperar",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        Objetivos.delete_accion(idaccion, idobjetivo);
+      }
+    })
+  },
+
+  delete_accion: (idaccion, idobjetivo) =>{
+  	
+  },
+
   valida_fecha: (inicio, fin) =>{
   	let finicio = new Date(inicio);
   	let ffin = new Date(fin);
