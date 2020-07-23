@@ -234,4 +234,15 @@ function es_fin_ciclo_actual(){
    }
 }
 
+function esta_cerrado_ciclo_actual($idpemc){
+  // echo "<pre>";print_r($fecha);die();
+   $str_query = "SELECT idpemc FROM r_pemc_cierre WHERE idpemc={$idpemc} AND ciclo_escolar="."'".$this->trae_ciclo_actual()."'";
+   if ($this->pemc_db->query($str_query)->row('idpemc')=='') {
+     return false;
+   }
+   else {
+     return true;
+   }
+}
+
 }// Rutamejora_model

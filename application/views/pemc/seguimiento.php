@@ -62,16 +62,19 @@
                               <label>Avance actual:</label> <output name="ageOutputName<?=$value['idaccion']?>" id="ageOutputId<?=$value['idaccion']?>"><?=($value['avance']=='')?0:$value['avance'] ?></output><label>%</label>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col-12">
-                              <input type="range" onchange="Seguimiento_pemc.guarda_avance(this, this.value,<?=$value['idaccion']?>,<?=($value['avance']=='')?0:$value['avance']?>, ageOutputId<?=$value['idaccion']?>)" class="form-control-range" name="ageInputName<?=$value['idaccion']?>" id="ageInputId<?=$value['idaccion']?>" max="100" min="0" step="5" value="<?=($value['avance']=='')?0:$value['avance'] ?>" oninput="ageOutputId<?=$value['idaccion']?>.value = ageInputId<?=$value['idaccion']?>.value">
+                          <?php if ((!$esta_cerrado_ciclo)): ?>
+                            <div class="row">
+                              <div class="col-12">
+                                <input type="range" onchange="Seguimiento_pemc.guarda_avance(this, this.value,<?=$value['idaccion']?>,<?=($value['avance']=='')?0:$value['avance']?>, ageOutputId<?=$value['idaccion']?>)" class="form-control-range" name="ageInputName<?=$value['idaccion']?>" id="ageInputId<?=$value['idaccion']?>" max="100" min="0" step="5" value="<?=($value['avance']=='')?0:$value['avance'] ?>" oninput="ageOutputId<?=$value['idaccion']?>.value = ageInputId<?=$value['idaccion']?>.value">
+                              </div>
                             </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-4 text-left">0%</div>
-                            <div class="col-4 text-center">50%</div>
-                            <div class="col-4 text-right">100%</div>
-                          </div>
+                            <div class="row">
+                              <div class="col-4 text-left">0%</div>
+                              <div class="col-4 text-center">50%</div>
+                              <div class="col-4 text-right">100%</div>
+                            </div>
+                          <?php endif; ?>
+
                           <br>
                           <div class="row">
                             <div class="col  text-center">

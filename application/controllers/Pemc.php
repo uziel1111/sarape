@@ -181,7 +181,9 @@ class Pemc extends CI_Controller {
 		$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
 		$es_inicio = $this->Pemc_model->es_inicio_ciclo_actual();
 		// echo "<pre>";print_r($es_inicio);die();
-		$data = array('diagnostico' => $diagnostico, 'idpemc' => $datos_sesion['idpemc'], 'es_inicio' => $es_inicio);
+		$esta_cerrado_ciclo = $this->Pemc_model->esta_cerrado_ciclo_actual($datos_sesion['idpemc']);
+
+		$data = array('diagnostico' => $diagnostico, 'idpemc' => $datos_sesion['idpemc'], 'es_inicio' => $es_inicio, 'esta_cerrado_ciclo' => $esta_cerrado_ciclo);
 		$str_vista = $this->load->view("pemc/diagnostico", $data, TRUE);
 		$response = array('str_vista' => $str_vista);
 		Utilerias::enviaDataJson(200, $response, $this);
@@ -205,7 +207,8 @@ class Pemc extends CI_Controller {
 
 		$objetivos = $this->Objetivo_model->get_objetivos_x_idpemc($datos_sesion['idpemc']);
 		$data['objetivos'] = $objetivos;
-
+		$esta_cerrado_ciclo = $this->Pemc_model->esta_cerrado_ciclo_actual($datos_sesion['idpemc']);
+		$data['esta_cerrado_ciclo'] = $esta_cerrado_ciclo;
 		$str_vista = $this->load->view("pemc/objetivos_metas_acciones", $data, TRUE);
 		$response = array('str_vista' => $str_vista);
 		Utilerias::enviaDataJson(200, $response, $this);
@@ -226,6 +229,8 @@ class Pemc extends CI_Controller {
 			}
 			// echo "<pre>";print_r($seguimiento);die();
 			$data = array('seguimiento' => $seguimiento);
+			$esta_cerrado_ciclo = $this->Pemc_model->esta_cerrado_ciclo_actual($datos_sesion['idpemc']);
+			$data['esta_cerrado_ciclo'] = $esta_cerrado_ciclo;
 			// echo "<pre>";print_r($data);die();
 			$str_vista = $this->load->view("pemc/seguimiento", $data, TRUE);
 			$response = array('str_vista' => $str_vista);
@@ -270,7 +275,10 @@ class Pemc extends CI_Controller {
 			$evaluaciones = $this->Pemc_model->obtener_evaluaciones_xidpemc($datos_sesion['idpemc']);
 			// echo "<pre>";print_r($evaluacion);die();
 			$es_fin = $this->Pemc_model->es_fin_ciclo_actual();
+
 			$data = array('evaluaciones' => $evaluaciones,'evaluacion' => $evaluacion, "idpemc" => $idpemc, "es_fin" => $es_fin);
+			$esta_cerrado_ciclo = $this->Pemc_model->esta_cerrado_ciclo_actual($datos_sesion['idpemc']);
+			$data['esta_cerrado_ciclo'] = $esta_cerrado_ciclo;
 			// echo "<pre>";print_r($data);die();
 			$str_vista = $this->load->view("pemc/evaluacion", $data, TRUE);
 			$response = array('str_vista' => $str_vista);
