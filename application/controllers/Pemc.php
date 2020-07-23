@@ -483,13 +483,13 @@ class Pemc extends CI_Controller {
 
 		public function guarda_evaluacion(){
 			$datos_sesion = Utilerias::get_cct_sesion($this);
-			$evaluacion = mb_strtoupper($this->input->post('in_eval'));
+			$evaluacion = $this->input->post('in_eval');
 			// date_default_timezone_set('America/Mexico_City');
 			// $hoy = date("Y-m-d_H_i_s");
 			// $path_eval = "assets/pdf/pemc_eval/".$datos_sesion['idpemc']."_".$hoy.".pdf";
 			// $this->ver_reporte_xidpemc($datos_sesion['idpemc'],$path_eval);
 			// echo "<pre>";print_r($evaluacion);die();
-			$estatus = $this->Pemc_model->guarda_evaluacion(strip_tags($evaluacion),$datos_sesion['idpemc']);
+			$estatus = $this->Pemc_model->guarda_evaluacion($evaluacion,$datos_sesion['idpemc']);
 			$response = array('estatus' => $estatus);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;

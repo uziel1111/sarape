@@ -20,6 +20,15 @@ $("#fr_evaluacion").validate({
          Evaluacion_pemc.evaluacio_pemc();
       }
     });
+$('#in_eval').trumbowyg({
+   lang: 'es',
+   btns: Utiles.get_botones_trumbowyg(),
+   plugins: {
+     colors: Utiles.get_colores_trumbowyg(),
+   },
+   removeformatPasted: true,
+   autogrow: true
+ });
 });
 
 $("#btn_guardar_evaluacion_pemc").click(function(e){
