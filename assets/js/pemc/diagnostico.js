@@ -20,12 +20,7 @@ $("#fr_diagnostico").validate({
          Diagnostico_pemc.guarda_formulario_diagnostico();
       }
     });
-$.noConflict();
-	$('#in_diag').trumbowyg({
-	  lang: 'es',
-	    // removeformatPasted: true,
-	    autogrow: true
-	});
+	
 });
 
 $("#btn_guardar_diagnostico_pemc").click(function(e){

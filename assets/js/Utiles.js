@@ -1,6 +1,6 @@
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-});
+// $(function () {
+//   $('[data-toggle="tooltip"]').tooltip();
+// });
 
 var Utiles = {
   path_docs : "https://www.sarape.gob.mx/assets/docs/",
@@ -10,6 +10,74 @@ var Utiles = {
     $("#"+idModal +" .modal-body").empty();
     $("#"+idModal +" .modal-body").html(dom);
     $("#"+idModal).modal("show");
+  },
+
+  get_colores_trumbowyg : () => {
+
+    /*var colorLabels = {
+    '#000': 'Negro',
+    '#555': 'Gris',
+    '#008F39': 'Verde',
+    '#FF0000': 'Rojo',
+    '#FFFF00': 'Amarillo',
+    '#FF8000': 'Naranja',
+    '#0000FF': 'Azul',
+    '#ff1493': 'Rosado',
+  }; */
+
+    let colorLabels = {
+    '#000': ' ',
+    '#555': ' ',
+    '#008F39': ' ',
+    '#FF0000': ' ',
+    '#FFFF00': ' ',
+    '#FF8000': ' ',
+    '#0000FF': ' ',
+    '#ff1493': ' ',
+    };
+
+    $.each(colorLabels, function(colorHexCode, colorLabel) {
+        $.trumbowyg.langs.en[colorHexCode] = colorLabel;
+    })
+
+
+    return {
+        foreColorList: [
+          '000',
+          '555',
+          '008F39',
+          'FF0000',
+          'FFFF00',
+          'FF8000',
+          '0000FF',
+          'ff1493'
+        ],
+        backColorList: [
+          '000',
+          '555',
+          '008F39',
+          'FF0000',
+          'FFFF00',
+          'FF8000',
+          '0000FF',
+          'ff1493'
+        ]
+    };
+  },
+
+  get_botones_trumbowyg : () => {
+    return  [
+              ['undo', 'redo'], // Only supported in Blink browsers
+              ['formatting'],
+              ['foreColor', 'backColor'],
+              ['strong', 'em', 'del'],
+              ['superscript', 'subscript'],
+              ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+              ['unorderedList', 'orderedList'],
+              ['horizontalRule'],
+              ['removeformat'],
+              ['fullscreen']
+            ];
   }
 
 };
