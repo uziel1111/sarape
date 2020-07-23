@@ -273,12 +273,14 @@ class Pemc extends CI_Controller {
 			// }
 			$evaluacion = $this->Pemc_model->obtener_evaluacion_xidpemc($datos_sesion['idpemc']);
 			$evaluaciones = $this->Pemc_model->obtener_evaluaciones_xidpemc($datos_sesion['idpemc']);
-			// echo "<pre>";print_r($evaluacion);die();
+			// echo "<pre>";print_r($datos_sesion);die();
 			$es_fin = $this->Pemc_model->es_fin_ciclo_actual();
 
 			$data = array('evaluaciones' => $evaluaciones,'evaluacion' => $evaluacion, "idpemc" => $idpemc, "es_fin" => $es_fin);
 			$esta_cerrado_ciclo = $this->Pemc_model->esta_cerrado_ciclo_actual($datos_sesion['idpemc']);
 			$data['esta_cerrado_ciclo'] = $esta_cerrado_ciclo;
+			$data['cve_centro'] = $datos_sesion['cve_centro'];
+			$data['id_turno_single'] = $datos_sesion['id_turno_single'];
 			// echo "<pre>";print_r($data);die();
 			$str_vista = $this->load->view("pemc/evaluacion", $data, TRUE);
 			$response = array('str_vista' => $str_vista);

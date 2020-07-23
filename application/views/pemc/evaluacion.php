@@ -47,6 +47,11 @@
             </tr>
           </thead>
           <tbody>
+            <tr>
+            <td class="text-center">2020-07-22</td>
+            <td class="text-center">2019-2020</td>
+            <td class="text-center"><a  href="<?= base_url("pemcv1_masivos/".$cve_centro."_".$id_turno_single.".pdf") ?>" target="_blank"><button type="button" class="btn btn-info">Ver reporte</button></a></td>
+            </tr>
 
               <?php foreach ($evaluaciones as $key => $value): ?>
                 <tr>

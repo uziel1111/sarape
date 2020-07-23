@@ -18,7 +18,7 @@ class Reporte_pemcv1_masivo extends CI_Controller {
 	public function Reporte_PEMC(){
 
 			$ccts = $this->Reportepdf_model->get_esc_masivas();
-			// echo "<pre>";print_r($ccts);die();
+			echo "<pre>";print_r();die();
 			foreach ($ccts as $key => $cct) {
 				echo "<pre>";print_r($cct['cct']."__".$key);
 				$cve_centro = $cct['cct'];
