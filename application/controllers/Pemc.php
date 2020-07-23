@@ -179,7 +179,9 @@ class Pemc extends CI_Controller {
 	public function obtiene_vista_diagnostico(){
 		$datos_sesion = Utilerias::get_cct_sesion($this);
 		$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
-		$data = array('diagnostico' => $diagnostico, 'idpemc' => $datos_sesion['idpemc']);
+		$es_inicio = $this->Pemc_model->es_inicio_ciclo_actual();
+		// echo "<pre>";print_r($es_inicio);die();
+		$data = array('diagnostico' => $diagnostico, 'idpemc' => $datos_sesion['idpemc'], 'es_inicio' => $es_inicio);
 		$str_vista = $this->load->view("pemc/diagnostico", $data, TRUE);
 		$response = array('str_vista' => $str_vista);
 		Utilerias::enviaDataJson(200, $response, $this);
@@ -264,7 +266,8 @@ class Pemc extends CI_Controller {
 			$evaluacion = $this->Pemc_model->obtener_evaluacion_xidpemc($datos_sesion['idpemc']);
 			$evaluaciones = $this->Pemc_model->obtener_evaluaciones_xidpemc($datos_sesion['idpemc']);
 			// echo "<pre>";print_r($evaluacion);die();
-			$data = array('evaluaciones' => $evaluaciones,'evaluacion' => $evaluacion, "idpemc" => $idpemc);
+			$es_fin = $this->Pemc_model->es_fin_ciclo_actual();
+			$data = array('evaluaciones' => $evaluaciones,'evaluacion' => $evaluacion, "idpemc" => $idpemc, "es_fin" => $es_fin);
 			// echo "<pre>";print_r($data);die();
 			$str_vista = $this->load->view("pemc/evaluacion", $data, TRUE);
 			$response = array('str_vista' => $str_vista);
@@ -285,7 +288,7 @@ class Pemc extends CI_Controller {
 				$mes_i = $arr_aux[1];
 				$dia_i = $arr_aux[2];
 				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
-				$ciclo =  Utilerias::trae_ciclo_actual();
+				$ciclo =  $this->Pemc_model->trae_ciclo_actual();
 				$ciclo = "CICLO: ".$ciclo;
 				$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
 				$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo);
@@ -482,8 +485,8 @@ class Pemc extends CI_Controller {
 			$datos_sesion = Utilerias::get_cct_sesion($this);
 			date_default_timezone_set('America/Mexico_City');
 			$hoy = date("Y-m-d_H_i_s");
-			if(file_exists("assets/pdf/pemc_eval/".$datos_sesion['idpemc'])) {
-				$files = glob("assets/pdf/pemc_eval/".$datos_sesion['idpemc']."/*"); //obtenemos todos los nombres de los ficheros
+			if(file_exists("assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$datos_sesion['idpemc'])) {
+				$files = glob("assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$datos_sesion['idpemc']."/*"); //obtenemos todos los nombres de los ficheros
 				foreach($files as $file){
 				    if(is_file($file))
 				    unlink($file); //elimino el fichero
@@ -492,10 +495,10 @@ class Pemc extends CI_Controller {
 			    // mkdir("assets/pdf/pemc_eval/".$datos_sesion['idpemc'], 7777);
 			}
 			else {
-				mkdir("assets/pdf/pemc_eval/".$datos_sesion['idpemc'], 7777);
+				mkdir("assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$datos_sesion['idpemc'], 7777,true);
 			}
 
-			$path_eval = "assets/pdf/pemc_eval/".$datos_sesion['idpemc']."/_".$hoy.".pdf";
+			$path_eval = "assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$datos_sesion['idpemc']."/_".$hoy.".pdf";
 
 			$this->ver_reporte_xidpemc($datos_sesion['idpemc'],$path_eval);
 			// echo "<pre>";print_r($evaluacion);die();
@@ -569,7 +572,7 @@ class Pemc extends CI_Controller {
 				$mes_i = $arr_aux[1];
 				$dia_i = $arr_aux[2];
 				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
-				$ciclo =  Utilerias::trae_ciclo_actual();
+				$ciclo =  $this->Pemc_model->trae_ciclo_actual();
 				$ciclo = "CICLO: ".$ciclo;
 				$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
 				$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo);

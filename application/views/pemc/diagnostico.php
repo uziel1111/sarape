@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="form-group" name="fr_diagnostico" id="fr_diagnostico">
+  <form class="form-group" name="<?=(($es_inicio)?'fr_diagnostico':'')?>" id="<?=(($es_inicio)?'fr_diagnostico':'')?>">
     <div class="row">
       <div class="col-10">
         <label class="my-1 mr-2" for="in_diag">Redacte su diagnóstico:</label>
@@ -9,8 +9,11 @@
 			</div>
     </div>
 
-   <textarea class="form-control" name="in_diag" id="in_diag" rows="18" required><?=$diagnostico?></textarea>
-   <button class="btn btn-primary my-1  float-right" id="btn_guardar_diagnostico_pemc">Grabar</button>
+   <textarea class="form-control" name="in_diag" id="in_diag" rows="18" required <?=(($es_inicio)?'':'disabled')?>><?=$diagnostico?></textarea>
+   <?php if ($es_inicio): ?>
+     <button class="btn btn-primary my-1  float-right" id="btn_guardar_diagnostico_pemc">Grabar</button>
+   <?php endif; ?>
+
   </form>
   <a href="<?= base_url('Pemc/ver_reporte_diagnostico_xidpemc/').$idpemc ?>" target="_blank"><button class="btn btn-primary">Imprime Diagnóstico</button></a>
 </div>

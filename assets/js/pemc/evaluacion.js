@@ -17,7 +17,7 @@ $("#fr_evaluacion").validate({
          },
       },
       submitHandler: function(form) {
-         Diagnostico_pemc.guarda_formulario_diagnostico();
+         Evaluacion_pemc.evaluacio_pemc();
       }
     });
 });
@@ -56,7 +56,7 @@ $("#btn_guardar_cierre_pemc").click(function(e){
 	 cancelButtonText: 'Cancelar'
  }).then(function(result){
 	 if (result.value) {
-		 Diagnostico_pemc.guarda_cierre();
+		 Evaluacion_pemc.guarda_cierre();
 	 }
 	 else {
 
@@ -65,8 +65,8 @@ $("#btn_guardar_cierre_pemc").click(function(e){
 
 });
 
-var Diagnostico_pemc = {
-		Diagnostico_pemc: () => {
+var Evaluacion_pemc = {
+		evaluacio_pemc: () => {
 	   var form = document.getElementById("fr_evaluacion");
 	   fd = new FormData(form);
 		 ruta = base_url+"Pemc/guarda_evaluacion";

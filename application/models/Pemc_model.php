@@ -154,7 +154,7 @@ function guarda_evaluacion($evaluacion, $idpemc){
 
 function guarda_cierre($idpemc,$path_eval){
   $status=false;
-  $str_query = "SELECT idpemc FROM r_pemc_cierre WHERE idpemc = {$idpemc} AND ciclo_escolar = "."'".Utilerias::trae_ciclo_actual()."'";
+  $str_query = "SELECT idpemc FROM r_pemc_cierre WHERE idpemc = {$idpemc} AND ciclo_escolar = "."'". $this->trae_ciclo_actual()."'";
   $idpemc_rtn = $this->pemc_db->query($str_query)->row('idpemc');
   date_default_timezone_set('America/Monterrey');
   setlocale(LC_TIME, 'es_MX.UTF-8');
@@ -164,7 +164,7 @@ function guarda_cierre($idpemc,$path_eval){
 		$data_req = array(
 			'idpemc' =>$idpemc,
       'url_reporte' =>$path_eval,
-			'ciclo_escolar' =>Utilerias::trae_ciclo_actual(),
+			'ciclo_escolar' => $this->trae_ciclo_actual(),
 			'fcreacion' =>$fecha
 		);
       $status = $this->pemc_db->insert('r_pemc_cierre', $data_req);
@@ -173,7 +173,7 @@ function guarda_cierre($idpemc,$path_eval){
     $this->pemc_db->set('url_reporte', $path_eval);
     $this->pemc_db->set('fcreacion', $fecha);
     $this->pemc_db->where('idpemc', $idpemc);
-    $this->pemc_db->where('ciclo_escolar', Utilerias::trae_ciclo_actual());
+    $this->pemc_db->where('ciclo_escolar', $this->trae_ciclo_actual());
     $status = $this->pemc_db->update('r_pemc_cierre');
   }
   return $status;
@@ -190,6 +190,48 @@ FROM r_pemc_cierre WHERE idpemc={$idpemc}";
 function obtener_evaluacion_xidpemc($idpemc){
  $str_query = "SELECT evaluacion FROM r_pemc_evaluacion WHERE idpemc={$idpemc}";
  return $this->pemc_db->query($str_query)->row('evaluacion');
+}
+
+function trae_ciclo_actual(){
+ $str_query = "SELECT descr as ciclo_escolar FROM c_pemc_ciclo WHERE estatus=1";
+ return $this->pemc_db->query($str_query)->row('ciclo_escolar');
+}
+
+function es_inicio_ciclo_actual(){
+  date_default_timezone_set('America/Monterrey');
+  setlocale(LC_TIME, 'es_MX.UTF-8');
+  $fecha = date("Y-m-d");
+  // echo "<pre>";print_r($fecha);die();
+   $str_query = "SELECT
+   descr as ciclo_escolar
+   FROM c_pemc_ciclo
+   WHERE estatus=1
+   AND ('{$fecha}' BETWEEN f_abre_inicio AND f_cierra_inicio)";
+   if ($this->pemc_db->query($str_query)->row('ciclo_escolar')=='') {
+     return false;
+   }
+   else {
+     return true;
+   }
+
+}
+
+function es_fin_ciclo_actual(){
+  date_default_timezone_set('America/Monterrey');
+  setlocale(LC_TIME, 'es_MX.UTF-8');
+  $fecha = date("Y-m-d");
+  // echo "<pre>";print_r($fecha);die();
+   $str_query = "SELECT
+   descr as ciclo_escolar
+   FROM c_pemc_ciclo
+   WHERE estatus=1
+   AND ('{$fecha}' BETWEEN f_abre_fin AND f_cierra_fin)";
+   if ($this->pemc_db->query($str_query)->row('ciclo_escolar')=='') {
+     return false;
+   }
+   else {
+     return true;
+   }
 }
 
 }// Rutamejora_model
