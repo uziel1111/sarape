@@ -129,27 +129,67 @@ WHERE acc.idaccion={$idaccion}";
  return $this->pemc_db->query($str_query)->result_array();
 }
 
-function guarda_evaluacion($evaluacion, $idpemc,$path_eval){
+function guarda_evaluacion($evaluacion, $idpemc){
   $status=false;
+  $str_query = "SELECT idpemc FROM r_pemc_evaluacion WHERE idpemc = {$idpemc}";
+  $idpemc_rtn = $this->pemc_db->query($str_query)->row('idpemc');
+  if ($idpemc_rtn=='') {
     date_default_timezone_set('America/Monterrey');
 		setlocale(LC_TIME, 'es_MX.UTF-8');
 		$fecha = date("Y-m-d H:i:s");
 		$data_req = array(
 			'idpemc' =>$idpemc,
 			'evaluacion' =>$evaluacion,
-      'url_reporte' =>$path_eval,
-      'ciclo_escolar' =>Utilerias::trae_ciclo_actual(),
 			'fcreacion' =>$fecha
 		);
       $status = $this->pemc_db->insert('r_pemc_evaluacion', $data_req);
+  }
+  else {
+    $this->pemc_db->set('evaluacion', $evaluacion);
+    $this->pemc_db->where('idpemc', $idpemc);
+    $status = $this->pemc_db->update('r_pemc_evaluacion');
+  }
   return $status;
 }
 
+function guarda_cierre($idpemc,$path_eval){
+  $status=false;
+  $str_query = "SELECT idpemc FROM r_pemc_cierre WHERE idpemc = {$idpemc} AND ciclo_escolar = "."'".Utilerias::trae_ciclo_actual()."'";
+  $idpemc_rtn = $this->pemc_db->query($str_query)->row('idpemc');
+  date_default_timezone_set('America/Monterrey');
+  setlocale(LC_TIME, 'es_MX.UTF-8');
+  $fecha = date("Y-m-d H:i:s");
+  if ($idpemc_rtn=='') {
+
+		$data_req = array(
+			'idpemc' =>$idpemc,
+      'url_reporte' =>$path_eval,
+			'ciclo_escolar' =>Utilerias::trae_ciclo_actual(),
+			'fcreacion' =>$fecha
+		);
+      $status = $this->pemc_db->insert('r_pemc_cierre', $data_req);
+  }
+  else {
+    $this->pemc_db->set('url_reporte', $path_eval);
+    $this->pemc_db->set('fcreacion', $fecha);
+    $this->pemc_db->where('idpemc', $idpemc);
+    $this->pemc_db->where('ciclo_escolar', Utilerias::trae_ciclo_actual());
+    $status = $this->pemc_db->update('r_pemc_cierre');
+  }
+  return $status;
+}
+
+
 function obtener_evaluaciones_xidpemc($idpemc){
  $str_query = "SELECT
-idpemc, evaluacion, url_reporte, ciclo_escolar, fcreacion
-FROM r_pemc_evaluacion WHERE idpemc={$idpemc}";
+idpemc, url_reporte, ciclo_escolar, fcreacion
+FROM r_pemc_cierre WHERE idpemc={$idpemc}";
  return $this->pemc_db->query($str_query)->result_array();
+}
+
+function obtener_evaluacion_xidpemc($idpemc){
+ $str_query = "SELECT evaluacion FROM r_pemc_evaluacion WHERE idpemc={$idpemc}";
+ return $this->pemc_db->query($str_query)->row('evaluacion');
 }
 
 }// Rutamejora_model

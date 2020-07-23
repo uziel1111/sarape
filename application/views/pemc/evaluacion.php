@@ -13,7 +13,7 @@
     <div class="container">
       <form class="form-group" name="fr_evaluacion" id="fr_evaluacion">
       <label class="my-1 mr-2" for="in_eval">Redacte su evaluación:</label>
-       <textarea class="form-control" name="in_eval" id="in_eval" rows="10" required></textarea>
+       <textarea class="form-control" name="in_eval" id="in_eval" rows="10" required><?=$evaluacion?></textarea>
     <button class="btn btn-primary my-1  float-right" id="btn_guardar_evaluacion_pemc">Grabar</button>
     </form>
     </div>
@@ -26,7 +26,7 @@
         <h3>Historial de PEMC</h3>
       </div>
       <div class="col-2">
-        <button class="btn btn-primary my-1  float-right" id="#">Cierre ciclo escolar</button>
+        <button class="btn btn-primary my-1  float-right" id="btn_guardar_cierre_pemc">Cierre ciclo escolar</button>
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@
           </thead>
           <tbody>
 
-              <?php foreach ($evaluacion as $key => $value): ?>
+              <?php foreach ($evaluaciones as $key => $value): ?>
                 <tr>
                 <!-- <td class="text-center"><?=$value['evaluacion'];?></td> -->
                 <td class="text-center"><?=$value['fcreacion'];?></td>
