@@ -2,7 +2,7 @@
   <div class="card-header">
     <div class="row">
       <div class="col-10">
-        <a  href="<?= base_url('index.php/Pemc/ver_reporte_xidpemc/').$idpemc ?>" target="_blank"><button type="button" class="btn btn-info">Imprime PEMC</button></a>
+        <a  href="<?= base_url('index.php/Reporte_tcpdf/reporte_pemc/').$idpemc ?>" target="_blank"><button type="button" class="btn btn-info">Imprime PEMC</button></a>
       </div>
       <div class="col-2 text-light text-right">
         <a tabindex="0" class="btn btn-lg btn-dark" role="button" data-toggle="popover" data-trigger="focus" title="Evaluación:" data-content="Implica realizar una revisión crítica, al final del ciclo escolar, sobre el impacto de las acciones implementadas por ámbito."><i class="fa fa-info-circle"></i></a>
