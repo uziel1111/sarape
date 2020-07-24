@@ -88,7 +88,8 @@ class Pemc extends CI_Controller {
 					curl_close($curl);
 					$response = json_decode($result);
 					if($response->procede == 1 && $response->status == 1){
-						$datoscct = $this->Pemc_model->getdatoscct($usuario, $turno)[0];
+						$datoscct = $this->Pemc_model->getdatoscct($usuario, $turno);
+						$datoscct = $datoscct[0];
 						$datoscct['id_turno_single'] = $turno;
 						$idpemc = $this->Pemc_model->obtener_idpemc_xescuela($datoscct['cve_centro'],$turno);
 						$datoscct['idpemc'] = $idpemc;
@@ -510,7 +511,7 @@ class Pemc extends CI_Controller {
 			    // mkdir("assets/pdf/pemc_eval/".$datos_sesion['idpemc'], 7777);
 			}
 			else {
-				mkdir("assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$datos_sesion['idpemc'], 7777,true);
+				mkdir("assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$datos_sesion['idpemc'], 0007,true);
 			}
 
 			$path_eval = "assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$datos_sesion['idpemc']."/_".$hoy.".pdf";
@@ -581,7 +582,7 @@ class Pemc extends CI_Controller {
 				$turno = $datos_sesion['id_turno_single'];
 				$str_cct = "CCT: {$datos_sesion['cve_centro']}";
 				$str_nombre = "ESCUELA: {$datos_sesion['nombre_centro']}";
-				
+
 				$cte = $this->Pemc_model->get_cte();
 				$str_cte = "Consejo técnico escolar: {$cte}";
 
