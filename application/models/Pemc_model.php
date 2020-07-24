@@ -245,4 +245,9 @@ function esta_cerrado_ciclo_actual($idpemc){
    }
 }
 
+function get_cte(){
+  $str_query = "SELECT num_cte FROM c_pemc_cte WHERE NOW()  BETWEEN finicio AND ffin";
+  return $this->pemc_db->query($str_query)->row('num_cte');
+}
+
 }// Rutamejora_model

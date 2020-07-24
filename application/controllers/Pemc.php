@@ -295,6 +295,8 @@ class Pemc extends CI_Controller {
 				$turno = $datos_sesion['id_turno_single'];
 				$str_cct = "CCT: {$datos_sesion['cve_centro']}";
 				$str_nombre = "ESCUELA: {$datos_sesion['nombre_centro']}";
+				$cte = $this->Pemc_model->get_cte();
+				$str_cte = "Consejo técnico escolar: {$cte}";
 				$fecha = date("Y-m-d");
 				$arr_aux = explode("-",$fecha);
 				$anio_i = $arr_aux[0];
@@ -303,8 +305,8 @@ class Pemc extends CI_Controller {
 				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
 				$ciclo =  $this->Pemc_model->trae_ciclo_actual();
 				$ciclo = "CICLO: ".$ciclo;
-				$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
-				$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo);
+				$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo, $str_cte);
+				$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo, $str_cte);
 				$pdf->AliasNbPages();
 				$pdf->AddPage('L','Legal');
 				// $diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
@@ -579,6 +581,10 @@ class Pemc extends CI_Controller {
 				$turno = $datos_sesion['id_turno_single'];
 				$str_cct = "CCT: {$datos_sesion['cve_centro']}";
 				$str_nombre = "ESCUELA: {$datos_sesion['nombre_centro']}";
+				
+				$cte = $this->Pemc_model->get_cte();
+				$str_cte = "Consejo técnico escolar: {$cte}";
+
 				$fecha = date("Y-m-d");
 				$arr_aux = explode("-",$fecha);
 				$anio_i = $arr_aux[0];
@@ -587,8 +593,8 @@ class Pemc extends CI_Controller {
 				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
 				$ciclo =  $this->Pemc_model->trae_ciclo_actual();
 				$ciclo = "CICLO: ".$ciclo;
-				$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo);
-				$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo);
+				$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo, $str_cte);
+				$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo, $str_cte);
 				$pdf->AliasNbPages();
 
 					$pdf->AddPage('L','Legal');

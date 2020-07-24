@@ -18,12 +18,14 @@ class PDF_MC_Table extends FPDF{
   var $cct;
   var $escuela;
   var $ciclo;
+  var $cte;
 //inicializacion de variables de encabezado
-  function SetvarHeader($cct, $escuela, $ciclo)
+  function SetvarHeader($cct, $escuela, $ciclo, $cte)
   {
     $this->cct=$cct;
     $this->escuela=$escuela;
     $this->ciclo=$ciclo;
+    $this->cte=$cte;
   }
   // SetColors
   function SetColors($color)
@@ -291,6 +293,12 @@ class PDF_MC_Table extends FPDF{
       $this->SetFont('Arial','B',16);
       $this->Cell(120);
       $this->Cell(40,10,utf8_decode('Programa Escolar de Mejora Continua (PEMC)'),0,1,'C');
+      $this->SetTextColor(0,0,0);
+      $this->SetFont('Arial','B',14);
+      $this->Cell(120);
+      $this->Cell(40,12,utf8_decode($this->cte),0,1,'C');
+
+      
 }
 
 }
