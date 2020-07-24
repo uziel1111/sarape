@@ -18,7 +18,7 @@ class Reporte_tcpdf extends CI_Controller {
 		$turno = $datos_sesion['id_turno_single'];
 		$str_cct = "CCT: {$datos_sesion['cve_centro']}";
 		$str_nombre = $datos_sesion['nombre_centro'];
-		
+
 		$cte = $this->Pemc_model->get_cte();
 		$str_cte = "Consejo técnico escolar: {$cte}";
 
@@ -248,9 +248,9 @@ EOT;
 
   		$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=57, $html, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 
-			return [
+			return array(
 				'pdf' => $pdf,
 				'contador' => $contador,
-				];
+			);
   }// reporte_alumnos_multiple()
 }

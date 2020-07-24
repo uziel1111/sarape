@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-	
+
 class Objetivos extends CI_Controller
 {
-	
+
 	function __construct()
 	{
 		parent::__construct();
@@ -45,7 +45,7 @@ class Objetivos extends CI_Controller
 		$response = array('str_view' => $str_view);
 		Utilerias::enviaDataJson(200,$response, $this);
 		exit;
-		
+
 	}
 
 	public function save_conf_objetivo(){
@@ -53,9 +53,9 @@ class Objetivos extends CI_Controller
 		// print_r($_POST);
 		// die();
 		$idobjetivo = (int)$this->input->post('idobjetivoupdate');
-		$text_objetivo_c = mb_strtoupper(strip_tags($this->input->post('text_objetivo_c')));
-		$text_meta_c = mb_strtoupper(strip_tags($this->input->post('text_meta_c')));
-		$text_comentariosG_c = mb_strtoupper(strip_tags($this->input->post('text_comentariosG_c')));
+		$text_objetivo_c = (strip_tags($this->input->post('text_objetivo_c')));
+		$text_meta_c = (strip_tags($this->input->post('text_meta_c')));
+		$text_comentariosG_c = (strip_tags($this->input->post('text_comentariosG_c')));
 		$datos_sesion = Utilerias::get_cct_sesion($this);
 		if($idobjetivo != 0){
 			$estatus = $this->Objetivo_model->update_objetivo($datos_sesion['idpemc'], $text_objetivo_c, $text_meta_c, $text_comentariosG_c, $idobjetivo);
@@ -63,7 +63,7 @@ class Objetivos extends CI_Controller
 			$orden = $this->Objetivo_model->get_objetivos_x_idpemc($datos_sesion['idpemc']);
 			$estatus = $this->Objetivo_model->save_objetivo($datos_sesion['idpemc'], $text_objetivo_c, $text_meta_c, $text_comentariosG_c, count($orden));
 		}
-		
+
 		$response = array('estatus' => $estatus);
 		Utilerias::enviaDataJson(200,$response, $this);
 		exit;
@@ -112,7 +112,7 @@ class Objetivos extends CI_Controller
 			case 1:
 				$evidencia = 'url_evidencia_antes';
 				break;
-			
+
 			case 2:
 				$evidencia = 'url_evidencia_despues';
 				break;
@@ -149,7 +149,7 @@ class Objetivos extends CI_Controller
 	}
 
 	private function getPersonal($cct){
-		
+
 		$curl = curl_init();
 		$method = "POST";
 		$url = "http://servicios.seducoahuila.gob.mx/wservice/personal/w_service_personal_by_cct.php";
@@ -182,11 +182,11 @@ class Objetivos extends CI_Controller
 		// die();
 		$idaccion = $this->input->post('idaccion');
 		$idobjetivo = $this->input->post('idobjetivo');
-    	$accion = mb_strtoupper(strip_tags($this->input->post('accion')));
-    	$recurso = mb_strtoupper(strip_tags($this->input->post('recurso')));
+    	$accion = (strip_tags($this->input->post('accion')));
+    	$recurso = (strip_tags($this->input->post('recurso')));
     	$ambitos = $this->input->post('ambitos');
         $responsables = $this->input->post('responsables');
-    	$otro_responsable = mb_strtoupper(strip_tags($this->input->post('otro_responsable')));
+    	$otro_responsable = (strip_tags($this->input->post('otro_responsable')));
     	$finicio = $this->input->post('finicio');
     	$ffin = $this->input->post('ffin');
     	$cad_ambitos = "";
@@ -214,11 +214,11 @@ class Objetivos extends CI_Controller
 
 	public function insert_acciones(){
 		$idobjetivo = $this->input->post('idobjetivo');
-    	$accion = mb_strtoupper(strip_tags($this->input->post('accion')));
-    	$recurso = mb_strtoupper(strip_tags($this->input->post('recurso')));
+    	$accion = (strip_tags($this->input->post('accion')));
+    	$recurso = (strip_tags($this->input->post('recurso')));
     	$ambitos = $this->input->post('ambitos');
         $responsables = $this->input->post('responsables');
-    	$otro_responsable = mb_strtoupper(strip_tags($this->input->post('otro_responsable')));
+    	$otro_responsable = (strip_tags($this->input->post('otro_responsable')));
     	$finicio = $this->input->post('finicio');
     	$ffin = $this->input->post('ffin');
     	$cad_ambitos = "";
@@ -272,7 +272,7 @@ class Objetivos extends CI_Controller
 		$cct = $datos_sesion['cve_centro'];
 		$turno = $datos_sesion['turno_single'];
 		$ruta_imagenes = "pemc/".$cct."/".$turno."/".$idobjetivo;
-		
+
 		if (!file_exists($ruta_imagenes)) {
 		    mkdir($ruta_imagenes, 0777, true);
 		}

@@ -196,7 +196,7 @@ class Pemc extends CI_Controller {
 		// print_r($_POST);
 		// die();
 		$datos_sesion = Utilerias::get_cct_sesion($this);
-		$diagnostico = mb_strtoupper($this->input->post('in_diag'));
+		$diagnostico = $this->input->post('in_diag');
 		$estatus = $this->Pemc_model->guarda_diagnostico($diagnostico,$datos_sesion['idpemc']);
 		$response = array('estatus' => $estatus);
 		Utilerias::enviaDataJson(200, $response, $this);
