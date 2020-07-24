@@ -39,7 +39,8 @@ class Reporte_tcpdf extends CI_Controller {
 			$pdf->AddPage('L', 'Legal');
 			$pdf->SetFont('montserratb', '', 17);
 			$pdf->Cell(0, 60, 'Programa Escolar de Mejora Continua (PEMC)', 0, 1, 'C');
-			$pdf->CreateTextBox('Consejo técnico escolar: 1 ', 95, 13, 10, 70, 14, 'B', 'L');
+			$cte = $this->Pemc_model->get_cte();
+			$pdf->CreateTextBox('Consejo técnico escolar: '.$cte, 95, 13, 10, 70, 14, 'B', 'L');
 			$pdf->SetAutoPageBreak(TRUE, 0);
 			$pdf->SetAutoPageBreak(FALSE, 0);
 			$pdf->Image($file='assets/img/logoreporte.png', $x=7, $y=12, $w=65, $h=12, $type='', $link='', $align='', $resize=true, $dpi=100, $palign='', $ismask=false, $imgmask=false, $border=0, $fitbox=false, $hidden=false, $fitonpage=false);
@@ -60,6 +61,7 @@ class Reporte_tcpdf extends CI_Controller {
 			$pdf->CreateTextBox('Ciclo:', 220,$y,180, 10, 9, 'B', 'L');
 			$pdf->SetFont('montserrat', '', 17);
 			$pdf->CreateTextBox($ciclo, 229,$y,180, 10, 9, '', 'L');
+			$pdf->CreateTextBox('Diagnóstico: ', 0, 18, 10, 70, 14, 'B', 'L');
 			$y2=$pdf->GetY()+6;
 			$pdf->SetFont('montserratb', '', 17);
 			$pdf->SetTextColor(0,0,0);
@@ -98,7 +100,8 @@ class Reporte_tcpdf extends CI_Controller {
 		$pdf->AddPage('L', 'Legal');
 		$pdf->SetFont('montserratb', '', 17);
 		$pdf->Cell(0, 60, 'Programa Escolar de Mejora Continua (PEMC)', 0, 1, 'C');
-		$pdf->CreateTextBox('Consejo técnico escolar: 1 ', 95, 13, 10, 70, 14, 'B', 'L');
+		$cte = $this->Pemc_model->get_cte();
+		$pdf->CreateTextBox('Consejo técnico escolar: '.$cte, 95, 13, 10, 70, 14, 'B', 'L');
 		$pdf->SetAutoPageBreak(TRUE, 0);
 		$pdf->SetAutoPageBreak(FALSE, 0);
 		$pdf->Image($file='assets/img/logoreporte.png', $x=7, $y=12, $w=65, $h=12, $type='', $link='', $align='', $resize=true, $dpi=100, $palign='', $ismask=false, $imgmask=false, $border=0, $fitbox=false, $hidden=false, $fitonpage=false);
@@ -120,11 +123,6 @@ class Reporte_tcpdf extends CI_Controller {
 		$pdf->SetFont('montserrat', '', 17);
 		$pdf->CreateTextBox($ciclo, 229,$y,180, 10, 9, '', 'L');
 		$y2=$pdf->GetY()+6;
-		$pdf->SetFont('montserratb', '', 17);
-		$pdf->SetTextColor(0,0,0);
-		$pdf->SetFont('arialb', '', 8);
-		$str_html= $diagnostico;
-		$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=60, $str_html, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 
 		if ($url_save==null) {
 			$pdf->Output();
@@ -132,28 +130,19 @@ class Reporte_tcpdf extends CI_Controller {
 		else {
 			$pdf->AddPage('L','Legal');
 			$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
-			$pdf->Ln(5);
-			$pdf->SetFont('Arial','B',12);
-			$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-			$pdf->SetFillColor(255);
-			$pdf->SetAligns(array("L"));
-			$pdf->SetLineW(array(0.2));
+			$pdf->SetFont('montserratb', '', 17);
 			$pdf->SetTextColor(0,0,0);
-				$pdf->Row1(array(
-					utf8_decode("Diagnóstico: ".$diagnostico)
-				));
+			$pdf->SetFont('arialb', '', 8);
+			$str_html= $diagnostico;
+			$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=60, $str_html, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 
-				$evaluacion = $this->Pemc_model->obtener_evaluacion_xidpemc($datos_sesion['idpemc']);
-				$pdf->Ln(5);
-				$pdf->SetFont('Arial','B',12);
-				$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-				$pdf->SetFillColor(255);
-				$pdf->SetAligns(array("L"));
-				$pdf->SetLineW(array(0.2));
-				$pdf->SetTextColor(0,0,0);
-					$pdf->Row1(array(
-						utf8_decode("Evaluación: ".$evaluacion)
-					));
+
+			$evaluacion = $this->Pemc_model->obtener_evaluacion_xidpemc($datos_sesion['idpemc']);
+			$pdf->SetFont('montserratb', '', 17);
+			$pdf->SetTextColor(0,0,0);
+			$pdf->SetFont('arialb', '', 8);
+			$str_html= $evaluacion;
+			$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=60, $str_html, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 
 			$pdf->Output($url_save,'F');
 		}
