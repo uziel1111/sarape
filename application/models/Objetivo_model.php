@@ -52,9 +52,9 @@ class Objetivo_model extends CI_Model
     	$data = array(
 			'idpemc' => $idpemc,
 		    'orden' => $norden,
-		    'objetivo' => $objetivo,
-		    'meta' => $meta,
-		    'comentario_general' => $comentarios,
+		    'objetivo' => UPPER($objetivo),
+		    'meta' => UPPER($meta),
+		    'comentario_general' => UPPER($comentarios),
 		    'fcreacion' => date('Y-m-d')
 		);
 		return $this->pemc_db->insert('r_pemc_objetivo', $data);
@@ -62,9 +62,9 @@ class Objetivo_model extends CI_Model
 
     function update_objetivo($idpemc, $text_objetivo_c, $text_meta_c, $text_comentariosG_c, $idobjetivo){
     	$data = array(
-		    'objetivo' => $text_objetivo_c,
-		    'meta' => $text_meta_c,
-		    'comentario_general' => $text_comentariosG_c,
+		    'objetivo' => UPPER($text_objetivo_c),
+		    'meta' => UPPER($text_meta_c),
+		    'comentario_general' => UPPER($text_comentariosG_c),
 		    'fmodificacion' => date('Y-m-d')
 		);
 		$where = array(
@@ -102,7 +102,7 @@ class Objetivo_model extends CI_Model
     	// echo $responsables;
     	// die();
     	$str_query = "UPDATE r_pemc_objetivo_accion 
-					SET accion = ?, recurso = ?, idambitos = ?, responsables= ?, otros_responsables = ?, finicio = ?, ffin = ?, fmodificacion = NOW()
+					SET accion = UPPER(?), recurso = UPPER(?), idambitos = ?, responsables= ?, otros_responsables = UPPER(?), finicio = ?, ffin = ?, fmodificacion = NOW()
 					WHERE idaccion = ? AND idobjetivo = ?";
 		return $this->pemc_db->query($str_query, array($accion, $recurso, $ambitos, $responsables, $otro_responsable, $finicio, $ffin, $idaccion, $idobjetivo));
     }
@@ -119,11 +119,11 @@ class Objetivo_model extends CI_Model
     	$data = array(
 			'idobjetivo' => $idobjetivo,
 		    'orden' => $norden,
-		    'accion' => $accion,
-		    'recurso' => $recurso,
+		    'accion' => UPPER($accion),
+		    'recurso' => UPPER($recurso),
 		    'idambitos' => $cad_ambitos,
 		    'responsables' => $cad_responsables,
-		    'otros_responsables' => $otro_responsable,
+		    'otros_responsables' => UPPER($otro_responsable),
 		    'finicio' => $finicio,
 		    'ffin' => $ffin,
 		    'fcreacion' => date('Y-m-d')
