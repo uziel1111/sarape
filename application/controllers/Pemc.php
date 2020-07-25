@@ -12,7 +12,8 @@ class Pemc extends CI_Controller {
 		$this->load->model('Objetivo_model');
 		$this->load->database();
 		$this->cct = array();
-		$this->load->library('PDF_MC_Table');
+		// $this->load->library('PDF_MC_Table');
+		$this->load->library('My_tcpdf');
 		date_default_timezone_set('America/Mexico_City');
 	}
 
@@ -289,208 +290,13 @@ class Pemc extends CI_Controller {
 			exit;
 		}
 
-		public function ver_reporte_xidpemc($idpemc, $url_save=null){
-			if(Utilerias::haySesionAbiertacct($this)){
-				$datos_sesion = Utilerias::get_cct_sesion($this);
-				$cve_centro = $datos_sesion['cve_centro'];
-				$turno = $datos_sesion['id_turno_single'];
-				$str_cct = "CCT: {$datos_sesion['cve_centro']}";
-				$str_nombre = "ESCUELA: {$datos_sesion['nombre_centro']}";
-				$cte = $this->Pemc_model->get_cte();
-				$str_cte = "Consejo técnico escolar: {$cte}";
-				$fecha = date("Y-m-d");
-				$arr_aux = explode("-",$fecha);
-				$anio_i = $arr_aux[0];
-				$mes_i = $arr_aux[1];
-				$dia_i = $arr_aux[2];
-				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
-				$ciclo =  $this->Pemc_model->trae_ciclo_actual();
-				$ciclo = "CICLO: ".$ciclo;
-				$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo, $str_cte);
-				$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo, $str_cte);
-				$pdf->AliasNbPages();
-				$pdf->AddPage('L','Legal');
-				// $diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
-				// $pdf->Ln(5);
-				// $pdf->SetFont('Arial','B',12);
-				// $pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-				// $pdf->SetFillColor(255);
-				// $pdf->SetAligns(array("L"));
-				// $pdf->SetLineW(array(0.2));
-				// $pdf->SetTextColor(0,0,0);
-				// 	$pdf->Row1(array(
-				// 		utf8_decode("Diagnóstico: ".$diagnostico)
-				// 	));
-				$seguimiento = $this->Pemc_model->obtener_seguimiento_xidpemc($datos_sesion['idpemc']);
-					// echo "<pre>";print_r($seguimiento);die();
-					foreach ($seguimiento as $key => $value) {
-						if ($value['idambitos'] != '') {
-							$seguimiento[$key]['ambitos'] = $this->Pemc_model->obtener_ambitos_xidambitos($value['idambitos']);
-						}
-						else {
-							$seguimiento[$key]['ambitos'] = '';
-						}
-					}
-				$aux_idobjetivo=0;
-				foreach ($seguimiento as $key => $value) {
-					if ($aux_idobjetivo!=$value['idobjetivo']) {
-						$pdf->Ln(2);
-						$pdf->SetFont('Arial','B',9);
-						$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-						$pdf->SetFillColor(255);
-						$pdf->SetAligns(array("L"));
-						$pdf->SetLineW(array(0.2));
-						$pdf->SetTextColor(0,0,0);
-							$pdf->Row1(array(
-								utf8_decode("Objetivo: ".$value['objetivo'])
-							));
-						$pdf->Ln(2);
-						$pdf->SetFont('Arial','',9);
-						$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-						$pdf->SetFillColor(255);
-						$pdf->SetAligns(array("L"));
-						$pdf->SetLineW(array(0.2));
-						$pdf->SetTextColor(0,0,0);
-							$pdf->Row1(array(
-								utf8_decode("meta(s): ".$value['meta'])
-							));
-						$pdf->Ln(2);
-						$pdf->SetFont('Arial','',9);
-						$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-						$pdf->SetFillColor(255);
-						$pdf->SetAligns(array("L"));
-						$pdf->SetLineW(array(0.2));
-						$pdf->SetTextColor(0,0,0);
-							$pdf->Row1(array(
-								utf8_decode("Comentario general: ".$value['comentario_general'])
-							));
-						$pdf->Ln(2);
-						$pdf->SetFont('Arial','B',9);
-						$pdf->SetWidths(array(336)); // ancho de primer columna, segunda, tercera
-						$pdf->SetFillColor(255);
-						$pdf->SetAligns(array("C"));
-						$pdf->SetLineW(array(0.2));
-						$pdf->SetTextColor(0,0,0);
-							$pdf->Row1(array(
-								utf8_decode("____________________________________________________________________________________________________________________________________________________________________________________________")
-							));
-					}
-					$pdf->Ln(2);
-					$pdf->SetFont('Arial','B',9);
-					$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-					$pdf->SetFillColor(255);
-					$pdf->SetAligns(array("L"));
-					$pdf->SetLineW(array(0.2));
-					$pdf->SetTextColor(0,0,0);
-						$pdf->Row1(array(
-							utf8_decode("Acción: ".$value['accion'])
-						));
-					$pdf->Ln(2);
-					$pdf->SetFont('Arial','',9);
-					$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-					$pdf->SetFillColor(255);
-					$pdf->SetAligns(array("L"));
-					$pdf->SetLineW(array(0.2));
-					$pdf->SetTextColor(0,0,0);
-						$pdf->Row1(array(
-							utf8_decode("Ámbito(s): ".$value['ambitos'])
-						));
-					$pdf->Ln(2);
-					$pdf->SetFont('Arial','',9);
-					$pdf->SetWidths(array(400)); // ancho de primer columna, segunda, tercera
-					$pdf->SetFillColor(255);
-					$pdf->SetAligns(array("c"));
-					$pdf->SetLineW(array(0.2));
-					$pdf->SetTextColor(0,0,0);
-					$pdf->Row1(array(
-						utf8_decode("Fecha inicio: ".$value['finicio']."                                                                                                             "."Fecha fin: ".$value['ffin'] )
-					));
-					$pdf->Ln(2);
-					$pdf->SetFont('Arial','',9);
-					$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-					$pdf->SetFillColor(255);
-					$pdf->SetAligns(array("L"));
-					$pdf->SetLineW(array(0.2));
-					$pdf->SetTextColor(0,0,0);
-					// echo "<pre>";print_r($this->get_perosonal_mostrar($datos_sesion['cve_centro'],$value['responsables']));die();
-						$pdf->Row1(array(
-							utf8_decode("Responsable(s): ".(($value['otros_responsables']=='')?'':$value['otros_responsables'].', ').(($this->get_perosonal_mostrar($datos_sesion['cve_centro'],$value['responsables'])=='')?'': substr($this->get_perosonal_mostrar($datos_sesion['cve_centro'],$value['responsables']), 0, -2)))
-						));
-						$arr_avances = $this->Pemc_model->	ver_avance($value['idaccion']);
-						$pdf->Ln(6);
-						$pdf->SetFont('Arial','B',11);
-						$pdf->SetWidths(array(110,10,60,60)); // ancho de primer columna, segunda, tercera y cuarta
-						$pdf->SetFillColor(255,255,255);
-						$pdf->SetAligns(array("L","L"));
-						$pdf->SetLineW(array(0.2,0.2));
-						$pdf->SetTextColor(0,0,0);
-						$pdf->Row1(array(
-							"",
-							utf8_decode("#"),
-							utf8_decode("Fecha"),
-							utf8_decode("Porcentaje de avance"),
-						));
-						$pdf->SetFont('Arial','',10);
-						$pdf->SetWidths(array(110,10,60,60));
-						$pdf->SetAligns(array("L","L","L"));
-						$pdf->SetColors(array(FALSE,FALSE,FALSE));
-						$pdf->SetLineW(array(0.09,0.09,0.09));
-						$cont=0;
-						foreach($arr_avances as $item){
-							$cont++;
-							$pdf->Row1(array(
-								"",
-								$cont,
-								utf8_decode($item["fcreacion"]),
-								utf8_decode($item["avance"])."%"
-							));
-						}
-						$pdf->Ln();
-						// echo "<pre>";print_r($arr_avances);die();
-						$aux_idobjetivo=$value['idobjetivo'];
-				}
-				if ($url_save==null) {
-					$pdf->Output();
-				}
-				else {
-					$pdf->AddPage('L','Legal');
-					$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
-					$pdf->Ln(5);
-					$pdf->SetFont('Arial','B',12);
-					$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-					$pdf->SetFillColor(255);
-					$pdf->SetAligns(array("L"));
-					$pdf->SetLineW(array(0.2));
-					$pdf->SetTextColor(0,0,0);
-						$pdf->Row1(array(
-							utf8_decode("Diagnóstico: ".$diagnostico)
-						));
-
-						$evaluacion = $this->Pemc_model->obtener_evaluacion_xidpemc($datos_sesion['idpemc']);
-						$pdf->Ln(5);
-						$pdf->SetFont('Arial','B',12);
-						$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-						$pdf->SetFillColor(255);
-						$pdf->SetAligns(array("L"));
-						$pdf->SetLineW(array(0.2));
-						$pdf->SetTextColor(0,0,0);
-							$pdf->Row1(array(
-								utf8_decode("Evaluación: ".$evaluacion)
-							));
-
-					$pdf->Output($url_save,'F');
-				}
-
-			}
-		}
-
 		public function guarda_evaluacion(){
 			$datos_sesion = Utilerias::get_cct_sesion($this);
 			$evaluacion = $this->input->post('in_eval');
 			// date_default_timezone_set('America/Mexico_City');
 			// $hoy = date("Y-m-d_H_i_s");
 			// $path_eval = "assets/pdf/pemc_eval/".$datos_sesion['idpemc']."_".$hoy.".pdf";
-			// $this->ver_reporte_xidpemc($datos_sesion['idpemc'],$path_eval);
+			// $this->ver_te_xidpemc($datos_sesion['idpemc'],$path_eval);
 			// echo "<pre>";print_r($evaluacion);die();
 			$estatus = $this->Pemc_model->guarda_evaluacion($evaluacion,$datos_sesion['idpemc']);
 			$response = array('estatus' => $estatus);
@@ -516,7 +322,7 @@ class Pemc extends CI_Controller {
 
 			$path_eval = "assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$datos_sesion['idpemc']."/_".$hoy.".pdf";
 
-			$this->ver_reporte_xidpemc($datos_sesion['idpemc'],$path_eval);
+			$this->reporte_pemc($datos_sesion['idpemc'],$path_eval);
 			// echo "<pre>";print_r($evaluacion);die();
 			$estatus = $this->Pemc_model->guarda_cierre($datos_sesion['idpemc'],$path_eval);
 			$response = array('estatus' => $estatus);
@@ -524,96 +330,347 @@ class Pemc extends CI_Controller {
 			exit;
 		}
 
+		function reporte_detalle($idpemc){
+			if(Utilerias::haySesionAbiertacct($this)){
+			$datos_sesion = Utilerias::get_cct_sesion($this);
 
 
+			$pdf = new My_tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
-		public function get_perosonal_mostrar($cct, $ids_responsables){
+			$pdf->SetCreator(PDF_CREATOR);
+			$pdf->SetAuthor('JL');
+			$pdf->SetTitle('Diagnostico');
+			$pdf->SetSubject('');
+			$pdf->SetKeywords('');
+			$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+			$pdf->CreateTextBox('Diagnóstico: ', 0, 18, 10, 70, 14, 'B', 'L');
+			$y2=$pdf->GetY()+6;
+			$pdf->SetFont('montserratb', '', 17);
+			$pdf->SetTextColor(0,0,0);
+			$pdf->SetFont('arialb', '', 8);
+			$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
+			$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=60, $diagnostico, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 
-			$ids_responsables = explode(",", $ids_responsables);
+			$pdf->Output('diagnostico.pdf', 'I');
+		}
+	}// reporte_acceso_dia()
 
-			$curl = curl_init();
-			$method = "POST";
-			$url = "http://servicios.seducoahuila.gob.mx/wservice/personal/w_service_personal_by_cct.php";
-			$data = array("cct" => $cct);
 
-		    switch ($method)
-		    {
-		        case "POST":
-		            curl_setopt($curl, CURLOPT_POST, 1);
-		            if ($data)
-		                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-		            break;
-		        default:
-		            if ($data)
-		                $url = sprintf("%s?%s", $url, http_build_query($data));
-		    }
+	function reporte_pemc($idpemc, $url_save=null){
+		if(Utilerias::haySesionAbiertacct($this)){
+			$pdf = new My_tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+			$pdf->SetCreator(PDF_CREATOR);
+			$pdf->SetAuthor('Alex');
+			$pdf->SetTitle('Reporte PEMC');
+			$pdf->SetSubject('');
+			$pdf->SetKeywords('');
+			$datos_sesion = Utilerias::get_cct_sesion($this);
+			$this->pinta_encabezado_pemc($pdf,$datos_sesion);
 
-		    curl_setopt($curl, CURLOPT_URL, $url);
-		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			$seguimiento = $this->Pemc_model->obtener_seguimiento_xidpemc($datos_sesion['idpemc']);
+				// echo "<pre>";print_r($seguimiento);die();
+				foreach ($seguimiento as $key => $value) {
+					if ($value['idambitos'] != '') {
+						$seguimiento[$key]['ambitos'] = $this->Pemc_model->obtener_ambitos_xidambitos($value['idambitos']);
+					}
+					else {
+						$seguimiento[$key]['ambitos'] = '';
+					}
+				}
+			$aux_idobjetivo=0;
+			// echo "<pre>";print_r($aux_idobjetivo);die();
+			$y2=52;
+			// echo "<pre>";print_r($y2);die();
+			foreach ($seguimiento as $key => $value) {
+				if ($aux_idobjetivo!=$value['idobjetivo']) {
+					$pdf->SetTextColor(0,0,0);
+					$pdf->SetFont('arial', '', 8);
+					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "_______________________________________________________________________________________________________________________________________________________________________________", $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+					$y2=$y2+4;
+					if ($y2>=200) {
+						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$y2=52;
+					}
 
-		    $result = curl_exec($curl);
+					$pdf->SetTextColor(0,0,0);
+					$pdf->SetFont('arialb', '', 8);
+					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Objetivo: ".$value['objetivo'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+					$y2=$y2+5;
+					if ($y2>=200) {
+						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$y2=52;
+					}
+					// echo "<pre>";print_r($y2);die();
+					$pdf->SetTextColor(0,0,0);
+					$pdf->SetFont('arial', '', 8);
+					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Meta(s): ".$value['meta'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+					$y2=$y2+5;
+					if ($y2>=200) {
+						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$y2=52;
+					}
 
-		    curl_close($curl);
-		    $response = json_decode($result);
+					$pdf->SetTextColor(0,0,0);
+					$pdf->SetFont('arial', '', 8);
+					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Comentario general: ".$value['comentario_general'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+					$y2=$y2+2;
+					if ($y2>=200) {
+						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$y2=52;
+					}
 
-				if ($response->status==0) {
-					$personal = array();
+					$pdf->SetTextColor(0,0,0);
+					$pdf->SetFont('arial', '', 8);
+					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "_______________________________________________________________________________________________________________________________________________________________________________", $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+					$y2=$y2+5;
+					if ($y2>=200) {
+						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$y2=52;
+					}
+				}
+				$pdf->SetTextColor(0,0,0);
+				$pdf->SetFont('arial', '', 8);
+				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Acción: ".$value['accion'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+				$y2=$y2+5;
+				if ($y2>=200) {
+					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+					$y2=52;
+				}
+
+				$pdf->SetTextColor(0,0,0);
+				$pdf->SetFont('arial', '', 8);
+				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Ámbito(s): ".$value['ambitos'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+				$y2=$y2+5;
+				if ($y2>=200) {
+					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+					$y2=52;
+				}
+
+				$pdf->SetTextColor(0,0,0);
+				$pdf->SetFont('arial', '', 8);
+				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Fecha inicio: ".$value['finicio'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+				$pdf->SetTextColor(0,0,0);
+				$pdf->SetFont('arial', '', 8);
+				$pdf->writeHTMLCell($w=0,$h=55,$x=170,$y=$y2, "Fecha fin: ".$value['ffin'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+				$y2=$y2+5;
+				if ($y2>=200) {
+					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+					$y2=52;
+				}
+
+				$pdf->SetTextColor(0,0,0);
+				$pdf->SetFont('arial', '', 8);
+				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Responsable(s): ".(($value['otros_responsables']=='')?'':$value['otros_responsables'].', ').(($this->get_perosonal_mostrar($datos_sesion['cve_centro'],$value['responsables'])=='')?'': substr($this->get_perosonal_mostrar($datos_sesion['cve_centro'],$value['responsables']), 0, -2)), $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+				$y2=$y2+5;
+				if ($y2>=200) {
+					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+					$y2=52;
+				}
+
+				$pdf->SetFont('montserratb', '', 17);
+				$pdf->SetTextColor(0,0,0);
+		  	$pdf->SetFont('arialb', '', 10);
+
+
+					$arr_avances = $this->Pemc_model->	ver_avance($value['idaccion']);
+					if (count($arr_avances)>0) {
+						$str_html= <<<EOT
+						<style>
+						table td{
+							border: 1px solid #E6E7E9;
+							padding: 2px !important;
+						}
+
+						</style>
+							<table style="padding: 7px; border-left: 40px; border-right: 40px; border-top: 40px; border-bottom: 40px;">
+						<tr style="background-color:#414143">
+							<td style="text-align:center" width="5%" height="28px"><font color="white"><b>#</b></font></td>
+							<td style="text-align:center" width="52%" height="28px"><font color="white"><b>Fecha</b></font></td>
+							<td style="text-align:center" width="45%" height="28px"><font color="white"><b>Porcentaje de avance</b></font></td>
+						</tr>
+EOT;
+
+					$cont=0;
+					foreach($arr_avances as $item){
+						$fcreacion = $item['fcreacion'];
+						$avance = $item['avance'];
+						$cont++;
+						if($cont % 2 == 0){
+						$color="#F7F9F9";
+						}
+						else {
+							$color="#FFFFFF";
+						}
+						  		$str_html .= <<<EOD
+						  		<tr bgcolor="$color">
+									<td style="text-align:center" height="18px">&nbsp;$cont</td>
+						  		<td height="18px">&nbsp;$fcreacion</td>
+						  		<td style="text-align:center" height="18px">$avance%</td>
+						  </tr>
+EOD;
+					}
+					$str_html .= '</table>';
+					$html= <<<EOT
+					$str_html
+EOT;
+					$y2=$y2+3;
+					if ($y2>=200) {
+						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$y2=52;
+					}
+					$pdf->writeHTMLCell($w=0,$h=20,$x=10,$y=$y2, $html, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+					// $y2=$y2+5;
+					$y2=$y2+($cont*15);
+					$y2=$y2+2;
+					if ($y2>=200) {
+						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$y2=52;
+					}
+					}
+					else {
+						$str_html= <<<EOT
+						<div>Acción sin avances</div>
+EOT;
+$html= <<<EOT
+$str_html
+EOT;
+						$y2=$y2+2;
+						if ($y2>=200) {
+							$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+							$y2=52;
+						}
+						$pdf->writeHTMLCell($w=0,$h=20,$x=10,$y=$y2, $html, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+						// $y2=$y2+5;
+						// $y2=$y2+($cont*15);
+						$y2=$y2+10;
+						if ($y2>=200) {
+							$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+							$y2=52;
+						}
+					}
+				$aux_idobjetivo=$value['idobjetivo'];
+			}
+
+
+			if ($url_save==null) {
+				$pdf->Output();
+			}
+			else {
+				$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+				$y2=52;
+				$pdf->SetTextColor(0,0,0);
+				$pdf->SetFont('arialb', '', 8);
+				$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
+				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Diagnóstico: ".$diagnostico, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+
+				$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+				$y2=52;
+				$pdf->SetTextColor(0,0,0);
+				$pdf->SetFont('arialb', '', 8);
+				$evaluacion = $this->Pemc_model->obtener_evaluacion_xidpemc($datos_sesion['idpemc']);
+				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Evaluación: ".$evaluacion, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+				if ($_SERVER["HTTP_HOST"]=='localhost') {
+					$ruta=$_SERVER["DOCUMENT_ROOT"]."/sarape/".$url_save;
 				}
 				else {
-					$personal = $response->Personal;
+					$ruta=$_SERVER["DOCUMENT_ROOT"]."/".$_SERVER["HTTP_HOST"]."/".$url_save;
 				}
-
-		    $listap = "";
-		    foreach ($personal as $persona) {
-			    for($i = 0; $i < count($ids_responsables); $i++){
-			    	if("'".$persona->rfc."'" == $ids_responsables[$i]){
-			    		$listap .= trim($persona->nombre_completo).", ";
-			    	}
-			    }
-		    }
-				// echo "<pre>";print_r($listap);die();
-		    return $listap;
-		}
-
-		public function ver_reporte_diagnostico_xidpemc($idpemc){
-			if(Utilerias::haySesionAbiertacct($this)){
-				$datos_sesion = Utilerias::get_cct_sesion($this);
-				$cve_centro = $datos_sesion['cve_centro'];
-				$turno = $datos_sesion['id_turno_single'];
-				$str_cct = "CCT: {$datos_sesion['cve_centro']}";
-				$str_nombre = "ESCUELA: {$datos_sesion['nombre_centro']}";
-
-				$cte = $this->Pemc_model->get_cte();
-				$str_cte = "Consejo técnico escolar: {$cte}";
-
-				$fecha = date("Y-m-d");
-				$arr_aux = explode("-",$fecha);
-				$anio_i = $arr_aux[0];
-				$mes_i = $arr_aux[1];
-				$dia_i = $arr_aux[2];
-				$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
-				$ciclo =  $this->Pemc_model->trae_ciclo_actual();
-				$ciclo = "CICLO: ".$ciclo;
-				$pdf = new PDF_MC_Table($str_cct, $str_nombre, $ciclo, $str_cte);
-				$pdf->SetvarHeader($str_cct, $str_nombre, $ciclo, $str_cte);
-				$pdf->AliasNbPages();
-
-					$pdf->AddPage('L','Legal');
-					$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
-					$pdf->Ln(5);
-					$pdf->SetFont('Arial','B',12);
-					$pdf->SetWidths(array(250)); // ancho de primer columna, segunda, tercera
-					$pdf->SetFillColor(255);
-					$pdf->SetAligns(array("L"));
-					$pdf->SetLineW(array(0.2));
-					$pdf->SetTextColor(0,0,0);
-						$pdf->Row1(array(
-							utf8_decode("Diagnóstico: ".$diagnostico)
-						));
-
-					$pdf->Output();
-
-
+				$pdf->Output($ruta,'F');
 			}
+	}
+}// reporte_acceso_dia()
+
+	public function get_perosonal_mostrar($cct, $ids_responsables){
+
+		$ids_responsables = explode(",", $ids_responsables);
+
+		$curl = curl_init();
+		$method = "POST";
+		$url = "http://servicios.seducoahuila.gob.mx/wservice/personal/w_service_personal_by_cct.php";
+		$data = array("cct" => $cct);
+
+			switch ($method)
+			{
+					case "POST":
+							curl_setopt($curl, CURLOPT_POST, 1);
+							if ($data)
+									curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+							break;
+					default:
+							if ($data)
+									$url = sprintf("%s?%s", $url, http_build_query($data));
+			}
+
+			curl_setopt($curl, CURLOPT_URL, $url);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+			$result = curl_exec($curl);
+
+			curl_close($curl);
+			$response = json_decode($result);
+
+			if ($response->status==0) {
+				$personal = array();
+			}
+			else {
+				$personal = $response->Personal;
+			}
+
+			$listap = "";
+			foreach ($personal as $persona) {
+				for($i = 0; $i < count($ids_responsables); $i++){
+					if("'".$persona->rfc."'" == $ids_responsables[$i]){
+						$listap .= trim($persona->nombre_completo).", ";
+					}
+				}
+			}
+			// echo "<pre>";print_r($listap);die();
+			return $listap;
+	}
+
+	public function pinta_encabezado_pemc($pdf,$datos_sesion){
+
+		$cve_centro = $datos_sesion['cve_centro'];
+		$turno = $datos_sesion['id_turno_single'];
+		$str_cct = "CCT: {$datos_sesion['cve_centro']}";
+		$str_nombre = $datos_sesion['nombre_centro'];
+		$cte = $this->Pemc_model->get_cte();
+		$str_cte = "Consejo técnico escolar: {$cte}";
+		$fecha = date("Y-m-d");
+		$arr_aux = explode("-",$fecha);
+		$anio_i = $arr_aux[0];
+		$mes_i = $arr_aux[1];
+		$dia_i = $arr_aux[2];
+		$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
+		$ciclo =  $this->Pemc_model->trae_ciclo_actual();
+		$pdf->SetTextColor(65, 65, 67);
+		$pdf->AddPage('L', 'Legal');
+		$pdf->SetFont('montserratb', '', 17);
+		$pdf->Cell(0, 60, 'Programa Escolar de Mejora Continua (PEMC)', 0, 1, 'C');
+		$cte = $this->Pemc_model->get_cte();
+		$pdf->CreateTextBox('Consejo técnico escolar: '.$cte, 95, 13, 10, 70, 14, 'B', 'L');
+		$pdf->SetAutoPageBreak(TRUE, 0);
+		$pdf->Image($file='assets/img/logoreporte.png', $x=7, $y=12, $w=65, $h=12, $type='', $link='', $align='', $resize=true, $dpi=100, $palign='', $ismask=false, $imgmask=false, $border=0, $fitbox=false, $hidden=false, $fitonpage=false);
+		$pdf->SetAutoPageBreak(FALSE, 0);
+		$pdf->SetTextColor(65, 65, 67);
+		$pdf->CreateTextBox('CCT: ', 220, 8, 180, 10, 9, 'B', 'L');
+		$pdf->CreateTextBox('Escuela: ', 220, 13, 180, 10, 9, 'B', 'L');
+		$pdf->SetFont('montserrat', '', 17);
+		$pdf->CreateTextBox($cve_centro, 229, 8, 180, 10, 9, '', 'L');
+		$long_nombre=strlen($str_nombre);
+		$pdf->MultiCell(0, 12, $str_nombre, 0, 'L', 0, 0, 255, 16, true);
+		if ($long_nombre>=43){
+			$y=$pdf->GetY()+6;
 		}
+		else {
+			$y=$pdf->GetY()+3;
+		}
+		$pdf->SetFont('montserratb', '', 17);
+		$pdf->CreateTextBox('Ciclo:', 220,$y,180, 10, 9, 'B', 'L');
+		$pdf->SetFont('montserrat', '', 17);
+		$pdf->CreateTextBox($ciclo, 229,$y,180, 10, 9, '', 'L');
+
+	}
+
+
 }
