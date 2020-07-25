@@ -573,7 +573,7 @@ EOT;
 					$ruta=$_SERVER["DOCUMENT_ROOT"]."/sarape/".$url_save;
 				}
 				else {
-					$ruta=$_SERVER["DOCUMENT_ROOT"]."/".$_SERVER["HTTP_HOST"]."/".$url_save;
+					$ruta=$_SERVER["DOCUMENT_ROOT"].$url_save;
 				}
 				$pdf->Output($ruta,'F');
 			}
