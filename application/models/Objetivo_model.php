@@ -3,6 +3,7 @@ class Objetivo_model extends CI_Model
 {
     function __construct(){
         parent::__construct();
+        date_default_timezone_set('America/Mexico_City');
         $this->pemc_db = $this->load->database('pemc_db', TRUE);
         $this->load->helper('date');
     }
@@ -84,7 +85,7 @@ class Objetivo_model extends CI_Model
 		$delete_acciones = "DELETE FROM r_pemc_objetivo_accion WHERE idaccion IN({$idsacciones}) AND idobjetivo = {$idobjetivo}";
 		$this->pemc_db->query($delete_acciones);
     	}
-    	
+
 		$delete_objetivo = "DELETE FROM r_pemc_objetivo WHERE idobjetivo = {$idobjetivo} AND idpemc = {$idpemc}";
 		$this->pemc_db->query($delete_objetivo);
 
@@ -101,14 +102,14 @@ class Objetivo_model extends CI_Model
     function update_accion($idaccion, $idobjetivo, $accion, $recurso, $ambitos, $responsables, $otro_responsable, $finicio, $ffin){
     	// echo $responsables;
     	// die();
-    	$str_query = "UPDATE r_pemc_objetivo_accion 
+    	$str_query = "UPDATE r_pemc_objetivo_accion
 					SET accion = UPPER(?), recurso = UPPER(?), idambitos = ?, responsables= ?, otros_responsables = UPPER(?), finicio = ?, ffin = ?, fmodificacion = NOW()
 					WHERE idaccion = ? AND idobjetivo = ?";
 		return $this->pemc_db->query($str_query, array($accion, $recurso, $ambitos, $responsables, $otro_responsable, $finicio, $ffin, $idaccion, $idobjetivo));
     }
 
     function update_orden_accion($idaccion, $idobjetivo, $orden){
-        $str_query = "UPDATE r_pemc_objetivo_accion 
+        $str_query = "UPDATE r_pemc_objetivo_accion
                     SET orden = ?
                     WHERE idaccion = ? AND idobjetivo = ?";
         return $this->pemc_db->query($str_query, array($orden, $idaccion, $idobjetivo));
@@ -136,7 +137,7 @@ class Objetivo_model extends CI_Model
     		case '1':
     			$campo = "url_evidencia_antes";
     			break;
-    		
+
     		case '2':
     			$campo = "url_evidencia_despues";
     			break;
@@ -155,7 +156,7 @@ class Objetivo_model extends CI_Model
             case '1':
                 $campo = "url_evidencia_antes";
                 break;
-            
+
             case '2':
                 $campo = "url_evidencia_despues";
                 break;

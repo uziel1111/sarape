@@ -56,7 +56,7 @@ color: white;
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	  <div class="container">
 	    <a href="<?= base_url() ?>" class="smooth"><img class="img-fluid" src="<?= base_url('assets/img/logo-dark.png'); ?>" alt=""></a>
-			<h4 class="titulo" style="color: white !important;">Programa Escolar de Mejora Continua (PEMC)</h4>
+			<center><h4 class="titulo" style="color: white !important;">Programa Escolar de Mejora Continua (PEMC)</h4></center>
 	<div class="float-right text-right text-white">
 	    <i class="fas fa-user color-2"></i>&nbsp; <?=$nombreuser?>
 	  &nbsp;<i class="fas fa-caret-right color-3"></i>&nbsp;<?=$nivel?>&nbsp;<i class="fas fa-caret-right color-3"></i>&nbsp;<?=$turno?>&nbsp;<i class="fas fa-caret-right color-3"></i>&nbsp;<?=$cct?><br>

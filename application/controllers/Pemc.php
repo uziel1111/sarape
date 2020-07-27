@@ -317,7 +317,7 @@ class Pemc extends CI_Controller {
 			    // mkdir("assets/pdf/pemc_eval/".$datos_sesion['idpemc'], 7777);
 			}
 			else {
-				mkdir("assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$datos_sesion['idpemc'], 0007,true);
+				mkdir("assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$datos_sesion['idpemc'], 0777,true);
 			}
 
 			$path_eval = "assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$datos_sesion['idpemc']."/_".$hoy.".pdf";
@@ -659,8 +659,8 @@ EOT;
 		$pdf->CreateTextBox($cve_centro, 229, 8, 180, 10, 9, '', 'L');
 		$long_nombre=strlen($str_nombre);
 		$pdf->MultiCell(0, 12, $str_nombre, 0, 'L', 0, 0, 255, 16, true);
-		if ($long_nombre>=43){
-			$y=$pdf->GetY()+6;
+		if ($long_nombre>=20){
+			$y=$pdf->GetY()+12;
 		}
 		else {
 			$y=$pdf->GetY()+3;
