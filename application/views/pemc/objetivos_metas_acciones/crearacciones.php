@@ -46,7 +46,8 @@
 					</script>
 			    </td>
 			    <td>
-					<select class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_responsables_<?=$accion['idaccion']?>" title="SELECCIONA">
+					<select class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_responsables_<?=$accion['idaccion']?>" >
+						<option disabled value="">SELECCIONE</option>
 					<?php foreach ($responsables as $responsable): ?>
 						<option value="<?=$responsable->rfc?>"><?=$responsable->nombre_completo?></option>
 					<?php endforeach ?>
@@ -79,7 +80,8 @@
 					</select>
 			    </td>
 			    <td>
-					<select class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_responsables_new" title="SELECCIONA">
+					<select class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_responsables_new">
+						<option disabled value=""></option>
 					<?php foreach ($responsables as $responsable): ?>
 						<option value="<?=$responsable->rfc?>"><?=$responsable->nombre_completo?></option>
 					<?php endforeach ?>

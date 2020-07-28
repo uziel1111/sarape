@@ -230,7 +230,7 @@ class Objetivos extends CI_Controller
     		$cad_ambitos = substr($cad_ambitos, 0, -1);
     	}
 
-    	if(count($responsables) > 0){
+    	if(isset($responsables) && count($responsables) > 0){
     		foreach ($responsables as $responsable) {
     			$cad_responsables .= "'". $responsable."',";
     		}

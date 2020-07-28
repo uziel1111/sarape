@@ -53,9 +53,9 @@ class Objetivo_model extends CI_Model
     	$data = array(
 			'idpemc' => $idpemc,
 		    'orden' => $norden,
-		    'objetivo' => UPPER($objetivo),
-		    'meta' => UPPER($meta),
-		    'comentario_general' => UPPER($comentarios),
+		    'objetivo' => $objetivo,
+		    'meta' => $meta,
+		    'comentario_general' => $comentarios,
 		    'fcreacion' => date('Y-m-d')
 		);
 		return $this->pemc_db->insert('r_pemc_objetivo', $data);
@@ -63,9 +63,9 @@ class Objetivo_model extends CI_Model
 
     function update_objetivo($idpemc, $text_objetivo_c, $text_meta_c, $text_comentariosG_c, $idobjetivo){
     	$data = array(
-		    'objetivo' => UPPER($text_objetivo_c),
-		    'meta' => UPPER($text_meta_c),
-		    'comentario_general' => UPPER($text_comentariosG_c),
+		    'objetivo' => $text_objetivo_c,
+		    'meta' => $text_meta_c,
+		    'comentario_general' => $text_comentariosG_c,
 		    'fmodificacion' => date('Y-m-d')
 		);
 		$where = array(
@@ -120,11 +120,11 @@ class Objetivo_model extends CI_Model
     	$data = array(
 			'idobjetivo' => $idobjetivo,
 		    'orden' => $norden,
-		    'accion' => UPPER($accion),
-		    'recurso' => UPPER($recurso),
+		    'accion' => $accion,
+		    'recurso' => $recurso,
 		    'idambitos' => $cad_ambitos,
 		    'responsables' => $cad_responsables,
-		    'otros_responsables' => UPPER($otro_responsable),
+		    'otros_responsables' => $otro_responsable,
 		    'finicio' => $finicio,
 		    'ffin' => $ffin,
 		    'fcreacion' => date('Y-m-d')
