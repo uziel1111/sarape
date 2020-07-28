@@ -9,7 +9,7 @@ $("#btn_crear_obj").click(function(){
 	// 		"warning"
 	// 		);
 	// }
-	
+
 });
 
 $("#btn_edita_obj").click(function(){
@@ -73,7 +73,7 @@ var Objetivos = {
 			}
 		})
 		.done(function(data){
-			
+
 			$("#contenedor_tabla_objetivos").empty();
 			$("#contenedor_tabla_objetivos").append(data.contenido_tabla);
 		})
@@ -219,7 +219,7 @@ var Objetivos = {
 	  			if($("#select_ambito_"+idaccion).val() == ''){
 	  			swal('¡Error!',"Seleccione ámbito","error");
 		  		}else{
-		  			if($("#slc_responsables_"+idaccion).val() == ''){
+		  			if($("#slc_responsables_"+idaccion).val() == '' && $("#txt_otrosresp_"+idaccion).val()==''){
 		  			swal('¡Error!',"Seleccione responsable","error");
 			  		}else{
 			  			if($("#txt_finicio_"+idaccion).val() == ''){
@@ -249,7 +249,7 @@ var Objetivos = {
 	  			if($("#select_ambito_new").val() == ''){
 	  			swal('¡Error!',"Seleccione ámbito","error");
 		  		}else{
-		  			if($("#slc_responsables_new").val() == ''){
+		  			if($("#slc_responsables_new").val() == '' && $("#txt_otrosresp_new").val()==''){
 		  			swal('¡Error!',"Seleccione responsable","error");
 			  		}else{
 			  			if($("#txt_finicio_new").val() == ''){

@@ -137,7 +137,7 @@ class Objetivos extends CI_Controller
 		$data['idobjetivo']  = $idobjetivo;
 		$data['ambitos']  = $this->Objetivo_model->get_ambitos();
 		$personal = $this->getPersonal($datos_sesion['cve_centro']);
-		$data['responsables']  = $personal->Personal;
+		$data['responsables']  = (isset($personal->Personal)?$personal->Persona:array());
 		$data['acciones']  = $this->Objetivo_model->get_acciones_x_idobjetivo($idobjetivo);
 		// echo"<pre>";
 		// print_r($data);
