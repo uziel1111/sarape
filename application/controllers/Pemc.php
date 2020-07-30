@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+header("Content-Type: text/html;charset=utf-8");
 
 class Pemc extends CI_Controller {
 
@@ -335,23 +336,21 @@ class Pemc extends CI_Controller {
 			$datos_sesion = Utilerias::get_cct_sesion($this);
 
 
-			$pdf = new My_tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+			$pdf = new My_tcpdf_page(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 			$pdf->SetCreator(PDF_CREATOR);
-			$pdf->SetAuthor('JL');
+			$pdf->SetAuthor('PE');
 			$pdf->SetTitle('Diagnostico');
 			$pdf->SetSubject('');
 			$pdf->SetKeywords('');
 			$this->pinta_encabezado_pemc($pdf,$datos_sesion);
 			$pdf->CreateTextBox('Diagnóstico: ', 0, 18, 10, 70, 14, 'B', 'L');
 			$y2=$pdf->GetY()+6;
-			$pdf->SetFont('montserratb', '', 17);
-			$pdf->SetTextColor(0,0,0);
-			$pdf->SetFont('arialb', '', 8);
+			$pdf->SetFont('arial', '', 8);
 			$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
 			$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=60, $diagnostico, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
-
 			$pdf->Output('diagnostico.pdf', 'I');
+
 		}
 	}// reporte_acceso_dia()
 
@@ -644,14 +643,18 @@ EOT;
 		$fecha = " Fecha: ".$dia_i."/".$mes_i."/".$anio_i;
 		$ciclo =  $this->Pemc_model->trae_ciclo_actual();
 		$pdf->SetTextColor(65, 65, 67);
+		$pdf->SetMargins(10, 10, 10, true); // set the margins
+		// $pdf->SetFooterMargin(50); // set the margins
 		$pdf->AddPage('L', 'Legal');
+
 		$pdf->SetFont('montserratb', '', 17);
 		$pdf->Cell(0, 60, 'Programa Escolar de Mejora Continua (PEMC)', 0, 1, 'C');
 		$cte = $this->Pemc_model->get_cte();
 		$pdf->CreateTextBox('Consejo técnico escolar: '.$cte, 95, 13, 10, 70, 14, 'B', 'L');
-		$pdf->SetAutoPageBreak(TRUE, 0);
+		$pdf->SetAutoPageBreak(TRUE, 10);
+
 		$pdf->Image($file='assets/img/logoreporte.png', $x=7, $y=12, $w=65, $h=12, $type='', $link='', $align='', $resize=true, $dpi=100, $palign='', $ismask=false, $imgmask=false, $border=0, $fitbox=false, $hidden=false, $fitonpage=false);
-		$pdf->SetAutoPageBreak(FALSE, 0);
+
 		$pdf->SetTextColor(65, 65, 67);
 		$pdf->CreateTextBox('CCT: ', 220, 8, 180, 10, 9, 'B', 'L');
 		$pdf->CreateTextBox('Escuela: ', 220, 13, 180, 10, 9, 'B', 'L');
