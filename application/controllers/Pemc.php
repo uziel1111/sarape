@@ -357,7 +357,7 @@ class Pemc extends CI_Controller {
 
 	function reporte_pemc($idpemc, $url_save=null){
 		if(Utilerias::haySesionAbiertacct($this)){
-			$pdf = new My_tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+			$pdf = new My_tcpdf_page(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 			$pdf->SetCreator(PDF_CREATOR);
 			$pdf->SetAuthor('Alex');
 			$pdf->SetTitle('Reporte PEMC');
@@ -365,7 +365,7 @@ class Pemc extends CI_Controller {
 			$pdf->SetKeywords('');
 			$datos_sesion = Utilerias::get_cct_sesion($this);
 			$this->pinta_encabezado_pemc($pdf,$datos_sesion);
-
+			$pdf->SetAutoPageBreak(FALSE, 0);
 			$seguimiento = $this->Pemc_model->obtener_seguimiento_xidpemc($datos_sesion['idpemc']);
 				// echo "<pre>";print_r($seguimiento);die();
 				foreach ($seguimiento as $key => $value) {
@@ -381,6 +381,7 @@ class Pemc extends CI_Controller {
 			$y2=52;
 			// echo "<pre>";print_r($y2);die();
 			foreach ($seguimiento as $key => $value) {
+
 				if ($aux_idobjetivo!=$value['idobjetivo']) {
 					$pdf->SetTextColor(0,0,0);
 					$pdf->SetFont('arial', '', 8);
@@ -388,33 +389,37 @@ class Pemc extends CI_Controller {
 					$y2=$y2+4;
 					if ($y2>=200) {
 						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$pdf->SetAutoPageBreak(FALSE, 0);
 						$y2=52;
 					}
 
 					$pdf->SetTextColor(0,0,0);
 					$pdf->SetFont('arialb', '', 8);
 					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Objetivo: ".$value['objetivo'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
-					$y2=$y2+5;
+					$y2=$y2+8;
 					if ($y2>=200) {
 						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$pdf->SetAutoPageBreak(FALSE, 0);
 						$y2=52;
 					}
 					// echo "<pre>";print_r($y2);die();
 					$pdf->SetTextColor(0,0,0);
 					$pdf->SetFont('arial', '', 8);
 					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Meta(s): ".$value['meta'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
-					$y2=$y2+5;
+					$y2=$y2+8;
 					if ($y2>=200) {
 						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$pdf->SetAutoPageBreak(FALSE, 0);
 						$y2=52;
 					}
 
 					$pdf->SetTextColor(0,0,0);
 					$pdf->SetFont('arial', '', 8);
 					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Comentario general: ".$value['comentario_general'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
-					$y2=$y2+2;
+					$y2=$y2+8;
 					if ($y2>=200) {
 						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$pdf->SetAutoPageBreak(FALSE, 0);
 						$y2=52;
 					}
 
@@ -424,6 +429,7 @@ class Pemc extends CI_Controller {
 					$y2=$y2+5;
 					if ($y2>=200) {
 						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$pdf->SetAutoPageBreak(FALSE, 0);
 						$y2=52;
 					}
 				}
@@ -433,6 +439,7 @@ class Pemc extends CI_Controller {
 				$y2=$y2+5;
 				if ($y2>=200) {
 					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+					$pdf->SetAutoPageBreak(FALSE, 0);
 					$y2=52;
 				}
 
@@ -442,31 +449,30 @@ class Pemc extends CI_Controller {
 				$y2=$y2+5;
 				if ($y2>=200) {
 					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+					$pdf->SetAutoPageBreak(FALSE, 0);
 					$y2=52;
 				}
 
 				$pdf->SetTextColor(0,0,0);
 				$pdf->SetFont('arial', '', 8);
-				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Fecha inicio: ".$value['finicio'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
-				$pdf->SetTextColor(0,0,0);
-				$pdf->SetFont('arial', '', 8);
-				$pdf->writeHTMLCell($w=0,$h=55,$x=170,$y=$y2, "Fecha fin: ".$value['ffin'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Fecha inicio: ".$value['finicio']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."Fecha fin: ".$value['ffin'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 				$y2=$y2+5;
 				if ($y2>=200) {
 					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+					$pdf->SetAutoPageBreak(FALSE, 0);
 					$y2=52;
 				}
 
 				$pdf->SetTextColor(0,0,0);
 				$pdf->SetFont('arial', '', 8);
 				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Responsable(s): ".(($value['otros_responsables']=='')?'':$value['otros_responsables'].', ').(($this->get_perosonal_mostrar($datos_sesion['cve_centro'],$value['responsables'])=='')?'': substr($this->get_perosonal_mostrar($datos_sesion['cve_centro'],$value['responsables']), 0, -2)), $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
-				$y2=$y2+5;
+				$y2=$y2+10;
 				if ($y2>=200) {
 					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+					$pdf->SetAutoPageBreak(FALSE, 0);
 					$y2=52;
 				}
 
-				$pdf->SetFont('montserratb', '', 17);
 				$pdf->SetTextColor(0,0,0);
 		  	$pdf->SetFont('arialb', '', 10);
 
@@ -507,24 +513,27 @@ EOT;
 						  		<td style="text-align:center" height="18px">$avance%</td>
 						  </tr>
 EOD;
+
 					}
 					$str_html .= '</table>';
 					$html= <<<EOT
 					$str_html
 EOT;
-					$y2=$y2+3;
-					if ($y2>=200) {
-						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
-						$y2=52;
-					}
-					$pdf->writeHTMLCell($w=0,$h=20,$x=10,$y=$y2, $html, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
-					// $y2=$y2+5;
-					$y2=$y2+($cont*15);
-					$y2=$y2+2;
-					if ($y2>=200) {
-						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
-						$y2=52;
-					}
+					// $y2=$y2+3;
+						if ($y2>=200) {
+							$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+							$pdf->SetAutoPageBreak(FALSE, 0);
+							$y2=52;
+						}
+						$pdf->writeHTMLCell($w=0,$h=20,$x=10,$y=$y2, $html, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+						// $y2=$y2+5;
+						$y2=$y2+($cont*10)+10;
+						$y2=$y2+2;
+						if ($y2>=200) {
+							$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+							$pdf->SetAutoPageBreak(FALSE, 0);
+							$y2=52;
+						}
 					}
 					else {
 						$str_html= <<<EOT
@@ -533,9 +542,10 @@ EOT;
 $html= <<<EOT
 $str_html
 EOT;
-						$y2=$y2+2;
+						// $y2=$y2+2;
 						if ($y2>=200) {
 							$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+							$pdf->SetAutoPageBreak(FALSE, 0);
 							$y2=52;
 						}
 						$pdf->writeHTMLCell($w=0,$h=20,$x=10,$y=$y2, $html, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
@@ -544,13 +554,14 @@ EOT;
 						$y2=$y2+10;
 						if ($y2>=200) {
 							$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+							$pdf->SetAutoPageBreak(FALSE, 0);
 							$y2=52;
 						}
 					}
 				$aux_idobjetivo=$value['idobjetivo'];
 			}
 
-
+// die();
 			if ($url_save==null) {
 				$pdf->Output();
 			}
@@ -646,12 +657,12 @@ EOT;
 		$pdf->SetMargins(10, 10, 10, true); // set the margins
 		// $pdf->SetFooterMargin(50); // set the margins
 		$pdf->AddPage('L', 'Legal');
-
+		$pdf->SetAutoPageBreak(TRUE, 10);
 		$pdf->SetFont('montserratb', '', 17);
 		$pdf->Cell(0, 60, 'Programa Escolar de Mejora Continua (PEMC)', 0, 1, 'C');
 		$cte = $this->Pemc_model->get_cte();
 		$pdf->CreateTextBox('Consejo técnico escolar: '.$cte, 95, 13, 10, 70, 14, 'B', 'L');
-		$pdf->SetAutoPageBreak(TRUE, 10);
+
 
 		$pdf->Image($file='assets/img/logoreporte.png', $x=7, $y=12, $w=65, $h=12, $type='', $link='', $align='', $resize=true, $dpi=100, $palign='', $ismask=false, $imgmask=false, $border=0, $fitbox=false, $hidden=false, $fitonpage=false);
 
