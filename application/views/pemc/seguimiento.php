@@ -20,7 +20,7 @@
             <b>Objetivo:</b> <?=$value['objetivo'];?>
           </div>
           <div class="row">
-            <b>Meta(s):</b> <?=$value['meta'];?>
+            <b>Meta(s): </b> <?=$value['meta'];?>
           </div>
         </div>
         <div class="card-body">
