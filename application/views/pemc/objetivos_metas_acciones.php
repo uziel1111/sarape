@@ -108,7 +108,7 @@
 					     <div class="row">
 					     	<div class="col-1"></div>
 	      					<div class="custom-file col-7">
-							    <input type="file" class="custom-file-input" name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, <?= $objetivo['idobjetivo']?>)'>
+							    <input type="file" class="custom-file-input" name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, <?= $objetivo['idobjetivo']?>)' accept="image/gif, image/jpeg, application/pdf">
 							    <label class="custom-file-label" for="customFile"></label>
 							</div>
 					     </div>
@@ -133,7 +133,7 @@
 					     <div class="row">
 					     	<div class="col-1"></div>
 					     	<div class="custom-file col-7">
-							    <input type="file" class="custom-file-input" name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, <?= $objetivo['idobjetivo']?>)'>
+							    <input type="file" class="custom-file-input" name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, <?= $objetivo['idobjetivo']?>)' accept="image/gif, image/jpeg, application/pdf">
 							    <label class="custom-file-label" for="customFile"></label>
 							</div>
 					     </div>

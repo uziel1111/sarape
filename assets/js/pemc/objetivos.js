@@ -356,38 +356,58 @@ var Objetivos = {
 	        }
 	        reader.readAsDataURL(archivo.files[0]);
 	}
+
   	var formData = new FormData();
     var files = $(archivo)[0].files[0];
-    formData.append('file',files);
-    formData.append('tipo_evidencia',tipo);
-    formData.append('idobjetivo',idobjetivo);
-  	$.ajax({
-  		type: 'POST',
-		url:base_url+"Objetivos/insert_evidencias",
-        data: formData,
-        contentType: false,
-        processData: false,
-		beforeSend: function(xhr) {
-			Notification.loading("Cargando vista");
-		}
-	})
-	.done(function(data){
-		if(data.estatus){
-			Principal_pemc.obtiene_vista_obetivos();
-		}else{
-			swal(
-			'¡Error!',
-			"Fallo al insertar",
-			"error"
-			);
-		}
-	})
-	.fail(function(e) {
-		console.error("Error in ()"); console.table(e);
-	})
-	.always(function() {
-		// swal.close();
-	});
+		if(files.type.match('image/jp.*') || files.type.match('application/pdf') || files.type.match('image/gif')) {
+			if(files.size<=2*1024*1024) {
+					formData.append('file',files);
+			    formData.append('tipo_evidencia',tipo);
+			    formData.append('idobjetivo',idobjetivo);
+			  	$.ajax({
+			  		type: 'POST',
+					url:base_url+"Objetivos/insert_evidencias",
+			        data: formData,
+			        contentType: false,
+			        processData: false,
+					beforeSend: function(xhr) {
+						Notification.loading("Cargando vista");
+					}
+				})
+				.done(function(data){
+					if(data.estatus){
+						Principal_pemc.obtiene_vista_obetivos();
+					}else{
+						swal(
+						'¡Error!',
+						"Fallo al insertar",
+						"error"
+						);
+					}
+				})
+				.fail(function(e) {
+					console.error("Error in ()"); console.table(e);
+				})
+				.always(function() {
+					// swal.close();
+				});
+			}
+			else {
+				swal(
+ 			 '¡Error!',
+ 			 "Solo se permiten archivos de máximo 2MB",
+ 			 "error"
+ 			 );
+			}
+	   }
+		 else {
+			 swal(
+			 '¡Error!',
+			 "Solo se permiten archivos de tipo jpeg, gif y pdf",
+			 "error"
+			 );
+		 }
+
   },
 
   elimina_imagen: (idobjetivo, tipo) =>{
