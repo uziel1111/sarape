@@ -479,7 +479,7 @@ class Pemc extends CI_Controller {
 
 					$arr_avances = $this->Pemc_model->	ver_avance($value['idaccion']);
 					if (count($arr_avances)>0) {
-						$str_html= <<<EOT
+						$str_html = <<<EOT
 						<style>
 						table td{
 							border: 1px solid #E6E7E9;
@@ -520,15 +520,16 @@ EOD;
 					$str_html
 EOT;
 					// $y2=$y2+3;
-						if ($y2>=200) {
+						if (($y2+($cont*10))>=200) {
 							$this->pinta_encabezado_pemc($pdf,$datos_sesion);
-							$pdf->SetAutoPageBreak(FALSE, 0);
+							$pdf->SetAutoPageBreak(TRUE, 10);
+							// $pdf->SetAutoPageBreak(FALSE, 0);
 							$y2=52;
 						}
 						$pdf->writeHTMLCell($w=0,$h=20,$x=10,$y=$y2, $html, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 						// $y2=$y2+5;
+						$pdf->SetAutoPageBreak(FALSE, 0);
 						$y2=$y2+($cont*10)+10;
-						$y2=$y2+2;
 						if ($y2>=200) {
 							$this->pinta_encabezado_pemc($pdf,$datos_sesion);
 							$pdf->SetAutoPageBreak(FALSE, 0);

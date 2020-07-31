@@ -1,7 +1,7 @@
 <style type="text/css">
-.modal-lg { 
-    max-width: 95%; 
-} 
+.modal-lg {
+    max-width: 95%;
+}
 
 </style>
 
@@ -33,8 +33,8 @@
 		    	<?php foreach ($acciones as $accion): ?>
 		    	<tr>
 		    	<th scope="row"><?=$accion['orden']?></th>
-			    <td><textarea class="form-control" id="txt_accion_<?=$accion['idaccion']?>" rows="3"><?=$accion['accion']?></textarea></td>
-			    <td><textarea class="form-control" id="txt_recurso_<?=$accion['idaccion']?>" rows="3"><?=$accion['recurso']?></textarea></td>
+			    <td><textarea class="form-control" id="txt_accion_<?=$accion['idaccion']?>" rows="3"  maxlength="255"><?=$accion['accion']?></textarea></td>
+			    <td><textarea class="form-control" id="txt_recurso_<?=$accion['idaccion']?>" rows="3"  maxlength="255"><?=$accion['recurso']?></textarea></td>
 			    <td>
 					<select id="select_ambito_<?=$accion['idaccion']?>" class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_ambitos" title="SELECCIONA">
                      <?php foreach ($ambitos as $ambito): ?>
@@ -56,7 +56,7 @@
 						$('#slc_responsables_'+<?=$accion['idaccion']?>).selectpicker('val', [<?=(string)$accion['responsables']?>]);
 					</script>
 					<br>
-					<input type="text" id="txt_otrosresp_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['otros_responsables']?>">
+					<input type="text" id="txt_otrosresp_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['otros_responsables']?>"  maxlength="350">
 				</td>
 			    <td><input type="date" id="txt_finicio_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['finicio']?>"></td>
 			    <td><input type="date" id="txt_ffin_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['ffin']?>"></td>
