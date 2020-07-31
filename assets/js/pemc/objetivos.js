@@ -144,7 +144,9 @@ var Objetivos = {
 			'responsables': $("#slc_responsables_"+idaccion).val(),
 			'otro_responsable': $("#txt_otrosresp_"+idaccion).val(),
 			'finicio': $("#txt_finicio_"+idaccion).val(),
-			'ffin': $("#txt_ffin_"+idaccion).val()
+			'comentarios_finicio': $("#txt_comentarios_finicio_"+idaccion).val(),
+			'ffin': $("#txt_ffin_"+idaccion).val(),
+			'comentarios_ffin': $("#txt_comentarios_ffin_"+idaccion).val()
 		},
 		beforeSend: function(xhr) {
 			Notification.loading("Cargando vista");
@@ -182,7 +184,9 @@ var Objetivos = {
 			'responsables': $("#slc_responsables_new").val(),
 			'otro_responsable': $("#txt_otrosresp_new").val(),
 			'finicio': $("#txt_finicio_new").val(),
-			'ffin': $("#txt_ffin_new").val()
+			'comentarios_finicio': $("#txt_comentarios_finicio_new").val(),
+			'ffin': $("#txt_ffin_new").val(),
+			'comentarios_ffin': $("#txt_comentarios_ffin_new").val()
 		},
 		beforeSend: function(xhr) {
 			Notification.loading("Cargando vista");

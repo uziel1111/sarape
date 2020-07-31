@@ -188,7 +188,9 @@ class Objetivos extends CI_Controller
         $responsables = $this->input->post('responsables');
     	$otro_responsable = (strip_tags($this->input->post('otro_responsable')));
     	$finicio = $this->input->post('finicio');
+			$comentarios_finicio = $this->input->post('comentarios_finicio');
     	$ffin = $this->input->post('ffin');
+			$comentarios_ffin = $this->input->post('comentarios_ffin');
     	$cad_ambitos = "";
     	$cad_responsables = "";
     	if(count($ambitos) > 0){
@@ -205,7 +207,7 @@ class Objetivos extends CI_Controller
     	$cad_responsables = substr($cad_responsables, 0, -1);
     	}
 
-    	$estatus = $this->Objetivo_model->update_accion($idaccion, $idobjetivo, $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio, $ffin);
+    	$estatus = $this->Objetivo_model->update_accion($idaccion, $idobjetivo, $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio,$comentarios_finicio, $ffin,$comentarios_ffin);
 
     	$response = array('estatus' => $estatus);
 		Utilerias::enviaDataJson(200,$response, $this);
@@ -220,7 +222,9 @@ class Objetivos extends CI_Controller
         $responsables = $this->input->post('responsables');
     	$otro_responsable = (strip_tags($this->input->post('otro_responsable')));
     	$finicio = $this->input->post('finicio');
+			$comentarios_finicio = $this->input->post('comentarios_finicio');
     	$ffin = $this->input->post('ffin');
+			$comentarios_ffin = $this->input->post('comentarios_ffin');
     	$cad_ambitos = "";
     	$cad_responsables = "";
     	if(count($ambitos) > 0){
@@ -239,7 +243,7 @@ class Objetivos extends CI_Controller
 
     	$orden = $this->Objetivo_model->get_acciones_x_idobjetivo($idobjetivo);
 
-    	$estatus = $this->Objetivo_model->insert_accion($idobjetivo, count($orden), $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio, $ffin);
+    	$estatus = $this->Objetivo_model->insert_accion($idobjetivo, count($orden), $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio,$comentarios_finicio, $ffin,$comentarios_ffin);
 
     	$response = array('estatus' => $estatus);
 		Utilerias::enviaDataJson(200,$response, $this);

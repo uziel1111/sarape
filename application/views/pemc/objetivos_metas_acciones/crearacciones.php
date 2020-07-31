@@ -56,10 +56,16 @@
 						$('#slc_responsables_'+<?=$accion['idaccion']?>).selectpicker('val', [<?=(string)$accion['responsables']?>]);
 					</script>
 					<br>
-					<input type="text" id="txt_otrosresp_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['otros_responsables']?>"  maxlength="350">
+					<input type="text" id="txt_otrosresp_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['otros_responsables']?>"  maxlength="255" placeholder="Otro(s)">
 				</td>
-			    <td><input type="date" id="txt_finicio_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['finicio']?>"></td>
-			    <td><input type="date" id="txt_ffin_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['ffin']?>"></td>
+			    <td>
+            <input type="date" id="txt_finicio_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['finicio']?>">
+            <input type="text" id="txt_comentarios_finicio_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['comentario_finicio']?>"  maxlength="255" placeholder="Comentario(s)">
+          </td>
+			    <td>
+            <input type="date" id="txt_ffin_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['ffin']?>">
+            <input type="text" id="txt_comentarios_ffin_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['comentario_ffin']?>"  maxlength="255" placeholder="Comentario(s)">
+          </td>
 			    <td>
 			    	<button class="btn btn-info" onclick="Objetivos.valida_campos_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )">Guardar</button>
 			    	<br>
@@ -70,8 +76,8 @@
 		    	<?php endif ?>
 		    	<tr>
 		    	<th scope="row"><?=count($acciones)+1?></th>
-			    <td><textarea class="form-control" id="txt_accion_new" rows="3"></textarea></td>
-			    <td><textarea class="form-control" id="txt_recurso_new" rows="3"></textarea></td>
+			    <td><textarea class="form-control" id="txt_accion_new" rows="3"   maxlength="255"></textarea></td>
+			    <td><textarea class="form-control" id="txt_recurso_new" rows="3"   maxlength="255"></textarea></td>
 			    <td>
 					<select id="select_ambito_new" class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_ambitos" title="SELECCIONA">
                      <?php foreach ($ambitos as $ambito): ?>
@@ -87,10 +93,16 @@
 					<?php endforeach ?>
 					</select>
 					<br>
-					<input type="text" class="form-control" id="txt_otrosresp_new" name="" value="">
+					<input type="text" class="form-control" id="txt_otrosresp_new" name="" value=""   maxlength="255" placeholder="Otro(s)">
 				</td>
-			    <td><input type="date" class="form-control" id="txt_finicio_new" name="" value=""></td>
-			    <td><input type="date" class="form-control" id="txt_ffin_new" name="" value=""></td>
+			    <td>
+            <input type="date" class="form-control" id="txt_finicio_new" name="" value="">
+  					<input type="text" id="txt_comentarios_finicio_new" class="form-control" name="" value=""  maxlength="255" placeholder="Comentario(s)">
+          </td>
+			    <td>
+            <input type="date" class="form-control" id="txt_ffin_new" name="" value="">
+  					<input type="text" id="txt_comentarios_ffin_new" class="form-control" name="" value=""  maxlength="255" placeholder="Comentario(s)">
+          </td>
 			    <td><button class="btn btn-primary "onclick="Objetivos.valida_campos_accion(0,<?= $idobjetivo ?>)" >Guardar</button></td>
 			    </tr>
 			  </tbody>
