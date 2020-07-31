@@ -185,7 +185,7 @@ class Objetivos extends CI_Controller
     	$accion = (strip_tags($this->input->post('accion')));
     	$recurso = (strip_tags($this->input->post('recurso')));
     	$ambitos = $this->input->post('ambitos');
-        $responsables = $this->input->post('responsables');
+        $responsables = (($this->input->post('responsables')=='')?array():$this->input->post('responsables'));
     	$otro_responsable = (strip_tags($this->input->post('otro_responsable')));
     	$finicio = $this->input->post('finicio');
 			$comentarios_finicio = $this->input->post('comentarios_finicio');
@@ -200,6 +200,7 @@ class Objetivos extends CI_Controller
     		$cad_ambitos = substr($cad_ambitos, 0, -1);
     	}
 
+			// echo "<pre>";print_r($responsables);die();
     	if(count($responsables) > 0){
     		foreach ($responsables as $responsable) {
     			$cad_responsables .= "'". $responsable."',";

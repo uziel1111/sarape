@@ -153,8 +153,29 @@ var Objetivos = {
 		}
 	})
 	.done(function(data){
+		swal.close();
 		if(data.estatus){
-			Principal_pemc.obtiene_vista_obetivos();
+			swal({
+	      title: 'Se guardo correctamente.',
+	      text: "¿Requiere seguir capturando acciones?",
+	      type: 'warning',
+	      showCancelButton: true,
+	      confirmButtonColor: '#3085d6',
+	      cancelButtonColor: '#d33',
+	      confirmButtonText: 'Si',
+	      cancelButtonText: 'No',
+				allowOutsideClick: false
+	    }).then((result) => {
+	      if (result.value) {
+	        $("#modal_generico_obj").modal('hide');
+					Objetivos.agreg_acciones(idobjetivo);
+	      }
+				else {
+					$("#modal_generico_obj").modal('hide');
+					Principal_pemc.obtiene_vista_obetivos();
+				}
+	    });
+			// Principal_pemc.obtiene_vista_obetivos();
 		}else{
 			swal(
 			'¡Error!',
@@ -162,7 +183,7 @@ var Objetivos = {
 			"error"
 			);
 		}
-		$("#modal_generico_obj").modal('hide');
+		// $("#modal_generico_obj").modal('hide');
 	})
 	.fail(function(e) {
 		console.error("Error in ()"); console.table(e);
@@ -193,8 +214,29 @@ var Objetivos = {
 		}
 	})
 	.done(function(data){
+		swal.close();
 		if(data.estatus){
-			Principal_pemc.obtiene_vista_obetivos();
+			swal({
+	      title: 'Se guardo correctamente.',
+	      text: "¿Requiere seguir capturando acciones?",
+	      type: 'warning',
+	      showCancelButton: true,
+	      confirmButtonColor: '#3085d6',
+	      cancelButtonColor: '#d33',
+	      confirmButtonText: 'Si',
+	      cancelButtonText: 'No',
+				allowOutsideClick: false
+	    }).then((result) => {
+	      if (result.value) {
+	        $("#modal_generico_obj").modal('hide');
+					Objetivos.agreg_acciones(idobjetivo);
+	      }
+				else {
+					$("#modal_generico_obj").modal('hide');
+					Principal_pemc.obtiene_vista_obetivos();
+				}
+	    });
+
 		}else{
 			swal(
 			'¡Error!',
@@ -202,7 +244,7 @@ var Objetivos = {
 			"error"
 			);
 		}
-		$("#modal_generico_obj").modal('hide');
+		// $("#modal_generico_obj").modal('hide');
 	})
 	.fail(function(e) {
 		console.error("Error in ()"); console.table(e);
@@ -285,7 +327,8 @@ var Objetivos = {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Eliminar',
-      cancelButtonText: 'Cancelar'
+      cancelButtonText: 'Cancelar',
+			allowOutsideClick: false
     }).then((result) => {
       if (result.value) {
         Objetivos.delete_accion(idaccion, idobjetivo);
@@ -306,13 +349,35 @@ var Objetivos = {
 		}
 	})
 	.done(function(data){
+		swal.close();
 		if(data.estatus){
-			swal(
-			'¡Correcto!',
-			"La accion se elimino correctamente",
-			"success"
-			);
-			Principal_pemc.obtiene_vista_obetivos();
+			swal({
+	      title: 'Se elimino correctamente.',
+	      text: "¿Requiere seguir capturando acciones?",
+	      type: 'warning',
+	      showCancelButton: true,
+	      confirmButtonColor: '#3085d6',
+	      cancelButtonColor: '#d33',
+	      confirmButtonText: 'Si',
+	      cancelButtonText: 'No',
+				allowOutsideClick: false
+	    }).then((result) => {
+	      if (result.value) {
+	        $("#modal_generico_obj").modal('hide');
+					Objetivos.agreg_acciones(idobjetivo);
+	      }
+				else {
+					$("#modal_generico_obj").modal('hide');
+					Principal_pemc.obtiene_vista_obetivos();
+				}
+	    });
+
+			// swal(
+			// '¡Correcto!',
+			// "La accion se elimino correctamente",
+			// "success"
+			// );
+			// Principal_pemc.obtiene_vista_obetivos();
 		}else{
 			swal(
 			'¡Error!',
@@ -320,7 +385,7 @@ var Objetivos = {
 			"error"
 			);
 		}
-		$("#modal_generico_obj").modal('hide');
+		// $("#modal_generico_obj").modal('hide');
 	})
 	.fail(function(e) {
 		console.error("Error in ()"); console.table(e);
@@ -423,7 +488,8 @@ var Objetivos = {
 	      confirmButtonColor: '#3085d6',
 	      cancelButtonColor: '#d33',
 	      confirmButtonText: 'Eliminar',
-	      cancelButtonText: 'Cancelar'
+	      cancelButtonText: 'Cancelar',
+				allowOutsideClick: false
 	    }).then((result) => {
 	      if (result.value) {
 	        Objetivos.delete_imagen(idobjetivo, tipo);
