@@ -1,4 +1,8 @@
 
+$("#close_obj_generico").click(function(){
+	$("#modal_generico_obj").modal('hide');
+	Principal_pemc.obtiene_vista_obetivos();
+});
 $("#btn_crear_obj").click(function(){
 	// if($("#txt_numero_objetivos_creados").val() < 3){
 		Objetivos.get_view_creareditar_obj();
