@@ -167,7 +167,7 @@ var Objetivos = {
 				allowOutsideClick: false
 	    }).then((result) => {
 	      if (result.value) {
-	        $("#modal_generico_obj").modal('hide');
+	        // $("#modal_generico_obj").modal('hide');
 					Objetivos.agreg_acciones(idobjetivo);
 	      }
 				else {
@@ -228,7 +228,7 @@ var Objetivos = {
 				allowOutsideClick: false
 	    }).then((result) => {
 	      if (result.value) {
-	        $("#modal_generico_obj").modal('hide');
+	        // $("#modal_generico_obj").modal('hide');
 					Objetivos.agreg_acciones(idobjetivo);
 	      }
 				else {
@@ -363,7 +363,7 @@ var Objetivos = {
 				allowOutsideClick: false
 	    }).then((result) => {
 	      if (result.value) {
-	        $("#modal_generico_obj").modal('hide');
+	        // $("#modal_generico_obj").modal('hide');
 					Objetivos.agreg_acciones(idobjetivo);
 	      }
 				else {
@@ -415,21 +415,22 @@ var Objetivos = {
 	    idvisor = "img_preview_fin"+idobjetivo;
 	    break;
 	}
-  	if (archivo.files && archivo.files[0]) {
-	        var reader = new FileReader();
-	        reader.onload = function (e) {
-	            image = document.getElementById(idvisor);
-    			image.src = reader.result;
-    			preview.innerHTML = '';
-    			preview.append(image);
-	        }
-	        reader.readAsDataURL(archivo.files[0]);
-	}
+
 
   	var formData = new FormData();
     var files = $(archivo)[0].files[0];
 		if(files.type.match('image/jp.*') || files.type.match('application/pdf') || files.type.match('image/gif')) {
 			if(files.size<=2*1024*1024) {
+				if (archivo.files && archivo.files[0]) {
+			        var reader = new FileReader();
+			        reader.onload = function (e) {
+			        image = document.getElementById(idvisor);
+		    			image.src = reader.result;
+		    			// idvisor.innerHTML = '';
+		    			// idvisor.append(image);
+			        }
+			        reader.readAsDataURL(archivo.files[0]);
+						}
 					formData.append('file',files);
 			    formData.append('tipo_evidencia',tipo);
 			    formData.append('idobjetivo',idobjetivo);
