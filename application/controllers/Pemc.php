@@ -436,7 +436,7 @@ class Pemc extends CI_Controller {
 				$pdf->SetTextColor(0,0,0);
 				$pdf->SetFont('arial', '', 8);
 				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Acción: ".$value['accion'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
-				$y2=$y2+5;
+				$y2=$y2+8;
 				if ($y2>=200) {
 					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
 					$pdf->SetAutoPageBreak(FALSE, 0);
@@ -446,7 +446,7 @@ class Pemc extends CI_Controller {
 				$pdf->SetTextColor(0,0,0);
 				$pdf->SetFont('arial', '', 8);
 				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Ámbito(s): ".$value['ambitos'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
-				$y2=$y2+5;
+				$y2=$y2+8;
 				if ($y2>=200) {
 					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
 					$pdf->SetAutoPageBreak(FALSE, 0);
