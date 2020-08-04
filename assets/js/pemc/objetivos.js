@@ -161,7 +161,7 @@ var Objetivos = {
 		if(data.estatus){
 			swal({
 	      title: 'Se guardo correctamente.',
-	      text: "¿Requiere seguir capturando acciones?",
+	      text: "¿Requiere seguir actualizando acciones?",
 	      type: 'warning',
 	      showCancelButton: true,
 	      confirmButtonColor: '#3085d6',
@@ -222,7 +222,7 @@ var Objetivos = {
 		if(data.estatus){
 			swal({
 	      title: 'Se guardo correctamente.',
-	      text: "¿Requiere seguir capturando acciones?",
+	      text: "¿Requiere seguir actualizando acciones?",
 	      type: 'warning',
 	      showCancelButton: true,
 	      confirmButtonColor: '#3085d6',
@@ -357,7 +357,7 @@ var Objetivos = {
 		if(data.estatus){
 			swal({
 	      title: 'Se elimino correctamente.',
-	      text: "¿Requiere seguir capturando acciones?",
+	      text: "¿Requiere seguir actualizando acciones?",
 	      type: 'warning',
 	      showCancelButton: true,
 	      confirmButtonColor: '#3085d6',
