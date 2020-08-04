@@ -250,4 +250,17 @@ function get_cte(){
   return $this->pemc_db->query($str_query)->row('num_cte');
 }
 
+function obtener_n_acciones_pemc_ant($cct,$turno){
+  $str_query = "SELECT
+      	COUNT(DISTINCT acc.id_accion) as n_acciones
+      FROM
+      	rm_tema_prioritarioxcct rtp
+      INNER JOIN rm_c_prioridad p ON p.id_prioridad = rtp.id_prioridad
+      INNER JOIN rm_objetivo o ON rtp.id_tprioritario=o.id_tprioritario
+			INNER JOIN rm_accionxtproritario acc ON rtp.id_tprioritario = acc.id_tprioritario
+      WHERE rtp.cct = '{$cct}' AND rtp.turno = {$turno}
+      ORDER BY orden ASC";
+  return $this->db->query($str_query)->row('n_acciones');
+}
+
 }// Rutamejora_model

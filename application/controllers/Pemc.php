@@ -284,6 +284,7 @@ class Pemc extends CI_Controller {
 			$data['esta_cerrado_ciclo'] = $esta_cerrado_ciclo;
 			$data['cve_centro'] = $datos_sesion['cve_centro'];
 			$data['id_turno_single'] = $datos_sesion['id_turno_single'];
+			$data['n_acciones_pemc_ant'] = $this->Pemc_model->obtener_n_acciones_pemc_ant($datos_sesion['cve_centro'],$datos_sesion['id_turno_single']);
 			// echo "<pre>";print_r($data);die();
 			$str_vista = $this->load->view("pemc/evaluacion", $data, TRUE);
 			$response = array('str_vista' => $str_vista);
