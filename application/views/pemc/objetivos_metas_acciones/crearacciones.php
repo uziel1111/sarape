@@ -60,11 +60,11 @@
 				</td>
 			    <td>
             <input type="date" id="txt_finicio_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['finicio']?>">
-            <input type="text" id="txt_comentarios_finicio_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['comentario_finicio']?>"  maxlength="255" placeholder="Comentario(s)">
+            <input type="hidden" id="txt_comentarios_finicio_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['comentario_finicio']?>"  maxlength="255" placeholder="Comentario(s)">
           </td>
 			    <td>
             <input type="date" id="txt_ffin_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['ffin']?>">
-            <input type="text" id="txt_comentarios_ffin_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['comentario_ffin']?>"  maxlength="255" placeholder="Comentario(s)">
+            <input type="hidden" id="txt_comentarios_ffin_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['comentario_ffin']?>"  maxlength="255" placeholder="Comentario(s)">
           </td>
 			    <td>
 			    	<button class="btn btn-info" onclick="Objetivos.valida_campos_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )">Guardar</button>
@@ -97,11 +97,11 @@
 				</td>
 			    <td>
             <input type="date" class="form-control" id="txt_finicio_new" name="" value="">
-  					<input type="text" id="txt_comentarios_finicio_new" class="form-control" name="" value=""  maxlength="255" placeholder="Comentario(s)">
+  					<input type="hidden" id="txt_comentarios_finicio_new" class="form-control" name="" value=""  maxlength="255" placeholder="Comentario(s)">
           </td>
 			    <td>
             <input type="date" class="form-control" id="txt_ffin_new" name="" value="">
-  					<input type="text" id="txt_comentarios_ffin_new" class="form-control" name="" value=""  maxlength="255" placeholder="Comentario(s)">
+  					<input type="hidden" id="txt_comentarios_ffin_new" class="form-control" name="" value=""  maxlength="255" placeholder="Comentario(s)">
           </td>
 			    <td><button class="btn btn-primary "onclick="Objetivos.valida_campos_accion(0,<?= $idobjetivo ?>)" >Guardar</button></td>
 			    </tr>
