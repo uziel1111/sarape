@@ -30,7 +30,7 @@
       </div>
       <div class="col-2">
         <?php if ($es_fin && (!$esta_cerrado_ciclo)): ?>
-          <button class="btn btn-primary my-1  float-right" id="btn_guardar_cierre_pemc">Cierre ciclo escolar</button>
+          <button class="btn btn-primary my-1  float-right" id="btn_guardar_cierre_pemc_" disabled>Cierre ciclo escolar</button>
         <?php endif; ?>
       </div>
     </div>
