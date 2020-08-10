@@ -13,6 +13,12 @@
           <div class="row">
             <div class="col-sm-3">
 
+              <a href="https://issuu.com/ginaorozcoo/docs/revista_agosto_2020"  target="_blank" title="Edición #24 Agosto">
+                <img src="<?= base_url('assets/img/revista-agosto2020.png'); ?>" class="img-fluid" alt="Responsive image">
+              </a>
+            </div>
+            <div class="col-sm-3">
+
               <a href="https://issuu.com/ginaorozcoo/docs/revista_julio_2020"  target="_blank" title="Edición #23 Julio">
                 <img src="<?= base_url('assets/img/revista-julio.png'); ?>" class="img-fluid" alt="Responsive image">
               </a>
