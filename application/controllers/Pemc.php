@@ -61,12 +61,13 @@ class Pemc extends CI_Controller {
 				$turno = $this->input->post('turno_id');
 
 				if($this->verifica_supervisor($usuario) == TRUE){
+					// echo"es super"; die();
 					$mensaje = "Acceso Restringido.";
 					$tipo    = ERRORMESSAGE;
 					$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
 					$this->load->view('pemc/login',$data);
 				}else{
-
+					// echo"else super"; die();
 					$curl = curl_init();
 					$method = "POST";
 					$url = "http://servicios.seducoahuila.gob.mx/wservice/w_service_login.php";

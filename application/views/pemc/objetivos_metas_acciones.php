@@ -1,4 +1,17 @@
 <style type="text/css">
+.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+.embed-container iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 .modal-mediano{
 	max-width: 60%;
 	max-height: 60%;
@@ -177,7 +190,7 @@
 	        </button>
 	    </div>
 	    <div class="modal-body">
-	        <div id="contenedor_obj_evidencia" width="100%" height="100%">
+	        <div class="embed-container" id="contenedor_obj_evidencia" width="100%" height="100%">
 
 	        </div>
 	     </div>
