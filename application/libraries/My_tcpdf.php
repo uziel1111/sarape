@@ -38,7 +38,7 @@ class My_tcpdf_page extends TCPDF
     public function Footer() {
             $this->SetY(-15);
             $this->SetFont(PDF_FONT_NAME_MAIN, 'I', 8);
-            $this->Cell(0, 10,$this->getAliasNumPage(), 0, false, 'C');
+            $this->Cell(0, 10,"Página: ".$this->getAliasNumPage(), 0, false, 'R');
     }
     public function CreateTextBox($textval, $x = 0, $y, $width = 0, $height = 10, $fontsize = 10, $fontstyle = '', $align = 'L') {
             $this->SetXY($x+20, $y); // 20 = margin left

@@ -185,10 +185,12 @@ class Objetivos extends CI_Controller
     	$accion = (strip_tags($this->input->post('accion')));
     	$recurso = (strip_tags($this->input->post('recurso')));
     	$ambitos = $this->input->post('ambitos');
-        $responsables = $this->input->post('responsables');
+        $responsables = (($this->input->post('responsables')=='')?array():$this->input->post('responsables'));
     	$otro_responsable = (strip_tags($this->input->post('otro_responsable')));
     	$finicio = $this->input->post('finicio');
+			$comentarios_finicio = $this->input->post('comentarios_finicio');
     	$ffin = $this->input->post('ffin');
+			$comentarios_ffin = $this->input->post('comentarios_ffin');
     	$cad_ambitos = "";
     	$cad_responsables = "";
     	if(count($ambitos) > 0){
@@ -198,6 +200,7 @@ class Objetivos extends CI_Controller
     		$cad_ambitos = substr($cad_ambitos, 0, -1);
     	}
 
+			// echo "<pre>";print_r($responsables);die();
     	if(count($responsables) > 0){
     		foreach ($responsables as $responsable) {
     			$cad_responsables .= "'". $responsable."',";
@@ -205,7 +208,7 @@ class Objetivos extends CI_Controller
     	$cad_responsables = substr($cad_responsables, 0, -1);
     	}
 
-    	$estatus = $this->Objetivo_model->update_accion($idaccion, $idobjetivo, $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio, $ffin);
+    	$estatus = $this->Objetivo_model->update_accion($idaccion, $idobjetivo, $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio,$comentarios_finicio, $ffin,$comentarios_ffin);
 
     	$response = array('estatus' => $estatus);
 		Utilerias::enviaDataJson(200,$response, $this);
@@ -220,7 +223,9 @@ class Objetivos extends CI_Controller
         $responsables = $this->input->post('responsables');
     	$otro_responsable = (strip_tags($this->input->post('otro_responsable')));
     	$finicio = $this->input->post('finicio');
+			$comentarios_finicio = $this->input->post('comentarios_finicio');
     	$ffin = $this->input->post('ffin');
+			$comentarios_ffin = $this->input->post('comentarios_ffin');
     	$cad_ambitos = "";
     	$cad_responsables = "";
     	if(count($ambitos) > 0){
@@ -239,7 +244,7 @@ class Objetivos extends CI_Controller
 
     	$orden = $this->Objetivo_model->get_acciones_x_idobjetivo($idobjetivo);
 
-    	$estatus = $this->Objetivo_model->insert_accion($idobjetivo, count($orden), $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio, $ffin);
+    	$estatus = $this->Objetivo_model->insert_accion($idobjetivo, count($orden), $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio,$comentarios_finicio, $ffin,$comentarios_ffin);
 
     	$response = array('estatus' => $estatus);
 		Utilerias::enviaDataJson(200,$response, $this);

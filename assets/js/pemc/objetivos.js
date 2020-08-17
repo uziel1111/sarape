@@ -1,4 +1,8 @@
 
+$("#close_obj_generico").click(function(){
+	$("#modal_generico_obj").modal('hide');
+	Principal_pemc.obtiene_vista_obetivos();
+});
 $("#btn_crear_obj").click(function(){
 	// if($("#txt_numero_objetivos_creados").val() < 3){
 		Objetivos.get_view_creareditar_obj();
@@ -144,15 +148,38 @@ var Objetivos = {
 			'responsables': $("#slc_responsables_"+idaccion).val(),
 			'otro_responsable': $("#txt_otrosresp_"+idaccion).val(),
 			'finicio': $("#txt_finicio_"+idaccion).val(),
-			'ffin': $("#txt_ffin_"+idaccion).val()
+			'comentarios_finicio': $("#txt_comentarios_finicio_"+idaccion).val(),
+			'ffin': $("#txt_ffin_"+idaccion).val(),
+			'comentarios_ffin': $("#txt_comentarios_ffin_"+idaccion).val()
 		},
 		beforeSend: function(xhr) {
 			Notification.loading("Cargando vista");
 		}
 	})
 	.done(function(data){
+		swal.close();
 		if(data.estatus){
-			Principal_pemc.obtiene_vista_obetivos();
+			swal({
+	      title: 'Se guardo correctamente.',
+	      text: "¿Requiere seguir actualizando acciones?",
+	      type: 'warning',
+	      showCancelButton: true,
+	      confirmButtonColor: '#3085d6',
+	      cancelButtonColor: '#d33',
+	      confirmButtonText: 'Si',
+	      cancelButtonText: 'No',
+				allowOutsideClick: false
+	    }).then((result) => {
+	      if (result.value) {
+	        // $("#modal_generico_obj").modal('hide');
+					Objetivos.agreg_acciones(idobjetivo);
+	      }
+				else {
+					$("#modal_generico_obj").modal('hide');
+					Principal_pemc.obtiene_vista_obetivos();
+				}
+	    });
+			// Principal_pemc.obtiene_vista_obetivos();
 		}else{
 			swal(
 			'¡Error!',
@@ -160,7 +187,7 @@ var Objetivos = {
 			"error"
 			);
 		}
-		$("#modal_generico_obj").modal('hide');
+		// $("#modal_generico_obj").modal('hide');
 	})
 	.fail(function(e) {
 		console.error("Error in ()"); console.table(e);
@@ -182,15 +209,38 @@ var Objetivos = {
 			'responsables': $("#slc_responsables_new").val(),
 			'otro_responsable': $("#txt_otrosresp_new").val(),
 			'finicio': $("#txt_finicio_new").val(),
-			'ffin': $("#txt_ffin_new").val()
+			'comentarios_finicio': $("#txt_comentarios_finicio_new").val(),
+			'ffin': $("#txt_ffin_new").val(),
+			'comentarios_ffin': $("#txt_comentarios_ffin_new").val()
 		},
 		beforeSend: function(xhr) {
 			Notification.loading("Cargando vista");
 		}
 	})
 	.done(function(data){
+		swal.close();
 		if(data.estatus){
-			Principal_pemc.obtiene_vista_obetivos();
+			swal({
+	      title: 'Se guardo correctamente.',
+	      text: "¿Requiere seguir actualizando acciones?",
+	      type: 'warning',
+	      showCancelButton: true,
+	      confirmButtonColor: '#3085d6',
+	      cancelButtonColor: '#d33',
+	      confirmButtonText: 'Si',
+	      cancelButtonText: 'No',
+				allowOutsideClick: false
+	    }).then((result) => {
+	      if (result.value) {
+	        // $("#modal_generico_obj").modal('hide');
+					Objetivos.agreg_acciones(idobjetivo);
+	      }
+				else {
+					$("#modal_generico_obj").modal('hide');
+					Principal_pemc.obtiene_vista_obetivos();
+				}
+	    });
+
 		}else{
 			swal(
 			'¡Error!',
@@ -198,7 +248,7 @@ var Objetivos = {
 			"error"
 			);
 		}
-		$("#modal_generico_obj").modal('hide');
+		// $("#modal_generico_obj").modal('hide');
 	})
 	.fail(function(e) {
 		console.error("Error in ()"); console.table(e);
@@ -281,7 +331,8 @@ var Objetivos = {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Eliminar',
-      cancelButtonText: 'Cancelar'
+      cancelButtonText: 'Cancelar',
+			allowOutsideClick: false
     }).then((result) => {
       if (result.value) {
         Objetivos.delete_accion(idaccion, idobjetivo);
@@ -302,13 +353,35 @@ var Objetivos = {
 		}
 	})
 	.done(function(data){
+		swal.close();
 		if(data.estatus){
-			swal(
-			'¡Correcto!',
-			"La accion se elimino correctamente",
-			"success"
-			);
-			Principal_pemc.obtiene_vista_obetivos();
+			swal({
+	      title: 'Se elimino correctamente.',
+	      text: "¿Requiere seguir actualizando acciones?",
+	      type: 'warning',
+	      showCancelButton: true,
+	      confirmButtonColor: '#3085d6',
+	      cancelButtonColor: '#d33',
+	      confirmButtonText: 'Si',
+	      cancelButtonText: 'No',
+				allowOutsideClick: false
+	    }).then((result) => {
+	      if (result.value) {
+	        // $("#modal_generico_obj").modal('hide');
+					Objetivos.agreg_acciones(idobjetivo);
+	      }
+				else {
+					$("#modal_generico_obj").modal('hide');
+					Principal_pemc.obtiene_vista_obetivos();
+				}
+	    });
+
+			// swal(
+			// '¡Correcto!',
+			// "La accion se elimino correctamente",
+			// "success"
+			// );
+			// Principal_pemc.obtiene_vista_obetivos();
 		}else{
 			swal(
 			'¡Error!',
@@ -316,7 +389,7 @@ var Objetivos = {
 			"error"
 			);
 		}
-		$("#modal_generico_obj").modal('hide');
+		// $("#modal_generico_obj").modal('hide');
 	})
 	.fail(function(e) {
 		console.error("Error in ()"); console.table(e);
@@ -346,48 +419,69 @@ var Objetivos = {
 	    idvisor = "img_preview_fin"+idobjetivo;
 	    break;
 	}
-  	if (archivo.files && archivo.files[0]) {
-	        var reader = new FileReader();
-	        reader.onload = function (e) {
-	            image = document.getElementById(idvisor);
-    			image.src = reader.result;
-    			preview.innerHTML = '';
-    			preview.append(image);
-	        }
-	        reader.readAsDataURL(archivo.files[0]);
-	}
+
+
   	var formData = new FormData();
     var files = $(archivo)[0].files[0];
-    formData.append('file',files);
-    formData.append('tipo_evidencia',tipo);
-    formData.append('idobjetivo',idobjetivo);
-  	$.ajax({
-  		type: 'POST',
-		url:base_url+"Objetivos/insert_evidencias",
-        data: formData,
-        contentType: false,
-        processData: false,
-		beforeSend: function(xhr) {
-			Notification.loading("Cargando vista");
-		}
-	})
-	.done(function(data){
-		if(data.estatus){
-			Principal_pemc.obtiene_vista_obetivos();
-		}else{
-			swal(
-			'¡Error!',
-			"Fallo al insertar",
-			"error"
-			);
-		}
-	})
-	.fail(function(e) {
-		console.error("Error in ()"); console.table(e);
-	})
-	.always(function() {
-		// swal.close();
-	});
+		if(files.type.match('image/jp.*') || files.type.match('application/pdf') || files.type.match('image/gif')) {
+			if(files.size<=2*1024*1024) {
+				if (archivo.files && archivo.files[0]) {
+			        var reader = new FileReader();
+			        reader.onload = function (e) {
+			        image = document.getElementById(idvisor);
+		    			image.src = reader.result;
+		    			// idvisor.innerHTML = '';
+		    			// idvisor.append(image);
+			        }
+			        reader.readAsDataURL(archivo.files[0]);
+						}
+					formData.append('file',files);
+			    formData.append('tipo_evidencia',tipo);
+			    formData.append('idobjetivo',idobjetivo);
+			  	$.ajax({
+			  		type: 'POST',
+					url:base_url+"Objetivos/insert_evidencias",
+			        data: formData,
+			        contentType: false,
+			        processData: false,
+					beforeSend: function(xhr) {
+						Notification.loading("Cargando vista");
+					}
+				})
+				.done(function(data){
+					if(data.estatus){
+						Principal_pemc.obtiene_vista_obetivos();
+					}else{
+						swal(
+						'¡Error!',
+						"Fallo al insertar",
+						"error"
+						);
+					}
+				})
+				.fail(function(e) {
+					console.error("Error in ()"); console.table(e);
+				})
+				.always(function() {
+					// swal.close();
+				});
+			}
+			else {
+				swal(
+ 			 '¡Error!',
+ 			 "Solo se permiten archivos de máximo 2MB",
+ 			 "error"
+ 			 );
+			}
+	   }
+		 else {
+			 swal(
+			 '¡Error!',
+			 "Solo se permiten archivos de tipo jpeg, gif y pdf",
+			 "error"
+			 );
+		 }
+
   },
 
   elimina_imagen: (idobjetivo, tipo) =>{
@@ -399,7 +493,8 @@ var Objetivos = {
 	      confirmButtonColor: '#3085d6',
 	      cancelButtonColor: '#d33',
 	      confirmButtonText: 'Eliminar',
-	      cancelButtonText: 'Cancelar'
+	      cancelButtonText: 'Cancelar',
+				allowOutsideClick: false
 	    }).then((result) => {
 	      if (result.value) {
 	        Objetivos.delete_imagen(idobjetivo, tipo);

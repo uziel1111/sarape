@@ -99,13 +99,13 @@ class Objetivo_model extends CI_Model
     	return $this->pemc_db->query($str_query, array($idobjetivo))->result_array();
     }
 
-    function update_accion($idaccion, $idobjetivo, $accion, $recurso, $ambitos, $responsables, $otro_responsable, $finicio, $ffin){
+    function update_accion($idaccion, $idobjetivo, $accion, $recurso, $ambitos, $responsables, $otro_responsable, $finicio,$comentarios_finicio, $ffin,$comentarios_ffin){
     	// echo $responsables;
     	// die();
     	$str_query = "UPDATE r_pemc_objetivo_accion
-					SET accion = UPPER(?), recurso = UPPER(?), idambitos = ?, responsables= ?, otros_responsables = UPPER(?), finicio = ?, ffin = ?, fmodificacion = NOW()
+					SET accion = UPPER(?), recurso = UPPER(?), idambitos = ?, responsables= ?, otros_responsables = UPPER(?), finicio = ?, ffin = ?, fmodificacion = NOW(), comentario_finicio = ?, comentario_ffin = ?
 					WHERE idaccion = ? AND idobjetivo = ?";
-		return $this->pemc_db->query($str_query, array($accion, $recurso, $ambitos, $responsables, $otro_responsable, $finicio, $ffin, $idaccion, $idobjetivo));
+		return $this->pemc_db->query($str_query, array($accion, $recurso, $ambitos, $responsables, $otro_responsable, $finicio, $ffin,$comentarios_finicio,$comentarios_ffin, $idaccion, $idobjetivo));
     }
 
     function update_orden_accion($idaccion, $idobjetivo, $orden){
@@ -115,7 +115,7 @@ class Objetivo_model extends CI_Model
         return $this->pemc_db->query($str_query, array($orden, $idaccion, $idobjetivo));
     }
 
-    function insert_accion($idobjetivo, $orden, $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio, $ffin){
+    function insert_accion($idobjetivo, $orden, $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio,$comentarios_finicio, $ffin,$comentarios_ffin){
     	$norden = (int)$orden + 1;
     	$data = array(
 			'idobjetivo' => $idobjetivo,
@@ -126,7 +126,9 @@ class Objetivo_model extends CI_Model
 		    'responsables' => $cad_responsables,
 		    'otros_responsables' => $otro_responsable,
 		    'finicio' => $finicio,
+        'comentario_finicio' => $comentarios_finicio,
 		    'ffin' => $ffin,
+        'comentario_ffin' => $comentarios_ffin,
 		    'fcreacion' => date('Y-m-d')
 		);
 		return $this->pemc_db->insert('r_pemc_objetivo_accion', $data);

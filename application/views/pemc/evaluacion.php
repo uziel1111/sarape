@@ -30,7 +30,7 @@
       </div>
       <div class="col-2">
         <?php if ($es_fin && (!$esta_cerrado_ciclo)): ?>
-          <button class="btn btn-primary my-1  float-right" id="btn_guardar_cierre_pemc">Cierre ciclo escolar</button>
+          <button class="btn btn-primary my-1  float-right" id="btn_guardar_cierre_pemc_" disabled>Cierre ciclo escolar</button>
         <?php endif; ?>
       </div>
     </div>
@@ -50,8 +50,15 @@
             <tr>
             <td class="text-center">2020-07-22</td>
             <td class="text-center">2019-2020</td>
-            <td class="text-center"><a  href="<?= base_url("pemcv1_masivos/".$cve_centro."_".$id_turno_single.".pdf") ?>" target="_blank"><button type="button" class="btn btn-info">Ver reporte</button></a></td>
-            </tr>
+            <td class="text-center">
+              <?php if ($n_acciones_pemc_ant>0): ?>
+                <a  href="<?= base_url("pemcv1_masivos/".$cve_centro."_".$id_turno_single.".pdf") ?>" target="_blank"><button type="button" class="btn btn-info">Ver reporte</button></a>
+              <?php endif; ?>
+              <?php if ($n_acciones_pemc_ant==0): ?>
+                Escuela sin actividad en PEMC ciclo anterior
+              <?php endif; ?>
+            </td>
+          </tr>
 
               <?php foreach ($evaluaciones as $key => $value): ?>
                 <tr>

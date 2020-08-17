@@ -182,7 +182,7 @@
 						<div class="eclase-info">
 							<p>La Secretaría de Educación del Estado Coahuila pone a disposición de estudiantes y docentes de Media Superior una herramienta de apoyo para la educación a distancia.</p>
 							<div class="alert alert-light" role="alert">
-								<i class="fas fa-info-circle color-2"></i> Disponible para CECYTEC y EMSAD.
+								<i class="fas fa-info-circle color-2"></i> Disponible para COBAC.
 							</div>
 							<a href="https://sarape-conectados.mx/Alumno/login" target="_blank" class="primary-btn btn-block border-color-1 btn-color-2 text-white d-inline-flex align-items-center mb-10">Ingreso para Estudiantes<span class="lnr lnr-arrow-right"></span></a>
 							<a href="https://sarape-conectados.mx/Escolar/login" target="_blank" class="primary-btn btn-block border-color-1 btn-color-3 text-white d-inline-flex align-items-center">Ingreso para Docentes / Directores<span class="lnr lnr-arrow-right"></span></a>
