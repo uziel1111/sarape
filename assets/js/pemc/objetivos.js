@@ -585,5 +585,29 @@ var Objetivos = {
 	.always(function() {
 		swal.close();
 	});
-  }
+},
+trae_laes: (elemento, id_contenedor) =>{
+	// console.log($(elemento).val());
+	var arr = $(elemento).val();
+	$.ajax({
+		type: 'POST',
+	url:base_url+"Objetivos/get_laes_select",
+	data:{
+		'idambitos': arr.join(",")
+	},
+	beforeSend: function(xhr) {
+		Notification.loading("Cargando vista");
+	}
+})
+.done(function(data){
+	$("#"+id_contenedor).empty();
+	$("#"+id_contenedor).append(data.txt);
+})
+.fail(function(e) {
+	console.error("Error in ()"); console.table(e);
+})
+.always(function() {
+	swal.close();
+});
+},
 }

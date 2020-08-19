@@ -39,7 +39,10 @@ class Objetivo_model extends CI_Model
     }
 
     function get_ambitos(){
-    	$str_query = "SELECT * FROM c_pemc_ambito";
+    	$str_query = "SELECT
+                  a.idambito, a.ambito, a.idlae, l.lae
+                  FROM c_pemc_ambito a
+                  INNER JOIN c_pemc_laes l ON a.idlae = l.idlae";
     	return $this->pemc_db->query($str_query)->result_array();
     }
 
@@ -165,6 +168,16 @@ class Objetivo_model extends CI_Model
         }
         $str_query = "SELECT {$campo} AS url FROM r_pemc_objetivo WHERE idobjetivo = ?";
         return $this->pemc_db->query($str_query, array($idobjetivo))->row();
+    }
+
+
+    function trae_str_laesxidambitos($idambitos){
+        $str_query = "SELECT
+            GROUP_CONCAT( DISTINCT l.lae SEPARATOR ', ') as laes
+            FROM c_pemc_ambito a
+            INNER JOIN c_pemc_laes l ON a.idlae = l.idlae
+            WHERE a.idambito in({$idambitos})";
+        return $this->pemc_db->query($str_query)->row('laes');
     }
 
 }// Objetivo_model

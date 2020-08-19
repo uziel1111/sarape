@@ -36,11 +36,12 @@
 			    <td><textarea class="form-control" id="txt_accion_<?=$accion['idaccion']?>" rows="3"  maxlength="255"><?=$accion['accion']?></textarea></td>
 			    <td><textarea class="form-control" id="txt_recurso_<?=$accion['idaccion']?>" rows="3"  maxlength="255"><?=$accion['recurso']?></textarea></td>
 			    <td>
-					<select id="select_ambito_<?=$accion['idaccion']?>" class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_ambitos" title="SELECCIONA">
+					<select id="select_ambito_<?=$accion['idaccion']?>" class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_ambitos" title="SELECCIONA" onchange="Objetivos.trae_laes(this, 'inp_laes_<?=$accion['accion']?>')">
                      <?php foreach ($ambitos as $ambito): ?>
-			      		<option value="<?= $ambito['idambito']?>"><?= $ambito['ambito']?></option>
+			      		<option data-lae="<?=$ambito['lae']?>" value="<?= $ambito['idambito']?>" data-subtext="(Línea de Acción Estratégica <?=$ambito['idlae']?>)"><?= $ambito['ambito']?> </option>
 			      	<?php endforeach ?>
 					</select>
+
 					<script type="text/javascript">
 						$('#select_ambito_'+<?=$accion['idaccion']?>).selectpicker('val', [<?=$accion['idambitos']?>]);
 					</script>
@@ -72,6 +73,9 @@
 			    	<button class="btn btn-danger" onclick="Objetivos.elimina_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )">Eliminar</button>
 			    </td>
 			    </tr>
+          <tr style="background-color: #bee5eb; ">
+          <td colspan="8"><label><b>Línea(s) de Acción Estratégica: </b><span id="inp_laes_<?=$accion['accion']?>"></span></label></td>
+          </tr>
 		    	<?php endforeach ?>
 		    	<?php endif ?>
 		    	<tr>
@@ -79,11 +83,12 @@
 			    <td><textarea class="form-control" id="txt_accion_new" rows="3"   maxlength="255"></textarea></td>
 			    <td><textarea class="form-control" id="txt_recurso_new" rows="3"   maxlength="255"></textarea></td>
 			    <td>
-					<select id="select_ambito_new" class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_ambitos" title="SELECCIONA">
+					<select id="select_ambito_new" class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_ambitos" title="SELECCIONA" onchange="Objetivos.trae_laes(this, 'inp_laes_new_<?=$accion['accion']?>')">
                      <?php foreach ($ambitos as $ambito): ?>
-			      		<option value="<?= $ambito['idambito']?>"><?= $ambito['ambito']?></option>
+			      		<option data-lae="<?=$ambito['lae']?>" value="<?= $ambito['idambito']?>"  data-subtext="(Línea de Acción Estratégica <?=$ambito['idlae']?>)"><?= $ambito['ambito']?></option>
 			      	<?php endforeach ?>
 					</select>
+
 			    </td>
 			    <td>
 					<select class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_responsables_new">
@@ -105,6 +110,9 @@
           </td>
 			    <td><button class="btn btn-primary "onclick="Objetivos.valida_campos_accion(0,<?= $idobjetivo ?>)" >Guardar</button></td>
 			    </tr>
+          <tr style="background-color: #bee5eb; ">
+          <td colspan="8"><label><b>Línea(s) de Acción Estratégica: </b><span id="inp_laes_new_<?=$accion['accion']?>"></span></label></td>
+          </tr>
 			  </tbody>
 			</table>
 		</div>

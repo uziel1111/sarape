@@ -304,6 +304,19 @@ class Objetivos extends CI_Controller
 		exit;
 	}
 
+	public function get_laes_select(){
+		$idambitos = $this->input->post('idambitos');
+		$txt='';
+		if ($idambitos!='') {
+			$txt = $this->Objetivo_model->trae_str_laesxidambitos($idambitos);
+		}
+
+		// echo "<pre>";print_r($txt);die();
+
+		$response = array('txt' => $txt);
+		Utilerias::enviaDataJson(200,$response, $this);
+		exit;
+	}
 
 
 }
