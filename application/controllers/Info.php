@@ -643,7 +643,7 @@ class Info extends CI_Controller {
 
 			$insert = $this->Propuestas_model->inserta_url($id_reactivo, $url, $idtipo, $titulo, $fuente);
 			if($insert){
-				$response = array('response' => "Se guardo correctamente");
+				$response = array('response' => "Se guardó correctamente");
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
 			}

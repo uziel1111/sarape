@@ -198,7 +198,7 @@ Panel.prototype.autorizar_propuesta = function(idpropuesta){
 
 Panel.prototype.elimina_propuesta = function(idpropuesta){
 		swal({
-	  title: '¿Esta seguro de eliminar esta propuesta?',
+	  title: '¿Está seguro de eliminar esta propuesta?',
 	  text: "Una vez eliminado no se podra tener acceso al recurso",
 	  type: 'warning',
 	  showCancelButton: true,

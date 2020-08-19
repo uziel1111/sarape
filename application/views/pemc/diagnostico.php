@@ -14,7 +14,7 @@
    <?php endif; ?>
 
   </form>
-  <a href="<?= base_url('index.php/Pemc/reporte_detalle/').$idpemc ?>" target="_blank"><button class="btn btn-primary">Imprime Diagnóstico</button></a>
+  <a href="<?= base_url('index.php/Pemc/reporte_detalle/').$idpemc ?>" target="_blank"><button class="btn btn-primary">Imprima Diagnóstico</button></a>
 </div>
 <script type="text/javascript">
 $(function() {

@@ -55,7 +55,7 @@
                 <a  href="<?= base_url("pemcv1_masivos/".$cve_centro."_".$id_turno_single.".pdf") ?>" target="_blank"><button type="button" class="btn btn-info">Ver reporte</button></a>
               <?php endif; ?>
               <?php if ($n_acciones_pemc_ant==0): ?>
-                Escuela sin actividad en PEMC ciclo anterior
+                Escuela sin actividad de PEMC en el ciclo anterior
               <?php endif; ?>
             </td>
           </tr>

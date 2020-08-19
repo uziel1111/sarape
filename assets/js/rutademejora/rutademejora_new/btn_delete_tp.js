@@ -13,7 +13,7 @@ $('#btn_rutamejora_eliminareg').click(function(e){
 			);
 	} else {
 		swal({
-			title: '¿Esta seguro de eliminar el tema prioritario?',
+			title: '¿Está seguro de eliminar el tema prioritario?',
 			text: "Una vez eliminado no se podra recuperar",
 			type: 'warning',
 			showCancelButton: true,

@@ -27,7 +27,7 @@ function readURL_Fin(id_objetivo,input) {
 //Funciones para eliminar evidencias
 function eliminaEvidencia(id_objetivo, elemento){
   swal({
-    title: '¿Esta seguro de eliminar la evidencia?',
+    title: '¿Está seguro de eliminar la evidencia?',
     type: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -71,7 +71,7 @@ function eliminaEvidencia(id_objetivo, elemento){
 
 function eliminaEvidenciaFin(id_objetivo, elemento){
   swal({
-    title: '¿Esta seguro de eliminar la evidencia?',
+    title: '¿Está seguro de eliminar la evidencia?',
     type: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -103,7 +103,7 @@ function eliminaEvidenciaFin(id_objetivo, elemento){
        $('#preview'+id_objetivo).attr('src', '#');
       })
       .fail(function(e) {
-       swal.close();    
+       swal.close();
        console.error("Error in eliminaEvidencia()");
       })
       .always(function() {

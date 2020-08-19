@@ -61,7 +61,7 @@ $("#id_btn_elimina_accion").click(function(e){
       );
   }else{
     swal({
-      title: '¿Estás seguro de eliminar esta acción?',
+      title: '¿Está seguro de eliminar esta acción?',
       text: "Una vez eliminado no se podrá recuperar",
       type: 'warning',
       showCancelButton: true,
@@ -93,7 +93,7 @@ $("#id_btn_edita_accion").click(function(e) {
 $("#btn_editando_accion").click(function(){
  if (obj_rm_acciones_tp.validaform(0)) {
     obj_rm_acciones_tp.editar_accion()
-} 
+}
 
 });
 
@@ -106,13 +106,13 @@ $("#slc_responsables").change(function(){
   encargados = texto.split(",");
   var i = encargados.indexOf("Otros");
   encargados.splice( i, 1 );
-   
+
    if( texto.indexOf("0,") > -1){
     $("#div_otro_responsable").show();
-     
+
    }else{
     $("#div_otro_responsable").hide();
-      
+
     }
   });
 
@@ -594,4 +594,3 @@ Rm_acciones_tp.prototype.get_view = function(){
   });
   obj.id_tprioritario = undefined
 }
-

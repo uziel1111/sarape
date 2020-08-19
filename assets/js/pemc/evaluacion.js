@@ -55,7 +55,7 @@ $("#btn_guardar_evaluacion_pemc").click(function(e){
 $("#btn_guardar_cierre_pemc").click(function(e){
  e.preventDefault();
  swal({
-	 title: '¿Esta seguro de hacer el corte de cierre de su PEMC?',
+	 title: '¿Está seguro de hacer el corte de cierre de su PEMC?',
 	 text: "Una vez hecho no se puede modificar",
 	 type: 'warning',
 	 showCancelButton: true,
@@ -96,7 +96,7 @@ var Evaluacion_pemc = {
 			 if (data.estatus==1) {
 				 swal(
 					 '¡Correcto!',
-					 "Se guardo correctamente.",
+					 "Se guardó correctamente.",
 					 "success"
 					 );
 					 // Principal_pemc.obtiene_vista_evaluacion($("#idpemc").val());
@@ -104,7 +104,7 @@ var Evaluacion_pemc = {
 			 else {
 				 swal(
 	 	      '¡Error!',
-	 	      "No se guardo correctamente, favor de intentarlo más tarde.",
+	 	      "No se guardó correctamente, favor de intentarlo más tarde.",
 	 	      "error"
 	 	      );
 			 }
@@ -134,7 +134,7 @@ var Evaluacion_pemc = {
 			if (data.estatus==1) {
 				swal(
 					'¡Correcto!',
-					"Se guardo correctamente.",
+					"Se guardó correctamente.",
 					"success"
 					);
 					Principal_pemc.obtiene_vista_evaluacion($("#idpemc").val());
@@ -142,7 +142,7 @@ var Evaluacion_pemc = {
 			else {
 				swal(
 				 '¡Error!',
-				 "No se guardo correctamente, favor de intentarlo más tarde.",
+				 "No se guardó correctamente, favor de intentarlo más tarde.",
 				 "error"
 				 );
 			}

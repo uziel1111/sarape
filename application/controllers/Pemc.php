@@ -40,6 +40,7 @@ class Pemc extends CI_Controller {
 		}
 
 		public function acceso(){
+			$data = array();
 			if(Utilerias::verifica_sesion_redirige($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
 				if(isset($this->cct[0]['id_supervision'])){

@@ -31,7 +31,7 @@ $("#btn_edita_obj").click(function(){
 $("#btn_elimina_obj").click(function(){
 	if(Objetivos.idseleccionado != null){
 		swal({
-	      title: '¿Estás seguro de eliminar este objetivo?',
+	      title: '¿Está seguro de eliminar este objetivo?',
 	      text: "Se eliminará las metas, comentarios, evidencias, seguimientos y evaluaciones asignadas a el mismo, una vez eliminado no se podrá recuperar",
 	      type: 'warning',
 	      showCancelButton: true,
@@ -160,7 +160,7 @@ var Objetivos = {
 		swal.close();
 		if(data.estatus){
 			swal({
-	      title: 'Se guardo correctamente.',
+	      title: 'Se guardó correctamente.',
 	      text: "¿Requiere seguir actualizando acciones?",
 	      type: 'warning',
 	      showCancelButton: true,
@@ -221,7 +221,7 @@ var Objetivos = {
 		swal.close();
 		if(data.estatus){
 			swal({
-	      title: 'Se guardo correctamente.',
+	      title: 'Se guardó correctamente.',
 	      text: "¿Requiere seguir actualizando acciones?",
 	      type: 'warning',
 	      showCancelButton: true,
@@ -324,7 +324,7 @@ var Objetivos = {
 
   elimina_accion: (idaccion, idobjetivo) =>{
   	swal({
-      title: '¿Estás seguro de eliminar esta acción?',
+      title: '¿Está seguro de eliminar esta acción?',
       text: "Una vez eliminada no se podrá recuperar",
       type: 'warning',
       showCancelButton: true,
@@ -486,7 +486,7 @@ var Objetivos = {
 
   elimina_imagen: (idobjetivo, tipo) =>{
   	swal({
-	      title: '¿Estás seguro de eliminar esta imagen?',
+	      title: '¿Está seguro de eliminar esta imagen?',
 	      text: "Una vez eliminada no se podrá recuperar",
 	      type: 'warning',
 	      showCancelButton: true,

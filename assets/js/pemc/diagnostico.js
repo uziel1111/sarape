@@ -31,7 +31,7 @@ $("#fr_diagnostico").validate({
 	   removeformatPasted: true,
 	   autogrow: true
 	 });
-	
+
 });
 
 $("#btn_guardar_diagnostico_pemc").click(function(e){
@@ -61,14 +61,14 @@ var Diagnostico_pemc = {
 			 if (data.estatus==1) {
 				 swal(
 					 '¡Correcto!',
-					 "Se guardo correctamente.",
+					 "Se guardó correctamente.",
 					 "success"
 					 );
 			 }
 			 else {
 				 swal(
 	 	      '¡Error!',
-	 	      "No se guardo correctamente, favor de intentarlo más tarde.",
+	 	      "No se guardó correctamente, favor de intentarlo más tarde.",
 	 	      "error"
 	 	      );
 			 }

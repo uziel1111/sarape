@@ -259,6 +259,7 @@ class Objetivos extends CI_Controller
 			// echo"vamos a ordenar";
 			$acciones = $this->Objetivo_model->get_acciones_x_idobjetivo($idobjetivo);
 			$orden = 1;
+			$estatus = true;
 			foreach ($acciones  as $accion) {
 				$estatus = $this->Objetivo_model->update_orden_accion($accion['idaccion'], $idobjetivo, $orden);
 				$orden = $orden + 1;

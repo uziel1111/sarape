@@ -138,7 +138,7 @@ Recursos.prototype.envia_url =function(){
 
 Recursos.prototype.elimina_recurso = function(idrecurso){
 	swal({
-	  title: '¿Esta seguro de eliminar este contenido?',
+	  title: '¿Está seguro de eliminar este contenido?',
 	  text: "Una vez eliminado no se podra tener acceso al recurso",
 	  type: 'warning',
 	  showCancelButton: true,
@@ -226,7 +226,7 @@ Recursos.prototype.validaExisteArchivo = function(nombre){
 	})
 	.fail(function(e) {
 		swal.close();
-		console.error("Error in get_Niveles()"); 
+		console.error("Error in get_Niveles()");
 		console.table(e);
 	})
 	.always(function() {
@@ -254,7 +254,7 @@ Recursos.prototype.subir_recurso = function(){
             message = $("<span class='before'>Subiendo la imagen, por favor espere...</span>");
             showMessage(message)
         },
-    })      
+    })
     .done(function( data ) {
         swal.close();
         swal(
@@ -266,7 +266,7 @@ Recursos.prototype.subir_recurso = function(){
         obj_recursos.get_tabla();
         $("#idseleccionadofile").val("false");//regresa false la varible que valida si ya se a seleccionado un archivo
         $("#validaexixtente").val("false");//regresa en false la valicacion del archivo exixtente
-        
+
     })
     .fail(function(e) {
         swal.close();
@@ -332,7 +332,7 @@ $(".messages").hide();
 	    		$("#mensaje_alertafuente_file").show();
 	    	}else if($("#validaexixtente").val() == "true"){
 	    		swal({
-				  title: '¿Esta seguro de remplazar el archivo?',
+				  title: '¿Está seguro de remplazar el archivo?',
 				  text: "Puede que algunos recursos no se visualicen correctamente",
 				  type: 'warning',
 				  showCancelButton: true,

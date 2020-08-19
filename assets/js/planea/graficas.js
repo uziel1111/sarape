@@ -15,17 +15,17 @@ function Graficasm(){
       //////////////////////////////////////////////////////////// Por Unidades de Análisis
       //////////////////////////////////////////////////////////// Por Unidades de Análisis
       Graficasm.prototype.graficoplanea_ud_prim_lyc = function(arr_lyc,id_filtro, va_por, periodo){
-        
+
         amarillo = (arr_lyc.length - 10);
         verde = amarillo + 5;
         var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
         for (var i = 1; i <= arr_lyc.length; i++) {
-            
+
             if (i<=amarillo) {
-                colores.push('#FF9900'); 
+                colores.push('#FF9900');
             }
             if (verde<=i) {
-                colores.push('#3CB371'); 
+                colores.push('#3CB371');
             }
         }
         arr_lyc.sort(function (a, b) {
@@ -151,12 +151,12 @@ function Graficasm(){
         verde = amarillo + 5;
         var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
         for (var i = 1; i <= arr_mate.length; i++) {
-            
+
             if (i<=amarillo) {
-                colores.push('#FF9900'); 
+                colores.push('#FF9900');
             }
             if (verde<=i) {
-                colores.push('#3CB371'); 
+                colores.push('#3CB371');
             }
         }
         arr_mate.sort(function (a, b) {
@@ -278,12 +278,12 @@ function Graficasm(){
         verde = amarillo + 5;
         var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
         for (var i = 1; i <= arr_lyc.length; i++) {
-            
+
             if (i<=amarillo) {
-                colores.push('#FF9900'); 
+                colores.push('#FF9900');
             }
             if (verde<=i) {
-                colores.push('#3CB371'); 
+                colores.push('#3CB371');
             }
         }
         arr_lyc.sort(function (a, b) {
@@ -404,12 +404,12 @@ function Graficasm(){
         verde = amarillo + 5;
         var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
         for (var i = 1; i <= arr_mate.length; i++) {
-            
+
             if (i<=amarillo) {
-                colores.push('#FF9900'); 
+                colores.push('#FF9900');
             }
             if (verde<=i) {
-                colores.push('#3CB371'); 
+                colores.push('#3CB371');
             }
         }
         arr_mate.sort(function (a, b) {
@@ -534,12 +534,12 @@ function Graficasm(){
         verde = amarillo + 5;
         var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
         for (var i = 1; i <= arr_lyc.length; i++) {
-            
+
             if (i<=amarillo) {
-                colores.push('#FF9900'); 
+                colores.push('#FF9900');
             }
             if (verde<=i) {
-                colores.push('#3CB371'); 
+                colores.push('#3CB371');
             }
         }
         arr_lyc.sort(function (a, b) {
@@ -671,12 +671,12 @@ function Graficasm(){
         verde = amarillo + 5;
         var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
         for (var i = 1; i <= arr_mate.length; i++) {
-            
+
             if (i<=amarillo) {
-                colores.push('#FF9900'); 
+                colores.push('#FF9900');
             }
             if (verde<=i) {
-                colores.push('#3CB371'); 
+                colores.push('#3CB371');
             }
         }
         arr_mate.sort(function (a, b) {
@@ -911,12 +911,12 @@ function Graficasm(){
         verde = amarillo + 5;
         var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
         for (var i = 1; i <= arr_lyc.length; i++) {
-            
+
             if (i<=amarillo) {
-                colores.push('#FF9900'); 
+                colores.push('#FF9900');
             }
             if (verde<=i) {
-                colores.push('#3CB371'); 
+                colores.push('#3CB371');
             }
         }
         arr_lyc.sort(function (a, b) {
@@ -1047,12 +1047,12 @@ function Graficasm(){
         verde = amarillo + 5;
         var colores = ['#FF0000','#FF0000','#FF0000','#FF0000','#FF0000'];
         for (var i = 1; i <= arr_mate.length; i++) {
-            
+
             if (i<=amarillo) {
-                colores.push('#FF9900'); 
+                colores.push('#FF9900');
             }
             if (verde<=i) {
-                colores.push('#3CB371'); 
+                colores.push('#3CB371');
             }
         }
         arr_mate.sort(function (a, b) {
@@ -1341,7 +1341,7 @@ function Graficasm(){
                          $("#tipodematerial").val('0');
                         $(".formulario")[0].reset();
                          obj_graficas.getn_prop();
-              
+
                swal(
                    'Listo!',
                    result.response,
@@ -1560,7 +1560,7 @@ function Graficasm(){
          $("#mensaje_alertafuente_file").show();
        }else if($("#validaexixtente").val() == "true"){
          swal({
-         title: '¿Esta seguro de remplazar el archivo?',
+         title: '¿Está seguro de remplazar el archivo?',
          text: "Puede que algunos recursos no se visualicen correctamente",
          type: 'warning',
          showCancelButton: true,

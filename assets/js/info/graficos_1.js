@@ -3208,7 +3208,7 @@ $('#btn_subir_pdf_imagen_pub').click(function(e){
       $("#mensaje_alertafuente_file").show();
     }else if($("#validaexixtente").val() == "true"){
       swal({
-      title: '¿Esta seguro de remplazar el archivo?',
+      title: '¿Está seguro de remplazar el archivo?',
       text: "Puede que algunos recursos no se visualicen correctamente",
       type: 'warning',
       showCancelButton: true,

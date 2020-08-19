@@ -14,7 +14,7 @@ $('#opt_prioridad_especial').change(function(){
 	let tipou_pemc="";
 	if($('#tipou_pemc').length) {
 		tipou_pemc=$('#tipou_pemc').val();
-	}  
+	}
 	if ( $('#opt_prioridad_especial').val() != 0 ) {
 		obj_prioridad.llenaIndicador();
 		obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val(),tipou_pemc);
@@ -119,10 +119,10 @@ $('#delete_file').click(function(e){
 })
 
 function publicar(id) {
-	
+
 	estado = $('#aPublicar_'+id).data('estado');
 
-	if (estado == 0) {	
+	if (estado == 0) {
 
 		estado_publicacion = 1;
 
@@ -140,26 +140,26 @@ function publicar(id) {
 		},})
 	.done(function(data){
 		swal.close();
-		if (data.estado == 1) {	
+		if (data.estado == 1) {
 			$('#aPublicar_'+id).data('estado', 1);
 			$('#publicar_'+id).removeClass('fa-user-secret');
 			$('#publicar_'+id).addClass('fa-globe-americas');
-			
-			
+
+
 		}else{
 			$('#aPublicar_'+id).data('estado', 0)
 			$('#publicar_'+id).removeClass('fa-globe-americas');
 			$('#publicar_'+id).addClass('fa-user-secret');
-			
-			
+
+
 		}
 
 		swal(
 			'¡Nota!',
 			"Actualmente esta función no está disponible",
 			'warning'
-			);	
-		
+			);
+
 	})
 	.fail(function(e) {
 		console.error("Error in publicar()");
@@ -169,7 +169,7 @@ function publicar(id) {
 
 	});
 
-	
+
 }
 
 function Prioridad(){
@@ -230,13 +230,13 @@ Prioridad.prototype.llenaMetrica = function(){
 
 //Aqui disparamos todas las funciones del modal
 function show(select_id){
-	
+
 	let opt = $('#opt_prioridad').val();
-	
+
 	let tipou_pemc="";
 	if($('#tipou_pemc').length) {
 		tipou_pemc=$('#tipou_pemc').val();
-	} 
+	}
 	if (opt == 1) {
 		obj_prioridad.llenaIndicador();
 		$('#opt_prioridad').attr('disabled', true)
@@ -345,7 +345,7 @@ $('#grabar_objetivo').click(function(e){
 	let tipou_pemc="";
 	if($('#tipou_pemc').length) {
 		tipou_pemc=$('#tipou_pemc').val();
-	} 
+	}
 
 	if (contenido == '') {
 		swal(
@@ -398,7 +398,7 @@ $('#grabar_objetivo').click(function(e){
 							"El objetivo se insertó correctamente",
 							'success'
 							);
-						
+
 						obj_prioridad.getObjetivos($("#opt_prioridad").val(),$("#opt_prioridad_especial").val(),tipou_pemc);
 					}, 1000);
 
@@ -501,7 +501,7 @@ function btnEditar(){
 }
 
 function btnEliminar(){
-	
+
 	objetivo = obj.id_objetivo;
 	if (obj.id_objetivo == undefined) {
 		swal(
@@ -513,7 +513,7 @@ function btnEliminar(){
 	}else {
 		$('#CAPoutput').val('');
 		swal({
-			title: '¿Esta seguro de eliminar el objetivo?',
+			title: '¿Está seguro de eliminar el objetivo?',
 			text: "Se borrarán las actividades vinculadas al mismo, una vez eliminado no se podra recuperar",
 			type: 'warning',
 			showCancelButton: true,
@@ -534,7 +534,7 @@ function btnEliminar(){
 						Notification.loading("");
 					},
 					/*success: function(data){
-						
+
 					}*/
 				}) //Ajax
 				.done(function(result) {
@@ -569,7 +569,7 @@ Prioridad.prototype.getObjetivos = function(){
 	let tipou_pemc="";
 	if($('#tipou_pemc').length) {
 		tipou_pemc=$('#tipou_pemc').val();
-	} 
+	}
 	if(obj.id_tprioritario != 0){
 		$.ajax({
 			url: base_url+'Rutademejora/getObjetivos',
@@ -592,7 +592,7 @@ Prioridad.prototype.getObjetivos = function(){
 			$("#objetivo_meta").append(result.table);
 			$('#id_objetivo').val(result.id_objetivo);
 			obj_prioridad.funcionalidadselect()
-			
+
 			if (result.id_objetivo == 0) {
 				$('.problematicaTxt').empty();
 				$('#evidencias').empty();

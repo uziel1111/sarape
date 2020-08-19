@@ -168,7 +168,7 @@ class Panel extends CI_Controller {
 
 				$insert = $this->Recursos_model->inserta_url($id_reactivo, $url, $idusuario, $idtipo, $titulo, $fuente);
 				if($insert){
-					$response = array('response' => "Se guardo correctamente");
+					$response = array('response' => "Se guardó correctamente");
 					Utilerias::enviaDataJson(200, $response, $this);
 					exit;
 				}
@@ -187,7 +187,7 @@ class Panel extends CI_Controller {
 								    <tr>
 								      <th scope="col">ID RECURSO</th>
 								      <th scope="col">TIPO</th>
-								      
+
 								      <th scope="col">FECHA DE CREACION</th>
 								      <th scope="col">TITULO</th>
 								      <th scope="col"></th>
@@ -200,7 +200,7 @@ class Panel extends CI_Controller {
 						$table .=  '<tr>
 								      <th scope="row">'.$recurso["idrecurso"].'</th>
 								      <td>'.$recurso["tipo"].'</td>
-								      
+
 								      <td>'.$recurso["fcreacion"].'</td>
 								      <td>'.$recurso["titulo"].'</td>
 								      <td><button type="button" class="btn btn-danger" id="btn_eliminar_recurso" onClick="obj_recursos.elimina_recurso('.$recurso["idrecurso"].')">X</button></td>
@@ -336,8 +336,8 @@ class Panel extends CI_Controller {
 				if(count($recursos) < 10){
 					$usuario = Utilerias::get_usuario_sesion($this);
 					$idusuario = $usuario[0]['idusuario'];
-					
-					
+
+
 
 					if($propuesta[0]['idtipo'] == "1"){
 						$carpeta = "pdf";
@@ -371,7 +371,7 @@ class Panel extends CI_Controller {
 				}else{
 					$response = array('respuesta' => 'maximovalor');
 				}
-				
+
 				Utilerias::enviaDataJson(200, $response, $this);
 				exit;
 			}

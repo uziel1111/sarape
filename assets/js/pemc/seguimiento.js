@@ -2,7 +2,7 @@
 var Seguimiento_pemc = {
 		guarda_avance: (elemento, avance, idaccion, val_ant, ageOutputId) => {
 			swal({
-				title: '¿Esta seguro de guardar el avance '+avance+'%?',
+				title: '¿Está seguro de guardar el avance '+avance+'%?',
 				text: "Una vez guardado no se puede eliminar",
 				type: 'warning',
 				showCancelButton: true,
@@ -36,14 +36,14 @@ var Seguimiento_pemc = {
 			 if (data.estatus) {
 				 swal(
 					'¡Correcto!',
-					"Se guardo correctamente.",
+					"Se guardó correctamente.",
 					"success"
 					);
 			 }
 			 else {
 				 swal(
 				 '¡Error!',
-				 "No se guardo correctamente, favor de intentarlo más tarde.",
+				 "No se guardó correctamente, favor de intentarlo más tarde.",
 				 "error"
 				 );
 				 $(ageOutputId).text(val_ant);
