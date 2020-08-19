@@ -19,12 +19,11 @@
 			  <thead>
 			    <tr>
 			      <th  class="">#</th>
-			      <th  width="20%">Acción</th>
-			      <th  width="20%">Recursos</th>
+			      <th  width="25%">Acción</th>
+			      <th  width="25%">Recursos</th>
 			      <th  width="20%">Ámbitos</th>
-			      <th  width="20%">Responsables</th>
-			      <th  width="5%">Fecha inicio</th>
-			      <th  width="5%">Fecha fin</th>
+			      <th  width="15%">Responsables</th>
+			      <th  width="15%">Fechas inicio - fin</th>
 			      <th ></th>
 			    </tr>
 			  </thead>
@@ -61,13 +60,15 @@
 					<input type="text" id="txt_otrosresp_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['otros_responsables']?>"  maxlength="255" placeholder="Otro(s)">
 				</td>
 			    <td>
-            <input type="date" id="txt_finicio_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['finicio']?>">
-            <input type="hidden" id="txt_comentarios_finicio_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['comentario_finicio']?>"  maxlength="255" placeholder="Comentario(s)">
+            <input type="text" id="txt_fechas_<?=$accion['idaccion']?>"class="form-control" name="daterange" value="<?=$accion['finicio']." - ".$accion['ffin']?>" readonly/>
+
+            <!-- <input type="date" id="txt_finicio_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['finicio']?>"> -->
+            <!-- <input type="hidden" id="txt_comentarios_finicio_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['comentario_finicio']?>"  maxlength="255" placeholder="Comentario(s)"> -->
           </td>
-			    <td>
+			    <!-- <td>
             <input type="date" id="txt_ffin_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['ffin']?>">
             <input type="hidden" id="txt_comentarios_ffin_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['comentario_ffin']?>"  maxlength="255" placeholder="Comentario(s)">
-          </td>
+          </td> -->
 			    <td>
 			    	<button class="btn btn-info" title="Guardar" onclick="Objetivos.valida_campos_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )"><i class="fas fa-save"></i></button>
 			    	<br>
@@ -103,13 +104,14 @@
 					<input type="text" class="form-control" id="txt_otrosresp_new" name="" value=""   maxlength="255" placeholder="Otro(s)" style="display: none;">
 				</td>
 			    <td>
-            <input type="date" class="form-control" id="txt_finicio_new" name="" value="">
-  					<input type="hidden" id="txt_comentarios_finicio_new" class="form-control" name="" value=""  maxlength="255" placeholder="Comentario(s)">
+            <input type="text" id="txt_fechas_new" class="form-control" name="daterange" value="" readonly/>
+            <!-- <input type="date" class="form-control" id="txt_finicio_new" name="" value=""> -->
+  					<!-- <input type="hidden" id="txt_comentarios_finicio_new" class="form-control" name="" value=""  maxlength="255" placeholder="Comentario(s)"> -->
           </td>
-			    <td>
+			    <!-- <td>
             <input type="date" class="form-control" id="txt_ffin_new" name="" value="">
   					<input type="hidden" id="txt_comentarios_ffin_new" class="form-control" name="" value=""  maxlength="255" placeholder="Comentario(s)">
-          </td>
+          </td> -->
 			    <td><button class="btn btn-primary" title="Guardar" onclick="Objetivos.valida_campos_accion(0,<?= $idobjetivo ?>)" ><i class="fas fa-save"></i></button></td>
 			    </tr>
           <tr style="background-color: #bee5eb; ">
@@ -122,4 +124,41 @@
 </div>
 <script type="text/javascript">
 $(".selectpicker").selectpicker("refresh");
+$(function() {
+  $('input[name="daterange"]').daterangepicker({
+    "locale": {
+        "format": "DD/MM/YYYY",
+        "separator": " - ",
+        "applyLabel": "Aplicar",
+        "cancelLabel": "Cancelar",
+        "fromLabel": "From",
+        "toLabel": "To",
+        "customRangeLabel": "Custom",
+        "daysOfWeek": [
+            "Dom",
+            "Lun",
+            "Mar",
+            "Mie",
+            "Jue",
+            "Vie",
+            "Sab"
+        ],
+        "monthNames": [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        ],
+        "firstDay": 1
+    }
+});
+});
 </script>

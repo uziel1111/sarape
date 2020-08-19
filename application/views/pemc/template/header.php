@@ -20,6 +20,11 @@
 <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
 <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
+
+<script  type = "text/javascript" src = "https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"> </script>
+<script  type = "text/javascript"  src = "https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" > </script>
+<link  rel = "stylesheet"  type = "text/css"  href = "https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 <!-- USO DE LIBRERIA PARA EDITOR DE TEXTO -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.20.0/ui/trumbowyg.min.css" />
  <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.20.0/trumbowyg.min.js"></script>

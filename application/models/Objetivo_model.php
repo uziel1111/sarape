@@ -98,7 +98,14 @@ class Objetivo_model extends CI_Model
     }
 
     function get_acciones_x_idobjetivo($idobjetivo){
-    	$str_query = "SELECT * FROM r_pemc_objetivo_accion WHERE idobjetivo = ? ORDER BY idaccion ASC";
+    	$str_query = "SELECT
+              oa.idaccion,oa.idobjetivo, oa.orden, oa.accion, oa.recurso,
+              oa.idambitos, oa.responsables, oa.otros_responsables,
+              DATE_FORMAT(oa.finicio,'%d/%m/%Y') as finicio, DATE_FORMAT(oa.ffin,'%d/%m/%Y') as ffin,oa.fcreacion, oa.fmodificacion
+              FROM r_pemc_objetivo_accion oa
+              WHERE oa.idobjetivo = ?
+              ORDER BY oa.idaccion ASC
+              ";
     	return $this->pemc_db->query($str_query, array($idobjetivo))->result_array();
     }
 

@@ -1,4 +1,3 @@
-
 // $(function() {
 //     $("#txt_otrosresp_new").hide();
 // });
@@ -145,6 +144,12 @@ var Objetivos = {
   },
 
   agreg_editarA: (idaccion, idobjetivo) =>{
+		var fechas =  $("#txt_fechas_"+idaccion).val();
+		fechas = fechas.split(" - ");
+		var fechas_ini = fechas[0].split("/");
+		var fecha_fin = fechas[1].split("/");
+		fechas_ini = fechas_ini[2]+'-'+fechas_ini[1]+'-'+fechas_ini[0];
+		fecha_fin = fecha_fin[2]+'-'+fecha_fin[1]+'-'+fecha_fin[0];
   	$.ajax({
   		type: 'POST',
 		url:base_url+"Objetivos/update_acciones",
@@ -156,10 +161,8 @@ var Objetivos = {
 			'ambitos': $("#select_ambito_"+idaccion).val(),
 			'responsables': $("#slc_responsables_"+idaccion).val(),
 			'otro_responsable': $("#txt_otrosresp_"+idaccion).val(),
-			'finicio': $("#txt_finicio_"+idaccion).val(),
-			'comentarios_finicio': $("#txt_comentarios_finicio_"+idaccion).val(),
-			'ffin': $("#txt_ffin_"+idaccion).val(),
-			'comentarios_ffin': $("#txt_comentarios_ffin_"+idaccion).val()
+			'finicio': fechas_ini,
+			'ffin': fecha_fin
 		},
 		beforeSend: function(xhr) {
 			Notification.loading("Cargando vista");
@@ -207,6 +210,12 @@ var Objetivos = {
   },
 
   guardar_naccion: (idobjetivo) =>{
+		var fechas =  $("#txt_fechas_new").val();
+		fechas = fechas.split(" - ");
+		var fechas_ini = fechas[0].split("/");
+		var fecha_fin = fechas[1].split("/");
+		fechas_ini = fechas_ini[2]+'-'+fechas_ini[1]+'-'+fechas_ini[0];
+		fecha_fin = fecha_fin[2]+'-'+fecha_fin[1]+'-'+fecha_fin[0];
   	$.ajax({
   		type: 'POST',
 		url:base_url+"Objetivos/insert_acciones",
@@ -217,10 +226,8 @@ var Objetivos = {
 			'ambitos': $("#select_ambito_new").val(),
 			'responsables': $("#slc_responsables_new").val(),
 			'otro_responsable': $("#txt_otrosresp_new").val(),
-			'finicio': $("#txt_finicio_new").val(),
-			'comentarios_finicio': $("#txt_comentarios_finicio_new").val(),
-			'ffin': $("#txt_ffin_new").val(),
-			'comentarios_ffin': $("#txt_comentarios_ffin_new").val()
+			'finicio': fechas_ini,
+			'ffin': fecha_fin
 		},
 		beforeSend: function(xhr) {
 			Notification.loading("Cargando vista");
@@ -284,24 +291,17 @@ var Objetivos = {
 			  			if($("#txt_otrosresp_"+idaccion).is(":visible") && $("#txt_otrosresp_"+idaccion).val() == ''){
 			  				swal('¡Error!',"Introduzca otro(s) responsable(s)","error");
 			  			}else{
-			  				if($("#txt_finicio_"+idaccion).val() == ''){
-				  			swal('¡Error!',"Seleccione fecha de inicio","error");
+			  				if($("#txt_fechas_"+idaccion).val() == ''){
+				  			swal('¡Error!',"Seleccione fechas","error");
 					  		}else{
-					  			if($("#txt_ffin_"+idaccion).val() == ''){
-					  			swal('¡Error!',"Seleccione fecha de fin","error");
-						  		}else{
-						  			if(Objetivos.valida_fecha($("#txt_finicio_"+idaccion).val(), $("#txt_ffin_"+idaccion).val())){
-						  			swal('¡Error!',"La fecha de inicio no puede ser mayo a la de fin","error");
-							  		}else{
 							  			Objetivos.agreg_editarA(idaccion, idobjetivo);
-							  		}
 						  		}
 					  		}
 			  			}
 			  		}
 		  		}
 	  		}
-  		}
+
   	}else{
   		if($("#txt_accion_new").val().trim() == ''){
   			swal('¡Error!',"Inserte acción valida, verifique espacios","error");
@@ -318,25 +318,19 @@ var Objetivos = {
 			  			if($("#txt_otrosresp_new").is(":visible") && $("#txt_otrosresp_new").val() == ''){
 			  				swal('¡Error!',"Introduzca otro(s) responsable(s)","error");
 			  			}else{
-			  				if($("#txt_finicio_new").val() == ''){
+			  				if($("#txt_fechas_new").val() == ''){
 				  			swal('¡Error!',"Seleccione fecha de inicio","error");
 					  		}else{
-					  			if($("#txt_ffin_new").val() == ''){
-					  			swal('¡Error!',"Seleccione fecha de fin","error");
-						  		}else{
-						  			if(Objetivos.valida_fecha($("#txt_finicio_new").val(), $("#txt_ffin_new").val())){
-						  			swal('¡Error!',"La fecha de inicio no puede ser mayo a la de fin","error");
-							  		}else{
 							  			Objetivos.guardar_naccion(idobjetivo);
-							  		}
-						  		}
+
 					  		}
 			  			}
 			  		}
 		  		}
 	  		}
   		}
-  	}
+		}
+
   },
 
   elimina_accion: (idaccion, idobjetivo) =>{
