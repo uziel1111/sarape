@@ -61,14 +61,7 @@
 				</td>
 			    <td>
             <input type="text" id="txt_fechas_<?=$accion['idaccion']?>"class="form-control" name="daterange" value="<?=$accion['finicio']." - ".$accion['ffin']?>" readonly/>
-
-            <!-- <input type="date" id="txt_finicio_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['finicio']?>"> -->
-            <!-- <input type="hidden" id="txt_comentarios_finicio_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['comentario_finicio']?>"  maxlength="255" placeholder="Comentario(s)"> -->
           </td>
-			    <!-- <td>
-            <input type="date" id="txt_ffin_<?=$accion['idaccion']?>" name="" class="form-control" value="<?=$accion['ffin']?>">
-            <input type="hidden" id="txt_comentarios_ffin_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['comentario_ffin']?>"  maxlength="255" placeholder="Comentario(s)">
-          </td> -->
 			    <td>
 			    	<button class="btn btn-info" title="Guardar" onclick="Objetivos.valida_campos_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )"><i class="fas fa-save"></i></button>
 			    	<br>
@@ -85,7 +78,7 @@
 			    <td><textarea class="form-control" id="txt_accion_new" rows="3"   maxlength="255"></textarea></td>
 			    <td><textarea class="form-control" id="txt_recurso_new" rows="3"   maxlength="255"></textarea></td>
 			    <td>
-					<select id="select_ambito_new" class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_ambitos" title="SELECCIONA" onchange="Objetivos.trae_laes(this, 'inp_laes_new_<?=$accion['accion']?>')">
+					<select id="select_ambito_new" class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_ambitos" title="SELECCIONA" onchange="Objetivos.trae_laes(this, 'inp_laes_new')">
                      <?php foreach ($ambitos as $ambito): ?>
 			      		<option data-lae="<?=$ambito['lae']?>" value="<?= $ambito['idambito']?>"  data-subtext="(Línea de Acción Estratégica <?=$ambito['idlae']?>)"><?= $ambito['ambito']?></option>
 			      	<?php endforeach ?>
@@ -105,17 +98,11 @@
 				</td>
 			    <td>
             <input type="text" id="txt_fechas_new" class="form-control" name="daterange" value="" readonly/>
-            <!-- <input type="date" class="form-control" id="txt_finicio_new" name="" value=""> -->
-  					<!-- <input type="hidden" id="txt_comentarios_finicio_new" class="form-control" name="" value=""  maxlength="255" placeholder="Comentario(s)"> -->
           </td>
-			    <!-- <td>
-            <input type="date" class="form-control" id="txt_ffin_new" name="" value="">
-  					<input type="hidden" id="txt_comentarios_ffin_new" class="form-control" name="" value=""  maxlength="255" placeholder="Comentario(s)">
-          </td> -->
 			    <td><button class="btn btn-primary" title="Guardar" onclick="Objetivos.valida_campos_accion(0,<?= $idobjetivo ?>)" ><i class="fas fa-save"></i></button></td>
 			    </tr>
           <tr style="background-color: #bee5eb; ">
-          <td colspan="8"><label><b>Línea(s) de Acción Estratégica: </b><span id="inp_laes_new_<?=$accion['accion']?>"></span></label></td>
+          <td colspan="8"><label><b>Línea(s) de Acción Estratégica: </b><span id="inp_laes_new"></span></label></td>
           </tr>
 			  </tbody>
 			</table>
