@@ -46,11 +46,12 @@
 					</script>
 			    </td>
 			    <td>
-					<select class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_responsables_<?=$accion['idaccion']?>" >
+					<select class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_responsables_<?=$accion['idaccion']?>" onchange="Objetivos.get_seleccionados(this,'txt_otrosresp_<?=$accion['idaccion']?>')" >
 						<option disabled value="">SELECCIONE</option>
 					<?php foreach ($responsables as $responsable): ?>
 						<option value="<?=$responsable->rfc?>"><?=$responsable->nombre_completo?></option>
 					<?php endforeach ?>
+					<option value="0">Otro(s)</option>
 					</select>
 					<script type="text/javascript">
 						$('#slc_responsables_'+<?=$accion['idaccion']?>).selectpicker('val', [<?=(string)$accion['responsables']?>]);
@@ -67,9 +68,9 @@
             <input type="hidden" id="txt_comentarios_ffin_<?=$accion['idaccion']?>" class="form-control" name="" value="<?=$accion['comentario_ffin']?>"  maxlength="255" placeholder="Comentario(s)">
           </td>
 			    <td>
-			    	<button class="btn btn-info" onclick="Objetivos.valida_campos_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )">Guardar</button>
+			    	<button class="btn btn-info" title="Guardar" onclick="Objetivos.valida_campos_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )"><i class="fas fa-save"></i></button>
 			    	<br>
-			    	<button class="btn btn-danger" onclick="Objetivos.elimina_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )">Eliminar</button>
+			    	<button class="btn btn-danger" title="Eliminar" onclick="Objetivos.elimina_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )"><i class="fas fa-trash"></i></button>
 			    </td>
 			    </tr>
 		    	<?php endforeach ?>
@@ -86,14 +87,15 @@
 					</select>
 			    </td>
 			    <td>
-					<select class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_responsables_new">
-						<option disabled value=""></option>
+					<select class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_responsables_new" onchange="Objetivos.get_seleccionados(this,'txt_otrosresp_new')">
+						<option disabled value="">SELECCIONE</option>
 					<?php foreach ($responsables as $responsable): ?>
 						<option value="<?=$responsable->rfc?>"><?=$responsable->nombre_completo?></option>
 					<?php endforeach ?>
+					<option value="0">Otro(s)</option>
 					</select>
 					<br>
-					<input type="text" class="form-control" id="txt_otrosresp_new" name="" value=""   maxlength="255" placeholder="Otro(s)">
+					<input type="text" class="form-control" id="txt_otrosresp_new" name="" value=""   maxlength="255" placeholder="Otro(s)" style="display: none;">
 				</td>
 			    <td>
             <input type="date" class="form-control" id="txt_finicio_new" name="" value="">
@@ -103,7 +105,7 @@
             <input type="date" class="form-control" id="txt_ffin_new" name="" value="">
   					<input type="hidden" id="txt_comentarios_ffin_new" class="form-control" name="" value=""  maxlength="255" placeholder="Comentario(s)">
           </td>
-			    <td><button class="btn btn-primary "onclick="Objetivos.valida_campos_accion(0,<?= $idobjetivo ?>)" >Guardar</button></td>
+			    <td><button class="btn btn-primary" title="Guardar" onclick="Objetivos.valida_campos_accion(0,<?= $idobjetivo ?>)" ><i class="fas fa-save"></i></button></td>
 			    </tr>
 			  </tbody>
 			</table>
@@ -112,5 +114,4 @@
 </div>
 <script type="text/javascript">
 $(".selectpicker").selectpicker("refresh");
-// $('.selectpicker').selectpicker('val', ['1','2']);
 </script>
