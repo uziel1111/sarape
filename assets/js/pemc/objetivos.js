@@ -1,4 +1,8 @@
 
+// $(function() {
+//     $("#txt_otrosresp_new").hide();
+// });
+
 $("#close_obj_generico").click(function(){
 	$("#modal_generico_obj").modal('hide');
 	Principal_pemc.obtiene_vista_obetivos();
@@ -15,6 +19,11 @@ $("#btn_crear_obj").click(function(){
 	// }
 
 });
+
+
+// function get_seleccionados(){
+// 	console.log($("#slc_responsables_new").val());
+// }
 
 $("#btn_edita_obj").click(function(){
 	if(Objetivos.idseleccionado != null){
@@ -269,22 +278,26 @@ var Objetivos = {
 	  			if($("#select_ambito_"+idaccion).val() == ''){
 	  			swal('¡Error!',"Seleccione ámbito","error");
 		  		}else{
-		  			if($("#slc_responsables_"+idaccion).val() == '' && $("#txt_otrosresp_"+idaccion).val()==''){
+		  			if($("#slc_responsables_"+idaccion).val() == ''){
 		  			swal('¡Error!',"Seleccione responsable","error");
 			  		}else{
-			  			if($("#txt_finicio_"+idaccion).val() == ''){
-			  			swal('¡Error!',"Seleccione fecha de inicio","error");
-				  		}else{
-				  			if($("#txt_ffin_"+idaccion).val() == ''){
-				  			swal('¡Error!',"Seleccione fecha de fin","error");
+			  			if($("#txt_otrosresp_"+idaccion).is(":visible") && $("#txt_otrosresp_"+idaccion).val() == ''){
+			  				swal('¡Error!',"Introduzca otro(s) responsable(s)","error");
+			  			}else{
+			  				if($("#txt_finicio_"+idaccion).val() == ''){
+				  			swal('¡Error!',"Seleccione fecha de inicio","error");
 					  		}else{
-					  			if(Objetivos.valida_fecha($("#txt_finicio_"+idaccion).val(), $("#txt_ffin_"+idaccion).val())){
-					  			swal('¡Error!',"La fecha de inicio no puede ser mayo a la de fin","error");
+					  			if($("#txt_ffin_"+idaccion).val() == ''){
+					  			swal('¡Error!',"Seleccione fecha de fin","error");
 						  		}else{
-						  			Objetivos.agreg_editarA(idaccion, idobjetivo);
+						  			if(Objetivos.valida_fecha($("#txt_finicio_"+idaccion).val(), $("#txt_ffin_"+idaccion).val())){
+						  			swal('¡Error!',"La fecha de inicio no puede ser mayo a la de fin","error");
+							  		}else{
+							  			Objetivos.agreg_editarA(idaccion, idobjetivo);
+							  		}
 						  		}
 					  		}
-				  		}
+			  			}
 			  		}
 		  		}
 	  		}
@@ -299,22 +312,26 @@ var Objetivos = {
 	  			if($("#select_ambito_new").val() == ''){
 	  			swal('¡Error!',"Seleccione ámbito","error");
 		  		}else{
-		  			if($("#slc_responsables_new").val() == '' && $("#txt_otrosresp_new").val()==''){
+		  			if($("#slc_responsables_new").val() == ''){
 		  			swal('¡Error!',"Seleccione responsable","error");
 			  		}else{
-			  			if($("#txt_finicio_new").val() == ''){
-			  			swal('¡Error!',"Seleccione fecha de inicio","error");
-				  		}else{
-				  			if($("#txt_ffin_new").val() == ''){
-				  			swal('¡Error!',"Seleccione fecha de fin","error");
+			  			if($("#txt_otrosresp_new").is(":visible") && $("#txt_otrosresp_new").val() == ''){
+			  				swal('¡Error!',"Introduzca otro(s) responsable(s)","error");
+			  			}else{
+			  				if($("#txt_finicio_new").val() == ''){
+				  			swal('¡Error!',"Seleccione fecha de inicio","error");
 					  		}else{
-					  			if(Objetivos.valida_fecha($("#txt_finicio_new").val(), $("#txt_ffin_new").val())){
-					  			swal('¡Error!',"La fecha de inicio no puede ser mayo a la de fin","error");
+					  			if($("#txt_ffin_new").val() == ''){
+					  			swal('¡Error!',"Seleccione fecha de fin","error");
 						  		}else{
-						  			Objetivos.guardar_naccion(idobjetivo);
+						  			if(Objetivos.valida_fecha($("#txt_finicio_new").val(), $("#txt_ffin_new").val())){
+						  			swal('¡Error!',"La fecha de inicio no puede ser mayo a la de fin","error");
+							  		}else{
+							  			Objetivos.guardar_naccion(idobjetivo);
+							  		}
 						  		}
 					  		}
-				  		}
+			  			}
 			  		}
 		  		}
 	  		}
@@ -585,6 +602,7 @@ var Objetivos = {
 	.always(function() {
 		swal.close();
 	});
+
 },
 trae_laes: (elemento, id_contenedor) =>{
 	// console.log($(elemento).val());
@@ -610,4 +628,15 @@ trae_laes: (elemento, id_contenedor) =>{
 	swal.close();
 });
 },
+
+
+  get_seleccionados: (elemento, idinput)=>{
+  	var seleccionados = $(elemento).val();
+  	var pos = seleccionados.indexOf("0");
+  	if(pos != -1){
+  		$("#"+idinput).show();
+  	}else{
+  		$("#"+idinput).hide();
+  	}
+  }
 }
