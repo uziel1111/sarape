@@ -13,9 +13,9 @@
     <div class="container">
       <form class="form-group" name="<?=(($es_fin && (!$esta_cerrado_ciclo))?'fr_evaluacion':'')?>" id="<?=(($es_fin && (!$esta_cerrado_ciclo))?'fr_evaluacion':'')?>">
       <label class="my-1 mr-2" for="in_eval">Redacte su evaluación:</label>
-       <textarea class="form-control" name="in_eval" id="in_eval" rows="10" required <?=(($es_fin && (!$esta_cerrado_ciclo))?'':'disabled')?>><?=$evaluacion?></textarea>
+       <textarea <?= ($es_fin)? '': 'disabled'?> class="form-control" name="in_eval" id="in_eval" rows="10" required <?=(($es_fin && (!$esta_cerrado_ciclo))?'':'disabled')?>><?=$evaluacion?></textarea>
 
-    <?php if ($es_fin && (!$esta_cerrado_ciclo)): ?>
+    <?php if ($es_fin): ?>
       <button class="btn btn-primary my-1  float-right" id="btn_guardar_evaluacion_pemc">Grabar</button>
     <?php endif; ?>
     </form>
