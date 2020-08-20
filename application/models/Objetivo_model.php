@@ -180,7 +180,7 @@ class Objetivo_model extends CI_Model
 
     function trae_str_laesxidambitos($idambitos){
         $str_query = "SELECT
-            GROUP_CONCAT( DISTINCT l.lae SEPARATOR ', ') as laes
+            GROUP_CONCAT( DISTINCT CONCAT_WS(' ','LAE', l.idlae,':',l.lae) SEPARATOR ', ') as laes
             FROM c_pemc_ambito a
             INNER JOIN c_pemc_laes l ON a.idlae = l.idlae
             WHERE a.idambito in({$idambitos})";
