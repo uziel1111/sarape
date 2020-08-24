@@ -208,9 +208,9 @@ var Index = {
     .always(function() {
       swal.close();
     });
-  }, 
+  },
 
-  getVideotutoriales : function() { 
+  getVideotutoriales : function() {
     var ruta = base_url+"Index/getVideotutoriales";
     $.ajax({
       url: ruta,
@@ -235,5 +235,27 @@ var Index = {
     });
   },
 
+  getAprendeencasa : function() {
+    var ruta = base_url+"Index/getAprendeencasa";
+    $.ajax({
+      url: ruta,
+      method: 'POST',
+      data: { 'folder':1, 'file':1 },
+      beforeSend: function(xhr) {
+        Notification.loading("");
+      }
+    })
+    .done(function( data ) {
+      $("#div_generico").empty();
+      $("#div_generico").append(data.strView);
+      $("#modal_aprendeencasa").modal("show");
+    })
+    .fail(function(e) {
+      console.error("Error in getCalendarioEscolar()"); console.table(e);
+    })
+    .always(function() {
+      swal.close();
+    });
+  },
 
 };

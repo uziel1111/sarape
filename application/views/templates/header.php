@@ -93,12 +93,13 @@
                                   Familia y estudiantes
                               </a>
                               <div class="dropdown-menu dropdown-menu-right ddm-color-3" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item hcolor-3" onclick="Index.getAprendeencasa()" href="javascript:void(0)">Aprende en Casa / Programación T.V.</a>
                                   <a class="dropdown-item hcolor-3" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank">Educación en casa / Protégete del Coronavirus</a>
-                                  <a class="dropdown-item hcolor-3" id="btn_index_guiaspadres" href="javascript:void(0)">Guía para padres de familia</a>
+                                  <!-- <a class="dropdown-item hcolor-3" id="btn_index_guiaspadres" href="javascript:void(0)">Guía para padres de familia</a> -->
                                   <!-- <a class="dropdown-item hcolor-3" href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank">Libros de texto gratuito SEP</a> -->
                                   <!-- <a class="dropdown-item hcolor-3" id="btn_index_materialesUtiles" href="javascript:void(0)">Lista de materiales y útiles autorizados</a> -->
                                   <a class="dropdown-item hcolor-3" href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank">Consulta de calificaciones</a>
-                                  <a class="dropdown-item hcolor-3" href="http://www.seducoahuila.gob.mx/yabasta/" target="_blank">Alto al acoso escolar <i>(bullying)</i></a>
+                                  <!-- <a class="dropdown-item hcolor-3" href="http://www.seducoahuila.gob.mx/yabasta/" target="_blank">Alto al acoso escolar <i>(bullying)</i></a> -->
                                   <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank">Juegos y aplicaciones educativas</a>
                                   <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/correo.php" target="_blank">Ingresa a tu correo electrónico</a>
                                   <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/concursos.php" target="_blank">Cursos y convocatorias</a>

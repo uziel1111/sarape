@@ -18,6 +18,10 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
+							<li class="list-group-item"><a class="fw800 fz-16" onclick="Index.getAprendeencasa()" href="javascript:void(0)"><span class="color-3"><i class="fas fa-star"></i></span> Aprende en Casa <span class="h4 text-white badge badge-secondary bgcolor-3">Nuevo</span>
+									<a style="color:grey; padding-left: 10%;" onclick="Index.getAprendeencasa()" href="javascript:void(0)"><span class="h6 text-white badge badge-secondary bgcolor-3"><i class="fas fa-user"></i></span> <b>Programación T.V.</b>
+									</a>
+							</li>
 							<li class="list-group-item"><a class="fw800 fz-16" href="https://sarape-conectados.mx/Alumno/login" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Conectados para aprender
 									<a style="color:grey; padding-left: 10%;" href="https://sarape-conectados.mx/Alumno/login" target="_blank"><span class="h6 text-white badge badge-secondary bgcolor-3"><i class="fas fa-user"></i></span> <b>Ingreso para Estudiantes</b>
 									</a>
@@ -30,7 +34,7 @@
 									<a style="color:grey; padding-left: 10%;" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><b>Protégete del Coronavirus</b>
 									</a>
 							</li>
-							<li class="list-group-item"><a onclick="Index.getguiaparapadres()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span> Guía para padres de familia</a>
+							<!-- <li class="list-group-item"><a onclick="Index.getguiaparapadres()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span> Guía para padres de familia</a> -->
 							</li>
 							<!-- <li class="list-group-item"><a href="http://libros.conaliteg.gob.mx/content/common/consulta-libros-gb/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span> Libros de texto gratuito SEP</a>
 							</li> -->
@@ -38,7 +42,7 @@
 							</li> -->
 							<li class="list-group-item"><a href="http://siecec.seducoahuila.gob.mx/expediente_alumno/" target="_blank"><span class="color-3"><i class="material-icons">chevron_right</i></span> Consulta de calificaciones</a>
 							</li>
-							<li class="list-group-item"><a href="https://www.seducoahuila.gob.mx/sebuscanvalientes/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Alto al acoso escolar <i>(bullying)</i></a>
+							<!-- <li class="list-group-item"><a href="https://www.seducoahuila.gob.mx/sebuscanvalientes/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Alto al acoso escolar <i>(bullying)</i></a> -->
 							</li>
 							<li class="list-group-item">
 								<a href="https://proyectoeducativo.org" target="_blank" style=" font-size:13px"><span class="color-3"><i class="fas fa-star"></i></span>Recursos de apoyo para el aprendizaje</a>

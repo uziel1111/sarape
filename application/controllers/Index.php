@@ -14,7 +14,7 @@ class Index extends CI_Controller {
 	{
 		$data = array();
 		Utilerias::pagina_basica($this, "index", $data);
-		
+
 	}
 
 	public function getReconocimientosEstatales(){
@@ -46,7 +46,7 @@ class Index extends CI_Controller {
 		$strView = $this->load->view("index/calendarioEscolar", $data, TRUE);
 		$response = array(
 											'strView' => $strView,
-											
+
 											);
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
@@ -98,5 +98,14 @@ class Index extends CI_Controller {
 		Utilerias::enviaDataJson(200, $response, $this);
 		exit;
 	}// getinformese()
+
+	public function getAprendeencasa(){
+		$strView = $this->load->view("index/aprendeencasa", array(), TRUE);
+		$response = array(
+											'strView' => $strView
+											);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+	}// getAprendeencasa()
 
 }
