@@ -98,7 +98,7 @@
 							</li>
 							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/cuda');  ?>" target="_blank"><span class="color-2"><i class="fas fa-star"></i></span> Catálogo Único de Documentos
 									<a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/cuda'); ?>" target="_blank"><b>Autorizados (CUDA)</b> <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a></li>
-							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Pemc/index'); ?>" ><span class="color-2"><i class="material-icons">chevron_right</i></span>
+							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Pemc/index'); ?>"><span class="color-2"><i class="material-icons">chevron_right</i></span>
 									<font SIZE=3> Programa Escolar de Mejora <a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank">Continua </font>
 								</a>
 							</li>
@@ -128,14 +128,17 @@
 							<!-- </li> -->
 							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Talis/index'); ?>"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> TALIS </a></li>
 							<li class="list-group-item"><a class="" href="https://www.saludcoahuila.gob.mx/COVID19/index.php" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> Secretaría de Salud Coahuila
-							<a style="color:grey; padding-left: 14%;" href="https://www.saludcoahuila.gob.mx/COVID19/index.php" target="_blank">(COVID-19)</a></a></li></li>
+									<a style="color:grey; padding-left: 14%;" href="https://www.saludcoahuila.gob.mx/COVID19/index.php" target="_blank">(COVID-19)</a></a></li>
+							</li>
 							<li class="list-group-item"><a class="" href="https://coronavirus.gob.mx/" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> Secretaría de Salud Federal
-								<a style="color:grey; padding-left: 14%;" href="https://coronavirus.gob.mx/" target="_blank">(COVID-19)</a></a></li></li>
+									<a style="color:grey; padding-left: 14%;" href="https://coronavirus.gob.mx/" target="_blank">(COVID-19)</a></a></li>
+							</li>
 							<li class="list-group-item"><a class="" href="https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/advice-for-public" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> Organización Mundial de la
-							<a style="color:grey; padding-left: 14%;" href="https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/advice-for-public" target="_blank">salud (COVID-19)</a></a></li>
+									<a style="color:grey; padding-left: 14%;" href="https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/advice-for-public" target="_blank">salud (COVID-19)</a></a></li>
 							<li class="list-group-item"><a class="" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> Centro para el Control y
-								<a style="color:grey; padding-left: 14%;" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">la Prevención de</a>
-							<a style="color:grey; padding-left: 14%;" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">Enfermedades (COVID-19)</a></a></li></li>
+									<a style="color:grey; padding-left: 14%;" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">la Prevención de</a>
+									<a style="color:grey; padding-left: 14%;" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">Enfermedades (COVID-19)</a></a></li>
+							</li>
 							<!-- <li class="list-group-item"><a onclick="Index.getmodeloeducativo()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Modelo Coahuilense</a>
 							</li> -->
 							<!-- <li class="list-group-item"><a onclick="Index.getCalendarioEscolar()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Calendario escolar</a>
@@ -183,30 +186,31 @@
 				<div class="row no-gutters">
 					<div class="col-sm-12 col-lg-6 modal-eclase">
 						<div class="eclase-info">
-							<p>La Secretaría de Educación del Estado Coahuila pone a disposición de estudiantes y docentes de Media Superior una herramienta de apoyo para la educación a distancia.</p>
+							<p>La Secretaría de Educación del Estado Coahuila pone a disposición de estudiantes y docentes de Secundaria y Media Superior una herramienta de apoyo para la educación a distancia.</p>
 							<!-- <div class="alert alert-light" role="alert">
 								<i class="fas fa-info-circle color-2"></i> Disponible para COBAC.
 							</div> -->
-							<div class="row">
-								<div class="col-6">
-									<div class="card">
-									  <div class="card-header alert alert-light">
-									    <i class="fas fa-info-circle color-2"></i> Secundaria.
-									  </div>
-									  <div class="card-body">
-											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn"><small>Estudiantes</small></a>
-											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn"><small>Docentes</small></a>
-									  </div>
+							<hr>
+							<div class="row mb-40">
+								<div class="col-12 col-sm-6">
+									<div class="card card-level">
+										<div class="card-header">
+											<i class="fas fa-book color-2 left"></i> <span>Secundaria</span>
+										</div>
+										<div class="card-body">
+											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn btn-block border-color-1 btn-color-2 text-white d-inline-flex align-items-center"><small>Estudiantes</small></a>
+											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn btn-block border-color-1 btn-color-3 text-white d-inline-flex align-items-center"><small>Docentes</small></a>
+										</div>
 									</div>
 								</div>
-								<div class="col-6">
-									<div class="card">
-									  <div class="card-header alert alert-light">
-									    <i class="fas fa-info-circle color-3"></i> Media Superior.
-									  </div>
-									  <div class="card-body">
-											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn"><small>Estudiantes</small></a>
-											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn"><small>Docentes</small></a>
+								<div class="col-12 col-sm-6">
+									<div class="card card-level">
+										<div class="card-header">
+											<i class="fas fa-laptop color-3 right"></i> <span>Media Superior</span>
+										</div>
+										<div class="card-body">
+											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn btn-block border-color-1 btn-color-2 text-white d-inline-flex align-items-center"><small>Estudiantes</small></a>
+											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn btn-block border-color-1 btn-color-3 text-white d-inline-flex align-items-center"><small>Docentes</small></a>
 										</div>
 									</div>
 								</div>
@@ -215,37 +219,37 @@
 							<p class="text-center mt-2">
 								<img src="<?= base_url('/assets/img/home/logo-main-white.png') ?>" class="img-fluid" height="" alt="...">
 							</p>
-							<div class="auxslider-wrapper" id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:335px;margin:0px auto 40px;">
-		        		<div class="amazingslider" id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
+							<!-- <div class="auxslider-wrapper" id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:335px;margin:0px auto 40px;">
+								<div class="amazingslider" id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
 									<ul class="amazingslider-slides" style="display:none;">
-		                <li>
+										<li>
 
 											<a href="https://www.youtube.com/embed/BXzSkZB6Jf4?v=BXzSkZB6Jf4" class="html5lightbox">
-												<img src="<?= base_url('assets/img/sliderengine/BXzSkZB6Jf4.jpg') ?>" title="Tutorial Docentes 1. Acceso"/>
+												<img src="base_url('assets/img/sliderengine/BXzSkZB6Jf4.jpg')" title="Tutorial Docentes 1. Acceso" />
 											</a>
-		                <video preload="none" src="https://www.youtube.com/embed/BXzSkZB6Jf4?v=BXzSkZB6Jf4" ></video>
-		                </li>
-		                <li>
+											<video preload="none" src="https://www.youtube.com/embed/BXzSkZB6Jf4?v=BXzSkZB6Jf4"></video>
+										</li>
+										<li>
 											<a href="https://www.youtube.com/embed/BfS9K8mv5Vw?v=BfS9K8mv5Vw" class="html5lightbox">
-												<img src="<?= base_url('assets/img/sliderengine/BfS9K8mv5Vw.jpg') ?>" title="SARAPE Tutorial Docentes 2. Seguimiento y revisión de tareas" />
+												<img src="base_url('assets/img/sliderengine/BfS9K8mv5Vw.jpg')" title="SARAPE Tutorial Docentes 2. Seguimiento y revisión de tareas" />
 											</a>
-		                <video preload="none" src="https://www.youtube.com/embed/BfS9K8mv5Vw?v=BfS9K8mv5Vw" ></video>
-		                </li>
-		                <li>
+											<video preload="none" src="https://www.youtube.com/embed/BfS9K8mv5Vw?v=BfS9K8mv5Vw"></video>
+										</li>
+										<li>
 											<a href="https://www.youtube.com/embed/dPcBv7003zg?v=dPcBv7003zg" class="html5lightbox">
-												<img src="<?= base_url('assets/img/sliderengine/dPcBv7003zg.jpg') ?>" title="SARAPE Tutorial Alumnos 2. Envío y Revisión de Actividades" />
+												<img src="base_url('assets/img/sliderengine/dPcBv7003zg.jpg')" title="SARAPE Tutorial Alumnos 2. Envío y Revisión de Actividades" />
 											</a>
-		                </li>
-		                <li>
+										</li>
+										<li>
 											<a href="https://www.youtube.com/embed/UwoxSb8QgGg?v=UwoxSb8QgGg&t=1s" class="html5lightbox">
-												<img src="<?= base_url('assets/img/sliderengine/UwoxSb8QgGg.jpg') ?>" title="SARAPE Tutorial Alumnos 1. Acceso" />
+												<img src="// base_url('assets/img/sliderengine/UwoxSb8QgGg.jpg')" title="SARAPE Tutorial Alumnos 1. Acceso" />
 											</a>
-		                <video preload="none" src="https://www.youtube.com/embed/UwoxSb8QgGg?v=UwoxSb8QgGg&t=1s" ></video>
-		                </li>
-		            </ul>
+											<video preload="none" src="https://www.youtube.com/embed/UwoxSb8QgGg?v=UwoxSb8QgGg&t=1s"></video>
+										</li>
+									</ul>
 
-							</div>
-						</div>
+								</div> 
+							</div>-->
 						</div>
 					</div>
 					<div class="col-sm-12 col-lg-6">

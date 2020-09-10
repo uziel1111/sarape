@@ -2498,8 +2498,8 @@ footer .footer-nav li a:hover {
 }
 
 .modal-eclase .eclase-info {
-    padding: 45% 10% 10% 10%;
-    text-align: justify;
+    padding: 58% 10% 10% 10%;
+    text-align: center;
     height: 100%;
 }
 
@@ -2512,7 +2512,10 @@ footer .footer-nav li a:hover {
     width: auto;
 }
 
+
 /* alex para nuevo pemc */
+
+
 /*=== MAIN TABS ===*/
 
 .nav-tabs .nav-link i {
@@ -2521,6 +2524,7 @@ footer .footer-nav li a:hover {
     padding: 18px;
     transition: all 0.5s ease;
 }
+
 
 /* .nav-tabs .nav-link:hover i {
     padding: 18px 25px;
@@ -2638,3 +2642,35 @@ footer .footer-nav li a:hover {
 
 
 /*=== FOOTER ===*/
+
+
+/*** CARD Level ***/
+
+.card-level {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border: 0px solid #000000;
+    margin-bottom: 20px;
+}
+
+.card-level .card-header span {
+    color: rgba(255, 255, 255, 0.80);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card-level i.left {
+    position: absolute;
+    font-size: 33px;
+    left: -17px;
+    top: 6px;
+}
+
+.card-level i.right {
+    position: absolute;
+    font-size: 33px;
+    right: -17px;
+    top: 6px;
+}
