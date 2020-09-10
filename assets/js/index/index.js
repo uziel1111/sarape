@@ -23,6 +23,11 @@ $("#btn_index_modeloeducativo").click(function(e){
   Index.getmodeloeducativo();
 });
 
+$("#conecados_aprender").click(function(e){
+  e.preventDefault();
+  $("#modalCOVID19").modal('show');
+});
+
 var Index = {
 
   getReconocimientosEstatales : function() {

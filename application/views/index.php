@@ -22,13 +22,12 @@
 									<a style="color:grey; padding-left: 10%;" onclick="Index.getAprendeencasa()" href="javascript:void(0)"><span class="h6 text-white badge badge-secondary bgcolor-3"><i class="fas fa-user"></i></span> <b>Programación T.V.</b>
 									</a>
 							</li>
-							<li class="list-group-item"><a class="fw800 fz-16" href="https://sarape-conectados.mx/Alumno/login" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Conectados para aprender
+							<!-- <li class="list-group-item"><a class="fw800 fz-16" href="https://sarape-conectados.mx/Alumno/login" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Conectados para aprender
 									<a style="color:grey; padding-left: 10%;" href="https://sarape-conectados.mx/Alumno/login" target="_blank"><span class="h6 text-white badge badge-secondary bgcolor-3"><i class="fas fa-user"></i></span> <b>Ingreso para Estudiantes</b>
 									</a>
-							</li>
-							<li class="list-group-item"><a class="fw800 fz-16" href="https://sarape-conectados.mx/Escolar/login" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Conectados para aprender
-									<a style="color:grey; padding-left: 10%;" href="https://sarape-conectados.mx/Escolar/login" target="_blank"><span class="h6 text-white badge badge-secondary bgcolor-3"><i class="fas fa-user-tie"></i></span> <b>Ingreso para Docentes</b>
-									</a>
+							</li> -->
+							<li class="list-group-item" id="conecados_aprender"><a class="fw800 fz-16" href=""><span class="color-3"><i class="fas fa-star"></i></span> Conectados para aprender
+									<a style="color:grey; padding-left: 10%;"></a>
 							</li>
 							<li class="list-group-item"><a class="fw800 fz-16" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Educación en casa <span class="h4 text-white badge badge-secondary bgcolor-3">Nuevo</span>
 									<a style="color:grey; padding-left: 10%;" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><b>Protégete del Coronavirus</b>
@@ -185,11 +184,34 @@
 					<div class="col-sm-12 col-lg-6 modal-eclase">
 						<div class="eclase-info">
 							<p>La Secretaría de Educación del Estado Coahuila pone a disposición de estudiantes y docentes de Media Superior una herramienta de apoyo para la educación a distancia.</p>
-							<div class="alert alert-light" role="alert">
+							<!-- <div class="alert alert-light" role="alert">
 								<i class="fas fa-info-circle color-2"></i> Disponible para COBAC.
+							</div> -->
+							<div class="row">
+								<div class="col-6">
+									<div class="card">
+									  <div class="card-header alert alert-light">
+									    <i class="fas fa-info-circle color-2"></i> Secundaria.
+									  </div>
+									  <div class="card-body">
+											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn"><small>Estudiantes</small></a>
+											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn"><small>Docentes</small></a>
+									  </div>
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="card">
+									  <div class="card-header alert alert-light">
+									    <i class="fas fa-info-circle color-3"></i> Media Superior.
+									  </div>
+									  <div class="card-body">
+											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn"><small>Estudiantes</small></a>
+											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn"><small>Docentes</small></a>
+										</div>
+									</div>
+								</div>
 							</div>
-							<a href="https://sarape-conectados.mx/Alumno/login" target="_blank" class="primary-btn btn-block border-color-1 btn-color-2 text-white d-inline-flex align-items-center mb-10">Ingreso para Estudiantes<span class="lnr lnr-arrow-right"></span></a>
-							<a href="https://sarape-conectados.mx/Escolar/login" target="_blank" class="primary-btn btn-block border-color-1 btn-color-3 text-white d-inline-flex align-items-center">Ingreso para Docentes / Directores<span class="lnr lnr-arrow-right"></span></a>
+
 							<p class="text-center mt-2">
 								<img src="<?= base_url('/assets/img/home/logo-main-white.png') ?>" class="img-fluid" height="" alt="...">
 							</p>
