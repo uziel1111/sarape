@@ -183,78 +183,111 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<div class="row no-gutters">
-					<div class="col-sm-12 col-lg-6 modal-eclase">
-						<div class="eclase-info">
-							<p>La Secretaría de Educación del Estado Coahuila pone a disposición de estudiantes y docentes de Secundaria y Media Superior una herramienta de apoyo para la educación a distancia.</p>
-							<!-- <div class="alert alert-light" role="alert">
-								<i class="fas fa-info-circle color-2"></i> Disponible para COBAC.
-							</div> -->
-							<hr>
-							<div class="row mb-40">
-								<div class="col-12 col-sm-6">
-									<div class="card card-level">
-										<div class="card-header">
-											<i class="fas fa-book color-2 left"></i> <span>Secundaria</span>
+				<div class="row">
+					<div class="col-sm-12 col-lg-6">
+						<div class="info-box shadow">
+							<div class="modal-eclase">
+								<div class="eclase-info">
+									<p>La Secretaría de Educación del Estado Coahuila pone a disposición de estudiantes y docentes de Secundaria y Media Superior una herramienta de apoyo para la educación a distancia.</p>
+									<div class="row mb-3">
+										<div class="col-12">
+											<div class="card card-level shadow mb-15">
+												<div class="card-header">
+													<span>Secundaria</span>
+												</div>
+												<div class="card-body">
+													<div class="row">
+														<div class="col-sm-6"><a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
+														<div class="col-sm-6"><a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn btn-block border-color-3 btn-color-3 align-items-center"><small>Docentes</small></a></div>
+													</div>
+												</div>
+											</div>
 										</div>
-										<div class="card-body">
-											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn btn-block border-color-1 btn-color-2 text-white d-inline-flex align-items-center"><small>Estudiantes</small></a>
-											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn btn-block border-color-1 btn-color-3 text-white d-inline-flex align-items-center"><small>Docentes</small></a>
+										<div class="col-12">
+											<div class="card card-level shadow mb-15">
+												<div class="card-header">
+													<span>Media Superior</span>
+												</div>
+												<div class="card-body">
+													<div class="row">
+														<div class="col-sm-6"><a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
+														<div class="col-sm-6"><a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn btn-block border-color-3 btn-color-3 align-items-center"><small>Docentes</small></a></div>
+													</div>
+												</div>
+											</div>
 										</div>
-									</div>
-								</div>
-								<div class="col-12 col-sm-6">
-									<div class="card card-level">
-										<div class="card-header">
-											<i class="fas fa-laptop color-3 right"></i> <span>Media Superior</span>
-										</div>
-										<div class="card-body">
-											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn btn-block border-color-1 btn-color-2 text-white d-inline-flex align-items-center"><small>Estudiantes</small></a>
-											<a href="https://sarape-conectados.mx/" target="_blank" class="primary-btn btn-block border-color-1 btn-color-3 text-white d-inline-flex align-items-center"><small>Docentes</small></a>
+										<div class="col-12">
+											<div class="card card-level shadow">
+												<div class="card-header">
+													<span>Normales</span>
+												</div>
+												<div class="card-body">
+													<div class="row">
+														<div class="col-12 text-center">
+															<h3 class="text-center">Próximamente</h3>
+														</div>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-
-							<p class="text-center mt-2">
-								<img src="<?= base_url('/assets/img/home/logo-main-white.png') ?>" class="img-fluid" height="" alt="...">
-							</p>
-							<!-- <div class="auxslider-wrapper" id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:335px;margin:0px auto 40px;">
-								<div class="amazingslider" id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
-									<ul class="amazingslider-slides" style="display:none;">
-										<li>
-
-											<a href="https://www.youtube.com/embed/BXzSkZB6Jf4?v=BXzSkZB6Jf4" class="html5lightbox">
-												<img src="base_url('assets/img/sliderengine/BXzSkZB6Jf4.jpg')" title="Tutorial Docentes 1. Acceso" />
-											</a>
-											<video preload="none" src="https://www.youtube.com/embed/BXzSkZB6Jf4?v=BXzSkZB6Jf4"></video>
-										</li>
-										<li>
-											<a href="https://www.youtube.com/embed/BfS9K8mv5Vw?v=BfS9K8mv5Vw" class="html5lightbox">
-												<img src="base_url('assets/img/sliderengine/BfS9K8mv5Vw.jpg')" title="SARAPE Tutorial Docentes 2. Seguimiento y revisión de tareas" />
-											</a>
-											<video preload="none" src="https://www.youtube.com/embed/BfS9K8mv5Vw?v=BfS9K8mv5Vw"></video>
-										</li>
-										<li>
-											<a href="https://www.youtube.com/embed/dPcBv7003zg?v=dPcBv7003zg" class="html5lightbox">
-												<img src="base_url('assets/img/sliderengine/dPcBv7003zg.jpg')" title="SARAPE Tutorial Alumnos 2. Envío y Revisión de Actividades" />
-											</a>
-										</li>
-										<li>
-											<a href="https://www.youtube.com/embed/UwoxSb8QgGg?v=UwoxSb8QgGg&t=1s" class="html5lightbox">
-												<img src="// base_url('assets/img/sliderengine/UwoxSb8QgGg.jpg')" title="SARAPE Tutorial Alumnos 1. Acceso" />
-											</a>
-											<video preload="none" src="https://www.youtube.com/embed/UwoxSb8QgGg?v=UwoxSb8QgGg&t=1s"></video>
-										</li>
-									</ul>
-
-								</div> 
-							</div>-->
 						</div>
 					</div>
 					<div class="col-sm-12 col-lg-6">
-						<a type="button" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank" class="btn btn-lg bgcolor-4 color-6 btn-block">Visitar sitio</a>
-						<a href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><img src="<?= base_url('/assets/img/home/covid19/modalEducacionencasa.jpg') ?>" class="img-fluid" alt="..."></a>
+						<div class="info-box h-100 shadow">
+							<div class="modal-educasa h-100">
+								<div class="educasa-info">
+									<div class="row">
+										<div class="col-12">
+											<img class="logo2" src="<?= base_url('assets/img/home/educasa/logo-educacion-en casa coahuila2.png'); ?>" alt="">
+											<img src="<?= base_url('assets/img/home/educasa/2.png'); ?>" alt="">
+										</div>
+									</div>
+									<div class="row mb-3 bg-main-img">
+										<div class="col-12">
+											<div class="row">
+												<div class="col-12">
+													<h4>Recursos didácticos para alumnos, docentes y padres de familia</h4>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-6">
+													<a href="https://www.seducoahuila.gob.mx/educacionencasa/inicial.html" target="_blank"><img class="img-fluid" src="<?= base_url('assets/img/home/educasa/iniccial.png'); ?>" alt=""></a>
+												</div>
+												<div class="col-6">
+													<a href="https://www.seducoahuila.gob.mx/educacionencasa/preescolar.html" target="_blank"><img class="img-fluid" src="<?= base_url('assets/img/home/educasa/pree.png'); ?>" alt=""></a>
+												</div>
+												<div class="col-6">
+													<a href="https://www.seducoahuila.gob.mx/educacionencasa/primara.html" target="_blank"><img class="img-fluid" src="<?= base_url('assets/img/home/educasa/prim.png'); ?>" alt=""></a>
+												</div>
+												<div class="col-6">
+													<a href="https://www.seducoahuila.gob.mx/educacionencasa/secundaria.html" target="_blank"><img class="img-fluid" src="<?= base_url('assets/img/home/educasa/sec.png'); ?>" alt=""></a>
+												</div>
+												<div class="col-6">
+													<a href="https://www.seducoahuila.gob.mx/educacionencasa/especial.html" target="_blank"><img class="img-fluid" src="<?= base_url('assets/img/home/educasa/especial-cam.png'); ?>" alt=""></a>
+												</div>
+												<div class="col-6">
+													<a href="https://www.seducoahuila.gob.mx/educacionencasa/fisica.html" target="_blank"><img class="img-fluid" src="<?= base_url('assets/img/home/educasa/fisica.png'); ?>" alt=""></a>
+												</div>
+												<div class="col-6">
+													<a href="https://www.seducoahuila.gob.mx/educacionencasa/ingles.html" target="_blank"><img class="img-fluid" src="<?= base_url('assets/img/home/educasa/ingles.png'); ?>" alt=""></a>
+												</div>
+												<div class="col-6">
+													<a href="https://www.seducoahuila.gob.mx/educacionencasa/extra-escolar.html" target="_blank"><img class="img-fluid" src="<?= base_url('assets/img/home/educasa/extraescolar.png'); ?>" alt=""></a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12">
+											<a href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Visitar sitio</small></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

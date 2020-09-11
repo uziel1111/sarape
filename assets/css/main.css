@@ -948,11 +948,11 @@ th {
 }
 
 .border-color-2 {
-    border: 2px solid rgba(247, 247, 247, 0.5) !important;
+    border: 2px solid #7ea629 !important;
 }
 
 .border-color-3 {
-    border: 2px solid rgba(247, 247, 247, 0.5) !important;
+    border: 2px solid #f27304 !important;
 }
 
 .border-color-4 {
@@ -964,7 +964,7 @@ th {
 }
 
 .border-color-6 {
-    border: 2px solid rgba(247, 247, 247, 0.5) !important;
+    border: 2px solid rgba(0, 0, 0, 0.5) !important;
 }
 
 
@@ -2494,22 +2494,68 @@ footer .footer-nav li a:hover {
     background-repeat: no-repeat;
     background-size: 100%;
     position: relative;
-    background-color: #231f20;
+    background-color: #d2d2d2;
 }
 
 .modal-eclase .eclase-info {
-    padding: 58% 10% 10% 10%;
+    padding: 38% 5% 2% 5%;
     text-align: center;
     height: 100%;
 }
 
 .modal-eclase .eclase-info p {
-    color: #ffffff;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 600;
 }
 
 .modal-eclase .eclase-info img {
     height: 50px;
     width: auto;
+}
+
+.modal-educasa {
+    height: auto;
+    background-color: #e9ebf7;
+}
+
+.modal-educasa .educasa-info {
+    padding: 5% 5% 2% 5%;
+    text-align: center;
+    height: 100%;
+}
+
+.modal-educasa .educasa-info p {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 600;
+}
+
+.modal-educasa .educasa-info img.logo2 {
+    height: 90px;
+    width: auto;
+}
+
+.modal-educasa .educasa-info .bg-main-img {
+    background-image: url(../img/home/educasa/ilustracion2.png);
+    background-position: 0px 30px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: relative;
+    margin-top: 3%;
+}
+
+.modal-educasa .educasa-info .bg-main-img a img {
+    padding: 0px 0px 0px 0px;
+    transition: all 0.1s ease;
+}
+
+.modal-educasa .educasa-info .bg-main-img a:hover img {
+    padding: 0px 2px 0px 2px;
+}
+
+.modal-educasa .educasa-info .bg-main-img h4 {
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 23px;
+    margin-bottom: 50%;
 }
 
 
@@ -2647,16 +2693,22 @@ footer .footer-nav li a:hover {
 /*** CARD Level ***/
 
 .card-level {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 15px;
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
     border: 0px solid #000000;
-    margin-bottom: 20px;
+}
+
+.card-level .card-header {
+    border-radius: 15px 15px 0px 0px;
+    -moz-border-radius: 15px 15px 0px 0px;
+    -webkit-border-radius: 15px 15px 0px 0px;
+    border: 0px solid #000000;
 }
 
 .card-level .card-header span {
-    color: rgba(255, 255, 255, 0.80);
+    color: rgba(0, 0, 0, 0.5);
     font-size: 18px;
     font-weight: 600;
 }
@@ -2673,4 +2725,15 @@ footer .footer-nav li a:hover {
     font-size: 33px;
     right: -17px;
     top: 6px;
+}
+
+.card-level .card-body small {
+    font-size: 90%;
+}
+
+
+/** INFO BOX **/
+
+.info-box {
+    padding: 13px;
 }
