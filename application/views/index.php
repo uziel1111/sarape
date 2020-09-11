@@ -188,7 +188,7 @@
 						<div class="info-box shadow">
 							<div class="modal-eclase">
 								<div class="eclase-info">
-									<p>La Secretaría de Educación del Estado Coahuila pone a disposición de estudiantes y docentes de Secundaria y Media Superior una herramienta de apoyo para la educación a distancia.</p>
+									<p>La Secretaría de Educación del Estado Coahuila pone a disposición de estudiantes y docentes de Secundaria, Media Superior y Normales una herramienta de apoyo para la educación a distancia.</p>
 									<div class="row mb-3">
 										<div class="col-12">
 											<div class="card card-level shadow mb-15">
