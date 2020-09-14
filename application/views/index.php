@@ -197,7 +197,7 @@
 												</div>
 												<div class="card-body">
 													<div class="row">
-														<div class="col-sm-6"><a href="https://ebas.eclase-coahuila.mx/alumno" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
+														<div class="col-sm-6"><a href="https://ebas.eclase-coahuila.mx/" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
 														<div class="col-sm-6"><a href="https://ebas.eclase-coahuila.mx/escolar" target="_blank" class="primary-btn btn-block border-color-3 btn-color-3 align-items-center"><small>Docentes</small></a></div>
 													</div>
 												</div>
@@ -210,7 +210,7 @@
 												</div>
 												<div class="card-body">
 													<div class="row">
-														<div class="col-sm-6"><a href="https://ems.eclase-coahuila.mx/alumno" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
+														<div class="col-sm-6"><a href="https://ems.eclase-coahuila.mx/" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
 														<div class="col-sm-6"><a href="https://ems.eclase-coahuila.mx/escolar" target="_blank" class="primary-btn btn-block border-color-3 btn-color-3 align-items-center"><small>Docentes</small></a></div>
 													</div>
 												</div>
@@ -223,7 +223,7 @@
 												</div>
 												<div class="card-body">
 													<div class="row">
-														<div class="col-sm-6"><a href="https://enormal.eclase-coahuila.mx/alumno" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
+														<div class="col-sm-6"><a href="https://enormal.eclase-coahuila.mx/" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
 														<div class="col-sm-6"><a href="https://enormal.eclase-coahuila.mx/escolar" target="_blank" class="primary-btn btn-block border-color-3 btn-color-3 align-items-center"><small>Docentes</small></a></div>
 													</div>
 												</div>
