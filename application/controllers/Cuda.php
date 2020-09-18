@@ -19,7 +19,7 @@ class Cuda extends CI_Controller
 		if (isset($_GET['idcuda'])) {
 		$idaplicar = $this->input->get('idcuda');
 		$array_detalles = $this->Cuda_model->getDetalles($idaplicar);
-		echo "<pre>";print_r($array_detalles);die();
+		// echo "<pre>";print_r($array_detalles);die();
 		$data['array_detalles'] = $array_detalles;
 		Utilerias::pagina_basica($this,"cuda/detalles_get", $data);
 		}else{
