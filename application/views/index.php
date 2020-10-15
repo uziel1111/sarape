@@ -99,7 +99,7 @@
 							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/cuda');  ?>" target="_blank"><span class="color-2"><i class="fas fa-star"></i></span> Catálogo Único de Documentos
 									<a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/cuda'); ?>" target="_blank"><b>Autorizados (CUDA)</b> <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a></li>
 							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Pemc/index'); ?>"><span class="color-2"><i class="material-icons">chevron_right</i></span>
-									<font SIZE=3> Programa Escolar de Mejora <a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank">Continua </font>
+									<font SIZE=3> Programa Escolar de Mejora <a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/Pemc/index'); ?>" >Continua </font>
 								</a>
 							</li>
 							<li class="list-group-item"><a onclick="Index.getRevistaEscolar()" href="javascript:void(0)"><span class="color-2 mr-5"><i class="material-icons">chevron_right</i></span>Revista InfórmeSE</a>

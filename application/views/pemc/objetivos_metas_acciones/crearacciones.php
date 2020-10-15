@@ -35,7 +35,7 @@
 			    <td><textarea class="form-control" id="txt_accion_<?=$accion['idaccion']?>" rows="3"  maxlength="255"><?=$accion['accion']?></textarea></td>
 			    <td><textarea class="form-control" id="txt_recurso_<?=$accion['idaccion']?>" rows="3"  maxlength="255"><?=$accion['recurso']?></textarea></td>
 			    <td>
-					<select id="select_ambito_<?=$accion['idaccion']?>" class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_ambitos" title="SELECCIONA" onchange="Objetivos.trae_laes(this, 'inp_laes_<?=$accion['accion']?>')">
+					<select id="select_ambito_<?=$accion['idaccion']?>" class="selectpicker form-control" multiple data-selected-text-format="count > 1" id="slc_ambitos" title="SELECCIONA" onchange="Objetivos.trae_laes(this, 'inp_laes_<?=$accion['idaccion']?>')">
                      <?php foreach ($ambitos as $ambito): ?>
 			      		<option data-lae="<?=$ambito['lae']?>" value="<?= $ambito['idambito']?>" data-subtext="(Línea de Acción Estratégica <?=$ambito['idlae']?>)"><?= $ambito['ambito']?> </option>
 			      	<?php endforeach ?>
@@ -69,7 +69,7 @@
 			    </td>
 			    </tr>
           <tr style="background-color: #bee5eb; ">
-          <td colspan="8"><label><b>Línea(s) de Acción Estratégica: </b><span id="inp_laes_<?=$accion['accion']?>"></span></label></td>
+          <td colspan="8"><label><b>Línea(s) de Acción Estratégica: </b><span id="inp_laes_<?=$accion['idaccion']?>"></span></label></td>
           </tr>
 		    	<?php endforeach ?>
 		    	<?php endif ?>
