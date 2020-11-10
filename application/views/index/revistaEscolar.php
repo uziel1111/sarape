@@ -13,6 +13,12 @@
           <div class="row">
             <div class="col-sm-3">
 
+              <a href="https://issuu.com/ginaorozcoo/docs/revista_20noviembre_202020"  target="_blank" title="Edición #27 Noviembre">
+                <img src="https://www.seducoahuila.gob.mx/images/captura%20de%20pantalla%202020-11-10%20a%20la(s)%20092212.jpg?crc=189031173" class="img-fluid" alt="Responsive image">
+              </a>
+            </div>
+            <div class="col-sm-3">
+
               <a href="https://issuu.com/ginaorozcoo/docs/revista_octubre_2020"  target="_blank" title="Edición #26 Octubre">
                 <img src="<?= base_url('assets/img/revista-octubre2020.png'); ?>" class="img-fluid" alt="Responsive image">
               </a>
