@@ -11,6 +11,12 @@
       <div class="modal-body">
         <div class="container">
           <div class="row">
+            <div class="col-sm-3">
+
+                <a href="https://issuu.com/ginaorozcoo/docs/_revista_febrero_2021"  target="_blank" title="Edición #30 Febrero">
+                  <img src="<?= base_url('assets/img/revista_febrero_21.png'); ?>" class="img-fluid" alt="Responsive image">
+                </a>
+              </div>
           <div class="col-sm-3">
 
               <a href="https://issuu.com/ginaorozcoo/docs/revista_enero_2021"  target="_blank" title="Edición #29 Enero">
