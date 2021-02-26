@@ -248,10 +248,10 @@ Info_esc.prototype.get_indica_perma =function(){
     swal.close();
   	let nivel = data.nivel;
     if (nivel==4) {
-      $("#lb_ind_perma").text("Ciclo escolar: FIN- 2015-2016");
+      $("#lb_ind_perma").text("Ciclo escolar: FIN- 2019-2020");
     }
     else if (nivel==5 || nivel==6) {
-      $("#lb_ind_perma").text("Ciclo escolar: FIN- 2016-2017");
+      $("#lb_ind_perma").text("Ciclo escolar: FIN- 2019-2020");
     }
   	if (data.indica_perma.length>0) {
       $("#indiperma").removeAttr('hidden');
@@ -268,7 +268,7 @@ Info_esc.prototype.get_indica_perma =function(){
 	})
 	.fail(function(e) {
     swal.close();
-		console.error("Error in "); 
+		console.error("Error in ");
     console.table(e);
 	})
 	.always(function() {
@@ -343,7 +343,7 @@ Info_esc.prototype.get_prog_apoyo =function(){
 	})
 	.fail(function(e) {
     swal.close();
-		console.error("Error in "); 
+		console.error("Error in ");
     console.table(e);
 	})
 	.always(function() {
@@ -838,7 +838,7 @@ Info_esc.prototype.get_ete =function(){
 							})
 							.fail(function(e) {
                 swal.close();
-								console.error("Error in "); 
+								console.error("Error in ");
                 console.table(e);
 							})
 							.always(function() {
@@ -1013,7 +1013,7 @@ if( (ciclo=='2019-2020' && (id_bim==2 || id_bim==3))){
 				      })
 				      .fail(function(e) {
                 swal.close();
-				        console.error("Error in "); 
+				        console.error("Error in ");
                 console.table(e);
 				      })
 						.always(function() {
