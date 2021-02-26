@@ -329,7 +329,8 @@
 		})
 		.done(function(data) {
 			swal.close();
-			$('#tabla_documentos_tema'+tema).html(data.str_view);
+			$('#tabla_documentos_tema'+tema).empty();
+			$('#tabla_documentos_tema'+tema).append(data.str_view);
 		})
 		.fail(function() {
 			swal.close();

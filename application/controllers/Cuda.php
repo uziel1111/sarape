@@ -123,95 +123,16 @@ class Cuda extends CI_Controller
 	function consultaNivel(){
 		$nivel = $this->input->post('nivel');
 		$mes = $this->input->post('mes');
-		$tema1 = 0;
-		$titulotema1 = 'Administración de Personal / '.$tema1;
-		$tema2 = 0;
-		$titulotema2 = 'Participación Social / '.$tema2;
-		$tema3 = 0;
-		$titulotema3 = 'Gestión Escolar / '.$tema3;
-		$tema4 = 0;
-		$titulotema4 = 'Recursos Materiales / '.$tema4;
-		$tema5 = 0;
-		$titulotema5 = 'Planeación y Estadística / '.$tema5;
-		$tema6 = 0;
-		$titulotema6 = 'Protección Civil / '.$tema6;
-		$tema7 = 0;
-		$titulotema7 = 'Recursos Financieros / '.$tema7;
-		$tema8 = 0;
-		$titulotema8 = 'Programas Federales / '.$tema8;
-		$tema9 = 0;
-		$titulotema9 = 'Control Escolar / '.$tema9;
-		$tema10 = 0;
-		$titulotema10 = 'Cooperativas y Tiendas Escolares / '.$tema10;
-
-		$respuestaArray = array();
+		
 
 		$idEncuesta = $this->Cuda_model->idEncuestaNivel($nivel, $mes);
-		foreach ($idEncuesta as $key => $value) {
-			switch ($value['tema']) {
-				case '1':
-				$tema1 ++;
-				$titulotema1 = 'Administración de Personal / '.$tema1;
-
-				break;
-				case '2':
-				$tema2 ++;
-				$titulotema2 = 'Participación Social / '.$tema2;
-
-				break;
-				case '3':
-				$tema3 ++;
-				$titulotema3 = 'Gestión Escolar / '.$tema3;
-
-				break;
-				case '4':
-				$tema4 ++;
-				$titulotema4 = 'Recursos Materiales / '.$tema4;
-
-				break;
-				case '5':
-				$tema5 ++;
-				$titulotema5 = 'Planeación y Estadística / '.$tema5;
-
-				break;
-				case '6':
-				$tema6 ++;
-				$titulotema6 = 'Protección Civil / '.$tema6;
-
-				break;
-				case '7':
-				$tema7 ++;
-				$titulotema7 = 'Recursos Financieros / '.$tema7;
-
-				break;
-				case '8':
-				$tema8 ++;
-				$titulotema8 = 'Programas Federales / '.$tema8;
-
-				break;
-				case '9':
-				$tema9 ++;
-				$titulotema9 = 'Control Escolar / '.$tema9;
-				break;
-				case '10':
-				$tema10 ++;
-				$titulotema10 = 'Cooperativas y Tiendas Escolares / '.$tema10;
-
-				break;
-
-			}
-
-		}
-
-
-		$temas = array('tema1'=>$titulotema1, 'tema2'=>$titulotema2, 'tema3'=>$titulotema3, 'tema4'=>$titulotema4, 'tema5'=>$titulotema5, 'tema6'=>$titulotema6, 'tema7'=>$titulotema7, 'tema8'=>$titulotema8, 'tema9'=>$titulotema9, 'tema10'=>$titulotema10);
-
-		$data['temas'] = $temas;
+		// echo '<pre>'; print_r($idEncuesta); die();
+		
+		$data['temas'] = $idEncuesta;
 		$data['nivel'] = $nivel;
-		$totalTemas = $tema1 + $tema2 +$tema3+$tema4+$tema5+$tema6+$tema7+$tema8+$tema9+$tema10;
 
 		$str_view = $this->load->view('cuda/consultaNivel', $data, TRUE);
-		$total = $totalTemas;
+		$total = $idEncuesta[0]['total_general'];
 		$response = array('str_view' => $str_view, 'total'=>$total);
 		Utilerias::enviaDataJson(200,$response,$this);
 		exit;
@@ -229,8 +150,7 @@ class Cuda extends CI_Controller
 			$encuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 			array_push($encuestas, $encuesta);
 		}
-
-
+		
 		$data['formato'] = $encuestas;
 
 		$str_view = $this->load->view('cuda/tabla_encuestas_tema', $data, TRUE);
@@ -248,18 +168,10 @@ class Cuda extends CI_Controller
 
 		$encuestas = array();
 		$formatosMesArray = array();
-		$formatos = $this->Cuda_model->getFormatoTema($tema,$nivel);
+		$formatos = $this->Cuda_model->getFormatoTemaMes($tema,$nivel,$mes);
+
 		foreach ($formatos as $key => $value) {
-			$formatosMes = $this->Cuda_model->getFormatoTemaMes($value['idaplicar'], $mes);
-			if (!empty($formatosMes)) {
-			array_push($formatosMesArray, $formatosMes);
-			}
-
-		}
-
-
-		foreach ($formatosMesArray as $key => $value) {
-			$encuesta = $this->Cuda_model->getDetalles($value[0]['idaplicar']);
+			$encuesta = $this->Cuda_model->getDetalles($value['idaplicar']);
 			array_push($encuestas, $encuesta);
 		}
 

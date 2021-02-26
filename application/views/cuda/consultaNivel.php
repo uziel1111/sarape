@@ -1,12 +1,11 @@
 <?php $i=0;
 foreach ($temas as $key => $dato){
-	if (!stristr($dato, '/ 0')) {	
 		$i++;
 		?>
 		<div class="accordion accordion-style-1" id="accordionExample">
 			<div class="card mb-3">
-				<div class="card-header collapsed" id="headingOne" data-toggle="collapse" data-target="#collapse<?=$i?>" aria-expanded="false" aria-controls="collapse" style="cursor: pointer;" onclick="getFormatoTema(<?=$i;?>, '<?=$nivel;?>')">
-					<i class="fas fa-clipboard-list mr-2"></i> <span class="second-txt"><?= $dato?></span>
+				<div class="card-header collapsed" id="headingOne" data-toggle="collapse" data-target="#collapse<?=$i?>" aria-expanded="false" aria-controls="collapse" style="cursor: pointer;" onclick="getFormatoTema(<?=$dato['tema'];?>, '<?=$nivel;?>')">
+					<i class="fas fa-clipboard-list mr-2"></i> <span class="second-txt"><?= $dato['nombre_tema'] . ' / ' .$dato['total_tema']?></span>
 				</div>
 				
 				<div id="collapse<?= $i?>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -24,7 +23,7 @@ foreach ($temas as $key => $dato){
 													<th scope="col">Ver</th>
 												</tr>
 											</thead>
-											<tbody id="tabla_documentos_tema<?=$i?>">
+											<tbody id="tabla_documentos_tema<?=$dato['tema'];?>">
 												
 
 											</tbody>
@@ -40,7 +39,5 @@ foreach ($temas as $key => $dato){
 			</div>
 		</div>
 	</div>
-<?php } else{
-	$i++;
-}
+<?php
 } ?>
