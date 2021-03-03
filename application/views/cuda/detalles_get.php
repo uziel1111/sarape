@@ -40,7 +40,8 @@
 							<br>
 					</div>
 					<div class="col-md-6">
-						<a class="card-text text-justify" target="_blank" href="https://sarape.gob.mx/<?=$array_detalles[0]['url_comple']?>"><button type="button" class="btn btn-secondary btn-lg btn-block">Ver PDF</button>
+					<a class="card-text text-justify" target="_blank" href="http://qual-edu.org/levantamiento_de_requerimientos/<?=$array_detalles[0]['url_comple']?>"><button type="button" class="btn btn-secondary btn-lg btn-block">Ver PDF</button>
+						<!-- <a class="card-text text-justify" target="_blank" href="https://sarape.gob.mx/<?=$array_detalles[0]['url_comple']?>"><button type="button" class="btn btn-secondary btn-lg btn-block">Ver PDF</button> -->
 							<br>
 					</div>	
 				</div>

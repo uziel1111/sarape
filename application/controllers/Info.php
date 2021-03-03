@@ -376,10 +376,10 @@ class Info extends CI_Controller {
 		$turno=$this->getTurno($turno_e);
 		$indica_asisten= array();
 		if ($nivel == 4) {
-			$indica_asisten = $this->Estadistica_e_indicadores_xcct_model->get_ind_asistenciaxcct($cct,$turno,1,1);
+			$indica_asisten = $this->Estadistica_e_indicadores_xcct_model->get_ind_asistenciaxcct($cct,$turno,1,5);
 		}
 		elseif ($nivel == 5 || $nivel == 6) {
-			$indica_asisten = $this->Estadistica_e_indicadores_xcct_model->get_ind_asistenciaxcct($cct,$turno,1,1);
+			$indica_asisten = $this->Estadistica_e_indicadores_xcct_model->get_ind_asistenciaxcct($cct,$turno,1,5);
 		}
 
 		$response = array(
@@ -401,10 +401,10 @@ class Info extends CI_Controller {
 
 		$indica_perma=array();
 		if ($nivel == 4) {
-				$indica_perma = $this->Estadistica_e_indicadores_xcct_model->get_ind_permananciaxcct($cct,$turno,2,1);
+				$indica_perma = $this->Estadistica_e_indicadores_xcct_model->get_ind_permananciaxcct($cct,$turno,1,5);
 		}
 		elseif ($nivel == 5 || $nivel == 6) {
-				$indica_perma = $this->Estadistica_e_indicadores_xcct_model->get_ind_permananciaxcct($cct,$turno,2,1);
+				$indica_perma = $this->Estadistica_e_indicadores_xcct_model->get_ind_permananciaxcct($cct,$turno,1,5);
 		}
 
 		$response = array(
