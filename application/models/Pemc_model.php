@@ -263,4 +263,32 @@ function obtener_n_acciones_pemc_ant($cct,$turno){
   return $this->db->query($str_query)->row('n_acciones');
 }
 
+function consulta_tipo_usuario($cct){
+ $str_query = "SELECT
+              (CASE tipo_centro
+                  WHEN 1 THEN 'supervision'
+                  WHEN 9 THEN 'escuela'
+              		WHEN 2 THEN 'jefe_sector'
+                  ELSE 'otro'
+              END) as tipo
+              FROM vista_cct
+              WHERE cct= ?";
+ return $this->pemc_db->query($str_query,[$cct])->row('tipo');
+}
+
+function getdatossupervicion($cct, $turno){
+  $str_query = "SELECT cct AS cve_centro,zona_escolar,nombre AS nombre_supervision
+                  FROM vista_cct
+                  WHERE tipo_centro=1
+                  AND  cct = ? AND turno like '%{$turno}%'";
+  return $this->db->query($str_query,[$cct])->result_array();
+}
+
+function getdatosjefe_sector($cct, $turno){
+  $str_query = "SELECT cct AS cve_centro,zona_escolar,nombre AS nombre_jefe_sector
+                  FROM vista_cct
+                  WHERE tipo_centro=2
+                  AND  cct = ?  AND turno like '%{$turno}%'";
+  return $this->db->query($str_query,[$cct])->result_array();
+}
 }// Rutamejora_model

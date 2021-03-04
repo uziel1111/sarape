@@ -56,56 +56,107 @@ class Pemc extends CI_Controller {
 						$this->vistas_pemc();
 					}
 				}
-
 			}else{
 				$usuario = strtoupper($this->input->post('usuario'));
 				$pass = strtoupper($this->input->post('password'));
 				$turno = $this->input->post('turno_id');
-
-				if($this->verifica_supervisor($usuario) == TRUE){
-					// echo"es super"; die();
-					$mensaje = "Acceso Restringido.";
-					$tipo    = ERRORMESSAGE;
-					$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
-					$this->load->view('pemc/login',$data);
-				}else{
-					// echo"else super"; die();
-					$curl = curl_init();
-					$method = "POST";
-					$url = "http://servicios.seducoahuila.gob.mx/wservice/w_service_login.php";
-					$data = array("cct" => $usuario, 'turno' => $turno, 'pwd' => $pass);
-
-					switch ($method)
-					{
-						case "POST":
-						curl_setopt($curl, CURLOPT_POST, 1);
-						if ($data)
-							curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+				$tmp_usuario = $this->Pemc_model->consulta_tipo_usuario($usuario);
+				// echo "<pre>";print_r($tmp_usuario);die();
+				switch ($tmp_usuario) {
+					case 'supervision':
+						if ($this->trae_validacion_ws_usuario($usuario, $pass, $turno)==TRUE) {
+							$datoscct = $this->Pemc_model->getdatossupervicion($usuario, $turno);
+							$datoscct = $datoscct[0];
+							$datoscct['id_turno_single'] = $turno;
+							Utilerias::set_cct_sesion($this, $datoscct);
+							echo "entro a super";die();
+							$this->generavistaSupervisor();
+						}
 						break;
-						default:
-						if ($data)
-							$url = sprintf("%s?%s", $url, http_build_query($data));
-					}
-					curl_setopt($curl, CURLOPT_URL, $url);
-					curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-					$result = curl_exec($curl);
-					curl_close($curl);
-					$response = json_decode($result);
-					if($response->procede == 1 && $response->status == 1){
-						$datoscct = $this->Pemc_model->getdatoscct($usuario, $turno);
-						$datoscct = $datoscct[0];
-						$datoscct['id_turno_single'] = $turno;
-						$idpemc = $this->Pemc_model->obtener_idpemc_xescuela($datoscct['cve_centro'],$turno);
-						$datoscct['idpemc'] = $idpemc;
-						Utilerias::set_cct_sesion($this, $datoscct);
-						$this->vistas_pemc();
-					}else{
-						$mensaje = $response->statusText;
+					case 'escuela':
+
+						if ($this->trae_validacion_ws_usuario($usuario, $pass, $turno)==TRUE) {
+							$datoscct = $this->Pemc_model->getdatoscct($usuario, $turno);
+							$datoscct = $datoscct[0];
+							$datoscct['id_turno_single'] = $turno;
+							$idpemc = $this->Pemc_model->obtener_idpemc_xescuela($datoscct['cve_centro'],$turno);
+							$datoscct['idpemc'] = $idpemc;
+							Utilerias::set_cct_sesion($this, $datoscct);
+							$this->vistas_pemc();
+						}
+						break;
+					case 'jefe_sector':
+						if ($this->trae_validacion_ws_usuario($usuario, $pass, $turno)==TRUE) {
+							$datoscct = $this->Pemc_model->getdatosjefe_sector($usuario, $turno);
+							$datoscct[0]['id_turno_single'] = $turno;
+							Utilerias::set_cct_sesion($this, $datoscct);
+							echo "entro a jefe_sector";die();
+							$this->generavistaJefe_sector();
+						}
+						break;
+					case 'otro':
+						$mensaje = "Acceso Restringido.";
 						$tipo    = ERRORMESSAGE;
 						$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
 						$this->load->view('pemc/login',$data);
-					}
+						break;
+					default:
+						$mensaje = "Acceso Restringido.";
+						$tipo    = ERRORMESSAGE;
+						$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
+						$this->load->view('pemc/login',$data);
+						break;
 				}
+
+
+
+//////
+
+				// if($this->verifica_supervisor($usuario) == TRUE){
+				// 	// echo"es super"; die();
+				// 	$mensaje = "Acceso Restringido.";
+				// 	$tipo    = ERRORMESSAGE;
+				// 	$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
+				// 	$this->load->view('pemc/login',$data);
+				// }else{
+				// 	// echo"else super"; die();
+				// 	$curl = curl_init();
+				// 	$method = "POST";
+				// 	$url = "http://servicios.seducoahuila.gob.mx/wservice/w_service_login.php";
+				// 	$data = array("cct" => $usuario, 'turno' => $turno, 'pwd' => $pass);
+				//
+				// 	switch ($method)
+				// 	{
+				// 		case "POST":
+				// 		curl_setopt($curl, CURLOPT_POST, 1);
+				// 		if ($data)
+				// 			curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+				// 		break;
+				// 		default:
+				// 		if ($data)
+				// 			$url = sprintf("%s?%s", $url, http_build_query($data));
+				// 	}
+				// 	curl_setopt($curl, CURLOPT_URL, $url);
+				// 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+				// 	$result = curl_exec($curl);
+				// 	curl_close($curl);
+				// 	$response = json_decode($result);
+				// 	if($response->procede == 1 && $response->status == 1){
+				// 		$datoscct = $this->Pemc_model->getdatoscct($usuario, $turno);
+				// 		$datoscct = $datoscct[0];
+				// 		$datoscct['id_turno_single'] = $turno;
+				// 		$idpemc = $this->Pemc_model->obtener_idpemc_xescuela($datoscct['cve_centro'],$turno);
+				// 		$datoscct['idpemc'] = $idpemc;
+				// 		Utilerias::set_cct_sesion($this, $datoscct);
+				// 		$this->vistas_pemc();
+				// 	}else{
+				// 		$mensaje = $response->statusText;
+				// 		$tipo    = ERRORMESSAGE;
+				// 		$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
+				// 		$this->load->view('pemc/login',$data);
+				// 	}
+				// }
+
 			}
 		}// index()
 
@@ -139,14 +190,14 @@ class Pemc extends CI_Controller {
 
 //FUNCIONAMIENTO Y VALIDACION PARA SUPERVISOR BY LUIS SANCHEZ... all reserved rights
 //
-	public function verifica_supervisor($cct){
-		$issuper = $this->Pemc_model->valida_supervisor($cct);
-		if(count($issuper) > 0){
-			return TRUE;
-		}else{
-			return FALSE;
-		}
-	}
+	// public function verifica_supervisor($cct){
+	// 	$issuper = $this->Pemc_model->valida_supervisor($cct);
+	// 	if(count($issuper) > 0){
+	// 		return TRUE;
+	// 	}else{
+	// 		return FALSE;
+	// 	}
+	// }
 
 	public function vistas_pemc(){
 		$this->cct = Utilerias::get_cct_sesion($this);
@@ -690,5 +741,41 @@ EOT;
 
 	}
 
+	public function trae_validacion_ws_usuario($usuario, $pass, $turno){
+		$curl = curl_init();
+		$method = "POST";
+		$url = "http://servicios.seducoahuila.gob.mx/wservice/w_service_login.php";
+		$data = array("cct" => $usuario, 'turno' => $turno, 'pwd' => $pass);
+
+		switch ($method)
+		{
+			case "POST":
+			curl_setopt($curl, CURLOPT_POST, 1);
+			if ($data)
+				curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+			break;
+			default:
+			if ($data)
+				$url = sprintf("%s?%s", $url, http_build_query($data));
+		}
+
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+		$result = curl_exec($curl);
+
+		curl_close($curl);
+		$response = json_decode($result);
+		if($response->procede == 1 && $response->status == 1){
+			return TRUE;
+		}
+		else {
+			$mensaje = $response->statusText;
+			$tipo    = ERRORMESSAGE;
+			$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
+			$this->load->view('pemc/login',$data);
+			return FALSE;
+		}
+	}
 
 }
