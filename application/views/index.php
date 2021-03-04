@@ -64,8 +64,8 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
-							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/aprovechamiento_escolar/'); ?>"><span class="color-1 mr-5"><i class="fas fa-star"></i></span>
-									<font SIZE=3> Aprovechamiento <a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/aprovechamiento_escolar/'); ?>"><b>escolar</b> </font> <span class="h4 text-white badge badge-secondary bgcolor-1">Nuevo</span>
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/aprovechamiento_escolar/'); ?>"><span class="color-1 mr-5"><i class="fas fa-star"></i></span>Aprovechamiento</a><br>
+							 <a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/aprovechamiento_escolar/'); ?>"><b>escolar</b> <span class="h4 text-white badge badge-secondary bgcolor-1">Nuevo</span>
 								</a>
 							</li>
 							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Indicepeso/index'); ?>"><span class="color-1 mr-5"><i class="material-icons">report</i></span> Índice de peso</a></li>
