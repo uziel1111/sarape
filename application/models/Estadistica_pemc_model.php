@@ -26,7 +26,7 @@ class Estadistica_pemc_model extends CI_Model
     }
 
     /*BK201 S*/
-    
+
  function municipios()
  {
   $this->db->select('id_municipio, municipio');
@@ -39,23 +39,23 @@ class Estadistica_pemc_model extends CI_Model
 
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial';
+                $nivel_desc = 'CAM';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar';
+                $nivel_desc = 'PREESCOLAR';
                 break;
             case '4':
-                $nivel_desc = 'Primaria';
+                $nivel_desc = 'PRIMARIA';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria';
+                $nivel_desc = 'SECUNDARIA';
                 break;
             default:
             $nivel_desc = 0;
                 break;
         }
 
-    $query = "SELECT sum(total.cct) as total from  (select count(obj.num_objetivos), obj.municipio, obj.num_objetivos, count(obj.cct) as cct ,obj.cct as cct  
+    $query = "SELECT sum(total.cct) as total from  (select count(obj.num_objetivos), obj.municipio, obj.num_objetivos, count(obj.cct) as cct ,obj.cct as cct
         from (SELECT COUNT(DISTINCT o.id_objetivo) as num_objetivos, e.nombre_de_municipio as municipio, e.cct
         FROM rm_tema_prioritarioxcct tp
         INNER JOIN rm_c_prioridad p on tp.id_prioridad=p.id_prioridad
@@ -65,7 +65,7 @@ class Estadistica_pemc_model extends CI_Model
         where  (e.status = 1 OR e.status = 4)
             AND e.desc_nivel_educativo <> 'INICIAL'
             AND e.cct NOT LIKE '05FUA%'
-            AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
             AND e.municipio = {$municipio}";
         if ($nivel_desc != 0) {
           $query .=" and e.desc_nivel_educativo = '{$nivel_desc}'";
@@ -82,16 +82,16 @@ class Estadistica_pemc_model extends CI_Model
  {
     switch ($nivel) {
         case '1':
-            $nivel_desc = 'Especial';
+            $nivel_desc = 'CAM';
             break;
         case '3':
-            $nivel_desc = 'Preescolar';
+            $nivel_desc = 'PREESCOLAR';
             break;
         case '4':
-            $nivel_desc = 'Primaria';
+            $nivel_desc = 'PRIMARIA';
             break;
         case '5':
-            $nivel_desc = 'Secundaria';
+            $nivel_desc = 'SECUNDARIA';
             break;
         default:
         $nivel_desc = 0;
@@ -137,16 +137,16 @@ class Estadistica_pemc_model extends CI_Model
   if ($nivel != 0) {
     switch ($nivel) {
         case '1':
-            $nivel_desc = 'Especial';
+            $nivel_desc = 'CAM';
             break;
         case '3':
-            $nivel_desc = 'Preescolar';
+            $nivel_desc = 'PREESCOLAR';
             break;
         case '4':
-            $nivel_desc = 'Primaria';
+            $nivel_desc = 'PRIMARIA';
             break;
         case '5':
-            $nivel_desc = 'Secundaria';
+            $nivel_desc = 'SECUNDARIA';
             break;
         default:
         $nivel_desc = 0;
@@ -185,24 +185,22 @@ class Estadistica_pemc_model extends CI_Model
   l5.total_acciones AS acc5
 FROM
   (SELECT
-      COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
-          COUNT(DISTINCT acc.id_accion) AS total_acciones,
-          tp.id_prioridad AS LAE,
-          m.municipio,
-          r.region,
-          r.id_region
-   FROM
-  municipio m
-      INNER JOIN
-  vista_cct e ON e.municipio = m.id_municipio
-      INNER JOIN
-  region r ON m.id_region = r.id_region
-      INNER JOIN
-  rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-      LEFT JOIN
-  rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
-      LEFT JOIN
-  rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
+      COUNT(DISTINCT ro.idobjetivo) AS total_objetivos,
+			COUNT(DISTINCT roa.idaccion) AS total_acciones,
+			am.idlae AS LAE,
+			m.municipio,
+			r.region,
+			r.id_region
+   FROM municipio m
+   INNER JOIN vista_cct e ON e.municipio = m.id_municipio
+		INNER JOIN turno_temp t ON e.turno = t.idturno
+   INNER JOIN region r ON m.id_region = r.id_region
+		LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+		LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+		LEFT JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+		LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
+		LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
+
   WHERE
       (status = 1 OR status = 4)
           AND e.cct NOT LIKE '05FUA%'
@@ -210,26 +208,26 @@ FROM
           {$where_nivel}
           {$where_region}
           {$where_municipio}
-          AND tp.id_prioridad = 1
-  GROUP BY e.municipio , tp.id_prioridad) AS l1
+          AND laes.idlae = 1
+  GROUP BY e.municipio , laes.idlae) AS l1
       INNER JOIN
   (SELECT
-      COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
-          COUNT(DISTINCT acc.id_accion) AS total_acciones,
-          tp.id_prioridad AS LAE,
-          m.municipio
-    FROM
-  municipio m
-      INNER JOIN
-  vista_cct e ON e.municipio = m.id_municipio
-      INNER JOIN
-  region r ON m.id_region = r.id_region
-      INNER JOIN
-  rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-      LEFT JOIN
-  rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
-      LEFT JOIN
-  rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
+      COUNT(DISTINCT ro.idobjetivo) AS total_objetivos,
+			COUNT(DISTINCT roa.idaccion) AS total_acciones,
+			am.idlae AS LAE,
+			m.municipio,
+			r.region,
+			r.id_region
+   FROM municipio m
+   INNER JOIN vista_cct e ON e.municipio = m.id_municipio
+		INNER JOIN turno_temp t ON e.turno = t.idturno
+   INNER JOIN region r ON m.id_region = r.id_region
+		LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+		LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+		LEFT JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+		LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
+		LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
+
   WHERE
       (status = 1 OR status = 4)
           AND e.cct NOT LIKE '05FUA%'
@@ -237,26 +235,26 @@ FROM
           {$where_nivel}
           {$where_region}
           {$where_municipio}
-          AND tp.id_prioridad = 2
-  GROUP BY e.municipio , tp.id_prioridad) AS l2 ON l1.municipio = l2.municipio
+          AND laes.idlae = 2
+  GROUP BY e.municipio , laes.idlae) AS l2 ON l1.municipio = l2.municipio
       INNER JOIN
   (SELECT
-      COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
-          COUNT(DISTINCT acc.id_accion) AS total_acciones,
-          tp.id_prioridad AS LAE,
-          m.municipio
-   FROM
-  municipio m
-      INNER JOIN
-  vista_cct e ON e.municipio = m.id_municipio
-      INNER JOIN
-  region r ON m.id_region = r.id_region
-      INNER JOIN
-  rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-      LEFT JOIN
-  rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
-      LEFT JOIN
-  rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
+      COUNT(DISTINCT ro.idobjetivo) AS total_objetivos,
+			COUNT(DISTINCT roa.idaccion) AS total_acciones,
+			am.idlae AS LAE,
+			m.municipio,
+			r.region,
+			r.id_region
+   FROM municipio m
+   INNER JOIN vista_cct e ON e.municipio = m.id_municipio
+		INNER JOIN turno_temp t ON e.turno = t.idturno
+   INNER JOIN region r ON m.id_region = r.id_region
+		LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+		LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+		LEFT JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+		LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
+		LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
+
   WHERE
       (status = 1 OR status = 4)
           AND e.cct NOT LIKE '05FUA%'
@@ -264,26 +262,26 @@ FROM
           {$where_nivel}
           {$where_region}
           {$where_municipio}
-          AND tp.id_prioridad = 3
-  GROUP BY e.municipio , tp.id_prioridad) AS l3 ON l1.municipio = l3.municipio
+          AND laes.idlae = 3
+  GROUP BY e.municipio , laes.idlae) AS l3 ON l1.municipio = l3.municipio
       INNER JOIN
   (SELECT
-      COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
-          COUNT(DISTINCT acc.id_accion) AS total_acciones,
-          tp.id_prioridad AS LAE,
-          m.municipio
-    FROM
-  municipio m
-      INNER JOIN
-  vista_cct e ON e.municipio = m.id_municipio
-      INNER JOIN
-  region r ON m.id_region = r.id_region
-      INNER JOIN
-  rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-      LEFT JOIN
-  rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
-      LEFT JOIN
-  rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
+      COUNT(DISTINCT ro.idobjetivo) AS total_objetivos,
+			COUNT(DISTINCT roa.idaccion) AS total_acciones,
+			am.idlae AS LAE,
+			m.municipio,
+			r.region,
+			r.id_region
+   FROM municipio m
+   INNER JOIN vista_cct e ON e.municipio = m.id_municipio
+		INNER JOIN turno_temp t ON e.turno = t.idturno
+   INNER JOIN region r ON m.id_region = r.id_region
+		LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+		LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+		LEFT JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+		LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
+		LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
+
   WHERE
       (status = 1 OR status = 4)
           AND e.cct NOT LIKE '05FUA%'
@@ -291,26 +289,26 @@ FROM
           {$where_nivel}
           {$where_region}
           {$where_municipio}
-          AND tp.id_prioridad = 4
-  GROUP BY e.municipio , tp.id_prioridad) AS l4 ON l1.municipio = l4.municipio
+          AND laes.idlae = 4
+  GROUP BY e.municipio , laes.idlae) AS l4 ON l1.municipio = l4.municipio
       INNER JOIN
   (SELECT
-      COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
-          COUNT(DISTINCT acc.id_accion) AS total_acciones,
-          tp.id_prioridad AS LAE,
-          m.municipio
-   FROM
-  municipio m
-      INNER JOIN
-  vista_cct e ON e.municipio = m.id_municipio
-      INNER JOIN
-  region r ON m.id_region = r.id_region
-      INNER JOIN
-  rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-      LEFT JOIN
-  rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
-      LEFT JOIN
-  rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
+      COUNT(DISTINCT ro.idobjetivo) AS total_objetivos,
+			COUNT(DISTINCT roa.idaccion) AS total_acciones,
+			am.idlae AS LAE,
+			m.municipio,
+			r.region,
+			r.id_region
+   FROM municipio m
+   INNER JOIN vista_cct e ON e.municipio = m.id_municipio
+		INNER JOIN turno_temp t ON e.turno = t.idturno
+   INNER JOIN region r ON m.id_region = r.id_region
+		LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+		LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+		LEFT JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+		LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
+		LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
+
   WHERE
       (status = 1 OR status = 4)
           AND e.cct NOT LIKE '05FUA%'
@@ -318,8 +316,8 @@ FROM
           {$where_nivel}
           {$where_region}
           {$where_municipio}
-          AND tp.id_prioridad = 5
-  GROUP BY e.municipio , tp.id_prioridad) AS l5 ON l1.municipio = l5.municipio
+          AND laes.idlae = 5
+  GROUP BY e.municipio , laes.idlae) AS l5 ON l1.municipio = l5.municipio
 ORDER BY l1.id_region;";
 
   return $this->db->query($query)->result_array();
@@ -331,16 +329,16 @@ ORDER BY l1.id_region;";
     if ($nivel != 0) {
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial';
+                $nivel_desc = 'CAM';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar';
+                $nivel_desc = 'PREESCOLAR';
                 break;
             case '4':
-                $nivel_desc = 'Primaria';
+                $nivel_desc = 'PRIMARIA';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria';
+                $nivel_desc = 'SECUNDARIA';
                 break;
             default:
             $nivel_desc = 0;
@@ -368,28 +366,31 @@ ORDER BY l1.id_region;";
     tl1.LAE
 FROM
     (SELECT
-        COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
-            COUNT(DISTINCT acc.id_accion) AS total_acciones,
-            tp.id_prioridad AS LAE,
+        COUNT(DISTINCT ro.idobjetivo) AS total_objetivos,
+            COUNT(DISTINCT roa.idaccion) AS total_acciones,
+            laes.idlae AS LAE,
             m.municipio,
             r.region,
             r.id_region
     FROM
         municipio m
     INNER JOIN vista_cct e ON e.municipio = m.id_municipio
+		INNER JOIN turno_temp t ON e.turno = t.idturno
     INNER JOIN region r ON m.id_region = r.id_region
-    INNER JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-    LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
-    LEFT JOIN rm_objetivo o ON o.id_tprioritario = tp.id_tprioritario
+		INNER JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+		INNER JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+		INNER JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+		LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
+		LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
     WHERE
         (status = 1 OR status = 4)
             AND e.cct NOT LIKE '05FUA%'
-            AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR')
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR')
             {$where_nivel}
             {$where_region}
             {$where_municipio}
-    GROUP BY e.municipio , tp.id_prioridad) AS tl1
-GROUP BY tl1.LAE";
+            GROUP BY e.municipio , laes.idlae) AS tl1
+        GROUP BY tl1.LAE";
 return $this->db->query($query)->result_array();
   }
 
@@ -408,16 +409,16 @@ return $this->db->query($query)->result_array();
     if ($nivel != 0) {
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial';
+                $nivel_desc = 'CAM';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar';
+                $nivel_desc = 'PREESCOLAR';
                 break;
             case '4':
-                $nivel_desc = 'Primaria';
+                $nivel_desc = 'PRIMARIA';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria';
+                $nivel_desc = 'SECUNDARIA';
                 break;
             default:
             $nivel_desc = 0;
@@ -436,12 +437,12 @@ return $this->db->query($query)->result_array();
             case '2':
             $query .= " AND e.sostenimiento IN ('61','41','92','96')";
                  break;
-        
+
            default:
            $query .= "";
                break;
        }
-     
+
    }
 
    $query .= " GROUP BY tp.orden  ORDER by tp.orden";
@@ -454,16 +455,16 @@ function get_zonas($sostenimiento, $nivel){
     if ($nivel != 0) {
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial';
+                $nivel_desc = 'CAM';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar';
+                $nivel_desc = 'PREESCOLAR';
                 break;
             case '4':
-                $nivel_desc = 'Primaria';
+                $nivel_desc = 'PRIMARIA';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria';
+                $nivel_desc = 'SECUNDARIA';
                 break;
             default:
             $nivel_desc = 0;
@@ -482,7 +483,7 @@ function get_zonas($sostenimiento, $nivel){
              case '2':
              $where_sostenimiento = " AND e.sostenimiento IN ('61','41','92','96')";
                   break;
-         
+
             default:
             $where_sostenimiento= "";
                 break;
@@ -496,17 +497,17 @@ function get_zonas($sostenimiento, $nivel){
 
     FROM
     vista_cct e
-    INNER JOIN
-    rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-    LEFT JOIN
-    rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
-    LEFT JOIN
-    rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+    INNER JOIN turno_temp t ON e.turno = t.idturno
+		INNER JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+		INNER JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+    INNER JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+    INNER JOIN r_pemc_accion_seguimiento seg ON roa.idaccion = seg.idaccion
     WHERE
     (e.status = 1 OR e.status = 4)
             AND e.desc_nivel_educativo <> 'INICIAL'
             AND e.cct NOT LIKE '05FUA%'
             AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+            AND !ISNULL(e.zona_escolar)
     {$where_nivel}
     {$where_sostenimiento}
     GROUP BY  e.zona_escolar
@@ -520,16 +521,16 @@ function get_zonas($sostenimiento, $nivel){
         if ($nivel != 0) {
             switch ($nivel) {
                 case '1':
-                    $nivel_desc = 'Especial';
+                    $nivel_desc = 'CAM';
                     break;
                 case '3':
-                    $nivel_desc = 'Preescolar';
+                    $nivel_desc = 'PREESCOLAR';
                     break;
                 case '4':
-                    $nivel_desc = 'Primaria';
+                    $nivel_desc = 'PRIMARIA';
                     break;
                 case '5':
-                    $nivel_desc = 'Secundaria';
+                    $nivel_desc = 'SECUNDARIA';
                     break;
                 default:
                 $nivel_desc = 0;
@@ -548,7 +549,7 @@ function get_zonas($sostenimiento, $nivel){
                  case '2':
                  $where_sostenimiento = " AND e.sostenimiento IN ('61','41','92','96')";
                       break;
-             
+
                 default:
                 $where_sostenimiento = "";
                     break;
@@ -579,120 +580,140 @@ function get_zonas($sostenimiento, $nivel){
         e.sostenimiento as id_sostenimiento,
         e.desc_sostenimiento as sostenimiento,
         e.zona_escolar,
-        tp.id_prioridad AS LAE,
-        ROUND(IFNULL(AVG(ava.cte1), 0), 1) AS promedio
-        FROM
-		vista_cct e
-        INNER JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-        LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
-        LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+        laes.idlae AS LAE,
+        ROUND(IFNULL(seg.avance, 0), 1) AS promedio
+        FROM vista_cct e
+        INNER JOIN turno_temp t ON e.turno = t.idturno
+				INNER JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+				INNER JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+				INNER JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+				LEFT JOIN r_pemc_accion_seguimiento seg ON roa.idaccion = seg.idaccion
+				LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
+				LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
         WHERE
         (e.status = 1 OR e.status = 4)
             AND e.desc_nivel_educativo <> 'INICIAL'
             AND e.cct NOT LIKE '05FUA%'
-            AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
-        AND tp.id_prioridad = 1
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+        AND laes.idlae = 1
         {$where_nivel}
         {$where_sostenimiento}
         {$where_zona}
-        GROUP BY e.nivel_educativo, e.sostenimiento, e.zona_escolar , tp.id_prioridad
-        ORDER BY e.zona_escolar ASC) AS zl1
+        GROUP BY e.nivel_educativo, e.sostenimiento, e.zona_escolar , laes.idlae
+				HAVING MAX(seg.fcreacion)
+				ORDER BY e.zona_escolar ASC) AS zl1
         INNER JOIN
         (SELECT
         e.desc_nivel_educativo as nivel,
         e.sostenimiento as id_sostenimiento,
         e.desc_sostenimiento as sostenimiento,
         e.zona_escolar,
-        tp.id_prioridad AS LAE,
-        ROUND(IFNULL(AVG(ava.cte1), 0), 1) AS promedio
-        FROM
-		vista_cct e
-        INNER JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-        LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
-        LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+        laes.idlae AS LAE,
+        ROUND(IFNULL(seg.avance, 0), 1) AS promedio
+        FROM vista_cct e
+        INNER JOIN turno_temp t ON e.turno = t.idturno
+				INNER JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+				INNER JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+				INNER JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+				LEFT JOIN r_pemc_accion_seguimiento seg ON roa.idaccion = seg.idaccion
+				LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
+				LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
         WHERE
         (e.status = 1 OR e.status = 4)
             AND e.desc_nivel_educativo <> 'INICIAL'
             AND e.cct NOT LIKE '05FUA%'
-            AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
-        AND tp.id_prioridad = 2
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+        AND laes.idlae = 2
         {$where_nivel}
         {$where_sostenimiento}
         {$where_zona}
-        GROUP BY e.nivel_educativo, e.sostenimiento, e.zona_escolar , tp.id_prioridad
-        ORDER BY e.zona_escolar ASC) AS zl2 ON zl1.zona_escolar = zl2.zona_escolar
+        GROUP BY e.nivel_educativo, e.sostenimiento, e.zona_escolar , laes.idlae
+				HAVING MAX(seg.fcreacion)
+				ORDER BY e.zona_escolar ASC) AS zl2 ON zl1.zona_escolar = zl2.zona_escolar
         INNER JOIN
         (SELECT
         e.desc_nivel_educativo as nivel,
         e.sostenimiento as id_sostenimiento,
         e.desc_sostenimiento as sostenimiento,
         e.zona_escolar,
-        tp.id_prioridad AS LAE,
-        ROUND(IFNULL(AVG(ava.cte1), 0), 1) AS promedio
-        FROM
-		vista_cct e
-        INNER JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-        LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
-        LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+        laes.idlae AS LAE,
+        ROUND(IFNULL(seg.avance, 0), 1) AS promedio
+        FROM vista_cct e
+        INNER JOIN turno_temp t ON e.turno = t.idturno
+				INNER JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+				INNER JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+				INNER JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+				LEFT JOIN r_pemc_accion_seguimiento seg ON roa.idaccion = seg.idaccion
+				LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
+				LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
         WHERE
         (e.status = 1 OR e.status = 4)
             AND e.desc_nivel_educativo <> 'INICIAL'
             AND e.cct NOT LIKE '05FUA%'
-            AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
-        AND tp.id_prioridad = 3
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+        AND laes.idlae = 3
         {$where_nivel}
         {$where_sostenimiento}
         {$where_zona}
-        GROUP BY e.nivel_educativo, e.sostenimiento, e.zona_escolar , tp.id_prioridad
-        ORDER BY e.zona_escolar ASC) AS zl3 ON zl1.zona_escolar = zl3.zona_escolar
+        GROUP BY e.nivel_educativo, e.sostenimiento, e.zona_escolar , laes.idlae
+				HAVING MAX(seg.fcreacion)
+				ORDER BY e.zona_escolar ASC) AS zl3 ON zl1.zona_escolar = zl3.zona_escolar
         INNER JOIN
         (SELECT
         e.desc_nivel_educativo as nivel,
         e.sostenimiento as id_sostenimiento,
         e.desc_sostenimiento as sostenimiento,
         e.zona_escolar,
-        tp.id_prioridad AS LAE,
-        ROUND(IFNULL(AVG(ava.cte1), 0), 1) AS promedio
-        FROM
-		vista_cct e
-        INNER JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-        LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
-        LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+        laes.idlae AS LAE,
+        ROUND(IFNULL(seg.avance, 0), 1) AS promedio
+        FROM vista_cct e
+        INNER JOIN turno_temp t ON e.turno = t.idturno
+				INNER JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+				INNER JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+				INNER JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+				LEFT JOIN r_pemc_accion_seguimiento seg ON roa.idaccion = seg.idaccion
+				LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
+				LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
         WHERE
         (e.status = 1 OR e.status = 4)
             AND e.desc_nivel_educativo <> 'INICIAL'
             AND e.cct NOT LIKE '05FUA%'
-            AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
-        AND tp.id_prioridad = 4
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+        AND laes.idlae = 4
         {$where_nivel}
         {$where_sostenimiento}
         {$where_zona}
-        GROUP BY e.nivel_educativo, e.sostenimiento, e.zona_escolar , tp.id_prioridad
-        ORDER BY e.zona_escolar ASC) AS zl4 ON zl1.zona_escolar = zl4.zona_escolar
+        GROUP BY e.nivel_educativo, e.sostenimiento, e.zona_escolar , laes.idlae
+				HAVING MAX(seg.fcreacion)
+				ORDER BY e.zona_escolar ASC) AS zl4 ON zl1.zona_escolar = zl4.zona_escolar
         INNER JOIN
         (SELECT
         e.desc_nivel_educativo as nivel,
         e.sostenimiento as id_sostenimiento,
         e.desc_sostenimiento as sostenimiento,
         e.zona_escolar,
-        tp.id_prioridad AS LAE,
-        ROUND(IFNULL(AVG(ava.cte1), 0), 1) AS promedio
-        FROM
-		vista_cct e
-        INNER JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-        LEFT JOIN rm_accionxtproritario acc ON tp.id_tprioritario = acc.id_tprioritario
-        LEFT JOIN rm_avance_xcctxtpxaccion ava ON ava.id_accion = acc.id_accion
+        laes.idlae AS LAE,
+        ROUND(IFNULL(seg.avance, 0), 1) AS promedio
+        FROM vista_cct e
+        INNER JOIN turno_temp t ON e.turno = t.idturno
+				INNER JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+				INNER JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+				INNER JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+				LEFT JOIN r_pemc_accion_seguimiento seg ON roa.idaccion = seg.idaccion
+				LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
+				LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
         WHERE
         (e.status = 1 OR e.status = 4)
             AND e.desc_nivel_educativo <> 'INICIAL'
             AND e.cct NOT LIKE '05FUA%'
-            AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
-        AND tp.id_prioridad = 5
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+        AND laes.idlae = 5
         {$where_nivel}
         {$where_sostenimiento}
         {$where_zona}
-        GROUP BY e.nivel_educativo, e.sostenimiento, e.zona_escolar , tp.id_prioridad
-        ORDER BY e.zona_escolar ASC) AS zl5 ON zl1.zona_escolar = zl5.zona_escolar
+        GROUP BY e.nivel_educativo, e.sostenimiento, e.zona_escolar , laes.idlae
+				HAVING MAX(seg.fcreacion)
+				ORDER BY e.zona_escolar ASC) AS zl5 ON zl1.zona_escolar = zl5.zona_escolar
         GROUP BY zl1.zona_escolar , zl1.nivel";
 
         return $this->db->query($str_query)->result_array();
@@ -707,20 +728,20 @@ function get_zonas($sostenimiento, $nivel){
   }// getall_xest_ind()
 
   //listo
-  function get_escuelasMun_gen($nivel){
+  function get_escuelasMun_gen($nivel, $modalidad, $sostenimiento){
      if ($nivel != 0) {
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial';
+                $nivel_desc = 'CAM';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar';
+                $nivel_desc = 'PREESCOLAR';
                 break;
             case '4':
-                $nivel_desc = 'Primaria';
+                $nivel_desc = 'PRIMARIA';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria';
+                $nivel_desc = 'SECUNDARIA';
                 break;
             default:
             $nivel_desc = 0;
@@ -730,6 +751,18 @@ function get_zonas($sostenimiento, $nivel){
      }
      else {
        $where= "";
+     }
+     if ($modalidad != 0) {
+       $where_m= " and e.subnivel_educativo= '{$modalidad}'";
+     }
+     else {
+       $where_m= " ";
+     }
+     if ($sostenimiento != 0) {
+       $where_s= " and e.sostenimiento= '{$sostenimiento}'";
+     }
+     else {
+       $where_s= " ";
      }
     $query = "SELECT
     mastert.id_municipio, mastert.municipio, mastert.n_escxmuni,
@@ -746,22 +779,26 @@ function get_zonas($sostenimiento, $nivel){
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
         AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+        {$where_m}
+        {$where_s}
         GROUP BY m.id_municipio
     ) as mastert
     INNER JOIN
     (
         SELECT
-        m.id_municipio, COUNT(DISTINCT IF(ISNULL(o.cct),NULL, o.cct)) as esc_que_capt,
-        ROUND(IF(COUNT(DISTINCT IF(ISNULL(o.cct),NULL, o.cct))=0,0,(COUNT( DISTINCT IF(ISNULL(o.cct),NULL, o.cct))*100)/COUNT(DISTINCT e.cct)),1) as porcentaje
-        FROM municipio m
-    INNER JOIN vista_cct e ON m.id_municipio = e.municipio
-        LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-        LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
-        WHERE (e.status = 1 OR e.status = 4)
-  AND e.desc_nivel_educativo <> 'INICIAL'
-  AND e.cct NOT LIKE '05FUA%'
-  AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
-        GROUP BY m.id_municipio
+		m.id_municipio,
+		COUNT(DISTINCT ro.idpemc) as esc_que_capt,
+		ROUND(IF(COUNT(DISTINCT ro.idpemc)=0,0,(COUNT(DISTINCT ro.idpemc)*100)/COUNT(DISTINCT CONCAT(e.cct,t.idfederal))),1) as porcentaje
+		FROM municipio m
+		INNER JOIN vista_cct e ON m.id_municipio = e.municipio
+		INNER JOIN turno_temp t ON e.turno = t.idturno
+		LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+		LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+		WHERE (e.status = 1 OR e.status = 4)
+			AND e.desc_nivel_educativo <> 'INICIAL'
+			AND e.cct NOT LIKE '05FUA%'
+			AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+						GROUP BY m.id_municipio
     ) captobj on mastert.id_municipio = captobj.id_municipio
     LEFT JOIN
     (
@@ -770,18 +807,19 @@ function get_zonas($sostenimiento, $nivel){
         FROM
         (
         SELECT
-        m.id_municipio, e.cct,
-        COUNT(DISTINCT o.id_objetivo)
+        m.id_municipio, CONCAT(e.cct,t.idfederal) as cct,
+        COUNT(DISTINCT ro.idobjetivo)
         FROM municipio m
-    INNER JOIN vista_cct e ON m.id_municipio = e.municipio
-        LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-        LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
+				INNER JOIN vista_cct e ON m.id_municipio = e.municipio
+        INNER JOIN turno_temp t ON e.turno = t.idturno
+				LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+				LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
         WHERE (e.status = 1 OR e.status = 4)
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
   AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
-        GROUP BY m.id_municipio, e.cct
-        HAVING COUNT(DISTINCT o.id_objetivo)=0
+        GROUP BY m.id_municipio, CONCAT(e.cct,t.idfederal)
+        HAVING COUNT(DISTINCT ro.idobjetivo)=0
         ) as xcon0
         GROUP BY xcon0.id_municipio
     ) as x0 on mastert.id_municipio = x0.id_municipio
@@ -793,41 +831,43 @@ function get_zonas($sostenimiento, $nivel){
         FROM
         (
         SELECT
-        m.id_municipio, e.cct,
-        COUNT(DISTINCT o.id_objetivo)
+        m.id_municipio, CONCAT(e.cct,t.idfederal) as cct,
+        COUNT(DISTINCT ro.idobjetivo)
         FROM municipio m
-    INNER JOIN vista_cct e ON m.id_municipio = e.municipio
-        LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-        LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
+				INNER JOIN vista_cct e ON m.id_municipio = e.municipio
+        INNER JOIN turno_temp t ON e.turno = t.idturno
+				LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+				LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
         WHERE (e.status = 1 OR e.status = 4)
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
   AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
-        GROUP BY m.id_municipio, e.cct
-        HAVING COUNT(DISTINCT o.id_objetivo)=1
+        GROUP BY m.id_municipio, CONCAT(e.cct,t.idfederal)
+        HAVING COUNT(DISTINCT ro.idobjetivo)=1
         ) as xcon0
         GROUP BY xcon0.id_municipio
     ) as x1 on mastert.id_municipio = x1.id_municipio
 
     LEFT JOIN
     (
-        SELECT
+       SELECT
         xcon0.id_municipio, COUNT(DISTINCT xcon0.cct) as esc_que_capt23
         FROM
         (
         SELECT
-        m.id_municipio, e.cct,
-        COUNT(DISTINCT o.id_objetivo)
+        m.id_municipio, CONCAT(e.cct,t.idfederal) as cct,
+        COUNT(DISTINCT ro.idobjetivo)
         FROM municipio m
-    INNER JOIN vista_cct e ON m.id_municipio = e.municipio
-        LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-        LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
+				INNER JOIN vista_cct e ON m.id_municipio = e.municipio
+        INNER JOIN turno_temp t ON e.turno = t.idturno
+				LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+				LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
         WHERE (e.status = 1 OR e.status = 4)
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
   AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
-        GROUP BY m.id_municipio, e.cct
-        HAVING COUNT(DISTINCT o.id_objetivo)=2 OR COUNT(DISTINCT o.id_objetivo)=3
+        GROUP BY m.id_municipio, CONCAT(e.cct,t.idfederal)
+        HAVING (COUNT(DISTINCT ro.idobjetivo)=2 OR COUNT(DISTINCT ro.idobjetivo)=3)
         ) as xcon0
         GROUP BY xcon0.id_municipio
     ) as x2 on mastert.id_municipio = x2.id_municipio
@@ -839,18 +879,19 @@ function get_zonas($sostenimiento, $nivel){
         FROM
         (
         SELECT
-        m.id_municipio, e.cct,
-        COUNT(DISTINCT o.id_objetivo)
+        m.id_municipio, CONCAT(e.cct,t.idfederal) as cct,
+        COUNT(DISTINCT ro.idobjetivo)
         FROM municipio m
-    INNER JOIN vista_cct e ON m.id_municipio = e.municipio
-        LEFT JOIN rm_tema_prioritarioxcct tp ON e.cct = tp.cct
-        LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
+				INNER JOIN vista_cct e ON m.id_municipio = e.municipio
+        INNER JOIN turno_temp t ON e.turno = t.idturno
+				LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+				LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
         WHERE (e.status = 1 OR e.status = 4)
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
   AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
-        GROUP BY m.id_municipio, e.cct
-        HAVING COUNT(DISTINCT o.id_objetivo)>3
+        GROUP BY m.id_municipio, CONCAT(e.cct,t.idfederal)
+        HAVING COUNT(DISTINCT ro.idobjetivo)>3
         ) as xcon0
         GROUP BY xcon0.id_municipio
     ) as x3 on mastert.id_municipio = x3.id_municipio
@@ -859,20 +900,20 @@ function get_zonas($sostenimiento, $nivel){
   }//get_escuelasMun_gen()
 
   //listo
-  function get_toatalesc($nivel){
+  function get_toatalesc($nivel, $modalidad, $sostenimiento){
      if ($nivel != 0) {
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial';
+                $nivel_desc = 'CAM';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar';
+                $nivel_desc = 'PREESCOLAR';
                 break;
             case '4':
-                $nivel_desc = 'Primaria';
+                $nivel_desc = 'PRIMARIA';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria';
+                $nivel_desc = 'SECUNDARIA';
                 break;
             default:
             $nivel_desc = 0;
@@ -883,32 +924,47 @@ function get_zonas($sostenimiento, $nivel){
      else {
        $where= "";
      }
+     if ($modalidad != 0) {
+       $where_m= " and e.subnivel_educativo= '{$modalidad}'";
+     }
+     else {
+       $where_m= " ";
+     }
+     if ($sostenimiento != 0) {
+       $where_s= " and e.sostenimiento= '{$sostenimiento}'";
+     }
+     else {
+       $where_s= " ";
+     }
     $query = "SELECT
-              COUNT(DISTINCT e.cct) as n_esc
+              COUNT(DISTINCT CONCAT(e.cct,t.idfederal)) as n_esc
               FROM vista_cct as e
+              INNER JOIN turno_temp t ON e.turno = t.idturno
               WHERE (e.status = 1 OR e.status = 4)
             AND e.desc_nivel_educativo <> 'INICIAL'
             AND e.cct NOT LIKE '05FUA%'
             AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+            {$where_m}
+            {$where_s}
               ";
     return $this->db->query($query)->row('n_esc');
   }//get_toatalesc()
 
   //listo
-  function get_total_gen($nivel){
+  function get_total_gen($nivel, $modalidad, $sostenimiento){
     if ($nivel != 0) {
         switch ($nivel) {
             case '1':
-                $nivel_desc = 'Especial';
+                $nivel_desc = 'CAM';
                 break;
             case '3':
-                $nivel_desc = 'Preescolar';
+                $nivel_desc = 'PREESCOLAR';
                 break;
             case '4':
-                $nivel_desc = 'Primaria';
+                $nivel_desc = 'PRIMARIA';
                 break;
             case '5':
-                $nivel_desc = 'Secundaria';
+                $nivel_desc = 'SECUNDARIA';
                 break;
             default:
             $nivel_desc = 0;
@@ -919,16 +975,108 @@ function get_zonas($sostenimiento, $nivel){
     else {
       $where= "";
     }
+    if ($modalidad != 0) {
+      $where_m= " and e.subnivel_educativo= '{$modalidad}'";
+    }
+    else {
+      $where_m= " ";
+    }
+    if ($sostenimiento != 0) {
+      $where_s= " and e.sostenimiento= '{$sostenimiento}'";
+    }
+    else {
+      $where_s= " ";
+    }
    $query = "SELECT
-						 ROUND(((COUNT(DISTINCT IF(ISNULL(o.id_objetivo),NULL, e.cct)) * 100)/COUNT(DISTINCT e.cct)),1) as por_capt,
-						 ROUND((100-((COUNT(DISTINCT IF(ISNULL(o.id_objetivo),NULL, e.cct)) * 100)/COUNT(DISTINCT e.cct))),1) as por_ncapt,
-             COUNT(DISTINCT IF(ISNULL(o.id_objetivo),NULL, e.cct)) as n_esccapt,
-             COUNT(DISTINCT e.cct)-COUNT(DISTINCT IF(ISNULL(o.id_objetivo),NULL, e.cct)) as n_escncapt
+						 ROUND(IF(COUNT(DISTINCT ro.idpemc)=0,0,(COUNT(DISTINCT ro.idpemc)*100)/COUNT(DISTINCT CONCAT(e.cct,t.idfederal))),1) as por_capt,
+						 ROUND((100-IF(COUNT(DISTINCT ro.idpemc)=0,0,(COUNT(DISTINCT ro.idpemc)*100)/COUNT(DISTINCT CONCAT(e.cct,t.idfederal)))),1) as por_ncapt,
+             COUNT(DISTINCT ro.idpemc) as n_esccapt,
+             ((COUNT(DISTINCT CONCAT(e.cct,t.idfederal)))-(COUNT(DISTINCT ro.idpemc))) as n_escncapt
              FROM vista_cct as e
-						 LEFT JOIN rm_tema_prioritarioxcct tp on e.cct = tp.cct
-						 LEFT JOIN rm_objetivo o ON tp.id_tprioritario = o.id_tprioritario
-                         WHERE  (status = 1 OR status = 4) AND e.cct NOT LIKE '05FUA%' AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR') {$where}
+						 INNER JOIN turno_temp t ON e.turno = t.idturno
+						LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+						LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+						WHERE  (status = 1 OR status = 4) AND e.cct NOT LIKE '05FUA%' AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR') {$where}
+            {$where_m}
+            {$where_s}
              ";
   return $this->db->query($query)->result_array();
  }
+
+ function get_modalidad_gen($nivel){
+   if ($nivel != 0) {
+       switch ($nivel) {
+           case '1':
+               $nivel_desc = 'CAM';
+               break;
+           case '3':
+               $nivel_desc = 'PREESCOLAR';
+               break;
+           case '4':
+               $nivel_desc = 'PRIMARIA';
+               break;
+           case '5':
+               $nivel_desc = 'SECUNDARIA';
+               break;
+           default:
+           $nivel_desc = 0;
+               break;
+       }
+    $where= " and e.desc_nivel_educativo= '{$nivel_desc}'";
+   }
+   else {
+     $where= "";
+   }
+  $query = "SELECT
+e.subnivel_educativo as idmodalidad, e.desc_subnivel_educativo as modalidad
+FROM vista_cct e
+where  (e.status = 1 OR e.status = 4)
+            AND e.desc_nivel_educativo <> 'INICIAL'
+            AND e.cct NOT LIKE '05FUA%'
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+GROUP BY e.subnivel_educativo";
+ return $this->db->query($query)->result_array();
+}
+
+function get_sostenimiento_gen($nivel,$modalidad){
+  if ($nivel != 0) {
+      switch ($nivel) {
+          case '1':
+              $nivel_desc = 'CAM';
+              break;
+          case '3':
+              $nivel_desc = 'PREESCOLAR';
+              break;
+          case '4':
+              $nivel_desc = 'PRIMARIA';
+              break;
+          case '5':
+              $nivel_desc = 'SECUNDARIA';
+              break;
+          default:
+          $nivel_desc = 0;
+              break;
+      }
+   $where= " and e.desc_nivel_educativo= '{$nivel_desc}'";
+  }
+  else {
+    $where= "";
+  }
+  if ($modalidad != 0) {
+    $where_m= " and e.subnivel_educativo= '{$modalidad}'";
+  }
+  else {
+    $where_m= " ";
+  }
+ $query = "SELECT
+e.sostenimiento as idsostenimiento, e.desc_sostenimiento as sostenimiento
+FROM vista_cct e
+where  (e.status = 1 OR e.status = 4)
+            AND e.desc_nivel_educativo <> 'INICIAL'
+            AND e.cct NOT LIKE '05FUA%'
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where} {$where_m}
+GROUP BY e.sostenimiento";
+return $this->db->query($query)->result_array();
+}
+
 }

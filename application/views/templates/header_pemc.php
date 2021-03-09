@@ -60,8 +60,8 @@
     <body>
         <div id="top"></div>
         <!-- Start Header Area -->
-        <header class="default-header">
-            <div class="sticky-header">
+        <header>
+            <div class="sticky-header" style="background-color: #000000!important;">
                 <div class="container">
                     <div class="header-content d-flex justify-content-between align-items-center">
                         <div class="logo">
@@ -71,7 +71,7 @@
                         <div class="right-bar d-flex align-items-center">
                         </div>
                         <div class="float-right text-right text-white">
-    
+    <i class="fas fa-caret-right color-1"></i>&nbsp;<b>CENTRAL</b><br>
   <a class="btn btn-secondary btn-sm mt-2" href="<?= site_url("estadistica_pemc/cerrar_sesion")?>">Cerrar Sesión</a>
 </div>
                     </div>

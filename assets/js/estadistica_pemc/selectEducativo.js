@@ -3,6 +3,16 @@ $('#nivel_educativo_grid_general').change(function() {
 	getEstadistica();
 
 });
+$('#modaliad_educativo_grid_general').change(function() {
+	Notification.loading("");
+	getEstadistica();
+
+});
+$('#sostenimiento_educativo_grid_general').change(function() {
+	Notification.loading("");
+	getEstadistica();
+
+});
 
 $('#nivel_educativo_LAE').change(function() {
 
@@ -19,7 +29,7 @@ $('#region_LAE').change(function() {
 	$('#sostenimiento_LAE').val(0);
 	$('#zona_LAE').val(0);
 	getEstadisticaLAE();
-	
+
 
 });
 
@@ -62,4 +72,3 @@ $('#nivel_educativo_zona').change(function() {
 	Notification.loading("");
 	getTablaZona();
 });
-

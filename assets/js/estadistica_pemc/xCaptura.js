@@ -10,27 +10,34 @@
  	getEstadistica();
 
  });
- $('#nivel_educativo_grid_general').change(function() {
- 	console.log('click');
- 	getEstadistica();
 
- });
  function getEstadistica() {
  	nivel = $('#nivel_educativo_grid_general option:selected').val();
+  modalidad = $('#modaliad_educativo_grid_general option:selected').val();
+  sostenimiento = $('#sostenimiento_educativo_grid_general option:selected').val();
  	if (nivel == undefined) {
  		nivel = 0;
  	}
+  if (modalidad == undefined) {
+ 		modalidad = 0;
+ 	}
+  if (sostenimiento == undefined) {
+ 		sostenimiento = 0;
+ 	}
+
  	ruta = base_url + 'Estadistica_pemc/getEstadistica';
  	$.ajax({
  		url: ruta,
  		type: 'POST',
- 		data: {nivel:nivel},
+ 		data: {nivel:nivel,modalidad:modalidad,sostenimiento:sostenimiento},
  	})
  	.done(function(data) {
  		swal.close();
  		$('#xgeneral').html(data.str_view);
  		graficaPie(data.n_porcentajeC,data.n_porcentajeNC);
  		$('#nivel_educativo_grid_general').val(nivel);
+    $('#modaliad_educativo_grid_general').val(modalidad);
+    $('#sostenimiento_educativo_grid_general').val(sostenimiento);
  	})
  	.fail(function() {
  		swal.close();

@@ -47,8 +47,8 @@ $.ajax({
 .done(function(data) {
     swal.close();
     $('#xLAE').html(data.str_view);
-    graficaBarObj(data.grafica); 
-    graficaBarAcc(data.grafica); 
+    graficaBarObj(data.grafica);
+    graficaBarAcc(data.grafica);
     $('#nivel_educativo_LAE').val(nivel);
     $('#region_LAE').val(region);
     $('#municipio_LAE').val(municipio);
@@ -70,14 +70,13 @@ $.ajax({
     console.info('Error');
 })
 .always(function() {
-    swal.close();   
+    swal.close();
 });
 
 }
 
 function graficaBarObj(objetivos) {
-    if (objetivos != undefined){
-
+    if (objetivos != undefined && objetivos.length != 0){
 
         obj1 = parseInt(objetivos[0]['obj']);
         obj2 = parseInt(objetivos[1]['obj']);
@@ -104,9 +103,9 @@ function graficaBarObj(objetivos) {
 
     chart.draw(data, google.charts.Bar.convertOptions(options));
 }
-} 
+}
 function graficaBarAcc(acciones) {
-    if (acciones != undefined){
+    if (acciones != undefined && acciones.length != 0){
 
         acc1 = parseInt(acciones[0]['acc']);
         acc2 = parseInt(acciones[1]['acc']);
@@ -135,4 +134,4 @@ function graficaBarAcc(acciones) {
 
     chart.draw(data, google.charts.Bar.convertOptions(options));
 }
-} 
+}

@@ -201,7 +201,7 @@ public function busquedaxct(){
             $cve_sostenimiento = $this->input->post('cve_sostenimiento');
             $nombre_escuela = $this->input->post('nombre_escuela');
             $this->datos = Utilerias::get_cct_sesion($this);
-            
+
             $data['tipou_pemc']="upemc";
 
             $data['cve_municipio'] = $cve_municipio;
@@ -213,7 +213,7 @@ public function busquedaxct(){
             $nivel = $this->input->post('nivel_pemc');
             $sostenimiento = $this->input->post('sostenimiento_pemc');
             $result_escuelas = $this->CentrosE_model->filtro_escuela($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
-            
+
             $array=array();
             for($i=0; $i<count($result_escuelas); $i++){
                 if($result_escuelas[$i]['turno']==120){
@@ -287,15 +287,20 @@ function truncar($numero, $digitos) {
           if(Utilerias::haySesionAbierta($this)){
         $result = array();
         $nivel = $this->input->post('nivel');
+        $modalidad = $this->input->post('modalidad');
+        $sostenimiento = $this->input->post('sostenimiento');
+        
+        $arr_modalidad = $this->Estadistica_pemc_model->get_modalidad_gen($nivel);
+        $arr_sostenimiento = $this->Estadistica_pemc_model->get_sostenimiento_gen($nivel,$modalidad);
 
-        $tabla = $this->Estadistica_pemc_model->get_escuelasMun_gen($nivel);
-        $totalEscuelas = $this->Estadistica_pemc_model->get_toatalesc($nivel);
+        $tabla = $this->Estadistica_pemc_model->get_escuelasMun_gen($nivel, $modalidad, $sostenimiento);
+        $totalEscuelas = $this->Estadistica_pemc_model->get_toatalesc($nivel, $modalidad, $sostenimiento);
 
 
-     $porcentajeC = $this->Estadistica_pemc_model->get_total_gen($nivel);
-     $porcentajeNC = $this->Estadistica_pemc_model->get_total_gen($nivel);
-     $n_porcentajeC = $this->Estadistica_pemc_model->get_total_gen($nivel);
-     $n_porcentajeNC = $this->Estadistica_pemc_model->get_total_gen($nivel);
+     $porcentajeC = $this->Estadistica_pemc_model->get_total_gen($nivel, $modalidad, $sostenimiento);
+     $porcentajeNC = $this->Estadistica_pemc_model->get_total_gen($nivel, $modalidad, $sostenimiento);
+     $n_porcentajeC = $this->Estadistica_pemc_model->get_total_gen($nivel, $modalidad, $sostenimiento);
+     $n_porcentajeNC = $this->Estadistica_pemc_model->get_total_gen($nivel, $modalidad, $sostenimiento);
 
      $porcentajeC = (float)$porcentajeC[0]['por_capt'];
      $porcentajeNC = (float)$porcentajeNC[0]['por_ncapt'];
@@ -305,6 +310,8 @@ function truncar($numero, $digitos) {
      $result = array('tabla' => $tabla, 'total' => $totalEscuelas);
 
      $data['result'] = $result;
+     $data['modalidad'] = $arr_modalidad;
+     $data['sostenimiento'] = $arr_sostenimiento;
      $str_view = $this->load->view("estadistica_pemc/grid_general", $data, TRUE);
      $response = array('str_view' => $str_view, 'porcentajeC' =>$porcentajeC, 'porcentajeNC' =>$porcentajeNC, 'n_porcentajeC' =>$n_porcentajeC, 'n_porcentajeNC' =>$n_porcentajeNC);
      Utilerias::enviaDataJson(200, $response, $this);

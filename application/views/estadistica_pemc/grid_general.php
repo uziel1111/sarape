@@ -1,17 +1,34 @@
 <div class="container">
 	<div class="row justify-content-md-center">
-				<div class="col-md-2 form-group form-group-style-1">
-					<label for="nivel_educativo_grid_general">Seleccione un Nivel</label>
-				</div>
-				<div class="col-md-10  form-group form-group-style-1">
-					<select id="nivel_educativo_grid_general" class="form-control">
-						<option value="0" selected="">Todos los niveles</option>
-						<option value="1">Especial</option>
-						<option value="3">Preescolar</option>
-						<option value="4">Primaria</option>
-						<option value="5">Secundaria</option>
-					</select>
-				</div>
+		<div class="col-md-4 form-group form-group-style-1">
+      <label for="nivel_educativo_grid_general">Seleccione un nivel educativo</label>
+      <select id="nivel_educativo_grid_general" class="form-control">
+        <option value="0" selected="">Todos los niveles</option>
+        <option value="1">Especial</option>
+        <option value="3">Preescolar</option>
+        <option value="4">Primaria</option>
+        <option value="5">Secundaria</option>
+      </select></label>
+    </div>
+		<div class="col-md-4 form-group form-group-style-1 ">
+			<label for="modaliad_educativo_grid_general">Seleccione una modalidad</label>
+			 <select id="modaliad_educativo_grid_general" class="form-control">
+				 <option value="0">Todas las modalidades</option>
+				 <?php foreach ($modalidad as $key => $value) { ?>
+					 <option value="<?= $value['idmodalidad'] ?>"><?= $value['modalidad'] ?></option>
+				 <?php } ?>
+							</select></label>
+		</div>
+		<div class="col-md-4 form-group form-group-style-1 ">
+			<label for="sostenimiento_educativo_grid_general">Seleccione un sostenimiento</label>
+			 <select id="sostenimiento_educativo_grid_general" class="form-control">
+				 <option value="0">Todos los sostenimeinto</option>
+				 <?php foreach ($sostenimiento as $key => $value) { ?>
+					 <option value="<?= $value['idsostenimiento'] ?>"><?= $value['sostenimiento'] ?></option>
+				 <?php } ?>
+							</select></label>
+		</div>
+
 
 			<div class="col-md-12">
 				<h1>TOTAL DE ESCUELAS EN EL ESTADO: <b><?=number_format($result['total'])?></b></h1>
