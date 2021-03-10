@@ -18,6 +18,8 @@ class Estadistica_pemc extends CI_Controller
         $this->load->model('Sostenimiento_model');
         $this->load->model('Nivel_model');
         $this->load->model('CentrosE_model');
+        $this->load->model('Pemc_model');
+
         $this->datos = array();
     }
 
@@ -102,69 +104,114 @@ public function busquedaxct(){
         $turno_single=5;
     }
 
-    $datoscct = $this->Estadistica_pemc_model->getdatoscct_pemc($cct, $turno_single);
-    Utilerias::set_cct_sesion($this, $datoscct);
+    $datoscct = $this->Pemc_model->getdatoscct($cct, $turno_single);
+    $datoscct = $datoscct[0];
+    $datoscct['id_turno_single'] = $turno_single;
+    $idpemc = $this->Pemc_model->obtener_idpemc_xescuela($datoscct['cve_centro'],$turno_single);
+    $datoscct['idpemc'] = $idpemc;
+    // echo "<pre>";print_r($datoscct);die();
+    // Utilerias::destroy_all_session($this);
+    // Utilerias::set_cct_sesion($this, $datoscct);
+    $this->cct = $datoscct;
+		$usuario = $this->cct['cve_centro'];
+		$responsables = $this->getPersonal($usuario);
 
-    $this->datos = Utilerias::get_cct_sesion($this);
+		$nomenclatura = substr($usuario,0,5);
+		if ($responsables->status==0) {
+			$personas = array();
+		}
+		else {
+			$personas = $responsables->Personal;
+		}
 
-    $usuario = $this->datos[0]['cct'];
-    // $id_cct = $this->datos[0]['id_cct'];
-    $responsables = $this->getPersonal($usuario);
-    $nomenclatura = substr($usuario,0,5);
-
-    if ($responsables->status==0) {
-       $personas = array();
-    }else {
-        $personas = $responsables->Personal;
-    }
-
-    $options = "";
-    if($responsables->procede == 1 && $responsables->status == 1){
-        foreach ($personas as $persona) {
-            if ($nomenclatura != '05PJN' && $nomenclatura != '05PPR' && $nomenclatura != '05PPS') {
-                $options .= "<option value='{$persona->rfc}'>".$persona->nombre_completo."</option>";
-            }
-        }
-        $options .="<option value='0'>OTRO</option>";
-    }else{
-        $options .="<option value='0'>OTRO</option>";
-    }
-
-    $data['responsables'] = $options;
-
-    $mision = $this->Rutamejora_model->get_misionxcct($usuario,$turno_single,'4');
-    $data['mision'] = $mision;
-    $result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->datos[0]['desc_nivel_educativo']);
-
-    if(count($result_prioridades)==0){
-        $data['arr_prioridades'] = array(   '-1' => 'Error recuperando los prioridades' );
-    }else{
-        $data['arr_prioridades'] = $result_prioridades;
-    }
-
-    $result_problematicas = $this->Problematica_model->get_problematicas();
-    if(count($result_problematicas)==0){
-        $data['arr_problematicas'] = array( '-1' => 'Error recuperando los problematicas' );
-    }else{
-        $data['arr_problematicas'] = $result_problematicas;
-    }
-
-    $data['nivel'] = $this->datos[0]['desc_nivel_educativo'];
-    $data['nombreuser'] = $this->datos[0]['nombre'];
-    $data['turno'] = $this->datos[0]['turno'];
-    $data['desc_turno'] = $this->datos[0]['desc_turno'];
-    $data['cct'] = $this->datos[0]['cct'];
-    // $data['id_cct_rm'] =$this->datos[0]['id_cct'];
-    $data['director'] = $this->datos[0]['nombre_director'];
-    $data['tipo_usuario_pemc']=$this->datos[0]['tipo_usuario_pemc'];
-    $data['vista_avance'] = $this->load->view("ruta/avances", $data, TRUE);
-    $data['vista_indicadores'] = $this->load->view("ruta/rutademejora/indicadores", $data, TRUE);
-    $data['vista_ayuda'] = $this->load->view("ruta/rutademejora/ayuda", $data, TRUE);
-
-    $dom = $this->load->view("ruta/rutademejora/index",$data,TRUE);
+		$options = "";
+		if($responsables->procede == 1 && $responsables->status == 1){
+			foreach ($personas as $persona) {
+				if ($nomenclatura != '05PJN' && $nomenclatura != '05PPR' && $nomenclatura != '05PPS') {
+					$options .= "<option value='{$persona->rfc}'>".$persona->nombre_completo."</option>";
+				}
+			}
+			$options .="<option value='0'>OTRO</option>";
+		}else{
+			$options .="<option value='0'>OTRO</option>";
+		}
+		$data['responsables'] = $options;
+		$data['idpemc'] = $this->cct['idpemc'];
+		$data['nivel'] = $this->cct['nivel'];//$nivel;
+		$data['nombreuser'] = $this->cct['nombre_centro'];
+		$data['turno'] = $this->cct['turno_single'];
+		$data['cct'] = $this->cct['cve_centro'];
+		$data['director'] = $this->cct['nombre_director'];
+    // echo "<pre>";print_r($data);die();
+		// Utilerias::pagina_basica_pemcv2($this, "pemc/index", $data);
+    $dom = $this->load->view("pemc/index",$data,TRUE);
     $response = array('vista' => $dom);
     Utilerias::enviaDataJson(200, $response, $this);
     exit;
+
+    // $datoscct = $this->Estadistica_pemc_model->getdatoscct_pemc($cct, $turno_single);
+    // Utilerias::set_cct_sesion($this, $datoscct);
+    //
+    // $this->datos = Utilerias::get_cct_sesion($this);
+    //
+    // $usuario = $this->datos[0]['cct'];
+    // // $id_cct = $this->datos[0]['id_cct'];
+    // $responsables = $this->getPersonal($usuario);
+    // $nomenclatura = substr($usuario,0,5);
+    //
+    // if ($responsables->status==0) {
+    //    $personas = array();
+    // }else {
+    //     $personas = $responsables->Personal;
+    // }
+    //
+    // $options = "";
+    // if($responsables->procede == 1 && $responsables->status == 1){
+    //     foreach ($personas as $persona) {
+    //         if ($nomenclatura != '05PJN' && $nomenclatura != '05PPR' && $nomenclatura != '05PPS') {
+    //             $options .= "<option value='{$persona->rfc}'>".$persona->nombre_completo."</option>";
+    //         }
+    //     }
+    //     $options .="<option value='0'>OTRO</option>";
+    // }else{
+    //     $options .="<option value='0'>OTRO</option>";
+    // }
+    //
+    // $data['responsables'] = $options;
+    //
+    // $mision = $this->Rutamejora_model->get_misionxcct($usuario,$turno_single,'4');
+    // $data['mision'] = $mision;
+    // $result_prioridades = $this->Prioridad_model->get_prioridadesxnivel($this->datos[0]['desc_nivel_educativo']);
+    //
+    // if(count($result_prioridades)==0){
+    //     $data['arr_prioridades'] = array(   '-1' => 'Error recuperando los prioridades' );
+    // }else{
+    //     $data['arr_prioridades'] = $result_prioridades;
+    // }
+    //
+    // $result_problematicas = $this->Problematica_model->get_problematicas();
+    // if(count($result_problematicas)==0){
+    //     $data['arr_problematicas'] = array( '-1' => 'Error recuperando los problematicas' );
+    // }else{
+    //     $data['arr_problematicas'] = $result_problematicas;
+    // }
+    //
+    // $data['nivel'] = $this->datos[0]['desc_nivel_educativo'];
+    // $data['nombreuser'] = $this->datos[0]['nombre'];
+    // $data['turno'] = $this->datos[0]['turno'];
+    // $data['desc_turno'] = $this->datos[0]['desc_turno'];
+    // $data['cct'] = $this->datos[0]['cct'];
+    // // $data['id_cct_rm'] =$this->datos[0]['id_cct'];
+    // $data['director'] = $this->datos[0]['nombre_director'];
+    // $data['tipo_usuario_pemc']=$this->datos[0]['tipo_usuario_pemc'];
+    // $data['vista_avance'] = $this->load->view("ruta/avances", $data, TRUE);
+    // $data['vista_indicadores'] = $this->load->view("ruta/rutademejora/indicadores", $data, TRUE);
+    // $data['vista_ayuda'] = $this->load->view("ruta/rutademejora/ayuda", $data, TRUE);
+    //
+    // $dom = $this->load->view("ruta/rutademejora/index",$data,TRUE);
+    // $response = array('vista' => $dom);
+    // Utilerias::enviaDataJson(200, $response, $this);
+    // exit;
 }
 
     public function getPersonal($cct){
@@ -289,7 +336,7 @@ function truncar($numero, $digitos) {
         $nivel = $this->input->post('nivel');
         $modalidad = $this->input->post('modalidad');
         $sostenimiento = $this->input->post('sostenimiento');
-        
+
         $arr_modalidad = $this->Estadistica_pemc_model->get_modalidad_gen($nivel);
         $arr_sostenimiento = $this->Estadistica_pemc_model->get_sostenimiento_gen($nivel,$modalidad);
 

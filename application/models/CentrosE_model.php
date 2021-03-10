@@ -143,7 +143,7 @@ class CentrosE_model extends CI_Model
 
       }
       if($nombre_escuela!=''){
-        $auxiliar.= " AND nombre LIKE '%".$nombre_escuela."%'";
+        $auxiliar.= " AND ((nombre LIKE '%".$nombre_escuela."%') OR(v.cct LIKE '".$nombre_escuela."%') )";
       }
 
       $query="SELECT  v.cct,v.turno,v.desc_turno, v.nombre,

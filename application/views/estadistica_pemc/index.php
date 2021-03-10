@@ -54,7 +54,7 @@
 			                  	<div class="row">
 			                    	<div class="col-sm-12">
 			                      		<div class="form-group form-group-style-1">
-			                          		<?= form_label('Nombre de la escuela (opcional)', 'nombreescuela_pemc') ?>
+			                          		<?= form_label('Nombre o CCT de la escuela (opcional)', 'nombreescuela_pemc') ?>
 			                          		<?= form_input('nombreescuela_pemc', '', array('id' => 'nombreescuela_pemc', 'class'=>'form-control' )) ?>
 			                      		</div>
 			                    	</div><!--  col-sm-12 -->
@@ -91,4 +91,3 @@
 <script src="<?= base_url('assets/js/estadistica_pemc/xLAE.js') ?>"></script>
 <script src="<?= base_url('assets/js/estadistica_pemc/xZona.js') ?>"></script>
 <script src="<?= base_url('assets/js/regularexpression.js') ?>"></script>
-
