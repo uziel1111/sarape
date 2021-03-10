@@ -1,5 +1,6 @@
 <div class="container">
   <?php $idobjetivo = 0;?>
+  <?php if(sizeof($seguimiento)>0): ?>
   <div class="row">
     <div class="col-10">
     </div>
@@ -7,8 +8,8 @@
       <a tabindex="0" class="btn btn-lg btn-dark" role="button" data-toggle="popover" data-trigger="focus" title="Seguimiento:" data-content="Es pieza clave en el desarrollo del PEMC, ya que la información que ofrece permite establecer si mediante la implementación del conjunto de acciones se favorece la incorporación de prácticas educativas y de gestión para el logro de los aprendizajes y reconocer la brecha entre lo planeado y lo que realmente se implementa."><i class="fa fa-info-circle"></i></a>
     </div>
   </div>
-  <?php foreach ($seguimiento as $key => $value): ?>
 
+  <?php foreach ($seguimiento as $key => $value): ?>
     <?php if ($idobjetivo != $value['idobjetivo']): ?>
       <?php if ($idobjetivo != 0): ?>
       </div>
@@ -62,10 +63,10 @@
                               <label>Avance actual:</label> <output name="ageOutputName<?=$value['idaccion']?>" id="ageOutputId<?=$value['idaccion']?>"><?=($value['avance']=='')?0:$value['avance'] ?></output><label>%</label>
                             </div>
                           </div>
-                          <?php if ((!$esta_cerrado_ciclo)): ?>
+                          <?php if (($tipo_usuario=="escuela") && (!$esta_cerrado_ciclo)): ?>
                             <div class="row">
                               <div class="col-12">
-                                <input type="range" onchange="Seguimiento_pemc.guarda_avance(this, this.value,<?=$value['idaccion']?>,<?=($value['avance']=='')?0:$value['avance']?>, ageOutputId<?=$value['idaccion']?>)" class="form-control-range" name="ageInputName<?=$value['idaccion']?>" id="ageInputId<?=$value['idaccion']?>" max="100" min="0" step="5" value="<?=($value['avance']=='')?0:$value['avance'] ?>" oninput="ageOutputId<?=$value['idaccion']?>.value = ageInputId<?=$value['idaccion']?>.value">
+                                <input type="range" onchange="Seguimiento_pemc.guarda_avance(this, this.value,<?=$value['idaccion']?>,<?=($value['avance']=='')?0:$value['avance']?>, ageOutputId<?=$value['idaccion']?>)" class="form-control-range" name="ageInputName<?=$value['idaccion']?>" id="ageInputId<?=$value['idaccion']?>" max="100" min="0" step="5" value="<?=($value['avance']=='')?0:$value['avance'] ?>" oninput="ageOutputId<?=$value['idaccion']?>.value = ageInputId<?=$value['idaccion']?>.value" >
                               </div>
                             </div>
                             <div class="row">
@@ -97,6 +98,10 @@
 
     <?php $idobjetivo = $value['idobjetivo'];?>
   <?php endforeach; ?>
+  <?php endif; ?>
+  <?php if(sizeof($seguimiento)<1): ?>
+  <div class="alert alert-info">Escuela sin actividad de PEMC en seguimiento</div>
+  <?php endif;?>
 </div>
 </div>
 </div>

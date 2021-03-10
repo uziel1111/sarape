@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="form-group" name="<?=(($es_inicio && (!$esta_cerrado_ciclo))?'fr_diagnostico':'')?>" id="<?=(($es_inicio && (!$esta_cerrado_ciclo))?'fr_diagnostico':'')?>">
+  <form class="form-group" name="<?=((($tipo_usuario=="escuela") && $es_inicio && (!$esta_cerrado_ciclo))?'fr_diagnostico':'')?>" id="<?=(( $tipo_usuario=="escuela" && $es_inicio && (!$esta_cerrado_ciclo))?'fr_diagnostico':'')?>">
     <div class="row">
       <div class="col-10">
         <label class="my-1 mr-2" for="in_diag">Redacte su diagnóstico:</label>
@@ -8,8 +8,8 @@
 				<a tabindex="0" class="btn btn-lg btn-dark" role="button" data-toggle="popover" data-trigger="focus" title="Diagnóstico:" data-content="Es el punto de partida para la elaboración del PEMC. Es el momento en que la escuela hace un examen de su situación y la problemática que vive; se apoya en información que a su colectivo docente le permite analizar, reflexionar, identificar y priorizar las necesidades educativas para tomar decisiones consensuadas que favorezcan su atención."><i class="fa fa-info-circle"></i></a>
 			</div>
     </div>
-   <textarea class="form-control" name="in_diag" id="in_diag" rows="18" required <?=(($es_inicio && (!$esta_cerrado_ciclo))?'':'disabled')?>><?=$diagnostico?></textarea>
-   <?php if ($es_inicio && (!$esta_cerrado_ciclo)): ?>
+   <textarea class="form-control in_diag" name="in_diag" id="in_diag" rows="18" required <?=((($tipo_usuario=="escuela") && $es_inicio && (!$esta_cerrado_ciclo))?'':'disabled')?>><?=$diagnostico?></textarea>
+   <?php if ($tipo_usuario=="escuela" && $es_inicio && (!$esta_cerrado_ciclo)): ?>
      <button class="btn btn-primary my-1  float-right" id="btn_guardar_diagnostico_pemc">Grabar</button>
    <?php endif; ?>
 

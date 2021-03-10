@@ -139,6 +139,7 @@ define('ERRORMESSAGE', '2');
 	    } // destroy_all_session_cct()
 
 	    public static function haySesionAbiertacct($contexto) {
+	    	/*Si existe DATOCCT*/
 	    	if($contexto->session->has_userdata(DATOCCT)){
 	    		return true;
 	    	}else{

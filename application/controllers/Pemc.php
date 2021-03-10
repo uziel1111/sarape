@@ -43,11 +43,37 @@ class Pemc extends CI_Controller {
 			$data = array();
 			if(Utilerias::verifica_sesion_redirige($this)){
 				$this->cct = Utilerias::get_cct_sesion($this);
-				if(isset($this->cct[0]['id_supervision'])){
+             /*print_r($this->cct);die();*/
+            if(isset($this->cct['tipo_usuario'])){
+               switch ($this->cct['tipo_usuario']) {
+                	case 'supervision':
+                		$this->generavistaSupervisor();
+                		break;
+                	case 'escuela':
+                        $this->vistas_pemc();
+                	    break;
+                	case 'jefe_sector':
+                        $this->generavistaJefe_sector();
+                	   break;
+                	default:
+						Utilerias::destroy_all_session_cct($this);
+				        redirect('Pemc/index');
+						break;
+                }
+            }else{
+                Utilerias::destroy_all_session_cct($this);
+				redirect('Pemc/index');
+            }
+        
+
+				/*if(isset($this->cct['id_supervision'])){
+
 					$mensaje = "Acceso Restringido.";
 					$tipo    = ERRORMESSAGE;
 					$this->session->set_flashdata(MESSAGEREQUEST, Utilerias::get_notification_alert($mensaje, $tipo));
 					$this->load->view('pemc/login',$data);
+					$this->generavistaSupervisor();
+
 				}else{
 					if(isset($this->cct[0]['tipo_usuario_pemc'])){
 						Utilerias::destroy_all_session_cct($this);
@@ -55,8 +81,10 @@ class Pemc extends CI_Controller {
 					}else{
 						$this->vistas_pemc();
 					}
-				}
+
+				}*/
 			}else{
+
 				$usuario = strtoupper($this->input->post('usuario'));
 				$pass = strtoupper($this->input->post('password'));
 				$turno = $this->input->post('turno_id');
@@ -68,8 +96,10 @@ class Pemc extends CI_Controller {
 							$datoscct = $this->Pemc_model->getdatossupervicion($usuario, $turno);
 							$datoscct = $datoscct[0];
 							$datoscct['id_turno_single'] = $turno;
+							$datoscct['tipo_usuario']=$tmp_usuario;
+							
 							Utilerias::set_cct_sesion($this, $datoscct);
-							echo "entro a super";die();
+
 							$this->generavistaSupervisor();
 						}
 						break;
@@ -81,6 +111,7 @@ class Pemc extends CI_Controller {
 							$datoscct['id_turno_single'] = $turno;
 							$idpemc = $this->Pemc_model->obtener_idpemc_xescuela($datoscct['cve_centro'],$turno);
 							$datoscct['idpemc'] = $idpemc;
+							$datoscct['tipo_usuario']=$tmp_usuario;
 							Utilerias::set_cct_sesion($this, $datoscct);
 							$this->vistas_pemc();
 						}
@@ -89,6 +120,7 @@ class Pemc extends CI_Controller {
 						if ($this->trae_validacion_ws_usuario($usuario, $pass, $turno)==TRUE) {
 							$datoscct = $this->Pemc_model->getdatosjefe_sector($usuario, $turno);
 							$datoscct[0]['id_turno_single'] = $turno;
+							$datoscct['tipo_usuario']=$tmp_usuario;
 							Utilerias::set_cct_sesion($this, $datoscct);
 							echo "entro a jefe_sector";die();
 							$this->generavistaJefe_sector();
@@ -227,19 +259,21 @@ class Pemc extends CI_Controller {
 		$data['nivel'] = $this->cct['nivel'];//$nivel;
 		$data['nombreuser'] = $this->cct['nombre_centro'];
 		$data['turno'] = $this->cct['turno_single'];
+		$data['id_turno'] = $this->cct['id_turno_single'];
 		$data['cct'] = $this->cct['cve_centro'];
 		$data['director'] = $this->cct['nombre_director'];
+		$data['tipo_usuario'] = $this->cct['tipo_usuario'];
 		Utilerias::pagina_basica_pemcv2($this, "pemc/index", $data);
 	}
 
 	public function obtiene_vista_diagnostico(){
 		$datos_sesion = Utilerias::get_cct_sesion($this);
-		$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
+		$idpemc=$this->input->post('idpemc');
+		$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($idpemc);
 		$es_inicio = $this->Pemc_model->es_inicio_ciclo_actual();
-		// echo "<pre>";print_r($es_inicio);die();
-		$esta_cerrado_ciclo = $this->Pemc_model->esta_cerrado_ciclo_actual($datos_sesion['idpemc']);
+		$esta_cerrado_ciclo = $this->Pemc_model->esta_cerrado_ciclo_actual($idpemc);
+		$data = array('diagnostico' => $diagnostico, 'idpemc' => $idpemc, 'es_inicio' => $es_inicio, 'esta_cerrado_ciclo' => $esta_cerrado_ciclo,'tipo_usuario' => $datos_sesion['tipo_usuario']);
 
-		$data = array('diagnostico' => $diagnostico, 'idpemc' => $datos_sesion['idpemc'], 'es_inicio' => $es_inicio, 'esta_cerrado_ciclo' => $esta_cerrado_ciclo);
 		$str_vista = $this->load->view("pemc/diagnostico", $data, TRUE);
 		$response = array('str_vista' => $str_vista);
 		Utilerias::enviaDataJson(200, $response, $this);
@@ -260,11 +294,13 @@ class Pemc extends CI_Controller {
 
 	public function obtiene_vista_objetivosymetas(){
 		$datos_sesion = Utilerias::get_cct_sesion($this);
-
-		$objetivos = $this->Objetivo_model->get_objetivos_x_idpemc($datos_sesion['idpemc']);
+		$idpemc=$this->input->post('idpemc');
+		$objetivos = $this->Objetivo_model->get_objetivos_x_idpemc($idpemc);
 		$data['objetivos'] = $objetivos;
-		$esta_cerrado_ciclo = $this->Pemc_model->esta_cerrado_ciclo_actual($datos_sesion['idpemc']);
+		$esta_cerrado_ciclo = $this->Pemc_model->esta_cerrado_ciclo_actual($idpemc);
 		$data['esta_cerrado_ciclo'] = $esta_cerrado_ciclo;
+		$data['tipo_usuario'] = $datos_sesion['tipo_usuario'];
+
 		$str_vista = $this->load->view("pemc/objetivos_metas_acciones", $data, TRUE);
 		$response = array('str_vista' => $str_vista);
 		Utilerias::enviaDataJson(200, $response, $this);
@@ -273,8 +309,8 @@ class Pemc extends CI_Controller {
 
 		public function obtiene_vista_seguimiento(){
 			$datos_sesion = Utilerias::get_cct_sesion($this);
-			$seguimiento = $this->Pemc_model->obtener_seguimiento_xidpemc($datos_sesion['idpemc']);
-			// echo "<pre>";print_r($seguimiento);die();
+			$idpemc=$this->input->post('idpemc');
+			$seguimiento = $this->Pemc_model->obtener_seguimiento_xidpemc($idpemc);
 			foreach ($seguimiento as $key => $value) {
 				if ($value['idambitos'] != '') {
 					$seguimiento[$key]['ambitos'] = $this->Pemc_model->obtener_ambitos_xidambitos($value['idambitos']);
@@ -283,11 +319,10 @@ class Pemc extends CI_Controller {
 					$seguimiento[$key]['ambitos'] = '';
 				}
 			}
-			// echo "<pre>";print_r($seguimiento);die();
-			$data = array('seguimiento' => $seguimiento);
-			$esta_cerrado_ciclo = $this->Pemc_model->esta_cerrado_ciclo_actual($datos_sesion['idpemc']);
+
+			$data = array('seguimiento' => $seguimiento,'tipo_usuario' => $datos_sesion['tipo_usuario']);
+			$esta_cerrado_ciclo = $this->Pemc_model->esta_cerrado_ciclo_actual($idpemc);
 			$data['esta_cerrado_ciclo'] = $esta_cerrado_ciclo;
-			// echo "<pre>";print_r($data);die();
 			$str_vista = $this->load->view("pemc/seguimiento", $data, TRUE);
 			$response = array('str_vista' => $str_vista);
 			Utilerias::enviaDataJson(200, $response, $this);
@@ -322,23 +357,24 @@ class Pemc extends CI_Controller {
 
 		public function obtiene_vista_evaluacion(){
 			$datos_sesion = Utilerias::get_cct_sesion($this);
-			$idpemc = $datos_sesion['idpemc'];
+			$idpemc=$this->input->post('idpemc');
+			$cve_centro=$this->input->post('cct');
+			$idturno=$this->input->post('turno');
 			// $seguimiento = $this->Pemc_model->obtener_seguimiento_xidpemc($datos_sesion['idpemc']);
 			// foreach ($seguimiento as $key => $value) {
 			// 	$seguimiento[$key]['ambitos']= $this->Pemc_model->obtener_ambitos_xidambitos($value['idambitos']);
 			// }
-			$evaluacion = $this->Pemc_model->obtener_evaluacion_xidpemc($datos_sesion['idpemc']);
-			$evaluaciones = $this->Pemc_model->obtener_evaluaciones_xidpemc($datos_sesion['idpemc']);
-			// echo "<pre>";print_r($datos_sesion);die();
+			$evaluacion = $this->Pemc_model->obtener_evaluacion_xidpemc($idpemc);
+			$evaluaciones = $this->Pemc_model->obtener_evaluaciones_xidpemc($idpemc);
 			$es_fin = $this->Pemc_model->es_fin_ciclo_actual();
-
-			$data = array('evaluaciones' => $evaluaciones,'evaluacion' => $evaluacion, "idpemc" => $idpemc, "es_fin" => $es_fin);
-			$esta_cerrado_ciclo = $this->Pemc_model->esta_cerrado_ciclo_actual($datos_sesion['idpemc']);
+      
+			$data = array('evaluaciones' => $evaluaciones,'evaluacion' => $evaluacion['evaluacion'], "idpemc" => $idpemc, "es_fin" => $es_fin,'tipo_usuario' => $datos_sesion['tipo_usuario'],'observacion' => $evaluacion['observacion_supervision']);
+			$esta_cerrado_ciclo = $this->Pemc_model->esta_cerrado_ciclo_actual($idpemc);
 			$data['esta_cerrado_ciclo'] = $esta_cerrado_ciclo;
-			$data['cve_centro'] = $datos_sesion['cve_centro'];
-			$data['id_turno_single'] = $datos_sesion['id_turno_single'];
-			$data['n_acciones_pemc_ant'] = $this->Pemc_model->obtener_n_acciones_pemc_ant($datos_sesion['cve_centro'],$datos_sesion['id_turno_single']);
-			// echo "<pre>";print_r($data);die();
+			$data['cve_centro'] = $cve_centro;
+			$data['id_turno_single'] = $idturno;
+
+			$data['n_acciones_pemc_ant'] = $this->Pemc_model->obtener_n_acciones_pemc_ant($cve_centro,$idturno);
 			$str_vista = $this->load->view("pemc/evaluacion", $data, TRUE);
 			$response = array('str_vista' => $str_vista);
 			Utilerias::enviaDataJson(200, $response, $this);
@@ -388,20 +424,34 @@ class Pemc extends CI_Controller {
 		function reporte_detalle($idpemc){
 			if(Utilerias::haySesionAbiertacct($this)){
 			$datos_sesion = Utilerias::get_cct_sesion($this);
-
-
-			$pdf = new My_tcpdf_page(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-
+			switch ($datos_sesion['tipo_usuario']) {
+				case 'supervision':
+				    $datos_cctesc=$this->Pemc_model->obtener_cct_xidpemc($idpemc);
+				    $datos_escuela = $this->Pemc_model->getdatoscct($datos_cctesc['cct'],$datos_cctesc['id_turno_single']);
+				    $datos_escuela = $datos_escuela[0];
+				    $datos_escuela['idpemc']=$idpemc;
+                		break;
+                	case 'escuela':
+                       $datos_escuela=$datos_sesion;
+                	    break;
+                	case 'jefe_sector':
+                       
+                	   break;
+                	default:
+												
+					break;
+			}				
+			$pdf = new My_tcpdf_page(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);          
 			$pdf->SetCreator(PDF_CREATOR);
 			$pdf->SetAuthor('PE');
 			$pdf->SetTitle('Diagnostico');
 			$pdf->SetSubject('');
 			$pdf->SetKeywords('');
-			$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+			$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 			$pdf->CreateTextBox('Diagnóstico: ', 0, 18, 10, 70, 14, 'B', 'L');
 			$y2=$pdf->GetY()+6;
 			$pdf->SetFont('arial', '', 8);
-			$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
+			$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($idpemc);
 			$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=60, $diagnostico, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 			$pdf->Output('diagnostico.pdf', 'I');
 
@@ -411,16 +461,34 @@ class Pemc extends CI_Controller {
 
 	function reporte_pemc($idpemc, $url_save=null){
 		if(Utilerias::haySesionAbiertacct($this)){
+			$datos_sesion = Utilerias::get_cct_sesion($this);
+			switch ($datos_sesion['tipo_usuario']) {
+				case 'supervision':
+				    $datos_cctesc=$this->Pemc_model->obtener_cct_xidpemc($idpemc);
+				    $datos_escuela = $this->Pemc_model->getdatoscct($datos_cctesc['cct'],$datos_cctesc['id_turno_single']);
+				    $datos_escuela = $datos_escuela[0];
+				    $datos_escuela['idpemc']=$idpemc;
+                		break;
+                	case 'escuela':
+                       $datos_escuela=$datos_sesion;
+                	    break;
+                	case 'jefe_sector':
+                       
+                	   break;
+                	default:
+												
+					break;
+			}
 			$pdf = new My_tcpdf_page(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 			$pdf->SetCreator(PDF_CREATOR);
 			$pdf->SetAuthor('Alex');
 			$pdf->SetTitle('Reporte PEMC');
 			$pdf->SetSubject('');
 			$pdf->SetKeywords('');
-			$datos_sesion = Utilerias::get_cct_sesion($this);
-			$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+			
+			$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 			$pdf->SetAutoPageBreak(FALSE, 0);
-			$seguimiento = $this->Pemc_model->obtener_seguimiento_xidpemc($datos_sesion['idpemc']);
+			$seguimiento = $this->Pemc_model->obtener_seguimiento_xidpemc($idpemc);
 				// echo "<pre>";print_r($seguimiento);die();
 				foreach ($seguimiento as $key => $value) {
 					if ($value['idambitos'] != '') {
@@ -442,7 +510,7 @@ class Pemc extends CI_Controller {
 					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "_______________________________________________________________________________________________________________________________________________________________________________", $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 					$y2=$y2+4;
 					if ($y2>=200) {
-						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 						$pdf->SetAutoPageBreak(FALSE, 0);
 						$y2=52;
 					}
@@ -472,7 +540,7 @@ class Pemc extends CI_Controller {
 					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Comentario general: ".$value['comentario_general'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 					$y2=$y2+8;
 					if ($y2>=200) {
-						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 						$pdf->SetAutoPageBreak(FALSE, 0);
 						$y2=52;
 					}
@@ -482,7 +550,7 @@ class Pemc extends CI_Controller {
 					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "_______________________________________________________________________________________________________________________________________________________________________________", $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 					$y2=$y2+5;
 					if ($y2>=200) {
-						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 						$pdf->SetAutoPageBreak(FALSE, 0);
 						$y2=52;
 					}
@@ -492,7 +560,7 @@ class Pemc extends CI_Controller {
 				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Acción: ".$value['accion'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 				$y2=$y2+8;
 				if ($y2>=200) {
-					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+					$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 					$pdf->SetAutoPageBreak(FALSE, 0);
 					$y2=52;
 				}
@@ -502,7 +570,7 @@ class Pemc extends CI_Controller {
 				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Ámbito(s): ".$value['ambitos'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 				$y2=$y2+8;
 				if ($y2>=200) {
-					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+					$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 					$pdf->SetAutoPageBreak(FALSE, 0);
 					$y2=52;
 				}
@@ -512,17 +580,17 @@ class Pemc extends CI_Controller {
 				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Fecha inicio: ".$value['finicio']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"."Fecha fin: ".$value['ffin'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 				$y2=$y2+5;
 				if ($y2>=200) {
-					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+					$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 					$pdf->SetAutoPageBreak(FALSE, 0);
 					$y2=52;
 				}
 
 				$pdf->SetTextColor(0,0,0);
 				$pdf->SetFont('arial', '', 8);
-				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Responsable(s): ".(($value['otros_responsables']=='')?'':$value['otros_responsables'].', ').(($this->get_perosonal_mostrar($datos_sesion['cve_centro'],$value['responsables'])=='')?'': substr($this->get_perosonal_mostrar($datos_sesion['cve_centro'],$value['responsables']), 0, -2)), $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Responsable(s): ".(($value['otros_responsables']=='')?'':$value['otros_responsables'].', ').(($this->get_perosonal_mostrar($datos_escuela['cve_centro'],$value['responsables'])=='')?'': substr($this->get_perosonal_mostrar($datos_escuela['cve_centro'],$value['responsables']), 0, -2)), $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 				$y2=$y2+10;
 				if ($y2>=200) {
-					$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+					$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 					$pdf->SetAutoPageBreak(FALSE, 0);
 					$y2=52;
 				}
@@ -575,7 +643,7 @@ EOD;
 EOT;
 					// $y2=$y2+3;
 						if (($y2+($cont*10))>=200) {
-							$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+							$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 							$pdf->SetAutoPageBreak(TRUE, 10);
 							// $pdf->SetAutoPageBreak(FALSE, 0);
 							$y2=52;
@@ -585,7 +653,7 @@ EOT;
 						$pdf->SetAutoPageBreak(FALSE, 0);
 						$y2=$y2+($cont*10)+10;
 						if ($y2>=200) {
-							$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+							$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 							$pdf->SetAutoPageBreak(FALSE, 0);
 							$y2=52;
 						}
@@ -599,7 +667,7 @@ $str_html
 EOT;
 						// $y2=$y2+2;
 						if ($y2>=200) {
-							$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+							$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 							$pdf->SetAutoPageBreak(FALSE, 0);
 							$y2=52;
 						}
@@ -608,7 +676,7 @@ EOT;
 						// $y2=$y2+($cont*15);
 						$y2=$y2+10;
 						if ($y2>=200) {
-							$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+							$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 							$pdf->SetAutoPageBreak(FALSE, 0);
 							$y2=52;
 						}
@@ -621,18 +689,18 @@ EOT;
 				$pdf->Output();
 			}
 			else {
-				$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+				$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 				$y2=52;
 				$pdf->SetTextColor(0,0,0);
 				$pdf->SetFont('arialb', '', 8);
-				$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_sesion['idpemc']);
+				$diagnostico = $this->Pemc_model->obtener_diagnostico_xidpemc($datos_escuela['idpemc']);
 				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Diagnóstico: ".$diagnostico, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 
-				$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+				$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 				$y2=52;
 				$pdf->SetTextColor(0,0,0);
 				$pdf->SetFont('arialb', '', 8);
-				$evaluacion = $this->Pemc_model->obtener_evaluacion_xidpemc($datos_sesion['idpemc']);
+				$evaluacion = $this->Pemc_model->obtener_evaluacion_xidpemc($datos_escuela['idpemc']);
 				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Evaluación: ".$evaluacion, $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 				if ($_SERVER["HTTP_HOST"]=='localhost') {
 					$ruta=$_SERVER["DOCUMENT_ROOT"]."/sarape/".$url_save;
@@ -777,5 +845,100 @@ EOT;
 			return FALSE;
 		}
 	}
+
+	public function generavistaSupervisor(){
+		$datos_supervision = Utilerias::get_cct_sesion($this);
+		$curl = curl_init();
+		$method = "POST";
+		$url = "http://servicios.seducoahuila.gob.mx/wservice/w_service_escuelas_por_supervision.php";
+		$data = array("cct" => $datos_supervision['cve_centro']);
+  		switch ($method)
+		{
+			case "POST":
+			curl_setopt($curl, CURLOPT_POST, 1);
+			if ($data)
+				curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+			break;
+			default:
+			if ($data)
+			$url = sprintf("%s?%s", $url, http_build_query($data));
+		}
+
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+		$result = curl_exec($curl);
+
+		curl_close($curl);
+		$escuelas = json_decode($result);
+
+		$data = array();
+		$data['nombreuser'] = $datos_supervision['nombre_supervision'];
+		$data['nivel'] = $datos_supervision['zona_escolar'];
+		$data['turno'] = $datos_supervision['desc_turno'];
+		$data['cct'] = $datos_supervision['cve_centro'];
+		$data['escuelas'] = $escuelas->Escuelas;
+
+        for ($i=0; $i <sizeof($data['escuelas']);$i++) { 
+        	 $idpemc = $this->Pemc_model->obtener_idpemc_xescuela_super($data['escuelas'][$i]->b_cct,$data['escuelas'][$i]->b_turno);
+        	 if($idpemc!='' || $idpemc!=NULL){
+                $idpemc=$idpemc;
+        	 }else{
+                $idpemc="SINPEMC";
+        	 }
+        	 $datosobjyacc=$this->Pemc_model->obtener_objyacc_xidpemc($idpemc);
+        	 $data['escuelas'][$i]->idpemc=$idpemc;
+        	 $data['escuelas'][$i]->objetivos=$datosobjyacc['objetivos'];
+          	 $data['escuelas'][$i]->acciones=$datosobjyacc['acciones'];
+        	 
+        }
+        $this->session->set_userdata('escuela_supervisor', $escuelas->Escuelas);
+		Utilerias::pagina_basica_pemcv2($this, "pemc/supervisor/principal", $data);
+		}
+
+	public function obtiene_seccion_escuela(){
+		 $datos_supervision = Utilerias::get_cct_sesion($this);
+		 $cct = $this->input->post('cct_escuela');
+		 $turno=$this->input->post('turno_escuela');
+		 $idpemc=$this->input->post('idpemc');
+         $data['idpemc'] = $idpemc;
+         $data['cct']=$cct;
+         $data['id_turno']=$turno;
+         $data['tipo_usuario']=$datos_supervision['tipo_usuario'];
+
+		 $str_vista_escuela = $this->load->view("pemc/index", $data, TRUE);
+		 $response = array('str_vista_escuela' => $str_vista_escuela);
+		 Utilerias::enviaDataJson(200, $response, $this);
+		 exit;
+
+	}
+	public function estadisticas_supervisor(){
+		$escuelas = $this->session->userdata('escuela_supervisor');
+		$idspemc = array();
+		for ($i=0; $i < sizeof($escuelas) ; $i++) {
+        $idpemc = $this->Pemc_model->obtener_idpemc_xescuela_super($escuelas[$i]->b_cct,$escuelas[$i]->b_turno);
+			array_push($idspemc, $idpemc);
+		}
+		$idspemc_union = implode( "', '", $idspemc );
+
+		$graficas = $this->Pemc_model->getGraficas($idspemc_union);
+		$tabla = $this->Pemc_model->getTablasGraficas($idspemc_union);
+		$data['tabla'] = $tabla;
+		$str_view = $this->load->view("pemc/supervisor/grafica_modal", $data, TRUE);
+	    $response = array('str_view' => $str_view, 'grafica'=>$graficas);
+	    Utilerias::enviaDataJson(200, $response, $this);
+	    exit;
+
+	}
+	public function guarda_observacion_supervisor(){
+            $observacion = $this->input->post('in_obser');
+			$idpemc =$this->input->post('idpemc');
+			$estatus = $this->Pemc_model->guarda_observacion_super($observacion,$idpemc);
+			$response = array('estatus' => $estatus);
+			Utilerias::enviaDataJson(200, $response, $this);
+			exit;
+	}
+	
+
 
 }
