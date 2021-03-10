@@ -11,11 +11,12 @@
   </div>
   <div class="card-body">
     <div class="container">
-      <form class="form-group" name="<?=(($es_fin && (!$esta_cerrado_ciclo))?'fr_evaluacion':'')?>" id="<?=(($es_fin && (!$esta_cerrado_ciclo))?'fr_evaluacion':'')?>">
+      <form class="form-group" name="<?=(($es_fin && (!$esta_cerrado_ciclo) && ($tipo_usuario=="escuela"))?'fr_evaluacion':'')?>" 
+        id="<?=(($es_fin && (!$esta_cerrado_ciclo) && ($tipo_usuario=="escuela"))?'fr_evaluacion':'')?>">
       <label class="my-1 mr-2" for="in_eval">Redacte su evaluación:</label>
-       <textarea <?= ($es_fin)? '': 'disabled'?> class="form-control" name="in_eval" id="in_eval" rows="10" required <?=(($es_fin && (!$esta_cerrado_ciclo))?'':'disabled')?>><?=$evaluacion?></textarea>
+       <textarea <?= ($es_fin && ($tipo_usuario=="escuela"))? '': 'disabled'?> class="form-control in_eval" name="in_eval" id="in_eval" rows="10" required <?=(($es_fin && (!$esta_cerrado_ciclo) && ($tipo_usuario=="escuela"))?'':'disabled')?>><?=$evaluacion?></textarea>
 
-    <?php if ($es_fin): ?>
+    <?php if ($es_fin && ($tipo_usuario=="escuela")): ?>
       <button class="btn btn-primary my-1  float-right" id="btn_guardar_evaluacion_pemc">Grabar</button>
     <?php endif; ?>
     </form>
@@ -71,6 +72,27 @@
 
           </tbody>
         </table>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-10">
+        <h3>Observación Supervisor</h3>
+      </div>
+    </div>    
+  </div>
+  <div class="card-body">
+    <div class="container">
+      <form class="form-group" name="<?=(($tipo_usuario!="escuela")?'fr_observacion_'.$idpemc:'')?>" id="<?=(($tipo_usuario!="escuela")?'fr_observacion_'.$idpemc:'')?>">
+      <label class="my-1 mr-2" for="in_obser">Redacte su observación:</label>
+       <input type="hidden"  id="idpemc" name="idpemc" value="<?= $idpemc?>">
+       <textarea  class="form-control in_obser" name="in_obser" id="in_obser" rows="10" required  <?=(($tipo_usuario!="escuela")?'':'disabled')?>><?=$observacion?></textarea>
+    <?php if (($tipo_usuario!="escuela")): ?>
+      <button class="btn btn-primary my-1  float-right" onclick="Observacion_pemc. observacion_supervalidate('<?=$idpemc?>')">Grabar</button>
+    <?php endif; ?>
+    </form>
     </div>
   </div>
 </div>

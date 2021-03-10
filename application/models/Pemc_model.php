@@ -4,7 +4,8 @@ class Pemc_model extends CI_Model
   function __construct(){
     parent::__construct();
     date_default_timezone_set('America/Mexico_City');
-    $this->pemc_db = $this->load->database('pemc_db', TRUE);
+    $this->pemc_db = $this->load->database('default', TRUE);
+   
   }
 
 
@@ -35,6 +36,7 @@ function valida_supervisor($cct){
 
 function obtener_idpemc_xescuela($cct, $turno){
   $str_query = "SELECT idpemc FROM r_pemcxescuela WHERE cct ='{$cct}' AND id_turno_single = {$turno}";
+
   $idpemc = $this->pemc_db->query($str_query)->row('idpemc');
   if ($idpemc=='') {
     date_default_timezone_set('America/Monterrey');
@@ -133,10 +135,10 @@ function guarda_evaluacion($evaluacion, $idpemc){
   $status=false;
   $str_query = "SELECT idpemc FROM r_pemc_evaluacion WHERE idpemc = {$idpemc}";
   $idpemc_rtn = $this->pemc_db->query($str_query)->row('idpemc');
+  date_default_timezone_set('America/Monterrey');
+  setlocale(LC_TIME, 'es_MX.UTF-8');
+  $fecha = date("Y-m-d H:i:s");
   if ($idpemc_rtn=='') {
-    date_default_timezone_set('America/Monterrey');
-		setlocale(LC_TIME, 'es_MX.UTF-8');
-		$fecha = date("Y-m-d H:i:s");
 		$data_req = array(
 			'idpemc' =>$idpemc,
 			'evaluacion' =>$evaluacion,
@@ -146,6 +148,7 @@ function guarda_evaluacion($evaluacion, $idpemc){
   }
   else {
     $this->pemc_db->set('evaluacion', $evaluacion);
+    $this->pemc_db->set('fcreacion', $fecha);
     $this->pemc_db->where('idpemc', $idpemc);
     $status = $this->pemc_db->update('r_pemc_evaluacion');
   }
@@ -188,8 +191,8 @@ FROM r_pemc_cierre WHERE idpemc={$idpemc}";
 }
 
 function obtener_evaluacion_xidpemc($idpemc){
- $str_query = "SELECT evaluacion FROM r_pemc_evaluacion WHERE idpemc={$idpemc}";
- return $this->pemc_db->query($str_query)->row('evaluacion');
+ $str_query = "SELECT evaluacion,observacion_supervision FROM r_pemc_evaluacion WHERE idpemc={$idpemc}";
+ return $this->pemc_db->query($str_query)->row_array();
 }
 
 function trae_ciclo_actual(){
@@ -277,18 +280,191 @@ function consulta_tipo_usuario($cct){
 }
 
 function getdatossupervicion($cct, $turno){
-  $str_query = "SELECT cct AS cve_centro,zona_escolar,nombre AS nombre_supervision
+  $str_query = "SELECT cct AS cve_centro,zona_escolar,nombre AS nombre_supervision,desc_turno
                   FROM vista_cct
                   WHERE tipo_centro=1
-                  AND  cct = ? AND turno like '%{$turno}%'";
+                  AND  cct = ? AND turno like '%{$turno}%' AND (status='1' OR status='4')";
   return $this->db->query($str_query,[$cct])->result_array();
 }
 
 function getdatosjefe_sector($cct, $turno){
-  $str_query = "SELECT cct AS cve_centro,zona_escolar,nombre AS nombre_jefe_sector
+  $str_query = "SELECT cct AS cve_centro,jefatura_de_sector,nombre AS nombre_jefe_sector
                   FROM vista_cct
                   WHERE tipo_centro=2
                   AND  cct = ?  AND turno like '%{$turno}%'";
   return $this->db->query($str_query,[$cct])->result_array();
 }
-}// Rutamejora_model
+
+function obtener_idpemc_xescuela_super($cct, $turno){
+  $str_query = "SELECT idpemc FROM r_pemcxescuela WHERE cct ='{$cct}' AND id_turno_single = {$turno}";
+   return  $this->pemc_db->query($str_query)->row('idpemc');
+}
+function obtener_objyacc_xidpemc($idpemc){
+  $str_query="SELECT IFNULL(COUNT(total.idobjetivo),0) as objetivos,IFNULL(SUM(total.num_acciones),0)as acciones
+FROM 
+(
+SELECT obj.idobjetivo as idobjetivo,COUNT(acc.idaccion) as num_acciones FROM r_pemc_objetivo obj
+        INNER JOIN r_pemc_objetivo_accion acc ON acc.idobjetivo = obj.idobjetivo
+        WHERE idpemc = '{$idpemc}'
+        GROUP BY obj.idobjetivo)as total";
+  return $this->pemc_db->query($str_query)->row_array();
+
+
+}
+function obtener_cct_xidpemc($idpemc){
+  $str_query="SELECT cct,id_turno_single FROM r_pemcxescuela WHERE idpemc='{$idpemc}'";
+  return $this->pemc_db->query($str_query)->row_array();
+}
+public function getTablasGraficas($idspemc){
+  $str_query = "SELECT
+  l1.cve_centro,
+  l1.nombre_centro,
+  l1.total_objetivos as obj1,
+  l1.total_acciones as acc1,
+  l2.total_objetivos as obj2,
+  l2.total_acciones as acc2,
+  l3.total_objetivos as obj3,
+  l3.total_acciones as acc3,
+  l4.total_objetivos as obj4,
+  l4.total_acciones as acc4,
+  l5.total_objetivos as obj5,
+  l5.total_acciones as acc5
+  FROM
+  ( 
+SELECT
+COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
+COUNT(DISTINCT a.idaccion) as total_acciones,
+am.idlae as lae,
+v.cct as cve_centro,
+v.nombre as nombre_centro
+FROM   vista_cct v 
+INNER JOIN r_pemcxescuela e  ON v.cct = e.cct
+INNER JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
+INNER JOIN r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
+INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
+WHERE
+e.idpemc IN('{$idspemc}')
+AND l.idlae=1
+GROUP BY v.cct,l.idlae)as l1
+INNER JOIN
+( 
+SELECT
+COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
+COUNT(DISTINCT a.idaccion) as total_acciones,
+am.idlae as lae,
+v.cct as cve_centro,
+v.nombre as nombre_centro
+FROM  vista_cct v  
+INNER JOIN r_pemcxescuela e ON v.cct = e.cct
+INNER JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
+INNER JOIN r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
+INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
+WHERE
+e.idpemc IN ('{$idspemc}')
+AND l.idlae=2
+GROUP BY v.cct,l.idlae)as l2 ON l1.cve_centro = l2.cve_centro
+INNER JOIN
+( 
+SELECT
+COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
+COUNT(DISTINCT a.idaccion) as total_acciones,
+am.idlae as lae,
+v.cct as cve_centro,
+v.nombre as nombre_centro
+FROM vista_cct v 
+INNER JOIN r_pemcxescuela e ON v.cct = e.cct
+INNER JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
+INNER JOIN r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
+INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
+WHERE
+e.idpemc IN ('{$idspemc}')
+AND l.idlae=3
+GROUP BY v.cct,l.idlae)as l3 ON l1.cve_centro = l3.cve_centro
+INNER JOIN
+( 
+SELECT
+COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
+COUNT(DISTINCT a.idaccion) as total_acciones,
+am.idlae as lae,
+v.cct as cve_centro,
+v.nombre as nombre_centro
+FROM vista_cct v
+INNER JOIN r_pemcxescuela e ON v.cct = e.cct
+INNER JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
+INNER JOIN r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
+INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
+WHERE
+e.idpemc IN ('{$idspemc}')
+AND l.idlae=4
+GROUP BY v.cct,l.idlae)as l4 ON l1.cve_centro = l4.cve_centro
+INNER JOIN
+( 
+SELECT
+COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
+COUNT(DISTINCT a.idaccion) as total_acciones,
+am.idlae as lae,
+v.cct as cve_centro,
+v.nombre as nombre_centro
+FROM  vista_cct v 
+INNER JOIN r_pemcxescuela e ON v.cct = e.cct
+INNER JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
+INNER JOIN r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
+INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
+WHERE
+e.idpemc IN ('{$idspemc}')
+AND l.idlae=5
+GROUP BY v.cct,l.idlae)as l5 ON l1.cve_centro = l5.cve_centro";
+  return $this->db->query($str_query)->result_array();
+}
+
+public function getGraficas($idspemc){
+  $str_query = "SELECT
+  SUM(tlae.total_objetivos) AS obj,
+  SUM(tlae.total_acciones) AS acc,
+  tlae.lae
+  FROM
+  (SELECT
+  COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
+  COUNT(DISTINCT a.idaccion) as total_acciones,
+  l.idlae as lae
+  FROM r_pemcxescuela e
+  INNER JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
+  INNER JOIN r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
+  INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+  INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
+  WHERE
+  e.idpemc IN('{$idspemc}')
+  GROUP BY e.idpemc,l.idlae)as tlae
+  GROUP BY tlae.lae";
+  return $this->db->query($str_query)->result_array();
+
+}
+function guarda_observacion_super($observacion, $idpemc){
+  $status=false;
+  $str_query = "SELECT idpemc FROM r_pemc_evaluacion WHERE idpemc = {$idpemc}";
+  $idpemc_rtn = $this->pemc_db->query($str_query)->row('idpemc');
+  date_default_timezone_set('America/Monterrey');
+  setlocale(LC_TIME, 'es_MX.UTF-8');
+  $fecha = date("Y-m-d H:i:s");
+  if ($idpemc_rtn=='') {  
+    $data_req = array(
+      'idpemc' =>$idpemc,
+      'fcreacion_observacion' =>$fecha,
+      'observacion_supervision' =>$observacion
+    );
+      $status = $this->pemc_db->insert('r_pemc_evaluacion', $data_req);
+  }
+  else {
+    $this->pemc_db->set('observacion_supervision', $observacion);
+    $this->pemc_db->set('fcreacion_observacion',$fecha);
+    $this->pemc_db->where('idpemc', $idpemc);
+    $status = $this->pemc_db->update('r_pemc_evaluacion');
+  }
+  return $status;
+}
+}

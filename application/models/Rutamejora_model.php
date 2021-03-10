@@ -908,7 +908,7 @@ public function getTablasGraficas($ccts)
   AND e.cct IN ('{$ccts}')
   AND tp.id_prioridad = 1
   GROUP BY e.cct , tp.id_prioridad) AS l1
-  inner join
+  LEFT join
   (SELECT
   COUNT(DISTINCT o.id_objetivo) AS total_objetivos,
   COUNT(DISTINCT acc.id_accion) AS total_acciones,

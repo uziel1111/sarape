@@ -22,7 +22,7 @@ $("#fr_diagnostico").validate({
       }
     });
 
-	$('#in_diag').trumbowyg({
+	$('.in_diag').trumbowyg({
 	   lang: 'es',
 	   btns: Utiles.get_botones_trumbowyg(),
 	   plugins: {
