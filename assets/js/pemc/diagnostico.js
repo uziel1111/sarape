@@ -1,7 +1,7 @@
 $(function(){
 
 	jQuery.validator.addMethod("noSpace", function(value, element) {
-	return value.indexOf("  ") < 0 && value != " ";
+	return value.indexOf("   ") < 0 && value != " ";
 	}, "No se permite exceder el uso de espacios");
 
 $("#fr_diagnostico").validate({
