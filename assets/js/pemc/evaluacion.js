@@ -1,8 +1,8 @@
 $(function(){
 	jQuery.validator.addMethod("noSpace", function(value, element) {
-return value.indexOf("  ") < 0 && value != " ";
+return value.indexOf("   ") < 0 && value != " ";
 }, "No se permite exceder el uso de espacios");
-	
+
 $("#fr_evaluacion").validate({
 	onclick:false, onfocusout: false, onkeypress:false, onkeydown:false, onkeyup:false,
       rules: {
@@ -103,11 +103,11 @@ var Observacion_pemc = {
              submitHandler: function(form) {
                 Observacion_pemc.observacion_supervisor(idpemc);
              }
-           });   
+           });
         },
         observacion_supervisor: (idpemc) => {
 	    var form = document.getElementById("fr_observacion_"+idpemc);
-	    formulario = new FormData(form);	     
+	    formulario = new FormData(form);
 	   $.ajax({
 	     url: base_url+"Pemc/guarda_observacion_supervisor",
 	     method:"POST",
