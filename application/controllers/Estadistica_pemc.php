@@ -113,6 +113,9 @@ public function busquedaxct(){
     // Utilerias::destroy_all_session($this);
     // Utilerias::set_cct_sesion($this, $datoscct);
     $this->cct = $datoscct;
+    $tmp_usuario = $this->Pemc_model->consulta_tipo_usuario($cct);
+
+    $this->cct['tipo_usuario']=$tmp_usuario;
 		$usuario = $this->cct['cve_centro'];
 		$responsables = $this->getPersonal($usuario);
 
@@ -135,13 +138,16 @@ public function busquedaxct(){
 		}else{
 			$options .="<option value='0'>OTRO</option>";
 		}
-		$data['responsables'] = $options;
+
+    $data['responsables'] = $options;
 		$data['idpemc'] = $this->cct['idpemc'];
 		$data['nivel'] = $this->cct['nivel'];//$nivel;
 		$data['nombreuser'] = $this->cct['nombre_centro'];
 		$data['turno'] = $this->cct['turno_single'];
+		$data['id_turno'] = $this->cct['id_turno_single'];
 		$data['cct'] = $this->cct['cve_centro'];
 		$data['director'] = $this->cct['nombre_director'];
+		$data['tipo_usuario'] = $this->cct['tipo_usuario'];
     // echo "<pre>";print_r($data);die();
 		// Utilerias::pagina_basica_pemcv2($this, "pemc/index", $data);
     $dom = $this->load->view("pemc/index",$data,TRUE);
