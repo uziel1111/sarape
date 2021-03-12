@@ -8,7 +8,7 @@ $("#fr_evaluacion").validate({
       rules: {
          in_eval: {
            required: true,
-					 noSpace: true
+		   noSpace: true
          },
       },
       messages: {
@@ -86,8 +86,8 @@ $("#btn_guardar_cierre_pemc").click(function(e){
 });
 
 var Observacion_pemc = {
-        observacion_supervalidate:(idpemc) => {
-       $("#fr_observacion_"+idpemc).validate({
+        observacion_supervalidate:(idpemc,turno) => {
+       $("#fr_observacion_"+idpemc+turno).validate({
 	       onclick:false, onfocusout: false, onkeypress:false, onkeydown:false, onkeyup:false,
              rules: {
                 in_obser: {
@@ -101,12 +101,12 @@ var Observacion_pemc = {
                 },
              },
              submitHandler: function(form) {
-                Observacion_pemc.observacion_supervisor(idpemc);
+                Observacion_pemc.observacion_supervisor(idpemc,turno);
              }
            });
         },
-        observacion_supervisor: (idpemc) => {
-	    var form = document.getElementById("fr_observacion_"+idpemc);
+        observacion_supervisor: (idpemc,turno) => {
+	    var form = document.getElementById("fr_observacion_"+idpemc+turno);
 	    formulario = new FormData(form);
 	   $.ajax({
 	     url: base_url+"Pemc/guarda_observacion_supervisor",

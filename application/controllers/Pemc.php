@@ -96,10 +96,8 @@ class Pemc extends CI_Controller {
 							$datoscct = $this->Pemc_model->getdatossupervicion($usuario, $turno);
 							$datoscct = $datoscct[0];
 							$datoscct['id_turno_single'] = $turno;
-							$datoscct['tipo_usuario']=$tmp_usuario;
-							
+							$datoscct['tipo_usuario']=$tmp_usuario;				
 							Utilerias::set_cct_sesion($this, $datoscct);
-
 							$this->generavistaSupervisor();
 						}
 						break;
@@ -122,7 +120,6 @@ class Pemc extends CI_Controller {
 							$datoscct[0]['id_turno_single'] = $turno;
 							$datoscct['tipo_usuario']=$tmp_usuario;
 							Utilerias::set_cct_sesion($this, $datoscct);
-							echo "entro a jefe_sector";die();
 							$this->generavistaJefe_sector();
 						}
 						break;
@@ -218,6 +215,32 @@ class Pemc extends CI_Controller {
 
 			curl_close($curl);
 			return $response = json_decode($result);
+		}
+		public function getEscuelas($cct){
+    		$curl = curl_init();
+		    $method = "POST";
+		    $url = "http://servicios.seducoahuila.gob.mx/wservice/w_service_escuelas_por_supervision.php";
+		    $data = array("cct" => $cct);
+  		    switch ($method)
+		    {
+			    case "POST":
+			    curl_setopt($curl, CURLOPT_POST, 1);
+			    if ($data)
+				    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+			    break;
+			    default:
+			    if ($data)
+			    $url = sprintf("%s?%s", $url, http_build_query($data));
+		    }
+
+		    curl_setopt($curl, CURLOPT_URL, $url);
+		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+		    $result = curl_exec($curl);
+
+		    curl_close($curl);
+		    return $response = json_decode($result);
+
 		}
 
 //FUNCIONAMIENTO Y VALIDACION PARA SUPERVISOR BY LUIS SANCHEZ... all reserved rights
@@ -422,25 +445,12 @@ class Pemc extends CI_Controller {
 		}
 
 		function reporte_detalle($idpemc){
-			if(Utilerias::haySesionAbiertacct($this)){
+			if(Utilerias::haySesionAbiertacct($this)|| Utilerias::haySesionAbierta($this)){
 			$datos_sesion = Utilerias::get_cct_sesion($this);
-			switch ($datos_sesion['tipo_usuario']) {
-				case 'supervision':
-				    $datos_cctesc=$this->Pemc_model->obtener_cct_xidpemc($idpemc);
-				    $datos_escuela = $this->Pemc_model->getdatoscct($datos_cctesc['cct'],$datos_cctesc['id_turno_single']);
-				    $datos_escuela = $datos_escuela[0];
-				    $datos_escuela['idpemc']=$idpemc;
-                		break;
-                	case 'escuela':
-                       $datos_escuela=$datos_sesion;
-                	    break;
-                	case 'jefe_sector':
-                       
-                	   break;
-                	default:
-												
-					break;
-			}				
+		    $datos_cctesc=$this->Pemc_model->obtener_cct_xidpemc($idpemc);
+		    $datos_escuela = $this->Pemc_model->getdatoscct($datos_cctesc['cct'],$datos_cctesc['id_turno_single']);
+		    $datos_escuela = $datos_escuela[0];
+		    $datos_escuela['idpemc']=$idpemc;		
 			$pdf = new My_tcpdf_page(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);          
 			$pdf->SetCreator(PDF_CREATOR);
 			$pdf->SetAuthor('PE');
@@ -460,25 +470,14 @@ class Pemc extends CI_Controller {
 
 
 	function reporte_pemc($idpemc, $url_save=null){
-		if(Utilerias::haySesionAbiertacct($this)){
+		if(Utilerias::haySesionAbiertacct($this) ||Utilerias::haySesionAbierta($this)){
 			$datos_sesion = Utilerias::get_cct_sesion($this);
-			switch ($datos_sesion['tipo_usuario']) {
-				case 'supervision':
-				    $datos_cctesc=$this->Pemc_model->obtener_cct_xidpemc($idpemc);
-				    $datos_escuela = $this->Pemc_model->getdatoscct($datos_cctesc['cct'],$datos_cctesc['id_turno_single']);
-				    $datos_escuela = $datos_escuela[0];
-				    $datos_escuela['idpemc']=$idpemc;
-                		break;
-                	case 'escuela':
-                       $datos_escuela=$datos_sesion;
-                	    break;
-                	case 'jefe_sector':
-                       
-                	   break;
-                	default:
-												
-					break;
-			}
+
+			$datos_cctesc=$this->Pemc_model->obtener_cct_xidpemc($idpemc);
+		    $datos_escuela = $this->Pemc_model->getdatoscct($datos_cctesc['cct'],$datos_cctesc['id_turno_single']);
+		    $datos_escuela = $datos_escuela[0];
+		    $datos_escuela['idpemc']=$idpemc;
+
 			$pdf = new My_tcpdf_page(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 			$pdf->SetCreator(PDF_CREATOR);
 			$pdf->SetAuthor('Alex');
@@ -520,7 +519,7 @@ class Pemc extends CI_Controller {
 					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Objetivo: ".$value['objetivo'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 					$y2=$y2+8;
 					if ($y2>=200) {
-						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 						$pdf->SetAutoPageBreak(FALSE, 0);
 						$y2=52;
 					}
@@ -530,7 +529,7 @@ class Pemc extends CI_Controller {
 					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Meta(s): ".$value['meta'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 					$y2=$y2+8;
 					if ($y2>=200) {
-						$this->pinta_encabezado_pemc($pdf,$datos_sesion);
+						$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 						$pdf->SetAutoPageBreak(FALSE, 0);
 						$y2=52;
 					}
@@ -848,30 +847,7 @@ EOT;
 
 	public function generavistaSupervisor(){
 		$datos_supervision = Utilerias::get_cct_sesion($this);
-		$curl = curl_init();
-		$method = "POST";
-		$url = "http://servicios.seducoahuila.gob.mx/wservice/w_service_escuelas_por_supervision.php";
-		$data = array("cct" => $datos_supervision['cve_centro']);
-  		switch ($method)
-		{
-			case "POST":
-			curl_setopt($curl, CURLOPT_POST, 1);
-			if ($data)
-				curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-			break;
-			default:
-			if ($data)
-			$url = sprintf("%s?%s", $url, http_build_query($data));
-		}
-
-		curl_setopt($curl, CURLOPT_URL, $url);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
-		$result = curl_exec($curl);
-
-		curl_close($curl);
-		$escuelas = json_decode($result);
-
+        $escuelas = $this->getEscuelas($datos_supervision['cve_centro']);
 		$data = array();
 		$data['nombreuser'] = $datos_supervision['nombre_supervision'];
 		$data['nivel'] = $datos_supervision['zona_escolar'];
@@ -891,7 +867,7 @@ EOT;
         	 $data['escuelas'][$i]->objetivos=$datosobjyacc['objetivos'];
           	 $data['escuelas'][$i]->acciones=$datosobjyacc['acciones'];
         	 
-        }
+        } 
         $this->session->set_userdata('escuela_supervisor', $escuelas->Escuelas);
 		Utilerias::pagina_basica_pemcv2($this, "pemc/supervisor/principal", $data);
 		}
@@ -905,7 +881,6 @@ EOT;
          $data['cct']=$cct;
          $data['id_turno']=$turno;
          $data['tipo_usuario']=$datos_supervision['tipo_usuario'];
-
 		 $str_vista_escuela = $this->load->view("pemc/index", $data, TRUE);
 		 $response = array('str_vista_escuela' => $str_vista_escuela);
 		 Utilerias::enviaDataJson(200, $response, $this);
@@ -914,18 +889,23 @@ EOT;
 	}
 	public function estadisticas_supervisor(){
 		$escuelas = $this->session->userdata('escuela_supervisor');
+		$ccts = array();
 		$idspemc = array();
 		for ($i=0; $i < sizeof($escuelas) ; $i++) {
         $idpemc = $this->Pemc_model->obtener_idpemc_xescuela_super($escuelas[$i]->b_cct,$escuelas[$i]->b_turno);
 			array_push($idspemc, $idpemc);
 		}
-		$idspemc_union = implode( "', '", $idspemc );
+		for ($i=0; $i < sizeof($escuelas) ; $i++) {
+			array_push($ccts, $escuelas[$i]->b_cct);
+		}
+		$idspemc_union = implode( "', '", $idspemc);
+		$ccts_union = implode( "', '", $ccts);
 
 		$graficas = $this->Pemc_model->getGraficas($idspemc_union);
-		$tabla = $this->Pemc_model->getTablasGraficas($idspemc_union);
+		$tabla = $this->Pemc_model->getTablasGraficas($idspemc_union,$ccts_union);
 		$data['tabla'] = $tabla;
 		$str_view = $this->load->view("pemc/supervisor/grafica_modal", $data, TRUE);
-	    $response = array('str_view' => $str_view, 'grafica'=>$graficas);
+	    $response = array('str_view_super' => $str_view, 'grafica_super'=>$graficas);
 	    Utilerias::enviaDataJson(200, $response, $this);
 	    exit;
 
@@ -938,7 +918,70 @@ EOT;
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 	}
-	
+
+	public function generavistaJefe_sector(){
+		$datos_jefesector = Utilerias::get_cct_sesion($this);
+		$datos_jefesector= $datos_jefesector[0];
+        $jefatura=$datos_jefesector['jefatura_de_sector'];
+		$supervisiones = $this->Pemc_model->obtener_supervision_xjefsector($jefatura);
+		$data = array();
+		$data['nombreuser'] = $datos_jefesector['nombre_jefe_sector'];
+		$data['nivel'] = $jefatura;
+		$data['turno'] = $datos_jefesector['desc_turno'];
+		$data['cct'] = $datos_jefesector['cve_centro'];
+		$data['supervisiones'] =$supervisiones;
+		Utilerias::pagina_basica_pemcv2($this, "pemc/jefe_sector/principal", $data);
+	}
+
+	public function obtener_seccion_escxsuper(){
+		$cct = $this->input->post('cct');
+		$turno =$this->input->post('turno');
+		$datos_super = $this->Pemc_model->getdatossupervicion($cct, $turno);
+		$datos_super = $datos_super[0];
+		$escuelas = $this->getEscuelas($datos_super['cve_centro']); 
+		$data = array();
+		$data['nombreuser'] = $datos_super['nombre_supervision'];
+		$data['nivel'] = $datos_super['zona_escolar'];
+		$data['turno'] = $datos_super['desc_turno'];
+		$data['cct'] = $datos_super['cve_centro'];
+		$data['status_super'] =$escuelas->statusText;
+		if($escuelas->procede==1 && $escuelas->status==1){
+		    $data['escuelas'] = $escuelas->Escuelas;
+             for ($i=0; $i <sizeof($data['escuelas']);$i++) { 
+        	 $idpemc = $this->Pemc_model->obtener_idpemc_xescuela_super($data['escuelas'][$i]->b_cct,$data['escuelas'][$i]->b_turno);
+        	 if($idpemc!='' || $idpemc!=NULL){
+                $idpemc=$idpemc;
+        	 }else{
+                $idpemc="SINPEMC";
+        	 }
+        	 $datosobjyacc=$this->Pemc_model->obtener_objyacc_xidpemc($idpemc);
+        	 $data['escuelas'][$i]->idpemc=$idpemc;
+        	 $data['escuelas'][$i]->objetivos=$datosobjyacc['objetivos'];
+          	 $data['escuelas'][$i]->acciones=$datosobjyacc['acciones'];
+        	 
+        } 
+        $this->session->set_userdata('escuela_supervisor', $escuelas->Escuelas);
+		}
+        $str_vista_escuelaxsuper = $this->load->view("pemc/supervisor/principal", $data, TRUE);
+		$response = array('str_vista_escuelaxsuper' => $str_vista_escuelaxsuper);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
+		
+	}
+
+	public function estadisticas_jefesector(){
+		$datos_jefesector = Utilerias::get_cct_sesion($this);
+		$datos_jefesector= $datos_jefesector[0];
+        $jefatura=$datos_jefesector['jefatura_de_sector'];
+		$graficas = $this->Pemc_model->getGraficasxjefsector($jefatura);
+		$tabla = $this->Pemc_model->getTablasGraficasxjefsector($jefatura);
+		$data['tabla'] = $tabla;
+		$str_view = $this->load->view("pemc/jefe_sector/grafica_modal", $data, TRUE);
+	    $response = array('str_view_jefsector' => $str_view, 'grafica_jefsector'=>$graficas);
+	    Utilerias::enviaDataJson(200, $response, $this);
+	    exit;
+
+	}
 
 
 }

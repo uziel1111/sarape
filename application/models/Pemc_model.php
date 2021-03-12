@@ -288,10 +288,10 @@ function getdatossupervicion($cct, $turno){
 }
 
 function getdatosjefe_sector($cct, $turno){
-  $str_query = "SELECT cct AS cve_centro,jefatura_de_sector,nombre AS nombre_jefe_sector
+  $str_query = "SELECT cct AS cve_centro,jefatura_de_sector,nombre AS nombre_jefe_sector,desc_turno
                   FROM vista_cct
                   WHERE tipo_centro=2
-                  AND  cct = ?  AND turno like '%{$turno}%'";
+                  AND  cct = ? AND turno like '%{$turno}%' AND (status='1' OR status='4')";
   return $this->db->query($str_query,[$cct])->result_array();
 }
 
@@ -315,133 +315,171 @@ function obtener_cct_xidpemc($idpemc){
   $str_query="SELECT cct,id_turno_single FROM r_pemcxescuela WHERE idpemc='{$idpemc}'";
   return $this->pemc_db->query($str_query)->row_array();
 }
-public function getTablasGraficas($idspemc){
-  $str_query = "SELECT
-  l1.cve_centro,
-  l1.nombre_centro,
-  l1.total_objetivos as obj1,
-  l1.total_acciones as acc1,
-  l2.total_objetivos as obj2,
-  l2.total_acciones as acc2,
-  l3.total_objetivos as obj3,
-  l3.total_acciones as acc3,
-  l4.total_objetivos as obj4,
-  l4.total_acciones as acc4,
-  l5.total_objetivos as obj5,
-  l5.total_acciones as acc5
-  FROM
-  ( 
-SELECT
-COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
-COUNT(DISTINCT a.idaccion) as total_acciones,
-am.idlae as lae,
+public function getTablasGraficas($idspemc,$ccts){
+    $str_query = "SELECT
+l1.nombre_centro as nombre_centro,
+l1.cve_centro as cve_centro,
+IFNULL(l1.total_obj,0) as obj1,
+IFNULL(l1.total_acc,0) as acc1,
+IFNULL(l2.total_obj,0) as obj2,
+IFNULL(l2.total_acc,0) as acc2,
+IFNULL(l3.total_obj,0) as obj3,
+IFNULL(l3.total_acc,0)as acc3,
+IFNULL(l4.total_obj,0) as obj4,
+IFNULL(l4.total_acc,0) as acc4,
+IFNULL(l5.total_obj,0) as obj5,
+IFNULL(l5.total_acc,0) as acc5
+FROM
+(SELECT
 v.cct as cve_centro,
-v.nombre as nombre_centro
+v.nombre as nombre_centro,
+t.total_objetivos as total_obj,
+t.total_acciones as total_acc
 FROM   vista_cct v 
-INNER JOIN r_pemcxescuela e  ON v.cct = e.cct
-INNER JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
-INNER JOIN r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
-INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
-INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
-WHERE
-e.idpemc IN('{$idspemc}')
-AND l.idlae=1
-GROUP BY v.cct,l.idlae)as l1
-INNER JOIN
-( 
-SELECT
+LEFT JOIN
+(SELECT
 COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
 COUNT(DISTINCT a.idaccion) as total_acciones,
-am.idlae as lae,
-v.cct as cve_centro,
-v.nombre as nombre_centro
-FROM  vista_cct v  
-INNER JOIN r_pemcxescuela e ON v.cct = e.cct
-INNER JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
-INNER JOIN r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
-INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
-INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
-WHERE
-e.idpemc IN ('{$idspemc}')
-AND l.idlae=2
-GROUP BY v.cct,l.idlae)as l2 ON l1.cve_centro = l2.cve_centro
-INNER JOIN
-( 
-SELECT
-COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
-COUNT(DISTINCT a.idaccion) as total_acciones,
-am.idlae as lae,
+l.idlae as lae,
 v.cct as cve_centro,
 v.nombre as nombre_centro
 FROM vista_cct v 
 INNER JOIN r_pemcxescuela e ON v.cct = e.cct
-INNER JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
-INNER JOIN r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
+LEFT JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
+LEFT JOIN  r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
 INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
 INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
 WHERE
-e.idpemc IN ('{$idspemc}')
+o.idpemc IN('{$idspemc}')
+AND l.idlae=1
+GROUP BY v.cct,l.idlae)
+as t ON v.cct =t.cve_centro
+WHERE v.cct IN('{$ccts}'))as l1
+INNER JOIN 
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos as total_obj,
+t.total_acciones as total_acc
+FROM   vista_cct v 
+LEFT JOIN
+(SELECT
+COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
+COUNT(DISTINCT a.idaccion) as total_acciones,
+l.idlae as lae,
+v.cct as cve_centro,
+v.nombre as nombre_centro
+FROM vista_cct v 
+INNER JOIN r_pemcxescuela e ON v.cct = e.cct
+LEFT JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
+LEFT JOIN  r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
+INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
+WHERE
+o.idpemc IN('{$idspemc}')
+AND l.idlae=2
+GROUP BY v.cct,l.idlae)
+as t ON v.cct =t.cve_centro
+WHERE v.cct IN('{$ccts}'))as l2 ON l1.cve_centro =l2.cve_centro
+INNER JOIN 
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos as total_obj,
+t.total_acciones as total_acc
+FROM   vista_cct v 
+LEFT JOIN
+(SELECT
+COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
+COUNT(DISTINCT a.idaccion) as total_acciones,
+l.idlae as lae,
+v.cct as cve_centro,
+v.nombre as nombre_centro
+FROM vista_cct v 
+INNER JOIN r_pemcxescuela e ON v.cct = e.cct
+LEFT JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
+LEFT JOIN  r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
+INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
+WHERE
+o.idpemc IN('{$idspemc}')
 AND l.idlae=3
-GROUP BY v.cct,l.idlae)as l3 ON l1.cve_centro = l3.cve_centro
+GROUP BY v.cct,l.idlae)
+as t ON v.cct =t.cve_centro
+WHERE v.cct IN('{$ccts}'))as l3 ON l1.cve_centro =l3.cve_centro
 INNER JOIN
-( 
-SELECT
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos as total_obj,
+t.total_acciones as total_acc
+FROM   vista_cct v 
+LEFT JOIN
+(SELECT
 COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
 COUNT(DISTINCT a.idaccion) as total_acciones,
-am.idlae as lae,
+l.idlae as lae,
 v.cct as cve_centro,
 v.nombre as nombre_centro
-FROM vista_cct v
+FROM vista_cct v 
 INNER JOIN r_pemcxescuela e ON v.cct = e.cct
-INNER JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
-INNER JOIN r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
+LEFT JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
+LEFT JOIN  r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
 INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
 INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
 WHERE
-e.idpemc IN ('{$idspemc}')
+o.idpemc IN('{$idspemc}')
 AND l.idlae=4
-GROUP BY v.cct,l.idlae)as l4 ON l1.cve_centro = l4.cve_centro
+GROUP BY v.cct,l.idlae)
+as t ON v.cct =t.cve_centro
+WHERE v.cct IN('{$ccts}'))as l4 ON l1.cve_centro =l4.cve_centro
 INNER JOIN
-( 
-SELECT
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos as total_obj,
+t.total_acciones as total_acc
+FROM   vista_cct v 
+LEFT JOIN
+(SELECT
 COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
 COUNT(DISTINCT a.idaccion) as total_acciones,
-am.idlae as lae,
+l.idlae as lae,
 v.cct as cve_centro,
 v.nombre as nombre_centro
-FROM  vista_cct v 
+FROM vista_cct v 
 INNER JOIN r_pemcxescuela e ON v.cct = e.cct
-INNER JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
-INNER JOIN r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
+LEFT JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
+LEFT JOIN  r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
 INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
 INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
 WHERE
-e.idpemc IN ('{$idspemc}')
+o.idpemc IN('{$idspemc}')
 AND l.idlae=5
-GROUP BY v.cct,l.idlae)as l5 ON l1.cve_centro = l5.cve_centro";
+GROUP BY v.cct,l.idlae)
+as t ON v.cct =t.cve_centro
+WHERE v.cct IN('{$ccts}'))as l5 ON l1.cve_centro =l5.cve_centro";
   return $this->db->query($str_query)->result_array();
 }
 
 public function getGraficas($idspemc){
   $str_query = "SELECT
-  SUM(tlae.total_objetivos) AS obj,
-  SUM(tlae.total_acciones) AS acc,
-  tlae.lae
-  FROM
-  (SELECT
-  COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
-  COUNT(DISTINCT a.idaccion) as total_acciones,
-  l.idlae as lae
-  FROM r_pemcxescuela e
-  INNER JOIN r_pemc_objetivo o ON e.idpemc = o.idpemc
-  INNER JOIN r_pemc_objetivo_accion a ON o.idobjetivo = a.idobjetivo
-  INNER JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, a.idambitos) > 0
-  INNER JOIN c_pemc_laes l ON am.idlae = l.idlae
-  WHERE
-  e.idpemc IN('{$idspemc}')
-  GROUP BY e.idpemc,l.idlae)as tlae
-  GROUP BY tlae.lae";
-  return $this->db->query($str_query)->result_array();
+l.idlae, IFNULL(tlae.objetivos_r, 0) as obj, IFNULL(tlae.acciones_r, 0) as acc
+FROM c_pemc_laes l
+LEFT JOIN (
+SELECT
+laes.idlae, COUNT(DISTINCT am.idambito) as ambito_c, COUNT(a.idambitos) as ambitos_r,
+COUNT(DISTINCT o.idobjetivo) as objetivos_r, COUNT(DISTINCT a.idaccion) as acciones_r
+FROM c_pemc_laes laes
+INNER JOIN c_pemc_ambito am ON laes.idlae = am.idlae
+LEFT JOIN r_pemc_objetivo_accion a ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+LEFT JOIN r_pemc_objetivo o ON a.idobjetivo = o.idobjetivo
+WHERE
+ o.idpemc IN('{$idspemc}')
+GROUP BY laes.idlae 
+) as tlae ON l.idlae =tlae.idlae
+WHERE l.idlae!=6 AND l.idlae!=7";
+return $this->db->query($str_query)->result_array();
 
 }
 function guarda_observacion_super($observacion, $idpemc){
@@ -466,5 +504,195 @@ function guarda_observacion_super($observacion, $idpemc){
     $status = $this->pemc_db->update('r_pemc_evaluacion');
   }
   return $status;
+}
+function obtener_supervision_xjefsector($jefatura){
+  $str_query = "SELECT cct, turno, nombre, jefatura_de_sector 
+  FROM vista_cct 
+  WHERE (status='1' OR status ='4') 
+  AND tipo_centro=1 
+  AND jefatura_de_sector={$jefatura}";
+  return  $this->pemc_db->query($str_query)->result_object();
+}
+function getGraficasxjefsector($jefatura){
+  $str_query ="SELECT
+l.idlae, IFNULL(tlae.objetivos, 0) as obj, IFNULL(tlae.acciones, 0) as acc
+FROM c_pemc_laes l
+LEFT JOIN (
+SELECT
+laes.idlae,COUNT(DISTINCT o.idobjetivo) as objetivos, COUNT(DISTINCT a.idaccion) as acciones
+FROM c_pemc_laes laes
+INNER JOIN c_pemc_ambito am ON laes.idlae = am.idlae
+LEFT JOIN r_pemc_objetivo_accion a ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+LEFT JOIN r_pemc_objetivo o ON a.idobjetivo = o.idobjetivo
+INNER JOIN r_pemcxescuela esc ON o.idpemc = esc.idpemc
+INNER JOIN vista_cct v ON esc.cct = v.cct
+WHERE v.tipo_centro=9
+AND jefatura_de_sector='{$jefatura}'
+AND (status='1' OR status ='4') 
+GROUP BY laes.idlae 
+) as tlae ON l.idlae =tlae.idlae
+WHERE l.idlae!=6 AND l.idlae!=7";
+  return $this->pemc_db->query($str_query)->result_array();
+}
+function getTablasGraficasxjefsector($jefatura){
+  $str_query ="SELECT
+l1.nombre_centro as nombre_centro,
+l1.cve_centro as cve_centro,
+IFNULL(l1.total_objetivos,0) as obj1,
+IFNULL(l1.total_acciones,0) as acc1,
+IFNULL(l2.total_objetivos,0) as obj2,
+IFNULL(l2.total_acciones,0) as acc2,
+IFNULL(l3.total_objetivos,0) as obj3,
+IFNULL(l3.total_acciones,0) as acc3,
+IFNULL(l4.total_objetivos,0) as obj4,
+IFNULL(l4.total_acciones,0) as acc4,
+IFNULL(l5.total_objetivos,0) as obj5,
+IFNULL(l5.total_acciones,0) as acc5
+FROM
+(
+SELECT 
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos,
+t.total_acciones
+FROM vista_cct v 
+LEFT JOIN
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
+COUNT(DISTINCT a.idaccion) as total_acciones,
+laes.idlae
+FROM c_pemc_laes laes
+INNER JOIN c_pemc_ambito am ON laes.idlae = am.idlae
+LEFT JOIN r_pemc_objetivo_accion a ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+LEFT JOIN r_pemc_objetivo o ON a.idobjetivo = o.idobjetivo
+INNER JOIN r_pemcxescuela esc ON o.idpemc = esc.idpemc
+INNER JOIN vista_cct v ON esc.cct = v.cct
+WHERE v.tipo_centro=9
+AND jefatura_de_sector='{$jefatura}'
+AND (status='1' OR status ='4') 
+AND laes.idlae =1
+GROUP BY v.cct,laes.idlae)as t ON v.cct =t.cve_centro
+WHERE (status='1' OR status ='4') 
+AND tipo_centro=9 
+AND jefatura_de_sector='{$jefatura}')as l1
+INNER JOIN 
+(
+SELECT 
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos,
+t.total_acciones
+FROM vista_cct v 
+LEFT JOIN
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
+COUNT(DISTINCT a.idaccion) as total_acciones,
+laes.idlae
+FROM c_pemc_laes laes
+INNER JOIN c_pemc_ambito am ON laes.idlae = am.idlae
+LEFT JOIN r_pemc_objetivo_accion a ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+LEFT JOIN r_pemc_objetivo o ON a.idobjetivo = o.idobjetivo
+INNER JOIN r_pemcxescuela esc ON o.idpemc = esc.idpemc
+INNER JOIN vista_cct v ON esc.cct = v.cct
+WHERE v.tipo_centro=9
+AND jefatura_de_sector='{$jefatura}'
+AND (status='1' OR status ='4') 
+AND laes.idlae =2
+GROUP BY v.cct,laes.idlae)as t ON v.cct =t.cve_centro
+WHERE (status='1' OR status ='4') 
+AND tipo_centro=9 
+AND jefatura_de_sector='{$jefatura}')as l2 ON l1.cve_centro =l2.cve_centro
+INNER JOIN 
+(
+SELECT 
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos,
+t.total_acciones
+FROM vista_cct v 
+LEFT JOIN
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
+COUNT(DISTINCT a.idaccion) as total_acciones,
+laes.idlae
+FROM c_pemc_laes laes
+INNER JOIN c_pemc_ambito am ON laes.idlae = am.idlae
+LEFT JOIN r_pemc_objetivo_accion a ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+LEFT JOIN r_pemc_objetivo o ON a.idobjetivo = o.idobjetivo
+INNER JOIN r_pemcxescuela esc ON o.idpemc = esc.idpemc
+INNER JOIN vista_cct v ON esc.cct = v.cct
+WHERE v.tipo_centro=9
+AND jefatura_de_sector='{$jefatura}'
+AND (status='1' OR status ='4') 
+AND laes.idlae =3
+GROUP BY v.cct,laes.idlae)as t ON v.cct =t.cve_centro
+WHERE (status='1' OR status ='4') 
+AND tipo_centro=9 
+AND jefatura_de_sector='{$jefatura}')as l3 ON l1.cve_centro =l3.cve_centro
+INNER JOIN
+(
+SELECT 
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos,
+t.total_acciones
+FROM vista_cct v 
+LEFT JOIN
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
+COUNT(DISTINCT a.idaccion) as total_acciones,
+laes.idlae
+FROM c_pemc_laes laes
+INNER JOIN c_pemc_ambito am ON laes.idlae = am.idlae
+LEFT JOIN r_pemc_objetivo_accion a ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+LEFT JOIN r_pemc_objetivo o ON a.idobjetivo = o.idobjetivo
+INNER JOIN r_pemcxescuela esc ON o.idpemc = esc.idpemc
+INNER JOIN vista_cct v ON esc.cct = v.cct
+WHERE v.tipo_centro=9
+AND jefatura_de_sector='{$jefatura}'
+AND (status='1' OR status ='4') 
+AND laes.idlae =4
+GROUP BY v.cct,laes.idlae)as t ON v.cct =t.cve_centro
+WHERE (status='1' OR status ='4') 
+AND tipo_centro=9 
+AND jefatura_de_sector='{$jefatura}')as l4 ON l1.cve_centro =l4.cve_centro
+INNER JOIN
+(
+SELECT 
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos,
+t.total_acciones
+FROM vista_cct v 
+LEFT JOIN
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+COUNT(DISTINCT o.idobjetivo) as total_objetivos, 
+COUNT(DISTINCT a.idaccion) as total_acciones,
+laes.idlae
+FROM c_pemc_laes laes
+INNER JOIN c_pemc_ambito am ON laes.idlae = am.idlae
+LEFT JOIN r_pemc_objetivo_accion a ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+LEFT JOIN r_pemc_objetivo o ON a.idobjetivo = o.idobjetivo
+INNER JOIN r_pemcxescuela esc ON o.idpemc = esc.idpemc
+INNER JOIN vista_cct v ON esc.cct = v.cct
+WHERE v.tipo_centro=9
+AND jefatura_de_sector='{$jefatura}'
+AND (status='1' OR status ='4') 
+AND laes.idlae =5
+GROUP BY v.cct,laes.idlae)as t ON v.cct =t.cve_centro
+WHERE (status='1' OR status ='4') 
+AND tipo_centro=9 
+AND jefatura_de_sector='{$jefatura}')as l5 ON l1.cve_centro =l5.cve_centro";
+return $this->pemc_db->query($str_query)->result_array();
 }
 }

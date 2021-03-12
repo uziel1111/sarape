@@ -1,26 +1,22 @@
  google.charts.load('current', {'packages':['bar']});
- google.charts.setOnLoadCallback(graficaBarObj_super);
- google.charts.setOnLoadCallback(graficaBarAcc_super);
+ google.charts.setOnLoadCallback(graficaBarObj_jefsector);
+ google.charts.setOnLoadCallback(graficaBarAcc_jefsector);
 
-$(".btn-coll_escuela").click(function (e) {
-    e.preventDefault();
-    cct_escuela=$(this).data('escuela').cct;
-    turno_escuela=$(this).data('escuela').turno;
-    idpemc=$(this).data('escuela').idpemc;
-    $("#idpemc_click").val(idpemc);
-    $("#turno_click").val(turno_escuela);
-    $(".icon-escuela_"+cct_escuela+turno_escuela).toggleClass('fas fa-chevron-up').toggleClass('fas fa-chevron-down');
+$('#slct_supervision').change(function() {
+	var cct_super=$('#slct_supervision option:selected').val();
+    var cct = cct_super.split('_')[0];
+    var turno =cct_super.split('_')[1];
     $.ajax({
     	type:"POST",
-    	url:base_url+"Pemc/obtiene_seccion_escuela",
-    	data:{cct_escuela:cct_escuela,turno_escuela:turno_escuela,idpemc:idpemc},
+    	url:base_url+"Pemc/obtener_seccion_escxsuper",
+    	data:{cct:cct,turno:turno},
     	beforeSend: function(xhr) {
 					Notification.loading("");
 				}
     })
     .done(function(data){
-     $("#vista_escuela"+cct_escuela+turno_escuela).empty();
-	   $("#vista_escuela"+cct_escuela+turno_escuela).append(data.str_vista_escuela);
+     $("#vista_escuelas").empty();
+	 $("#vista_escuelas").append(data.str_vista_escuelaxsuper);
     })
     .fail(function(e) {
 	    console.error("Error in ()"); console.table(e);
@@ -28,11 +24,12 @@ $(".btn-coll_escuela").click(function (e) {
     .always(function() {
 	swal.close();
     });
+
 });
 
-$(document).on("click","#btn-estadisticas",function(){
+$(document).on("click","#btn-estadisticas_xjefsector",function(){
   $.ajax({
-    url: base_url+"Pemc/estadisticas_supervisor",
+    url: base_url+"Pemc/estadisticas_jefesector",
     type: 'POST',
     data: {},
     beforeSend: function(xhr) {
@@ -41,10 +38,10 @@ $(document).on("click","#btn-estadisticas",function(){
   })
   .done(function(data) {
      swal.close();
-    $('#contenido-estadisticas').html(data.str_view_super);
-     $('#modal_estadisticas').modal('show');
-     graficaBarObj_super(data.grafica_super); 
-     graficaBarAcc_super(data.grafica_super); 
+    $('#contenido-estadisticas_xjefsector').html(data.str_view_jefsector);
+    $('#modal_estadisticas_xjefsector').modal('show');
+     graficaBarObj_jefsector(data.grafica_jefsector); 
+     graficaBarAcc_jefsector(data.grafica_jefsector); 
   })
   .fail(function() {
     console.log("error");
@@ -54,12 +51,12 @@ $(document).on("click","#btn-estadisticas",function(){
   });
   
 });
-
-$(document).on("click","#btn-cerrar_estadisticas",function(){
-  $('#modal_estadisticas').modal('toggle');
+$(document).on("click","#btn-cerrar_estadisticas_xjefsector",function(){
+  $('#modal_estadisticas_xjefsector').modal('toggle');
 
 });
-function graficaBarObj_super(objetivos) {
+
+function graficaBarObj_jefsector(objetivos) {
     if (objetivos != undefined){
 
    
@@ -89,7 +86,7 @@ function graficaBarObj_super(objetivos) {
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
      } 
-function graficaBarAcc_super(acciones) {
+function graficaBarAcc_jefsector(acciones) {
     if (acciones != undefined){
 
     acc1 = parseInt(acciones[0]['acc']);
@@ -123,4 +120,3 @@ function graficaBarAcc_super(acciones) {
 
 
 
-   

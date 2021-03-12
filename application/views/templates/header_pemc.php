@@ -43,6 +43,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="<?= base_url('assets/bootstrap-411/js/bootstrap.min.js'); ?>"></script>
   <script src="<?= base_url('assets/sweetalert2/sweetalert2.min.js'); ?>"></script>
+ <!-- USO DE LIBRERIA PARA EDITOR DE TEXTO -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.20.0/ui/trumbowyg.min.css" />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.20.0/trumbowyg.min.js"></script>
+ <script src='<?= base_url('assets/js/utilerias/es.min.js') ?>'></script>
+ <script src='<?= base_url('assets/js/utilerias/trumbowyg.colors.min.js') ?>'></script>
 
   <script src="<?= base_url('assets/js/messages.js') ?>"></script>
   <script src="<?= base_url('assets/js/Utiles.js') ?>"></script>
@@ -58,27 +63,19 @@
   </script>
 </head>
     <body>
-        <div id="top"></div>
-        <!-- Start Header Area -->
-        <header>
-            <div class="sticky-header" style="background-color: #000000!important;">
-                <div class="container">
-                    <div class="header-content d-flex justify-content-between align-items-center">
-                        <div class="logo">
-                          <a href="<?= base_url() ?>" class="smooth"><img class="img-fluid" src="<?= base_url('assets/img/logo.png'); ?>" alt=""></a>
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container">
+              <a href="<?= base_url() ?>" class="smooth"><img class="img-fluid" src="<?= base_url('assets/img/logo-dark.png'); ?>" alt=""></a>
+              <center><h4 class="titulo" style="color: white !important;">Programa Escolar de Mejora Continua (PEMC)</h4></center>
+              <div class="float-right text-right text-white">
+                <i class="fas fa-caret-right color-1"></i>&nbsp;<b>CENTRAL</b><br>
+                <a class="btn btn-secondary btn-sm mt-2" href="<?= site_url("estadistica_pemc/cerrar_sesion")?>">Cerrar Sesión</a>
+              </div>
+          </div>
+        </nav>
+      </header>
 
-                        </div>
-                        <div class="right-bar d-flex align-items-center">
-                        </div>
-                        <div class="float-right text-right text-white">
-    <i class="fas fa-caret-right color-1"></i>&nbsp;<b>CENTRAL</b><br>
-  <a class="btn btn-secondary btn-sm mt-2" href="<?= site_url("estadistica_pemc/cerrar_sesion")?>">Cerrar Sesión</a>
-</div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- End Header Area -->
 
 <!-- Modal -->
 <div class="modal fade" id="idmodalloader" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">

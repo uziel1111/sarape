@@ -37,7 +37,7 @@ class Estadistica_pemc extends CI_Controller
         $user_data = $this->Estadistica_pemc_model->get_datos_sesion($user, md5($pwd));
         if(count($user_data) > 0){
             $data = array();
-            Utilerias::set_usuario_sesion($this, $user_data);
+            Utilerias::set_usuario_sesion($this, $user_data);              
             $result_municipios = $this->Estadistica_pemc_model->getall_xest_ind();
             $arr_municipios = array();
             if(count($result_municipios)==0){
@@ -78,6 +78,7 @@ class Estadistica_pemc extends CI_Controller
             $data['arr_sostenimientos'] =$arr_sostenimientos;
 
             if(Utilerias::haySesionAbierta($this)){
+
                  Utilerias::pagina_basica_pemc($this, 'estadistica_pemc/index',$data);
             }
         }else{
@@ -90,6 +91,8 @@ class Estadistica_pemc extends CI_Controller
 
 
 public function busquedaxct(){
+    $datos_admin = Utilerias::get_usuario_sesion($this);
+    $datos_admin=$datos_admin[0];
     $cct = $this->input->post('cct');
     $turno = $this->input->post('turno');
     if($turno=="MATUTINO"){
@@ -112,10 +115,12 @@ public function busquedaxct(){
     // echo "<pre>";print_r($datoscct);die();
     // Utilerias::destroy_all_session($this);
     // Utilerias::set_cct_sesion($this, $datoscct);
-    $this->cct = $datoscct;
-    $tmp_usuario = $this->Pemc_model->consulta_tipo_usuario($cct);
 
+    $this->cct = $datoscct;
+
+    $tmp_usuario = $datos_admin['nombre'];
     $this->cct['tipo_usuario']=$tmp_usuario;
+
 		$usuario = $this->cct['cve_centro'];
 		$responsables = $this->getPersonal($usuario);
 
@@ -148,6 +153,7 @@ public function busquedaxct(){
 		$data['cct'] = $this->cct['cve_centro'];
 		$data['director'] = $this->cct['nombre_director'];
 		$data['tipo_usuario'] = $this->cct['tipo_usuario'];
+      
     // echo "<pre>";print_r($data);die();
 		// Utilerias::pagina_basica_pemcv2($this, "pemc/index", $data);
     $dom = $this->load->view("pemc/index",$data,TRUE);

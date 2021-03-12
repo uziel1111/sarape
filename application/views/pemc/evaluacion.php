@@ -85,12 +85,12 @@
   </div>
   <div class="card-body">
     <div class="container">
-      <form class="form-group" name="<?=(($tipo_usuario!="escuela")?'fr_observacion_'.$idpemc:'')?>" id="<?=(($tipo_usuario!="escuela")?'fr_observacion_'.$idpemc:'')?>">
+      <form class="form-group" name="<?=(($tipo_usuario=="supervision")?'fr_observacion_'.$idpemc.$id_turno_single:'')?>" id="<?=(($tipo_usuario=="supervision")?'fr_observacion_'.$idpemc.$id_turno_single:'')?>">
       <label class="my-1 mr-2" for="in_obser">Redacte su observación:</label>
        <input type="hidden"  id="idpemc" name="idpemc" value="<?= $idpemc?>">
-       <textarea  class="form-control in_obser" name="in_obser" id="in_obser" rows="10" required  <?=(($tipo_usuario!="escuela")?'':'disabled')?>><?=$observacion?></textarea>
-    <?php if (($tipo_usuario!="escuela")): ?>
-      <button class="btn btn-primary my-1  float-right" onclick="Observacion_pemc. observacion_supervalidate('<?=$idpemc?>')">Grabar</button>
+       <textarea  class="form-control in_obser" name="in_obser" id="in_obser" rows="10" required  <?=(($tipo_usuario=="supervision")?'':'disabled')?>><?=$observacion?></textarea>
+    <?php if (($tipo_usuario=="supervision")): ?>
+      <button class="btn btn-primary my-1  float-right" onclick="Observacion_pemc. observacion_supervalidate('<?=$idpemc?>','<?=$id_turno_single?>')">Grabar</button>
     <?php endif; ?>
     </form>
     </div>

@@ -1,12 +1,14 @@
 
 $(document).ready(function(){
 var tipo_usuario=$("#t_usuario").val();
-    if(tipo_usuario!="escuela"){
+    if(tipo_usuario=="supervision" || tipo_usuario=="jefe_sector"){
      var idpemc = $("#idpemc_click").val();
+     var turno = $("#turno_click").val();
     }else{
      var idpemc = $("#idpemc").val();
+     var turno = $("#turno").val();
     }
-	Principal_pemc.obtiene_vista_diagnostico(idpemc);
+	Principal_pemc.obtiene_vista_diagnostico(idpemc,turno);
 });
 /*$("#nv_diagnostico").click(function (e) {
 	e.preventDefault();
@@ -29,7 +31,7 @@ $("#nv_evaluacion").click(function (e) {
 });*/
 
 var Principal_pemc = {
-  	obtiene_vista_diagnostico: (idpemc) => {
+  	obtiene_vista_diagnostico: (idpemc,turno) => {
     	ruta = base_url + "Pemc/obtiene_vista_diagnostico";
 			$.ajax({
 				url:ruta,
@@ -40,8 +42,8 @@ var Principal_pemc = {
 				}
 			})
 			.done(function(data){
-				$("#vista_diagnostico"+idpemc).empty();
-				$("#vista_diagnostico"+idpemc).append(data.str_vista);
+				$("#vista_diagnostico"+idpemc+turno).empty();
+				$("#vista_diagnostico"+idpemc+turno).append(data.str_vista);
 			})
 			.fail(function(e) {
 				console.error("Error in ()"); console.table(e);
@@ -51,7 +53,7 @@ var Principal_pemc = {
 			});
   	},//obtiene_vista_diagnostico
 
-  	obtiene_vista_obetivos: (idpemc) => {
+  	obtiene_vista_obetivos: (idpemc,turno) => {
   		ruta = base_url + "Pemc/obtiene_vista_objetivosymetas";
 		$.ajax({
 			url:ruta,
@@ -62,8 +64,8 @@ var Principal_pemc = {
 			}
 		})
 		.done(function(data){
-			$("#vista_objetivos_metas_acciones"+idpemc).empty();
-			$("#vista_objetivos_metas_acciones"+idpemc).append(data.str_vista);
+			$("#vista_objetivos_metas_acciones"+idpemc+turno).empty();
+			$("#vista_objetivos_metas_acciones"+idpemc+turno).append(data.str_vista);
 		})
 		.fail(function(e) {
 			console.error("Error in ()"); console.table(e);
@@ -72,7 +74,7 @@ var Principal_pemc = {
 			swal.close();
 		});
 	},
-	obtiene_vista_seguimiento: (idpemc) => {
+	obtiene_vista_seguimiento: (idpemc,turno) => {
 	ruta = base_url + "Pemc/obtiene_vista_seguimiento";
 		$.ajax({
 			url:ruta,
@@ -83,8 +85,8 @@ var Principal_pemc = {
 			}
 		})
 		.done(function(data){
-			$("#vista_seguimiento"+idpemc).empty();
-			$("#vista_seguimiento"+idpemc).append(data.str_vista);
+			$("#vista_seguimiento"+idpemc+turno).empty();
+			$("#vista_seguimiento"+idpemc+turno).append(data.str_vista);
 		})
 		.fail(function(e) {
 			console.error("Error in ()"); console.table(e);
@@ -146,8 +148,8 @@ var Principal_pemc = {
 					}
 				})
 				.done(function(data){
-					$("#vista_evaluacion"+idpemc).empty();
-					$("#vista_evaluacion"+idpemc).append(data.str_vista);
+					$("#vista_evaluacion"+idpemc+turno).empty();
+					$("#vista_evaluacion"+idpemc+turno).append(data.str_vista);
 					
 				})
 				.fail(function(e) {

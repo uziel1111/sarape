@@ -30,6 +30,9 @@
  		url: ruta,
  		type: 'POST',
  		data: {nivel:nivel,modalidad:modalidad,sostenimiento:sostenimiento},
+ 		 beforeSend: function(xhr) {
+         Notification.loading("");
+        },
  	})
  	.done(function(data) {
  		swal.close();
