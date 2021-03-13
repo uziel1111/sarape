@@ -1,10 +1,11 @@
 // $(function() {
 //     $("#txt_otrosresp_new").hide();
 // });
-
+  var idpemc = $("#idpemc").val();
+   var turno = $("#turno").val();
 $("#close_obj_generico").click(function(){
 	$("#modal_generico_obj").modal('hide');
-	Principal_pemc.obtiene_vista_obetivos();
+	Principal_pemc.obtiene_vista_obetivos(idpemc,turno);
 });
 $("#btn_crear_obj").click(function(){
 	// if($("#txt_numero_objetivos_creados").val() < 3){
@@ -188,7 +189,7 @@ var Objetivos = {
 	      }
 				else {
 					$("#modal_generico_obj").modal('hide');
-					Principal_pemc.obtiene_vista_obetivos();
+					Principal_pemc.obtiene_vista_obetivos(idpemc,turno);
 				}
 	    });
 			// Principal_pemc.obtiene_vista_obetivos();
@@ -253,7 +254,7 @@ var Objetivos = {
 	      }
 				else {
 					$("#modal_generico_obj").modal('hide');
-					Principal_pemc.obtiene_vista_obetivos();
+					Principal_pemc.obtiene_vista_obetivos(idpemc,turno);
 				}
 	    });
 
@@ -383,7 +384,7 @@ var Objetivos = {
 	      }
 				else {
 					$("#modal_generico_obj").modal('hide');
-					Principal_pemc.obtiene_vista_obetivos();
+					Principal_pemc.obtiene_vista_obetivos(idpemc,turno);
 				}
 	    });
 
@@ -461,7 +462,7 @@ var Objetivos = {
 				})
 				.done(function(data){
 					if(data.estatus){
-						Principal_pemc.obtiene_vista_obetivos();
+						Principal_pemc.obtiene_vista_obetivos(idpemc,turno);
 					}else{
 						swal(
 						'¡Error!',
@@ -526,7 +527,7 @@ var Objetivos = {
 	})
 	.done(function(data){
 		if(data.estatus){
-			Principal_pemc.obtiene_vista_obetivos();
+			Principal_pemc.obtiene_vista_obetivos(idpemc,turno);
 		}else{
 			swal(
 			'¡Error!',
@@ -557,7 +558,7 @@ var Objetivos = {
 	})
 	.done(function(data){
 		if(data.estatus){
-			Principal_pemc.obtiene_vista_obetivos();
+			Principal_pemc.obtiene_vista_obetivos(idpemc,turno);
 		}else{
 			swal(
 			'¡Error!',

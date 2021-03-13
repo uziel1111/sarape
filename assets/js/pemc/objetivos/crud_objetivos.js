@@ -1,3 +1,5 @@
+   var idpemc = $("#idpemc").val();
+   var turno = $("#turno").val();
 $(function(){
 	jQuery.validator.addMethod("noSpace", function(value, element) {
 		return value.indexOf("  ") < 0 && value != " ";
@@ -27,7 +29,7 @@ $("#form_crear_editar_obj").validate({
          }
       },
       submitHandler: function(form) {
-         Crud_objetivos.save_conf_objetivo();
+         Crud_objetivos.save_conf_objetivo(idpemc,turno);
       }
     });
 });
@@ -39,7 +41,7 @@ $("#btn_guarda_objetivo").click(function(e){
 });
 
 var Crud_objetivos = {
-	save_conf_objetivo: () => {
+	save_conf_objetivo: (idpemc,turno) => {
 	var form = $("#form_crear_editar_obj").serialize();
     // var fd = new FormData(form);
     $.ajax({
@@ -52,7 +54,7 @@ var Crud_objetivos = {
 	})
 	.done(function(data){
 		if (data.estatus == 'true' || data.estatus == true) {
-			Principal_pemc.obtiene_vista_obetivos();
+			Principal_pemc.obtiene_vista_obetivos(idpemc,turno);
 			$("#modal_generico_obj").modal('hide');
 		}
 	})
