@@ -1,7 +1,7 @@
 <div>
  <br>
- <div id="columnchart_material" class="float-left"></div>
- <div id="columnchart_material_acciones"  class="float-right"></div>
+ <div id="columnchart_material_super" class="float-left"></div>
+ <div id="columnchart_material_acciones_super"  class="float-right"></div>
  <br>
 </div>
 

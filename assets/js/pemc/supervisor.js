@@ -84,7 +84,7 @@ function graficaBarObj_super(objetivos) {
           }
         };
 
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material_super'));
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
@@ -115,7 +115,7 @@ function graficaBarAcc_super(acciones) {
           }
         };
 
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material_acciones'));
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material_acciones_super'));
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }

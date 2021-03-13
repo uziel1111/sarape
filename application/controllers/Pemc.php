@@ -911,12 +911,12 @@ EOT;
 
 	}
 	public function guarda_observacion_supervisor(){
-            $observacion = $this->input->post('in_obser');
-			$idpemc =$this->input->post('idpemc');
-			$estatus = $this->Pemc_model->guarda_observacion_super($observacion,$idpemc);
-			$response = array('estatus' => $estatus);
-			Utilerias::enviaDataJson(200, $response, $this);
-			exit;
+        $observacion = $this->input->post('in_obser');
+		$idpemc =$this->input->post('idpemc');
+		$estatus = $this->Pemc_model->guarda_observacion_super($observacion,$idpemc);
+		$response = array('estatus' => $estatus);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
 	}
 
 	public function generavistaJefe_sector(){

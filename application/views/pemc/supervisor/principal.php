@@ -60,7 +60,7 @@
       	</div>
       </div>
     </div>   
-<!-- Modal Estadísticas-->
+<!-- Modal Estadísticas Supervisor-->
 <div class="modal fade" id="modal_estadisticas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content modal-style-1">
@@ -72,9 +72,9 @@
       </div>
       <div class="modal-body">
         <div id="contenido-estadisticas"></div>
-      </div><!-- final despues del card card mb-3 card-style-1-->
-    </div><!-- fin del body -->
+      </div>
+    </div>
   </div>
-</div> <!-- fin modal estadisticas-->
+</div> <!-- Fin modal estadisticas-->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/pemc/supervisor.js') ?>"></script>

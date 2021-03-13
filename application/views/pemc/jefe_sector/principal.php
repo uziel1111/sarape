@@ -4,12 +4,12 @@
   </div>
   <div class="card-body">
   	<div class="col-lg-12 row">
-		<div class="col-md-5 form-group form-group-style-1 ">
+		<div class="col-md-6 form-group form-group-style-1 ">
 			<label for="slct_supervision">Seleccione la supervisión</label>
 			 <select id="slct_supervision" class="form-control">
 			 	 <option value="0">Seleccione...</option>
 			 	<?php foreach ($supervisiones as $supervision) :?>			
-				 <option value="<?= $supervision->cct.'_'.$supervision->turno?>"><?= $supervision->nombre?></option>
+				 <option value="<?= $supervision->cct.'_'.$supervision->turno?>"><?= $supervision->nombre.' / '.$supervision->cct?></option>
                 <?php endforeach; ?>
 			</select>
 		</div>
@@ -23,7 +23,7 @@
 </div>
 </div>
 </div>
-<!-- Modal Estadísticas-->
+<!-- Modal Estadísticas Jefe de Sector-->
 <div class="modal fade" id="modal_estadisticas_xjefsector" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content modal-style-1">
@@ -35,9 +35,9 @@
       </div>
       <div class="modal-body">
         <div id="contenido-estadisticas_xjefsector"></div>
-      </div><!-- final despues del card card mb-3 card-style-1-->
-    </div><!-- fin del body -->
+      </div>
+    </div>
   </div>
-</div> <!-- fin modal estadisticas-->
+</div> <!-- Fin modal estadisticas-->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/pemc/jefe_sector.js') ?>"></script>

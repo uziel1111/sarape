@@ -81,7 +81,7 @@ function graficaBarObj_jefsector(objetivos) {
           }
         };
 
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material_xjefesector'));
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
@@ -112,7 +112,7 @@ function graficaBarAcc_jefsector(acciones) {
           }
         };
 
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material_acciones'));
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material_acciones_xjefesector'));
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
