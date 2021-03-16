@@ -114,7 +114,7 @@
 					     		</div>
 					     		<div class="col">
 					     			<?php if ($objetivo['url_evidencia_antes'] != '' && (!$esta_cerrado_ciclo) && ($tipo_usuario=="escuela")): ?>
-					     				<button class="btn btn-danger btn-sm" onclick="Objetivos.elimina_imagen(<?= $objetivo['idobjetivo']?>, 1)">X</button>
+					     				<button class="btn btn-a2 btn-sm" onclick="Objetivos.elimina_imagen(<?= $objetivo['idobjetivo']?>, 1)">X</button>
 					     			<?php endif ?>
 					     		</div>
 				     		</div>
@@ -124,7 +124,7 @@
 					     <div class="row">
 					     	<div class="col-1"></div>
 	      					<div class="custom-file col-7">
-							    <input type="file" class="custom-file-input" name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, <?= $objetivo['idobjetivo']?>)' accept="image/gif, image/jpeg, application/pdf">
+							    <input type="file" class="custom-file-input btn-a1" name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, <?= $objetivo['idobjetivo']?>)' accept="image/gif, image/jpeg, application/pdf">
 							    <label class="custom-file-label" for="customFile"></label>
 							</div>
 					     </div>
@@ -139,7 +139,7 @@
 					     		</div>
 					     		<div class="col">
 					     			<?php if ($objetivo['url_evidencia_despues'] != '' && (!$esta_cerrado_ciclo) && ($tipo_usuario=="escuela")): ?>
-					     				<button class="btn btn-danger btn-sm" onclick="Objetivos.elimina_imagen(<?= $objetivo['idobjetivo']?>, 2)">X</button>
+					     				<button class="btn btn-a2 btn-sm" onclick="Objetivos.elimina_imagen(<?= $objetivo['idobjetivo']?>, 2)">X</button>
 					     			<?php endif ?>
 					     		</div>
 				     		</div>

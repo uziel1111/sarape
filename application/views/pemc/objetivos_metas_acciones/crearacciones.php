@@ -63,9 +63,9 @@
             <input type="text" id="txt_fechas_<?=$accion['idaccion']?>"class="form-control" name="daterange" value="<?=$accion['finicio']." - ".$accion['ffin']?>" readonly/>
           </td>
 			    <td>
-			    	<button class="btn btn-info" title="Guardar" onclick="Objetivos.valida_campos_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )"><i class="fas fa-save"></i></button>
+			    	<button class="btn btn-a1" title="Guardar" onclick="Objetivos.valida_campos_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )"><i class="fas fa-save"></i></button>
 			    	<br>
-			    	<button class="btn btn-danger" title="Eliminar" onclick="Objetivos.elimina_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )"><i class="fas fa-trash"></i></button>
+			    	<button class="btn btn-a2" title="Eliminar" onclick="Objetivos.elimina_accion(<?=$accion['idaccion']?>, <?= $idobjetivo ?> )"><i class="fas fa-trash"></i></button>
 			    </td>
 			    </tr>
           <tr style="background-color: #bee5eb; ">
@@ -99,7 +99,7 @@
 			    <td>
             <input type="text" id="txt_fechas_new" class="form-control" name="daterange" value="" readonly/>
           </td>
-			    <td><button class="btn btn-primary" title="Guardar" onclick="Objetivos.valida_campos_accion(0,<?= $idobjetivo ?>)" ><i class="fas fa-save"></i></button></td>
+			    <td><button class="btn btn-a1" title="Guardar" onclick="Objetivos.valida_campos_accion(0,<?= $idobjetivo ?>)" ><i class="fas fa-save"></i></button></td>
 			    </tr>
           <tr style="background-color: #bee5eb; ">
           <td colspan="8"><label><b>Línea(s) de Acción Estratégica: </b><span id="inp_laes_new"></span></label></td>
