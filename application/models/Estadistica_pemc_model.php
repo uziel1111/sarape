@@ -171,19 +171,29 @@ class Estadistica_pemc_model extends CI_Model
      }
 
   $query = "SELECT
-  l1.region,
-  l1.municipio,
-  l1.total_objetivos AS obj1,
-  l1.total_acciones AS acc1,
-  l2.total_objetivos AS obj2,
-  l2.total_acciones AS acc2,
-  l3.total_objetivos AS obj3,
-  l3.total_acciones AS acc3,
-  l4.total_objetivos AS obj4,
-  l4.total_acciones AS acc4,
-  l5.total_objetivos AS obj5,
-  l5.total_acciones AS acc5
+  mun_reg_laes.region,
+  mun_reg_laes.municipio,
+  SUM(IFNULL(l1.total_objetivos,0)) AS obj1,
+   SUM(IFNULL(l1.total_acciones,0)) AS acc1,
+   SUM(IFNULL(l2.total_objetivos,0)) AS obj2,
+   SUM(IFNULL(l2.total_acciones,0)) AS acc2,
+   SUM(IFNULL(l3.total_objetivos,0)) AS obj3,
+   SUM(IFNULL(l3.total_acciones,0)) AS acc3,
+   SUM(IFNULL(l4.total_objetivos,0)) AS obj4,
+   SUM(IFNULL(l4.total_acciones,0)) AS acc4,
+   SUM(IFNULL(l5.total_objetivos,0)) AS obj5,
+   SUM(IFNULL(l5.total_acciones,0)) AS acc5
 FROM
+(SELECT
+m.id_municipio,m.municipio, m.id_region, r.region, laes.idlae
+FROM c_pemc_laes laes
+INNER JOIN municipio m ON 1=1
+INNER JOIN region r ON m.id_region = r.id_region
+where 1=1
+{$where_region}
+{$where_municipio}
+GROUP BY m.municipio, r.region , laes.idlae) as mun_reg_laes
+LEFT JOIN
   (SELECT
       COUNT(DISTINCT ro.idobjetivo) AS total_objetivos,
 			COUNT(DISTINCT roa.idaccion) AS total_acciones,
@@ -209,8 +219,8 @@ FROM
           {$where_region}
           {$where_municipio}
           AND laes.idlae = 1
-  GROUP BY e.municipio , laes.idlae) AS l1
-      INNER JOIN
+  GROUP BY e.municipio , laes.idlae) AS l1 ON mun_reg_laes.municipio = l1.municipio AND mun_reg_laes.id_region=l1.id_region AND mun_reg_laes.idlae = l1.LAE
+LEFT JOIN
   (SELECT
       COUNT(DISTINCT ro.idobjetivo) AS total_objetivos,
 			COUNT(DISTINCT roa.idaccion) AS total_acciones,
@@ -236,8 +246,8 @@ FROM
           {$where_region}
           {$where_municipio}
           AND laes.idlae = 2
-  GROUP BY e.municipio , laes.idlae) AS l2 ON l1.municipio = l2.municipio
-      INNER JOIN
+  GROUP BY e.municipio , laes.idlae) AS l2 ON mun_reg_laes.municipio = l2.municipio AND mun_reg_laes.id_region=l2.id_region AND mun_reg_laes.idlae = l2.LAE
+LEFT JOIN
   (SELECT
       COUNT(DISTINCT ro.idobjetivo) AS total_objetivos,
 			COUNT(DISTINCT roa.idaccion) AS total_acciones,
@@ -263,8 +273,9 @@ FROM
           {$where_region}
           {$where_municipio}
           AND laes.idlae = 3
-  GROUP BY e.municipio , laes.idlae) AS l3 ON l1.municipio = l3.municipio
-      INNER JOIN
+  GROUP BY e.municipio , laes.idlae) AS l3 ON mun_reg_laes.municipio = l3.municipio AND mun_reg_laes.id_region=l3.id_region AND mun_reg_laes.idlae = l3.LAE
+
+LEFT JOIN
   (SELECT
       COUNT(DISTINCT ro.idobjetivo) AS total_objetivos,
 			COUNT(DISTINCT roa.idaccion) AS total_acciones,
@@ -290,8 +301,9 @@ FROM
           {$where_region}
           {$where_municipio}
           AND laes.idlae = 4
-  GROUP BY e.municipio , laes.idlae) AS l4 ON l1.municipio = l4.municipio
-      INNER JOIN
+  GROUP BY e.municipio , laes.idlae) AS l4 ON mun_reg_laes.municipio = l4.municipio AND mun_reg_laes.id_region=l4.id_region AND mun_reg_laes.idlae = l4.LAE
+
+LEFT JOIN
   (SELECT
       COUNT(DISTINCT ro.idobjetivo) AS total_objetivos,
 			COUNT(DISTINCT roa.idaccion) AS total_acciones,
@@ -317,9 +329,10 @@ FROM
           {$where_region}
           {$where_municipio}
           AND laes.idlae = 5
-  GROUP BY e.municipio , laes.idlae) AS l5 ON l1.municipio = l5.municipio
+  GROUP BY e.municipio , laes.idlae) AS l5 ON mun_reg_laes.municipio = l5.municipio AND mun_reg_laes.id_region=l5.id_region AND mun_reg_laes.idlae = l5.LAE
+GROUP BY mun_reg_laes.id_municipio, mun_reg_laes.id_region
 ORDER BY l1.id_region;";
-
+// echo "<pre>";print_r($query);die();
   return $this->db->query($query)->result_array();
 }
 
@@ -391,6 +404,7 @@ FROM
             {$where_municipio}
             GROUP BY e.municipio , laes.idlae) AS tl1
         GROUP BY tl1.LAE";
+        // echo "<pre>";print_r($query);die();
 return $this->db->query($query)->result_array();
   }
 
