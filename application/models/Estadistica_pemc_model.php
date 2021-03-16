@@ -772,9 +772,10 @@ function get_zonas($sostenimiento, $nivel){
     FROM
     (
         SELECT
-        m.id_municipio, m.municipio, COUNT(DISTINCT e.cct) n_escxmuni
+        m.id_municipio, m.municipio, COUNT(DISTINCT CONCAT(e.cct, t.idfederal)) n_escxmuni
         FROM municipio m
          INNER JOIN vista_cct e ON m.id_municipio = e.municipio
+         INNER JOIN turno_temp t ON e.turno = t.idturno
         WHERE (e.status = 1 OR e.status = 4)
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
@@ -798,6 +799,8 @@ function get_zonas($sostenimiento, $nivel){
 			AND e.desc_nivel_educativo <> 'INICIAL'
 			AND e.cct NOT LIKE '05FUA%'
 			AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+      {$where_m}
+      {$where_s}
 						GROUP BY m.id_municipio
     ) captobj on mastert.id_municipio = captobj.id_municipio
     LEFT JOIN
@@ -818,6 +821,8 @@ function get_zonas($sostenimiento, $nivel){
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
   AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+  {$where_m}
+  {$where_s}
         GROUP BY m.id_municipio, CONCAT(e.cct,t.idfederal)
         HAVING COUNT(DISTINCT ro.idobjetivo)=0
         ) as xcon0
@@ -842,6 +847,8 @@ function get_zonas($sostenimiento, $nivel){
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
   AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+  {$where_m}
+  {$where_s}
         GROUP BY m.id_municipio, CONCAT(e.cct,t.idfederal)
         HAVING COUNT(DISTINCT ro.idobjetivo)=1
         ) as xcon0
@@ -866,6 +873,8 @@ function get_zonas($sostenimiento, $nivel){
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
   AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+  {$where_m}
+  {$where_s}
         GROUP BY m.id_municipio, CONCAT(e.cct,t.idfederal)
         HAVING (COUNT(DISTINCT ro.idobjetivo)=2 OR COUNT(DISTINCT ro.idobjetivo)=3)
         ) as xcon0
@@ -890,6 +899,8 @@ function get_zonas($sostenimiento, $nivel){
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
   AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+  {$where_m}
+  {$where_s}
         GROUP BY m.id_municipio, CONCAT(e.cct,t.idfederal)
         HAVING COUNT(DISTINCT ro.idobjetivo)>3
         ) as xcon0
