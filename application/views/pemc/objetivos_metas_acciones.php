@@ -81,7 +81,9 @@
 				  	  <th scope="col" rowspan="2" width="20%">Objetivos</th>
 				      <th scope="col" rowspan="2" width="20%">Fecha de creación</th>
 				      <th scope="col" rowspan="2">Acciones</th>
-							<th scope="col" rowspan="2">Agregar acciones</th>
+				        <?php if (($tipo_usuario=="escuela") && (!$esta_cerrado_ciclo)): ?>
+						<th scope="col" rowspan="2">Agregar acciones</th>
+							 <?php endif; ?>
 				      <th scope="col" colspan="2"><center>Evidencias</center></th>
 				  	</tr>
 				    <tr>
@@ -97,14 +99,15 @@
 				     <td><?= $objetivo['objetivo']?></td>
 				     <td><?= $objetivo['fcreacion']?></td>
 				     <td class="text-center"><?= $objetivo['num_acciones']?></td>
+				     <?php if (($tipo_usuario=="escuela") && (!$esta_cerrado_ciclo)): ?>
 						 <td>
-							<?php if (($tipo_usuario=="escuela") && (!$esta_cerrado_ciclo)): ?>
+							
 								<button title="Agregar acciones" class='btn btn-a2 btn-block btn-sm' onclick='Objetivos.agreg_acciones(<?= $objetivo['idobjetivo']?>)'><i class="fa fa-plus" aria-hidden="true"></i></button>
-							<?php else: ?>
-								<button title="No puede agregar acciones" class='btn btn-danger btn-block btn-sm'><i class="fa fa-ban" aria-hidden="true"></i></button>
-							<?php endif; ?>
+							
+								<!--<button title="No puede agregar acciones" class='btn btn-danger btn-block btn-sm'><i class="fa fa-ban" aria-hidden="true"></i></button>-->							
 
 						 </td>
+						 <?php endif; ?>
 				     <td>
 				     	<center>
 				     	<div class="preview">

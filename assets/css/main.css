@@ -2680,6 +2680,12 @@ footer .footer-nav li a:hover {
     width: 25%;
     /* margin-right: .5%; */
 }
+.tab-graldos {
+    width: 22.3%
+}
+.tab-bigdos {
+    width: 33%;
+}
 
 .two-tab:last-child,
 .three-tab:last-child {
