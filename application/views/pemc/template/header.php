@@ -68,7 +68,7 @@ color: white;
 	         <?php if (isset($director)): ?>
 	          <i class="fas fa-caret-right color-3"></i>&nbsp;<?=$director?><br>
 	         <?php endif ?>
-	         <a class="btn btn-secondary btn-sm mt-2" href="<?= site_url("Pemc/cerrar_sesion")?>">Cerrar Sesión</a>
+	         <a class="btn btn-a2 btn-sm mt-2" href="<?= site_url("Pemc/cerrar_sesion")?>">Cerrar Sesión</a>
 	        </div>
 	    </div>
 	</nav>

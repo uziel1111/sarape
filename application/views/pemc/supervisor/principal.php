@@ -8,7 +8,7 @@
       <div class="card-body">
         <?php if (isset($escuelas)): ?>
       	<div class="col-lg-12">
-      		<button type="button" id="btn-estadisticas"class="btn btn-primary"><i class="fas fa-chart-bar"></i>&nbsp;Estadísticas</button><br><br>
+      		<button type="button" id="btn-estadisticas"class="btn btn-a2"><i class="fas fa-chart-bar"></i>&nbsp;Estadísticas por zona</button><br><br>
           <table class="table table-hover" style="border:1px solid #dee2e6">
               <thead class="bgcolor-2 color-6">
                 <tr>

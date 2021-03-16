@@ -2737,3 +2737,15 @@ footer .footer-nav li a:hover {
 .info-box {
     padding: 13px;
 }
+
+
+/* Estandar de botones */
+.btn-a1 {
+    background-color: #17a2b8 !important;
+    color: white !important;
+}
+
+.btn-a2 {
+    background-color: #6c757d !important;
+    color: white !important;
+}

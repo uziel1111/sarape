@@ -143,7 +143,7 @@ background-color: rgba(0,0,0,1.0);
 
     <div class="row">
     <div class="col">
-    <a class="btn float-btn" href="#" role="button" data-toggle="modal" data-target="#T1_SARAPE_"><i class="far fa-play-circle"></i> Iniciar Sesión</a>
+    <!-- <a class="btn float-btn" href="#" role="button" data-toggle="modal" data-target="#T1_SARAPE_"><i class="far fa-play-circle"></i> Iniciar Sesión</a> -->
     </div>
 
     </div>

@@ -16,7 +16,7 @@
     <div class="col-md-3">
     </div>
 		<div class="col-md-2" style="margin-top:30px;margin-left: 10px;">
-   		<button type="button" id="btn-estadisticas_xjefsector"class="btn btn-primary"><i class="fas fa-chart-bar"></i>&nbsp;Estadísticas por Sector</button>
+   		<button type="button" id="btn-estadisticas_xjefsector"class="btn btn-a2"><i class="fas fa-chart-bar"></i>&nbsp;Estadísticas por Sector</button>
         </div>
    </div>
    <div id="vista_escuelas">

@@ -1,6 +1,6 @@
 <!-- Footer -->
 <!-- Start Cta Area -->
-        <section class="cta-area">
+        <!-- <section class="cta-area">
                 <div class="container">
                         <div class="row justify-content-center">
                                 <div class="col-lg-8 d-flex no-flex-xs justify-content-center align-items-center">
@@ -8,10 +8,10 @@
                                 </div>
                         </div>
                 </div>
-        </section>
+        </section> -->
         <!-- End Cta Area -->
-        <footer class="section-half">
-            <div class="container">
+        <footer  class="mt-4">
+            <!-- <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
                             <div class="single-footer-widget">
@@ -40,9 +40,9 @@ Teléfonos: (844) 411-8500, 411-8588, 411-8634 Fax. 414-7946</p>
                                     </div>
                             </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="footer-bottom d-flex justify-content-between align-items-center">
-                    <p class="footer-text m-0">Copyright &copy; 2018  |  Algunos derechos reservados.</p>
+                    <p class="footer-text m-0" style="color: white;">Copyright &copy; 2018  |  Algunos derechos reservados.</p>
                     <div class="footer-social d-flex align-items-center">
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                             <a href="#"><i class="fab fa-twitter"></i></a>

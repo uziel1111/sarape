@@ -46,18 +46,18 @@
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-1">
 				<?php if (count($objetivos) < 3 && (!$esta_cerrado_ciclo) && ($tipo_usuario=="escuela")): ?>
-					<button class="btn btn-primary" id="btn_crear_obj">Crear</button>
+					<button class="btn btn-a1" id="btn_crear_obj">Crear</button>
 				<?php endif ?>
 		    </div><!-- .col-xs-12 col-sm-12 col-md-2 -->
 		    <div class="col-xs-12 col-sm-12 col-md-1">
 					<?php if (($tipo_usuario=="escuela") && (!$esta_cerrado_ciclo)): ?>
-						<button class="btn btn-primary" id="btn_edita_obj">Editar</button>
+						<button class="btn btn-a2" id="btn_edita_obj">Editar</button>
 					<?php endif; ?>
 
 		    </div><!-- .col-xs-12 col-sm-12 col-md-2 -->
 		    <div class="col-xs-12 col-sm-12 col-md-1">
 					<?php if (($tipo_usuario=="escuela") && (!$esta_cerrado_ciclo)): ?>
-						<button class="btn btn-md btn-warning" id="btn_elimina_obj">Eliminar</button>
+						<button class="btn btn-md btn-a2" id="btn_elimina_obj">Eliminar</button>
 					<?php endif; ?>
 
 		    </div><!-- .col-xs-12 col-sm-12 col-md-2 -->
@@ -99,7 +99,7 @@
 				     <td class="text-center"><?= $objetivo['num_acciones']?></td>
 						 <td>
 							<?php if (($tipo_usuario=="escuela") && (!$esta_cerrado_ciclo)): ?>
-								<button title="Agregar acciones" class='btn btn-primary btn-block btn-sm' onclick='Objetivos.agreg_acciones(<?= $objetivo['idobjetivo']?>)'><i class="fa fa-plus" aria-hidden="true"></i></button>
+								<button title="Agregar acciones" class='btn btn-a2 btn-block btn-sm' onclick='Objetivos.agreg_acciones(<?= $objetivo['idobjetivo']?>)'><i class="fa fa-plus" aria-hidden="true"></i></button>
 							<?php else: ?>
 								<button title="No puede agregar acciones" class='btn btn-danger btn-block btn-sm'><i class="fa fa-ban" aria-hidden="true"></i></button>
 							<?php endif; ?>

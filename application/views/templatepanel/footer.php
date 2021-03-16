@@ -1,6 +1,6 @@
 <!-- Footer -->
 <!-- Start Cta Area -->
-        <section class="cta-area">
+        <!-- <section class="cta-area">
                 <div class="container">
                         <div class="row justify-content-center">
                                 <div class="col-lg-8 d-flex no-flex-xs justify-content-center align-items-center">
@@ -8,7 +8,7 @@
                                 </div>
                         </div>
                 </div>
-        </section>
+        </section> -->
         <!-- End Cta Area -->
         <footer class="section-half">
             <div class="container">

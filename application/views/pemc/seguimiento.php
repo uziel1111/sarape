@@ -15,13 +15,13 @@
       </div>
     </div>
       <?php endif; ?>
-      <div class="card bg-light mb-3">
+      <div class="card bg-light mb-3 mt-2">
         <div class="card-header" style="background-color: #FFCC80; ">
           <div class="row">
-            <b>Objetivo:</b> <?=$value['objetivo'];?>
+            <b style="font-size:20px">Objetivo:</b> <?=$value['objetivo'];?>
           </div>
           <div class="row">
-            <b>Meta(s): </b> <?=$value['meta'];?>
+            <b  style="font-size:20px">Meta(s): </b> <?=$value['meta'];?>
           </div>
         </div>
         <div class="card-body">
@@ -79,7 +79,7 @@
                           <br>
                           <div class="row">
                             <div class="col  text-center">
-                              <button type="button" onclick="Seguimiento_pemc.ver_avance(<?=$value['idaccion']?>)" class="btn btn-info">Ver historial</button>
+                              <button type="button" onclick="Seguimiento_pemc.ver_avance(<?=$value['idaccion']?>)" class="btn btn-a2">Ver historial</button>
                             </div>
                           </div>
                         </td>

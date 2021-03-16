@@ -10,11 +10,11 @@
     </div>
    <textarea class="form-control in_diag" name="in_diag" id="in_diag" rows="18" required <?=((($tipo_usuario=="escuela") && $es_inicio && (!$esta_cerrado_ciclo))?'':'disabled')?>><?=$diagnostico?></textarea>
    <?php if ($tipo_usuario=="escuela" && $es_inicio && (!$esta_cerrado_ciclo)): ?>
-     <button class="btn btn-primary my-1  float-right" id="btn_guardar_diagnostico_pemc">Grabar</button>
+     <button class="btn btn-a1 my-1  float-right" id="btn_guardar_diagnostico_pemc">Grabar</button>
    <?php endif; ?>
 
   </form>
-  <a href="<?= base_url('index.php/Pemc/reporte_detalle/').$idpemc ?>" target="_blank"><button class="btn btn-primary">Imprima Diagnóstico</button></a>
+  <a href="<?= base_url('index.php/Pemc/reporte_detalle/').$idpemc ?>" target="_blank"><button class="btn btn-a2">Imprima Diagnóstico</button></a>
 </div>
 <script type="text/javascript">
 $(function() {

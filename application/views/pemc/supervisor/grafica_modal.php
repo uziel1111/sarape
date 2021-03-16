@@ -1,12 +1,11 @@
 <div>
- <br>
- <div id="columnchart_material_super" class="float-left"></div>
- <div id="columnchart_material_acciones_super"  class="float-right"></div>
- <br>
+ <div id="columnchart_material_super" class="float-left mt-4"></div>
+ <div id="columnchart_material_acciones_super"  class="float-right mt-4"></div>
+
 </div>
 
-<div class="col-md-12 table-responsive" >
- <div class="d-flex justify-content-center float-none">
+<div class="col-md-12 table-responsive mt-4" >
+ <div class="d-flex justify-content-center float-none mt-4">
   <p>
     <b>LAE-1 </b>EQUIPAMIENTO E INFRAESTRUCTURA DE ALTA CALIDAD <br>
     <b>LAE-2 </b>ASEGURAR ALTOS ÍNDICES DE APRENDIZAJES A TODA LA POBLACIÓN EDUCATIVA <br>
