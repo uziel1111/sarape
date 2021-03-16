@@ -805,8 +805,10 @@ EOT;
 		$pdf->CreateTextBox($cve_centro, 229, 8, 180, 10, 9, '', 'L');
 		$long_nombre=strlen($str_nombre);
 		$pdf->MultiCell(0, 12, $str_nombre, 0, 'L', 0, 0, 255, 16, true);
-		if ($long_nombre>=20){
+		if ($long_nombre>=17 && $long_nombre<=44){
 			$y=$pdf->GetY()+12;
+		}else if($long_nombre >=45 ){
+            $y=$pdf->GetY()+20;
 		}
 		else {
 			$y=$pdf->GetY()+3;
