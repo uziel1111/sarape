@@ -70,6 +70,9 @@
 		<input type="hidden" id="txt_numero_objetivos_creados" value="<?= count($objetivos)?>">
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12">
+			<?php if(count($objetivos) == 0) { ?>
+				<div class="alert alert-info">Escuela sin actividad de PEMC</div>
+			<?php } else { ?>
 		      <table class="table table-bordered" id="id_tabla_objetivos_pemc">
 				  <thead>
 				  	<tr>
@@ -156,6 +159,7 @@
 				  <?php endforeach ?>
 				  </tbody>
 				</table>
+				<?php } ?>
 		    </div><!-- .col-xs-12 col-sm-12 col-md-2 -->
 
 		</div>

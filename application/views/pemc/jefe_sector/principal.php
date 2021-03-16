@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
   	<div class="col-lg-12 row">
-		<div class="col-md-6 form-group form-group-style-1 ">
+		<div class="col-md-6 form-group form-group-style-1 "  style="margin-left: 13px">
 			<label for="slct_supervision">Seleccione la supervisión</label>
 			 <select id="slct_supervision" class="form-control">
 			 	 <option value="0">Seleccione...</option>
@@ -13,8 +13,10 @@
                 <?php endforeach; ?>
 			</select>
 		</div>
-		<div class="col-md-4" style="margin-top:30px">
-   		<button type="button" id="btn-estadisticas_xjefsector"class="btn btn-primary"><i class="fas fa-chart-bar"></i>&nbsp;Estadísticas</button>
+    <div class="col-md-3">
+    </div>
+		<div class="col-md-2" style="margin-top:30px;margin-left: 10px;">
+   		<button type="button" id="btn-estadisticas_xjefsector"class="btn btn-primary"><i class="fas fa-chart-bar"></i>&nbsp;Estadísticas por Sector</button>
         </div>
    </div>
    <div id="vista_escuelas">

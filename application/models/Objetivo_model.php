@@ -9,7 +9,7 @@ class Objetivo_model extends CI_Model
     }
 
     function get_objetivos_x_idpemc($idpemc){
-    	$str_query = "SELECT obj.*, COUNT(acc.idaccion) AS num_acciones FROM r_pemc_objetivo obj
+    	$str_query = "SELECT obj.*, substring(obj.fcreacion, 1,10) as fcreacion, COUNT(acc.idaccion) AS num_acciones FROM r_pemc_objetivo obj
         LEFT JOIN r_pemc_objetivo_accion acc ON acc.idobjetivo = obj.idobjetivo
         WHERE idpemc = ?
         GROUP BY obj.idobjetivo
