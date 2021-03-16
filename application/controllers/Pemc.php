@@ -593,6 +593,15 @@ class Pemc extends CI_Controller {
 					$pdf->SetAutoPageBreak(FALSE, 0);
 					$y2=52;
 				}
+				$pdf->SetTextColor(0,0,0);
+					$pdf->SetFont('arial', '', 8);
+					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "", $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+					$y2=$y2+2;
+					if ($y2>=200) {
+						$this->pinta_encabezado_pemc($pdf,$datos_escuela);
+						$pdf->SetAutoPageBreak(FALSE, 0);
+						$y2=52;
+					}
 
 				$pdf->SetTextColor(0,0,0);
 		  	$pdf->SetFont('arialb', '', 10);
@@ -608,6 +617,7 @@ class Pemc extends CI_Controller {
 						}
 
 						</style>
+
 							<table style="padding: 7px; border-left: 40px; border-right: 40px; border-top: 40px; border-bottom: 40px;">
 						<tr style="background-color:#414143">
 							<td style="text-align:center" width="5%" height="28px"><font color="white"><b>#</b></font></td>
