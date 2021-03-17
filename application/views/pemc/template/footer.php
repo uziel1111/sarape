@@ -10,7 +10,7 @@
                 </div>
         </section> -->
         <!-- End Cta Area -->
-        <footer  class="section-footer-small" >
+        <footer  class="section-footer-small" id="footer">
          <div class="container">
                  <!--<div class="row">
                     <div class="col-lg-3">
