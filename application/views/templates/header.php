@@ -126,7 +126,7 @@
                                   Docentes
                               </a>
                               <div class="dropdown-menu dropdown-menu-right ddm-color-2" aria-labelledby="navbarDropdownMenuLink">
-                                  <a class="dropdown-item hcolor-2" href="<?= base_url('index.php/Rutademejora/index'); ?>" target="_blank">Programa Escolar de Mejora Continua</a>
+                                  <a class="dropdown-item hcolor-2" href="<?= base_url('index.php/Pemc/index'); ?>" target="_blank">Programa Escolar de Mejora Continua</a>
 
                                   <a class="dropdown-item hcolor-2"  href="<?= base_url('index.php/cuda'); ?>"  target="_blank">Catálogo Único de Documentos Autorizados (CUDA)</a>
                                   <a class="dropdown-item hcolor-2" href="http://servicioprofesionaldocente.sep.gob.mx/" target="_blank">Servicio Profesional Docente</a>

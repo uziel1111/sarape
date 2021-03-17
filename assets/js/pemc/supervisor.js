@@ -43,8 +43,10 @@ $(document).on("click","#btn-estadisticas",function(){
      swal.close();
     $('#contenido-estadisticas').html(data.str_view_super);
      $('#modal_estadisticas').modal('show');
+     setTimeout(function(){ 
      graficaBarObj_super(data.grafica_super); 
      graficaBarAcc_super(data.grafica_super); 
+      }, 1000);
   })
   .fail(function() {
     console.log("error");
@@ -87,6 +89,8 @@ function graficaBarObj_super(objetivos) {
         var chart = new google.charts.Bar(document.getElementById('columnchart_material_super'));
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
+ 
+
       }
      } 
 function graficaBarAcc_super(acciones) {

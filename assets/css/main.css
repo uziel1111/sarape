@@ -766,6 +766,11 @@ th {
 .section-half {
     padding: 75px 0;
 }
+.section-footer-small {
+    padding: 25px 0;
+    margin-top: 17.5%;
+}
+
 
 .flex {
     display: -webkit-box;

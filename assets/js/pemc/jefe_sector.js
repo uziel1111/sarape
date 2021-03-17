@@ -40,8 +40,10 @@ $(document).on("click","#btn-estadisticas_xjefsector",function(){
      swal.close();
     $('#contenido-estadisticas_xjefsector').html(data.str_view_jefsector);
     $('#modal_estadisticas_xjefsector').modal('show');
+      setTimeout(function(){ 
      graficaBarObj_jefsector(data.grafica_jefsector); 
      graficaBarAcc_jefsector(data.grafica_jefsector); 
+     }, 1000);
   })
   .fail(function() {
     console.log("error");

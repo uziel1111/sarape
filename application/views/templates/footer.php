@@ -1,5 +1,5 @@
 <!-- Start Cta Area -->
-        <section class="cta-area">
+        <!--<section class="cta-area">
                 <div class="container">
                         <div class="row justify-content-center">
                                 <div class="col-lg-8 d-flex no-flex-xs justify-content-center align-items-center">
@@ -7,11 +7,11 @@
                                 </div>
                         </div>
                 </div>
-        </section>
+        </section>-->
         <!-- End Cta Area -->
-        <footer class="section-half">
+        <footer class="section-footer-small">
             <div class="container">
-                <div class="row">
+               <!-- <div class="row">
                     <div class="col-lg-3">
                             <div class="single-footer-widget">
                                 <div class="col-lg-8 d-flex no-flex-xs justify-content-center align-items-center">
@@ -39,16 +39,17 @@ Teléfonos: (844) 411-8500, 411-8588, 411-8634 Fax. 414-7946</p>
                                     </div>
                             </div>
                     </div>
-                </div>
-                <div class="footer-bottom d-flex justify-content-between align-items-center">
-                    <p class="footer-text m-0">Copyright &copy; 2018  |  Algunos derechos reservados.</p>
+                </div>-->
+              <div class=" d-flex justify-content-between align-items-center">
+                    <p class="footer-text m-0"  style="color: white;">Copyright &copy; 2018  |  Algunos derechos reservados.</p>
                     <div class="footer-social d-flex align-items-center">
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                             <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
-                </div>
+                </div>   
             </div>
         </footer>
+               
         <!-- Scripts  -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
         <script src="<?= base_url('assets/js/jquery.sticky.js'); ?>"></script>
