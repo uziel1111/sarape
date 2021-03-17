@@ -273,8 +273,8 @@ iframe {
 
 .btn-login:hover {
   color: #fff;
-  background: #ff0000;
-  border: 2px solid #b30000;
+  background: #17a2b8;
+  border: 2px solid #138a9b;
   box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.5);
