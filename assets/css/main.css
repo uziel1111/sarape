@@ -40,6 +40,20 @@
 
 /* color-6: #f7f7f7;   */
 
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+#footer {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 60px;
+    width: 100%;
+    padding-top: 18px;
+}
+
 .dv_flotante {
     position: fixed;
     top: 3% !important;
@@ -90,7 +104,7 @@ body {
     font-family: 'Fira Sans Condensed', sans-serif !important;
     font-size: 16px;
     line-height: 1.5em;
-    position: relative;
+    margin-bottom: 60px;
 }
 
 ol,
@@ -766,11 +780,6 @@ th {
 .section-half {
     padding: 75px 0;
 }
-.section-footer-small {
-    padding: 25px 0;
-    margin-top: 17.5%;
-}
-
 
 .flex {
     display: -webkit-box;
@@ -912,6 +921,10 @@ th {
     right: 0;
     top: 0;
     bottom: 0;
+}
+
+.main-container {
+    margin-bottom: 120px;
 }
 
 .container.fullwidth {
@@ -2685,9 +2698,11 @@ footer .footer-nav li a:hover {
     width: 25%;
     /* margin-right: .5%; */
 }
+
 .tab-graldos {
     width: 22.3%
 }
+
 .tab-bigdos {
     width: 33%;
 }
@@ -2751,6 +2766,7 @@ footer .footer-nav li a:hover {
 
 
 /* Estandar de botones */
+
 .btn-a1 {
     background-color: #17a2b8 !important;
     color: white !important;
@@ -2760,11 +2776,3 @@ footer .footer-nav li a:hover {
     background-color: #6c757d !important;
     color: white !important;
 }
-
-#footer {
-    position:fixed;
-    left:0px;
-    bottom:0px;
-    height:60px;
-    width:100%;
- }
