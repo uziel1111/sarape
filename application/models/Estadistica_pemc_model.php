@@ -374,27 +374,19 @@ ORDER BY l1.id_region;";
 
 
     $query = "SELECT
-    SUM(tl1.total_objetivos) AS obj,
-    SUM(tl1.total_acciones) AS acc,
-    tl1.LAE
-FROM
-    (SELECT
-        COUNT(DISTINCT ro.idobjetivo) AS total_objetivos,
-            COUNT(DISTINCT roa.idaccion) AS total_acciones,
-            laes.idlae AS LAE,
-            m.municipio,
-            r.region,
-            r.id_region
+    COUNT(DISTINCT ro.idobjetivo)AS obj,
+    COUNT(DISTINCT roa.idaccion) AS acc,
+    laes.idlae AS LAE
     FROM
         municipio m
     INNER JOIN vista_cct e ON e.municipio = m.id_municipio
-		INNER JOIN turno_temp t ON e.turno = t.idturno
+    INNER JOIN turno_temp t ON e.turno = t.idturno
     INNER JOIN region r ON m.id_region = r.id_region
-		INNER JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
-		INNER JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
-		INNER JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
-		LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
-		LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
+    INNER JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+    INNER JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+    INNER JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+    LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
+    LEFT JOIN c_pemc_laes laes  ON am.idlae = laes.idlae
     WHERE
         (status = 1 OR status = 4)
             AND e.cct NOT LIKE '05FUA%'
@@ -402,8 +394,7 @@ FROM
             {$where_nivel}
             {$where_region}
             {$where_municipio}
-            GROUP BY e.municipio , laes.idlae) AS tl1
-        GROUP BY tl1.LAE";
+            GROUP BY laes.idlae";
         // echo "<pre>";print_r($query);die();
 return $this->db->query($query)->result_array();
   }
@@ -506,9 +497,7 @@ function get_zonas($sostenimiento, $nivel){
         $where_sostenimiento = ' ';
     }
     $str_query = "SELECT
-
-    e.zona_escolar
-
+    DISTINCT(e.zona_escolar)
     FROM
     vista_cct e
     INNER JOIN turno_temp t ON e.turno = t.idturno
@@ -524,7 +513,6 @@ function get_zonas($sostenimiento, $nivel){
             AND !ISNULL(e.zona_escolar)
     {$where_nivel}
     {$where_sostenimiento}
-    GROUP BY  e.zona_escolar
     ORDER BY e.zona_escolar ASC";
     return $this->db->query($str_query)->result_array();
  }
@@ -780,43 +768,31 @@ function get_zonas($sostenimiento, $nivel){
      }
     $query = "SELECT
     mastert.id_municipio, mastert.municipio, mastert.n_escxmuni,
-    captobj.esc_que_capt, captobj.porcentaje,
+    mastert.esc_que_capt, mastert.porcentaje,
     IFNULL(x0.esc_que_capt0,0) as esc_con0obj, IFNULL(x1.esc_que_capt1,0) as esc_con1obj,
     IFNULL(x2.esc_que_capt23,0) as esc_con2y3obj,IFNULL(x3.esc_que_captmay4,0) as esc_conmasde4obj
     FROM
     (
-        SELECT
-        m.id_municipio, m.municipio, COUNT(DISTINCT CONCAT(e.cct, t.idfederal)) n_escxmuni
-        FROM municipio m
-         INNER JOIN vista_cct e ON m.id_municipio = e.municipio
-         INNER JOIN turno_temp t ON e.turno = t.idturno
-        WHERE (e.status = 1 OR e.status = 4)
-  AND e.desc_nivel_educativo <> 'INICIAL'
-  AND e.cct NOT LIKE '05FUA%'
-        AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
-        {$where_m}
-        {$where_s}
-        GROUP BY m.id_municipio
+    SELECT
+    m.id_municipio,
+    m.municipio, 
+    COUNT(DISTINCT CONCAT(e.cct, t.idfederal)) n_escxmuni,
+    COUNT(DISTINCT ro.idpemc) as esc_que_capt,
+    ROUND(IF(COUNT(DISTINCT ro.idpemc)=0,0,(COUNT(DISTINCT ro.idpemc)*100)/COUNT(DISTINCT CONCAT(e.cct,t.idfederal))),1) as porcentaje
+    FROM municipio m
+    INNER JOIN vista_cct e ON m.id_municipio = e.municipio
+    INNER JOIN turno_temp t ON e.turno = t.idturno
+    LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+    LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+    WHERE (e.status = 1 OR e.status = 4)
+    AND e.desc_nivel_educativo <> 'INICIAL'
+    AND e.cct NOT LIKE '05FUA%'
+    AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+    {$where_m}
+    {$where_s}
+     GROUP BY m.id_municipio
     ) as mastert
-    INNER JOIN
-    (
-        SELECT
-		m.id_municipio,
-		COUNT(DISTINCT ro.idpemc) as esc_que_capt,
-		ROUND(IF(COUNT(DISTINCT ro.idpemc)=0,0,(COUNT(DISTINCT ro.idpemc)*100)/COUNT(DISTINCT CONCAT(e.cct,t.idfederal))),1) as porcentaje
-		FROM municipio m
-		INNER JOIN vista_cct e ON m.id_municipio = e.municipio
-		INNER JOIN turno_temp t ON e.turno = t.idturno
-		LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
-		LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
-		WHERE (e.status = 1 OR e.status = 4)
-			AND e.desc_nivel_educativo <> 'INICIAL'
-			AND e.cct NOT LIKE '05FUA%'
-			AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
-      {$where_m}
-      {$where_s}
-						GROUP BY m.id_municipio
-    ) captobj on mastert.id_municipio = captobj.id_municipio
+    
     LEFT JOIN
     (
         SELECT
@@ -824,13 +800,12 @@ function get_zonas($sostenimiento, $nivel){
         FROM
         (
         SELECT
-        m.id_municipio, CONCAT(e.cct,t.idfederal) as cct,
-        COUNT(DISTINCT ro.idobjetivo)
+        m.id_municipio, CONCAT(e.cct,t.idfederal) as cct
         FROM municipio m
-				INNER JOIN vista_cct e ON m.id_municipio = e.municipio
+        INNER JOIN vista_cct e ON m.id_municipio = e.municipio
         INNER JOIN turno_temp t ON e.turno = t.idturno
-				LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
-				LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+        LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+        LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
         WHERE (e.status = 1 OR e.status = 4)
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
@@ -850,13 +825,13 @@ function get_zonas($sostenimiento, $nivel){
         FROM
         (
         SELECT
-        m.id_municipio, CONCAT(e.cct,t.idfederal) as cct,
-        COUNT(DISTINCT ro.idobjetivo)
+        m.id_municipio, 
+        CONCAT(e.cct,t.idfederal) as cct
         FROM municipio m
-				INNER JOIN vista_cct e ON m.id_municipio = e.municipio
+        INNER JOIN vista_cct e ON m.id_municipio = e.municipio
         INNER JOIN turno_temp t ON e.turno = t.idturno
-				LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
-				LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+        LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+        LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
         WHERE (e.status = 1 OR e.status = 4)
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
@@ -876,13 +851,13 @@ function get_zonas($sostenimiento, $nivel){
         FROM
         (
         SELECT
-        m.id_municipio, CONCAT(e.cct,t.idfederal) as cct,
-        COUNT(DISTINCT ro.idobjetivo)
+        m.id_municipio,
+        CONCAT(e.cct,t.idfederal) as cct       
         FROM municipio m
-				INNER JOIN vista_cct e ON m.id_municipio = e.municipio
+        INNER JOIN vista_cct e ON m.id_municipio = e.municipio
         INNER JOIN turno_temp t ON e.turno = t.idturno
-				LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
-				LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+        LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+        LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
         WHERE (e.status = 1 OR e.status = 4)
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
@@ -902,13 +877,13 @@ function get_zonas($sostenimiento, $nivel){
         FROM
         (
         SELECT
-        m.id_municipio, CONCAT(e.cct,t.idfederal) as cct,
-        COUNT(DISTINCT ro.idobjetivo)
+        m.id_municipio, 
+        CONCAT(e.cct,t.idfederal) as cct
         FROM municipio m
-				INNER JOIN vista_cct e ON m.id_municipio = e.municipio
+        INNER JOIN vista_cct e ON m.id_municipio = e.municipio
         INNER JOIN turno_temp t ON e.turno = t.idturno
-				LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
-				LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+        LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+        LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
         WHERE (e.status = 1 OR e.status = 4)
   AND e.desc_nivel_educativo <> 'INICIAL'
   AND e.cct NOT LIKE '05FUA%'
