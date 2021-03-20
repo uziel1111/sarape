@@ -1,9 +1,12 @@
 $('#nivel_educativo_grid_general').change(function() {
+	$('#modaliad_educativo_grid_general option:selected').val(0);
+	$('#sostenimiento_educativo_grid_general option:selected').val(0);
 	Notification.loading("");
 	getEstadistica();
 
 });
 $('#modaliad_educativo_grid_general').change(function() {
+	$('#sostenimiento_educativo_grid_general option:selected').val(0);
 	Notification.loading("");
 	getEstadistica();
 
@@ -69,6 +72,7 @@ $('#sostenimiento_zona').change(function() {
 });
 
 $('#nivel_educativo_zona').change(function() {
+	$('#zona_zona option:selected').val(0);
 	Notification.loading("");
 	getTablaZona();
 });

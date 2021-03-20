@@ -14,7 +14,7 @@
    municipio = $('#municipio_LAE option:selected').val();
    sostenimiento = $('#sostenimiento_LAE option:selected').val();
    zona = $('#zona_LAE option:selected').val();
-
+ 
    if (nivel == undefined) {
     nivel = 0;
 }
@@ -52,6 +52,7 @@ $.ajax({
     $('#nivel_educativo_LAE').val(nivel);
     $('#region_LAE').val(region);
     $('#municipio_LAE').val(municipio);
+
     if (region != 0 || municipio != 0) {
         $('#nivel_educativo_LAE').val(nivel);
         $('#municipio_LAE').removeAttr('disabled');

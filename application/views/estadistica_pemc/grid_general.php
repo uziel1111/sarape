@@ -22,7 +22,7 @@
 		<div class="col-md-4 form-group form-group-style-1 ">
 			<label for="sostenimiento_educativo_grid_general">Seleccione un sostenimiento</label>
 			 <select id="sostenimiento_educativo_grid_general" class="form-control">
-				 <option value="0">Todos los sostenimeinto</option>
+				 <option value="0">Todos los sostenimientos</option>
 				 <?php foreach ($sostenimiento as $key => $value) { ?>
 					 <option value="<?= $value['idsostenimiento'] ?>"><?= $value['sostenimiento'] ?></option>
 				 <?php } ?>
