@@ -374,27 +374,35 @@ ORDER BY l1.id_region;";
 
 
     $query = "SELECT
-    COUNT(DISTINCT ro.idobjetivo)AS obj,
-    COUNT(DISTINCT roa.idaccion) AS acc,
-    laes.idlae AS LAE
+    IFNULL(tlae.objetivos,0) as obj, 
+    IFNULL(tlae.acciones,0) as acc,
+    l.idlae as LAE
+    FROM c_pemc_laes l
+    LEFT JOIN (
+    SELECT
+      COUNT(DISTINCT ro.idobjetivo)AS objetivos,
+      COUNT(DISTINCT roa.idaccion) AS acciones,
+      laes.idlae AS LAE
     FROM
         municipio m
-    INNER JOIN vista_cct e ON e.municipio = m.id_municipio
-    INNER JOIN turno_temp t ON e.turno = t.idturno
-    INNER JOIN region r ON m.id_region = r.id_region
-    INNER JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
-    INNER JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
-    INNER JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
-    LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
-    LEFT JOIN c_pemc_laes laes  ON am.idlae = laes.idlae
+        INNER JOIN vista_cct e ON e.municipio = m.id_municipio
+        INNER JOIN turno_temp t ON e.turno = t.idturno
+        INNER JOIN region r ON m.id_region = r.id_region
+        INNER JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+        INNER JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+        INNER JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+        LEFT JOIN c_pemc_ambito am ON FIND_IN_SET(am.idambito, roa.idambitos) > 0
+        LEFT JOIN c_pemc_laes laes  ON am.idlae = laes.idlae
     WHERE
-        (status = 1 OR status = 4)
-            AND e.cct NOT LIKE '05FUA%'
-            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR')
-            {$where_nivel}
-            {$where_region}
-            {$where_municipio}
-            GROUP BY laes.idlae";
+      (status = 1 OR status = 4)
+      AND e.cct NOT LIKE '05FUA%'
+      AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR')
+       {$where_nivel}
+       {$where_region}
+       {$where_municipio}
+      GROUP BY laes.idlae)
+    as tlae ON l.idlae =tlae.LAE
+    WHERE l.idlae!=6 AND l.idlae!=7";
         // echo "<pre>";print_r($query);die();
 return $this->db->query($query)->result_array();
   }
