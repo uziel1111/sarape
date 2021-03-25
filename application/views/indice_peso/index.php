@@ -113,7 +113,8 @@
 							<p>Chécate y prevé, acude con tu médico incluso si no tienes ninguna molestia. Es mucho más fácil prevenir que remediar. Localiza tu clínica más cercana. Para mas información visita:
 							</p>
 							<p class="text-center">
-							<a class="btn btn-lg btn-success btn-style-1" href="http://checatemidetemuevete.gob.mx/" target="_blank"><i class="fas fa-heartbeat"></i> Chécate, Mídete, Muévete</a>
+
+							<a class="btn btn-success btn-style-1" href="http://checatemidetemuevete.gob.mx/" target="_blank"><i class="fas fa-heartbeat"></i> Chécate, Mídete, Muévete</a>
 							</p>
 						</div>
 					</div>
@@ -121,6 +122,8 @@
 				<a href="<?= base_url('assets/img/bmi-and-obesity.jpg'); ?>">
 					<img src="<?= base_url('assets/img/bmi-and-obesity.jpg'); ?>" class="img-fluid" alt="Responsive image"/></a>
 			</div>
+
+
 			<div class="tab-pane fade" id="nav-ayuda" role="tabpanel" aria-labelledby="nav-ayuda-tab">
 				<div class="card bg-light mb-3">
 					<div class="card-header"><span class="badge badge-secondary h5 text-white">1.</span> ¿Qué es el índice de masa corporal?</div>
@@ -135,6 +138,8 @@
 					</div>
 				</div>
 			</div>
+
+
 		</div>
 	</div>
 </div>

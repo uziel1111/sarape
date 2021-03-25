@@ -296,7 +296,7 @@ Info_esc.prototype.get_prog_apoyo =function(){
     var str_view_table='';
 
     str_view_table+="<div class='col'>";
-    str_view_table+="<div class='table-responsive'>";
+    str_view_table+="<div class='table-responsive' style='width:700px'>";
 
     str_view_table+="<table id='tabla_planea' class='table table-gray table-hover'>";
     str_view_table+="<thead>";

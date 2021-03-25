@@ -63,7 +63,7 @@
 						<div class="card-body text-justify">
 						<div class="row">
 				<div class="col-md-6">
-					<a class="card-text text-justify"><button type="button" onclick="consultaNivel()" class="btn btn-secondary btn-lg btn-block">Consultar por Nivel</button>
+					<a class="card-text text-justify"><button type="button" onclick="consultaNivel()" class="btn btn-secondary btn-lg btn-block btn-desbord">Consultar por Nivel</button>
 						<div class="row" id="selectEducativo" hidden="true" style="background-color: rgba(0,0,0,0.1); margin: 0 4px 0 4px; border-radius: 0 0 20px 20px;">
 						<div class="col-lg-6 mt-4">
 						<div class="form-group form-group-style-1">	
@@ -103,7 +103,7 @@
 					<input type="text" hidden="true" id="selectinput">			
 				</div>
 				<div class="col-md-6">
-					<a class="card-text text-justify"><button type="button" onclick="consultaSubsecretaria()" class="btn btn-secondary btn-lg btn-block">Consultar Por Dirección de Área</button>
+					<a class="card-text text-justify"><button type="button" onclick="consultaSubsecretaria()" class="btn btn-secondary btn-lg btn-block btn-desbord">Consultar Por Dirección de Área</button>
 				</div>	
 				</div>
 				</div>				

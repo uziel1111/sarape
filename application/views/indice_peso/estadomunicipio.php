@@ -2,6 +2,9 @@
 	.margintop35{
 	  margin-top: 25px;
 	}
+    .margintop10{
+    margin-top: 25px;
+  }
 
 </style>
 <div class="container">
@@ -31,7 +34,7 @@
 	</div>
 	
 
-	<div id="contenedor_de_vista_g"></div>
+	<div id="contenedor_de_vista_g" class="margintop10"></div>
 
 	
 </div>

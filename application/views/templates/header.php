@@ -105,6 +105,7 @@
                                   <a class="dropdown-item hcolor-3" href="http://www.escuelatransparente.gob.mx/transparencia/concursos.php" target="_blank">Cursos y convocatorias</a>
                               </div>
                           </li>
+
                                 <li class="nav-item dropdown">
                                     <a class="nav-link hcolor-1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       Estadística e indicadores
@@ -121,6 +122,7 @@
                                     <a class="dropdown-item hcolor-1" href="<?= base_url('index.php/Planea/index'); ?>">Resultados estatales de PLANEA</a>
                                 </div>
                             </li>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link hcolor-2" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Docentes

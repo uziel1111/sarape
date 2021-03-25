@@ -18,19 +18,20 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
-							<li class="list-group-item"><a class="fw800 fz-16" onclick="Index.getAprendeencasa()" href="javascript:void(0)"><span class="color-3"><i class="fas fa-star"></i></span> Aprende en Casa <span class="h4 text-white badge badge-secondary bgcolor-3">Nuevo</span>
-									<a style="color:grey; padding-left: 10%;" onclick="Index.getAprendeencasa()" href="javascript:void(0)"><span class="h6 text-white badge badge-secondary bgcolor-3"><i class="fas fa-user"></i></span> <b>Programación T.V.</b>
+							<li class="list-group-item"><a class="fw800 fz-16" onclick="Index.getAprendeencasa()" href="javascript:void(0)"><span class="color-3"><i class="fas fa-star"></i></span>&nbsp; &nbsp;Aprende en Casa <span class="h4 text-white badge badge-secondary bgcolor-3">Nuevo</span>
+							</a><br/>
+									<a class="fw800 fz-16" style="padding-left: 30px"onclick="Index.getAprendeencasa()" href="javascript:void(0)"><span class="h6 text-white badge badge-secondary bgcolor-3"><i class="fas fa-user"></i></span> Programación T.V.
 									</a>
 							</li>
 							<!-- <li class="list-group-item"><a class="fw800 fz-16" href="https://sarape-conectados.mx/Alumno/login" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Conectados para aprender
 									<a style="color:grey; padding-left: 10%;" href="https://sarape-conectados.mx/Alumno/login" target="_blank"><span class="h6 text-white badge badge-secondary bgcolor-3"><i class="fas fa-user"></i></span> <b>Ingreso para Estudiantes</b>
 									</a>
 							</li> -->
-							<li class="list-group-item" id="conecados_aprender"><a class="fw800 fz-16" href=""><span class="color-3"><i class="fas fa-star"></i></span> Conectados para aprender
-									<a style="color:grey; padding-left: 10%;"></a>
+							<li class="list-group-item" id="conecados_aprender"><a class="fw800 fz-16" href=""><span class="color-3"><i class="fas fa-star"></i></span>&nbsp; &nbsp; Conectados para aprender
+									<a style="color:grey; padding-left:20px;"></a>
 							</li>
-							<li class="list-group-item"><a class="fw800 fz-16" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Educación en casa <span class="h4 text-white badge badge-secondary bgcolor-3">Nuevo</span>
-									<a style="color:grey; padding-left: 10%;" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><b>Protégete del Coronavirus</b>
+							<li class="list-group-item"><a class="fw800 fz-16" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span>&nbsp; &nbsp;Educación en casa <span class="h4 text-white badge badge-secondary bgcolor-3">Nuevo</span></a><br/>
+									<a class="fw800 fz-16"style="padding-left:30px;" href="https://www.seducoahuila.gob.mx/educacionencasa/" target="_blank">Protégete del Coronavirus
 									</a>
 							</li>
 							<!-- <li class="list-group-item"><a onclick="Index.getguiaparapadres()" href="javascript:void(0)"><span class="color-3"><i class="material-icons">chevron_right</i></span> Guía para padres de familia</a> -->
@@ -44,8 +45,10 @@
 							<!-- <li class="list-group-item"><a href="https://www.seducoahuila.gob.mx/sebuscanvalientes/" target="_blank"><span class="color-3"><i class="fas fa-star"></i></span> Alto al acoso escolar <i>(bullying)</i></a> -->
 							</li>
 							<li class="list-group-item">
-								<a href="https://proyectoeducativo.org" target="_blank" style=" font-size:13px"><span class="color-3"><i class="fas fa-star"></i></span>Recursos de apoyo para el aprendizaje</a>
-							</li>
+								<a href="https://proyectoeducativo.org/Compartimos/" target="_blank"  class="fw800 fz-16"><span class="color-3"><i class="fas fa-star"></i></span>&nbsp; &nbsp;Recursos de apoyo para el</a><br/>
+									<a class="fw800 fz-16" style="padding-left: 30px"href="https://proyectoeducativo.org/Compartimos/" target="_blank">aprendizaje
+									</a>
+								
 							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/juegos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Juegos y aplicaciones educativas</a></li> -->
 							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/correo.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Ingresa a tu correo electronico</a></li> -->
 							<!-- <li class="list-group-item"><a href="http://www.escuelatransparente.gob.mx/transparencia/concursos.php" target="_blank"><span class="color-3"><i class="material-icons">face</i></span> Cursos y convocatorias</a></li> -->
@@ -64,8 +67,8 @@
 					<div class="card-body">
 						<!-- List group -->
 						<ul class="list-group">
-							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/aprovechamiento_escolar/'); ?>"><span class="color-1 mr-5"><i class="fas fa-star"></i></span>Aprovechamiento</a><br>
-							 <a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/aprovechamiento_escolar/'); ?>"><b>escolar</b> <span class="h4 text-white badge badge-secondary bgcolor-1">Nuevo</span>
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/aprovechamiento_escolar/'); ?>"><span class="color-1 mr-5"><i class="fas fa-star"></i></span>&nbsp; &nbsp;Aprovechamiento</a><br>
+							 <a style="color:grey; padding-left:30px;" href="<?= base_url('index.php/aprovechamiento_escolar/'); ?>"><b>escolar</b> <span class="h4 text-white badge badge-secondary bgcolor-1">Nuevo</span>
 								</a>
 							</li>
 							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Indicepeso/index'); ?>"><span class="color-1 mr-5"><i class="material-icons">report</i></span> Índice de peso</a></li>
@@ -75,8 +78,9 @@
 							<li class="list-group-item"><a href="<?= base_url('index.php/Busqueda_xlista/index'); ?>"><span class="color-1"><i class="material-icons">location_city</i></span> Por escuela</a></li>
 							<!-- <li class="list-group-item"><a href="<?= base_url('index.php/Mapa/busqueda_x_mapa'); ?>"><span class="color-1"><i class="material-icons">my_location</i></span> Localiza tu escuela</a></li> -->
 							<!-- <li class="list-group-item"><a href="<?= base_url('index.php/Riesgo/riesgo_x_muni_zona'); ?>"><span class="color-1"><i class="material-icons">report</i></span> Riesgo de abandono</a></li> -->
-							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Planea/index'); ?>" target="_blank"><span class="color-1"><i class="material-icons">insert_chart</i></span> Resultados estatales de
-									<a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/Planea/index'); ?>" target="_blank"><b>PLANEA</b> <span class="h4 text-white badge badge-secondary bgcolor-1">Nuevo</span></a></li>
+							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Planea/index'); ?>" target="_blank"><span class="color-1"><i class="material-icons">insert_chart</i></span>&nbsp; &nbsp;Resultados estatales de</a><br/>
+									<a style="color:grey; padding-left: 30px;" href="<?= base_url('index.php/Planea/index'); ?>" target="_blank"><b>PLANEA</b> <span class="h4 text-white badge badge-secondary bgcolor-1">Nuevo</span></a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -93,13 +97,13 @@
 						<!-- List group -->
 						<ul class="list-group">
 							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/Indicadores_certe/'); ?>"><span class="color-2 mr-5"><i class="fas fa-star"></i></span>
-									<font SIZE=3> Indicadores CERTE </font> <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span>
+									 <b>&nbsp; &nbsp;Indicadores CERTE</b> <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span>
 								</a>
 							</li>
-							<li class="list-group-item"><a class="fw800 fz-16" href="<?= base_url('index.php/cuda');  ?>" target="_blank"><span class="color-2"><i class="fas fa-star"></i></span> Catálogo Único de Documentos
-									<a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/cuda'); ?>" target="_blank"><b>Autorizados (CUDA)</b> <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a></li>
+							<li class="list-group-item"><a class="fw800 fz-15" href="<?= base_url('index.php/cuda');  ?>" target="_blank"><span class="color-2"><i class="fas fa-star"></i></span> &nbsp; &nbsp;Catálogo Único de Documentos<br/>
+									<a style="color:grey; padding-left: 30px;" href="<?= base_url('index.php/cuda'); ?>" target="_blank"><b>Autorizados (CUDA)</b> <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a></li>
 							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Pemc/index'); ?>"><span class="color-2"><i class="material-icons">chevron_right</i></span>
-									<font SIZE=3> Programa Escolar de Mejora <a style="color:grey; padding-left: 10%;" href="<?= base_url('index.php/Pemc/index'); ?>" >Continua </font>
+									Programa Escolar de Mejora <br/><a style="color:grey; padding-left: 30px;" href="<?= base_url('index.php/Pemc/index'); ?>" >Continua 
 								</a>
 							</li>
 							<li class="list-group-item"><a onclick="Index.getRevistaEscolar()" href="javascript:void(0)"><span class="color-2 mr-5"><i class="material-icons">chevron_right</i></span>Revista InfórmeSE</a>
@@ -126,18 +130,18 @@
 						<ul class="list-group">
 							<!-- <li class="list-group-item"><a href="http://inscripciones.org" target="_blank"><span class="color-4"><i class="fas fa-star"></i></span> <b>Pre-inscripciones 2020-2021</b></a> -->
 							<!-- </li> -->
-							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Talis/index'); ?>"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> TALIS </a></li>
-							<li class="list-group-item"><a class="" href="https://www.saludcoahuila.gob.mx/COVID19/index.php" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> Secretaría de Salud Coahuila
-									<a style="color:grey; padding-left: 14%;" href="https://www.saludcoahuila.gob.mx/COVID19/index.php" target="_blank">(COVID-19)</a></a></li>
+							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Talis/index'); ?>"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span>TALIS </a></li>
+							<li class="list-group-item"><a class="" href="https://www.saludcoahuila.gob.mx/COVID19/index.php" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span>Secretaría de Salud Coahuila<br/>
+									<a style="color:grey; padding-left: 30px;" href="https://www.saludcoahuila.gob.mx/COVID19/index.php" target="_blank">(COVID-19)</a></a></li>
 							</li>
-							<li class="list-group-item"><a class="" href="https://coronavirus.gob.mx/" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> Secretaría de Salud Federal
-									<a style="color:grey; padding-left: 14%;" href="https://coronavirus.gob.mx/" target="_blank">(COVID-19)</a></a></li>
+							<li class="list-group-item"><a class="" href="https://coronavirus.gob.mx/" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span>Secretaría de Salud Federal<br/>
+									<a style="color:grey; padding-left: 30px;" href="https://coronavirus.gob.mx/" target="_blank">(COVID-19)</a></a></li>
 							</li>
-							<li class="list-group-item"><a class="" href="https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/advice-for-public" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> Organización Mundial de la
-									<a style="color:grey; padding-left: 14%;" href="https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/advice-for-public" target="_blank">salud (COVID-19)</a></a></li>
-							<li class="list-group-item"><a class="" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> Centro para el Control y
-									<a style="color:grey; padding-left: 14%;" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">la Prevención de</a>
-									<a style="color:grey; padding-left: 14%;" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">Enfermedades (COVID-19)</a></a></li>
+							<li class="list-group-item"><a class="" href="https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/advice-for-public" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span>Organización Mundial de la <br/>
+									<a style="color:grey; padding-left: 30px;" href="https://www.who.int/es/emergencies/diseases/novel-coronavirus-2019/advice-for-public" target="_blank">salud (COVID-19)</a></a></li>
+							<li class="list-group-item"><a class="" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank"><span class="color-4 mr-5"><i class="material-icons">chevron_right</i></span> Centro para el Control y<br/>
+									<a style="color:grey; padding-left: 30px;" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">la Prevención de Enfermedades<br/>
+									<a style="color:grey; padding-left: 30px;" href="https://espanol.cdc.gov/coronavirus/2019-ncov/index.html" target="_blank">(COVID-19)</a></a></li>
 							</li>
 							<!-- <li class="list-group-item"><a onclick="Index.getmodeloeducativo()" href="javascript:void(0)"><span class="color-4"><i class="material-icons">chevron_right</i></span> Modelo Coahuilense</a>
 							</li> -->
@@ -197,8 +201,9 @@
 												</div>
 												<div class="card-body">
 													<div class="row">
-														<div class="col-sm-6"><a href="https://ebas.eclase-coahuila.mx/" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
-														<div class="col-sm-6"><a href="https://ebas.eclase-coahuila.mx/escolar" target="_blank" class="primary-btn btn-block border-color-3 btn-color-3 align-items-center"><small>Docentes</small></a></div>
+														<div class="col-sm-6 btn-mod"><a href="https://ebas.eclase-coahuila.mx/" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
+
+														<div class="col-sm-6 btn-mod"><a href="https://ebas.eclase-coahuila.mx/escolar" target="_blank" class="primary-btn btn-block border-color-3 btn-color-3 align-items-center"><small>Docentes</small></a></div>
 													</div>
 												</div>
 											</div>
@@ -210,8 +215,8 @@
 												</div>
 												<div class="card-body">
 													<div class="row">
-														<div class="col-sm-6"><a href="https://ems.eclase-coahuila.mx/" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
-														<div class="col-sm-6"><a href="https://ems.eclase-coahuila.mx/escolar" target="_blank" class="primary-btn btn-block border-color-3 btn-color-3 align-items-center"><small>Docentes</small></a></div>
+														<div class="col-sm-6 btn-mod"><a href="https://ems.eclase-coahuila.mx/" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
+														<div class="col-sm-6 btn-mod"><a href="https://ems.eclase-coahuila.mx/escolar" target="_blank" class="primary-btn btn-block border-color-3 btn-color-3 align-items-center"><small>Docentes</small></a></div>
 													</div>
 												</div>
 											</div>
@@ -223,8 +228,8 @@
 												</div>
 												<div class="card-body">
 													<div class="row">
-														<div class="col-sm-6"><a href="https://enormal.eclase-coahuila.mx/" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
-														<div class="col-sm-6"><a href="https://enormal.eclase-coahuila.mx/escolar" target="_blank" class="primary-btn btn-block border-color-3 btn-color-3 align-items-center"><small>Docentes</small></a></div>
+														<div class="col-sm-6 btn-mod"><a href="https://enormal.eclase-coahuila.mx/" target="_blank" class="primary-btn btn-block border-color-2 btn-color-2 align-items-center"><small>Estudiantes</small></a></div>
+														<div class="col-sm-6 btn-mod"><a href="https://enormal.eclase-coahuila.mx/escolar" target="_blank" class="primary-btn btn-block border-color-3 btn-color-3 align-items-center"><small>Docentes</small></a></div>
 													</div>
 												</div>
 											</div>

@@ -327,10 +327,8 @@
 								</div>
 								<div id="prog_apoyo_" class="collapse" aria-labelledby="indiperma" data-parent="#accordion">
 									<div class="card-body">
-										<div class="row">
-											<center>
-												<div id="tab_prog_apoyo"></div>
-											</center>
+										
+												<div id="tab_prog_apoyo" class="table-responsive" >
 										</div>
 									</div>
 								</div>

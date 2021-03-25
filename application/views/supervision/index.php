@@ -7,9 +7,9 @@
       <p>Con la finalidad de apoyar el desempeño y fortalecimiento de las y los Supervisores Escolares, se ha creado este espacio en el cual podrán encontrar información sobre los siguientes temas:</p>
       <div class="row">
         <div class="col-md-12 col-lg-12">
-        <input type="button" class="btn btn-primary btn-lg btn-block" id="btn_super_trayecto" value="Trayecto formativo para supervisores escolares">
-        <input type="button" class="btn btn-primary btn-lg btn-block" id="btn_super_mundo" value='Bibliografía sobre "La supervisión escolar en el mundo"'>
-        <input type="button" class="btn btn-primary btn-lg btn-block" id="btn_super_cte" value="Consejos Técnicos Escolares (CTE)">
+        <input type="button" class="btn btn-primary btn-lg btn-block btn-desbord" id="btn_super_trayecto" value="Trayecto formativo para supervisores escolares">
+        <input type="button" class="btn btn-primary btn-lg btn-block btn-desbord" id="btn_super_mundo" value='Bibliografía sobre "La supervisión escolar en el mundo"'>
+        <input type="button" class="btn btn-primary btn-lg btn-block btn-desbord" id="btn_super_cte" value="Consejos Técnicos Escolares (CTE)">
       </div>
       </div>
     </div>

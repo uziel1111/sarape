@@ -10,6 +10,7 @@ Esta nota presenta las respuestas de los docentes de secundaria obligatorial y s
 <p>Ponemos a tu disposición documentación de consulta la cual esta disponible para descargar.
 </p>
 <p>
+  <div class="table-responsive">
 <table class="table table-striped table-hover">
   <thead>
     <tr>
@@ -38,7 +39,7 @@ Esta nota presenta las respuestas de los docentes de secundaria obligatorial y s
     </tr>
   </tbody>
 </table>
-
+</div>
 </p>
 		</div>
   </div><!-- card -->
