@@ -10,7 +10,14 @@
       </div>
       <div class="modal-body">
         <div class="container">
-          <div class="row"> <div class="col-sm-3">
+          <div class="row">
+            <div class="col-sm-3">
+
+              <a href="https://issuu.com/ginaorozcoo/docs/revista_abril_2021"  target="_blank" title="Edición #32 Abril">
+                <img src="https://image.isu.pub/210409195521-54f1d826cf23fcd087bad1b1221437ba/jpg/page_1_thumb_large.jpg" class="img-fluid" alt="Responsive image">
+              </a>
+          </div>
+            <div class="col-sm-3">
 
               <a href="https://issuu.com/ginaorozcoo/docs/_revista_marzo_2021"  target="_blank" title="Edición #31 Marzo">
                 <img src="<?= base_url('assets/img/revista_marzo_21.png'); ?>" class="img-fluid" alt="Responsive image">
