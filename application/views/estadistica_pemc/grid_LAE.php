@@ -4,13 +4,13 @@
       <label for="nivel_educativo_LAE">Seleccione un nivel educativo</label>
       <select id="nivel_educativo_LAE" class="form-control">
         <option value="0">Todos los niveles</option>
-        <option value="1">Especial</option>
+        <option value="2">Inicial</option>
         <option value="3">Preescolar</option>
         <option value="4">Primaria</option>
         <option value="5">Secundaria</option>
       </select></label>
         </div>
-         
+
 
         <!-- por Región -->
          <div class="col-md-4 form-group form-group-style-1 div_region ">
@@ -38,14 +38,14 @@
      </div>
 
 
-    
+
      <div>
        <br>
              <div id="columnchart_material" class="float-left" style="height: 350px;"></div>
              <div id="columnchart_material_acciones"  class="float-right" style="height: 350px;"></div>
         <br>
      </div>
-     
+
       <div class="col-md-12 table-responsive" >
          <div class="d-flex justify-content-center float-none">
       <p>
@@ -103,7 +103,7 @@
           </tbody>
           </table>
       </div>
-       
+
    </div>
  </div>
 

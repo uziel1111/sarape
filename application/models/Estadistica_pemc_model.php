@@ -41,6 +41,9 @@ class Estadistica_pemc_model extends CI_Model
             case '1':
                 $nivel_desc = 'CAM';
                 break;
+            case '2':
+                $nivel_desc = 'INICIAL';
+                break;
             case '3':
                 $nivel_desc = 'PREESCOLAR';
                 break;
@@ -63,9 +66,9 @@ class Estadistica_pemc_model extends CI_Model
         LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
         INNER JOIN vista_cct e ON e.cct = tp.cct #AND e.turno like '%tp.turno%'
         where  (e.status = 1 OR e.status = 4)
-            AND e.desc_nivel_educativo <> 'INICIAL'
             AND e.cct NOT LIKE '05FUA%'
-            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+            AND e.desc_nivel_educativo <> 'CAM'
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'CAM', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR')
             AND e.municipio = {$municipio}";
         if ($nivel_desc != 0) {
           $query .=" and e.desc_nivel_educativo = '{$nivel_desc}'";
@@ -84,6 +87,9 @@ class Estadistica_pemc_model extends CI_Model
         case '1':
             $nivel_desc = 'CAM';
             break;
+        case '2':
+            $nivel_desc = 'INICIAL';
+            break;
         case '3':
             $nivel_desc = 'PREESCOLAR';
             break;
@@ -98,7 +104,7 @@ class Estadistica_pemc_model extends CI_Model
             break;
     }
 
-  $query = "SELECT count(*) as total from vista_cct WHERE (status=1 OR status=4) AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')";
+  $query = "SELECT count(*) as total from vista_cct WHERE (status=1 OR status=4) AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR')";
   if ($id_municipio != 0) {
    $query.= ' AND municipio = '.$id_municipio. '';
   }
@@ -138,6 +144,9 @@ class Estadistica_pemc_model extends CI_Model
     switch ($nivel) {
         case '1':
             $nivel_desc = 'CAM';
+            break;
+        case '2':
+            $nivel_desc = 'INICIAL';
             break;
         case '3':
             $nivel_desc = 'PREESCOLAR';
@@ -214,7 +223,7 @@ LEFT JOIN
   WHERE
       (status = 1 OR status = 4)
           AND e.cct NOT LIKE '05FUA%'
-          AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR')
+          AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'MEDIA SUPERIOR', 'SUPERIOR')
           {$where_nivel}
           {$where_region}
           {$where_municipio}
@@ -241,7 +250,7 @@ LEFT JOIN
   WHERE
       (status = 1 OR status = 4)
           AND e.cct NOT LIKE '05FUA%'
-          AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR')
+          AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'MEDIA SUPERIOR', 'SUPERIOR')
           {$where_nivel}
           {$where_region}
           {$where_municipio}
@@ -268,7 +277,7 @@ LEFT JOIN
   WHERE
       (status = 1 OR status = 4)
           AND e.cct NOT LIKE '05FUA%'
-          AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR')
+          AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'MEDIA SUPERIOR', 'SUPERIOR')
           {$where_nivel}
           {$where_region}
           {$where_municipio}
@@ -296,7 +305,7 @@ LEFT JOIN
   WHERE
       (status = 1 OR status = 4)
           AND e.cct NOT LIKE '05FUA%'
-          AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR')
+          AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'MEDIA SUPERIOR', 'SUPERIOR')
           {$where_nivel}
           {$where_region}
           {$where_municipio}
@@ -324,7 +333,7 @@ LEFT JOIN
   WHERE
       (status = 1 OR status = 4)
           AND e.cct NOT LIKE '05FUA%'
-          AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR')
+          AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'MEDIA SUPERIOR', 'SUPERIOR')
           {$where_nivel}
           {$where_region}
           {$where_municipio}
@@ -343,6 +352,9 @@ ORDER BY l1.id_region;";
         switch ($nivel) {
             case '1':
                 $nivel_desc = 'CAM';
+                break;
+            case '2':
+                $nivel_desc = 'INICIAL';
                 break;
             case '3':
                 $nivel_desc = 'PREESCOLAR';
@@ -374,7 +386,7 @@ ORDER BY l1.id_region;";
 
 
     $query = "SELECT
-    IFNULL(tlae.objetivos,0) as obj, 
+    IFNULL(tlae.objetivos,0) as obj,
     IFNULL(tlae.acciones,0) as acc,
     l.idlae as LAE
     FROM c_pemc_laes l
@@ -396,7 +408,7 @@ ORDER BY l1.id_region;";
     WHERE
       (status = 1 OR status = 4)
       AND e.cct NOT LIKE '05FUA%'
-      AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR')
+      AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'MEDIA SUPERIOR', 'SUPERIOR')
        {$where_nivel}
        {$where_region}
        {$where_municipio}
@@ -418,11 +430,14 @@ return $this->db->query($query)->result_array();
      LEFT JOIN rm_accionxtproritario a on o.id_objetivo=a.id_objetivos
      inner join vista_cct e on e.cct = tp.cct
      inner join municipio m on m.id_municipio = e.municipio
-     WHERE  (status = 1 OR status = 4) AND e.cct NOT LIKE '05FUA%' AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR') and m.id_municipio is not null";
+     WHERE  (status = 1 OR status = 4) AND e.cct NOT LIKE '05FUA%' AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'MEDIA SUPERIOR', 'SUPERIOR') and m.id_municipio is not null";
     if ($nivel != 0) {
         switch ($nivel) {
             case '1':
                 $nivel_desc = 'CAM';
+                break;
+            case '2':
+                $nivel_desc = 'INICIAL';
                 break;
             case '3':
                 $nivel_desc = 'PREESCOLAR';
@@ -470,6 +485,9 @@ function get_zonas($sostenimiento, $nivel){
             case '1':
                 $nivel_desc = 'CAM';
                 break;
+            case '2':
+                $nivel_desc = 'INICIAL';
+                break;
             case '3':
                 $nivel_desc = 'PREESCOLAR';
                 break;
@@ -515,9 +533,9 @@ function get_zonas($sostenimiento, $nivel){
     INNER JOIN r_pemc_accion_seguimiento seg ON roa.idaccion = seg.idaccion
     WHERE
     (e.status = 1 OR e.status = 4)
-            AND e.desc_nivel_educativo <> 'INICIAL'
+            AND e.desc_nivel_educativo <> 'CAM'
             AND e.cct NOT LIKE '05FUA%'
-            AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+            AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR')
             AND !ISNULL(e.zona_escolar)
     {$where_nivel}
     {$where_sostenimiento}
@@ -532,6 +550,9 @@ function get_zonas($sostenimiento, $nivel){
             switch ($nivel) {
                 case '1':
                     $nivel_desc = 'CAM';
+                    break;
+                case '2':
+                    $nivel_desc = 'INICIAL';
                     break;
                 case '3':
                     $nivel_desc = 'PREESCOLAR';
@@ -602,9 +623,9 @@ function get_zonas($sostenimiento, $nivel){
 				LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
         WHERE
         (e.status = 1 OR e.status = 4)
-            AND e.desc_nivel_educativo <> 'INICIAL'
+            AND e.desc_nivel_educativo <> 'CAM'
             AND e.cct NOT LIKE '05FUA%'
-            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR')
         AND laes.idlae = 1
         {$where_nivel}
         {$where_sostenimiento}
@@ -630,9 +651,9 @@ function get_zonas($sostenimiento, $nivel){
 				LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
         WHERE
         (e.status = 1 OR e.status = 4)
-            AND e.desc_nivel_educativo <> 'INICIAL'
+            AND e.desc_nivel_educativo <> 'CAM'
             AND e.cct NOT LIKE '05FUA%'
-            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR')
         AND laes.idlae = 2
         {$where_nivel}
         {$where_sostenimiento}
@@ -658,9 +679,9 @@ function get_zonas($sostenimiento, $nivel){
 				LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
         WHERE
         (e.status = 1 OR e.status = 4)
-            AND e.desc_nivel_educativo <> 'INICIAL'
+            AND e.desc_nivel_educativo <> 'CAM'
             AND e.cct NOT LIKE '05FUA%'
-            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR')
         AND laes.idlae = 3
         {$where_nivel}
         {$where_sostenimiento}
@@ -686,9 +707,9 @@ function get_zonas($sostenimiento, $nivel){
 				LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
         WHERE
         (e.status = 1 OR e.status = 4)
-            AND e.desc_nivel_educativo <> 'INICIAL'
+            AND e.desc_nivel_educativo <> 'CAM'
             AND e.cct NOT LIKE '05FUA%'
-            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR')
         AND laes.idlae = 4
         {$where_nivel}
         {$where_sostenimiento}
@@ -714,9 +735,9 @@ function get_zonas($sostenimiento, $nivel){
 				LEFT JOIN c_pemc_laes laes	ON am.idlae = laes.idlae
         WHERE
         (e.status = 1 OR e.status = 4)
-            AND e.desc_nivel_educativo <> 'INICIAL'
+            AND e.desc_nivel_educativo <> 'CAM'
             AND e.cct NOT LIKE '05FUA%'
-            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR')
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR')
         AND laes.idlae = 5
         {$where_nivel}
         {$where_sostenimiento}
@@ -743,6 +764,9 @@ function get_zonas($sostenimiento, $nivel){
         switch ($nivel) {
             case '1':
                 $nivel_desc = 'CAM';
+                break;
+            case '2':
+                $nivel_desc = 'INICIAL';
                 break;
             case '3':
                 $nivel_desc = 'PREESCOLAR';
@@ -783,7 +807,7 @@ function get_zonas($sostenimiento, $nivel){
     (
     SELECT
     m.id_municipio,
-    m.municipio, 
+    m.municipio,
     COUNT(DISTINCT CONCAT(e.cct, t.idfederal)) n_escxmuni,
     COUNT(DISTINCT ro.idpemc) as esc_que_capt,
     ROUND(IF(COUNT(DISTINCT ro.idpemc)=0,0,(COUNT(DISTINCT ro.idpemc)*100)/COUNT(DISTINCT CONCAT(e.cct,t.idfederal))),1) as porcentaje
@@ -793,14 +817,14 @@ function get_zonas($sostenimiento, $nivel){
     LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
     LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
     WHERE (e.status = 1 OR e.status = 4)
-    AND e.desc_nivel_educativo <> 'INICIAL'
+    AND e.desc_nivel_educativo <> 'CAM'
     AND e.cct NOT LIKE '05FUA%'
-    AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+    AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR') {$where}
     {$where_m}
     {$where_s}
      GROUP BY m.id_municipio
     ) as mastert
-    
+
     LEFT JOIN
     (
         SELECT
@@ -815,9 +839,9 @@ function get_zonas($sostenimiento, $nivel){
         LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
         LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
         WHERE (e.status = 1 OR e.status = 4)
-  AND e.desc_nivel_educativo <> 'INICIAL'
+  AND e.desc_nivel_educativo <> 'CAM'
   AND e.cct NOT LIKE '05FUA%'
-  AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+  AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR') {$where}
   {$where_m}
   {$where_s}
         GROUP BY m.id_municipio, CONCAT(e.cct,t.idfederal)
@@ -833,7 +857,7 @@ function get_zonas($sostenimiento, $nivel){
         FROM
         (
         SELECT
-        m.id_municipio, 
+        m.id_municipio,
         CONCAT(e.cct,t.idfederal) as cct
         FROM municipio m
         INNER JOIN vista_cct e ON m.id_municipio = e.municipio
@@ -841,9 +865,9 @@ function get_zonas($sostenimiento, $nivel){
         LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
         LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
         WHERE (e.status = 1 OR e.status = 4)
-  AND e.desc_nivel_educativo <> 'INICIAL'
+  AND e.desc_nivel_educativo <> 'CAM'
   AND e.cct NOT LIKE '05FUA%'
-  AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+  AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR') {$where}
   {$where_m}
   {$where_s}
         GROUP BY m.id_municipio, CONCAT(e.cct,t.idfederal)
@@ -860,16 +884,16 @@ function get_zonas($sostenimiento, $nivel){
         (
         SELECT
         m.id_municipio,
-        CONCAT(e.cct,t.idfederal) as cct       
+        CONCAT(e.cct,t.idfederal) as cct
         FROM municipio m
         INNER JOIN vista_cct e ON m.id_municipio = e.municipio
         INNER JOIN turno_temp t ON e.turno = t.idturno
         LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
         LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
         WHERE (e.status = 1 OR e.status = 4)
-  AND e.desc_nivel_educativo <> 'INICIAL'
+  AND e.desc_nivel_educativo <> 'CAM'
   AND e.cct NOT LIKE '05FUA%'
-  AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+  AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR') {$where}
   {$where_m}
   {$where_s}
         GROUP BY m.id_municipio, CONCAT(e.cct,t.idfederal)
@@ -885,7 +909,7 @@ function get_zonas($sostenimiento, $nivel){
         FROM
         (
         SELECT
-        m.id_municipio, 
+        m.id_municipio,
         CONCAT(e.cct,t.idfederal) as cct
         FROM municipio m
         INNER JOIN vista_cct e ON m.id_municipio = e.municipio
@@ -893,9 +917,9 @@ function get_zonas($sostenimiento, $nivel){
         LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
         LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
         WHERE (e.status = 1 OR e.status = 4)
-  AND e.desc_nivel_educativo <> 'INICIAL'
+  AND e.desc_nivel_educativo <> 'CAM'
   AND e.cct NOT LIKE '05FUA%'
-  AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+  AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR') {$where}
   {$where_m}
   {$where_s}
         GROUP BY m.id_municipio, CONCAT(e.cct,t.idfederal)
@@ -913,6 +937,9 @@ function get_zonas($sostenimiento, $nivel){
         switch ($nivel) {
             case '1':
                 $nivel_desc = 'CAM';
+                break;
+            case '2':
+                $nivel_desc = 'INICIAL';
                 break;
             case '3':
                 $nivel_desc = 'PREESCOLAR';
@@ -949,9 +976,9 @@ function get_zonas($sostenimiento, $nivel){
               FROM vista_cct as e
               INNER JOIN turno_temp t ON e.turno = t.idturno
               WHERE (e.status = 1 OR e.status = 4)
-            AND e.desc_nivel_educativo <> 'INICIAL'
+            AND e.desc_nivel_educativo <> 'CAM'
             AND e.cct NOT LIKE '05FUA%'
-            AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+            AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR') {$where}
             {$where_m}
             {$where_s}
               ";
@@ -964,6 +991,9 @@ function get_zonas($sostenimiento, $nivel){
         switch ($nivel) {
             case '1':
                 $nivel_desc = 'CAM';
+                break;
+            case '2':
+                $nivel_desc = 'INICIAL';
                 break;
             case '3':
                 $nivel_desc = 'PREESCOLAR';
@@ -1004,7 +1034,7 @@ function get_zonas($sostenimiento, $nivel){
 						 INNER JOIN turno_temp t ON e.turno = t.idturno
 						LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
 						LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
-						WHERE  (status = 1 OR status = 4) AND e.cct NOT LIKE '05FUA%' AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL', 'MEDIA SUPERIOR', 'SUPERIOR') {$where}
+						WHERE  (status = 1 OR status = 4) AND e.cct NOT LIKE '05FUA%' AND desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'MEDIA SUPERIOR', 'SUPERIOR') {$where}
             {$where_m}
             {$where_s}
              ";
@@ -1016,6 +1046,9 @@ function get_zonas($sostenimiento, $nivel){
        switch ($nivel) {
            case '1':
                $nivel_desc = 'CAM';
+               break;
+           case '2':
+               $nivel_desc = 'INICIAL';
                break;
            case '3':
                $nivel_desc = 'PREESCOLAR';
@@ -1039,9 +1072,9 @@ function get_zonas($sostenimiento, $nivel){
 e.subnivel_educativo as idmodalidad, e.desc_subnivel_educativo as modalidad
 FROM vista_cct e
 where  (e.status = 1 OR e.status = 4)
-            AND e.desc_nivel_educativo <> 'INICIAL'
+            AND e.desc_nivel_educativo <> 'CAM'
             AND e.cct NOT LIKE '05FUA%'
-            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where}
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR') {$where}
 GROUP BY e.subnivel_educativo";
  return $this->db->query($query)->result_array();
 }
@@ -1051,6 +1084,9 @@ function get_sostenimiento_gen($nivel,$modalidad){
       switch ($nivel) {
           case '1':
               $nivel_desc = 'CAM';
+              break;
+          case '2':
+              $nivel_desc = 'INICIAL';
               break;
           case '3':
               $nivel_desc = 'PREESCOLAR';
@@ -1077,12 +1113,12 @@ function get_sostenimiento_gen($nivel,$modalidad){
     $where_m= " ";
   }
  $query = "SELECT
-e.sostenimiento as idsostenimiento, e.desc_sostenimiento as sostenimiento
+e.sostenimiento as idsostenimiento, IFNULL(e.desc_sostenimiento,'FEDERAL') as sostenimiento
 FROM vista_cct e
 where  (e.status = 1 OR e.status = 4)
-            AND e.desc_nivel_educativo <> 'INICIAL'
+            AND e.desc_nivel_educativo <> 'CAM'
             AND e.cct NOT LIKE '05FUA%'
-            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA', 'INICIAL','MEDIA SUPERIOR','SUPERIOR') {$where} {$where_m}
+            AND e.desc_nivel_educativo NOT IN ('FORMACION PARA EL TRABAJO', 'CAM' , 'OTRO NIVEL EDUCATIVO', 'NO APLICA','MEDIA SUPERIOR','SUPERIOR') {$where} {$where_m}
 GROUP BY e.sostenimiento";
 return $this->db->query($query)->result_array();
 }
