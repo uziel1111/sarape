@@ -435,7 +435,7 @@ var Objetivos = {
 
   	var formData = new FormData();
     var files = $(archivo)[0].files[0];
-		if(files.type.match('image/jp.*') || files.type.match('application/pdf') || files.type.match('image/gif')) {
+		if(files.type.match('image/jp.*') || files.type.match('application/pdf') || files.type.match('image/gif') || files.type.match('image/png')) {
 			if(files.size<=2*1024*1024) {
 				if (archivo.files && archivo.files[0]) {
 			        var reader = new FileReader();
@@ -489,7 +489,7 @@ var Objetivos = {
 		 else {
 			 swal(
 			 '¡Error!',
-			 "Solo se permiten archivos de tipo jpeg, gif y pdf",
+			 "Solo se permiten archivos de tipo jpeg, png, gif y pdf",
 			 "error"
 			 );
 		 }

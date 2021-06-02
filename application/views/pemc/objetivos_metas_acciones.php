@@ -101,10 +101,10 @@
 				     <td class="text-center"><?= $objetivo['num_acciones']?></td>
 				     <?php if (($tipo_usuario=="escuela") && (!$esta_cerrado_ciclo)): ?>
 						 <td>
-							
+
 								<button title="Agregar acciones" class='btn btn-a2 btn-block btn-sm' onclick='Objetivos.agreg_acciones(<?= $objetivo['idobjetivo']?>)'><i class="fa fa-plus" aria-hidden="true"></i></button>
-							
-								<!--<button title="No puede agregar acciones" class='btn btn-danger btn-block btn-sm'><i class="fa fa-ban" aria-hidden="true"></i></button>-->							
+
+								<!--<button title="No puede agregar acciones" class='btn btn-danger btn-block btn-sm'><i class="fa fa-ban" aria-hidden="true"></i></button>-->
 
 						 </td>
 						 <?php endif; ?>
@@ -127,7 +127,7 @@
 					     <div class="row">
 					     	<div class="col-1"></div>
 	      					<div class="custom-file col-7">
-							    <input type="file" class="custom-file-input btn-a1" name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, <?= $objetivo['idobjetivo']?>)' accept="image/gif, image/jpeg, application/pdf">
+							    <input type="file" class="custom-file-input btn-a1" name='file_evidencia_antes' id='file_evidencia_antes' onchange='Objetivos.carga_archivos(this, 1, <?= $objetivo['idobjetivo']?>)' accept="image/gif, image/jpeg, application/pdf, image/png">
 							    <label class="custom-file-label" for="customFile"></label>
 							</div>
 					     </div>
@@ -152,7 +152,7 @@
 					     <div class="row">
 					     	<div class="col-1"></div>
 					     	<div class="custom-file col-7">
-							    <input type="file" class="custom-file-input" name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, <?= $objetivo['idobjetivo']?>)' accept="image/gif, image/jpeg, application/pdf">
+							    <input type="file" class="custom-file-input" name='file_evidencia_despues' id='file_evidencia_despues' onchange='Objetivos.carga_archivos(this, 2, <?= $objetivo['idobjetivo']?>)' accept="image/gif, image/jpeg, application/pdf, image/png">
 							    <label class="custom-file-label" for="customFile"></label>
 							</div>
 					     </div>
