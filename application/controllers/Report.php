@@ -18,6 +18,7 @@ class Report extends CI_Controller {
 		$this->load->model('Supervision_model');
 		$this->load->model('Indicadoresxmuni_model');
 		$this->load->model('Indicadoresxestado_model');
+		$this->load->model('Pemc_model');
 
 		$this->style_encabezado = array(
 			'borders' => array(
@@ -888,5 +889,58 @@ class Report extends CI_Controller {
 				$name_file = "Estadistica_por_zona_escolar_".$hoy.'.xlsx';
 				$this->downloand_file($obj_excel,$name_file);
 			}// est_generales_xzona()
+
+
+			public function pemc_xesc(){
+				// echo "string";die();
+				$result_escuelas = $this->Pemc_model->pemc_xesc();
+				// echo "<pre>";print_r($result_escuelas	);die();
+
+				$obj_excel = new PHPExcel();
+				$obj_excel->getActiveSheet()->SetCellValue('A1', 'Lista de escuelas');
+				$obj_excel->getActiveSheet()->SetCellValue('A2', 'Nivel educativo');
+				$obj_excel->getActiveSheet()->SetCellValue('B2', 'CCT');
+				$obj_excel->getActiveSheet()->SetCellValue('C2', 'Turno');
+				$obj_excel->getActiveSheet()->SetCellValue('D2', 'Municipio');
+				$obj_excel->getActiveSheet()->SetCellValue('E2', 'Zona económica');
+				$obj_excel->getActiveSheet()->SetCellValue('F2', 'Zona escolar');
+				$obj_excel->getActiveSheet()->SetCellValue('G2', 'CCT zona');
+				$obj_excel->getActiveSheet()->SetCellValue('H2', 'Número de objetivos');
+				$obj_excel->getActiveSheet()->SetCellValue('I2', 'Número de acciones');
+
+
+				$obj_excel->getActiveSheet()->mergeCells('A1:I1');
+				$obj_excel->getActiveSheet()->getStyle('A1:I1')->applyFromArray($this->style_titulo);
+				$obj_excel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+				$obj_excel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+				$obj_excel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+				$obj_excel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+				$obj_excel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+				$obj_excel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
+				$obj_excel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
+				$obj_excel->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
+				$obj_excel->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
+				$obj_excel->getActiveSheet()->getStyle('A2:I2')->applyFromArray($this->style_encabezado);
+
+				$aux = 3;
+				foreach ($result_escuelas as $key => $value) {
+					$obj_excel->getActiveSheet()->SetCellValue('A'.$aux, utf8_encode($value['nivel']) );
+					$obj_excel->getActiveSheet()->SetCellValue('B'.$aux, utf8_encode($value['cct']) );
+					$obj_excel->getActiveSheet()->SetCellValue('C'.$aux, utf8_encode($value['turno']) );
+					$obj_excel->getActiveSheet()->SetCellValue('D'.$aux, utf8_encode($value['municipio']) );
+					$obj_excel->getActiveSheet()->SetCellValue('E'.$aux, utf8_encode($value['zona_economica']) );
+					$obj_excel->getActiveSheet()->SetCellValue('F'.$aux, utf8_encode($value['zona_escolar']) );
+					$obj_excel->getActiveSheet()->SetCellValue('G'.$aux, utf8_encode($value['cct_supervisor']) );
+					$obj_excel->getActiveSheet()->SetCellValue('H'.$aux, utf8_encode($value['num_objetivos']) );
+					$obj_excel->getActiveSheet()->SetCellValue('I'.$aux, utf8_encode($value['num_acciones']) );
+
+					$obj_excel->getActiveSheet()->getStyle('A'.$aux.':I'.$aux)->applyFromArray($this->style_contenido);
+					$aux++;
+				}
+				date_default_timezone_set('America/Mexico_City');
+				$hoy = date("Y-m-d");
+				$name_file = "Reporte_PEMC_escuelas_".$hoy.'.xlsx';
+				$this->downloand_file($obj_excel,$name_file);
+			}// pemc_xesc()
 
 		}// Report

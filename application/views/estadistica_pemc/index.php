@@ -27,6 +27,26 @@
 	                <div class="tab-pane fade" id="xcct_turno" role="tabpanel" aria-labelledby="xcct_turno">
 		                <div class="tab-content tab-content-style-1" id="myTabContent">
 			                <div class="tab-pane fade show active" id="xmunicipio" role="tabpanel" aria-labelledby="xmunicipio-tab">
+												<p><center>
+
+			                      <div class="col-12 col-sm-12 col-md-1 col-lg-1 mt-2">
+			                        <?= form_open('Report/pemc_xesc') ?>
+			                        <?php
+			                        $data = array(
+			                            'id' => 'btn_genera_excel_pemc_xesc',
+			                            'value' => 'true',
+			                            'type' => 'submit',
+			                            'class'=>'btn btn-primary btn-style-1 btn-block',
+			                            'content' => '<i class="fas fa-file-excel"></i>',
+			                            'data-toggle' => "tooltip",
+			                            'data-placement' => "top",
+			                            'title' => 'Exportar escuelas con PEMC'
+			                        );
+			                        echo form_button($data);
+			                        ?>
+			                        <?= form_close() ?>
+			                      </div><!-- col-md-1 -->
+												</p></center>
 			                	<div class="panel-heading text-center" style="color: blue"><h3 class="panel-title">Búsqueda de Escuela</h3><span data-toggle="collapse" data-target="#filtros_busqueda" style="cursor: pointer" class="collapsecaret"><i class="fas fa-caret-down rotate"></i></span></div>
 			                	<div class="panel-body collapse in active" id="filtros_busqueda">
 			                  	<?= form_open() ?>

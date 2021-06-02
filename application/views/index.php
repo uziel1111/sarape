@@ -102,6 +102,12 @@
 							</li>
 							<li class="list-group-item"><a class="fw800 fz-15" href="<?= base_url('index.php/cuda');  ?>" target="_blank"><span class="color-2"><i class="fas fa-star"></i></span> &nbsp; &nbsp;Catálogo Único de Documentos<br/>
 									<a style="color:grey; padding-left: 30px;" href="<?= base_url('index.php/cuda'); ?>" target="_blank"><b>Autorizados (CUDA)</b> <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span></a></li>
+                                                       
+                                                        <li class="list-group-item"><a class="fw800 fz-15" a href="https://cuda-sedu.mx/" target="_blank"><span class="color-2"><i class="fas fa-star"></i></span> &nbsp; &nbsp;Catálogo Único de Documentos<br/>
+									<a style="color:grey; padding-left: 30px;" a href="https://cuda-sedu.mx/" target="_blank"><b>Autorizados <br>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;<span class="h4 text-white badge badge-secondary bgcolor-1">(CUDA) Digital</span>
+                                                         <span class="h4 text-white badge badge-secondary bgcolor-2">Nuevo</span>
+                                                        </b></a></li>
+
 							<li class="list-group-item"><a class="" href="<?= base_url('index.php/Pemc/index'); ?>"><span class="color-2"><i class="material-icons">chevron_right</i></span>
 									Programa Escolar de Mejora <br/><a style="color:grey; padding-left: 30px;" href="<?= base_url('index.php/Pemc/index'); ?>" >Continua 
 								</a>

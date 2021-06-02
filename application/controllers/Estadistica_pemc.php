@@ -37,7 +37,7 @@ class Estadistica_pemc extends CI_Controller
         $user_data = $this->Estadistica_pemc_model->get_datos_sesion($user, md5($pwd));
         if(count($user_data) > 0){
             $data = array();
-            Utilerias::set_usuario_sesion($this, $user_data);              
+            Utilerias::set_usuario_sesion($this, $user_data);
             $result_municipios = $this->Estadistica_pemc_model->getall_xest_ind();
             $arr_municipios = array();
             if(count($result_municipios)==0){
@@ -51,15 +51,15 @@ class Estadistica_pemc extends CI_Controller
 
             $arr_niveles = array();
             $result_niveles = $this->Nivel_model->all();
-
+            // echo "<pre>";print_r($result_niveles);die();
             if(count($result_niveles)==0){
                 $data['arr_niveles'] = array(   '0' => 'Error recuperando los niveles' );
             }else{
                 $arr_niveles['0'] = 'TODOS';
                 foreach ($result_niveles as $row){
-
+                  if ($row['id_nivel'] > 0 && $row['id_nivel'] < 6) {
                     $arr_niveles[$row['id_nivel']] = $row['nivel'];
-
+                  }
                 }
                 $data['arr_niveles'] =$arr_niveles;
             }
@@ -153,7 +153,7 @@ public function busquedaxct(){
 		$data['cct'] = $this->cct['cve_centro'];
 		$data['director'] = $this->cct['nombre_director'];
 		$data['tipo_usuario'] = $this->cct['tipo_usuario'];
-      
+
     // echo "<pre>";print_r($data);die();
 		// Utilerias::pagina_basica_pemcv2($this, "pemc/index", $data);
     $dom = $this->load->view("pemc/index",$data,TRUE);
@@ -271,7 +271,7 @@ public function busquedaxct(){
             $municipio = $this->input->post('municipio_pemc');
             $nivel = $this->input->post('nivel_pemc');
             $sostenimiento = $this->input->post('sostenimiento_pemc');
-            $result_escuelas = $this->CentrosE_model->filtro_escuela($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
+            $result_escuelas = $this->Estadistica_pemc_model->filtro_escuela($cve_municipio,$cve_nivel,$cve_sostenimiento,$nombre_escuela);
 
             $array=array();
             for($i=0; $i<count($result_escuelas); $i++){

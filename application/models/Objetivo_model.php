@@ -4,8 +4,9 @@ class Objetivo_model extends CI_Model
     function __construct(){
         parent::__construct();
         date_default_timezone_set('America/Mexico_City');
-        $this->pemc_db = $this->load->database('pemc_db', TRUE);
+        // $this->db = $this->load->database('pemc_db', TRUE);
         $this->load->helper('date');
+        $this->load->database();
     }
 
     function get_objetivos_x_idpemc($idpemc){
@@ -14,7 +15,7 @@ class Objetivo_model extends CI_Model
         WHERE idpemc = ?
         GROUP BY obj.idobjetivo
         ORDER BY obj.idobjetivo ASC";
-    	return $this->pemc_db->query($str_query, array($idpemc))->result_array();
+    	return $this->db->query($str_query, array($idpemc))->result_array();
     }
 
     function update_orden_objetivos($idobjetivo, $idpemc, $orden){
@@ -25,17 +26,17 @@ class Objetivo_model extends CI_Model
             'idobjetivo'=> $idobjetivo,
             'idpemc'=> $idpemc
         );
-        $this->pemc_db->where($where);
-        return $this->pemc_db->update('r_pemc_objetivo', $data);
+        $this->db->where($where);
+        return $this->db->update('r_pemc_objetivo', $data);
     }
 
     function delete_accion($idaccion, $idobjetivo){
-        $this->pemc_db->trans_start();
+        $this->db->trans_start();
             $delete_seguimiento = "DELETE FROM r_pemc_accion_seguimiento WHERE idaccion ={$idaccion}";
-        $this->pemc_db->query($delete_seguimiento);
+        $this->db->query($delete_seguimiento);
         $delete_acciones = "DELETE FROM r_pemc_objetivo_accion WHERE idaccion = {$idaccion} AND idobjetivo = {$idobjetivo}";
-        $this->pemc_db->query($delete_acciones);
-        return $this->pemc_db->trans_complete();
+        $this->db->query($delete_acciones);
+        return $this->db->trans_complete();
     }
 
     function get_ambitos(){
@@ -43,12 +44,12 @@ class Objetivo_model extends CI_Model
                   a.idambito, a.ambito, a.idlae, l.lae
                   FROM c_pemc_ambito a
                   INNER JOIN c_pemc_laes l ON a.idlae = l.idlae";
-    	return $this->pemc_db->query($str_query)->result_array();
+    	return $this->db->query($str_query)->result_array();
     }
 
     function get_objetivo_x_idobjetivo($idobjetivo){
     	$str_query = "SELECT * FROM r_pemc_objetivo WHERE idobjetivo = ?";
-    	return $this->pemc_db->query($str_query, array($idobjetivo))->row();
+    	return $this->db->query($str_query, array($idobjetivo))->row();
     }
 
     function save_objetivo($idpemc, $objetivo, $meta, $comentarios, $orden){
@@ -61,7 +62,7 @@ class Objetivo_model extends CI_Model
 		    'comentario_general' => $comentarios,
 		    'fcreacion' => date('Y-m-d')
 		);
-		return $this->pemc_db->insert('r_pemc_objetivo', $data);
+		return $this->db->insert('r_pemc_objetivo', $data);
     }// get_prioridades()
 
     function update_objetivo($idpemc, $text_objetivo_c, $text_meta_c, $text_comentariosG_c, $idobjetivo){
@@ -75,25 +76,25 @@ class Objetivo_model extends CI_Model
 		    'idobjetivo'=> $idobjetivo,
 		    'idpemc'=> $idpemc
 		);
-		$this->pemc_db->where($where);
-		return $this->pemc_db->update('r_pemc_objetivo', $data);
+		$this->db->where($where);
+		return $this->db->update('r_pemc_objetivo', $data);
     }
 
     function delete_linea_objetivo($idsacciones, $idobjetivo, $idpemc){
-    	$this->pemc_db->trans_start();
+    	$this->db->trans_start();
     	// echo"Acciones: ". $idsacciones; die();
     	if($idsacciones != ''){
     		$delete_seguimiento = "DELETE FROM r_pemc_accion_seguimiento WHERE idaccion IN({$idsacciones})";
-		$this->pemc_db->query($delete_seguimiento);
+		$this->db->query($delete_seguimiento);
 		$delete_acciones = "DELETE FROM r_pemc_objetivo_accion WHERE idaccion IN({$idsacciones}) AND idobjetivo = {$idobjetivo}";
-		$this->pemc_db->query($delete_acciones);
+		$this->db->query($delete_acciones);
     	}
 
 		$delete_objetivo = "DELETE FROM r_pemc_objetivo WHERE idobjetivo = {$idobjetivo} AND idpemc = {$idpemc}";
-		$this->pemc_db->query($delete_objetivo);
+		$this->db->query($delete_objetivo);
 
 
-		return $this->pemc_db->trans_complete();
+		return $this->db->trans_complete();
 
     }
 
@@ -106,7 +107,7 @@ class Objetivo_model extends CI_Model
               WHERE oa.idobjetivo = ?
               ORDER BY oa.idaccion ASC
               ";
-    	return $this->pemc_db->query($str_query, array($idobjetivo))->result_array();
+    	return $this->db->query($str_query, array($idobjetivo))->result_array();
     }
 
     function update_accion($idaccion, $idobjetivo, $accion, $recurso, $ambitos, $responsables, $otro_responsable, $finicio,$comentarios_finicio, $ffin,$comentarios_ffin){
@@ -115,14 +116,14 @@ class Objetivo_model extends CI_Model
     	$str_query = "UPDATE r_pemc_objetivo_accion
 					SET accion = UPPER(?), recurso = UPPER(?), idambitos = ?, responsables= ?, otros_responsables = UPPER(?), finicio = ?, ffin = ?, fmodificacion = NOW(), comentario_finicio = ?, comentario_ffin = ?
 					WHERE idaccion = ? AND idobjetivo = ?";
-		return $this->pemc_db->query($str_query, array($accion, $recurso, $ambitos, $responsables, $otro_responsable, $finicio, $ffin,$comentarios_finicio,$comentarios_ffin, $idaccion, $idobjetivo));
+		return $this->db->query($str_query, array($accion, $recurso, $ambitos, $responsables, $otro_responsable, $finicio, $ffin,$comentarios_finicio,$comentarios_ffin, $idaccion, $idobjetivo));
     }
 
     function update_orden_accion($idaccion, $idobjetivo, $orden){
         $str_query = "UPDATE r_pemc_objetivo_accion
                     SET orden = ?
                     WHERE idaccion = ? AND idobjetivo = ?";
-        return $this->pemc_db->query($str_query, array($orden, $idaccion, $idobjetivo));
+        return $this->db->query($str_query, array($orden, $idaccion, $idobjetivo));
     }
 
     function insert_accion($idobjetivo, $orden, $accion, $recurso, $cad_ambitos, $cad_responsables, $otro_responsable, $finicio,$comentarios_finicio, $ffin,$comentarios_ffin){
@@ -141,7 +142,7 @@ class Objetivo_model extends CI_Model
         'comentario_ffin' => $comentarios_ffin,
 		    'fcreacion' => date('Y-m-d')
 		);
-		return $this->pemc_db->insert('r_pemc_objetivo_accion', $data);
+		return $this->db->insert('r_pemc_objetivo_accion', $data);
     }
 
     function inserta_ruta($idobjetivo, $ruta, $tipo_evidencia){
@@ -159,8 +160,8 @@ class Objetivo_model extends CI_Model
 		        'fmodificacion' => date('Y-m-d')
 		);
 
-		$this->pemc_db->where('idobjetivo', $idobjetivo);
-		return $this->pemc_db->update('r_pemc_objetivo', $data);
+		$this->db->where('idobjetivo', $idobjetivo);
+		return $this->db->update('r_pemc_objetivo', $data);
     }
 
     function get_url($idobjetivo, $tipo_evidencia){
@@ -174,7 +175,7 @@ class Objetivo_model extends CI_Model
                 break;
         }
         $str_query = "SELECT {$campo} AS url FROM r_pemc_objetivo WHERE idobjetivo = ?";
-        return $this->pemc_db->query($str_query, array($idobjetivo))->row();
+        return $this->db->query($str_query, array($idobjetivo))->row();
     }
 
 
@@ -184,7 +185,7 @@ class Objetivo_model extends CI_Model
             FROM c_pemc_ambito a
             INNER JOIN c_pemc_laes l ON a.idlae = l.idlae
             WHERE a.idambito in({$idambitos})";
-        return $this->pemc_db->query($str_query)->row('laes');
+        return $this->db->query($str_query)->row('laes');
     }
 
 }// Objetivo_model

@@ -4,6 +4,7 @@
       <label for="nivel_educativo_zona">Seleccione un nivel educativo</label>
       <select id="nivel_educativo_zona" class="form-control">
         <option value="0">Todos los niveles</option>
+        <option value="1">Especial</option>
         <option value="2">Inicial</option>
         <option value="3">Preescolar</option>
         <option value="4">Primaria</option>
@@ -55,11 +56,11 @@
         <td><?=$value['zona_escolar']?></td>
         <td><?=$value['nivel']?></td>
         <td><?=$value['sostenimiento']?></td>
-        <td><?=$value['lae1']?>%</td>
-        <td><?=$value['lae2']?>%</td>
-        <td><?=$value['lae3']?>%</td>
-        <td><?=$value['lae4']?>%</td>
-        <td><?=$value['lae5']?>%</td>
+        <td><?=($value['lae1']=='')?'0.0':$value['lae1']?>%</td>
+        <td><?=($value['lae2']=='')?'0.0':$value['lae2']?>%</td>
+        <td><?=($value['lae3']=='')?'0.0':$value['lae3']?>%</td>
+        <td><?=($value['lae4']=='')?'0.0':$value['lae4']?>%</td>
+        <td><?=($value['lae5']=='')?'0.0':$value['lae5']?>%</td>
 
       </tr>
     <?php } ?>

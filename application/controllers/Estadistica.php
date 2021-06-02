@@ -933,6 +933,9 @@ class Estadistica extends CI_Controller {
 		function tabla_permanencia($id_municipio, $id_ciclo){
 			$result_planea = array();
 			$result_ciclo_ind = $this->Indicadoresxestado_model->get_ciclo_ind($id_ciclo);
+
+			$result_ciclo = $this->Indicadoresxestado_model->get_ciclo($id_ciclo);
+
 			if ($id_municipio==0) {
 				$result_permanencia_nv = $this->Indicadoresxestado_model->get_ind_permanenciaxestadoidciclo($result_ciclo_ind);
 			}
@@ -965,7 +968,8 @@ class Estadistica extends CI_Controller {
 								</table>
 
 								<div class="pie_tabla">
-												<div id="fuentes_pie">Fuente: SEDU (Formato 911) - ciclo escolar 2016-2017</div>
+												<div id="fuentes_pie">Fuente: SEDU (Formato 911) - ciclo escolar 
+												'.$result_ciclo.'</div>
 												<div id="">N/D : Dato no disponible</div>
 								</div>';
 

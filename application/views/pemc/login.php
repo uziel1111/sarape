@@ -124,7 +124,6 @@ background-color: rgba(0,0,0,1.0);
                    <option value="3">Nocturno</option>
                    <option value="4">Discontinuo</option>
                    <option value="5">Continuo</option>
-									 <!-- <option value="6">Complementario</option> -->
                  </select>
                </div>
                <div class="form-group">

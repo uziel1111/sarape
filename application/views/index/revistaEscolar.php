@@ -2,7 +2,7 @@
 <div id="modal_revistaEscolar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header  bgcolor-2">
+      <div class="modal-header  bgcolor-4">
         <h5 class="modal-title color-6" id="exampleModalLongTitle">Infórme<b>SE</b></h5>
         <button type="button" class="close color-6" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -11,6 +11,14 @@
       <div class="modal-body">
         <div class="container">
           <div class="row">
+              <div class="col-sm-3">
+
+              <a href="https://issuu.com/ginaorozcoo/docs/revista_mayo_2021"  target="_blank" title="Edición #33 Mayo">
+                <img src="<?= base_url('assets/img/revista-mayo_2021.png'); ?>" class="img-fluid" alt="Responsive image">
+
+              </a>
+          </div>
+
             <div class="col-sm-3">
 
               <a href="https://issuu.com/ginaorozcoo/docs/revista_abril_2021"  target="_blank" title="Edición #32 Abril">

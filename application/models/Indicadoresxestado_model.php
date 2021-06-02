@@ -26,4 +26,10 @@ class Indicadoresxestado_model extends CI_Model
       return $this->db->query($query)->row('id_ciclo_ind');
     }// get_ind_permanenciaxmuniidciclo
 
+  function get_ciclo($id_ciclo){
+      $query="SELECT ciclo_ind FROM relacion_ciclo WHERE id_ciclo_est={$id_ciclo}";
+      return $this->db->query($query)->row('ciclo_ind');
+    }// get_ind_permanenciaxmuniidciclo
+
+
 }// Indicadoresxestado_model

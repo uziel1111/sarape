@@ -962,8 +962,9 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     $this->db->from('sarape.estadistica_e_indicadores_xcct');
     $this->db->where('cct', $cct);
     $this->db->where('id_turno_single', $id_turno_single);
-    $this->db->where('id_corte', 2);
-    $this->db->where('id_ciclo', 5);
+    $this->db->where('id_corte', 1);
+     $this->db->where('id_ciclo', 6);
+     $this->db->order_by  ('id_ciclo', "desc");
     // $this->db->get();
     // $str = $this->db->last_query();
     // echo $str; die();
@@ -976,8 +977,9 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     $this->db->from('sarape.estadistica_e_indicadores_xcct');
     $this->db->where('cct', $cct);
     $this->db->where('id_turno_single', $id_turno_single);
-    $this->db->where('id_corte', 2);
-    $this->db->where('id_ciclo', 5);
+    $this->db->where('id_corte', 1);
+    $this->db->where('id_ciclo', 6);
+   $this->db->order_by  ('id_ciclo', "desc");
     return  $this->db->get()->result_array();
   }//get_ndocentes_xesc()
 
@@ -986,8 +988,9 @@ class Estadistica_e_indicadores_xcct_model extends CI_Model
     $this->db->from('sarape.estadistica_e_indicadores_xcct');
     $this->db->where('cct', $cct);
     $this->db->where('id_turno_single', $id_turno_single);
-    $this->db->where('id_corte', 2);
-    $this->db->where('id_ciclo', 5);
+    $this->db->where('id_corte', 1);
+    $this->db->where('id_ciclo', 6);
+    $this->db->order_by  ('id_ciclo', "desc");
 
     return  $this->db->get()->result_array();
   }//get_ngrupos_xesc()

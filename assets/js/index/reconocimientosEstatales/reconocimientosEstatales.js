@@ -1,27 +1,19 @@
 $("#btn_reconocimientosEstatales_candelaria").click(function(e){
   e.preventDefault();
-  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientosEstatales/CANDELARIA.pdf");
+  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientosEstatales/MEDALLAS-30-2019-2020.pdf");
 });
 
 $("#btn_reconocimientosEstatales_felix").click(function(e){
   e.preventDefault();
-  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientosEstatales/FELIX.pdf");
+  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientosEstatales/MEDALLAS-40-2019-2020.pdf");
 });
 
 $("#btn_reconocimientosEstatales_ignacio").click(function(e){
   e.preventDefault();
-  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientosEstatales/IGNACIO.pdf");
+  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientosEstatales/MEDALLAS-50-2019-2020.pdf");
 });
 
-$("#btn_reconocimientosEstatales_leopoldo").click(function(e){
-  e.preventDefault();
-  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientosEstatales/LEOPOLDO.pdf");
-});
 
-$("#btn_reconocimientosEstatales_rafael").click(function(e){
-  e.preventDefault();
-  Utiles.showPDF("modal_reconocimientosEstatalesPdf", "index/reconocimientosEstatales/RAFAEL.pdf");
-});
 
 $('#modal_reconocimientosEstatales').on('hidden.bs.modal', function (e) {
 });
