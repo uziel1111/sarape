@@ -735,4 +735,219 @@ function pemc_xesc(){
             GROUP BY ct.cct, ct.turno";
     return $this->db->query($str_query)->result_array();
   }
+
+  function obtener_supervision_xjefsector_cct($cct_jefatura){
+    $str_query = "SELECT
+cct_s as cct, turno_s as turno, nombre_s as nombre ,zona_escolar_s, cct_j, turno_j, jefatura_de_sector_j as jefatura_de_sector, modalidad
+FROM temp_js_sup_cct
+WHERE cct_j='{$cct_jefatura}'
+GROUP BY cct_s, turno_s, cct_j, turno_j";
+    return  $this->db->query($str_query)->result_object();
+  }
+
+  function getGraficasxjefsector_cct($escuelas){
+    $str_query ="SELECT
+l.idlae, IFNULL(tlae.objetivos, 0) as obj, IFNULL(tlae.acciones, 0) as acc
+FROM c_pemc_laes l
+LEFT JOIN (
+SELECT
+laes.idlae,COUNT(DISTINCT o.idobjetivo) as objetivos, COUNT(DISTINCT a.idaccion) as acciones
+FROM c_pemc_laes laes
+INNER JOIN c_pemc_ambito am ON laes.idlae = am.idlae
+LEFT JOIN r_pemc_objetivo_accion a ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+LEFT JOIN r_pemc_objetivo o ON a.idobjetivo = o.idobjetivo
+INNER JOIN r_pemcxescuela esc ON o.idpemc = esc.idpemc
+INNER JOIN vista_cct v ON esc.cct = v.cct
+WHERE v.tipo_centro=9
+AND v.cct in ($escuelas)
+AND (status='1' OR status ='4')
+GROUP BY laes.idlae
+) as tlae ON l.idlae =tlae.idlae
+WHERE l.idlae!=6 AND l.idlae!=7";
+    return $this->db->query($str_query)->result_array();
+  }
+
+  function getTablasGraficasxjefsector_cct($escuelas){
+    $str_query ="SELECT
+esc.nombre as nombre_centro,
+esc.cct_e as cve_centro,
+IFNULL(l1.total_objetivos,0) as obj1,
+IFNULL(l1.total_acciones,0) as acc1,
+IFNULL(l2.total_objetivos,0) as obj2,
+IFNULL(l2.total_acciones,0) as acc2,
+IFNULL(l3.total_objetivos,0) as obj3,
+IFNULL(l3.total_acciones,0) as acc3,
+IFNULL(l4.total_objetivos,0) as obj4,
+IFNULL(l4.total_acciones,0) as acc4,
+IFNULL(l5.total_objetivos,0) as obj5,
+IFNULL(l5.total_acciones,0) as acc5
+FROM
+(
+  SELECT
+	cct as cct_e, nombre
+	FROM vista_cct
+	WHERE cct in ({$escuelas})
+) as esc
+LEFT JOIN
+(
+SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos,
+t.total_acciones
+FROM vista_cct v
+LEFT JOIN
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+COUNT(DISTINCT o.idobjetivo) as total_objetivos,
+COUNT(DISTINCT a.idaccion) as total_acciones,
+laes.idlae
+FROM c_pemc_laes laes
+INNER JOIN c_pemc_ambito am ON laes.idlae = am.idlae
+LEFT JOIN r_pemc_objetivo_accion a ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+LEFT JOIN r_pemc_objetivo o ON a.idobjetivo = o.idobjetivo
+INNER JOIN r_pemcxescuela esc ON o.idpemc = esc.idpemc
+INNER JOIN vista_cct v ON esc.cct = v.cct
+WHERE v.tipo_centro=9
+
+AND (status='1' OR status ='4')
+AND laes.idlae =1
+GROUP BY v.cct,laes.idlae)as t ON v.cct =t.cve_centro
+WHERE (status='1' OR status ='4')
+AND tipo_centro=9
+)as l1 ON esc.cct_e = l1.cve_centro
+LEFT JOIN
+(
+SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos,
+t.total_acciones
+FROM vista_cct v
+LEFT JOIN
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+COUNT(DISTINCT o.idobjetivo) as total_objetivos,
+COUNT(DISTINCT a.idaccion) as total_acciones,
+laes.idlae
+FROM c_pemc_laes laes
+INNER JOIN c_pemc_ambito am ON laes.idlae = am.idlae
+LEFT JOIN r_pemc_objetivo_accion a ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+LEFT JOIN r_pemc_objetivo o ON a.idobjetivo = o.idobjetivo
+INNER JOIN r_pemcxescuela esc ON o.idpemc = esc.idpemc
+INNER JOIN vista_cct v ON esc.cct = v.cct
+WHERE v.tipo_centro=9
+
+AND (status='1' OR status ='4')
+AND laes.idlae =2
+GROUP BY v.cct,laes.idlae)as t ON v.cct =t.cve_centro
+WHERE (status='1' OR status ='4')
+AND tipo_centro=9
+)as l2 ON esc.cct_e = l2.cve_centro
+LEFT JOIN
+(
+SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos,
+t.total_acciones
+FROM vista_cct v
+LEFT JOIN
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+COUNT(DISTINCT o.idobjetivo) as total_objetivos,
+COUNT(DISTINCT a.idaccion) as total_acciones,
+laes.idlae
+FROM c_pemc_laes laes
+INNER JOIN c_pemc_ambito am ON laes.idlae = am.idlae
+LEFT JOIN r_pemc_objetivo_accion a ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+LEFT JOIN r_pemc_objetivo o ON a.idobjetivo = o.idobjetivo
+INNER JOIN r_pemcxescuela esc ON o.idpemc = esc.idpemc
+INNER JOIN vista_cct v ON esc.cct = v.cct
+WHERE v.tipo_centro=9
+
+AND (status='1' OR status ='4')
+AND laes.idlae =3
+GROUP BY v.cct,laes.idlae)as t ON v.cct =t.cve_centro
+WHERE (status='1' OR status ='4')
+AND tipo_centro=9
+)as l3 ON esc.cct_e = l3.cve_centro
+LEFT JOIN
+(
+SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos,
+t.total_acciones
+FROM vista_cct v
+LEFT JOIN
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+COUNT(DISTINCT o.idobjetivo) as total_objetivos,
+COUNT(DISTINCT a.idaccion) as total_acciones,
+laes.idlae
+FROM c_pemc_laes laes
+INNER JOIN c_pemc_ambito am ON laes.idlae = am.idlae
+LEFT JOIN r_pemc_objetivo_accion a ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+LEFT JOIN r_pemc_objetivo o ON a.idobjetivo = o.idobjetivo
+INNER JOIN r_pemcxescuela esc ON o.idpemc = esc.idpemc
+INNER JOIN vista_cct v ON esc.cct = v.cct
+WHERE v.tipo_centro=9
+
+AND (status='1' OR status ='4')
+AND laes.idlae =4
+GROUP BY v.cct,laes.idlae)as t ON v.cct =t.cve_centro
+WHERE (status='1' OR status ='4')
+AND tipo_centro=9
+)as l4 ON esc.cct_e = l4.cve_centro
+LEFT JOIN
+(
+SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+t.total_objetivos,
+t.total_acciones
+FROM vista_cct v
+LEFT JOIN
+(SELECT
+v.cct as cve_centro,
+v.nombre as nombre_centro,
+COUNT(DISTINCT o.idobjetivo) as total_objetivos,
+COUNT(DISTINCT a.idaccion) as total_acciones,
+laes.idlae
+FROM c_pemc_laes laes
+INNER JOIN c_pemc_ambito am ON laes.idlae = am.idlae
+LEFT JOIN r_pemc_objetivo_accion a ON FIND_IN_SET(am.idambito, a.idambitos) > 0
+LEFT JOIN r_pemc_objetivo o ON a.idobjetivo = o.idobjetivo
+INNER JOIN r_pemcxescuela esc ON o.idpemc = esc.idpemc
+INNER JOIN vista_cct v ON esc.cct = v.cct
+WHERE v.tipo_centro=9
+
+AND (status='1' OR status ='4')
+AND laes.idlae =5
+GROUP BY v.cct,laes.idlae)as t ON v.cct =t.cve_centro
+WHERE (status='1' OR status ='4')
+AND tipo_centro=9
+)as l5 ON esc.cct_e = l5.cve_centro";
+  return $this->db->query($str_query)->result_array();
+  }
+
+  function getGraficas_piexjefsector_cct($escuelas){
+    $str_query ="SELECT
+    COUNT(DISTINCT CONCAT(e.cct, t.idfederal)) n_esc,
+    COUNT(DISTINCT ro.idpemc) as esc_que_capt,
+		IF(COUNT(DISTINCT CONCAT(e.cct, t.idfederal))=0,0,(COUNT(DISTINCT CONCAT(e.cct, t.idfederal)))- COUNT(DISTINCT ro.idpemc)) as esc_que_n_capt
+    FROM vista_cct e
+    INNER JOIN turno_temp t ON e.turno = t.idturno
+    LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+    LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+    WHERE (e.status = 1 OR e.status = 4)
+	AND e.cct in ({$escuelas})
+    ";
+    return $this->db->query($str_query)->row();
+  }
 }

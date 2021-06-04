@@ -1,4 +1,13 @@
 <div>
+  <div class="col-md-12">
+    <center><h4>TOTAL DE ESCUELAS: <b><?=number_format($n_esc)?></b></h4></center>
+  </div>
+  <div class="col-md-12 ">
+    <div class="d-flex justify-content-center" id="piechart_js" style="width: 900px; height: 300px;"></div>
+  </div>
+</div>
+
+<div>
  <br>
  <div id="columnchart_material_xjefesector" class="float-left mt-4"></div>
  <div id="columnchart_material_acciones_xjefesector"  class="float-right mt-4"></div>
@@ -67,4 +76,3 @@
 
 </div>
 </div>
-

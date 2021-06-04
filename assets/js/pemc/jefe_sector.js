@@ -1,6 +1,7 @@
  google.charts.load('current', {'packages':['bar']});
  google.charts.setOnLoadCallback(graficaBarObj_jefsector);
  google.charts.setOnLoadCallback(graficaBarAcc_jefsector);
+ google.charts.load('current', {'packages':['corechart']});
 
 $('#slct_supervision').change(function() {
 	var cct_super=$('#slct_supervision option:selected').val();
@@ -40,9 +41,10 @@ $(document).on("click","#btn-estadisticas_xjefsector",function(){
      swal.close();
     $('#contenido-estadisticas_xjefsector').html(data.str_view_jefsector);
     $('#modal_estadisticas_xjefsector').modal('show');
-      setTimeout(function(){ 
-     graficaBarObj_jefsector(data.grafica_jefsector); 
-     graficaBarAcc_jefsector(data.grafica_jefsector); 
+      setTimeout(function(){
+        graficaPie(parseInt(data.esc_que_capt), parseInt(data.esc_que_n_capt));
+        graficaBarObj_jefsector(data.grafica_jefsector);
+        graficaBarAcc_jefsector(data.grafica_jefsector);
      }, 1000);
   })
   .fail(function() {
@@ -51,7 +53,7 @@ $(document).on("click","#btn-estadisticas_xjefsector",function(){
   .always(function() {
  swal.close();
   });
-  
+
 });
 $(document).on("click","#btn-cerrar_estadisticas_xjefsector",function(){
   $('#modal_estadisticas_xjefsector').modal('toggle');
@@ -61,7 +63,7 @@ $(document).on("click","#btn-cerrar_estadisticas_xjefsector",function(){
 function graficaBarObj_jefsector(objetivos) {
     if (objetivos != undefined){
 
-   
+
     obj1 = parseInt(objetivos[0]['obj']);
     obj2 = parseInt(objetivos[1]['obj']);
     obj3 = parseInt(objetivos[2]['obj']);
@@ -87,7 +89,7 @@ function graficaBarObj_jefsector(objetivos) {
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
-     } 
+     }
 function graficaBarAcc_jefsector(acciones) {
     if (acciones != undefined){
 
@@ -118,7 +120,27 @@ function graficaBarAcc_jefsector(acciones) {
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
-     } 
+     }
+
+     function graficaPie(capturado, no_capturado) {
+       var data = google.visualization.arrayToDataTable([
+         ['Porcentaje', 'Captura por escuela'],
+         ['Capturado',     capturado],
+         ['No Capturado',      no_capturado]
+         ]);
+
+       var options = {
+         chart:{
+           title: 'Porcentaje de escuelas que han capturado'
+         },
+         height: 400,
+         width: 700,
+          legend: {position: 'labeled'},
+       }
+       var chart = new google.visualization.PieChart($('#piechart_js')[0]);
 
 
 
+
+       chart.draw(data, options);
+     };

@@ -25,7 +25,21 @@ class Pemc extends CI_Controller {
 				Utilerias::destroy_all_session_cct($this);
 				redirect('Pemc/index');
 			}else{
-				$this->vistas_pemc();
+				switch ($this->cct['tipo_usuario']) {
+					 case 'supervision':
+						 $this->generavistaSupervisor();
+						 break;
+					 case 'escuela':
+								 $this->vistas_pemc();
+							 break;
+					 case 'jefe_sector':
+								 $this->generavistaJefe_sector();
+							break;
+					 default:
+		 Utilerias::destroy_all_session_cct($this);
+				 redirect('Pemc/index');
+		 break;
+				 }
 			}
 		}else{
 			$data = $this->data;
@@ -912,15 +926,20 @@ EOT;
 		}
 		$idspemc_union = implode( "', '", $idspemc);
 		$ccts_union = implode( "', '", $ccts);
-
+		// echo "<pre>";print_r($ccts_union);die();
 		$graficas = $this->Pemc_model->getGraficas($idspemc_union);
 		$tabla = $this->Pemc_model->getTablasGraficas($idspemc_union,$ccts_union);
-		$data['tabla'] = $tabla;
-		$str_view = $this->load->view("pemc/supervisor/grafica_modal", $data, TRUE);
-	    $response = array('str_view_super' => $str_view, 'grafica_super'=>$graficas);
-	    Utilerias::enviaDataJson(200, $response, $this);
-	    exit;
 
+		$graficas_pie = $this->Pemc_model->getGraficas_piexjefsector_cct("'".$ccts_union."'");
+		// echo "<pre>";print_r(($graficas_pie));die();
+		$data['tabla'] = $tabla;
+		$data['n_esc'] = count($tabla);
+		$str_view = $this->load->view("pemc/supervisor/grafica_modal", $data, TRUE);
+    $response = array('str_view_super' => $str_view, 'grafica_super'=>$graficas,
+		'esc_que_capt'=>(isset($graficas_pie->esc_que_capt))?$graficas_pie->esc_que_capt:0,
+		'esc_que_n_capt'=>(isset($graficas_pie->esc_que_n_capt))?$graficas_pie->esc_que_n_capt:0);
+    Utilerias::enviaDataJson(200, $response, $this);
+    exit;
 	}
 	public function guarda_observacion_supervisor(){
         $observacion = $this->input->post('in_obser');
@@ -935,8 +954,10 @@ EOT;
 		$datos_jefesector = Utilerias::get_cct_sesion($this);
 		$datos_jefesector = $datos_jefesector[0];
 		// echo "<pre>";print_r($datos_jefesector);die();
+		$cct_jefatura = $datos_jefesector['cve_centro'];
     $jefatura = $datos_jefesector['jefatura_de_sector'];
-		$supervisiones = $this->Pemc_model->obtener_supervision_xjefsector($jefatura);
+		$supervisiones = $this->Pemc_model->obtener_supervision_xjefsector_cct($cct_jefatura);
+		// $supervisiones = $this->Pemc_model->obtener_supervision_xjefsector($jefatura);
 		$data = array();
 		$data['nombreuser'] = $datos_jefesector['nombre_jefe_sector'];
 		$data['nivel'] = $jefatura;
@@ -950,13 +971,14 @@ EOT;
 		$cct = $this->input->post('cct');
 		$turno =$this->input->post('turno');
 		$datos_super = $this->Pemc_model->getdatossupervicion($cct, $turno);
-		$datos_super = $datos_super[0];
-		$escuelas = $this->getEscuelas($datos_super['cve_centro']);
+		// echo "<pre>";print_r($datos_super);die();
+		$datos_super = (count($datos_super)==0)?array():$datos_super[0];
+		$escuelas = $this->getEscuelas((count($datos_super)==0)?$cct:$datos_super['cve_centro']);
 		$data = array();
-		$data['nombreuser'] = $datos_super['nombre_supervision'];
-		$data['nivel'] = $datos_super['zona_escolar'];
-		$data['turno'] = $datos_super['desc_turno'];
-		$data['cct'] = $datos_super['cve_centro'];
+		$data['nombreuser'] =  (count($datos_super)==0)?'':$datos_super['nombre_supervision'];
+		$data['nivel'] =  (count($datos_super)==0)?'':$datos_super['zona_escolar'];
+		$data['turno'] =  (count($datos_super)==0)?$turno:$datos_super['desc_turno'];
+		$data['cct'] =  (count($datos_super)==0)?$cct:$datos_super['cve_centro'];
 		$data['status_super'] =$escuelas->statusText;
 		if($escuelas->procede==1 && $escuelas->status==1){
 		    $data['escuelas'] = $escuelas->Escuelas;
@@ -985,16 +1007,38 @@ EOT;
 	public function estadisticas_jefesector(){
 		$datos_jefesector = Utilerias::get_cct_sesion($this);
 		$datos_jefesector= $datos_jefesector[0];
-        $jefatura=$datos_jefesector['jefatura_de_sector'];
-		$graficas = $this->Pemc_model->getGraficasxjefsector($jefatura);
-		$tabla = $this->Pemc_model->getTablasGraficasxjefsector($jefatura);
+    $jefatura=$datos_jefesector['jefatura_de_sector'];
+		$cct_jefatura = $datos_jefesector['cve_centro'];
+		$supervisiones = $this->Pemc_model->obtener_supervision_xjefsector_cct($cct_jefatura);
+		$escuelas = "";
+		$count_esc = 0;
+		foreach ($supervisiones as $key => $value) {
+			$aux_escuelas = $this->getEscuelas($value->cct);
+			// echo "<pre>";print_r($aux_escuelas);die();
+			if ($aux_escuelas->status =1) {
+				foreach ($aux_escuelas->Escuelas as $k => $v) {
+					$count_esc++;
+					$escuelas .= "'".$v->b_cct."',";
+				}
+			}
+		}
+		$escuelas = substr($escuelas, 0, -1);
+		// echo "<pre>";print_r($escuelas);die();
+
+		// $graficas = $this->Pemc_model->getGraficasxjefsector($jefatura);
+		$graficas = $this->Pemc_model->getGraficasxjefsector_cct($escuelas);
+		// $tabla = $this->Pemc_model->getTablasGraficasxjefsector($jefatura);
+		$tabla = $this->Pemc_model->getTablasGraficasxjefsector_cct($escuelas);
+		$graficas_pie = $this->Pemc_model->getGraficas_piexjefsector_cct($escuelas);
+		// echo "<pre>";print_r(($graficas_pie));die();
 		$data['tabla'] = $tabla;
+		$data['n_esc'] = count($tabla);
 		$str_view = $this->load->view("pemc/jefe_sector/grafica_modal", $data, TRUE);
-	    $response = array('str_view_jefsector' => $str_view, 'grafica_jefsector'=>$graficas);
-	    Utilerias::enviaDataJson(200, $response, $this);
-	    exit;
-
+    $response = array('str_view_jefsector' => $str_view, 'grafica_jefsector'=>$graficas,
+		'esc_que_capt'=>(isset($graficas_pie->esc_que_capt))?$graficas_pie->esc_que_capt:0,
+		'esc_que_n_capt'=>(isset($graficas_pie->esc_que_n_capt))?$graficas_pie->esc_que_n_capt:0);
+    Utilerias::enviaDataJson(200, $response, $this);
+    exit;
 	}
-
 
 }

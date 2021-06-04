@@ -8,7 +8,7 @@
 			<label for="slct_supervision">Seleccione la supervisión</label>
 			 <select id="slct_supervision" class="form-control">
 			 	 <option value="0">Seleccione...</option>
-			 	<?php foreach ($supervisiones as $supervision) :?>			
+			 	<?php foreach ($supervisiones as $supervision) :?>
 				 <option value="<?= $supervision->cct.'_'.$supervision->turno?>"><?= $supervision->nombre.' / '.$supervision->cct?></option>
                 <?php endforeach; ?>
 			</select>
@@ -20,7 +20,7 @@
         </div>
    </div>
    <div id="vista_escuelas">
-   
+
    </div>
 </div>
 </div>
