@@ -1335,4 +1335,91 @@ function filtro_escuela($municipio,$nivel,$sostenimiento,$nombre_escuela){
     return $this->db->query($query)->result_array();
   }
 
+  function get_cct_xzonas($sostenimiento, $zona, $nivel){
+
+      if ($nivel != 0) {
+          switch ($nivel) {
+              case '1':
+                  $nivel_desc = 'CAM';
+                  break;
+              case '2':
+                  $nivel_desc = 'INICIAL';
+                  break;
+              case '3':
+                  $nivel_desc = 'PREESCOLAR';
+                  break;
+              case '4':
+                  $nivel_desc = 'PRIMARIA';
+                  break;
+              case '5':
+                  $nivel_desc = 'SECUNDARIA';
+                  break;
+              default:
+              $nivel_desc = 0;
+                  break;
+          }
+          $where_nivel = " AND e.desc_nivel_educativo = '{$nivel_desc}'";
+      } else {
+          $where_nivel = ' ';
+      }
+
+      if ($sostenimiento != 0) {
+          switch ($sostenimiento) {
+              case '1':
+               $where_sostenimiento = " AND e.sostenimiento NOT IN('61','41','92','96','51')";
+                   break;
+               case '2':
+               $where_sostenimiento = " AND e.sostenimiento IN ('61','41','92','96')";
+                    break;
+
+              default:
+              $where_sostenimiento = "";
+                  break;
+          }
+      } else {
+            $where_sostenimiento = "";
+      }
+
+      if ($sostenimiento != 0 && $zona != 0) {
+          $where_zona = " AND e.zona_escolar = {$zona}";
+      } else {
+          $where_zona = ' ';
+      }
+
+      if (($sostenimiento == 0 || $sostenimiento == '') && $zona != 0) {
+          $where_zona = " AND e.zona_escolar = {$zona}";
+      }
+
+
+      $str_query = "SELECT
+        e.desc_nivel_educativo as nivel,
+        e.sostenimiento as id_sostenimiento,
+        e.desc_sostenimiento as sostenimiento,
+        e.zona_escolar,
+				e.cct,
+				t.letra as turno,
+				COUNT(DISTINCT ro.idobjetivo) as n_objetivos,
+				COUNT(DISTINCT roa.idaccion) as n_acciones
+        FROM vista_cct e
+        INNER JOIN turno_temp t ON e.turno = t.idturno
+				LEFT JOIN r_pemcxescuela rp ON e.cct = rp.cct AND t.idfederal = rp.id_turno_single
+				LEFT JOIN r_pemc_objetivo ro ON rp.idpemc = ro.idpemc
+				LEFT JOIN r_pemc_objetivo_accion roa ON ro.idobjetivo = roa.idobjetivo
+
+        WHERE
+        (e.status = 1 OR e.status = 4) AND e.tipo_centro=9
+        AND ((e.desc_nivel_educativo = 'CAM' AND (e.cct LIKE '05EML%' OR e.cct LIKE '05DML%' OR e.cct LIKE '05PML%'))
+        OR (e.desc_nivel_educativo = 'INICIAL')
+        OR (e.desc_nivel_educativo = 'PREESCOLAR' AND (e.cct LIKE '05DJN%' OR e.cct LIKE '05EJN%' OR e.cct LIKE '05PJN%'))
+        OR (e.desc_nivel_educativo = 'PRIMARIA' AND (e.cct LIKE '05DPR%' OR e.cct LIKE '05EPR%' OR e.cct LIKE '05PPR%'))
+        OR (e.desc_nivel_educativo = 'SECUNDARIA' AND (e.cct LIKE '05DES%' OR e.cct LIKE '05DST%' OR e.cct LIKE '05DTV%' OR e.cct LIKE '05PES%' OR e.cct LIKE '05EES%' OR e.cct LIKE '05EST%' OR e.cct LIKE '05ETV%'))
+        ) AND !ISNULL(e.zona_escolar)
+        {$where_nivel}
+        {$where_sostenimiento}
+        {$where_zona}
+        GROUP BY e.cct, t.letra
+				ORDER BY COUNT(DISTINCT ro.idobjetivo), COUNT(DISTINCT roa.idaccion)";
+      return $this->db->query($str_query)->result_array();
+}
+
 }

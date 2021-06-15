@@ -69,4 +69,32 @@
 </div>
 
 
+<div class="col-md-12">
+	<table class="table table-striped table-bordered w-auto">
+		<thead class="thead-dark">
+			<tr>
+        <th>CCT</th>
+        <th>Turno</th>
+        <th>Sostenimiento</th>
+        <th>Número de objetivos</th>
+        <th>Número de acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+     <?php foreach ($tabla_esc as $key => $value) { ?>
+      <tr>
+
+        <td><?=$value['cct']?></td>
+        <td><?=$value['turno']?></td>
+        <td><?=$value['sostenimiento']?></td>
+        <td><?=$value['n_objetivos']?></td>
+        <td><?=$value['n_acciones']?></td>
+
+      </tr>
+    <?php } ?>
+  </tbody>
+</table>
+</div>
+
+
 <script src="<?= base_url('assets/js/estadistica_pemc/selectEducativo.js') ?>"></script>

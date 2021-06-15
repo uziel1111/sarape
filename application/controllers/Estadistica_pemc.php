@@ -414,9 +414,11 @@ function getTablaZona()
    $zonas= $this->Estadistica_pemc_model->get_zonas($sostenimiento, $nivel);
 
    $porcentajeZona = $this->Estadistica_pemc_model->get_porcent_zonas($sostenimiento, $zonaPost, $nivel);
-
+   $porcctZona = $this->Estadistica_pemc_model->get_cct_xzonas($sostenimiento, $zonaPost, $nivel);
+   // echo "<pre>";print_r($porcctZona);die();
    $data['zonas'] = $zonas;
    $data['tabla'] = $porcentajeZona;
+   $data['tabla_esc'] = $porcctZona;
    $str_view = $this->load->view("estadistica_pemc/grid_zona", $data, TRUE);
    $response = array('str_view' => $str_view);
    Utilerias::enviaDataJson(200, $response, $this);
