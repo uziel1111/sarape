@@ -257,6 +257,34 @@ class Pemc extends CI_Controller {
 
 		}
 
+		public function getSuper_xJefeSect($cct){
+    		$curl = curl_init();
+		    $method = "POST";
+		    $url = "http://servicios.seducoahuila.gob.mx/wservice/w_service_supervisiones_por_jefatura.php";
+		    $data = array("cct" => $cct);
+  		    switch ($method)
+		    {
+			    case "POST":
+			    curl_setopt($curl, CURLOPT_POST, 1);
+			    if ($data)
+				    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+			    break;
+			    default:
+			    if ($data)
+			    $url = sprintf("%s?%s", $url, http_build_query($data));
+		    }
+
+		    curl_setopt($curl, CURLOPT_URL, $url);
+		    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+		    $result = curl_exec($curl);
+
+		    curl_close($curl);
+			// echo "<pre>";print_r(json_decode($result));die();
+		    return $result;
+
+		}
+
 //FUNCIONAMIENTO Y VALIDACION PARA SUPERVISOR BY LUIS SANCHEZ... all reserved rights
 //
 	// public function verifica_supervisor($cct){
@@ -453,7 +481,8 @@ class Pemc extends CI_Controller {
 			$this->reporte_pemc($datos_sesion['idpemc'],$path_eval);
 			// echo "<pre>";print_r($evaluacion);die();
 			$estatus = $this->Pemc_model->guarda_cierre($datos_sesion['idpemc'],$path_eval);
-			$response = array('estatus' => $estatus);
+			$datos_cctesc=$this->Pemc_model->obtener_cct_xidpemc($datos_sesion['idpemc']);
+			$response = array('estatus' => $estatus,'idpemc' => $datos_sesion['idpemc'], 'cct' => $datos_cctesc['cct'], 'turno' => $datos_cctesc['id_turno_single']);
 			Utilerias::enviaDataJson(200, $response, $this);
 			exit;
 		}
@@ -953,10 +982,15 @@ EOT;
 	public function generavistaJefe_sector(){
 		$datos_jefesector = Utilerias::get_cct_sesion($this);
 		$datos_jefesector = $datos_jefesector[0];
-		// echo "<pre>";print_r($datos_jefesector);die();
 		$cct_jefatura = $datos_jefesector['cve_centro'];
-    $jefatura = $datos_jefesector['jefatura_de_sector'];
-		$supervisiones = $this->Pemc_model->obtener_supervision_xjefsector_cct($cct_jefatura);
+		$jefatura = $datos_jefesector['jefatura_de_sector'];
+		$supervisiones = $this->getSuper_xJefeSect($cct_jefatura);
+		$supervisiones = explode("</pre>", $supervisiones);
+		$supervisiones = json_decode($supervisiones[1]);
+		$supervisiones = $supervisiones->Escuelas;	
+		// echo "<pre>"; print_r($supervisiones);die();
+		// $supervisiones = $this->Pemc_model->obtener_supervision_xjefsector_cct($cct_jefatura);
+		
 		// $supervisiones = $this->Pemc_model->obtener_supervision_xjefsector($jefatura);
 		$data = array();
 		$data['nombreuser'] = $datos_jefesector['nombre_jefe_sector'];
@@ -979,8 +1013,8 @@ EOT;
 		$data['nivel'] =  (count($datos_super)==0)?'':$datos_super['zona_escolar'];
 		$data['turno'] =  (count($datos_super)==0)?$turno:$datos_super['desc_turno'];
 		$data['cct'] =  (count($datos_super)==0)?$cct:$datos_super['cve_centro'];
-		$data['status_super'] =$escuelas->statusText;
-		if($escuelas->procede==1 && $escuelas->status==1){
+		$data['status_super'] = (isset($escuelas->statusText))?$escuelas->statusText:'No hay escuelas';
+		if(isset($escuelas->procede) && $escuelas->procede==1 && $escuelas->status==1){
 		    $data['escuelas'] = $escuelas->Escuelas;
              for ($i=0; $i <sizeof($data['escuelas']);$i++) {
         	 $idpemc = $this->Pemc_model->obtener_idpemc_xescuela_super($data['escuelas'][$i]->b_cct,$data['escuelas'][$i]->b_turno);
@@ -1006,22 +1040,29 @@ EOT;
 
 	public function estadisticas_jefesector(){
 		$datos_jefesector = Utilerias::get_cct_sesion($this);
-		$datos_jefesector= $datos_jefesector[0];
-    $jefatura=$datos_jefesector['jefatura_de_sector'];
+		$datos_jefesector = $datos_jefesector[0];
+    	$jefatura = $datos_jefesector['jefatura_de_sector'];
 		$cct_jefatura = $datos_jefesector['cve_centro'];
-		$supervisiones = $this->Pemc_model->obtener_supervision_xjefsector_cct($cct_jefatura);
+		$supervisiones = $this->getSuper_xJefeSect($cct_jefatura);
+		
+		$supervisiones = explode("</pre>", $supervisiones);
+		$supervisiones = json_decode($supervisiones[1]);
+		$supervisiones = $supervisiones->Escuelas;	
+		// echo "<pre>"; print_r($supervisiones); die();
+		// $supervisiones = $this->Pemc_model->obtener_supervision_xjefsector_cct($cct_jefatura);
 		$escuelas = "";
 		$count_esc = 0;
 		foreach ($supervisiones as $key => $value) {
-			$aux_escuelas = $this->getEscuelas($value->cct);
+			$aux_escuelas = $this->getEscuelas($value->b_cct);
 			// echo "<pre>";print_r($aux_escuelas);die();
-			if ($aux_escuelas->status =1) {
+			if (isset($aux_escuelas->status) && $aux_escuelas->status ==1) {
 				foreach ($aux_escuelas->Escuelas as $k => $v) {
 					$count_esc++;
 					$escuelas .= "'".$v->b_cct."',";
 				}
 			}
 		}
+		
 		$escuelas = substr($escuelas, 0, -1);
 		// echo "<pre>";print_r($escuelas);die();
 
@@ -1039,6 +1080,38 @@ EOT;
 		'esc_que_n_capt'=>(isset($graficas_pie->esc_que_n_capt))?$graficas_pie->esc_que_n_capt:0);
     Utilerias::enviaDataJson(200, $response, $this);
     exit;
+	}
+
+	public function guarda_cierre_masivo(){
+		// $datos_sesion = Utilerias::get_cct_sesion($this);
+		$arr_escuelas_con_idpemc = $this->Pemc_model->trae_idpemc();
+		// echo "<pre>";print_r($arr_escuelas_con_idpemc);die();
+		date_default_timezone_set('America/Mexico_City');
+		foreach ($arr_escuelas_con_idpemc as $key => $value) {
+			$hoy = date("Y-m-d_H_i_s");
+			if(file_exists("assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$value['idpemc'])) {
+				$files = glob("assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$value['idpemc']."/*"); //obtenemos todos los nombres de los ficheros
+				foreach($files as $file){
+						if(is_file($file))
+						unlink($file); //elimino el fichero
+				}
+					// unlink("assets/pdf/pemc_eval/".$value['idpemc'], 7777);
+					// mkdir("assets/pdf/pemc_eval/".$value['idpemc'], 7777);
+			}
+			else {
+				mkdir("assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$value['idpemc'], 0777,true);
+			}
+
+			$path_eval = "assets/pdf/pemc_eval/".$this->Pemc_model->trae_ciclo_actual()."/".$value['idpemc']."/_".$hoy.".pdf";
+
+			$this->reporte_pemc($value['idpemc'],$path_eval);
+			// echo "<pre>";print_r($evaluacion);die();
+			$estatus = $this->Pemc_model->guarda_cierre_todos($value['idpemc'],$path_eval);
+			$response = array('estatus' => $estatus,'idpemc' => $value['idpemc'], 'cct' => $value['cct'], 'turno' => $value['id_turno_single']);
+			echo "<pre>";print_r($response);
+			echo "<br>";
+		}
+		die();
 	}
 
 }

@@ -11,7 +11,7 @@
   </div>
   <div class="card-body">
     <div class="container">
-      <form class="form-group" name="<?=(($es_fin && (!$esta_cerrado_ciclo) && ($tipo_usuario=="escuela"))?'fr_evaluacion':'')?>" 
+      <form class="form-group" name="<?=(($es_fin && (!$esta_cerrado_ciclo) && ($tipo_usuario=="escuela"))?'fr_evaluacion':'')?>"
         id="<?=(($es_fin && (!$esta_cerrado_ciclo) && ($tipo_usuario=="escuela"))?'fr_evaluacion':'')?>">
       <label class="my-1 mr-2" for="in_eval">Redacte su evaluación:</label>
        <textarea <?= ($es_fin && ($tipo_usuario=="escuela"))? '': 'disabled'?> class="form-control in_eval" name="in_eval" id="in_eval" rows="10" required <?=(($es_fin && (!$esta_cerrado_ciclo) && ($tipo_usuario=="escuela"))?'':'disabled')?>><?=$evaluacion?></textarea>
@@ -31,7 +31,7 @@
       </div>
       <div class="col-2">
         <?php if ($es_fin && (!$esta_cerrado_ciclo)): ?>
-          <button class="btn btn-primary my-1  float-right" id="btn_guardar_cierre_pemc_" disabled>Cierre ciclo escolar</button>
+          <button class="btn btn-primary my-1  float-right" id="btn_guardar_cierre_pemc">Cierre ciclo escolar</button>
         <?php endif; ?>
       </div>
     </div>
@@ -81,7 +81,7 @@
       <div class="col-10">
         <h3>Observación Supervisor</h3>
       </div>
-    </div>    
+    </div>
   </div>
   <div class="card-body">
     <div class="container">

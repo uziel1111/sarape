@@ -205,7 +205,7 @@ var Evaluacion_pemc = {
 					"Se guardó correctamente.",
 					"success"
 					);
-					Principal_pemc.obtiene_vista_evaluacion($("#idpemc").val());
+					Principal_pemc.obtiene_vista_evaluacion(data.idpemc,data.cct, data.turno);
 			}
 			else {
 				swal(

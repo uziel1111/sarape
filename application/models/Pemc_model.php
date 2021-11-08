@@ -950,4 +950,38 @@ AND tipo_centro=9
     ";
     return $this->db->query($str_query)->row();
   }
+
+  function trae_idpemc(){
+    $str_query ="SELECT idpemc, cct, id_turno_single FROM r_pemcxescuela ORDER BY idpemc limit 2200,4000
+    ";
+    return $this->db->query($str_query)->result_array();
+  }
+
+  function guarda_cierre_todos($idpemc,$path_eval){
+    $status=false;
+    $str_query = "SELECT idpemc FROM r_pemc_cierre WHERE idpemc = {$idpemc} AND ciclo_escolar = "."'". $this->trae_ciclo_actual()."'";
+    $idpemc_rtn = $this->db->query($str_query)->row('idpemc');
+    date_default_timezone_set('America/Monterrey');
+    setlocale(LC_TIME, 'es_MX.UTF-8');
+    $fecha = date("Y-m-d H:i:s");
+    if ($idpemc_rtn=='') {
+
+  		$data_req = array(
+  			'idpemc' =>$idpemc,
+        'url_reporte' =>$path_eval,
+  			'ciclo_escolar' => $this->trae_ciclo_actual(),
+  			'fcreacion' =>$fecha
+  		);
+        $status = $this->db->insert('r_pemc_cierre_copy', $data_req);
+    }
+    else {
+      $this->db->set('url_reporte', $path_eval);
+      $this->db->set('fcreacion', $fecha);
+      $this->db->where('idpemc', $idpemc);
+      $this->db->where('ciclo_escolar', $this->trae_ciclo_actual());
+      $status = $this->db->update('r_pemc_cierre_copy');
+    }
+    return $status;
+  }
+
 }

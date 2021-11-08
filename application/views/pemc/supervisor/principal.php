@@ -76,5 +76,24 @@
     </div>
   </div>
 </div> <!-- Fin modal estadisticas-->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+  function getScript2(src)
+  {
+    if($('script[src="'+src+'"]').length>0){
+        return true;
+    }else{
+        return false;
+    }
+  }
+  $(document).ready(function(){
+    if (!getScript2("<?= base_url('assets/js/pemc/graf_chars.js') ?>")) {
+      var script1 = document.createElement("script");  // create a script DOM node
+      script1.src = "https://www.gstatic.com/charts/loader.js";  // set its src to the provided URL
+      document.head.appendChild(script1);
+      var script2 = document.createElement("script");  // create a script DOM node
+      script2.src = "<?= base_url('assets/js/pemc/graf_chars.js') ?>";  // set its src to the provided URL
+      document.head.appendChild(script2);
+    }
+});
+</script>
 <script type="text/javascript" src="<?= base_url('assets/js/pemc/supervisor.js') ?>"></script>
