@@ -8,9 +8,11 @@
       <a tabindex="0" class="btn btn-lg btn-dark" role="button" data-toggle="popover" data-trigger="focus" title="Seguimiento:" data-content="Es pieza clave en el desarrollo del PEMC, ya que la información que ofrece permite establecer si mediante la implementación del conjunto de acciones se favorece la incorporación de prácticas educativas y de gestión para el logro de los aprendizajes y reconocer la brecha entre lo planeado y lo que realmente se implementa."><i class="fa fa-info-circle"></i></a>
     </div>
   </div>
-
+  <?php $idobjetivos = '';?>
   <?php foreach ($seguimiento as $key => $value): ?>
     <?php if ($idobjetivo != $value['idobjetivo']): ?>
+      
+    <?php $idobjetivos .= $value['idobjetivo'].',';?> 
       <?php if ($idobjetivo != 0): ?>
       </div>
     </div>
@@ -30,9 +32,14 @@
               <b>Meta(s):</b> <?=$value['meta'];?>
             </div>
           </div> -->
-          <div class="row" style="background-color: #bee5eb; ">
+          <div class="row">
             <div class="col-12">
-              <b>Comentarios generales:</b> <?=$value['comentario_general'];?>
+            <form class="form-group" name="<?=((($tipo_usuario=="escuela") && (!$esta_cerrado_ciclo))?'fr_obs_seg'.$value['idobjetivo']:'')?>" id="<?=(( $tipo_usuario=="escuela" && (!$esta_cerrado_ciclo))?'fr_obs_seg'.$value['idobjetivo']:'')?>">
+              <b>Observaciones para el seguimiento:</b> 
+              <textarea  rows="3" class="form-control in_obs_seg<?=$value['idobjetivo']?>" name="in_obs_seg<?=$value['idobjetivo']?>" id="in_obs_seg<?=$value['idobjetivo']?>" required <?=((($tipo_usuario=="escuela")  && (!$esta_cerrado_ciclo))?'':'disabled')?>><?=$value['obs_seg'];?></textarea>
+              <button class="btn btn-primary my-1  float-right" id="btn_guardar_obs_seg_<?=$value['idobjetivo']?>">Grabar</button>
+              <!-- <button class="btn btn-a1 my-1 float-right" onclick="Seguimiento_pemc.btn_obs_seg(<?=$value['idobjetivo']?>);" >Grabar</button> -->
+            </form>
             </div>
           </div>
           <br>
@@ -96,8 +103,9 @@
         </div>
         <?php endif; ?> -->
 
-    <?php $idobjetivo = $value['idobjetivo'];?>
+    <?php $idobjetivo = $value['idobjetivo'];?>          
   <?php endforeach; ?>
+  <input type="hidden" id="idsobj" name="idsobj" value="<?=(strlen($idobjetivos)>1?substr($idobjetivos, 0, -1):$idobjetivos)?>">
   <?php endif; ?>
   <?php if(sizeof($seguimiento)<1): ?>
   <div class="alert alert-info">Escuela sin actividad de PEMC en seguimiento</div>

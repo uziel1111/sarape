@@ -111,7 +111,7 @@ class Objetivo_model extends CI_Model
     }
 
     function update_accion($idaccion, $idobjetivo, $accion, $recurso, $ambitos, $responsables, $otro_responsable, $finicio,$comentarios_finicio, $ffin,$comentarios_ffin){
-    	// echo $responsables;
+    	// echo $accion;
     	// die();
     	$str_query = "UPDATE r_pemc_objetivo_accion
 					SET accion = UPPER(?), recurso = UPPER(?), idambitos = ?, responsables= ?, otros_responsables = UPPER(?), finicio = ?, ffin = ?, fmodificacion = NOW(), comentario_finicio = ?, comentario_ffin = ?

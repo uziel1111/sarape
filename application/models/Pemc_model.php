@@ -86,7 +86,7 @@ function obtener_seguimiento_xidpemc($idpemc){
  $str_query = "SELECT
               obj.idobjetivo, obj.orden as orden_objetivo, obj.objetivo, obj.meta, obj.comentario_general,
               acc.idaccion, acc.orden as orden_accion, acc.accion, acc.idambitos, acc.finicio,  acc.ffin,
-              seguimineto.avance, acc.responsables, acc.otros_responsables
+              seguimineto.avance, acc.responsables, acc.otros_responsables, obj.obs_seg
               FROM r_pemc_objetivo obj
               INNER JOIN r_pemc_objetivo_accion acc ON obj.idobjetivo = acc.idobjetivo
               LEFT JOIN (SELECT
@@ -981,6 +981,13 @@ AND tipo_centro=9
       $this->db->where('ciclo_escolar', $this->trae_ciclo_actual());
       $status = $this->db->update('r_pemc_cierre_copy');
     }
+    return $status;
+  }
+
+  function guarda_obs_seg($idobjetivo, $obs_seg){
+      $this->db->set('obs_seg', $obs_seg);
+      $this->db->where('idobjetivo', $idobjetivo);
+      $status = $this->db->update('r_pemc_objetivo');
     return $status;
   }
 

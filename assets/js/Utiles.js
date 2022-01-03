@@ -64,7 +64,8 @@ var Utiles = {
               ['unorderedList', 'orderedList'],
               ['horizontalRule'],
               ['removeformat'],
-              ['fullscreen']
+              ['fullscreen'],
+              ['link']
             ];
   }
 

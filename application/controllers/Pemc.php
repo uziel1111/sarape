@@ -589,6 +589,17 @@ class Pemc extends CI_Controller {
 
 					$pdf->SetTextColor(0,0,0);
 					$pdf->SetFont('arial', '', 8);
+					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Observaciones para el seguimiento: ".$value['obs_seg'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
+					$tam_obs_seg = (strlen($value['obs_seg'])>=240)?((strlen($value['obs_seg']))/240):0;
+					$y2=$y2+((1+$tam_obs_seg)*8);
+					if ($y2>=200) {
+						$this->pinta_encabezado_pemc($pdf,$datos_escuela);
+						$pdf->SetAutoPageBreak(FALSE, 0);
+						$y2=52;
+					}
+
+					$pdf->SetTextColor(0,0,0);
+					$pdf->SetFont('arial', '', 8);
 					$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "_______________________________________________________________________________________________________________________________________________________________________________", $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
 					$y2=$y2+5;
 					if ($y2>=200) {
@@ -600,7 +611,7 @@ class Pemc extends CI_Controller {
 				$pdf->SetTextColor(0,0,0);
 				$pdf->SetFont('arial', '', 8);
 				$pdf->writeHTMLCell($w=0,$h=55,$x=10,$y=$y2, "Acción: ".$value['accion'], $border=0, $ln=1, $fill=0, $reseth=true, $aligh='L', $autopadding=true);
-				$y2=$y2+8;
+				$y2=$y2+12;
 				if ($y2>=200) {
 					$this->pinta_encabezado_pemc($pdf,$datos_escuela);
 					$pdf->SetAutoPageBreak(FALSE, 0);
@@ -1112,6 +1123,17 @@ EOT;
 			echo "<br>";
 		}
 		die();
+	}
+
+	public function guarda_obs_seg(){
+		$datos_sesion = Utilerias::get_cct_sesion($this);
+		
+		$idobjetivo = $this->input->post('idobjetivo');
+		$obs_seg = $this->input->post('in_obs_seg'.$idobjetivo);
+		$estatus = $this->Pemc_model->guarda_obs_seg($idobjetivo, $obs_seg);
+		$response = array('estatus' => $estatus);
+		Utilerias::enviaDataJson(200, $response, $this);
+		exit;
 	}
 
 }

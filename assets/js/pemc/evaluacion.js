@@ -22,7 +22,10 @@ $("#fr_evaluacion").validate({
 });
 
 $('.in_eval').trumbowyg({
-   lang: 'es',
+	defaultLinkTarget: '_blank',
+	minimalLinks: true,
+	lang: 'es',
+
    btns: Utiles.get_botones_trumbowyg(),
    plugins: {
     colors: Utiles.get_colores_trumbowyg(),
@@ -32,6 +35,8 @@ $('.in_eval').trumbowyg({
  });
 
 $('.in_obser').trumbowyg({
+	defaultLinkTarget: '_blank',
+	minimalLinks: true,
    lang: 'es',
    btns: Utiles.get_botones_trumbowyg(),
    plugins: {

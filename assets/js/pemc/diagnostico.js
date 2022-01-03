@@ -23,13 +23,16 @@ $("#fr_diagnostico").validate({
     });
 
 	$('.in_diag').trumbowyg({
+		defaultLinkTarget: '_blank',
+		minimalLinks: true,
 	   lang: 'es',
 	   btns: Utiles.get_botones_trumbowyg(),
 	   plugins: {
 	     colors: Utiles.get_colores_trumbowyg(),
 	   },
 	   removeformatPasted: true,
-	   autogrow: true
+	   autogrow: true,
+	   tagsToRemove: ['script', 'link']
 	 });
 
 });
